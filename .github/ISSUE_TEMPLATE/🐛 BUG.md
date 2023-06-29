@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: 🐛 BUG
+about: 버그가 발생하였을 때 사용해주세요.
 title: ''
-labels: feature
+labels: bug
 assignees: ''
 
 ---
