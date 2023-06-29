@@ -1,0 +1,18 @@
+name: Build Test
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Xcode
+      run: |
+        xcodebuild clean test -project FanFollow/FanFollow.xcodeproj \
+        -scheme FanFollow \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=14.0'
