@@ -13,6 +13,11 @@
 		188CC40B2A4D7FD900BAB85A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC4092A4D7FD900BAB85A /* Main.storyboard */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
 		188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */; };
+		188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4182A4D81F200BAB85A /* RxCocoa */; };
+		188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41A2A4D81F200BAB85A /* RxRelay */; };
+		188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41C2A4D81F200BAB85A /* RxSwift */; };
+		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
+		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188CC4232A4D824800BAB85A /* Then in Frameworks */,
+				188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */,
+				188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */,
+				188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */,
+				188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +87,20 @@
 				188CC3FC2A4D7FD900BAB85A /* Sources */,
 				188CC3FD2A4D7FD900BAB85A /* Frameworks */,
 				188CC3FE2A4D7FD900BAB85A /* Resources */,
+				188CC4252A4D82A300BAB85A /* Run Script */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FanFollow;
+			packageProductDependencies = (
+				188CC4182A4D81F200BAB85A /* RxCocoa */,
+				188CC41A2A4D81F200BAB85A /* RxRelay */,
+				188CC41C2A4D81F200BAB85A /* RxSwift */,
+				188CC41F2A4D820F00BAB85A /* SnapKit */,
+				188CC4222A4D824800BAB85A /* Then */,
+			);
 			productName = FanFollow;
 			productReference = 188CC4002A4D7FD900BAB85A /* FanFollow.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +129,11 @@
 				Base,
 			);
 			mainGroup = 188CC3F72A4D7FD900BAB85A;
+			packageReferences = (
+				188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				188CC41E2A4D820F00BAB85A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = 188CC4012A4D7FD900BAB85A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -132,6 +155,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		188CC4252A4D82A300BAB85A /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		188CC3FC2A4D7FD900BAB85A /* Sources */ = {
@@ -303,9 +347,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.youngcha.FanFollow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -332,9 +379,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.youngcha.FanFollow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -360,6 +410,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.2.0;
+			};
+		};
+		188CC41E2A4D820F00BAB85A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.1;
+			};
+		};
+		188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		188CC4182A4D81F200BAB85A /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		188CC41A2A4D81F200BAB85A /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		188CC41C2A4D81F200BAB85A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		188CC41F2A4D820F00BAB85A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188CC41E2A4D820F00BAB85A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		188CC4222A4D824800BAB85A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 188CC3F82A4D7FD900BAB85A /* Project object */;
 }
