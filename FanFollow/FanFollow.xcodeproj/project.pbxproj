@@ -133,9 +133,9 @@
 			buildConfigurationList = 188CC4142A4D7FDB00BAB85A /* Build configuration list for PBXNativeTarget "FanFollow" */;
 			buildPhases = (
 				188CC3FC2A4D7FD900BAB85A /* Sources */,
+				188CC4252A4D82A300BAB85A /* Run Script */,
 				188CC3FD2A4D7FD900BAB85A /* Frameworks */,
 				188CC3FE2A4D7FD900BAB85A /* Resources */,
-				188CC4252A4D82A300BAB85A /* Run Script */,
 			);
 			buildRules = (
 			);
