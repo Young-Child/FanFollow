@@ -1,0 +1,28 @@
+# 활성화 에러
+force_cast: error
+
+force_try:
+  severity: error
+  
+line_length:
+  warning: 100
+  error: 110
+  
+disabled_rules:
+  - vertical_whitespace
+  - trailing_whitespace
+  - todo
+  
+
+# 기본(default) 룰이 아닌 룰들을 활성화
+opt_in_rules:
+  - empty_count
+    
+# swiftlint 과정에 포함할 파일 경로
+included:
+  - Source
+
+# swiftlint를 적용하지 않게 설정할 파일 경로
+excluded:
+  - Pods
+  - Carthage
