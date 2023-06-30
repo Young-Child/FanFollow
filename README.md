@@ -1,1 +1,1 @@
-# FanFollow(팬팔)
+# FanFollow
