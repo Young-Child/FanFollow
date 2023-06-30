@@ -19,8 +19,8 @@ opt_in_rules:
   - empty_count
     
 # swiftlint 과정에 포함할 파일 경로
-included:
-  - Source
+#included:
+#  - Source
 
 # swiftlint를 적용하지 않게 설정할 파일 경로
 excluded:
