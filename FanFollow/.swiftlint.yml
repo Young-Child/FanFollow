@@ -26,3 +26,4 @@ included:
 excluded:
   - Pods
   - Carthage
+  - .build
