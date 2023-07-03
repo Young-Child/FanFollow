@@ -14,6 +14,19 @@ struct PostRequestDirector {
         self.builder = builder
     }
     
+    func requestGetPost(range: String) -> URLRequest {
+        return builder
+            .set(method: .get)
+            .set(path: "rest/v1/Post")
+            .set(queryItems: ["select" : "*"])
+            .set(headers: [
+                "apikey": Bundle.main.apiKey,
+                "Authorization": Bundle.main.apiKey,
+                "Range": range
+            ])
+            .build()
+    }
+    
     func requestPostUpsert(item: PostDTO) -> URLRequest {
         return builder
             .set(method: .post)

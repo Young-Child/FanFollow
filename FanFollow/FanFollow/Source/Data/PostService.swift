@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol PostService {
-    func fetchPost() -> Observable<Data>
+    func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
     
     func upsertPost(
         postID: String?,
@@ -23,11 +23,21 @@ protocol PostService {
     func deletePost(postID: String) -> Completable
 }
 
-struct DefaultPostService: SupabaseService {
+struct DefaultPostService: SupabaseService, PostService {
     private let disposeBag = DisposeBag()
+    private let networkManager = NetworkManager()
     
-    func fetchPost() {
+    func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
+        let range = String(startRange) + "-" + String(endRange)
         
+        guard let builder = buildURL() else {
+            return Observable.error(APIError.requestBuilderFailed)
+        }
+        
+        let request = PostRequestDirector(builder: builder).requestGetPost(range: range)
+        
+        return networkManager.execute(request)
+            .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
     }
     
     func upsertPost(
@@ -53,7 +63,7 @@ struct DefaultPostService: SupabaseService {
         
         let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
         
-        return NetworkManager().execute(request)
+        return networkManager.execute(request)
     }
     
     func deletePost(postID: String) -> Completable {
@@ -63,7 +73,7 @@ struct DefaultPostService: SupabaseService {
         
         let request = PostRequestDirector(builder: builder).requestDeletePost(postID: postID)
         
-        return NetworkManager().execute(request)
+        return networkManager.execute(request)
     }
     
     private func buildURL() -> URLRequestBuilder? {
