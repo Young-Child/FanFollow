@@ -17,7 +17,7 @@ struct ChatRequestDirector {
         return builder
             .set(method: .get)
             .set(path: "/rest/v1/Chat")
-            .set(queryItems: ["id": "eq.\(userId)"])
+            .set(queryItems: ["or": "(creatorId.eq.\(userId),requestUserId.eq.\(userId)"])
             .set(headers: [
                 "apikey": Bundle.main.apiKey,
                 "Authorization": "Bearer \(Bundle.main.apiKey)"
