@@ -33,6 +33,7 @@
 		3CAC3D7F2A52DE80000DE463 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* PostService.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
+		3CAC3D852A530E41000DE463 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D842A530E41000DE463 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		3CAC3D7E2A52DE80000DE463 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
+		3CAC3D842A530E41000DE463 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				3C45B0172A52A7AC00307DCF /* Extension */,
+				3CAC3D842A530E41000DE463 /* Constant.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				183974772A52A3A800F0101A /* LikeDTO.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				183974662A52636B00F0101A /* LikeService.swift in Sources */,
+				3CAC3D852A530E41000DE463 /* Constant.swift in Sources */,
 				1839745F2A525B1A00F0101A /* Network.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* PostService.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
