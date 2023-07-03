@@ -36,4 +36,32 @@ final class NetworkManager: Network {
             return Disposables.create { task.cancel() }
         }
     }
+    
+    func execute(_ request: URLRequest) -> Completable {
+            Completable.create { observer in
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        observer(.error(error))
+                        return
+                    }
+
+                    guard let response = response as? HTTPURLResponse,
+                          (200...300) ~= response.statusCode else {
+                        observer(.error(NetworkError.unknown))
+                        return
+                    }
+
+                    guard let data = data else {
+                        observer(.error(NetworkError.unknown))
+                        return
+                    }
+
+                    observer(.completed)
+                }
+
+                task.resume()
+
+                return Disposables.create { task.cancel() }
+            }
+        }
 }
