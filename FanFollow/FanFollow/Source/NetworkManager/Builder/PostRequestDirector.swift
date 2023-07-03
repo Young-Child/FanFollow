@@ -17,11 +17,11 @@ struct PostRequestDirector {
     func requestGetPost(range: String) -> URLRequest {
         return builder
             .set(method: .get)
-            .set(path: "rest/v1/Post")
+            .set(path: "/rest/v1/Post")
             .set(queryItems: ["select" : "*"])
             .set(headers: [
                 "apikey": Bundle.main.apiKey,
-                "Authorization": Bundle.main.apiKey,
+                "Authorization": "Bearer " + Bundle.main.apiKey,
                 "Range": range
             ])
             .build()
@@ -30,10 +30,10 @@ struct PostRequestDirector {
     func requestPostUpsert(item: PostDTO) -> URLRequest {
         return builder
             .set(method: .post)
-            .set(path: "rest/v1/Post")
+            .set(path: "/rest/v1/Post")
             .set(headers: [
                 "apikey": Bundle.main.apiKey,
-                "Authorization": Bundle.main.apiKey,
+                "Authorization": "Bearer " + Bundle.main.apiKey,
                 "Content-Type" : "application/json",
                 "Prefer": "resolution=merge-duplicates"
             ])
@@ -44,11 +44,11 @@ struct PostRequestDirector {
     func requestDeletePost(postID: String) -> URLRequest {
         return builder
             .set(method: .delete)
-            .set(path: "rest/v1/Post")
-            .set(queryItems: ["postId": "eq" + postID])
+            .set(path: "/rest/v1/Post")
+            .set(queryItems: ["postId": "eq." + postID])
             .set(headers: [
                 "apikey": Bundle.main.apiKey,
-                "Authorization": Bundle.main.apiKey
+                "Authorization": "Bearer " + Bundle.main.apiKey
             ])
             .build()
     }
