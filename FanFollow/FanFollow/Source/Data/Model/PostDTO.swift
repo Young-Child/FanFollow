@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostDTO {
+struct PostDTO: Decodable {
     let postID: String?
     let userID: String
     
@@ -16,6 +16,11 @@ struct PostDTO {
     
     let imageURLs: [String]
     let videoURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case postID = "postId"
+        case userID, title, description, imageURLs, videoURL
+    }
     
     func convertBody() -> [String: Any] {
         return ["postId" : postID ?? UUID().uuidString,
