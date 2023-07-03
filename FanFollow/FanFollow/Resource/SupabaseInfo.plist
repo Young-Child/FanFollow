@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>API KEY를 입력해주세요.</string>
+	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pYXl0eGh1enp0cm9teWxxbW91Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NzQxNjAxMCwiZXhwIjoyMDAyOTkyMDEwfQ.vPk2fjX8sDm6bQX3ouhV2b3A2PvRJ6d8xPf0LuyJclc</string>
 </dict>
 </plist>
