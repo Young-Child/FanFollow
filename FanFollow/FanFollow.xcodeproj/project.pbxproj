@@ -18,6 +18,7 @@
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
 		183974772A52A3A800F0101A /* LikeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974762A52A3A800F0101A /* LikeDTO.swift */; };
 		185602252A4DEEDD00748617 /* FanFollowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185602242A4DEEDD00748617 /* FanFollowTests.swift */; };
+		185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4072A4D7FD900BAB85A /* ViewController.swift */; };
@@ -55,6 +56,7 @@
 		183974762A52A3A800F0101A /* LikeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDTO.swift; sourceTree = "<group>"; };
 		185602222A4DEEDD00748617 /* FanFollowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FanFollowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185602242A4DEEDD00748617 /* FanFollowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanFollowTests.swift; sourceTree = "<group>"; };
+		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				183974712A52A2B900F0101A /* URLRequestBuilder.swift */,
 				183974732A52A32A00F0101A /* LikeRequestDirector.swift */,
+				185DB85E2A52F5660071023B /* ChatRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -184,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				183974642A52636200F0101A /* Data */,
-        3C45B0162A52A79A00307DCF /* Util */,
+				3C45B0162A52A79A00307DCF /* Util */,
 				1839745D2A525B0900F0101A /* NetworkManager */,
 				3C29C8F52A4EADE8002F0037 /* Application */,
 				188CC4072A4D7FD900BAB85A /* ViewController.swift */,
@@ -377,6 +380,7 @@
 				183974692A52637700F0101A /* Service.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
+				185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */,
 				183974772A52A3A800F0101A /* LikeDTO.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				183974662A52636B00F0101A /* LikeService.swift in Sources */,
