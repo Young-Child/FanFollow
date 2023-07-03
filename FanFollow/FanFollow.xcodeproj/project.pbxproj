@@ -30,6 +30,7 @@
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
+		3CAC3D7F2A52DE80000DE463 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* PostService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
+		3CAC3D7E2A52DE80000DE463 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				183974752A52A39F00F0101A /* Model */,
 				183974672A52636F00F0101A /* Protocol */,
 				183974652A52636B00F0101A /* LikeService.swift */,
+				3CAC3D7E2A52DE80000DE463 /* PostService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -184,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				183974642A52636200F0101A /* Data */,
-        3C45B0162A52A79A00307DCF /* Util */,
+				3C45B0162A52A79A00307DCF /* Util */,
 				1839745D2A525B0900F0101A /* NetworkManager */,
 				3C29C8F52A4EADE8002F0037 /* Application */,
 				188CC4072A4D7FD900BAB85A /* ViewController.swift */,
@@ -381,6 +384,7 @@
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				183974662A52636B00F0101A /* LikeService.swift in Sources */,
 				1839745F2A525B1A00F0101A /* Network.swift in Sources */,
+				3CAC3D7F2A52DE80000DE463 /* PostService.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
