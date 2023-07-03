@@ -56,6 +56,16 @@ struct DefaultPostService: SupabaseService {
         return NetworkManager().execute(request)
     }
     
+    func deletePost(postID: String) -> Completable {
+        guard let builder = buildURL() else {
+            return Completable.error(APIError.requestBuilderFailed)
+        }
+        
+        let request = PostRequestDirector(builder: builder).requestDeletePost(postID: postID)
+        
+        return NetworkManager().execute(request)
+    }
+    
     private func buildURL() -> URLRequestBuilder? {
         guard let url = URL(string: baseURL) else { return nil}
         
