@@ -32,6 +32,7 @@
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3CAC3D7F2A52DE80000DE463 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* PostService.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
+		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
+		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				183974712A52A2B900F0101A /* URLRequestBuilder.swift */,
 				183974732A52A32A00F0101A /* LikeRequestDirector.swift */,
+				3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				183974612A525B3300F0101A /* NetworkManager.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				183974692A52637700F0101A /* Service.swift in Sources */,
+				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
