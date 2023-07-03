@@ -28,6 +28,7 @@ final class NetworkManager: Network {
                 }
                 
                 emitter.onNext(data)
+                emitter.onCompleted()
             }
             
             task.resume()
