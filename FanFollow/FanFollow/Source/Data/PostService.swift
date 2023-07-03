@@ -22,3 +22,43 @@ protocol PostService {
     
     func deletePost(postID: String) -> Completable
 }
+
+struct DefaultPostService: SupabaseService {
+    private let disposeBag = DisposeBag()
+    
+    func fetchPost() {
+        
+    }
+    
+    func upsertPost(
+        postID: String? = nil,
+        userID: String,
+        title: String,
+        description: String = "",
+        imageURLs: [String] = [],
+        videoURL: String = ""
+    ) -> Completable {
+        let postItem = PostDTO(
+            postID: postID,
+            userID: userID,
+            title: title,
+            description: description,
+            imageURLs: imageURLs,
+            videoURL: videoURL
+        )
+        
+        guard let builder = buildURL() else {
+            return Completable.error(APIError.requestBuilderFailed)
+        }
+        
+        let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
+        
+        return NetworkManager().execute(request)
+    }
+    
+    private func buildURL() -> URLRequestBuilder? {
+        guard let url = URL(string: baseURL) else { return nil}
+        
+        return URLRequestBuilder(baseURL: url)
+    }
+}
