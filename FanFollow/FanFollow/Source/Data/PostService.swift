@@ -36,7 +36,7 @@ struct DefaultPostService: SupabaseService, PostService {
         
         let request = PostRequestDirector(builder: builder).requestGetPost(range: range)
         
-        return networkManager.execute(request)
+        return networkManager.data(request)
             .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
     }
     
