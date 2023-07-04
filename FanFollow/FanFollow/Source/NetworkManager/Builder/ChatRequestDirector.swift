@@ -9,8 +9,8 @@ import Foundation
 struct ChatDTO: Decodable {
     var chatId: String = UUID().uuidString
     var createdDate: String = Date().description
-    let requestUserId: String
-    let creatorId: String
+    let requestUserId: String?
+    let creatorId: String?
     var isAccept: Bool = false
     
     enum CodingKeys: String, CodingKey {
@@ -21,8 +21,8 @@ struct ChatDTO: Decodable {
     func toDictionary() -> [String: Any] {
         return [
             "chatId": chatId,
-            "requestUserId": requestUserId,
-            "creatorId": creatorId,
+            "requestUserId": requestUserId as Any,
+            "creatorId": creatorId as Any,
             "isAccept": false
         ]
     }
@@ -57,6 +57,22 @@ struct ChatRequestDirector {
                 "Authorization": "Bearer \(Bundle.main.apiKey)"
             ])
             .set(body: chat.toDictionary())
+            .build()
+    }
+    
+    func requestLeaveChat(chatId: String, userId: String, isCreator: Bool) -> URLRequest {
+        let queryKey = isCreator ? "creatorId" : "requestUserId"
+        return builder
+            .set(method: .patch)
+            .set(path: "/rest/v1/Chat")
+            .set(queryItems: [
+                queryKey: "eq.\(userId)"
+            ])
+            .set(headers: [
+                "apikey": Bundle.main.apiKey,
+                "Authorization": "Bearer \(Bundle.main.apiKey)"
+            ])
+            .set(body: [queryKey: nil])
             .build()
     }
 }
