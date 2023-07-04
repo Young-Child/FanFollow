@@ -8,7 +8,7 @@ import RxSwift
 
 protocol ChatService: SupabaseService {
     func fetchChattingList(userId: String) -> Observable<[ChatDTO]>
-    func createNewChatRoom(_ chat: ChatDTO) -> Completable
-    func leaveChatRoom(to chat: ChatDTO) -> Completable
-    func deleteChatRoom(to chat: ChatDTO) -> Completable
+    func createNewChatRoom(from userId: String, to creatorId: String) -> Completable
+    func leaveChatRoom(to chatId: String, id: String, isCreator: Bool) -> Completable
+    func deleteChatRoom(to chatId: String) -> Completable
 }
