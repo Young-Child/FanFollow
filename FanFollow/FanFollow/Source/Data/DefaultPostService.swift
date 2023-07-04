@@ -1,5 +1,5 @@
 //
-//  PostService.swift
+//  DefaultPostService.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/07/03.
@@ -8,23 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol PostService {
-    func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
-    
-    func upsertPost(
-        postID: String?,
-        userID: String,
-        title: String,
-        description: String,
-        imageURLs: [String],
-        videoURL: String
-    ) -> Completable
-    
-    func deletePost(postID: String) -> Completable
-}
-
 struct DefaultPostService: SupabaseService, PostService {
-    private let disposeBag = DisposeBag()
     private let networkManager = NetworkManager()
     
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
@@ -77,7 +61,7 @@ struct DefaultPostService: SupabaseService, PostService {
     }
     
     private func buildURL() -> URLRequestBuilder? {
-        guard let url = URL(string: baseURL) else { return nil}
+        guard let url = URL(string: baseURL) else { return nil }
         
         return URLRequestBuilder(baseURL: url)
     }

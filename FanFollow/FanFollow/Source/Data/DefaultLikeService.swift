@@ -1,5 +1,5 @@
 //
-//  LikeService.swift
+//  DefaultLikeService.swift
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
@@ -7,7 +7,7 @@
 import Foundation
 import RxSwift
 
-struct LikeService: SupabaseService {
+struct DefaultLikeService: SupabaseService, LikeService {
     func fetchPostLike(id: String) -> Observable<[LikeDTO]> {
         guard let url = URL(string: baseURL) else {
             return Observable.error(APIError.requestBuilderFailed)
