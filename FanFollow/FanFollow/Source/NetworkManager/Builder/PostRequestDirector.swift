@@ -17,7 +17,7 @@ struct PostRequestDirector {
     func requestGetPost(range: String) -> URLRequest {
         return builder
             .set(method: .get)
-            .set(path: Constant.Text.basePath + "Post")
+            .set(path: Constant.Text.basePath + "POST")
             .set(queryItems: [Constant.Text.select : Constant.Text.selectAll])
             .set(headers: [
                 Constant.Text.apikey: Bundle.main.apiKey,
@@ -30,7 +30,7 @@ struct PostRequestDirector {
     func requestPostUpsert(item: PostDTO) -> URLRequest {
         return builder
             .set(method: .post)
-            .set(path: Constant.Text.basePath + "Post")
+            .set(path: Constant.Text.basePath + "POST")
             .set(headers: [
                 Constant.Text.apikey: Bundle.main.apiKey,
                 Constant.Text.authorization: Constant.Text.bearer + Bundle.main.apiKey,
@@ -44,8 +44,8 @@ struct PostRequestDirector {
     func requestDeletePost(postID: String) -> URLRequest {
         return builder
             .set(method: .delete)
-            .set(path: Constant.Text.basePath + "Post")
-            .set(queryItems: ["postId": "eq." + postID])
+            .set(path: Constant.Text.basePath + "POST")
+            .set(queryItems: ["post_id": "eq." + postID])
             .set(headers: [
                 Constant.Text.apikey: Bundle.main.apiKey,
                 Constant.Text.authorization: Constant.Text.bearer + Bundle.main.apiKey

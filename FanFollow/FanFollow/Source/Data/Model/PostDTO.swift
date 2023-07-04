@@ -10,28 +10,30 @@ import Foundation
 struct PostDTO: Decodable {
     let postID: String?
     let userID: String
-    var createdData: String = Date().description
-    
+    let createdData: String
     let title: String
-    let description: String
-    
+    let content: String
     let imageURLs: [String]?
     let videoURL: String?
     
     enum CodingKeys: String, CodingKey {
-        case postID = "postId"
-        case createdData = "createdAt"
-        case userID, title, description, imageURLs, videoURL
+        case postID = "post_id"
+        case userID = "user_id"
+        case createdData = "created_at"
+        case imageURLs = "image_urls"
+        case videoURL = "video_url"
+        case title, content
     }
     
     func convertBody() -> [String: Any] {
         return [
-            "postId" : postID ?? UUID().uuidString,
-            "userID" : userID,
-            "title" : title,
-            "description" : description,
-            "imageURLs" : imageURLs as Any,
-            "videoURL" : videoURL as Any
+            "post_id": postID ?? UUID().uuidString,
+            "user_id": userID,
+            "created_at": createdData,
+            "title": title,
+            "content": content,
+            "image_urls": imageURLs as Any,
+            "video_url": videoURL as Any
         ]
     }
 }

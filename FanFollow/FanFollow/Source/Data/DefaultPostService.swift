@@ -17,11 +17,6 @@ struct DefaultPostService: PostService {
     
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
         let range = String(startRange) + "-" + String(endRange)
-        
-        guard let builder = buildURL() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = PostRequestDirector(builder: builder).requestGetPost(range: range)
         
         return networkManager.data(request)
@@ -29,44 +24,31 @@ struct DefaultPostService: PostService {
     }
     
     func upsertPost(
-        postID: String? = nil,
+        postID: String?,
         userID: String,
+        createdDate: String,
         title: String,
-        description: String = "",
-        imageURLs: [String] = [],
-        videoURL: String = ""
+        description: String,
+        imageURLs: [String],
+        videoURL: String
     ) -> Completable {
         let postItem = PostDTO(
             postID: postID,
             userID: userID,
+            createdData: createdDate,
             title: title,
-            description: description,
+            content: description,
             imageURLs: imageURLs,
             videoURL: videoURL
         )
-        
-        guard let builder = buildURL() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
         
         return networkManager.execute(request)
     }
     
     func deletePost(postID: String) -> Completable {
-        guard let builder = buildURL() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = PostRequestDirector(builder: builder).requestDeletePost(postID: postID)
         
         return networkManager.execute(request)
-    }
-    
-    private func buildURL() -> URLRequestBuilder? {
-        guard let url = URL(string: baseURL) else { return nil }
-        
-        return URLRequestBuilder(baseURL: url)
     }
 }
