@@ -32,6 +32,7 @@
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */; };
 		EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */; };
+		EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E522A52F00400C11188 /* FollowRequestDirector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowDTO.swift; sourceTree = "<group>"; };
 		EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationDTO.swift; sourceTree = "<group>"; };
+		EBE33E522A52F00400C11188 /* FollowRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestDirector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				183974712A52A2B900F0101A /* URLRequestBuilder.swift */,
 				183974732A52A32A00F0101A /* LikeRequestDirector.swift */,
+				EBE33E522A52F00400C11188 /* FollowRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				183974692A52637700F0101A /* Service.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
+				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				183974772A52A3A800F0101A /* LikeDTO.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
