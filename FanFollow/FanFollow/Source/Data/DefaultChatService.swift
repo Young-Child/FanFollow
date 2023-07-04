@@ -38,15 +38,15 @@ struct DefaultChatService: ChatService {
         return networkManager.execute(request)
     }
     
-    func leaveChatRoom(to chatId: String, id: String, isCreator: Bool) -> Completable {
+    func leaveChatRoom(to chatId: String, id: String, isCreator: Bool) -> Observable<Void> {
         guard let builder = builder() else {
-            return Completable.error(APIError.requestBuilderFailed)
+            return Observable.error(APIError.requestBuilderFailed)
         }
         
         let request = ChatRequestDirector(builder: builder)
             .requestLeaveChat(chatId: chatId, userId: id, isCreator: isCreator)
         
-        return networkManager.execute(request)
+        return networkManager.data(request).map { _ in return }
     }
     
     func deleteChatRoom(to chatId: String) -> Completable {
