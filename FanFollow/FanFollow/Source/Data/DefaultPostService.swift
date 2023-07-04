@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-struct DefaultPostService: SupabaseService, PostService {
+struct DefaultPostService: PostService {
     private let networkManager: Network
     
     init(networkManager: Network) {

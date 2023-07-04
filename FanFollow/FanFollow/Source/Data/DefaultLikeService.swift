@@ -7,7 +7,7 @@
 import Foundation
 import RxSwift
 
-struct DefaultLikeService: SupabaseService, LikeService {
+struct DefaultLikeService: LikeService {
     private let networkManager: Network
     
     init(networkManager: Network) {

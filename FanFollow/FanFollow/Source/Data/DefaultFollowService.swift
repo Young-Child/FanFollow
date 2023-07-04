@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-struct DefaultFollowService: FollowService, SupabaseService {
+struct DefaultFollowService: FollowService {
     private let networkManger: Network
 
     init(_ networkManger: Network = NetworkManager()) {
