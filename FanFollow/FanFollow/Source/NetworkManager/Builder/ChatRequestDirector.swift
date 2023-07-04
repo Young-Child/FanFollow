@@ -14,13 +14,18 @@ struct ChatRequestDirector {
     }
     
     func requestChattingList(userId: String) -> URLRequest {
+        let creatorQuery = SupabaseConstants.Constants.creatorEqual + userId
+        let fanQuery = SupabaseConstants.Constants.fanEqual + userId
+        
         return builder
             .set(method: .get)
-            .set(path: "/rest/v1/CHAT_ROOM")
-            .set(queryItems: ["or": "(creator_id.eq.\(userId),fan_id.eq.\(userId))"])
+            .set(path: SupabaseConstants.Constants.path)
+            .set(queryItems: [
+                SupabaseConstants.Base.or: "(\(creatorQuery),\(fanQuery))"
+            ])
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)"
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
             ])
             .build()
     }
@@ -28,27 +33,29 @@ struct ChatRequestDirector {
     func requestCreateNewChat(_ chat: ChatDTO) -> URLRequest {
         return builder
             .set(method: .post)
-            .set(path: "/rest/v1/CHAT_ROOM")
+            .set(path: SupabaseConstants.Constants.path)
             .set(headers: [
-                "Content-Type": "application/json",
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)"
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
             ])
             .set(body: chat.toDictionary())
             .build()
     }
     
     func requestLeaveChat(chatId: String, userId: String, isCreator: Bool) -> URLRequest {
-        let queryKey = isCreator ? "creator_id" : "fan_id"
+        let creatorId = SupabaseConstants.Constants.creatorId
+        let fanId = SupabaseConstants.Constants.fanId
+        let queryKey = isCreator ? creatorId : fanId
         return builder
             .set(method: .patch)
-            .set(path: "/rest/v1/CHAT_ROOM")
+            .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                queryKey: "eq.\(userId)"
+                queryKey: SupabaseConstants.Base.equal + userId
             ])
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)"
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
             ])
             .set(body: [queryKey: nil])
             .build()
@@ -57,16 +64,33 @@ struct ChatRequestDirector {
     func requestDeleteChatRoom(chatId: String) -> URLRequest {
         return builder
             .set(method: .delete)
-            .set(path: "/rest/v1/CHAT_ROOM")
+            .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                "chat_id": "eq.\(chatId)",
-                "fan_id": "is.null",
-                "creator_id": "is.null"
+                SupabaseConstants.Constants.chatId: SupabaseConstants.Base.equal + chatId,
+                SupabaseConstants.Constants.fanId: SupabaseConstants.Constants.isNull,
+                SupabaseConstants.Constants.creatorId: SupabaseConstants.Constants.isNull
             ])
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)"
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
             ])
             .build()
+    }
+}
+
+private extension SupabaseConstants {
+    enum Constants {
+        // BASE ELEMENT
+        static let path = Base.basePath + "CHAT_ROOM"
+        static let authKey = Base.authorization + Bundle.main.apiKey
+        
+        // QUERY KEY
+        static let chatId = "chat_id"
+        static let fanId = "fan_id"
+        static let creatorId = "creator_id"
+        static let null = "null"
+        static let isNull = Base.is + null
+        static let creatorEqual = creatorId + Base.equal
+        static let fanEqual = fanId + Base.equal
     }
 }
