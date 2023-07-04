@@ -15,10 +15,6 @@ struct DefaultChatService: ChatService {
     }
     
     func fetchChattingList(userId: String) -> Observable<[ChatDTO]> {
-        guard let builder = builder() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = ChatRequestDirector(builder: builder)
             .requestChattingList(userId: userId)
         
@@ -27,10 +23,6 @@ struct DefaultChatService: ChatService {
     }
     
     func createNewChatRoom(from userId: String, to creatorId: String) -> Completable {
-        guard let builder = builder() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-        
         let newChatRoom = ChatDTO(requestUserId: userId, creatorId: creatorId)
         let request = ChatRequestDirector(builder: builder)
             .requestCreateNewChat(newChatRoom)
@@ -39,10 +31,6 @@ struct DefaultChatService: ChatService {
     }
     
     func leaveChatRoom(to chatId: String, id: String, isCreator: Bool) -> Observable<Void> {
-        guard let builder = builder() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = ChatRequestDirector(builder: builder)
             .requestLeaveChat(chatId: chatId, userId: id, isCreator: isCreator)
         
@@ -50,19 +38,9 @@ struct DefaultChatService: ChatService {
     }
     
     func deleteChatRoom(to chatId: String) -> Completable {
-        guard let builder = builder() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-        
         let request = ChatRequestDirector(builder: builder)
             .requestDeleteChatRoom(chatId: chatId)
         
         return networkManager.execute(request)
-    }
-    
-    private func builder() -> URLRequestBuilder? {
-        guard let url = URL(string: baseURL) else { return nil }
-        
-        return URLRequestBuilder(baseURL: url)
     }
 }
