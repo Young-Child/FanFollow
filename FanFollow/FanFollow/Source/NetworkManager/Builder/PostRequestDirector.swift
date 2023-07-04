@@ -17,12 +17,12 @@ struct PostRequestDirector {
     func requestGetPost(range: String) -> URLRequest {
         return builder
             .set(method: .get)
-            .set(path: Constant.Text.basePath + "POST")
-            .set(queryItems: [Constant.Text.select : Constant.Text.selectAll])
+            .set(path: SupabaseConstants.Constant.path)
+            .set(queryItems: [SupabaseConstants.Base.select : SupabaseConstants.Base.selectAll])
             .set(headers: [
-                Constant.Text.apikey: Bundle.main.apiKey,
-                Constant.Text.authorization: Constant.Text.bearer + Bundle.main.apiKey,
-                "Range": range
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constant.authKey,
+                SupabaseConstants.Base.range: range
             ])
             .build()
     }
@@ -30,12 +30,12 @@ struct PostRequestDirector {
     func requestPostUpsert(item: PostDTO) -> URLRequest {
         return builder
             .set(method: .post)
-            .set(path: Constant.Text.basePath + "POST")
+            .set(path: SupabaseConstants.Constant.path)
             .set(headers: [
-                Constant.Text.apikey: Bundle.main.apiKey,
-                Constant.Text.authorization: Constant.Text.bearer + Bundle.main.apiKey,
-                "Content-Type" : "application/json",
-                "Prefer": "resolution=merge-duplicates"
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constant.authKey,
+                SupabaseConstants.Base.contentType : SupabaseConstants.Base.json,
+                SupabaseConstants.Base.prefer: SupabaseConstants.Constant.upsertPrefer
             ])
             .set(body: item.convertBody())
             .build()
@@ -44,12 +44,22 @@ struct PostRequestDirector {
     func requestDeletePost(postID: String) -> URLRequest {
         return builder
             .set(method: .delete)
-            .set(path: Constant.Text.basePath + "POST")
-            .set(queryItems: ["post_id": "eq." + postID])
+            .set(path: SupabaseConstants.Constant.path)
+            .set(queryItems: [SupabaseConstants.Constant.postID: SupabaseConstants.Base.equal + postID])
             .set(headers: [
-                Constant.Text.apikey: Bundle.main.apiKey,
-                Constant.Text.authorization: Constant.Text.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Constant.authKey,
             ])
             .build()
+    }
+}
+
+private extension SupabaseConstants {
+    enum Constant {
+        static let path = Base.basePath + "POST"
+        static let authKey = Base.bearer + Bundle.main.apiKey
+        static let upsertPrefer = "resolution=merge-duplicates"
+        static let postID = "post_id"
+        static let equalPostID = Base.equal + postID
     }
 }

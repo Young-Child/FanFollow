@@ -15,12 +15,22 @@ struct LikeRequestDirector {
     
     func requestUserLikeCount(_ postId: String) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/LIKE")
+            .set(path: SupabaseConstants.Constant.path)
             .set(queryItems: [
-                "post_id": "eq.\(postId)"
+                SupabaseConstants.Constant.postID: SupabaseConstants.Constant.equalPostID
             ])
             .set(method: .get)
             .set(headers: [:])
             .build()
+    }
+}
+
+private extension SupabaseConstants {
+    enum Constant {
+        static let path = Base.basePath + "LIKE"
+        static let authKey = Base.bearer + Bundle.main.apiKey
+        static let upsertPrefer = "resolution=merge-duplicates"
+        static let postID = "post_id"
+        static let equalPostID = Base.equal + postID
     }
 }
