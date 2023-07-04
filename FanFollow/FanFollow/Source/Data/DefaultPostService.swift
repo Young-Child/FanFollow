@@ -9,7 +9,11 @@ import Foundation
 import RxSwift
 
 struct DefaultPostService: SupabaseService, PostService {
-    private let networkManager = NetworkManager()
+    private let networkManager: Network
+    
+    init(networkManager: Network) {
+        self.networkManager = networkManager
+    }
     
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
         let range = String(startRange) + "-" + String(endRange)
