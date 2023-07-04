@@ -75,4 +75,20 @@ struct ChatRequestDirector {
             .set(body: [queryKey: nil])
             .build()
     }
+    
+    func requestDeleteChatRoom(chatId: String) -> URLRequest {
+        return builder
+            .set(method: .delete)
+            .set(path: "/rest/v1/Chat")
+            .set(queryItems: [
+                "chatId": "eq.\(chatId)",
+                "requestUserId": "is.null",
+                "creatorId": "is.null"
+            ])
+            .set(headers: [
+                "apikey": Bundle.main.apiKey,
+                "Authorization": "Bearer \(Bundle.main.apiKey)"
+            ])
+            .build()
+    }
 }
