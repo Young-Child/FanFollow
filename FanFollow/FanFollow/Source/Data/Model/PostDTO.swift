@@ -20,7 +20,7 @@ struct PostDTO: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
-        case createdData = "creadtedAt"
+        case createdData = "createdAt"
         case userID, title, description, imageURLs, videoURL
     }
     
