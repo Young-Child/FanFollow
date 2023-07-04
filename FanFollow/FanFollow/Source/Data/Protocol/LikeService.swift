@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol LikeService: SupabaseService {
-    func fetchPostLike(postId: String) -> Observable<[LikeDTO]>
+    func fetchPostLike(postID: String) -> Observable<[LikeDTO]>
 }

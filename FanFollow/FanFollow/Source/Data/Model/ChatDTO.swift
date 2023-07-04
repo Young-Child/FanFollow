@@ -7,14 +7,14 @@
 import Foundation
 
 struct ChatDTO: Decodable {
-    var chatId: String = UUID().uuidString
+    var chatID: String = UUID().uuidString
     var createdDate: String = Date().description
     let fanId: String?
     let creatorId: String?
     var isAccept: Bool = false
     
     enum CodingKeys: String, CodingKey {
-        case chatId = "chat_id"
+        case chatID = "chat_id"
         case createdDate = "created_at"
         case fanId = "fan_id"
         case creatorId = "creator_id"
@@ -23,7 +23,7 @@ struct ChatDTO: Decodable {
     
     func toDictionary() -> [String: Any] {
         return [
-            "chat_id": chatId,
+            "chat_id": chatID,
             "fan_id": fanId as Any,
             "creator_id": creatorId as Any,
             "is_accept": false

@@ -6,7 +6,7 @@
 //
 
 struct UserInformationDTO: Decodable {
-    let userId: String
+    let userID: String
     let createdAt: String
     let isCreator: Bool
     let name: String
@@ -17,7 +17,7 @@ struct UserInformationDTO: Decodable {
     let nickName: String
 
     enum CodingKeys: String, CodingKey {
-        case userId = "user_id"
+        case userID = "user_id"
         case createdAt = "created_at"
         case isCreator = "is_creator"
         case name = "name"

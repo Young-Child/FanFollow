@@ -6,16 +6,16 @@
 //
 
 struct FollowDTO: Decodable {
-    let followId: String
-    let followerId: String
-    let followingId: String
+    let followID: String
+    let followerID: String
+    let followingID: String
     let createdDate: String
     let userInformation: UserInformationDTO
 
     enum CodingKeys: String, CodingKey {
-        case followId = "follow_id"
-        case followerId = "follower_id"
-        case followingId = "following_id"
+        case followID = "follow_id"
+        case followerID = "follower_id"
+        case followingID = "following_id"
         case createdDate = "created_at"
         case userInformation = "USER_INFORMATION"
     }
