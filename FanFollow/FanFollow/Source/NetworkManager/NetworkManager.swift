@@ -8,7 +8,7 @@ import Foundation
 import RxSwift
 
 final class NetworkManager: Network {
-    func execute(_ request: URLRequest) -> Observable<Data> {
+    func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)> {
         return Observable.create { emitter in
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
@@ -27,7 +27,7 @@ final class NetworkManager: Network {
                     return
                 }
                 
-                emitter.onNext(data)
+                emitter.onNext((response, data))
                 emitter.onCompleted()
             }
             
@@ -37,31 +37,11 @@ final class NetworkManager: Network {
         }
     }
     
+    func data(_ request: URLRequest) -> Observable<Data> {
+        return response(request).map(\.data)
+    }
+    
     func execute(_ request: URLRequest) -> Completable {
-            Completable.create { observer in
-                let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    if let error = error {
-                        observer(.error(error))
-                        return
-                    }
-
-                    guard let response = response as? HTTPURLResponse,
-                          (200...300) ~= response.statusCode else {
-                        observer(.error(NetworkError.unknown))
-                        return
-                    }
-
-                    guard let data = data else {
-                        observer(.error(NetworkError.unknown))
-                        return
-                    }
-
-                    observer(.completed)
-                }
-
-                task.resume()
-
-                return Disposables.create { task.cancel() }
-            }
-        }
+        return response(request).ignoreElements().asCompletable()
+    }
 }
