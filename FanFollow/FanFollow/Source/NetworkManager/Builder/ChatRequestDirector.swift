@@ -6,28 +6,6 @@
 
 import Foundation
 
-struct ChatDTO: Decodable {
-    var chatId: String = UUID().uuidString
-    var createdDate: String = Date().description
-    let requestUserId: String?
-    let creatorId: String?
-    var isAccept: Bool = false
-    
-    enum CodingKeys: String, CodingKey {
-        case createdDate = "createdAt"
-        case chatId, requestUserId, creatorId, isAccept
-    }
-    
-    func toDictionary() -> [String: Any] {
-        return [
-            "chatId": chatId,
-            "requestUserId": requestUserId as Any,
-            "creatorId": creatorId as Any,
-            "isAccept": false
-        ]
-    }
-}
-
 struct ChatRequestDirector {
     let builder: URLRequestBuilder
     

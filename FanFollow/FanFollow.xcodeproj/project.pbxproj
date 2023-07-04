@@ -29,6 +29,7 @@
 		188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41C2A4D81F200BAB85A /* RxSwift */; };
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
+		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				183974762A52A3A800F0101A /* LikeDTO.swift */,
+				18E670392A53BCC400C52942 /* ChatDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
+				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
