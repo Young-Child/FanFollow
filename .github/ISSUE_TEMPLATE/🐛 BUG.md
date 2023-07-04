@@ -2,7 +2,7 @@
 name: "\U0001F41B BUG"
 about: 버그가 발생하였을 때 사용해주세요.
 title: ''
-labels: bug
+labels: bug, feature
 assignees: ''
 
 ---
