@@ -17,7 +17,7 @@ struct LikeService: SupabaseService {
         let request = LikeRequestDirector(builder: builder)
             .requestUserLikeCount(id)
 
-        return NetworkManager().execute(request)
+        return NetworkManager().data(request)
             .compactMap { try? JSONDecoder().decode([LikeDTO].self, from: $0) }
     }
 }
