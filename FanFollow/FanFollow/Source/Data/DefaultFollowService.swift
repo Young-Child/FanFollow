@@ -33,7 +33,7 @@ struct DefaultFollowService: FollowService {
 
     func fetchFollowerCount(followingID: String) -> RxSwift.Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followingId: followingID)
+            .requestFollowCount(followingID: followingID)
 
         return networkManger.response(request)
             .map { contentCount($0.response) }
@@ -41,7 +41,7 @@ struct DefaultFollowService: FollowService {
 
     func fetchFollowingCount(followerID: String) -> RxSwift.Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followerId: followerID)
+            .requestFollowCount(followerID: followerID)
 
         return networkManger.response(request)
             .map { contentCount($0.response) }
@@ -49,7 +49,7 @@ struct DefaultFollowService: FollowService {
 
     func checkFollow(followingID: String, followerID: String) -> RxSwift.Observable<Bool> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followingId: followingID, followerId: followerID)
+            .requestFollowCount(followingID: followingID, followerID: followerID)
 
         return networkManger.response(request)
             .map { contentCount($0.response) > 0 ? true : false }
@@ -57,14 +57,14 @@ struct DefaultFollowService: FollowService {
 
     func insertFollow(followerID: String, followingID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestInsertFollow(followerId: followerID, followingId: followingID)
+            .requestInsertFollow(followerID: followerID, followingID: followingID)
 
         return networkManger.execute(request)
     }
 
     func deleteFollow(followerID: String, followingID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestDeleteFollow(followerId: followerID, followingId: followingID)
+            .requestDeleteFollow(followerID: followerID, followingID: followingID)
 
         return networkManger.execute(request)
     }

@@ -14,11 +14,11 @@ struct FollowRequestDirector {
         self.builder = builder
     }
 
-    func requestFollowerList(_ followingId: String, startRange: Int, endRange: Int) -> URLRequest {
+    func requestFollowerList(_ followingID: String, startRange: Int, endRange: Int) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                SupabaseConstants.Constants.followingId: SupabaseConstants.Base.equal + followingId,
+                SupabaseConstants.Constants.followingID: SupabaseConstants.Base.equal + followingID,
                 SupabaseConstants.Base.select: SupabaseConstants.Constants.selectFollowerList
             ])
             .set(method: .get)
@@ -30,11 +30,11 @@ struct FollowRequestDirector {
             .build()
     }
 
-    func requestFollowingList(_ followerId: String, startRange: Int, endRange: Int) -> URLRequest {
+    func requestFollowingList(_ followerID: String, startRange: Int, endRange: Int) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                SupabaseConstants.Constants.followerId: SupabaseConstants.Base.equal + followerId,
+                SupabaseConstants.Constants.followerID: SupabaseConstants.Base.equal + followerID,
                 SupabaseConstants.Base.select: SupabaseConstants.Constants.selectFollowingList
             ])
             .set(method: .get)
@@ -46,13 +46,13 @@ struct FollowRequestDirector {
             .build()
     }
 
-    func requestFollowCount(followingId: String? = nil, followerId: String? = nil) -> URLRequest {
-        var queryItems = [SupabaseConstants.Base.select: SupabaseConstants.Constants.followId]
-        if let followingId {
-            queryItems[SupabaseConstants.Constants.followingId] = SupabaseConstants.Base.equal + followingId
+    func requestFollowCount(followingID: String? = nil, followerID: String? = nil) -> URLRequest {
+        var queryItems = [SupabaseConstants.Base.select: SupabaseConstants.Constants.followID]
+        if let followingID {
+            queryItems[SupabaseConstants.Constants.followingID] = SupabaseConstants.Base.equal + followingID
         }
-        if let followerId {
-            queryItems[SupabaseConstants.Constants.followerId] = SupabaseConstants.Base.equal + followerId
+        if let followerID {
+            queryItems[SupabaseConstants.Constants.followerID] = SupabaseConstants.Base.equal + followerID
         }
 
         return builder
@@ -67,7 +67,7 @@ struct FollowRequestDirector {
             .build()
     }
 
-    func requestInsertFollow(followerId: String, followingId: String) -> URLRequest {
+    func requestInsertFollow(followerID: String, followingID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(method: .post)
@@ -78,18 +78,18 @@ struct FollowRequestDirector {
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.returnMinimal
             ])
             .set(body: [
-                SupabaseConstants.Constants.followerId: "\(followerId)",
-                SupabaseConstants.Constants.followingId: "\(followingId)"
+                SupabaseConstants.Constants.followerID: "\(followerID)",
+                SupabaseConstants.Constants.followingID: "\(followingID)"
             ])
             .build()
     }
 
-    func requestDeleteFollow(followerId: String, followingId: String) -> URLRequest {
+    func requestDeleteFollow(followerID: String, followingID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                SupabaseConstants.Constants.followerId: SupabaseConstants.Base.equal + followerId,
-                SupabaseConstants.Constants.followingId: SupabaseConstants.Base.equal + followingId
+                SupabaseConstants.Constants.followerID: SupabaseConstants.Base.equal + followerID,
+                SupabaseConstants.Constants.followingID: SupabaseConstants.Base.equal + followingID
             ])
             .set(method: .delete)
             .set(headers: [
@@ -103,12 +103,12 @@ struct FollowRequestDirector {
 private extension SupabaseConstants {
     enum Constants {
         static let path = Base.basePath + "FOLLOW"
-        static let followingId = "following_id"
-        static let followerId = "follower_id"
-        static let followId = "follow_id"
+        static let followingID = "following_id"
+        static let followerID = "follower_id"
+        static let followID = "follow_id"
         static let selectFollowerList = "*,USER_INFORMATION!FOLLOW_follower_id_fkey(*)"
         static let selectFollowingList = "*,USER_INFORMATION!FOLLOW_following_id_fkey(*)"
-        static let equalFollowingId = Base.equal + followingId
+        static let equalFollowingID = Base.equal + followingID
         static let returnMinimal = "return=minimal"
         static let countExact = Base.count + "exact"
     }
