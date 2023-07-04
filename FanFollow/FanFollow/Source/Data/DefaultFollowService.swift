@@ -16,87 +16,57 @@ struct DefaultFollowService: FollowService, SupabaseService {
     }
 
     func fetchFollowerList(followingId: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
-        guard let director = followRequestDirector() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestFollowerList(followingId, startRange: startRange, endRange: endRange)
+        let request = FollowRequestDirector(builder: builder)
+            .requestFollowerList(followingId, startRange: startRange, endRange: endRange)
 
         return networkManger.data(request)
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
     func fetchFollowingList(followerId: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
-        guard let director = followRequestDirector() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestFollowingList(followerId, startRange: startRange, endRange: endRange)
+        let request = FollowRequestDirector(builder: builder)
+            .requestFollowingList(followerId, startRange: startRange, endRange: endRange)
 
         return networkManger.data(request)
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
     func fetchFollowerCount(followingId: String) -> RxSwift.Observable<Int> {
-        guard let director = followRequestDirector() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestFollowCount(followingId: followingId)
+        let request = FollowRequestDirector(builder: builder)
+            .requestFollowCount(followingId: followingId)
 
         return networkManger.response(request)
             .map { contentCount($0.response) }
     }
 
     func fetchFollowingCount(followerId: String) -> RxSwift.Observable<Int> {
-        guard let director = followRequestDirector() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestFollowCount(followerId: followerId)
+        let request = FollowRequestDirector(builder: builder)
+            .requestFollowCount(followerId: followerId)
 
         return networkManger.response(request)
             .map { contentCount($0.response) }
     }
 
     func checkFollow(followingId: String, followerId: String) -> RxSwift.Observable<Bool> {
-        guard let director = followRequestDirector() else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestFollowCount(followingId: followingId, followerId: followerId)
+        let request = FollowRequestDirector(builder: builder)
+            .requestFollowCount(followingId: followingId, followerId: followerId)
 
         return networkManger.response(request)
             .map { contentCount($0.response) > 0 ? true : false }
     }
 
     func insertFollow(followerId: String, followingId: String) -> Completable {
-        guard let director = followRequestDirector() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestInsertFollow(followerId: followerId, followingId: followingId)
+        let request = FollowRequestDirector(builder: builder)
+            .requestInsertFollow(followerId: followerId, followingId: followingId)
 
         return networkManger.execute(request)
     }
 
     func deleteFollow(followerId: String, followingId: String) -> Completable {
-        guard let director = followRequestDirector() else {
-            return Completable.error(APIError.requestBuilderFailed)
-        }
-
-        let request = director.requestDeleteFollow(followerId: followerId, followingId: followingId)
+        let request = FollowRequestDirector(builder: builder)
+            .requestDeleteFollow(followerId: followerId, followingId: followingId)
 
         return networkManger.execute(request)
-    }
-
-    private func followRequestDirector() -> FollowRequestDirector? {
-        guard let url = URL(string: baseURL) else {
-            return nil
-        }
-
-        let builder = URLRequestBuilder(baseURL: url)
-        return FollowRequestDirector(builder: builder)
     }
 
     private func contentCount(_ response: URLResponse) -> Int {
