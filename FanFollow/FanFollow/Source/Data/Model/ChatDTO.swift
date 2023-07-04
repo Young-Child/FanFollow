@@ -4,6 +4,8 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 struct ChatDTO: Decodable {
     var chatId: String = UUID().uuidString
     var createdDate: String = Date().description
