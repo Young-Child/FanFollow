@@ -16,52 +16,52 @@ struct FollowRequestDirector {
 
     func requestFollowerList(_ followingId: String, startRange: Int, endRange: Int) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/Follow")
+            .set(path: "\(Constant.Text.basePath)FOLLOW")
             .set(queryItems: [
-                "followingId": "eq.\(followingId)",
-                "select": "*,UserInformation!Follow_followerId_fkey(*)"
+                "following_id": "eq.\(followingId)",
+                Constant.Text.select: "*,USER_INFORMATION!FOLLOW_follower_id_fkey(*)"
             ])
             .set(method: .get)
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)",
-                "Ragne": "\(startRange)-\(endRange)"
+                Constant.Text.apikey: Bundle.main.apiKey,
+                Constant.Text.authorization: "\(Constant.Text.bearer)\(Bundle.main.apiKey)",
+                "Range": "\(startRange)-\(endRange)"
             ])
             .build()
     }
 
     func requestFollowingList(_ followerId: String, startRange: Int, endRange: Int) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/Follow")
+            .set(path: "\(Constant.Text.basePath)FOLLOW")
             .set(queryItems: [
-                "followerId": "eq.\(followerId)",
-                "select": "*,UserInformation!Follow_followingId_fkey(*)"
+                "follower_id": "eq.\(followerId)",
+                Constant.Text.select: "*,USER_INFORMATION!FOLLOW_following_id_fkey(*)"
             ])
             .set(method: .get)
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)",
-                "Ragne": "\(startRange)-\(endRange)"
+                Constant.Text.apikey: Bundle.main.apiKey,
+                Constant.Text.authorization: "\(Constant.Text.bearer)\(Bundle.main.apiKey)",
+                "Range": "\(startRange)-\(endRange)"
             ])
             .build()
     }
 
     func requestFollowCount(followingId: String? = nil, followerId: String? = nil) -> URLRequest {
-        var queryItems = ["select": "id"]
+        var queryItems = [Constant.Text.select: "follow_id"]
         if let followingId {
-            queryItems["followingId"] = "eq.\(followingId)"
+            queryItems["following_id"] = "eq.\(followingId)"
         }
         if let followerId {
-            queryItems["followerId"] = "eq.\(followerId)"
+            queryItems["follower_id"] = "eq.\(followerId)"
         }
 
         return builder
-            .set(path: "/rest/v1/Follow")
+            .set(path: "\(Constant.Text.basePath)FOLLOW")
             .set(queryItems: queryItems)
             .set(method: .get)
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)",
+                Constant.Text.apikey: Bundle.main.apiKey,
+                Constant.Text.authorization: "\(Constant.Text.bearer)\(Bundle.main.apiKey)",
                 "Prefer": "count=exact"
             ])
             .build()
@@ -69,32 +69,32 @@ struct FollowRequestDirector {
 
     func requestInsertFollow(followerId: String, followingId: String) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/Follow")
+            .set(path: "\(Constant.Text.basePath)FOLLOW")
             .set(method: .post)
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)",
+                Constant.Text.apikey: Bundle.main.apiKey,
+                Constant.Text.authorization: "\(Constant.Text.bearer)\(Bundle.main.apiKey)",
                 "Content-Type": "application/json",
                 "Prefer": "return=minimal"
             ])
             .set(body: [
-                "followerId": "\(followerId)",
-                "followingId": "\(followingId)"
+                "follower_id": "\(followerId)",
+                "following_id": "\(followingId)"
             ])
             .build()
     }
 
     func requestDeleteFollow(followerId: String, followingId: String) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/Follow")
+            .set(path: "\(Constant.Text.basePath)FOLLOW")
             .set(queryItems: [
-                "followerId": "eq.\(followerId)",
-                "followingId": "eq.\(followingId)"
+                "follower_id": "eq.\(followerId)",
+                "following_id": "eq.\(followingId)"
             ])
             .set(method: .delete)
             .set(headers: [
-                "apikey": Bundle.main.apiKey,
-                "Authorization": "Bearer \(Bundle.main.apiKey)"
+                Constant.Text.apikey: Bundle.main.apiKey,
+                Constant.Text.authorization: "\(Constant.Text.bearer)\(Bundle.main.apiKey)"
             ])
             .build()
     }

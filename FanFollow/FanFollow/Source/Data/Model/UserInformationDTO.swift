@@ -17,8 +17,14 @@ struct UserInformationDTO: Decodable {
     let nickName: String
 
     enum CodingKeys: String, CodingKey {
-        case userId = "id"
-        case createdAt, isCreator, name, profilePath
-        case jobCategory, links, introduce, nickName
+        case userId = "user_id"
+        case createdAt = "created_at"
+        case isCreator = "is_creator"
+        case name = "name"
+        case profilePath = "profile_path"
+        case jobCategory = "job_category"
+        case links = "links"
+        case introduce = "introduce"
+        case nickName = "nick_name"
     }
 }
