@@ -12,7 +12,7 @@ final class URLRequestBuilder {
     var queryItems: [String: String] = [:]
     var method: HTTPMethod = .get
     var headers: [String: Any]?
-    var body: [String: Any]?
+    var body: [String: Any?]?
     
     init(baseURL: URL) {
         self.baseURL = baseURL
@@ -43,7 +43,7 @@ final class URLRequestBuilder {
     }
     
     @discardableResult
-    func set(body: [String: Any]?) -> Self {
+    func set(body: [String: Any?]?) -> Self {
         self.body = body
         return self
     }
