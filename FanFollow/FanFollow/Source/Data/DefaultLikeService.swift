@@ -1,5 +1,5 @@
 //
-//  LikeService.swift
+//  DefaultLikeService.swift
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
@@ -7,7 +7,13 @@
 import Foundation
 import RxSwift
 
-struct LikeService: SupabaseService {
+struct DefaultLikeService: SupabaseService, LikeService {
+    private let networkManager: Network
+    
+    init(networkManager: Network) {
+        self.networkManager = networkManager
+    }
+    
     func fetchPostLike(id: String) -> Observable<[LikeDTO]> {
         guard let url = URL(string: baseURL) else {
             return Observable.error(APIError.requestBuilderFailed)
@@ -17,7 +23,7 @@ struct LikeService: SupabaseService {
         let request = LikeRequestDirector(builder: builder)
             .requestUserLikeCount(id)
 
-        return NetworkManager().execute(request)
+        return networkManager.data(request)
             .compactMap { try? JSONDecoder().decode([LikeDTO].self, from: $0) }
     }
 }

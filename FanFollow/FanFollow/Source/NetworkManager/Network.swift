@@ -8,6 +8,7 @@ import Foundation
 import RxSwift
 
 protocol Network {
-    @discardableResult
-    func execute(_ request: URLRequest) -> Observable<Data>
+    func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)>
+    func data(_ request: URLRequest) -> Observable<Data>
+    func execute(_ request: URLRequest) -> Completable
 }
