@@ -11,10 +11,16 @@ protocol Service {
     var baseURL: String { get }
 }
 
-protocol SupabaseService: Service { }
+protocol SupabaseService: Service {
+    var builder: URLRequestBuilder { get }
+}
 
 extension SupabaseService {
     var baseURL: String {
         return "https://miaytxhuzztromylqmou.supabase.co"
+    }
+    
+    var builder: URLRequestBuilder {
+        return URLRequestBuilder(baseURL: URL(staticString: baseURL))
     }
 }
