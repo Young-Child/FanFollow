@@ -15,9 +15,9 @@ struct LikeRequestDirector {
     
     func requestUserLikeCount(_ postId: String) -> URLRequest {
         return builder
-            .set(path: "/rest/v1/Like")
+            .set(path: "/rest/v1/LIKE")
             .set(queryItems: [
-                "postId": "eq.\(postId)"
+                "post_id": "eq.\(postId)"
             ])
             .set(method: .get)
             .set(headers: [:])

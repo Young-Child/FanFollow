@@ -22,8 +22,8 @@ struct DefaultChatService: ChatService {
             .compactMap { try JSONDecoder().decode([ChatDTO].self, from: $0) }
     }
     
-    func createNewChatRoom(from userId: String, to creatorId: String) -> Completable {
-        let newChatRoom = ChatDTO(requestUserId: userId, creatorId: creatorId)
+    func createNewChatRoom(from fanId: String, to creatorId: String) -> Completable {
+        let newChatRoom = ChatDTO(fanId: fanId, creatorId: creatorId)
         let request = ChatRequestDirector(builder: builder)
             .requestCreateNewChat(newChatRoom)
         

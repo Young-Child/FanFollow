@@ -17,7 +17,7 @@ protocol SupabaseService: Service {
 
 extension SupabaseService {
     var baseURL: String {
-        return "https://miaytxhuzztromylqmou.supabase.co"
+        return "https://qacasllvaxvrtwbkiavx.supabase.co"
     }
     
     var builder: URLRequestBuilder {

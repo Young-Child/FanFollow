@@ -14,14 +14,14 @@ struct DefaultLikeService: LikeService {
         self.networkManager = networkManager
     }
     
-    func fetchPostLike(id: String) -> Observable<[LikeDTO]> {
+    func fetchPostLike(postId: String) -> Observable<[LikeDTO]> {
         guard let url = URL(string: baseURL) else {
             return Observable.error(APIError.requestBuilderFailed)
         }
 
         let builder = URLRequestBuilder(baseURL: url)
         let request = LikeRequestDirector(builder: builder)
-            .requestUserLikeCount(id)
+            .requestUserLikeCount(postId)
 
         return networkManager.data(request)
             .compactMap { try? JSONDecoder().decode([LikeDTO].self, from: $0) }

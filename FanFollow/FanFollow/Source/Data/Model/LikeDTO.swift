@@ -10,8 +10,8 @@ struct LikeDTO: Decodable {
     let createdDate: String
     
     enum CodingKeys: String, CodingKey {
-        case postId
-        case userId
-        case createdDate = "createdAt"
+        case postId = "post_id"
+        case userId = "user_id"
+        case createdDate = "created_at"
     }
 }
