@@ -40,6 +40,7 @@
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostService.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
+		EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */; };
 		EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */; };
 		EBE33E4F2A52C42100C11188 /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E4E2A52C42100C11188 /* FollowService.swift */; };
 		EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */; };
@@ -90,6 +91,7 @@
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostService.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
+		EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDirector.swift; sourceTree = "<group>"; };
 		EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowDTO.swift; sourceTree = "<group>"; };
 		EBE33E4E2A52C42100C11188 /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationDTO.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				185DB85E2A52F5660071023B /* ChatRequestDirector.swift */,
 				EBE33E522A52F00400C11188 /* FollowRequestDirector.swift */,
 				3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */,
+				EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				3C10F7B42A53B862001E9B21 /* PostService.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */,
+				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
