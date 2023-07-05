@@ -8,15 +8,15 @@ import Foundation
 import RxSwift
 
 final class NetworkManager: Network {
-    private let session: URLSession
+    private let session: URLSessionType
     
-    init(session: URLSession = URLSession.shared) {
+    init(session: URLSessionType = URLSession.shared) {
         self.session = session
     }
     
     func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)> {
         return Observable.create { emitter in
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let task = session.dataTask(with: request) { data, response, error in
                 if let error = error {
                     emitter.onError(error)
                     return
