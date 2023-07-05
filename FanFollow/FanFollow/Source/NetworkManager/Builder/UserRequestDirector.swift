@@ -37,6 +37,7 @@ struct UserRequestDirector {
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
                 SupabaseConstants.Constants.nickName: SupabaseConstants.Constants.ilike + pattern,
+                SupabaseConstants.Constants.isCreator: SupabaseConstants.Constants.equalTrue,
                 SupabaseConstants.Base.select: SupabaseConstants.Base.selectAll
             ])
             .set(method: .get)
@@ -98,6 +99,8 @@ private extension SupabaseConstants {
         static let jobCategory = "job_category"
         static let nickName = "nick_name"
         static let userID = "user_id"
+        static let isCreator = "is_creator"
+        static let equalTrue = Base.equal + "true"
         static let ilike = "ilike."
         static let percentSymbol = "%"
         static let resolutionMergeDuplicates = "resolution=merge-duplicates"
