@@ -8,6 +8,7 @@ import Foundation
 
 protocol URLSessionDataTaskType {
     func resume()
+    func cancel()
 }
 
 extension URLSessionDataTask: URLSessionDataTaskType { }

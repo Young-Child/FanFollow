@@ -15,7 +15,12 @@ final class NetworkManager: Network {
     }
     
     func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)> {
-        return Observable.create { emitter in
+        return Observable.create { [weak self] emitter in
+            guard let self = self else {
+                emitter.onError(NetworkError.unknown)
+                return Disposables.create()
+            }
+            
             let task = session.dataTask(with: request) { data, response, error in
                 if let error = error {
                     emitter.onError(error)
