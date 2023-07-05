@@ -9,15 +9,7 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : {
-      "targets" : [
-        {
-          "containerPath" : "container:FanFollow.xcodeproj",
-          "identifier" : "188CC3FF2A4D7FD900BAB85A",
-          "name" : "FanFollow"
-        }
-      ]
-    },
+    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:FanFollow.xcodeproj",
       "identifier" : "188CC3FF2A4D7FD900BAB85A",
