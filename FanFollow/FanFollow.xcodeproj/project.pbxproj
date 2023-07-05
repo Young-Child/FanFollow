@@ -55,7 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		18C1E5242A55488900A41AC5 /* PBXContainerItemProxy */ = {
+		184E77222A55CC1A0082E318 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 188CC3F82A4D7FD900BAB85A /* Project object */;
 			proxyType = 1;
@@ -218,6 +218,7 @@
 				188CC4022A4D7FD900BAB85A /* FanFollow */,
 				18C1E5212A55488900A41AC5 /* NetworkManagerTests */,
 				188CC4012A4D7FD900BAB85A /* Products */,
+				18C1E5462A55C33D00A41AC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,6 +275,13 @@
 				18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		18C1E5462A55C33D00A41AC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
@@ -365,9 +373,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				18C1E5252A55488900A41AC5 /* PBXTargetDependency */,
+				184E77232A55CC1A0082E318 /* PBXTargetDependency */,
 			);
 			name = NetworkManagerTests;
+			packageProductDependencies = (
+			);
 			productName = NetworkManagerTests;
 			productReference = 18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -513,10 +523,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		18C1E5252A55488900A41AC5 /* PBXTargetDependency */ = {
+		184E77232A55CC1A0082E318 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 188CC3FF2A4D7FD900BAB85A /* FanFollow */;
-			targetProxy = 18C1E5242A55488900A41AC5 /* PBXContainerItemProxy */;
+			targetProxy = 184E77222A55CC1A0082E318 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
