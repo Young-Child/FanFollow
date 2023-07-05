@@ -14,6 +14,6 @@ protocol FollowService: SupabaseService {
     func fetchFollowerCount(followingID: String) -> Observable<Int>
     func fetchFollowingCount(followerID: String) -> Observable<Int>
     func checkFollow(followingID: String, followerID: String) -> Observable<Bool>
-    func insertFollow(followerID: String, followingID: String) -> Completable
-    func deleteFollow(followerID: String, followingID: String) -> Completable
+    func insertFollow(followingID: String, followerID: String) -> Completable
+    func deleteFollow(followingID: String, followerID: String) -> Completable
 }

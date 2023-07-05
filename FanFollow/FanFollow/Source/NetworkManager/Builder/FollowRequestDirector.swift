@@ -67,7 +67,7 @@ struct FollowRequestDirector {
             .build()
     }
 
-    func requestInsertFollow(followerID: String, followingID: String) -> URLRequest {
+    func requestInsertFollow(followingID: String, followerID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(method: .post)
@@ -78,18 +78,18 @@ struct FollowRequestDirector {
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.returnMinimal
             ])
             .set(body: [
-                SupabaseConstants.Constants.followerID: "\(followerID)",
-                SupabaseConstants.Constants.followingID: "\(followingID)"
+                SupabaseConstants.Constants.followingID: "\(followingID)",
+                SupabaseConstants.Constants.followerID: "\(followerID)"
             ])
             .build()
     }
 
-    func requestDeleteFollow(followerID: String, followingID: String) -> URLRequest {
+    func requestDeleteFollow(followingID: String, followerID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                SupabaseConstants.Constants.followerID: SupabaseConstants.Base.equal + followerID,
-                SupabaseConstants.Constants.followingID: SupabaseConstants.Base.equal + followingID
+                SupabaseConstants.Constants.followingID: SupabaseConstants.Base.equal + followingID,
+                SupabaseConstants.Constants.followerID: SupabaseConstants.Base.equal + followerID
             ])
             .set(method: .delete)
             .set(headers: [

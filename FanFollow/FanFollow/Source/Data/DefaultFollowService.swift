@@ -55,16 +55,16 @@ struct DefaultFollowService: FollowService {
             .map { contentCount($0.response) > 0 ? true : false }
     }
 
-    func insertFollow(followerID: String, followingID: String) -> Completable {
+    func insertFollow(followingID: String, followerID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestInsertFollow(followerID: followerID, followingID: followingID)
+            .requestInsertFollow(followingID: followingID, followerID: followerID)
 
         return networkManger.execute(request)
     }
 
-    func deleteFollow(followerID: String, followingID: String) -> Completable {
+    func deleteFollow(followingID: String, followerID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestDeleteFollow(followerID: followerID, followingID: followingID)
+            .requestDeleteFollow(followingID: followingID, followerID: followerID)
 
         return networkManger.execute(request)
     }
