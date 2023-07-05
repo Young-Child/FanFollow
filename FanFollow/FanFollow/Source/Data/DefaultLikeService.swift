@@ -17,24 +17,33 @@ struct DefaultLikeService: LikeService {
     func fetchPostLikeCount(postID: String) -> Observable<Int> {
         let request = LikeRequestDirector(builder: builder)
             .requestUserLikeCount(postID: postID)
-                    
+
         return networkManager.data(request)
             .flatMap { data in
                 guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
-                    let element = value.first?.first?.value as? Int
+                      let element = value.first?.first?.value as? Int
                 else {
                     return Observable<Int>.error(APIError.requestBuilderFailed)
                 }
-
+                
                 return Observable.just(element)
             }
     }
     
-    func createPostLike(postID: String, userID: String) -> Completable {
-        let request = LikeRequestDirector(builder: builder)
-            .createPostLike(postID: postID, userID: userID)
-        
-        return networkManager.execute(request)
+    func changePostLike(postID: String, userID: String) -> Completable {
+        return checkUserPostLike(postID: postID, userID: userID)
+            .flatMap { status in
+                let director = LikeRequestDirector(builder: builder)
+                var request = director.requestCreatePostLike(postID: postID, userID: userID)
+                
+                if status {
+                    request = director.requestDeleteUserLike(postID: postID, userID: userID)
+                }
+                
+                return networkManager.execute(request)
+            }
+            .ignoreElements()
+            .asCompletable()
     }
     
     func checkUserPostLike(postID: String, userID: String) -> Observable<Bool> {
@@ -44,7 +53,7 @@ struct DefaultLikeService: LikeService {
         return networkManager.data(request)
             .flatMap { data in
                 guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
-                    let element = value.first?.first?.value as? Int
+                      let element = value.first?.first?.value as? Int
                 else {
                     return Observable<Bool>.error(APIError.requestBuilderFailed)
                 }
@@ -52,10 +61,4 @@ struct DefaultLikeService: LikeService {
                 return element == .zero ? Observable.just(false) : Observable.just(true)
             }
     }
-    
-    // 게시물 좋아요를 취소한 경우
-    func deleteUserPostLike(postID: String, userID: String) {
-        // 유저와 포스트 모드 존재하면 삭제
-    }
-    
 }
