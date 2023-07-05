@@ -35,24 +35,39 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Int>.error(NetworkError.unknown)
+                }
+                return Observable<Int>.just(count)
+            }
     }
 
     func fetchFollowingCount(followerID: String) -> RxSwift.Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followerID: followerID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Int>.error(NetworkError.unknown)
+                }
+                return Observable<Int>.just(count)
+            }
     }
 
     func checkFollow(followingID: String, followerID: String) -> RxSwift.Observable<Bool> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID, followerID: followerID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) > 0 ? true : false }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Bool>.error(NetworkError.unknown)
+                }
+                return Observable<Bool>.just(count > 0)
+            }
     }
 
     func insertFollow(followingID: String, followerID: String) -> Completable {
@@ -69,11 +84,11 @@ struct DefaultFollowService: FollowService {
         return networkManger.execute(request)
     }
 
-    private func contentCount(_ response: URLResponse) -> Int {
-        guard let response = response as? HTTPURLResponse,
-              let contentRange = response.allHeaderFields["content-range"],
-              let contentCountText = String(describing: contentRange).components(separatedBy: "/").last,
-              let contentCount = Int(contentCountText) else { return 0 }
-        return contentCount
+    private func contentCount(_ data: Data) -> Int? {
+        guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
+              let count = value.first?.first?.value as? Int else {
+            return nil
+        }
+        return count
     }
 }

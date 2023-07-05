@@ -47,7 +47,7 @@ struct FollowRequestDirector {
     }
 
     func requestFollowCount(followingID: String? = nil, followerID: String? = nil) -> URLRequest {
-        var queryItems = [SupabaseConstants.Base.select: SupabaseConstants.Constants.followID]
+        var queryItems = [SupabaseConstants.Base.select: SupabaseConstants.Constants.count]
         if let followingID {
             queryItems[SupabaseConstants.Constants.followingID] = SupabaseConstants.Base.equal + followingID
         }
@@ -61,8 +61,7 @@ struct FollowRequestDirector {
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
-                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.countExact
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
             .build()
     }
@@ -110,6 +109,6 @@ private extension SupabaseConstants {
         static let selectFollowingList = "*,USER_INFORMATION!FOLLOW_following_id_fkey(*)"
         static let equalFollowingID = Base.equal + followingID
         static let returnMinimal = "return=minimal"
-        static let countExact = Base.count + "exact"
+        static let count = "count"
     }
 }
