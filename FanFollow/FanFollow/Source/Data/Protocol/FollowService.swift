@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 protocol FollowService: SupabaseService {
-    func fetchFollowerList(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
-    func fetchFollowingList(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
+    func fetchFollowers(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
+    func fetchFollowings(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
     func fetchFollowerCount(followingID: String) -> Observable<Int>
     func fetchFollowingCount(followerID: String) -> Observable<Int>
     func checkFollow(followingID: String, followerID: String) -> Observable<Bool>

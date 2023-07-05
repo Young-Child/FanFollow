@@ -15,7 +15,7 @@ struct DefaultFollowService: FollowService {
         self.networkManger = networkManger
     }
 
-    func fetchFollowerList(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
+    func fetchFollowers(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowerList(followingID, startRange: startRange, endRange: endRange)
 
@@ -23,7 +23,7 @@ struct DefaultFollowService: FollowService {
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
-    func fetchFollowingList(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
+    func fetchFollowings(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowingList(followerID, startRange: startRange, endRange: endRange)
 
