@@ -14,16 +14,31 @@ struct DefaultLikeService: LikeService {
         self.networkManager = networkManager
     }
     
-    func fetchPostLike(postID: String) -> Observable<[LikeDTO]> {
-        guard let url = URL(string: baseURL) else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let builder = URLRequestBuilder(baseURL: url)
+    func fetchPostLikeCount(postID: String) -> Observable<Int> {
         let request = LikeRequestDirector(builder: builder)
             .requestUserLikeCount(postID)
-
+                    
         return networkManager.data(request)
-            .compactMap { try? JSONDecoder().decode([LikeDTO].self, from: $0) }
+            .flatMap { data in
+                guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
+                        let element = value.first?.first?.value as? Int
+                else {
+                    return Observable<Int>.error(APIError.requestBuilderFailed)
+                }
+
+                return Observable.just(element)
+            }
     }
+    
+    func createPostLike(postID: String, userID: String) -> Completable {
+        let request = LikeRequestDirector(builder: builder)
+            .createPostLike(postID: postID, userID: userID)
+        
+        return networkManager.execute(request)
+    }
+    
+    // 유저에 대해서 게시물 좋아요 눌렀는지 여부
+    
+    // 게시물 좋아요를 취소한 경우
+    
 }
