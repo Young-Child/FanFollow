@@ -18,4 +18,6 @@ class MockURLSessionDataTask: URLSessionDataTaskType {
     func resume() {
         resumeHandler()
     }
+    
+    func cancel() { }
 }
