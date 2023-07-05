@@ -8,12 +8,15 @@ import Foundation
 
 @testable import FanFollow
 
+extension ChatDTO: Equatable {
+    public static func == (lhs: ChatDTO, rhs: ChatDTO) -> Bool {
+        return lhs.chatID == rhs.chatID
+    }
+}
+
 extension ChatDTO: Mockable {
     var mock: [ChatDTO] {
-        return [
-            .init(chatID: "1", fanId: "fanID", creatorId: "creatorID"),
-            .init(chatID: "2", fanId: "fanID", creatorId: "creatorID"),
-        ]
+        return try! JSONDecoder().decode([Self].self, from: data)
     }
     
     var data: Data {
