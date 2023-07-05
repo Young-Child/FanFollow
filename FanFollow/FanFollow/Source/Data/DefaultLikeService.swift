@@ -16,12 +16,12 @@ struct DefaultLikeService: LikeService {
     
     func fetchPostLikeCount(postID: String) -> Observable<Int> {
         let request = LikeRequestDirector(builder: builder)
-            .requestUserLikeCount(postID)
+            .requestUserLikeCount(postID: postID)
                     
         return networkManager.data(request)
             .flatMap { data in
                 guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
-                        let element = value.first?.first?.value as? Int
+                    let element = value.first?.first?.value as? Int
                 else {
                     return Observable<Int>.error(APIError.requestBuilderFailed)
                 }
@@ -37,8 +37,25 @@ struct DefaultLikeService: LikeService {
         return networkManager.execute(request)
     }
     
-    // 유저에 대해서 게시물 좋아요 눌렀는지 여부
+    func checkUserPostLike(postID: String, userID: String) -> Observable<Bool> {
+        let request = LikeRequestDirector(builder: builder)
+            .requestUserLikeCount(postID: postID, userID: userID)
+        
+        return networkManager.data(request)
+            .flatMap { data in
+                guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
+                    let element = value.first?.first?.value as? Int
+                else {
+                    return Observable<Bool>.error(APIError.requestBuilderFailed)
+                }
+                
+                return element == .zero ? Observable.just(false) : Observable.just(true)
+            }
+    }
     
     // 게시물 좋아요를 취소한 경우
+    func deleteUserPostLike(postID: String, userID: String) {
+        // 유저와 포스트 모드 존재하면 삭제
+    }
     
 }
