@@ -31,6 +31,8 @@
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */; };
 		18C1E52B2A55490C00A41AC5 /* StubNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E52A2A55490C00A41AC5 /* StubNetworkManager.swift */; };
+		18C1E52F2A554A2800A41AC5 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E52E2A554A2800A41AC5 /* Mockable.swift */; };
+		18C1E5312A554A7000A41AC5 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5302A554A7000A41AC5 /* ChatDTO.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatService.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */; };
@@ -82,6 +84,8 @@
 		18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		18C1E52A2A55490C00A41AC5 /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
+		18C1E52E2A554A2800A41AC5 /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
+		18C1E5302A554A7000A41AC5 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatService.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 		18C1E5212A55488900A41AC5 /* NetworkManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				18C1E52C2A554A1C00A41AC5 /* Mock */,
 				18C1E5292A55490200A41AC5 /* Stub */,
 				18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */,
 			);
@@ -243,6 +248,23 @@
 				18C1E52A2A55490C00A41AC5 /* StubNetworkManager.swift */,
 			);
 			path = Stub;
+			sourceTree = "<group>";
+		};
+		18C1E52C2A554A1C00A41AC5 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E52D2A554A2300A41AC5 /* Protocol */,
+				18C1E5302A554A7000A41AC5 /* ChatDTO.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		18C1E52D2A554A2300A41AC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E52E2A554A2800A41AC5 /* Mockable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
@@ -470,7 +492,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C1E52B2A55490C00A41AC5 /* StubNetworkManager.swift in Sources */,
+				18C1E52F2A554A2800A41AC5 /* Mockable.swift in Sources */,
 				18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */,
+				18C1E5312A554A7000A41AC5 /* ChatDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
