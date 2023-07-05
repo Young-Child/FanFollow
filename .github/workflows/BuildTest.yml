@@ -16,4 +16,4 @@ jobs:
       run: |
         xcodebuild clean test -project FanFollow/FanFollow.xcodeproj \
         -scheme FanFollow \
-        -destination 'platform=iOS Simulator,name=iPhone 8,OS=14.0'
+        -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest'
