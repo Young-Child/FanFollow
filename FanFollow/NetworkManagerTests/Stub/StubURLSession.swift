@@ -8,15 +8,6 @@ import Foundation
 
 @testable import FanFollow
 
-extension URLSession: URLSessionType {
-    public func dataTask(
-        with request: URLRequest,
-        completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
-    ) -> URLSessionDataTaskType {
-        return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
-    }
-}
-
 class StubURLSession<T: MockDataType>: URLSessionType {
     private var mock: T
     private var isSuccess: Bool

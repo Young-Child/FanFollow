@@ -8,8 +8,6 @@ import Foundation
 
 @testable import FanFollow
 
-extension URLSessionDataTask: URLSessionDataTaskType { }
-
 class MockURLSessionDataTask: URLSessionDataTaskType {
     private let resumeHandler: () -> Void
     

@@ -12,3 +12,12 @@ protocol URLSessionType {
         completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
     ) -> URLSessionDataTaskType
 }
+
+extension URLSession: URLSessionType {
+    func dataTask(
+        with request: URLRequest,
+        completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
+    ) -> URLSessionDataTaskType {
+        dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
+    }
+}
