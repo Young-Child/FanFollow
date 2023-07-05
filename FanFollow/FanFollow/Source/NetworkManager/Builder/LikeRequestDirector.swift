@@ -34,7 +34,7 @@ struct LikeRequestDirector {
             .build()
     }
     
-    func createPostLike(postID: String, userID: String) -> URLRequest {
+    func requestCreatePostLike(postID: String, userID: String) -> URLRequest {
         return builder
             .set(method: .post)
             .set(path: SupabaseConstants.Constants.path)
@@ -47,6 +47,21 @@ struct LikeRequestDirector {
             .set(body: [
                 SupabaseConstants.Constants.postID: postID,
                 SupabaseConstants.Constants.userID: userID
+            ])
+            .build()
+    }
+    
+    func requestDeleteUserLike(postID: String, userID: String) -> URLRequest {
+        return builder
+            .set(method: .delete)
+            .set(path: SupabaseConstants.Constants.path)
+            .set(queryItems: [
+                SupabaseConstants.Constants.postID: SupabaseConstants.Base.equal + postID,
+                SupabaseConstants.Constants.userID: SupabaseConstants.Base.equal + userID
+            ])
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
             .build()
     }
