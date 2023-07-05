@@ -21,12 +21,7 @@ class StubURLSession: URLSessionType {
         with request: URLRequest,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
     ) -> URLSessionDataTaskType {
-        return MockURLSessionDataTask { [weak self] in
-            guard let self = self else {
-                completionHandler(nil, nil, nil)
-                return
-            }
-            
+        return MockURLSessionDataTask {
             completionHandler(
                 self.response.data,
                 self.response.response,
