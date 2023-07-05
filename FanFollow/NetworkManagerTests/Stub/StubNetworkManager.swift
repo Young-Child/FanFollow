@@ -14,7 +14,7 @@ final class StubNetworkManager: Network {
     private let data: Data
     private let error: Error?
     
-    init(response: URLResponse, data: Data, error: Error) {
+    init(response: URLResponse, data: Data, error: Error? = nil) {
         self.response = response
         self.data = data
         self.error = error
