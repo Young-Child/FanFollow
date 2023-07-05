@@ -6,13 +6,11 @@
 
 import Foundation
 
-protocol URLSessionDataTaskProtocol {
-    func resume()
-}
+@testable import FanFollow
 
-extension URLSessionDataTask: URLSessionDataTaskProtocol { }
+extension URLSessionDataTask: URLSessionDataTaskType { }
 
-class MockURLSessionDataTask: URLSessionDataTaskProtocol {
+class MockURLSessionDataTask: URLSessionDataTaskType {
     private let resumeHandler: () -> Void
     
     init(resumeHandler: @escaping () -> Void) {

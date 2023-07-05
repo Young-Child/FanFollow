@@ -34,6 +34,8 @@
 		18C1E53C2A55B92A00A41AC5 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53B2A55B92A00A41AC5 /* Mock.swift */; };
 		18C1E53E2A55B94100A41AC5 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53D2A55B94100A41AC5 /* MockURLSessionDataTask.swift */; };
 		18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53F2A55BA3E00A41AC5 /* MockData.swift */; };
+		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
+		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatService.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */; };
@@ -88,6 +90,8 @@
 		18C1E53B2A55B92A00A41AC5 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		18C1E53D2A55B94100A41AC5 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
 		18C1E53F2A55BA3E00A41AC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
+		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatService.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 		1839745D2A525B0900F0101A /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				18C1E5412A55BC3700A41AC5 /* Protocol */,
 				183974702A52A2AD00F0101A /* Builder */,
 				1839746B2A52A27900F0101A /* Model */,
 				1839745E2A525B1A00F0101A /* Network.swift */,
@@ -260,6 +265,15 @@
 				18C1E53F2A55BA3E00A41AC5 /* MockData.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		18C1E5412A55BC3700A41AC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */,
+				18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
@@ -456,6 +470,7 @@
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowService.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
@@ -471,6 +486,7 @@
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
 				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				1839745F2A525B1A00F0101A /* Network.swift in Sources */,
+				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostService.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeService.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostService.swift in Sources */,

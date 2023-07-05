@@ -8,18 +8,11 @@ import Foundation
 
 @testable import FanFollow
 
-protocol URLSessionType {
-    func dataTask(
-        with request: URLRequest,
-        completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
-    ) -> URLSessionDataTaskProtocol
-}
-
 extension URLSession: URLSessionType {
-    func dataTask(
+    public func dataTask(
         with request: URLRequest,
         completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
-    ) -> URLSessionDataTaskProtocol {
+    ) -> URLSessionDataTaskType {
         return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
     }
 }
@@ -37,7 +30,7 @@ class StubURLSession<T: MockDataType>: URLSessionType {
     func dataTask(
         with request: URLRequest,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
-    ) -> URLSessionDataTaskProtocol {
+    ) -> URLSessionDataTaskType {
         let successResponse = HTTPURLResponse(
             url: request.url!,
             statusCode: 200,
