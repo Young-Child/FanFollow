@@ -13,14 +13,20 @@ struct LikeRequestDirector {
         self.builder = builder
     }
     
-    func requestUserLikeCount(_ postId: String) -> URLRequest {
+    func requestUserLikeCount(postID: String, userID: String? = nil) -> URLRequest {
+        var queryItems: [String: String] = [
+            SupabaseConstants.Base.select: SupabaseConstants.Base.count,
+            SupabaseConstants.Constants.postID: SupabaseConstants.Base.equal + postID
+        ]
+        
+        if let userID = userID {
+            queryItems[SupabaseConstants.Constants.userID] = SupabaseConstants.Base.equal + userID
+        }
+        
         return builder
             .set(method: .get)
             .set(path: SupabaseConstants.Constants.path)
-            .set(queryItems: [
-                SupabaseConstants.Base.select: SupabaseConstants.Base.count,
-                SupabaseConstants.Constants.postID: SupabaseConstants.Base.equal + postId
-            ])
+            .set(queryItems: queryItems)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
