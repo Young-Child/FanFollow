@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+
 @testable import FanFollow
 
 final class StubNetworkManager: Network {
