@@ -16,25 +16,16 @@ jobs:
   build:
     runs-on: macos-latest
     
-    env:
-        PROJECT: FanFollow/FanFollow.xcodeproj
-        SCHEME: Default
-        DESTINATION: platform=iOS Simulator,name=iPhone 13,OS=14.0.1
-        CONFIGURATION: Debug
-
     steps:
-    - name: Checkout
-    - uses: actions/checkout@v2
-    
+    - uses: actions/checkout@v3
     - name: Build Xcode
-        run: sudo xcode-select -switch /Applications/Xcode.app
-    - name: Install xcpretty
-        run: sudo gem install xcpretty
-    - name: XcodeBuild Clean Test
-        run: xcodebuild clean test
-            - project "$PROJECT"
-            - scheme "$SCHEME"
-            - destination: "$DESTINATION"
-            - configuration "$CONFIGURATION"
-            - enableCodeCoverage YES | xcpretty --color
-            - showBuildTimingSummary
+      run: |
+        xcodebuild clean test -project FanFollow/FanFollow.xcodeproj \
+        -scheme FanFollow \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.4'
+        
+    - name: Unit Test
+      run: |
+        xcodebuild clean build-for-testing -project FanFollow/FanFollow.xcodeproj \
+        -scheme FanFollow \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.4'
