@@ -33,4 +33,4 @@ jobs:
         
     - name: Unit Testing
       run : |
-        xcodebuild test-without-building -scheme FanFollow -project FanFollow/FanFollow.xcodeproj -destination "platform=iOS Simulator, name=iPhone 11 Pro,OS=latest"
+        xcodebuild test-without-building -scheme FanFollow -project FanFollow/FanFollow.xcodeproj -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=latest"
