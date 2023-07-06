@@ -17,15 +17,26 @@ jobs:
     runs-on: macos-latest
     
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1.5.1
+      with:
+        xcode-version: '14.3.1'
+      
     - uses: actions/checkout@v3
+    
     - name: Build Xcode
       run: |
-        xcodebuild clean test -project FanFollow/FanFollow.xcodeproj \
-        -scheme FanFollow \
-        -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.4'
+        xcodebuild clean test\
+           -project FanFollow/FanFollow.xcodeproj\
+           -scheme FanFollow\
+           -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"\
+           -enableCodeCoverage YES | xcpretty --color\
+           -showBuildTimingSummary
         
     - name: Unit Test
       run: |
-        xcodebuild clean build-for-testing -project FanFollow/FanFollow.xcodeproj \
-        -scheme FanFollow \
-        -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.4'
+        xcodebuild clean build-for-testing\
+           -project FanFollow/FanFollow.xcodeproj\
+           -scheme FanFollow\
+           -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"\
+           -enableCodeCoverage YES | xcpretty --color\
+           -showBuildTimingSummary
