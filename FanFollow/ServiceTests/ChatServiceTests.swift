@@ -47,4 +47,21 @@ final class ChatServiceTests: XCTestCase {
         failureResponse = nil
         networkManager = nil
     }
+    
+    /// 정상적인 사용자ID를 전달하였을 때 정상적인 데이터를 반환하는지
+    func test_FetchChattingListIsCorrectWhenSendCorrectData() {
+        // given
+        let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        networkManager.response = successResponse
+        
+        // when
+        let chatService = DefaultChatService(networkManager: self.networkManager)
+        let chatListObservable = chatService.fetchChattingList(userID: userID)
+        
+        // then
+        let value = try? chatListObservable.toBlocking().first()!.first!
+        let result = (value?.fanId == userID || value?.creatorId == userID)
+        
+        XCTAssertEqual(result, true)
+    }
 }
