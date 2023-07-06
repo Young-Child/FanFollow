@@ -31,6 +31,7 @@
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
 		185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */; };
+		1866AFC72A570A61000FFFD7 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4072A4D7FD900BAB85A /* ViewController.swift */; };
@@ -95,6 +96,7 @@
 		184E772C2A55D2850082E318 /* FanFollow.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FanFollow.xctestplan; sourceTree = "<group>"; };
 		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceTests.swift; sourceTree = "<group>"; };
+		1866AFC62A570A61000FFFD7 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1866AFC52A570A4C000FFFD7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				1866AFC62A570A61000FFFD7 /* Mock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		188CC3F72A4D7FD900BAB85A = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +390,7 @@
 		EB5668CD2A56B0EA007A3860 /* ServiceTests */ = {
 			isa = PBXGroup;
 			children = (
+				1866AFC52A570A4C000FFFD7 /* Mock */,
 				EB5668CE2A56B0FF007A3860 /* Stub */,
 				1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */,
 			);
@@ -629,6 +640,7 @@
 			files = (
 				EBAA0A682A56EC140033ED0F /* StubNetworkManager.swift in Sources */,
 				1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */,
+				1866AFC72A570A61000FFFD7 /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,7 +889,7 @@
 		EBAA0A652A56EBEA0033ED0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -895,7 +907,7 @@
 		EBAA0A662A56EBEA0033ED0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
