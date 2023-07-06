@@ -6,8 +6,7 @@
 
 import Foundation
 
-
-class StubURLSession: URLSessionType {
+final class StubURLSession: URLSessionType {
     typealias Response = (data: Data?, response: URLResponse?, error: Error?)
     
     private let response: Response
