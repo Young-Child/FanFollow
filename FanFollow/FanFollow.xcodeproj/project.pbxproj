@@ -17,7 +17,6 @@
 		1839746F2A52A29D00F0101A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839746E2A52A29D00F0101A /* APIError.swift */; };
 		183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974712A52A2B900F0101A /* URLRequestBuilder.swift */; };
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
-		183974772A52A3A800F0101A /* LikeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974762A52A3A800F0101A /* LikeDTO.swift */; };
 		185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
@@ -75,7 +74,6 @@
 		1839746E2A52A29D00F0101A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		183974712A52A2B900F0101A /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		183974732A52A32A00F0101A /* LikeRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRequestDirector.swift; sourceTree = "<group>"; };
-		183974762A52A3A800F0101A /* LikeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDTO.swift; sourceTree = "<group>"; };
 		184E772C2A55D2850082E318 /* FanFollow.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FanFollow.xctestplan; sourceTree = "<group>"; };
 		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +202,6 @@
 		183974752A52A39F00F0101A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				183974762A52A3A800F0101A /* LikeDTO.swift */,
 				18E670392A53BCC400C52942 /* ChatDTO.swift */,
 				3CAC3D802A52F669000DE463 /* PostDTO.swift */,
 				EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */,
@@ -489,7 +486,6 @@
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */,
 				18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */,
-				183974772A52A3A800F0101A /* LikeDTO.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */,
 				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
