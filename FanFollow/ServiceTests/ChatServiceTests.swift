@@ -64,4 +64,22 @@ final class ChatServiceTests: XCTestCase {
         
         XCTAssertEqual(result, true)
     }
+    
+    func test_FetchChattingListThrowErrorWhenSendWrongData() throws {
+        let userID = ""
+        self.networkManager.response = failureResponse
+        self.networkManager.error = NetworkError.unknown
+        
+        let chatService = DefaultChatService(networkManager: self.networkManager)
+        let chatListObservable = chatService.fetchChattingList(userID: userID)
+        
+        do {
+            let _ = try chatListObservable.toBlocking().first()
+        } catch let error {
+            let error = error as? NetworkError
+            let expected = NetworkError.unknown
+            
+            XCTAssertEqual(error, expected)
+        }
+    }
 }
