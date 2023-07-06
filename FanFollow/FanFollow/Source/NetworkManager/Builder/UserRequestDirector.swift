@@ -14,32 +14,28 @@ struct UserRequestDirector {
         self.builder = builder
     }
 
-    func requestFetchUserInformationList(jobCategory: Int, startRange: Int, endRange: Int) -> URLRequest {
+    func requestFetchCreatorInformations(
+        jobCategory: Int? = nil,
+        nickName: String? = nil,
+        startRange: Int,
+        endRange: Int
+    ) -> URLRequest {
+        var queryItems = [
+            SupabaseConstants.Base.select: SupabaseConstants.Base.selectAll,
+            SupabaseConstants.Constants.isCreator: SupabaseConstants.Constants.equalTrue
+        ]
+        if let jobCategory {
+            queryItems[SupabaseConstants.Constants.jobCategory] = SupabaseConstants.Base.equal + "\(jobCategory)"
+        }
+        if let nickName {
+            let percentSymbol = SupabaseConstants.Constants.percentSymbol
+            let pattern = percentSymbol + nickName + percentSymbol
+            queryItems[SupabaseConstants.Constants.nickName] = SupabaseConstants.Constants.ilike + pattern
+        }
+
         return builder
             .set(path: SupabaseConstants.Constants.path)
-            .set(queryItems: [
-                SupabaseConstants.Constants.jobCategory: SupabaseConstants.Base.equal + "\(jobCategory)",
-                SupabaseConstants.Base.select: SupabaseConstants.Base.selectAll
-            ])
-            .set(method: .get)
-            .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
-                SupabaseConstants.Base.range: "\(startRange)-\(endRange)"
-            ])
-            .build()
-    }
-
-    func requestFetchUserInformationList(nickName: String, startRange: Int, endRange: Int) -> URLRequest {
-        let pattern = SupabaseConstants.Constants.percentSymbol + nickName + SupabaseConstants.Constants.percentSymbol
-
-        return builder
-            .set(path: SupabaseConstants.Constants.path)
-            .set(queryItems: [
-                SupabaseConstants.Constants.nickName: SupabaseConstants.Constants.ilike + pattern,
-                SupabaseConstants.Constants.isCreator: SupabaseConstants.Constants.equalTrue,
-                SupabaseConstants.Base.select: SupabaseConstants.Base.selectAll
-            ])
+            .set(queryItems: queryItems)
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,

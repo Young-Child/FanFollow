@@ -15,17 +15,19 @@ struct DefaultUserInformationService: UserInformationService {
         self.networkManger = networkManger
     }
 
-    func fetchUserInformations(jobCategory: Int, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]> {
+    func fetchCreatorInformations(
+        jobCategory: Int? = nil,
+        nickName: String? = nil,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[UserInformationDTO]> {
         let request = UserRequestDirector(builder: builder)
-            .requestFetchUserInformationList(jobCategory: jobCategory, startRange: startRange, endRange: endRange)
-
-        return networkManger.data(request)
-            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
-    }
-
-    func fetchUserInformations(nickName: String, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]> {
-        let request = UserRequestDirector(builder: builder)
-            .requestFetchUserInformationList(nickName: nickName, startRange: startRange, endRange: endRange)
+            .requestFetchCreatorInformations(
+                jobCategory: jobCategory,
+                nickName: nickName,
+                startRange: startRange,
+                endRange: endRange
+            )
 
         return networkManger.data(request)
             .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }

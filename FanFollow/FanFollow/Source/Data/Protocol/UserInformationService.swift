@@ -9,8 +9,12 @@ import Foundation
 import RxSwift
 
 protocol UserInformationService: SupabaseService {
-    func fetchUserInformations(jobCategory: Int, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]>
-    func fetchUserInformations(nickName: String, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]>
+    func fetchCreatorInformations(
+        jobCategory: Int?,
+        nickName: String?,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[UserInformationDTO]>
     func fetchUserInformation(for userID: String) -> Observable<UserInformationDTO>
     func upsertUserInformation(
         userID: String, name: String, nickName: String, profilePath: String?, jobCategory: Int?,
