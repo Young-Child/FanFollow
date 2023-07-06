@@ -126,9 +126,31 @@ final class ChatServiceTests: XCTestCase {
         
         switch result {
         case .completed:
-            XCTAssertThrowsError(NetworkError.unknown, "We expected Completed Event, But Occur Error Event")
+            XCTAssertThrowsError(NetworkError.unknown, "We expected Error Event, But Occur Completed Event")
         case .failed:
             XCTAssert(true)
+        }
+    }
+    
+    /// 정상적인 데이터를 전달하였을 때 채팅방 떠나기 함수가 완료 이벤트를 방출하는지에 대한 테스트
+    func test_LeaveChatRoomIsCompletedWhenSendCorrectData() throws {
+        // given
+        let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
+        let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        networkManager.response = successResponse
+        
+        //when
+        let chatService = DefaultChatService(networkManager: self.networkManager)
+        let observable = chatService.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
+        
+        //then
+        let result = observable.toBlocking().materialize()
+        
+        switch result {
+        case .completed:
+            XCTAssertThrowsError(NetworkError.unknown, "We expected Completed Event, But Occur Error Event")
+        case .failed(_, let error):
+            XCTAssertThrowsError(error, "We expected Completed Event, But Occur Error Event")
         }
     }
 }
