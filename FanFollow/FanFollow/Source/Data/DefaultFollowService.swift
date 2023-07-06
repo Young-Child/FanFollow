@@ -15,7 +15,7 @@ struct DefaultFollowService: FollowService {
         self.networkManger = networkManger
     }
 
-    func fetchFollowerList(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
+    func fetchFollowers(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowerList(followingID, startRange: startRange, endRange: endRange)
 
@@ -23,7 +23,7 @@ struct DefaultFollowService: FollowService {
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
-    func fetchFollowingList(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
+    func fetchFollowings(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowingList(followerID, startRange: startRange, endRange: endRange)
 
@@ -31,49 +31,64 @@ struct DefaultFollowService: FollowService {
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
-    func fetchFollowerCount(followingID: String) -> RxSwift.Observable<Int> {
+    func fetchFollowerCount(followingID: String) -> Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followingId: followingID)
+            .requestFollowCount(followingID: followingID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Int>.error(NetworkError.unknown)
+                }
+                return Observable<Int>.just(count)
+            }
     }
 
-    func fetchFollowingCount(followerID: String) -> RxSwift.Observable<Int> {
+    func fetchFollowingCount(followerID: String) -> Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followerId: followerID)
+            .requestFollowCount(followerID: followerID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Int>.error(NetworkError.unknown)
+                }
+                return Observable<Int>.just(count)
+            }
     }
 
-    func checkFollow(followingID: String, followerID: String) -> RxSwift.Observable<Bool> {
+    func checkFollow(followingID: String, followerID: String) -> Observable<Bool> {
         let request = FollowRequestDirector(builder: builder)
-            .requestFollowCount(followingId: followingID, followerId: followerID)
+            .requestFollowCount(followingID: followingID, followerID: followerID)
 
-        return networkManger.response(request)
-            .map { contentCount($0.response) > 0 ? true : false }
+        return networkManger.data(request)
+            .flatMap {
+                guard let count = contentCount($0) else {
+                    return Observable<Bool>.error(NetworkError.unknown)
+                }
+                return Observable<Bool>.just(count > 0)
+            }
     }
 
-    func insertFollow(followerID: String, followingID: String) -> Completable {
+    func insertFollow(followingID: String, followerID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestInsertFollow(followerId: followerID, followingId: followingID)
+            .requestInsertFollow(followingID: followingID, followerID: followerID)
 
         return networkManger.execute(request)
     }
 
-    func deleteFollow(followerID: String, followingID: String) -> Completable {
+    func deleteFollow(followingID: String, followerID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
-            .requestDeleteFollow(followerId: followerID, followingId: followingID)
+            .requestDeleteFollow(followingID: followingID, followerID: followerID)
 
         return networkManger.execute(request)
     }
 
-    private func contentCount(_ response: URLResponse) -> Int {
-        guard let response = response as? HTTPURLResponse,
-              let contentRange = response.allHeaderFields["content-range"],
-              let contentCountText = String(describing: contentRange).components(separatedBy: "/").last,
-              let contentCount = Int(contentCountText) else { return 0 }
-        return contentCount
+    private func contentCount(_ data: Data) -> Int? {
+        guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
+              let count = value.first?.first?.value as? Int else {
+            return nil
+        }
+        return count
     }
 }

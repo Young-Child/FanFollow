@@ -9,5 +9,7 @@ import Foundation
 import RxSwift
 
 protocol LikeService: SupabaseService {
-    func fetchPostLike(postID: String) -> Observable<[LikeDTO]>
+    func fetchPostLikeCount(postID: String, userID: String?) -> Observable<Int>
+    func createPostLike(postID: String, userID: String) -> Completable
+    func deletePostLike(postID: String, userID: String) -> Completable
 }

@@ -12,6 +12,7 @@ enum SupabaseConstants {
         // QUERY
         static let select = "select"
         static let selectAll = "*"
+        static let count = "count"
         static let equal = "eq."
         static let `is` = "is."
         static let or = "or."
@@ -24,6 +25,5 @@ enum SupabaseConstants {
         static let contentType = "Content-Type"
         static let json = "application/json"
         static let prefer = "Prefer"
-        static let count = "count="
     }
 }

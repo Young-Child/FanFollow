@@ -8,28 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
+		18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CED2A56927A0042E0F2 /* RxCocoa */; };
+		18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CEF2A56927A0042E0F2 /* RxRelay */; };
+		18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF12A56927A0042E0F2 /* RxSwift */; };
+		18287CF62A56935F0042E0F2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF52A56935F0042E0F2 /* RxBlocking */; };
+		18287CFA2A56935F0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF92A56935F0042E0F2 /* RxRelay */; };
+		18287CFC2A56935F0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CFB2A56935F0042E0F2 /* RxSwift */; };
+		18287CFE2A56935F0042E0F2 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CFD2A56935F0042E0F2 /* RxTest */; };
+		18287CFF2A5698F80042E0F2 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
+		18287D002A5699000042E0F2 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
+		18287D012A5699060042E0F2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974602A525B3300F0101A /* NetworkManager.swift */; };
+		18287D022A5699080042E0F2 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839745E2A525B1A00F0101A /* Network.swift */; };
+		18287D032A56990B0042E0F2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974622A525B4500F0101A /* NetworkError.swift */; };
+		18287D042A5699150042E0F2 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		1839745F2A525B1A00F0101A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839745E2A525B1A00F0101A /* Network.swift */; };
 		183974612A525B3300F0101A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974602A525B3300F0101A /* NetworkManager.swift */; };
 		183974632A525B4500F0101A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974622A525B4500F0101A /* NetworkError.swift */; };
-		183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeService.swift */; };
 		183974692A52637700F0101A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974682A52637700F0101A /* Service.swift */; };
 		1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839746C2A52A28100F0101A /* HTTPMethod.swift */; };
 		1839746F2A52A29D00F0101A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839746E2A52A29D00F0101A /* APIError.swift */; };
 		183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974712A52A2B900F0101A /* URLRequestBuilder.swift */; };
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
-		183974772A52A3A800F0101A /* LikeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974762A52A3A800F0101A /* LikeDTO.swift */; };
-		185602252A4DEEDD00748617 /* FanFollowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185602242A4DEEDD00748617 /* FanFollowTests.swift */; };
 		185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4072A4D7FD900BAB85A /* ViewController.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
 		188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */; };
-		188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4182A4D81F200BAB85A /* RxCocoa */; };
-		188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41A2A4D81F200BAB85A /* RxRelay */; };
-		188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41C2A4D81F200BAB85A /* RxSwift */; };
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
+		18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */; };
+		18C1E5392A55717000A41AC5 /* StubURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5382A55717000A41AC5 /* StubURLSession.swift */; };
+		18C1E53C2A55B92A00A41AC5 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53B2A55B92A00A41AC5 /* Mock.swift */; };
+		18C1E53E2A55B94100A41AC5 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53D2A55B94100A41AC5 /* MockURLSessionDataTask.swift */; };
+		18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53F2A55BA3E00A41AC5 /* MockData.swift */; };
+		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
+		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatService.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */; };
@@ -40,6 +54,10 @@
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostService.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
+		EB5668D02A56B11C007A3860 /* StubNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5668CF2A56B11C007A3860 /* StubNetworkManager.swift */; };
+		EBC4E98E2A54F22700A1F6AE /* UserInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98D2A54F22700A1F6AE /* UserInformationService.swift */; };
+		EBC4E9902A55133000A1F6AE /* DefaultUserInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98F2A55133000A1F6AE /* DefaultUserInformationService.swift */; };
+		EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */; };
 		EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */; };
 		EBE33E4F2A52C42100C11188 /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E4E2A52C42100C11188 /* FollowService.swift */; };
 		EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */; };
@@ -47,16 +65,6 @@
 		EBE33E552A52F3CA00C11188 /* DefaultFollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E542A52F3CA00C11188 /* DefaultFollowService.swift */; };
 		EBE33E6D2A53DD3B00C11188 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E6C2A53DD3B00C11188 /* LikeService.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		185602262A4DEEDD00748617 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 188CC3F82A4D7FD900BAB85A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 188CC3FF2A4D7FD900BAB85A;
-			remoteInfo = FanFollow;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
@@ -69,9 +77,7 @@
 		1839746E2A52A29D00F0101A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		183974712A52A2B900F0101A /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		183974732A52A32A00F0101A /* LikeRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRequestDirector.swift; sourceTree = "<group>"; };
-		183974762A52A3A800F0101A /* LikeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDTO.swift; sourceTree = "<group>"; };
-		185602222A4DEEDD00748617 /* FanFollowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FanFollowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		185602242A4DEEDD00748617 /* FanFollowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanFollowTests.swift; sourceTree = "<group>"; };
+		184E772C2A55D2850082E318 /* FanFollow.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FanFollow.xctestplan; sourceTree = "<group>"; };
 		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +86,14 @@
 		188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		18C1E5382A55717000A41AC5 /* StubURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLSession.swift; sourceTree = "<group>"; };
+		18C1E53B2A55B92A00A41AC5 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		18C1E53D2A55B94100A41AC5 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
+		18C1E53F2A55BA3E00A41AC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
+		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatService.swift; sourceTree = "<group>"; };
@@ -90,6 +104,10 @@
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostService.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
+		EB5668CF2A56B11C007A3860 /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
+		EBC4E98D2A54F22700A1F6AE /* UserInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationService.swift; sourceTree = "<group>"; };
+		EBC4E98F2A55133000A1F6AE /* DefaultUserInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserInformationService.swift; sourceTree = "<group>"; };
+		EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDirector.swift; sourceTree = "<group>"; };
 		EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowDTO.swift; sourceTree = "<group>"; };
 		EBE33E4E2A52C42100C11188 /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationDTO.swift; sourceTree = "<group>"; };
@@ -99,22 +117,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1856021F2A4DEEDD00748617 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		188CC3FD2A4D7FD900BAB85A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */,
+				18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */,
 				188CC4232A4D824800BAB85A /* Then in Frameworks */,
-				188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */,
+				18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */,
 				188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */,
-				188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */,
-				188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18C1E51D2A55488900A41AC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18287CFE2A56935F0042E0F2 /* RxTest in Frameworks */,
+				18287CFA2A56935F0042E0F2 /* RxRelay in Frameworks */,
+				18287CFC2A56935F0042E0F2 /* RxSwift in Frameworks */,
+				18287CF62A56935F0042E0F2 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +154,7 @@
 		1839745D2A525B0900F0101A /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				18C1E5412A55BC3700A41AC5 /* Protocol */,
 				183974702A52A2AD00F0101A /* Builder */,
 				1839746B2A52A27900F0101A /* Model */,
 				1839745E2A525B1A00F0101A /* Network.swift */,
@@ -150,6 +173,7 @@
 				183974652A52636B00F0101A /* DefaultLikeService.swift */,
 				EBE33E542A52F3CA00C11188 /* DefaultFollowService.swift */,
 				3CAC3D7E2A52DE80000DE463 /* DefaultPostService.swift */,
+				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -162,6 +186,7 @@
 				3C10F7B32A53B862001E9B21 /* PostService.swift */,
 				EBE33E4E2A52C42100C11188 /* FollowService.swift */,
 				EBE33E6C2A53DD3B00C11188 /* LikeService.swift */,
+				EBC4E98D2A54F22700A1F6AE /* UserInformationService.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -183,6 +208,7 @@
 				185DB85E2A52F5660071023B /* ChatRequestDirector.swift */,
 				EBE33E522A52F00400C11188 /* FollowRequestDirector.swift */,
 				3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */,
+				EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -190,7 +216,6 @@
 		183974752A52A39F00F0101A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				183974762A52A3A800F0101A /* LikeDTO.swift */,
 				18E670392A53BCC400C52942 /* ChatDTO.swift */,
 				3CAC3D802A52F669000DE463 /* PostDTO.swift */,
 				EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */,
@@ -199,20 +224,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		185602232A4DEEDD00748617 /* FanFollowTests */ = {
-			isa = PBXGroup;
-			children = (
-				185602242A4DEEDD00748617 /* FanFollowTests.swift */,
-			);
-			path = FanFollowTests;
-			sourceTree = "<group>";
-		};
 		188CC3F72A4D7FD900BAB85A = {
 			isa = PBXGroup;
 			children = (
+				184E772C2A55D2850082E318 /* FanFollow.xctestplan */,
 				188CC4022A4D7FD900BAB85A /* FanFollow */,
-				185602232A4DEEDD00748617 /* FanFollowTests */,
+				18C1E5212A55488900A41AC5 /* NetworkManagerTests */,
+				EB5668CD2A56B0EA007A3860 /* ServiceTests */,
 				188CC4012A4D7FD900BAB85A /* Products */,
+				18C1E5462A55C33D00A41AC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				188CC4002A4D7FD900BAB85A /* FanFollow.app */,
-				185602222A4DEEDD00748617 /* FanFollowTests.xctest */,
+				18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,6 +252,50 @@
 				3C29C8F32A4EAD95002F0037 /* Source */,
 			);
 			path = FanFollow;
+			sourceTree = "<group>";
+		};
+		18C1E5212A55488900A41AC5 /* NetworkManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E53A2A55B92400A41AC5 /* Mock */,
+				18C1E5372A55716100A41AC5 /* Stub */,
+				18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */,
+			);
+			path = NetworkManagerTests;
+			sourceTree = "<group>";
+		};
+		18C1E5372A55716100A41AC5 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E5382A55717000A41AC5 /* StubURLSession.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
+		18C1E53A2A55B92400A41AC5 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E53B2A55B92A00A41AC5 /* Mock.swift */,
+				18C1E53D2A55B94100A41AC5 /* MockURLSessionDataTask.swift */,
+				18C1E53F2A55BA3E00A41AC5 /* MockData.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		18C1E5412A55BC3700A41AC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */,
+				18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		18C1E5462A55C33D00A41AC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
@@ -284,27 +348,25 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		EB5668CD2A56B0EA007A3860 /* ServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB5668CE2A56B0FF007A3860 /* Stub */,
+			);
+			path = ServiceTests;
+			sourceTree = "<group>";
+		};
+		EB5668CE2A56B0FF007A3860 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				EB5668CF2A56B11C007A3860 /* StubNetworkManager.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		185602212A4DEEDD00748617 /* FanFollowTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1856022A2A4DEEDD00748617 /* Build configuration list for PBXNativeTarget "FanFollowTests" */;
-			buildPhases = (
-				1856021E2A4DEEDD00748617 /* Sources */,
-				1856021F2A4DEEDD00748617 /* Frameworks */,
-				185602202A4DEEDD00748617 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				185602272A4DEEDD00748617 /* PBXTargetDependency */,
-			);
-			name = FanFollowTests;
-			productName = FanFollowTests;
-			productReference = 185602222A4DEEDD00748617 /* FanFollowTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		188CC3FF2A4D7FD900BAB85A /* FanFollow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 188CC4142A4D7FDB00BAB85A /* Build configuration list for PBXNativeTarget "FanFollow" */;
@@ -320,15 +382,38 @@
 			);
 			name = FanFollow;
 			packageProductDependencies = (
-				188CC4182A4D81F200BAB85A /* RxCocoa */,
-				188CC41A2A4D81F200BAB85A /* RxRelay */,
-				188CC41C2A4D81F200BAB85A /* RxSwift */,
 				188CC41F2A4D820F00BAB85A /* SnapKit */,
 				188CC4222A4D824800BAB85A /* Then */,
+				18287CED2A56927A0042E0F2 /* RxCocoa */,
+				18287CEF2A56927A0042E0F2 /* RxRelay */,
+				18287CF12A56927A0042E0F2 /* RxSwift */,
 			);
 			productName = FanFollow;
 			productReference = 188CC4002A4D7FD900BAB85A /* FanFollow.app */;
 			productType = "com.apple.product-type.application";
+		};
+		18C1E51F2A55488900A41AC5 /* NetworkManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18C1E5262A55488900A41AC5 /* Build configuration list for PBXNativeTarget "NetworkManagerTests" */;
+			buildPhases = (
+				18C1E51C2A55488900A41AC5 /* Sources */,
+				18C1E51D2A55488900A41AC5 /* Frameworks */,
+				18C1E51E2A55488900A41AC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetworkManagerTests;
+			packageProductDependencies = (
+				18287CF52A56935F0042E0F2 /* RxBlocking */,
+				18287CF92A56935F0042E0F2 /* RxRelay */,
+				18287CFB2A56935F0042E0F2 /* RxSwift */,
+				18287CFD2A56935F0042E0F2 /* RxTest */,
+			);
+			productName = NetworkManagerTests;
+			productReference = 18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -340,12 +425,11 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					185602212A4DEEDD00748617 = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 188CC3FF2A4D7FD900BAB85A;
-					};
 					188CC3FF2A4D7FD900BAB85A = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					18C1E51F2A55488900A41AC5 = {
+						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
@@ -359,28 +443,21 @@
 			);
 			mainGroup = 188CC3F72A4D7FD900BAB85A;
 			packageReferences = (
-				188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				188CC41E2A4D820F00BAB85A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */,
+				18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 188CC4012A4D7FD900BAB85A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				188CC3FF2A4D7FD900BAB85A /* FanFollow */,
-				185602212A4DEEDD00748617 /* FanFollowTests */,
+				18C1E51F2A55488900A41AC5 /* NetworkManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		185602202A4DEEDD00748617 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		188CC3FE2A4D7FD900BAB85A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +465,13 @@
 				3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */,
 				188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */,
 				188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18C1E51E2A55488900A41AC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,14 +499,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1856021E2A4DEEDD00748617 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				185602252A4DEEDD00748617 /* FanFollowTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		188CC3FC2A4D7FD900BAB85A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,41 +512,53 @@
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowService.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				185DB85F2A52F5660071023B /* ChatRequestDirector.swift in Sources */,
 				18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */,
-				183974772A52A3A800F0101A /* LikeDTO.swift in Sources */,
+				EBC4E9902A55133000A1F6AE /* DefaultUserInformationService.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
+				EBC4E98E2A54F22700A1F6AE /* UserInformationService.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				1839745F2A525B1A00F0101A /* Network.swift in Sources */,
+				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
+				EB5668D02A56B11C007A3860 /* StubNetworkManager.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostService.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeService.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostService.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */,
+				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		185602272A4DEEDD00748617 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 188CC3FF2A4D7FD900BAB85A /* FanFollow */;
-			targetProxy = 185602262A4DEEDD00748617 /* PBXContainerItemProxy */;
+		18C1E51C2A55488900A41AC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18287D002A5699000042E0F2 /* URLSessionType.swift in Sources */,
+				18C1E5392A55717000A41AC5 /* StubURLSession.swift in Sources */,
+				18C1E53E2A55B94100A41AC5 /* MockURLSessionDataTask.swift in Sources */,
+				18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */,
+				18287D012A5699060042E0F2 /* NetworkManager.swift in Sources */,
+				18287D042A5699150042E0F2 /* ChatDTO.swift in Sources */,
+				18287D022A5699080042E0F2 /* Network.swift in Sources */,
+				18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */,
+				18C1E53C2A55B92A00A41AC5 /* Mock.swift in Sources */,
+				18287CFF2A5698F80042E0F2 /* URLSessionDataTaskType.swift in Sources */,
+				18287D032A56990B0042E0F2 /* NetworkError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXTargetDependency section */
+/* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
 		188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */ = {
@@ -484,48 +572,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		185602282A4DEEDD00748617 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BH7V49ZZ2G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.youngcha.FanFollowTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
-			};
-			name = Debug;
-		};
-		185602292A4DEEDD00748617 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BH7V49ZZ2G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.youngcha.FanFollowTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
-			};
-			name = Release;
-		};
 		188CC4122A4D7FDB00BAB85A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -704,18 +750,51 @@
 			};
 			name = Release;
 		};
+		18C1E5272A55488900A41AC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7V49ZZ2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FanFollow.NetworkManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
+			};
+			name = Debug;
+		};
+		18C1E5282A55488900A41AC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BH7V49ZZ2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FanFollow.NetworkManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1856022A2A4DEEDD00748617 /* Build configuration list for PBXNativeTarget "FanFollowTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				185602282A4DEEDD00748617 /* Debug */,
-				185602292A4DEEDD00748617 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		188CC3FB2A4D7FD900BAB85A /* Build configuration list for PBXProject "FanFollow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -734,10 +813,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		18C1E5262A55488900A41AC5 /* Build configuration list for PBXNativeTarget "NetworkManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18C1E5272A55488900A41AC5 /* Debug */,
+				18C1E5282A55488900A41AC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -764,20 +852,40 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		188CC4182A4D81F200BAB85A /* RxCocoa */ = {
+		18287CED2A56927A0042E0F2 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		188CC41A2A4D81F200BAB85A /* RxRelay */ = {
+		18287CEF2A56927A0042E0F2 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
 		};
-		188CC41C2A4D81F200BAB85A /* RxSwift */ = {
+		18287CF12A56927A0042E0F2 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		18287CF52A56935F0042E0F2 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		18287CF92A56935F0042E0F2 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		18287CFB2A56935F0042E0F2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		18287CFD2A56935F0042E0F2 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 		188CC41F2A4D820F00BAB85A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

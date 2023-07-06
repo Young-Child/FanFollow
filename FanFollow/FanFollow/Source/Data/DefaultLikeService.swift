@@ -14,16 +14,33 @@ struct DefaultLikeService: LikeService {
         self.networkManager = networkManager
     }
     
-    func fetchPostLike(postID: String) -> Observable<[LikeDTO]> {
-        guard let url = URL(string: baseURL) else {
-            return Observable.error(APIError.requestBuilderFailed)
-        }
-
-        let builder = URLRequestBuilder(baseURL: url)
+    func fetchPostLikeCount(postID: String, userID: String? = nil) -> Observable<Int> {
         let request = LikeRequestDirector(builder: builder)
-            .requestUserLikeCount(postID)
+            .requestUserLikeCount(postID: postID, userID: userID)
 
         return networkManager.data(request)
-            .compactMap { try? JSONDecoder().decode([LikeDTO].self, from: $0) }
+            .flatMap { data in
+                guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
+                      let element = value.first?.first?.value as? Int
+                else {
+                    return Observable<Int>.error(APIError.requestBuilderFailed)
+                }
+                
+                return Observable.just(element)
+            }
+    }
+    
+    func createPostLike(postID: String, userID: String) -> Completable {
+        let request = LikeRequestDirector(builder: builder)
+            .requestCreatePostLike(postID: postID, userID: userID)
+        
+        return networkManager.execute(request)
+    }
+    
+    func deletePostLike(postID: String, userID: String) -> Completable {
+        let request = LikeRequestDirector(builder: builder)
+            .requestDeleteUserLike(postID: postID, userID: userID)
+        
+        return networkManager.execute(request)
     }
 }
