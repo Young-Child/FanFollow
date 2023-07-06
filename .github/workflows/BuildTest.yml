@@ -26,8 +26,7 @@ jobs:
     - name: Build Xcode
       run: |
         xcodebuild clean build -project FanFollow/FanFollow.xcodeproj\
-        -scheme FanFollow -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=latest"\
-        -showBuildTimingSummary
+        -scheme FanFollow -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=latest"
         
     - name: Unit Test
       run: |
