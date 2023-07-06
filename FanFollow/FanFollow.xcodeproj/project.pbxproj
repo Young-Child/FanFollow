@@ -8,10 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
+		18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CED2A56927A0042E0F2 /* RxCocoa */; };
+		18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CEF2A56927A0042E0F2 /* RxRelay */; };
+		18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF12A56927A0042E0F2 /* RxSwift */; };
+		18287CF62A56935F0042E0F2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF52A56935F0042E0F2 /* RxBlocking */; };
+		18287CFA2A56935F0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF92A56935F0042E0F2 /* RxRelay */; };
+		18287CFC2A56935F0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CFB2A56935F0042E0F2 /* RxSwift */; };
+		18287CFE2A56935F0042E0F2 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CFD2A56935F0042E0F2 /* RxTest */; };
+		18287CFF2A5698F80042E0F2 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
+		18287D002A5699000042E0F2 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
+		18287D012A5699060042E0F2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974602A525B3300F0101A /* NetworkManager.swift */; };
+		18287D022A5699080042E0F2 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839745E2A525B1A00F0101A /* Network.swift */; };
+		18287D032A56990B0042E0F2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974622A525B4500F0101A /* NetworkError.swift */; };
+		18287D042A5699150042E0F2 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		1839745F2A525B1A00F0101A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839745E2A525B1A00F0101A /* Network.swift */; };
 		183974612A525B3300F0101A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974602A525B3300F0101A /* NetworkManager.swift */; };
 		183974632A525B4500F0101A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974622A525B4500F0101A /* NetworkError.swift */; };
-		183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeService.swift */; };
 		183974692A52637700F0101A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974682A52637700F0101A /* Service.swift */; };
 		1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839746C2A52A28100F0101A /* HTTPMethod.swift */; };
 		1839746F2A52A29D00F0101A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839746E2A52A29D00F0101A /* APIError.swift */; };
@@ -23,9 +35,6 @@
 		188CC4082A4D7FD900BAB85A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4072A4D7FD900BAB85A /* ViewController.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
 		188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */; };
-		188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4182A4D81F200BAB85A /* RxCocoa */; };
-		188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41A2A4D81F200BAB85A /* RxRelay */; };
-		188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41C2A4D81F200BAB85A /* RxSwift */; };
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5222A55488900A41AC5 /* NetworkManagerTests.swift */; };
@@ -52,16 +61,6 @@
 		EBE33E552A52F3CA00C11188 /* DefaultFollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E542A52F3CA00C11188 /* DefaultFollowService.swift */; };
 		EBE33E6D2A53DD3B00C11188 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E6C2A53DD3B00C11188 /* LikeService.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		184E77222A55CC1A0082E318 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 188CC3F82A4D7FD900BAB85A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 188CC3FF2A4D7FD900BAB85A;
-			remoteInfo = FanFollow;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
@@ -114,11 +113,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */,
+				18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */,
 				188CC4232A4D824800BAB85A /* Then in Frameworks */,
-				188CC41D2A4D81F200BAB85A /* RxSwift in Frameworks */,
+				18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */,
 				188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */,
-				188CC41B2A4D81F200BAB85A /* RxRelay in Frameworks */,
-				188CC4192A4D81F200BAB85A /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +125,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18287CFE2A56935F0042E0F2 /* RxTest in Frameworks */,
+				18287CFA2A56935F0042E0F2 /* RxRelay in Frameworks */,
+				18287CFC2A56935F0042E0F2 /* RxSwift in Frameworks */,
+				18287CF62A56935F0042E0F2 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,11 +354,11 @@
 			);
 			name = FanFollow;
 			packageProductDependencies = (
-				188CC4182A4D81F200BAB85A /* RxCocoa */,
-				188CC41A2A4D81F200BAB85A /* RxRelay */,
-				188CC41C2A4D81F200BAB85A /* RxSwift */,
 				188CC41F2A4D820F00BAB85A /* SnapKit */,
 				188CC4222A4D824800BAB85A /* Then */,
+				18287CED2A56927A0042E0F2 /* RxCocoa */,
+				18287CEF2A56927A0042E0F2 /* RxRelay */,
+				18287CF12A56927A0042E0F2 /* RxSwift */,
 			);
 			productName = FanFollow;
 			productReference = 188CC4002A4D7FD900BAB85A /* FanFollow.app */;
@@ -372,10 +375,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				184E77232A55CC1A0082E318 /* PBXTargetDependency */,
 			);
 			name = NetworkManagerTests;
 			packageProductDependencies = (
+				18287CF52A56935F0042E0F2 /* RxBlocking */,
+				18287CF92A56935F0042E0F2 /* RxRelay */,
+				18287CFB2A56935F0042E0F2 /* RxSwift */,
+				18287CFD2A56935F0042E0F2 /* RxTest */,
 			);
 			productName = NetworkManagerTests;
 			productReference = 18C1E5202A55488900A41AC5 /* NetworkManagerTests.xctest */;
@@ -396,7 +402,6 @@
 					};
 					18C1E51F2A55488900A41AC5 = {
 						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 188CC3FF2A4D7FD900BAB85A;
 					};
 				};
 			};
@@ -410,9 +415,9 @@
 			);
 			mainGroup = 188CC3F72A4D7FD900BAB85A;
 			packageReferences = (
-				188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				188CC41E2A4D820F00BAB85A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */,
+				18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 188CC4012A4D7FD900BAB85A /* Products */;
 			projectDirPath = "";
@@ -488,11 +493,8 @@
 				18E6703C2A53BD1400C52942 /* ChatService.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
-				183974662A52636B00F0101A /* DefaultLikeService.swift in Sources */,
 				1839745F2A525B1A00F0101A /* Network.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostService.swift in Sources */,
@@ -510,23 +512,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18287D002A5699000042E0F2 /* URLSessionType.swift in Sources */,
 				18C1E5392A55717000A41AC5 /* StubURLSession.swift in Sources */,
 				18C1E53E2A55B94100A41AC5 /* MockURLSessionDataTask.swift in Sources */,
 				18C1E5232A55488900A41AC5 /* NetworkManagerTests.swift in Sources */,
+				18287D012A5699060042E0F2 /* NetworkManager.swift in Sources */,
+				18287D042A5699150042E0F2 /* ChatDTO.swift in Sources */,
+				18287D022A5699080042E0F2 /* Network.swift in Sources */,
 				18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */,
 				18C1E53C2A55B92A00A41AC5 /* Mock.swift in Sources */,
+				18287CFF2A5698F80042E0F2 /* URLSessionDataTaskType.swift in Sources */,
+				18287D032A56990B0042E0F2 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		184E77232A55CC1A0082E318 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 188CC3FF2A4D7FD900BAB85A /* FanFollow */;
-			targetProxy = 184E77222A55CC1A0082E318 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */ = {
@@ -721,7 +721,6 @@
 		18C1E5272A55488900A41AC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BH7V49ZZ2G;
@@ -736,14 +735,13 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
 			};
 			name = Debug;
 		};
 		18C1E5282A55488900A41AC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BH7V49ZZ2G;
@@ -758,7 +756,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/FanFollow";
 			};
 			name = Release;
 		};
@@ -795,7 +793,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -822,20 +820,40 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		188CC4182A4D81F200BAB85A /* RxCocoa */ = {
+		18287CED2A56927A0042E0F2 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		188CC41A2A4D81F200BAB85A /* RxRelay */ = {
+		18287CEF2A56927A0042E0F2 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
 		};
-		188CC41C2A4D81F200BAB85A /* RxSwift */ = {
+		18287CF12A56927A0042E0F2 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 188CC4172A4D81F200BAB85A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		18287CF52A56935F0042E0F2 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		18287CF92A56935F0042E0F2 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		18287CFB2A56935F0042E0F2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		18287CFD2A56935F0042E0F2 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 		188CC41F2A4D820F00BAB85A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

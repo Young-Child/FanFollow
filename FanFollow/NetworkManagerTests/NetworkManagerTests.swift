@@ -4,13 +4,14 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
 import XCTest
 
-import RxBlocking
 import RxSwift
 import RxTest
+import RxBlocking
+import RxRelay
 
-@testable import FanFollow
 
 final class NetworkManagerTests: XCTestCase {
     private var disposeBag: DisposeBag!
@@ -41,7 +42,7 @@ final class NetworkManagerTests: XCTestCase {
         let sut = NetworkManager(session: stubURLSession)
         
         // when
-        let fetchResult = sut.data(URLRequest(url: URL(staticString: self.url)))
+        let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
         
         //then
         fetchResult
@@ -66,7 +67,7 @@ final class NetworkManagerTests: XCTestCase {
         
         let sut = NetworkManager(session: stubURLSession)
         
-        let fetchResult = sut.data(URLRequest(url: URL(staticString: self.url)))
+        let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
         
         fetchResult.subscribe(onNext: { _ in
             XCTAssertThrowsError("We expected onError Event, But Sending onNext Event")
@@ -89,7 +90,7 @@ final class NetworkManagerTests: XCTestCase {
         
         let sut = NetworkManager(session: stubURLSession)
         
-        let fetchResult = sut.execute(URLRequest(url: URL(staticString: self.url)))
+        let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         
         fetchResult.subscribe(onCompleted: {
             XCTAssert(true)
@@ -109,7 +110,7 @@ final class NetworkManagerTests: XCTestCase {
         
         let sut = NetworkManager(session: stubURLSession)
         
-        let fetchResult = sut.execute(URLRequest(url: URL(staticString: self.url)))
+        let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         
         fetchResult.subscribe(onCompleted: {
             XCTAssertThrowsError("We expected onError Event, But Sending onCompleted Event")
