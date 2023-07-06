@@ -148,7 +148,7 @@ final class ChatServiceTests: XCTestCase {
         
         switch result {
         case .completed:
-            XCTAssert(true)
+            XCTAssertThrowsError(NetworkError.unknown, "We expected Completed Event, But Occur Error Event")
         case .failed(_, let error):
             XCTAssertThrowsError(error, "We expected Completed Event, But Occur Error Event")
         }
