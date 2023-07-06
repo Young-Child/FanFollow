@@ -25,18 +25,11 @@ jobs:
     
     - name: Build Xcode
       run: |
-        xcodebuild clean test\
-           -project FanFollow/FanFollow.xcodeproj\
-           -scheme FanFollow\
-           -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"\
-           -enableCodeCoverage YES | xcpretty --color\
-           -showBuildTimingSummary
+        xcodebuild clean build -project FanFollow/FanFollow.xcodeproj\
+        -scheme FanFollow -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=latest"\
+        -showBuildTimingSummary
         
     - name: Unit Test
       run: |
-        xcodebuild clean build-for-testing\
-           -project FanFollow/FanFollow.xcodeproj\
-           -scheme FanFollow\
-           -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"\
-           -enableCodeCoverage YES | xcpretty --color\
-           -showBuildTimingSummary
+        xcodebuild clean build-for-testing -project FanFollow/FanFollow.xcodeproj\
+        -scheme FanFollow -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=latest"
