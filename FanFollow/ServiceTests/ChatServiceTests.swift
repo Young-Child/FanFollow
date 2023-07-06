@@ -6,21 +6,45 @@
 
 import XCTest
 
-import RxSwift
 import RxBlocking
 import RxTest
-import RxRelay
+
+@testable import FanFollow
 
 final class ChatServiceTests: XCTestCase {
+    private var successResponse: URLResponse!
+    private var failureResponse: URLResponse!
+    private var networkManager: StubNetworkManager!
+    
     override func setUpWithError() throws {
-        try super.setUpWithError()
+        let url = URL(string: "https://qacasllvaxvrtwbkiavx.supabase.co/rest/v1/CHAT_ROOM?select=chat_id")!
+        
+        self.successResponse = HTTPURLResponse(
+            url: url,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        
+        self.failureResponse = HTTPURLResponse(
+            url: url,
+            statusCode: 404,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        
+        let stubNetworkManager = StubNetworkManager(
+            data: ChatDTO.data,
+            error: nil,
+            response: nil
+        )
+        
+        networkManager = stubNetworkManager
     }
     
     override func tearDownWithError() throws {
-        try super.tearDownWithError()
-    }
-    
-    func test_example() {
-        XCTAssertEqual(true, true)
+        successResponse = nil
+        failureResponse = nil
+        networkManager = nil
     }
 }
