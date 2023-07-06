@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "DC0C0E6D-96E3-4DB3-8FC7-724721304733",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FanFollow.xcodeproj",
+      "identifier" : "188CC3FF2A4D7FD900BAB85A",
+      "name" : "FanFollow"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FanFollow.xcodeproj",
+        "identifier" : "18C1E51F2A55488900A41AC5",
+        "name" : "NetworkManagerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
