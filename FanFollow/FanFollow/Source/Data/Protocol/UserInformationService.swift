@@ -1,5 +1,5 @@
 //
-//  UserService.swift
+//  UserInformationService.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/05.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol UserService: SupabaseService {
+protocol UserInformationService: SupabaseService {
     func fetchUserInformations(jobCategory: Int, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]>
     func fetchUserInformations(nickName: String, startRange: Int, endRange: Int) -> Observable<[UserInformationDTO]>
     func fetchUserInformation(for userID: String) -> Observable<UserInformationDTO>

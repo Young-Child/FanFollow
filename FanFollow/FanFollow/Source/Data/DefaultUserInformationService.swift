@@ -1,5 +1,5 @@
 //
-//  DefaultUserService.swift
+//  DefaultUserInformationService.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/05.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-struct DefaultUserService: UserService {
+struct DefaultUserInformationService: UserInformationService {
     private let networkManger: Network
 
     init(_ networkManger: Network = NetworkManager()) {
