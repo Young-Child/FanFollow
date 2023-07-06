@@ -31,7 +31,7 @@ struct DefaultFollowService: FollowService {
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
-    func fetchFollowerCount(followingID: String) -> RxSwift.Observable<Int> {
+    func fetchFollowerCount(followingID: String) -> Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID)
 
@@ -44,7 +44,7 @@ struct DefaultFollowService: FollowService {
             }
     }
 
-    func fetchFollowingCount(followerID: String) -> RxSwift.Observable<Int> {
+    func fetchFollowingCount(followerID: String) -> Observable<Int> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followerID: followerID)
 
@@ -57,7 +57,7 @@ struct DefaultFollowService: FollowService {
             }
     }
 
-    func checkFollow(followingID: String, followerID: String) -> RxSwift.Observable<Bool> {
+    func checkFollow(followingID: String, followerID: String) -> Observable<Bool> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID, followerID: followerID)
 

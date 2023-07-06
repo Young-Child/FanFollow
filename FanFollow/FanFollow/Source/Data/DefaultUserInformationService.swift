@@ -49,7 +49,7 @@ struct DefaultUserInformationService: UserInformationService {
         introduce: String?,
         isCreator: Bool,
         createdAt: String
-    ) -> RxSwift.Completable {
+    ) -> Completable {
         let userInformationDTO = UserInformationDTO(
             userID: userID, name: name, nickName: nickName, profilePath: profilePath, jobCategory: jobCategory,
             links: links, introduce: introduce, isCreator: isCreator, createdAt: createdAt
