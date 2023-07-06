@@ -48,7 +48,7 @@ final class ChatServiceTests: XCTestCase {
         networkManager = nil
     }
     
-    /// 정상적인 사용자ID를 전달하였을 때 정상적인 데이터를 반환하는지
+    /// 정상적인 사용자ID를 전달하였을 때 정상적인 데이터를 반환하는지에 대한 테스트
     func test_FetchChattingListIsCorrectWhenSendCorrectData() {
         // given
         let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
@@ -65,14 +65,18 @@ final class ChatServiceTests: XCTestCase {
         XCTAssertEqual(result, true)
     }
     
+    /// 비정상적인 사용자ID를 전달하였을 때 에러를 방출하는지에 대한 테스트
     func test_FetchChattingListThrowErrorWhenSendWrongData() throws {
+        // given
         let userID = ""
         self.networkManager.response = failureResponse
         self.networkManager.error = NetworkError.unknown
         
+        //when
         let chatService = DefaultChatService(networkManager: self.networkManager)
         let chatListObservable = chatService.fetchChattingList(userID: userID)
         
+        // then
         do {
             let _ = try chatListObservable.toBlocking().first()
         } catch let error {
@@ -80,6 +84,28 @@ final class ChatServiceTests: XCTestCase {
             let expected = NetworkError.unknown
             
             XCTAssertEqual(error, expected)
+        }
+    }
+    
+    /// 정상적인 사용자ID를 전달하였을 때 완료 이벤트가 방출되는가에 대한 테스트
+    func test_CreateNewChatRoomIsCompletedWhenSendCorrectData() throws {
+        // given
+        let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        let creatorID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        networkManager.response = successResponse
+        
+        //when
+        let chatService = DefaultChatService(networkManager: self.networkManager)
+        let observable = chatService.createNewChatRoom(from: fanID, to: creatorID)
+        
+        //then
+        let result = observable.toBlocking().materialize()
+        
+        switch result {
+        case .completed:
+            XCTAssert(true)
+        case .failed(_, let error):
+            XCTAssertThrowsError(error, "We expected Completed Event, But Occur Error Event")
         }
     }
 }
