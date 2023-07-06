@@ -28,7 +28,7 @@ final class StubNetworkManager: Network {
               (200...300) ~= response.statusCode else {
             return Observable.error(NetworkError.unknown)
         }
-        
+
         guard let data else {
             return Observable.error(NetworkError.unknown)
         }
