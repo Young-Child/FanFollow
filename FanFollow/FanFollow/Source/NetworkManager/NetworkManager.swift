@@ -21,7 +21,7 @@ final class NetworkManager: Network {
                 return Disposables.create()
             }
             
-            let task = session.dataTask(with: request) { data, response, error in
+            let task = self.session.dataTask(with: request) { data, response, error in
                 if let error = error {
                     emitter.onError(error)
                     return
