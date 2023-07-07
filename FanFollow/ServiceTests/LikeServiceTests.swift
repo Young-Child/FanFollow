@@ -50,7 +50,7 @@ final class LikeServiceTests: XCTestCase {
     }
 
     //// 정상적으로 데이터 요청을 했을 때 정상적인 Count값을 방출하는지 확인하는 테스트
-    func test_fetchPostLikeCountIsCorrectWhenSendCorrectData() {
+    func test_FetchPostLikeCountIsCorrectWhenSendCorrectData() {
         // given
         networkManager.response = successResponse
         let likeService = DefaultLikeService(networkManager: networkManager)
@@ -66,7 +66,7 @@ final class LikeServiceTests: XCTestCase {
     }
 
     //// 정상적으로 Like 데이터를 생성했을 때 올바른 Completable이 방출되는지 확인하는 테스트
-    func test_createPostLikeIsCorrectWhenSendCorrectData() throws {
+    func test_CreatePostLikeIsCorrectWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         let likeService = DefaultLikeService(networkManager: networkManager)
@@ -86,7 +86,7 @@ final class LikeServiceTests: XCTestCase {
     }
     
     //// 정상적으로 Like 데이터를 삭제했을 때 올바른 Completable이 방출되는지 확인하는 테스트
-    func test_deletePostLikeIsCorrectWhenSendCorrectData() {
+    func test_DeletePostLikeIsCorrectWhenSendCorrectData() {
         // given
         networkManager.response = successResponse
         let likeService = DefaultLikeService(networkManager: networkManager)
@@ -106,7 +106,7 @@ final class LikeServiceTests: XCTestCase {
     }
     
     //// 데이터 갯수를 불러올때, 올바르지 않은 데이터 값에 대해서 에러가 방출되는지 확인하는 테스트
-    func test_fetchPostLikeCountIsErrorWhenSendCorrectData() throws {
+    func test_FetchPostLikeCountIsErrorWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         networkManager.data = PostDTO.data

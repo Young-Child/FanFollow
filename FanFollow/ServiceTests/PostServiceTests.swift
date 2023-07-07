@@ -71,7 +71,7 @@ final class PostServiceTest: XCTestCase {
     }
     
     //// 정상적으로 upsert진행하였을 때 Completable 방출되는지 확인하는 테스트
-    func test_upsertPostIsCorrectWhenSendCorrectData() throws {
+    func test_UpsertPostIsCorrectWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         let postService = DefaultPostService(networkManager: networkManager)
@@ -94,7 +94,7 @@ final class PostServiceTest: XCTestCase {
     }
     
     //// 정상적으로 delete진행하였을 때 Completable 방출되는지 확인하는 테스트
-    func test_deletePostIsCorrectWhenSendCorrectData() throws {
+    func test_DeletePostIsCorrectWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         let postService = DefaultPostService(networkManager: networkManager)
@@ -114,7 +114,7 @@ final class PostServiceTest: XCTestCase {
     }
     
     //// PostData 가져올 경우 에러 이벤트가 방출되는지 확인하는 테스트
-    func test_fetchAllPostThrowErrorWhenSendCorrectData() throws {
+    func test_FetchAllPostThrowErrorWhenSendCorrectData() throws {
         // given
         networkManager.response = failureResponse
         let postService = DefaultPostService(networkManager: networkManager)
