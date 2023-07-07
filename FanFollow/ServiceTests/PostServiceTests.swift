@@ -15,7 +15,6 @@ import RxRelay
 @testable import FanFollow
 
 final class PostServiceTest: XCTestCase {
-    private var postService: PostService!
     private var networkManager: StubNetworkManager!
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!
