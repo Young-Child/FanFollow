@@ -50,8 +50,8 @@ final class PostServiceTest: XCTestCase {
         networkManager = nil
     }
 
-    ////  Network 연결 없이 정상적으로 PostData들을 불러오는지 확인
-    func test_fetchAllPostCompleted() {
+    ////  Network 연결 없이 정상적으로 PostData들을 방출하는지 확인하는 테스트
+    func test_FetchAllPostIsCorrectWhenSendCorrectData() {
         // given
         networkManager.response = successResponse
         let postService = DefaultPostService(networkManager: networkManager)
@@ -71,8 +71,8 @@ final class PostServiceTest: XCTestCase {
         XCTAssertEqual(firstResult && secondResult, true)
     }
     
-    //// 정상적으로 upsert진행하였을 때 Completable  확인
-    func test_upsertPostCompleted() throws {
+    //// 정상적으로 upsert진행하였을 때 Completable 방출되는지 확인하는 테스트
+    func test_upsertPostIsCorrectWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         let postService = DefaultPostService(networkManager: networkManager)
@@ -94,8 +94,8 @@ final class PostServiceTest: XCTestCase {
         }
     }
     
-    //// 정상적으로 delete진행하였을 때 Completable 확인
-    func test_deletePostCompleted() throws {
+    //// 정상적으로 delete진행하였을 때 Completable 방출되는지 확인하는 테스트
+    func test_deletePostIsCorrectWhenSendCorrectData() throws {
         // given
         networkManager.response = successResponse
         let postService = DefaultPostService(networkManager: networkManager)
@@ -114,8 +114,8 @@ final class PostServiceTest: XCTestCase {
         }
     }
     
-    //// PostData 가져올 경우 에러 방출 확인
-    func test_fetchAllPostFailure() throws {
+    //// PostData 가져올 경우 에러 이벤트가 방출되는지 확인하는 테스트
+    func test_fetchAllPostThrowErrorWhenSendCorrectData() throws {
         // given
         networkManager.response = failureResponse
         let postService = DefaultPostService(networkManager: networkManager)
