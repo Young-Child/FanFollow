@@ -49,4 +49,14 @@ extension PostDTO: MockableType {
         }]
         """.data(using: .utf8)!
     }
+    
+    static var countData: Data {
+        return """
+        [
+            {
+                "count": 2
+            }
+        ]
+        """.data(using: .utf8)!
+    }
 }

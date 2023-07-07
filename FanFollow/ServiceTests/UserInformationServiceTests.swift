@@ -29,7 +29,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 정상적인 조건에서 fetchCreatorInformations가 제대로 동작하는 지 테스트
-    func test_fetchCreatorInformationsInNormalCondition() {
+    func test_FetchCreatorInformationsInNormalCondition() {
         // given
         networkManger.data = TestData.userInformationData
         networkManger.error = nil
@@ -58,7 +58,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 에러가 발생하는 조건에서 fetchCreatorInformations가 에러를 반환하는 지 테스트
-    func test_fetchCreatorInformationsInErrorCondition() {
+    func test_FetchCreatorInformationsInErrorCondition() {
         // given
         networkManger.data = nil
         networkManger.error = NetworkError.unknown
@@ -86,7 +86,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 정상적인 조건에서 fetchUserInformation가 제대로 동작하는 지 테스트
-    func test_fetchUserInformationInNormalCondition() {
+    func test_FetchUserInformationInNormalCondition() {
         // given
         networkManger.data = TestData.userInformationData
         networkManger.error = nil
@@ -106,7 +106,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 에러가 발생하는 조건에서 fetchUserInformation가 에러를 반환하는 지 테스트
-    func test_fetchUserInformationInErrorCondition() {
+    func test_FetchUserInformationInErrorCondition() {
         // given
         networkManger.data = nil
         networkManger.error = NetworkError.unknown
@@ -126,7 +126,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 정상적인 조건에서 upsertUserInformation가 제대로 동작하는 지 테스트
-    func test_upsertUserInformationInNormalCondition() {
+    func test_UpsertUserInformationInNormalCondition() {
         // given
         networkManger.data = Data()
         networkManger.error = nil
@@ -160,7 +160,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 에러가 발생하는 조건에서 upsertUserInformation가 에러를 반환하는 지 테스트
-    func test_upsertUserInformationInErrorCondition() {
+    func test_UpsertUserInformationInErrorCondition() {
         // given
         networkManger.data = nil
         networkManger.error = NetworkError.unknown
@@ -194,7 +194,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 정상적인 조건에서 deleteUserInformation가 제대로 동작하는 지 테스트
-    func test_deleteUserInformationInNormalCondition() {
+    func test_DeleteUserInformationInNormalCondition() {
         // given
         networkManger.data = Data()
         networkManger.error = nil
@@ -214,7 +214,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
     
     /// 에러가 발생하는 조건에서 deleteUserInformation가 에러를 반환하는 지 테스트
-    func test_deleteUserInformationInErrorCondition() {
+    func test_DeleteUserInformationInErrorCondition() {
         // given
         networkManger.data = nil
         networkManger.error = NetworkError.unknown
