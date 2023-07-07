@@ -28,7 +28,7 @@ struct DefaultPostService: PostService {
         userID: String,
         createdDate: String,
         title: String,
-        description: String,
+        content: String,
         imageURLs: [String],
         videoURL: String
     ) -> Completable {
@@ -37,7 +37,7 @@ struct DefaultPostService: PostService {
             userID: userID,
             createdData: createdDate,
             title: title,
-            content: description,
+            content: content,
             imageURLs: imageURLs,
             videoURL: videoURL
         )

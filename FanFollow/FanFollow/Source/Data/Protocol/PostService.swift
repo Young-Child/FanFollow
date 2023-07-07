@@ -11,13 +11,8 @@ import RxSwift
 protocol PostService: SupabaseService {
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
     func upsertPost(
-        postID: String?,
-        userID: String,
-        createdDate: String,
-        title: String,
-        description: String,
-        imageURLs: [String],
-        videoURL: String
+        postID: String?, userID: String, createdDate: String,
+        title: String, content: String, imageURLs: [String], videoURL: String
     ) -> Completable
     func deletePost(postID: String) -> Completable
 }
