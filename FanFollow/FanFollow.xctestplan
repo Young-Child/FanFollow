@@ -2,19 +2,35 @@
   "configurations" : [
     {
       "id" : "DC0C0E6D-96E3-4DB3-8FC7-724721304733",
-      "name" : "Test Scheme Action",
+      "name" : "NetworkManagerTests",
       "options" : {
-
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:FanFollow.xcodeproj",
+          "identifier" : "18C1E51F2A55488900A41AC5",
+          "name" : "NetworkManagerTests"
+        },
+        "uiTestingScreenshotsLifetime" : "keepNever"
+      }
+    },
+    {
+      "id" : "DD7DDFC5-6851-421E-854E-F8F2B3434FDB",
+      "name" : "ServiceTests",
+      "options" : {
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:FanFollow.xcodeproj",
+          "identifier" : "EBAA0A5E2A56EBEA0033ED0F",
+          "name" : "ServiceTests"
+        }
       }
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:FanFollow.xcodeproj",
       "identifier" : "188CC3FF2A4D7FD900BAB85A",
       "name" : "FanFollow"
-    }
+    },
+    "uiTestingScreenshotsLifetime" : "keepNever"
   },
   "testTargets" : [
     {
@@ -23,6 +39,14 @@
         "containerPath" : "container:FanFollow.xcodeproj",
         "identifier" : "18C1E51F2A55488900A41AC5",
         "name" : "NetworkManagerTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FanFollow.xcodeproj",
+        "identifier" : "EBAA0A5E2A56EBEA0033ED0F",
+        "name" : "ServiceTests"
       }
     }
   ],

@@ -8,6 +8,8 @@
 import Foundation
 import RxSwift
 
+@testable import FanFollow
+
 final class StubNetworkManager: Network {
     var data: Data?
     var error: Error?
