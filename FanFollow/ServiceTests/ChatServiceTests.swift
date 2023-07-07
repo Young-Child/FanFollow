@@ -66,7 +66,7 @@ final class ChatServiceTests: XCTestCase {
     }
     
     /// 정상적인 사용자ID를 전달하였을 때 에러를 방출하는지에 대한 테스트
-    func test_FetchChattingListThrowErrorWhenSendWrongData() throws {
+    func test_FetchChattingListThrowErrorWhenSendCorrectData() throws {
         // given
         let userID = ""
         self.networkManager.response = failureResponse
@@ -110,7 +110,7 @@ final class ChatServiceTests: XCTestCase {
     }
     
     /// 정상적인 사용자ID를 전달하였을 때 채팅방 생성 에러 이벤트가 방출하는지에 대한 테스트
-    func test_CreateNewChatRoomIsErrorWhenSendWrongData() throws {
+    func test_CreateNewChatRoomIsErrorWhenSendCorrectData() throws {
         // given
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         let creatorID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
@@ -155,7 +155,7 @@ final class ChatServiceTests: XCTestCase {
     }
     
     /// 정상적인 데이터를 전달하였을 때 채팅방 떠나기 함수가 에러 이벤트를 방출하는지에 대한 테스트
-    func test_LeaveChatRoomIsErrorWhenSendWrongData() throws {
+    func test_LeaveChatRoomIsErrorWhenSendCorrectData() throws {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
@@ -202,7 +202,7 @@ final class ChatServiceTests: XCTestCase {
     }
     
     /// 정상적인 데이터를 전달하였을 때 채팅방 떠나기 함수가 에러 이벤트를 방출하는지에 대한 테스트
-    func test_LeaveChatRoomIsErrorWhenSendWrongData() throws {
+    func test_DeleteChatRoomIsErrorWhenSendCorrectData() throws {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
         networkManager.response = failureResponse
