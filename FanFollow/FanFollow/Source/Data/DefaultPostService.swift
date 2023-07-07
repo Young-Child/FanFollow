@@ -28,16 +28,16 @@ struct DefaultPostService: PostService {
         userID: String,
         createdDate: String,
         title: String,
-        description: String,
-        imageURLs: [String],
-        videoURL: String
+        content: String,
+        imageURLs: [String]?,
+        videoURL: String?
     ) -> Completable {
         let postItem = PostDTO(
             postID: postID,
             userID: userID,
             createdData: createdDate,
             title: title,
-            content: description,
+            content: content,
             imageURLs: imageURLs,
             videoURL: videoURL
         )
