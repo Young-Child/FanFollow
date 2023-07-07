@@ -62,6 +62,7 @@
 		EBAA0A6C2A56EC4D0033ED0F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6B2A56EC4D0033ED0F /* RxRelay */; };
 		EBAA0A6E2A56EC4D0033ED0F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6D2A56EC4D0033ED0F /* RxSwift */; };
 		EBAA0A702A56EC4D0033ED0F /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6F2A56EC4D0033ED0F /* RxTest */; };
+		EBB5DE652A5791CD00DB5B52 /* FollowServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */; };
 		EBC4E98E2A54F22700A1F6AE /* UserInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98D2A54F22700A1F6AE /* UserInformationService.swift */; };
 		EBC4E9902A55133000A1F6AE /* DefaultUserInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98F2A55133000A1F6AE /* DefaultUserInformationService.swift */; };
 		EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */; };
@@ -132,6 +133,7 @@
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
 		EBAA0A5F2A56EBEA0033ED0F /* ServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowServiceTests.swift; sourceTree = "<group>"; };
 		EBC4E98D2A54F22700A1F6AE /* UserInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationService.swift; sourceTree = "<group>"; };
 		EBC4E98F2A55133000A1F6AE /* DefaultUserInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserInformationService.swift; sourceTree = "<group>"; };
 		EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDirector.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				1866AFC52A570A4C000FFFD7 /* Mock */,
 				EB5668CE2A56B0FF007A3860 /* Stub */,
 				1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */,
+				EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */,
 			);
 			path = ServiceTests;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 			files = (
 				1894FC702A5727450032E426 /* Mock.swift in Sources */,
 				EBAA0A682A56EC140033ED0F /* StubNetworkManager.swift in Sources */,
+				EBB5DE652A5791CD00DB5B52 /* FollowServiceTests.swift in Sources */,
 				1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
