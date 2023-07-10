@@ -7,15 +7,15 @@
 import Foundation
 import RxSwift
 
-protocol Service {
+protocol EndPoint {
     var baseURL: String { get }
 }
 
-protocol SupabaseService: Service {
+protocol SupabaseEndPoint: EndPoint {
     var builder: URLRequestBuilder { get }
 }
 
-extension SupabaseService {
+extension SupabaseEndPoint {
     var baseURL: String {
         return "https://qacasllvaxvrtwbkiavx.supabase.co"
     }

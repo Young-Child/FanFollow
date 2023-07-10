@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol UserInformationRepository: SupabaseService {
+protocol UserInformationRepository: SupabaseEndPoint {
     func fetchCreatorInformations(
         jobCategory: Int?,
         nickName: String?,

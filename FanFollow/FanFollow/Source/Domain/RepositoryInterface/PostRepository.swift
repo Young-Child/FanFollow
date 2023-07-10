@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol PostRepository: SupabaseService {
+protocol PostRepository: SupabaseEndPoint {
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
     func upsertPost(
         postID: String?, userID: String, createdDate: String,

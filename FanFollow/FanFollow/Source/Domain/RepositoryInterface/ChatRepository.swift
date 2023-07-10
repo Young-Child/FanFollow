@@ -7,7 +7,7 @@
 import Foundation
 import RxSwift
 
-protocol ChatRepository: SupabaseService {
+protocol ChatRepository: SupabaseEndPoint {
     func fetchChattingList(userID: String) -> Observable<[ChatDTO]>
     func createNewChatRoom(from fanID: String, to creatorID: String) -> Completable
     func leaveChatRoom(to chatID: String, userID: String, isCreator: Bool) -> Observable<Void>
