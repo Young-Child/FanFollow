@@ -1,5 +1,5 @@
 //
-//  PostService.swift
+//  PostRepository.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/07/04.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol PostService: SupabaseService {
+protocol PostRepository: SupabaseService {
     func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
     func upsertPost(
         postID: String?, userID: String, createdDate: String,

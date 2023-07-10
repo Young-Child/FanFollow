@@ -10,20 +10,20 @@ import RxSwift
 @testable import FanFollow
 
 final class FollowServiceTests: XCTestCase {
-    private var sut: DefaultFollowService!
-    private var networkManger: StubNetworkManager!
+    private var sut: DefaultFollowRepository!
+    private var networkService: StubNetworkService!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        networkManger = StubNetworkManager()
-        sut = DefaultFollowService(networkManger)
+        networkService = StubNetworkService()
+        sut = DefaultFollowRepository(networkService)
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
-        networkManger = nil
+        networkService = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -31,9 +31,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchFollowers가 제대로 동작하는 지 테스트
     func test_FetchFollowersInNormalCondition() {
         // given
-        networkManger.data = TestData.followData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.followData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followingID = TestData.followingID
         let startRange = 0
         let endRange = 9
@@ -53,9 +53,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchFollowers가 에러를 반환하는 지 테스트
     func test_FetchFollowersInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followingID = TestData.followingID
         let startRange = 0
         let endRange = 9
@@ -75,9 +75,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchFollowings가 제대로 동작하는 지 테스트
     func test_FetchFollowingsInNormalCondition() {
         // given
-        networkManger.data = TestData.followData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.followData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followerID = TestData.followerID
         let startRange = TestData.startRange
         let endRange = TestData.endRange
@@ -97,9 +97,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchFollowings가 에러를 반환하는 지 테스트
     func test_FetchFollowingsInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followerID = TestData.followerID
         let startRange = TestData.startRange
         let endRange = TestData.endRange
@@ -119,9 +119,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchFollowerCount가 제대로 동작하는 지 테스트
     func test_FetchFollowerCountInNormalCondition() {
         // given
-        networkManger.data = TestData.countData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.countData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followingID = TestData.followingID
         let count = TestData.count
 
@@ -140,9 +140,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchFollowerCount가 에러를 반환하는 지 테스트
     func test_FetchFollowerCountInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followingID = TestData.followingID
 
         // when
@@ -160,9 +160,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchFollowingCount가 제대로 동작하는 지 테스트
     func test_FetchFollowingCountInNormalCondition() {
         // given
-        networkManger.data = TestData.countData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.countData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followerID = TestData.followerID
         let count = TestData.count
 
@@ -181,9 +181,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchFollowingCount가 에러를 반환하는 지 테스트
     func test_FetchFollowingCountInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followerID = TestData.followerID
 
         // when
@@ -201,9 +201,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 checkFollow가 제대로 동작하는 지 테스트
     func test_CheckFollowInNormalCondition() {
         // given
-        networkManger.data = TestData.countData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.countData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
         let isFollow = TestData.isFollow
@@ -223,9 +223,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 checkFollow가 에러를 반환하는 지 테스트
     func test_CheckFollowInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
 
@@ -244,9 +244,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 insertFollow가 제대로 동작하는 지 테스트
     func test_InsertFollowInNormalCondition() {
         // given
-        networkManger.data = Data()
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = Data()
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
 
@@ -265,9 +265,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 insertFollow가 에러를 반환하는 지 테스트
     func test_InsertFollowInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
 
@@ -286,9 +286,9 @@ final class FollowServiceTests: XCTestCase {
     /// 정상적인 조건에서 deleteFollow가 제대로 동작하는 지 테스트
     func test_DeleteFollowInNormalCondition() {
         // given
-        networkManger.data = Data()
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = Data()
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
 
@@ -307,9 +307,9 @@ final class FollowServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 deleteFollow가 에러를 반환하는 지 테스트
     func test_DeleteFollowInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let followingID = TestData.followingID
         let followerID = TestData.followerID
 

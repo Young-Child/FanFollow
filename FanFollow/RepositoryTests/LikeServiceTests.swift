@@ -15,7 +15,7 @@ import RxRelay
 @testable import FanFollow
 
 final class LikeServiceTests: XCTestCase {
-    private var networkManager: StubNetworkManager!
+    private var networkService: StubNetworkService!
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!
     
@@ -36,7 +36,7 @@ final class LikeServiceTests: XCTestCase {
             headerFields: nil
         )
         
-        networkManager = StubNetworkManager(
+        networkService = StubNetworkService(
             data: PostDTO.countData,
             error: nil,
             response: nil
@@ -46,19 +46,19 @@ final class LikeServiceTests: XCTestCase {
     override func tearDownWithError() throws {
         successResponse = nil
         failureResponse = nil
-        networkManager = nil
+        networkService = nil
     }
 
     //// 정상적으로 데이터 요청을 했을 때 정상적인 Count값을 방출하는지 확인하는 테스트
     func test_FetchPostLikeCountIsCorrectWhenSendCorrectData() {
         // given
-        networkManager.response = successResponse
-        let likeService = DefaultLikeService(networkManager: networkManager)
+        networkService.response = successResponse
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
         let dataCount = 2
         
         // when
-        let likeCountObservable = likeService.fetchPostLikeCount(postID: postID)
+        let likeCountObservable = likeRepository.fetchPostLikeCount(postID: postID)
         
         // then
         let result = try? likeCountObservable.toBlocking().first()
@@ -68,11 +68,11 @@ final class LikeServiceTests: XCTestCase {
     //// 정상적으로 Like 데이터를 생성했을 때 올바른 Completable이 방출되는지 확인하는 테스트
     func test_CreatePostLikeIsCorrectWhenSendCorrectData() throws {
         // given
-        networkManager.response = successResponse
-        let likeService = DefaultLikeService(networkManager: networkManager)
+        networkService.response = successResponse
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
 
         // when
-        let createLikeObservable = likeService.createPostLike(postID: "testPostID", userID: "testUserID")
+        let createLikeObservable = likeRepository.createPostLike(postID: "testPostID", userID: "testUserID")
         
         // then
         let result = createLikeObservable.toBlocking().materialize()
@@ -88,11 +88,11 @@ final class LikeServiceTests: XCTestCase {
     //// 정상적으로 Like 데이터를 삭제했을 때 올바른 Completable이 방출되는지 확인하는 테스트
     func test_DeletePostLikeIsCorrectWhenSendCorrectData() {
         // given
-        networkManager.response = successResponse
-        let likeService = DefaultLikeService(networkManager: networkManager)
+        networkService.response = successResponse
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
 
         // when
-        let createLikeObservable = likeService.deletePostLike(postID: "testPostID", userID: "testUserID")
+        let createLikeObservable = likeRepository.deletePostLike(postID: "testPostID", userID: "testUserID")
         
         // then
         let result = createLikeObservable.toBlocking().materialize()
@@ -108,14 +108,13 @@ final class LikeServiceTests: XCTestCase {
     //// 데이터 갯수를 불러올때, 올바르지 않은 데이터 값에 대해서 에러가 방출되는지 확인하는 테스트
     func test_FetchPostLikeCountIsErrorWhenSendCorrectData() throws {
         // given
-        networkManager.response = successResponse
-        networkManager.data = PostDTO.data
-        let likeService = DefaultLikeService(networkManager: networkManager)
+        networkService.response = successResponse
+        networkService.data = PostDTO.data
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
-        let dataCount = 2
         
         // when
-        let likeCountObservable = likeService.fetchPostLikeCount(postID: postID)
+        let likeCountObservable = likeRepository.fetchPostLikeCount(postID: postID)
         
         // then
         let result = likeCountObservable.toBlocking().materialize()

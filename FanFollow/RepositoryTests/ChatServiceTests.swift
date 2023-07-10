@@ -14,7 +14,7 @@ import RxTest
 final class ChatServiceTests: XCTestCase {
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!
-    private var networkManager: StubNetworkManager!
+    private var networkService: StubNetworkService!
     
     override func setUpWithError() throws {
         let url = URL(string: "https://qacasllvaxvrtwbkiavx.supabase.co/rest/v1/CHAT_ROOM")!
@@ -33,30 +33,30 @@ final class ChatServiceTests: XCTestCase {
             headerFields: nil
         )
         
-        let stubNetworkManager = StubNetworkManager(
+        let stubNetworkService = StubNetworkService(
             data: ChatDTO.data,
             error: nil,
             response: nil
         )
         
-        networkManager = stubNetworkManager
+        networkService = stubNetworkService
     }
     
     override func tearDownWithError() throws {
         successResponse = nil
         failureResponse = nil
-        networkManager = nil
+        networkService = nil
     }
     
     /// 정상적인 사용자ID를 전달하였을 때 정상적인 데이터를 반환하는지에 대한 테스트
     func test_FetchChattingListIsCorrectWhenSendCorrectData() {
         // given
         let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        networkManager.response = successResponse
+        networkService.response = successResponse
         
         // when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let chatListObservable = chatService.fetchChattingList(userID: userID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatListObservable = chatRepository.fetchChattingList(userID: userID)
         
         // then
         let value = try? chatListObservable.toBlocking().first()!.first!
@@ -69,12 +69,12 @@ final class ChatServiceTests: XCTestCase {
     func test_FetchChattingListThrowErrorWhenSendCorrectData() throws {
         // given
         let userID = ""
-        self.networkManager.response = failureResponse
-        self.networkManager.error = NetworkError.unknown
+        self.networkService.response = failureResponse
+        self.networkService.error = NetworkError.unknown
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let chatListObservable = chatService.fetchChattingList(userID: userID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatListObservable = chatRepository.fetchChattingList(userID: userID)
         
         // then
         do {
@@ -92,11 +92,11 @@ final class ChatServiceTests: XCTestCase {
         // given
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         let creatorID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        networkManager.response = successResponse
+        networkService.response = successResponse
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.createNewChatRoom(from: fanID, to: creatorID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.createNewChatRoom(from: fanID, to: creatorID)
         
         //then
         let result = observable.toBlocking().materialize()
@@ -114,12 +114,12 @@ final class ChatServiceTests: XCTestCase {
         // given
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         let creatorID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        networkManager.response = failureResponse
-        networkManager.error = NetworkError.unknown
+        networkService.response = failureResponse
+        networkService.error = NetworkError.unknown
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.createNewChatRoom(from: fanID, to: creatorID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.createNewChatRoom(from: fanID, to: creatorID)
         
         //then
         let result = observable.toBlocking().materialize()
@@ -137,11 +137,11 @@ final class ChatServiceTests: XCTestCase {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        networkManager.response = successResponse
+        networkService.response = successResponse
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
         
         //then
         let result = observable.toBlocking().materialize()
@@ -159,12 +159,12 @@ final class ChatServiceTests: XCTestCase {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
         let fanID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        networkManager.response = failureResponse
-        networkManager.error = NetworkError.unknown
+        networkService.response = failureResponse
+        networkService.error = NetworkError.unknown
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
         
         //then
         let result = observable.toBlocking().materialize()
@@ -184,11 +184,11 @@ final class ChatServiceTests: XCTestCase {
     func test_DeleteChatRoomIsCompletedWhenSendCorrectData() throws {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
-        networkManager.response = successResponse
+        networkService.response = successResponse
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.deleteChatRoom(to: chatID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.deleteChatRoom(to: chatID)
         
         //then
         let result = observable.toBlocking().materialize()
@@ -205,12 +205,12 @@ final class ChatServiceTests: XCTestCase {
     func test_DeleteChatRoomIsErrorWhenSendCorrectData() throws {
         // given
         let chatID = "3538b47a-1113-4aff-96d9-6e2ec4b37d46"
-        networkManager.response = failureResponse
-        networkManager.error = NetworkError.unknown
+        networkService.response = failureResponse
+        networkService.error = NetworkError.unknown
         
         //when
-        let chatService = DefaultChatService(networkManager: self.networkManager)
-        let observable = chatService.deleteChatRoom(to: chatID)
+        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let observable = chatRepository.deleteChatRoom(to: chatID)
         
         //then
         let result = observable.toBlocking().materialize()
