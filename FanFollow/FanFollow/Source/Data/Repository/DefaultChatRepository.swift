@@ -1,5 +1,5 @@
 //
-//  DefaultChatService.swift
+//  DefaultChatRepository.swift
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
@@ -7,18 +7,18 @@
 import Foundation
 import RxSwift
 
-struct DefaultChatService: ChatService {
-    private let networkManager: Network
+struct DefaultChatRepository: ChatRepository {
+    private let networkService: NetworkService
     
-    init(networkManager: Network) {
-        self.networkManager = networkManager
+    init(networkService: NetworkService) {
+        self.networkService = networkService
     }
     
     func fetchChattingList(userID: String) -> Observable<[ChatDTO]> {
         let request = ChatRequestDirector(builder: builder)
             .requestChattingList(userId: userID)
         
-        return networkManager.data(request)
+        return networkService.data(request)
             .compactMap { try JSONDecoder().decode([ChatDTO].self, from: $0) }
     }
     
@@ -27,20 +27,20 @@ struct DefaultChatService: ChatService {
         let request = ChatRequestDirector(builder: builder)
             .requestCreateNewChat(newChatRoom)
         
-        return networkManager.execute(request)
+        return networkService.execute(request)
     }
     
     func leaveChatRoom(to chatID: String, userID: String, isCreator: Bool) -> Observable<Void> {
         let request = ChatRequestDirector(builder: builder)
             .requestLeaveChat(chatId: chatID, userId: userID, isCreator: isCreator)
         
-        return networkManager.data(request).map { _ in return }
+        return networkService.data(request).map { _ in return }
     }
     
     func deleteChatRoom(to chatID: String) -> Completable {
         let request = ChatRequestDirector(builder: builder)
             .requestDeleteChatRoom(chatId: chatID)
         
-        return networkManager.execute(request)
+        return networkService.execute(request)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UserInformationService.swift
+//  UserInformationRepository.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/05.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol UserInformationService: SupabaseService {
+protocol UserInformationRepository: SupabaseService {
     func fetchCreatorInformations(
         jobCategory: Int?,
         nickName: String?,

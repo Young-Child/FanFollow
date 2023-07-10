@@ -1,5 +1,5 @@
 //
-//  DefaultFollowService.swift
+//  DefaultFollowRepository.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/03.
@@ -8,18 +8,18 @@
 import Foundation
 import RxSwift
 
-struct DefaultFollowService: FollowService {
-    private let networkManger: Network
+struct DefaultFollowRepository: FollowRepository {
+    private let networkService: NetworkService
 
-    init(_ networkManger: Network = NetworkManager()) {
-        self.networkManger = networkManger
+    init(_ networkService: NetworkService) {
+        self.networkService = networkService
     }
 
     func fetchFollowers(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]> {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowerList(followingID, startRange: startRange, endRange: endRange)
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
@@ -27,7 +27,7 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowingList(followerID, startRange: startRange, endRange: endRange)
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([FollowDTO].self, from: $0) }
     }
 
@@ -35,7 +35,7 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID)
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .flatMap {
                 guard let count = contentCount($0) else {
                     return Observable<Int>.error(NetworkError.unknown)
@@ -48,7 +48,7 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followerID: followerID)
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .flatMap {
                 guard let count = contentCount($0) else {
                     return Observable<Int>.error(NetworkError.unknown)
@@ -61,7 +61,7 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestFollowCount(followingID: followingID, followerID: followerID)
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .flatMap {
                 guard let count = contentCount($0) else {
                     return Observable<Bool>.error(NetworkError.unknown)
@@ -74,14 +74,14 @@ struct DefaultFollowService: FollowService {
         let request = FollowRequestDirector(builder: builder)
             .requestInsertFollow(followingID: followingID, followerID: followerID)
 
-        return networkManger.execute(request)
+        return networkService.execute(request)
     }
 
     func deleteFollow(followingID: String, followerID: String) -> Completable {
         let request = FollowRequestDirector(builder: builder)
             .requestDeleteFollow(followingID: followingID, followerID: followerID)
 
-        return networkManger.execute(request)
+        return networkService.execute(request)
     }
 
     private func contentCount(_ data: Data) -> Int? {

@@ -1,5 +1,5 @@
 //
-//  FollowService.swift
+//  FollowRepository.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/03.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol FollowService: SupabaseService {
+protocol FollowRepository: SupabaseService {
     func fetchFollowers(followingID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
     func fetchFollowings(followerID: String, startRange: Int, endRange: Int) -> Observable<[FollowDTO]>
     func fetchFollowerCount(followingID: String) -> Observable<Int>

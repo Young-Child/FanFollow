@@ -1,5 +1,5 @@
 //
-//  DefaultUserInformationService.swift
+//  DefaultUserInformationRepository.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/05.
@@ -8,11 +8,11 @@
 import Foundation
 import RxSwift
 
-struct DefaultUserInformationService: UserInformationService {
-    private let networkManger: Network
+struct DefaultUserInformationRepository: UserInformationRepository {
+    private let networkService: NetworkService
 
-    init(_ networkManger: Network = NetworkManager()) {
-        self.networkManger = networkManger
+    init(_ networkService: NetworkService) {
+        self.networkService = networkService
     }
 
     func fetchCreatorInformations(
@@ -29,7 +29,7 @@ struct DefaultUserInformationService: UserInformationService {
                 endRange: endRange
             )
 
-        return networkManger.data(request)
+        return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
     }
 
@@ -37,7 +37,7 @@ struct DefaultUserInformationService: UserInformationService {
         let reuqest = UserRequestDirector(builder: builder)
             .requestFetchUserInformation(for: userID)
 
-        return networkManger.data(reuqest)
+        return networkService.data(reuqest)
             .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0).first }
     }
 
@@ -60,13 +60,13 @@ struct DefaultUserInformationService: UserInformationService {
         let request = UserRequestDirector(builder: builder)
             .requestUpsertUserInformation(userInformationDTO: userInformationDTO)
 
-        return networkManger.execute(request)
+        return networkService.execute(request)
     }
 
     func deleteUserInformation(userID: String) -> Completable {
         let request = UserRequestDirector(builder: builder)
             .requestDeleteUserInformation(userID: userID)
 
-        return networkManger.execute(request)
+        return networkService.execute(request)
     }
 }

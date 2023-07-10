@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  NetworkService.swift
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
@@ -7,7 +7,7 @@
 import Foundation
 import RxSwift
 
-final class NetworkManager: Network {
+final class DefaultNetworkService: NetworkService {
     private let session: URLSessionType
     
     init(session: URLSessionType = URLSession.shared) {
