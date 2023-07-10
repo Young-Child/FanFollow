@@ -7,23 +7,24 @@
 
 import XCTest
 import RxSwift
+
 @testable import FanFollow
 
 final class UserInformationServiceTests: XCTestCase {
-    private var sut: DefaultUserInformationService!
-    private var networkManger: StubNetworkManager!
+    private var sut: DefaultUserInformationRepository!
+    private var networkService: StubNetworkService!
     private var disposeBag: DisposeBag!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        networkManger = StubNetworkManager()
-        sut = DefaultUserInformationService(networkManger)
+        networkService = StubNetworkService()
+        sut = DefaultUserInformationRepository(networkService)
         disposeBag = DisposeBag()
     }
     
     override func tearDownWithError() throws {
         sut = nil
-        networkManger = nil
+        networkService = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -31,9 +32,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchCreatorInformations가 제대로 동작하는 지 테스트
     func test_FetchCreatorInformationsInNormalCondition() {
         // given
-        networkManger.data = TestData.userInformationData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.userInformationData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let jobCategory = TestData.jobCategory
         let nickName = TestData.nickName
         let startRange = TestData.startRange
@@ -60,9 +61,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchCreatorInformations가 에러를 반환하는 지 테스트
     func test_FetchCreatorInformationsInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let jobCategory = TestData.jobCategory
         let nickName = TestData.nickName
         let startRange = TestData.startRange
@@ -88,9 +89,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 정상적인 조건에서 fetchUserInformation가 제대로 동작하는 지 테스트
     func test_FetchUserInformationInNormalCondition() {
         // given
-        networkManger.data = TestData.userInformationData
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = TestData.userInformationData
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let userID = TestData.userID
         
         // when
@@ -108,9 +109,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 fetchUserInformation가 에러를 반환하는 지 테스트
     func test_FetchUserInformationInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let userID = TestData.userID
         
         // when
@@ -128,9 +129,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 정상적인 조건에서 upsertUserInformation가 제대로 동작하는 지 테스트
     func test_UpsertUserInformationInNormalCondition() {
         // given
-        networkManger.data = Data()
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = Data()
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let userID = TestData.userID
         let name = TestData.name
         let nickName = TestData.nickName
@@ -162,9 +163,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 upsertUserInformation가 에러를 반환하는 지 테스트
     func test_UpsertUserInformationInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let userID = TestData.userID
         let name = TestData.name
         let nickName = TestData.nickName
@@ -196,9 +197,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 정상적인 조건에서 deleteUserInformation가 제대로 동작하는 지 테스트
     func test_DeleteUserInformationInNormalCondition() {
         // given
-        networkManger.data = Data()
-        networkManger.error = nil
-        networkManger.response = TestData.normalResponse
+        networkService.data = Data()
+        networkService.error = nil
+        networkService.response = TestData.normalResponse
         let userID = TestData.userID
         
         // when
@@ -216,9 +217,9 @@ final class UserInformationServiceTests: XCTestCase {
     /// 에러가 발생하는 조건에서 deleteUserInformation가 에러를 반환하는 지 테스트
     func test_DeleteUserInformationInErrorCondition() {
         // given
-        networkManger.data = nil
-        networkManger.error = NetworkError.unknown
-        networkManger.response = TestData.errorResponse
+        networkService.data = nil
+        networkService.error = NetworkError.unknown
+        networkService.response = TestData.errorResponse
         let userID = TestData.userID
         
         // when

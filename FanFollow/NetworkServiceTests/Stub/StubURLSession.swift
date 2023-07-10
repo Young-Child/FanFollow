@@ -6,6 +6,8 @@
 
 import Foundation
 
+@testable import FanFollow
+
 final class StubURLSession: URLSessionType {
     typealias Response = (data: Data?, response: URLResponse?, error: Error?)
     

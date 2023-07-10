@@ -10,7 +10,7 @@ import RxSwift
 
 @testable import FanFollow
 
-final class StubNetworkManager: Network {
+final class StubNetworkService: NetworkService {
     var data: Data?
     var error: Error?
     var response: URLResponse?

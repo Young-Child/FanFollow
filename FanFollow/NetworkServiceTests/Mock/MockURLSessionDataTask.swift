@@ -6,6 +6,8 @@
 
 import Foundation
 
+@testable import FanFollow
+
 class MockURLSessionDataTask: URLSessionDataTaskType {
     private let resumeHandler: () -> Void
     

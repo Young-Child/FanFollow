@@ -1,6 +1,6 @@
 //
-//  NetworkManagerTests.swift
-//  NetworkManagerTests
+//  NetworkServiceTests.swift
+//  NetworkServiceTests
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
@@ -12,8 +12,9 @@ import RxTest
 import RxBlocking
 import RxRelay
 
+@testable import FanFollow
 
-final class NetworkManagerTests: XCTestCase {
+final class NetworkServiceTests: XCTestCase {
     private var disposeBag: DisposeBag!
     private var url: String!
     private var sample: MockData!
@@ -30,7 +31,7 @@ final class NetworkManagerTests: XCTestCase {
         sample = nil
     }
     
-    /// 네트워크없이 NetworkManager 내부의 data 메서드가 정상적인 데이터를 전달하는지 테스트
+    /// 네트워크없이 NetworkService 내부의 data 메서드가 정상적인 데이터를 전달하는지 테스트
     func test_FetchingDataWithDataExistWhenStatusCode200() throws {
         //given
         let stubURLSession = StubURLSession.make(
@@ -39,7 +40,7 @@ final class NetworkManagerTests: XCTestCase {
             statusCode: 200
         )
         
-        let sut = NetworkManager(session: stubURLSession)
+        let sut = DefaultNetworkService(session: stubURLSession)
         
         // when
         let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
@@ -57,7 +58,7 @@ final class NetworkManagerTests: XCTestCase {
             .disposed(by: disposeBag)
     }
     
-    /// 네트워크없이 NetworkManager 내부의 data 메서드가 정상적으로 에러를 전달하는지 테스트
+    /// 네트워크없이 NetworkService 내부의 data 메서드가 정상적으로 에러를 전달하는지 테스트
     func test_FetchingDataWithDataExistWhenStatusCodeNot200() throws {
         let stubURLSession = StubURLSession.make(
             url: url,
@@ -65,7 +66,7 @@ final class NetworkManagerTests: XCTestCase {
             statusCode: 400
         )
         
-        let sut = NetworkManager(session: stubURLSession)
+        let sut = DefaultNetworkService(session: stubURLSession)
         
         let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
         
@@ -80,7 +81,7 @@ final class NetworkManagerTests: XCTestCase {
         .disposed(by: disposeBag)
     }
     
-    /// 네트워크 없이 NetworkManager 내부의 execute 메서드가 정상적인값을 반환하는 것에 대한 테스트
+    /// 네트워크 없이 NetworkService 내부의 execute 메서드가 정상적인값을 반환하는 것에 대한 테스트
     func test_FetchingDataWithDataNoExistWhenStatusCode200() throws {
         let stubURLSession = StubURLSession.make(
             url: url,
@@ -88,7 +89,7 @@ final class NetworkManagerTests: XCTestCase {
             statusCode: 200
         )
         
-        let sut = NetworkManager(session: stubURLSession)
+        let sut = DefaultNetworkService(session: stubURLSession)
         
         let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         
@@ -100,7 +101,7 @@ final class NetworkManagerTests: XCTestCase {
         .disposed(by: disposeBag)
     }
     
-    /// 네트워크 없이 NetworkManager 내부의 execute 메서드가 에러를 정상적으로 반환하는 지에 대한 테스트
+    /// 네트워크 없이 NetworkService 내부의 execute 메서드가 에러를 정상적으로 반환하는 지에 대한 테스트
     func test_FetchingDataWithDataNoExistWhenStatusCodeNot200() throws {
         let stubURLSession = StubURLSession.make(
             url: url,
@@ -108,7 +109,7 @@ final class NetworkManagerTests: XCTestCase {
             statusCode: 400
         )
         
-        let sut = NetworkManager(session: stubURLSession)
+        let sut = DefaultNetworkService(session: stubURLSession)
         
         let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         
