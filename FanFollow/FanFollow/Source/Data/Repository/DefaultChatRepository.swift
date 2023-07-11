@@ -23,9 +23,8 @@ struct DefaultChatRepository: ChatRepository {
     }
     
     func createNewChatRoom(from fanID: String, to creatorID: String) -> Completable {
-        let newChatRoom = ChatDTO(fanID: fanID, creatorID: creatorID)
         let request = ChatRequestDirector(builder: builder)
-            .requestCreateNewChat(newChatRoom)
+            .requestCreateNewChat(fanID: fanID, creatorID: creatorID)
         
         return networkService.execute(request)
     }

@@ -29,8 +29,8 @@ struct ChatRequestDirector {
             ])
             .build()
     }
-    
-    func requestCreateNewChat(_ chat: ChatDTO) -> URLRequest {
+
+    func requestCreateNewChat(fanID: String, creatorID: String) -> URLRequest {
         return builder
             .set(method: .post)
             .set(path: SupabaseConstants.Constants.path)
@@ -39,7 +39,11 @@ struct ChatRequestDirector {
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
             ])
-            .set(body: chat.toDictionary())
+            .set(body: [
+                SupabaseConstants.Constants.fanID: fanID,
+                SupabaseConstants.Constants.creatorID: creatorID,
+                SupabaseConstants.Constants.accept: false
+            ])
             .build()
     }
     
@@ -88,6 +92,7 @@ private extension SupabaseConstants {
         static let chatID = "chat_id"
         static let fanID = "fan_id"
         static let creatorID = "creator_id"
+        static let accept = "is_accept"
         static let null = "null"
         static let isNull = Base.is + null
         static let creatorEqual = creatorID + Base.equal

@@ -8,25 +8,24 @@ import Foundation
 
 struct ChatDTO: Decodable {
     var chatID: String = UUID().uuidString
-    var createdDate: String = Date().description
-    let fanID: String?
-    let creatorID: String?
     var isAccept: Bool = false
+    var createdDate: String = Date().description
+    let creatorID: String?
+    let creatorNickName: String?
+    let creatorProfilePath: String?
+    let fanID: String?
+    let fanNickName: String?
+    let fanProfilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case chatID = "chat_id"
         case createdDate = "created_at"
-        case fanID = "fan_id"
-        case creatorID = "creator_id"
         case isAccept = "is_accept"
-    }
-    
-    func toDictionary() -> [String: Any] {
-        return [
-            "chat_id": chatID,
-            "fan_id": fanID as Any,
-            "creator_id": creatorID as Any,
-            "is_accept": false
-        ]
+        case creatorID = "creator_id"
+        case creatorNickName = "creator_nick_name"
+        case creatorProfilePath = "creator_profile_path"
+        case fanID = "fan_id"
+        case fanNickName = "fan_nick_name"
+        case fanProfilePath = "fan_profile_path"
     }
 }
