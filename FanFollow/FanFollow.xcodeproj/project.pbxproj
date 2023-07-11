@@ -28,7 +28,6 @@
 		1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
-		188CC4082A4D7FD900BAB85A /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4072A4D7FD900BAB85A /* ExampleViewController.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
 		188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */; };
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
@@ -47,6 +46,7 @@
 		18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53F2A55BA3E00A41AC5 /* MockData.swift */; };
 		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
 		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
+		18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF43272A5CE936002FFA1D /* TabBarController.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatRepository.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */; };
@@ -113,7 +113,6 @@
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		188CC4072A4D7FD900BAB85A /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		18C1E53F2A55BA3E00A41AC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
 		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
+		18CF43272A5CE936002FFA1D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatRepository.swift; sourceTree = "<group>"; };
@@ -300,6 +300,7 @@
 		18BC320A2A5C279C00F910B7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				18CF43252A5CE923002FFA1D /* MainScene */,
 				18BC32122A5C2A8E00F910B7 /* ViewModel.swift */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 			);
@@ -326,7 +327,6 @@
 		18BC320F2A5C2A7200F910B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				188CC4072A4D7FD900BAB85A /* ExampleViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,6 +390,22 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18CF43252A5CE923002FFA1D /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				18CF43262A5CE92C002FFA1D /* View */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		18CF43262A5CE92C002FFA1D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CF43272A5CE936002FFA1D /* TabBarController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
@@ -718,8 +734,8 @@
 				18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
+				18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
-				188CC4082A4D7FD900BAB85A /* ExampleViewController.swift in Sources */,
 				18BC320D2A5C27D900F910B7 /* ExampleUseCase.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */,
