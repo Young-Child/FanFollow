@@ -33,7 +33,8 @@ final class DefaultAccessChatRoomUseCase: AccessChatRoomUseCase {
                 return ChatRoom(
                     chatID: data.chatID,
                     partnerID: partnerID,
-                    partnerNickName: partnerProfilePath,
+                    partnerNickName: partnerNickName,
+                    partnerProfilePath: partnerProfilePath,
                     isAccept: data.isAccept
                 )
             }
