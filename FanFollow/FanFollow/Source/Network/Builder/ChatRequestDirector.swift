@@ -14,18 +14,16 @@ struct ChatRequestDirector {
     }
     
     func requestChattingList(userID: String) -> URLRequest {
-        let creatorQuery = SupabaseConstants.Constants.creatorEqual + userID
-        let fanQuery = SupabaseConstants.Constants.fanEqual + userID
-        
         return builder
-            .set(method: .get)
-            .set(path: SupabaseConstants.Constants.path)
-            .set(queryItems: [
-                SupabaseConstants.Base.or: "(\(creatorQuery),\(fanQuery))"
-            ])
+            .set(method: .post)
+            .set(path: SupabaseConstants.Constants.rpcPath)
             .set(headers: [
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey
+            ])
+            .set(body: [
+                SupabaseConstants.Constants.userID: userID
             ])
             .build()
     }
@@ -86,10 +84,12 @@ private extension SupabaseConstants {
     enum Constants {
         // BASE ELEMENT
         static let path = Base.basePath + "CHAT_ROOM"
+        static let rpcPath = Base.basePath + "rpc/fetch_chat_partner"
         static let authKey = Base.authorization + Bundle.main.apiKey
         
         // QUERY KEY
         static let chatID = "chat_id"
+        static let userID = "user_id"
         static let fanID = "fan_id"
         static let creatorID = "creator_id"
         static let accept = "is_accept"
