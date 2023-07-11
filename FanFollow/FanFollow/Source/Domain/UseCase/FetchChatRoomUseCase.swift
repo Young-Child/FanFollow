@@ -8,13 +8,13 @@
 import Foundation
 import RxSwift
 
-protocol FetchChatRoomUseCase: AnyObject {
+protocol AccessChatRoomUseCase: AnyObject {
     func fetchChatRoomList(userID: String) -> Observable<[ChatRoom]>
     func leaveChatRoom(chatID: String, userID: String, isCreator: Bool) -> Observable<Void>
     func deleteChatRoom(chatID: String) -> Completable
 }
 
-final class DefaultFetchChatRoomUseCase: FetchChatRoomUseCase {
+final class DefaultAccessChatRoomUseCase: AccessChatRoomUseCase {
     private let chatRepository: ChatRepository
 
     init(chatRepository: ChatRepository) {
