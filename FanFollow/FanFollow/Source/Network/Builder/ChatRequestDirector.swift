@@ -13,9 +13,9 @@ struct ChatRequestDirector {
         self.builder = builder
     }
     
-    func requestChattingList(userId: String) -> URLRequest {
-        let creatorQuery = SupabaseConstants.Constants.creatorEqual + userId
-        let fanQuery = SupabaseConstants.Constants.fanEqual + userId
+    func requestChattingList(userID: String) -> URLRequest {
+        let creatorQuery = SupabaseConstants.Constants.creatorEqual + userID
+        let fanQuery = SupabaseConstants.Constants.fanEqual + userID
         
         return builder
             .set(method: .get)
@@ -43,15 +43,15 @@ struct ChatRequestDirector {
             .build()
     }
     
-    func requestLeaveChat(chatId: String, userId: String, isCreator: Bool) -> URLRequest {
-        let creatorId = SupabaseConstants.Constants.creatorId
-        let fanId = SupabaseConstants.Constants.fanId
-        let queryKey = isCreator ? creatorId : fanId
+    func requestLeaveChat(chatID: String, userID: String, isCreator: Bool) -> URLRequest {
+        let creatorID = SupabaseConstants.Constants.creatorID
+        let fanID = SupabaseConstants.Constants.fanID
+        let queryKey = isCreator ? creatorID : fanID
         return builder
             .set(method: .patch)
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                queryKey: SupabaseConstants.Base.equal + userId
+                queryKey: SupabaseConstants.Base.equal + userID
             ])
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
@@ -61,14 +61,14 @@ struct ChatRequestDirector {
             .build()
     }
     
-    func requestDeleteChatRoom(chatId: String) -> URLRequest {
+    func requestDeleteChatRoom(chatID: String) -> URLRequest {
         return builder
             .set(method: .delete)
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: [
-                SupabaseConstants.Constants.chatId: SupabaseConstants.Base.equal + chatId,
-                SupabaseConstants.Constants.fanId: SupabaseConstants.Constants.isNull,
-                SupabaseConstants.Constants.creatorId: SupabaseConstants.Constants.isNull
+                SupabaseConstants.Constants.chatID: SupabaseConstants.Base.equal + chatID,
+                SupabaseConstants.Constants.fanID: SupabaseConstants.Constants.isNull,
+                SupabaseConstants.Constants.creatorID: SupabaseConstants.Constants.isNull
             ])
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
@@ -85,12 +85,12 @@ private extension SupabaseConstants {
         static let authKey = Base.authorization + Bundle.main.apiKey
         
         // QUERY KEY
-        static let chatId = "chat_id"
-        static let fanId = "fan_id"
-        static let creatorId = "creator_id"
+        static let chatID = "chat_id"
+        static let fanID = "fan_id"
+        static let creatorID = "creator_id"
         static let null = "null"
         static let isNull = Base.is + null
-        static let creatorEqual = creatorId + Base.equal
-        static let fanEqual = fanId + Base.equal
+        static let creatorEqual = creatorID + Base.equal
+        static let fanEqual = fanID + Base.equal
     }
 }
