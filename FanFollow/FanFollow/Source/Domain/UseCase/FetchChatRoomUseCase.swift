@@ -10,6 +10,8 @@ import RxSwift
 
 protocol FetchChatRoomUseCase: AnyObject {
     func fetchChatRoomList(userID: String) -> Observable<[ChatRoom]>
+    func leaveChatRoom(chatID: String, userID: String, isCreator: Bool) -> Observable<Void>
+    func deleteChatRoom(chatID: String) -> Completable
 }
 
 final class DefaultFetchChatRoomUseCase: FetchChatRoomUseCase {
@@ -36,5 +38,15 @@ final class DefaultFetchChatRoomUseCase: FetchChatRoomUseCase {
                 )
             }
         }
+    }
+    
+    // 추후 IndexPath로 변경
+    func leaveChatRoom(chatID: String, userID: String, isCreator: Bool) -> Observable<Void> {
+        return chatRepository.leaveChatRoom(to: chatID, userID: userID, isCreator: isCreator)
+            .map { _ in return }
+    }
+    
+    func deleteChatRoom(chatID: String) -> Completable {
+        return chatRepository.deleteChatRoom(to: chatID)
     }
 }
