@@ -13,4 +13,12 @@ struct ChatRoom {
     var partnerNickName: String?
     var partnerProfilePath: String?
     var isAccept: Bool
+    
+    init(_ chatDTO: ChatDTO, userID: String) {
+        chatID = chatDTO.chatID
+        partnerID = chatDTO.fanID == userID ? chatDTO.creatorID : chatDTO.fanID
+        partnerNickName = chatDTO.fanID == userID ? chatDTO.creatorNickName : chatDTO.fanNickName
+        partnerProfilePath = chatDTO.fanID == userID ? chatDTO.creatorProfilePath : chatDTO.fanProfilePath
+        isAccept = chatDTO.isAccept
+    }
 }

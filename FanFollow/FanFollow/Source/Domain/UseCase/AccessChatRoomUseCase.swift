@@ -16,7 +16,7 @@ protocol AccessChatRoomUseCase: AnyObject {
 
 final class DefaultAccessChatRoomUseCase: AccessChatRoomUseCase {
     private let chatRepository: ChatRepository
-
+    
     init(chatRepository: ChatRepository) {
         self.chatRepository = chatRepository
     }
@@ -24,19 +24,9 @@ final class DefaultAccessChatRoomUseCase: AccessChatRoomUseCase {
     func fetchChatRoomList(userID: String) -> Observable<[ChatRoom]> {
         let chatList = chatRepository.fetchChattingList(userID: userID)
         
-        return chatList.map { datas in
-            datas.map { data in
-                let partnerID = data.fanID == userID ? data.creatorID : data.fanID
-                let partnerNickName = data.fanID == userID ? data.creatorNickName : data.fanNickName
-                let partnerProfilePath = data.fanID == userID ? data.creatorProfilePath : data.fanProfilePath
-                
-                return ChatRoom(
-                    chatID: data.chatID,
-                    partnerID: partnerID,
-                    partnerNickName: partnerNickName,
-                    partnerProfilePath: partnerProfilePath,
-                    isAccept: data.isAccept
-                )
+        return chatList.map { chatDTOList in
+            chatDTOList.map { chatDTO in
+                return ChatRoom(chatDTO, userID: userID)
             }
         }
     }
