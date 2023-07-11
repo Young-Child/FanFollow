@@ -1,5 +1,5 @@
 //
-//  FetchChatRoomUseCase.swift
+//  AccessChatRoomUseCase.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/07/11.
