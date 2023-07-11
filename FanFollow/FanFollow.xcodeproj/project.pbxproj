@@ -300,8 +300,8 @@
 		18BC320A2A5C279C00F910B7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				18CF43252A5CE923002FFA1D /* MainScene */,
 				18BC32122A5C2A8E00F910B7 /* ViewModel.swift */,
+				18CF43252A5CE923002FFA1D /* MainScene */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 			);
 			path = Presenter;
