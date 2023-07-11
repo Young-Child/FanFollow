@@ -15,14 +15,22 @@ struct DefaultPostRepository: PostRepository {
         self.networkService = networkService
     }
     
-    func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
-        let range = String(startRange) + "-" + String(endRange)
-        let request = PostRequestDirector(builder: builder).requestGetPost(range: range)
+    func fetchMyPosts(userID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
+        let request = PostRequestDirector(builder: builder)
+            .requestMyPosts(userID: userID, startRange: startRange, endRange: endRange)
         
         return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
     }
-    
+
+    func fetchFollowPosts(followerID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
+        let request = PostRequestDirector(builder: builder)
+            .requestFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
+
+        return networkService.data(request)
+            .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
+    }
+
     func upsertPost(
         postID: String?,
         userID: String,
@@ -39,7 +47,9 @@ struct DefaultPostRepository: PostRepository {
             title: title,
             content: content,
             imageURLs: imageURLs,
-            videoURL: videoURL
+            videoURL: videoURL,
+            nickName: nil,
+            profilePath: nil
         )
         let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
         
