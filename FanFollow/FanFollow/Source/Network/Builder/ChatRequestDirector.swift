@@ -85,7 +85,7 @@ private extension SupabaseConstants {
         // BASE ELEMENT
         static let path = Base.basePath + "CHAT_ROOM"
         static let rpcPath = Base.basePath + "rpc/fetch_chat_partner"
-        static let authKey = Base.authorization + Bundle.main.apiKey
+        static let authKey = Base.bearer + Bundle.main.apiKey
         
         // QUERY KEY
         static let chatID = "chat_id"
