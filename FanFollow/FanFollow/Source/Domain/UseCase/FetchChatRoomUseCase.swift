@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FetchChatRoomUseCase: AnyObject {
-    
+    func fetchChatRoomList(userID: String) -> Observable<[ChatRoom]>
 }
 
 final class DefaultFetchChatRoomUseCase: FetchChatRoomUseCase {
@@ -19,4 +19,22 @@ final class DefaultFetchChatRoomUseCase: FetchChatRoomUseCase {
         self.chatRepository = chatRepository
     }
     
+    func fetchChatRoomList(userID: String) -> Observable<[ChatRoom]> {
+        let chatList = chatRepository.fetchChattingList(userID: userID)
+        
+        return chatList.map { datas in
+            datas.map { data in
+                let partnerID = data.fanID == userID ? data.creatorID : data.fanID
+                let partnerNickName = data.fanID == userID ? data.creatorNickName : data.fanNickName
+                let partnerProfilePath = data.fanID == userID ? data.creatorProfilePath : data.fanProfilePath
+                
+                return ChatRoom(
+                    chatID: data.chatID,
+                    partnerID: partnerID,
+                    partnerNickName: partnerProfilePath,
+                    isAccept: data.isAccept
+                )
+            }
+        }
+    }
 }
