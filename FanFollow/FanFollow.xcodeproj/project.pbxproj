@@ -47,6 +47,7 @@
 		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
 		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
 		18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF43272A5CE936002FFA1D /* TabBarController.swift */; };
+		18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatRepository.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */; };
@@ -129,6 +130,7 @@
 		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
 		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
 		18CF43272A5CE936002FFA1D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatRepository.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				18BC32122A5C2A8E00F910B7 /* ViewModel.swift */,
 				18CF43252A5CE923002FFA1D /* MainScene */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
+				18CF43292A5D12BA002FFA1D /* SettingScene */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -404,6 +407,22 @@
 			isa = PBXGroup;
 			children = (
 				18CF43272A5CE936002FFA1D /* TabBarController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18CF43292A5D12BA002FFA1D /* SettingScene */ = {
+			isa = PBXGroup;
+			children = (
+				18CF432A2A5D14DB002FFA1D /* View */,
+			);
+			path = SettingScene;
+			sourceTree = "<group>";
+		};
+		18CF432A2A5D14DB002FFA1D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -734,6 +753,7 @@
 				18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
+				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
 				18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				18BC320D2A5C27D900F910B7 /* ExampleUseCase.swift in Sources */,
