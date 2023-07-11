@@ -20,14 +20,14 @@ final class TabBarController: UITabBarController {
 
 private extension TabBarController {
     enum Router: Int, CaseIterable {
-        case home
+        case feed
         case chatting
         case explore
         case setting
         
         private var iconName: String {
             switch self {
-            case .home:     return "rectangle.stack"
+            case .feed:     return "rectangle.stack"
             case .chatting: return "bubble.left.and.bubble.right"
             case .explore:  return "binoculars"
             case .setting:  return "gearshape.2"
@@ -36,7 +36,7 @@ private extension TabBarController {
         
         private var name: String {
             switch self {
-            case .home:     return "피드"
+            case .feed:     return "피드"
             case .chatting: return "채팅"
             case .explore:  return "탐색"
             case .setting:  return "더보기"
