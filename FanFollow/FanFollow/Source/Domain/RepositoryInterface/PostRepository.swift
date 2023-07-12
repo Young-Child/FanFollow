@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 protocol PostRepository: SupabaseEndPoint {
-    func fetchAllPost(startRange: Int, endRange: Int) -> Observable<[PostDTO]>
+    func fetchMyPosts(userID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]>
+    func fetchFollowPosts(followerID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]>
     func upsertPost(
         postID: String?, userID: String, createdDate: String,
         title: String, content: String, imageURLs: [String]?, videoURL: String?

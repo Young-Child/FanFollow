@@ -43,7 +43,6 @@ struct DefaultUserInformationRepository: UserInformationRepository {
 
     func upsertUserInformation(
         userID: String,
-        name: String,
         nickName: String,
         profilePath: String?,
         jobCategory: Int?,
@@ -53,7 +52,7 @@ struct DefaultUserInformationRepository: UserInformationRepository {
         createdAt: String
     ) -> Completable {
         let userInformationDTO = UserInformationDTO(
-            userID: userID, name: name, nickName: nickName, profilePath: profilePath, jobCategory: jobCategory,
+            userID: userID, nickName: nickName, profilePath: profilePath, jobCategory: jobCategory,
             links: links, introduce: introduce, isCreator: isCreator, createdAt: createdAt
         )
 

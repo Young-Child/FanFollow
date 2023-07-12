@@ -60,7 +60,7 @@ final class PostServiceTest: XCTestCase {
         let secondUserID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
         // when
-        let postListObservable = postRepository.fetchAllPost(startRange: 0, endRange: 3)
+        let postListObservable = postRepository.fetchMyPosts(userID: "testUserID", startRange: 0, endRange: 3)
         let value = try? postListObservable.toBlocking().first()!
         
         // then
@@ -120,7 +120,7 @@ final class PostServiceTest: XCTestCase {
         let postRepository = DefaultPostRepository(networkService: networkService)
         
         // when
-        let postListObservable = postRepository.fetchAllPost(startRange: 0, endRange: 3)
+        let postListObservable = postRepository.fetchMyPosts(userID: "testUserID", startRange: 0, endRange: 3)
         
         // when
         let result = postListObservable.toBlocking().materialize()
