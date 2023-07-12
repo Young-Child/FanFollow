@@ -26,7 +26,7 @@
 		183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974712A52A2B900F0101A /* URLRequestBuilder.swift */; };
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
 		1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */; };
-		187949A52A5E6E8B00ADA01A /* UITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A42A5E6E8B00ADA01A /* UITabBar.swift */; };
+		187949A52A5E6E8B00ADA01A /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A42A5E6E8B00ADA01A /* TabBar.swift */; };
 		187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A82A5E7BB000ADA01A /* TabItem.swift */; };
 		187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */; };
 		187949B12A5E7DBB00ADA01A /* TopTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */; };
@@ -115,7 +115,7 @@
 		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceTests.swift; sourceTree = "<group>"; };
 		1866AFC62A570A61000FFFD7 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
-		187949A42A5E6E8B00ADA01A /* UITabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBar.swift; sourceTree = "<group>"; };
+		187949A42A5E6E8B00ADA01A /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		187949A82A5E7BB000ADA01A /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabBar.swift; sourceTree = "<group>"; };
 		187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTapBarController.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 		187949AA2A5E7C2800ADA01A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				187949A42A5E6E8B00ADA01A /* UITabBar.swift */,
+				187949A42A5E6E8B00ADA01A /* TabBar.swift */,
 				187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */,
 			);
 			path = View;
@@ -805,7 +805,7 @@
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */,
-				187949A52A5E6E8B00ADA01A /* UITabBar.swift in Sources */,
+				187949A52A5E6E8B00ADA01A /* TabBar.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,

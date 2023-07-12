@@ -2,15 +2,15 @@
   "colors" : [
     {
       "color" : {
-        "color-space" : "display-p3",
+        "color-space" : "srgb",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0xCB",
-          "green" : "0x4A",
-          "red" : "0x06"
+          "blue" : "0x93",
+          "green" : "0x8E",
+          "red" : "0x8E"
         }
       },
-      "idiom" : "iphone"
+      "idiom" : "universal"
     },
     {
       "appearances" : [
@@ -20,15 +20,15 @@
         }
       ],
       "color" : {
-        "color-space" : "display-p3",
+        "color-space" : "srgb",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0xCB",
-          "green" : "0x4A",
-          "red" : "0x06"
+          "blue" : "0x93",
+          "green" : "0x8E",
+          "red" : "0x8E"
         }
       },
-      "idiom" : "iphone"
+      "idiom" : "universal"
     }
   ],
   "info" : {

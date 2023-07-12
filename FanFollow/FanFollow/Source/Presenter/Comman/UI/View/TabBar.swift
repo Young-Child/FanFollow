@@ -43,8 +43,8 @@ private extension TabBar {
     func generateButton(item: any TabItem) -> UIButton {
         let button = UIButton().then {
             $0.setTitle(item.description, for: .normal)
-            $0.setTitleColor(.secondaryLabel, for: .normal)
-            $0.setTitleColor(.blue, for: .selected)
+            $0.setTitleColor(UIColor(named: "SecondaryColor"), for: .normal)
+            $0.setTitleColor(UIColor(named: "AccentColor"), for: .selected)
             $0.titleLabel?.font = .systemFont(ofSize: 28, weight: .black)
         }
         
