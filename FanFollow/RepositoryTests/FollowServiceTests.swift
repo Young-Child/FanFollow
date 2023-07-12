@@ -341,7 +341,6 @@ extension FollowServiceTests {
                 "follow_id": "93de0d53-5c9a-48fa-9283-c3f1b1497c7c",
                 "USER_INFORMATION": {
                     "user_id": "5b587434-438c-49d8-ae3c-88bb27a891d4",
-                    "name": "Kyo",
                     "nick_name": "나가",
                     "profile_path": null,
                     "job_category": null,
