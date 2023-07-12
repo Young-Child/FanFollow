@@ -21,15 +21,15 @@ extension SettingSectionModel: AnimatableSectionModelType {
     var items: [SettingSectionItem] {
         switch self {
         case .account(_, let items):
-            return items
+            return items.map { $0 }
         case .alert(_, let items):
-            return items
+            return items.map { $0 }
         case .customerService(_, let items):
-            return items
+            return items.map { $0 }
         case .profile(_, let items):
-            return items
+            return items.map { $0 }
         case .registerCreator(_, let items):
-            return items
+            return items.map { $0 }
         }
     }
     
