@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JobCategory {
+enum JobCategory: Int {
     case IT
     case art
     case plan
