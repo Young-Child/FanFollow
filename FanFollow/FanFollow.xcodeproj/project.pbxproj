@@ -28,6 +28,7 @@
 		1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */; };
 		187949A52A5E6E8B00ADA01A /* UITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A42A5E6E8B00ADA01A /* UITabBar.swift */; };
 		187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A82A5E7BB000ADA01A /* TabItem.swift */; };
+		187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 		1866AFC62A570A61000FFFD7 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		187949A42A5E6E8B00ADA01A /* UITabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBar.swift; sourceTree = "<group>"; };
 		187949A82A5E7BB000ADA01A /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabBar.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		187949A32A5E6E8200ADA01A /* Comman */ = {
 			isa = PBXGroup;
 			children = (
+				187949AD2A5E7C7F00ADA01A /* ViewModel */,
 				187949A62A5E7BA400ADA01A /* UI */,
 				187949A42A5E6E8B00ADA01A /* UITabBar.swift */,
 			);
@@ -284,6 +287,7 @@
 		187949A62A5E7BA400ADA01A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				187949AA2A5E7C2800ADA01A /* View */,
 				187949A72A5E7BAA00ADA01A /* Protocol */,
 			);
 			path = UI;
@@ -293,6 +297,30 @@
 			isa = PBXGroup;
 			children = (
 				187949A82A5E7BB000ADA01A /* TabItem.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		187949AA2A5E7C2800ADA01A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		187949AD2A5E7C7F00ADA01A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				187949AE2A5E7C8100ADA01A /* Protocol */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		187949AE2A5E7C8100ADA01A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18BC32122A5C2A8E00F910B7 /* ViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -332,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				187949A32A5E6E8200ADA01A /* Comman */,
-				18BC32122A5C2A8E00F910B7 /* ViewModel.swift */,
 				18CF43252A5CE923002FFA1D /* MainScene */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
@@ -758,6 +785,7 @@
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
+				187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
 				183974692A52637700F0101A /* SupabaseEndPoint.swift in Sources */,
