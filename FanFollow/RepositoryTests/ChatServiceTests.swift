@@ -60,7 +60,7 @@ final class ChatServiceTests: XCTestCase {
         
         // then
         let value = try? chatListObservable.toBlocking().first()!.first!
-        let result = (value?.fanId == userID || value?.creatorId == userID)
+        let result = (value?.fanID == userID || value?.creatorID == userID)
         
         XCTAssertEqual(result, true)
     }
