@@ -20,11 +20,9 @@ class TabBar: UIStackView {
     
     init(tabItems: [any TabItem]) {
         super.init(frame: .zero)
-        spacing = 16
-        distribution = .equalSpacing
-        
         setUpViews(with: tabItems)
         selectItem(index: 0)
+        setUpDetail()
     }
     
     required init(coder: NSCoder) {
@@ -62,5 +60,12 @@ private extension TabBar {
         }
         
         tabButtons.forEach { addArrangedSubview($0) }
+    }
+    
+    func setUpDetail() {
+        spacing = 16
+        distribution = .fillProportionally
+        isLayoutMarginsRelativeArrangement = true
+        layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     }
 }
