@@ -8,7 +8,10 @@ import UIKit
 import Then
 
 final class SettingViewController: TopTabBarController {
-    convenience init() { self.init(tabBar: SettingTabBar()) }
+    convenience init() {
+        self.init(tabBar: SettingTabBar())
+    }
+    
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
     }
