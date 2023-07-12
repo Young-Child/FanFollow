@@ -7,12 +7,8 @@
 import UIKit
 import Then
 
-final class SettingViewController: UIViewController {
-    private let tabBar = SettingTabBar()
-    
+final class SettingViewController: TopTabBarController {
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tabBar)
     }
 }

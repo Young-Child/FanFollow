@@ -55,7 +55,7 @@ private extension TabBarController {
             // TODO: - 각 컨트롤러 구성 후 변경
             switch self {
             case .setting:
-                let rootViewController = SettingViewController()
+                let rootViewController = SettingViewController(tabBar: SettingTabBar())
                 let controller = UINavigationController(rootViewController: rootViewController)
                 controller.tabBarItem = tabBarItem
                 return controller
