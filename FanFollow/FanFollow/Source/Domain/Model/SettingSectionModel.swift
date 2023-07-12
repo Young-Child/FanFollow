@@ -7,49 +7,60 @@
 import RxDataSources
 
 enum SettingSectionModel {
-    case account(title: String)
-    case alert(title: String)
-    case customerService(title: String)
-    case profile(title: String)
-    case registerCreator(title: String)
+    case account(title: String, items: [SettingSectionItem])
+    case alert(title: String, items: [SettingSectionItem])
+    case customerService(title: String, items: [SettingSectionItem])
+    case profile(title: String, items: [SettingSectionItem])
+    case registerCreator(title: String, items: [SettingSectionItem])
 }
 
 extension SettingSectionModel: AnimatableSectionModelType {
     // TODO: - 아이템 타입 변경하기
-    typealias Item = String
+    typealias Item = SettingSectionItem
     typealias Identity = String
     
-    var items: [String] {
-        return []
+    var items: [SettingSectionItem] {
+        switch self {
+        case .account(_, let items):
+            return items
+        case .alert(_, let items):
+            return items
+        case .customerService(_, let items):
+            return items
+        case .profile(_, let items):
+            return items
+        case .registerCreator(_, let items):
+            return items
+        }
     }
     
     var identity: String {
         switch self {
-        case .account(let title):
+        case .account(let title, _):
             return title
-        case .alert(let title):
+        case .alert(let title, _):
             return title
-        case .customerService(let title):
+        case .customerService(let title, _):
             return title
-        case .profile(let title):
+        case .profile(let title, _):
             return title
-        case .registerCreator(let title):
+        case .registerCreator(let title, _):
             return title
         }
     }
     
-    init(original: SettingSectionModel, items: [String]) {
+    init(original: SettingSectionModel, items: [SettingSectionItem]) {
         switch original {
-        case let .account(title):
-            self = .account(title: title)
-        case let .alert(title):
-            self = .alert(title: title)
-        case let .customerService(title):
-            self = .customerService(title: title)
-        case let .profile(title):
-            self = .profile(title: title)
-        case let .registerCreator(title):
-            self = .registerCreator(title: title)
+        case let .account(title, items):
+            self = .account(title: title, items: items)
+        case let .alert(title, items):
+            self = .alert(title: title, items: items)
+        case let .customerService(title, items):
+            self = .customerService(title: title, items: items)
+        case let .profile(title, items):
+            self = .profile(title: title, items: items)
+        case let .registerCreator(title, items):
+            self = .registerCreator(title: title, items: items)
         }
     }
 }
