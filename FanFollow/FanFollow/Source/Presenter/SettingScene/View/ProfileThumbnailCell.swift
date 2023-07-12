@@ -48,7 +48,7 @@ final class ProfileThumbnailCell: UITableViewCell {
 
 // UI Method
 extension ProfileThumbnailCell {
-    func configureCell(image: UIImage, nickName: String) {
+    func configureCell(nickName: String, image: UIImage?) {
         self.profileImageView.image = image
         self.nickNameLabel.text = nickName
     }
