@@ -133,7 +133,6 @@ final class UserInformationServiceTests: XCTestCase {
         networkService.error = nil
         networkService.response = TestData.normalResponse
         let userID = TestData.userID
-        let name = TestData.name
         let nickName = TestData.nickName
         let isCreator = TestData.isCreator
         let createdAt = TestData.createdAt
@@ -141,7 +140,6 @@ final class UserInformationServiceTests: XCTestCase {
         // when
         let observable = sut.upsertUserInformation(
             userID: userID,
-            name: name,
             nickName: nickName,
             profilePath: nil,
             jobCategory: nil,
@@ -167,7 +165,6 @@ final class UserInformationServiceTests: XCTestCase {
         networkService.error = NetworkError.unknown
         networkService.response = TestData.errorResponse
         let userID = TestData.userID
-        let name = TestData.name
         let nickName = TestData.nickName
         let isCreator = TestData.isCreator
         let createdAt = TestData.createdAt
@@ -175,7 +172,6 @@ final class UserInformationServiceTests: XCTestCase {
         // when
         let observable = sut.upsertUserInformation(
             userID: userID,
-            name: name,
             nickName: nickName,
             profilePath: nil,
             jobCategory: nil,
@@ -240,7 +236,6 @@ extension UserInformationServiceTests {
         static let userID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let nickName = "나미"
         static let jobCategory = 1
-        static let name = "이경민"
         static let isCreator = true
         static let createdAt = "2023-07-04T08:40:02.189472+00:00"
         static let startRange = 0
@@ -249,7 +244,6 @@ extension UserInformationServiceTests {
         [
             {
                 "user_id": "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-                "name": "이경민",
                 "nick_name": "나미",
                 "profile_path": "www.naver.com",
                 "job_category": 1,

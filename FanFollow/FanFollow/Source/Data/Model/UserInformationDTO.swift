@@ -7,7 +7,6 @@
 
 struct UserInformationDTO: Decodable {
     let userID: String
-    let name: String
     let nickName: String
     let profilePath: String?
     let jobCategory: Int?
@@ -19,7 +18,6 @@ struct UserInformationDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
         case nickName = "nick_name"
-        case name = "name"
         case profilePath = "profile_path"
         case jobCategory = "job_category"
         case links = "links"
@@ -31,7 +29,6 @@ struct UserInformationDTO: Decodable {
     func convertBody() -> [String: Any] {
         return [
             "nick_name" : nickName,
-            "name" : name,
             "profile_path" : profilePath as Any,
             "job_category" : jobCategory as Any,
             "links" : links as Any,
