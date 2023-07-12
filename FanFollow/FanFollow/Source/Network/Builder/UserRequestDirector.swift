@@ -87,14 +87,34 @@ struct UserRequestDirector {
             ])
             .build()
     }
+    
+    func requestRandomCreatorInformations(jobCategory: JobCategory) -> URLRequest {
+        return builder
+            .set(method: .post)
+            .set(path: SupabaseConstants.Constants.randomRpcPath)
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+            ])
+            .set(body: [
+                SupabaseConstants.Constants.category: jobCategory.rawValue
+            ])
+            .build()
+    }
 }
 
 private extension SupabaseConstants {
     enum Constants {
+        // BASE ELEMENT
         static let path = Base.basePath + "USER_INFORMATION"
+        static let randomRpcPath = Base.basePath + "rpc/fetch_random_creator"
+        
+        // QUERY KEY
         static let jobCategory = "job_category"
         static let nickName = "nick_name"
         static let userID = "user_id"
+        static let category = "category"
         static let isCreator = "is_creator"
         static let equalTrue = Base.equal + "true"
         static let ilike = "ilike."
