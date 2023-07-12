@@ -15,7 +15,6 @@ enum SettingSectionModel {
 }
 
 extension SettingSectionModel: AnimatableSectionModelType {
-    // TODO: - 아이템 타입 변경하기
     typealias Item = SettingSectionItem
     typealias Identity = String
     
