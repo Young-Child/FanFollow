@@ -30,6 +30,7 @@
 		187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A82A5E7BB000ADA01A /* TabItem.swift */; };
 		187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */; };
 		187949B12A5E7DBB00ADA01A /* TopTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */; };
+		187949C12A5EA30300ADA01A /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949C02A5EA30300ADA01A /* Reusable.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
@@ -119,6 +120,7 @@
 		187949A82A5E7BB000ADA01A /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabBar.swift; sourceTree = "<group>"; };
 		187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTapBarController.swift; sourceTree = "<group>"; };
+		187949C02A5EA30300ADA01A /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				187949A82A5E7BB000ADA01A /* TabItem.swift */,
+				187949C02A5EA30300ADA01A /* Reusable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
+				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
 				18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */,
 				187949A52A5E6E8B00ADA01A /* TabBar.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
