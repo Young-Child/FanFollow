@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class ProfileThumbnailCell: UITableViewCell {
+    // View Properties
     private let profileImageView = UIImageView().then { imageView in
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.backgroundColor = UIColor(named: "SecondaryColor")?.cgColor
@@ -28,11 +29,7 @@ final class ProfileThumbnailCell: UITableViewCell {
         label.text = "프로필 수정하기"
     }
     
-    func configureCell(image: UIImage, nickName: String) {
-        self.profileImageView.image = image
-        self.nickNameLabel.text = nickName
-    }
-    
+    // Initializer
     convenience init() {
         self.init(style: .default, reuseIdentifier: Self.reuseIdentifier)
     }
@@ -49,6 +46,15 @@ final class ProfileThumbnailCell: UITableViewCell {
     }
 }
 
+// UI Method
+extension ProfileThumbnailCell {
+    func configureCell(image: UIImage, nickName: String) {
+        self.profileImageView.image = image
+        self.nickNameLabel.text = nickName
+    }
+}
+
+// Configure UI
 private extension ProfileThumbnailCell {
     func configureUI() {
         configureHierarchy()
