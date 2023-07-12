@@ -31,6 +31,7 @@
 		187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */; };
 		187949B12A5E7DBB00ADA01A /* TopTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */; };
 		187949C12A5EA30300ADA01A /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949C02A5EA30300ADA01A /* Reusable.swift */; };
+		187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949C32A5EA38100ADA01A /* UITableView+Extension.swift */; };
 		188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4032A4D7FD900BAB85A /* AppDelegate.swift */; };
 		188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */; };
 		188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		187949AB2A5E7C3D00ADA01A /* SettingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabBar.swift; sourceTree = "<group>"; };
 		187949B02A5E7DBB00ADA01A /* TopTapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTapBarController.swift; sourceTree = "<group>"; };
 		187949C02A5EA30300ADA01A /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		187949C32A5EA38100ADA01A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		188CC4002A4D7FD900BAB85A /* FanFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC4032A4D7FD900BAB85A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188CC4052A4D7FD900BAB85A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -339,6 +341,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		187949C22A5EA36C00ADA01A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				187949C32A5EA38100ADA01A /* UITableView+Extension.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		188CC3F72A4D7FD900BAB85A = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +553,7 @@
 		3C45B0172A52A7AC00307DCF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				187949C22A5EA36C00ADA01A /* UI */,
 				3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */,
 				18F0131B2A53E6AC000603CC /* URL+Extension.swift */,
 			);
@@ -797,6 +808,7 @@
 			files = (
 				183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */,
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
+				187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */,
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
 				187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */,
