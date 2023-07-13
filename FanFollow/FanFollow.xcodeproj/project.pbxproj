@@ -69,6 +69,7 @@
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
+		EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */; };
 		EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */; };
 		EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */; };
 		EBAA0A682A56EC140033ED0F /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */; };
@@ -162,6 +163,7 @@
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; };
+		EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCase.swift; sourceTree = "<group>"; };
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +338,7 @@
 				EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */,
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */,
+				EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
 				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
 			);
@@ -764,6 +767,7 @@
 				EBC4E9902A55133000A1F6AE /* DefaultUserInformationRepository.swift in Sources */,
 				EBA8EB402A5D1B6100998630 /* Post.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
+				EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */,
 				EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */,
 				EBC4E98E2A54F22700A1F6AE /* UserInformationRepository.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */,
