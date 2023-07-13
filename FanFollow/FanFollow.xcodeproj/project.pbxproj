@@ -161,7 +161,7 @@
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; 
+		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCase.swift; sourceTree = "<group>"; };
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
