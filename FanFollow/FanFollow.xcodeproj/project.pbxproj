@@ -80,6 +80,7 @@
 		EBA8EB5C2A5FBE8300998630 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5B2A5FBE8300998630 /* RxRelay */; };
 		EBA8EB5E2A5FBE8300998630 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5D2A5FBE8300998630 /* RxSwift */; };
 		EBA8EB602A5FBE8300998630 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5F2A5FBE8300998630 /* RxTest */; };
+		EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB682A5FC16800998630 /* StubPostRepository.swift */; };
 		EBAA0A682A56EC140033ED0F /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */; };
 		EBAA0A6A2A56EC4D0033ED0F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A692A56EC4D0033ED0F /* RxBlocking */; };
 		EBAA0A6C2A56EC4D0033ED0F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6B2A56EC4D0033ED0F /* RxRelay */; };
@@ -182,6 +183,7 @@
 		EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB4F2A5FBE2D00998630 /* UseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBA8EB682A5FC16800998630 /* StubPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubPostRepository.swift; sourceTree = "<group>"; };
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowServiceTests.swift; sourceTree = "<group>"; };
 		EBB5DE642A5791CD00DB5B52 /* UserInformationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationServiceTests.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 		EBA8EB622A5FC03600998630 /* Stub */ = {
 			isa = PBXGroup;
 			children = (
+				EBA8EB682A5FC16800998630 /* StubPostRepository.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
