@@ -72,6 +72,14 @@
 		EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */; };
 		EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */; };
 		EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */; };
+		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
+		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
+		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
+		EBA8EB582A5FBE7600998630 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
+		EBA8EB5A2A5FBE8300998630 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB592A5FBE8300998630 /* RxBlocking */; };
+		EBA8EB5C2A5FBE8300998630 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5B2A5FBE8300998630 /* RxRelay */; };
+		EBA8EB5E2A5FBE8300998630 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5D2A5FBE8300998630 /* RxSwift */; };
+		EBA8EB602A5FBE8300998630 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = EBA8EB5F2A5FBE8300998630 /* RxTest */; };
 		EBAA0A682A56EC140033ED0F /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */; };
 		EBAA0A6A2A56EC4D0033ED0F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A692A56EC4D0033ED0F /* RxBlocking */; };
 		EBAA0A6C2A56EC4D0033ED0F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6B2A56EC4D0033ED0F /* RxRelay */; };
@@ -99,6 +107,13 @@
 			remoteInfo = FanFollow;
 		};
 		1894FC6A2A5725CA0032E426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 188CC3F82A4D7FD900BAB85A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 188CC3FF2A4D7FD900BAB85A;
+			remoteInfo = FanFollow;
+		};
+		EBA8EB532A5FBE2D00998630 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 188CC3F82A4D7FD900BAB85A /* Project object */;
 			proxyType = 1;
@@ -166,6 +181,7 @@
 		EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCase.swift; sourceTree = "<group>"; };
+		EBA8EB4F2A5FBE2D00998630 /* UseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowServiceTests.swift; sourceTree = "<group>"; };
 		EBB5DE642A5791CD00DB5B52 /* UserInformationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationServiceTests.swift; sourceTree = "<group>"; };
@@ -203,6 +219,17 @@
 				18287CFA2A56935F0042E0F2 /* RxRelay in Frameworks */,
 				18287CFC2A56935F0042E0F2 /* RxSwift in Frameworks */,
 				18287CF62A56935F0042E0F2 /* RxBlocking in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBA8EB4C2A5FBE2D00998630 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBA8EB602A5FBE8300998630 /* RxTest in Frameworks */,
+				EBA8EB5E2A5FBE8300998630 /* RxSwift in Frameworks */,
+				EBA8EB5C2A5FBE8300998630 /* RxRelay in Frameworks */,
+				EBA8EB5A2A5FBE8300998630 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +324,7 @@
 				188CC4022A4D7FD900BAB85A /* FanFollow */,
 				18C1E5212A55488900A41AC5 /* NetworkServiceTests */,
 				EB5668CD2A56B0EA007A3860 /* RepositoryTests */,
+				EBA8EB502A5FBE2D00998630 /* UseCaseTests */,
 				188CC4012A4D7FD900BAB85A /* Products */,
 				18C1E5462A55C33D00A41AC5 /* Frameworks */,
 			);
@@ -308,6 +336,7 @@
 				188CC4002A4D7FD900BAB85A /* FanFollow.app */,
 				18C1E5202A55488900A41AC5 /* NetworkServiceTests.xctest */,
 				EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */,
+				EBA8EB4F2A5FBE2D00998630 /* UseCaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -560,6 +589,29 @@
 			path = Stub;
 			sourceTree = "<group>";
 		};
+		EBA8EB502A5FBE2D00998630 /* UseCaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				EBA8EB612A5FC02E00998630 /* Mock */,
+				EBA8EB622A5FC03600998630 /* Stub */,
+			);
+			path = UseCaseTests;
+			sourceTree = "<group>";
+		};
+		EBA8EB612A5FC02E00998630 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		EBA8EB622A5FC03600998630 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -614,6 +666,30 @@
 			productReference = 18C1E5202A55488900A41AC5 /* NetworkServiceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EBA8EB4E2A5FBE2D00998630 /* UseCaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBA8EB552A5FBE2D00998630 /* Build configuration list for PBXNativeTarget "UseCaseTests" */;
+			buildPhases = (
+				EBA8EB4B2A5FBE2D00998630 /* Sources */,
+				EBA8EB4C2A5FBE2D00998630 /* Frameworks */,
+				EBA8EB4D2A5FBE2D00998630 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBA8EB542A5FBE2D00998630 /* PBXTargetDependency */,
+			);
+			name = UseCaseTests;
+			packageProductDependencies = (
+				EBA8EB592A5FBE8300998630 /* RxBlocking */,
+				EBA8EB5B2A5FBE8300998630 /* RxRelay */,
+				EBA8EB5D2A5FBE8300998630 /* RxSwift */,
+				EBA8EB5F2A5FBE8300998630 /* RxTest */,
+			);
+			productName = UseCaseTests;
+			productReference = EBA8EB4F2A5FBE2D00998630 /* UseCaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EBAA0A5E2A56EBEA0033ED0F /* RepositoryTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EBAA0A672A56EBEA0033ED0F /* Build configuration list for PBXNativeTarget "RepositoryTests" */;
@@ -655,6 +731,10 @@
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = 188CC3FF2A4D7FD900BAB85A;
 					};
+					EBA8EB4E2A5FBE2D00998630 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 188CC3FF2A4D7FD900BAB85A;
+					};
 					EBAA0A5E2A56EBEA0033ED0F = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 188CC3FF2A4D7FD900BAB85A;
@@ -683,6 +763,7 @@
 				188CC3FF2A4D7FD900BAB85A /* FanFollow */,
 				18C1E51F2A55488900A41AC5 /* NetworkServiceTests */,
 				EBAA0A5E2A56EBEA0033ED0F /* RepositoryTests */,
+				EBA8EB4E2A5FBE2D00998630 /* UseCaseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -702,6 +783,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBA8EB4D2A5FBE2D00998630 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBA8EB582A5FBE7600998630 /* SupabaseInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +895,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBA8EB4B2A5FBE2D00998630 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBAA0A5B2A56EBEA0033ED0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -832,6 +928,11 @@
 			isa = PBXTargetDependency;
 			target = 188CC3FF2A4D7FD900BAB85A /* FanFollow */;
 			targetProxy = 1894FC6A2A5725CA0032E426 /* PBXContainerItemProxy */;
+		};
+		EBA8EB542A5FBE2D00998630 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 188CC3FF2A4D7FD900BAB85A /* FanFollow */;
+			targetProxy = EBA8EB532A5FBE2D00998630 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1069,6 +1170,48 @@
 			};
 			name = Release;
 		};
+		EBA8EB562A5FBE2D00998630 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FanFollow.UseCaseTests.UseCaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
+			};
+			name = Debug;
+		};
+		EBA8EB572A5FBE2D00998630 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FanFollow.UseCaseTests.UseCaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FanFollow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FanFollow";
+			};
+			name = Release;
+		};
 		EBAA0A652A56EBEA0033ED0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1139,6 +1282,15 @@
 			buildConfigurations = (
 				18C1E5272A55488900A41AC5 /* Debug */,
 				18C1E5282A55488900A41AC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBA8EB552A5FBE2D00998630 /* Build configuration list for PBXNativeTarget "UseCaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBA8EB562A5FBE2D00998630 /* Debug */,
+				EBA8EB572A5FBE2D00998630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1244,6 +1396,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 188CC4212A4D824800BAB85A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		EBA8EB592A5FBE8300998630 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		EBA8EB5B2A5FBE8300998630 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		EBA8EB5D2A5FBE8300998630 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		EBA8EB5F2A5FBE8300998630 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 		EBAA0A692A56EC4D0033ED0F /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
