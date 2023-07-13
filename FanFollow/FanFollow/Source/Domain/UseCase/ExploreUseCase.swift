@@ -11,6 +11,7 @@ import RxSwift
 protocol ExploreUseCase: AnyObject {
     func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
     func fetchRandomAllCreators(count: Int) -> Observable<[String: [Creator]]>
+    func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
 }
 
 final class DefaultExploreUseCase: ExploreUseCase {
@@ -51,5 +52,18 @@ final class DefaultExploreUseCase: ExploreUseCase {
                 }
                 return categoryCreator
             }
+    }
+    
+    func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
+        let creatorList = userInformationRepository.fetchPopularCreatorInformations(
+            jobCategory: jobCategory,
+            count: count
+        )
+        
+        return creatorList.map { userInformationDTOList in
+            userInformationDTOList.map { userInformationDTO in
+                return Creator(userInformationDTO)
+            }
+        }       
     }
 }
