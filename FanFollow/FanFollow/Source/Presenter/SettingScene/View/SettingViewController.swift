@@ -18,6 +18,10 @@ final class SettingViewController: TopTabBarController {
             forCellReuseIdentifier: ProfileThumbnailCell.reuseIdentifier
         )
         $0.register(SettingBaseCell.self, forCellReuseIdentifier: SettingBaseCell.reuseIdentifier)
+        $0.register(
+            SettingSectionHeaderView.self,
+            forHeaderFooterViewReuseIdentifier: SettingSectionHeaderView.reuseIdentifier
+        )
         
         $0.separatorColor = .clear
         $0.backgroundColor = .clear
@@ -25,6 +29,7 @@ final class SettingViewController: TopTabBarController {
     
     // Properties
     private let settingSections = SettingSectionModel.defaultModel
+    private var dataSource = SettingViewController.dataSource()
     private let disposeBag = DisposeBag()
     
     // Initializer
@@ -32,7 +37,6 @@ final class SettingViewController: TopTabBarController {
         self.init(tabBar: SettingTabBar())
         configureUI()
         
-        let dataSource = Self.dataSource()
         Observable.just(settingSections)
             .bind(to: settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -43,10 +47,28 @@ final class SettingViewController: TopTabBarController {
 }
 
 extension SettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == .zero { return nil }
+        
+        guard let cell = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: SettingSectionHeaderView.reuseIdentifier
+        ) as? SettingSectionHeaderView else {
+            return nil
+        }
+        
+        let header = dataSource[section].identity
+        cell.configureTitle(to: header)
+        
+        let backgroundView = UIView(frame: cell.bounds)
+        backgroundView.backgroundColor = .white
+        cell.backgroundView = backgroundView
+        
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == .zero { return .zero }
-        
-        return UITableView.automaticDimension
+        return 40
     }
 }
 
@@ -70,10 +92,6 @@ private extension SettingViewController {
                     cell.configureCell(to: title)
                     return cell
                 }
-            },
-            titleForHeaderInSection: { dataSource, index in
-                let section = dataSource[index]
-                return section.identity
             }
         )
     }

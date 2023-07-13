@@ -26,6 +26,7 @@
 		183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974712A52A2B900F0101A /* URLRequestBuilder.swift */; };
 		183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974732A52A32A00F0101A /* LikeRequestDirector.swift */; };
 		18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18513FD72A5FB01E00580A1A /* SettingBaseCell.swift */; };
+		18513FDD2A5FB55500580A1A /* SettingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */; };
 		1866AFC32A57087E000FFFD7 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */; };
 		187949A52A5E6E8B00ADA01A /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A42A5E6E8B00ADA01A /* TabBar.swift */; };
 		187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187949A82A5E7BB000ADA01A /* TabItem.swift */; };
@@ -119,6 +120,7 @@
 		183974732A52A32A00F0101A /* LikeRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRequestDirector.swift; sourceTree = "<group>"; };
 		184E772C2A55D2850082E318 /* FanFollow.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FanFollow.xctestplan; sourceTree = "<group>"; };
 		18513FD72A5FB01E00580A1A /* SettingBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBaseCell.swift; sourceTree = "<group>"; };
+		18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeaderView.swift; sourceTree = "<group>"; };
 		185DB85E2A52F5660071023B /* ChatRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestDirector.swift; sourceTree = "<group>"; };
 		1866AFC22A57087E000FFFD7 /* ChatServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceTests.swift; sourceTree = "<group>"; };
 		1866AFC62A570A61000FFFD7 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
 				187949C52A5EA4B500ADA01A /* ProfileThumbnailCell.swift */,
 				18513FD72A5FB01E00580A1A /* SettingBaseCell.swift */,
+				18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
 				187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */,
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
+				18513FDD2A5FB55500580A1A /* SettingSectionHeaderView.swift in Sources */,
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
 				187949CA2A5EDE3400ADA01A /* SettingSectionItem.swift in Sources */,
 				187949AC2A5E7C3D00ADA01A /* SettingTabBar.swift in Sources */,
