@@ -88,7 +88,7 @@ struct UserRequestDirector {
             .build()
     }
     
-    func requestRandomCreatorInformations(jobCategory: JobCategory) -> URLRequest {
+    func requestRandomCreatorInformations(jobCategory: JobCategory, count: Int) -> URLRequest {
         return builder
             .set(method: .post)
             .set(path: SupabaseConstants.Constants.randomRpcPath)
@@ -98,7 +98,8 @@ struct UserRequestDirector {
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
             ])
             .set(body: [
-                SupabaseConstants.Constants.category: jobCategory.rawValue
+                SupabaseConstants.Constants.category: jobCategory.rawValue,
+                SupabaseConstants.Constants.count: count
             ])
             .build()
     }
@@ -118,6 +119,7 @@ private extension SupabaseConstants {
         static let isCreator = "is_creator"
         static let equalTrue = Base.equal + "true"
         static let ilike = "ilike."
+        static let count = "fetchcount"
         static let percentSymbol = "%"
         static let resolutionMergeDuplicates = "resolution=merge-duplicates"
     }

@@ -69,9 +69,12 @@ struct DefaultUserInformationRepository: UserInformationRepository {
         return networkService.execute(request)
     }
     
-    func fetchRandomCreatorInformations(jobCategory: JobCategory) -> Observable<[UserInformationDTO]> {
+    func fetchRandomCreatorInformations(
+        jobCategory: JobCategory,
+        count: Int
+    ) -> Observable<[UserInformationDTO]> {
         let request = UserRequestDirector(builder: builder)
-            .requestRandomCreatorInformations(jobCategory: jobCategory)
+            .requestRandomCreatorInformations(jobCategory: jobCategory, count: count)
         
         return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }

@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 protocol ExploreUseCase: AnyObject {
-    func fetchRandomCreators(jobCategory: JobCategory) -> Observable<[Creator]>
-    func fetchRandomAllCreators() -> Observable<[String: [Creator]]>
+    func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
+    func fetchRandomAllCreators(count: Int) -> Observable<[String: [Creator]]>
 }
 
 final class DefaultExploreUseCase: ExploreUseCase {
@@ -20,8 +20,11 @@ final class DefaultExploreUseCase: ExploreUseCase {
         self.userInformationRepository = userInformationRepository
     }
     
-    func fetchRandomCreators(jobCategory: JobCategory) -> Observable<[Creator]> {
-        let creatorList = userInformationRepository.fetchRandomCreatorInformations(jobCategory: jobCategory)
+    func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
+        let creatorList = userInformationRepository.fetchRandomCreatorInformations(
+            jobCategory: jobCategory,
+            count: count
+        )
         
         return creatorList.map { userInformationDTOList in
             userInformationDTOList.map { userInformationDTO in
@@ -30,12 +33,12 @@ final class DefaultExploreUseCase: ExploreUseCase {
         }
     }
     
-    func fetchRandomAllCreators() -> Observable<[String: [Creator]]> {
+    func fetchRandomAllCreators(count: Int) -> Observable<[String: [Creator]]> {
         var categoryCreator: [String: [Creator]] = [:]
         let allJobs = JobCategory.allCases
         
         let fetchCreatorsObservables = allJobs.map { jobCategory in
-            return fetchRandomCreators(jobCategory: jobCategory)
+            return fetchRandomCreators(jobCategory: jobCategory, count: count)
                 .map { creators in
                     return (jobCategory, creators)
                 }
