@@ -28,16 +28,37 @@ final class SettingViewController: UIViewController {
     }
     
     // Properties
-    private let settingSections = SettingSectionModel.defaultModel
     private var dataSource = SettingViewController.dataSource()
+    private let viewModel: SettingViewModel
     private let disposeBag = DisposeBag()
     
     // Initializer
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        configureUI()
+    init(viewModel: SettingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    // Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        Observable.just(settingSections)
+        configureUI()
+        binding()
+    }
+    
+    func binding() {
+        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
+            .map { _ in }.asObservable()
+        
+        let input = SettingViewModel.Input(viewWillAppear: viewWillAppearEvent)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.settingSections
             .bind(to: settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         

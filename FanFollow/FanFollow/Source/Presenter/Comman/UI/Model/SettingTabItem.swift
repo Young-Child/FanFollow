@@ -19,7 +19,9 @@ enum SettingTabItem: Int, TabItem {
     
     var viewController: UIViewController {
         switch self {
-        case .setting: return SettingViewController()
+        case .setting:
+            let viewModel = SettingViewModel()
+            return SettingViewController(viewModel: viewModel)
         case .feedManage: return UIViewController()
         }
     }
