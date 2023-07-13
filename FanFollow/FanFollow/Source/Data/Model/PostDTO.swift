@@ -15,6 +15,8 @@ struct PostDTO: Decodable {
     let content: String
     let imageURLs: [String]?
     let videoURL: String?
+    let nickName: String?
+    let profilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case postID = "post_id"
@@ -23,6 +25,8 @@ struct PostDTO: Decodable {
         case imageURLs = "image_urls"
         case videoURL = "video_url"
         case title, content
+        case nickName = "nick_name"
+        case profilePath = "profile_path"
     }
     
     func convertBody() -> [String: Any] {

@@ -17,7 +17,7 @@ protocol UserInformationRepository: SupabaseEndPoint {
     ) -> Observable<[UserInformationDTO]>
     func fetchUserInformation(for userID: String) -> Observable<UserInformationDTO>
     func upsertUserInformation(
-        userID: String, name: String, nickName: String, profilePath: String?, jobCategory: Int?,
+        userID: String, nickName: String, profilePath: String?, jobCategory: Int?,
         links: [String]?, introduce: String?, isCreator: Bool, createdAt: String
     ) -> Completable
     func deleteUserInformation(userID: String) -> Completable
