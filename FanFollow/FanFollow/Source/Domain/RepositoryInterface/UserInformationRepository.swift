@@ -25,4 +25,8 @@ protocol UserInformationRepository: SupabaseEndPoint {
         jobCategory: JobCategory,
         count: Int
     ) -> Observable<[UserInformationDTO]>
+    func fetchPopularCreatorInformations(
+        jobCategory: JobCategory,
+        count: Int
+    ) -> Observable<[UserInformationDTO]>
 }

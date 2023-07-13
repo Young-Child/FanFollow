@@ -79,4 +79,15 @@ struct DefaultUserInformationRepository: UserInformationRepository {
         return networkService.data(request)
             .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
     }
+    
+    func fetchPopularCreatorInformations(
+        jobCategory: JobCategory,
+        count: Int
+    ) -> Observable<[UserInformationDTO]> {
+        let request = UserRequestDirector(builder: builder)
+            .requestPopularCreatorInformations(jobCategory: jobCategory, count: count)
+        
+        return networkService.data(request)
+            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
+    }
 }
