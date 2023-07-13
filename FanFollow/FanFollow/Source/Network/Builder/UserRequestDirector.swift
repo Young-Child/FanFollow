@@ -103,6 +103,22 @@ struct UserRequestDirector {
             ])
             .build()
     }
+    
+    func requestPopularCreatorInformations(jobCategory: JobCategory, count: Int) -> URLRequest {
+        return builder
+            .set(method: .post)
+            .set(path: SupabaseConstants.Constants.popularRpcPath)
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+            ])
+            .set(body: [
+                SupabaseConstants.Constants.category: jobCategory.rawValue,
+                SupabaseConstants.Constants.count: count
+            ])
+            .build()
+    }
 }
 
 private extension SupabaseConstants {
@@ -110,6 +126,7 @@ private extension SupabaseConstants {
         // BASE ELEMENT
         static let path = Base.basePath + "USER_INFORMATION"
         static let randomRpcPath = Base.basePath + "rpc/fetch_random_creator"
+        static let popularRpcPath = Base.basePath + "rpc/fetch_popular_creator"
         
         // QUERY KEY
         static let jobCategory = "job_category"
