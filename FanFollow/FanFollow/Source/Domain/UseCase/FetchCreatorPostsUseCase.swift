@@ -18,7 +18,7 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
         self.postRepository = postRepository
     }
 
-    func fetchCreatorPosts(creatorID: String, startRange: Int, endRange: Int) -> RxSwift.Observable<[Post]> {
+    func fetchCreatorPosts(creatorID: String, startRange: Int, endRange: Int) -> Observable<[Post]> {
         return postRepository
             .fetchMyPosts(userID: creatorID, startRange: startRange, endRange: endRange)
             .map { postDTOs in
