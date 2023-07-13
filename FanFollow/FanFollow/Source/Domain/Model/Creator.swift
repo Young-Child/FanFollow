@@ -10,25 +10,20 @@ import Foundation
 struct Creator: User {
     var id: String
     var nickName: String
-    var profilePath: String
+    var profilePath: String?
     var isCreator: Bool = true
     
-    var links: [String]
-    var introduce: String
-    var jobCategory: JobCategory
-
-    init?(_ userInformationDTO: UserInformationDTO) {
-        guard let jobCategoryNumber = userInformationDTO.jobCategory,
-              let jobCategory = JobCategory(rawValue: jobCategoryNumber) else {
-            return nil
-        }
-
-        self.id = userInformationDTO.userID
-        self.nickName = userInformationDTO.nickName
-        self.profilePath = userInformationDTO.profilePath ?? ""
-        self.isCreator = userInformationDTO.isCreator
-        self.links = userInformationDTO.links ?? []
-        self.introduce = userInformationDTO.introduce ?? ""
-        self.jobCategory = jobCategory
+    var links: [String]?
+    var introduce: String?
+    var jobCategory: JobCategory?
+    
+    init(_ userInformationDTO: UserInformationDTO) {
+        id = userInformationDTO.userID
+        nickName = userInformationDTO.nickName
+        profilePath = userInformationDTO.profilePath
+        links = userInformationDTO.links
+        introduce = userInformationDTO.introduce
+        jobCategory = JobCategory(rawValue: userInformationDTO.jobCategory ?? JobCategory.unSetting.rawValue)
+        isCreator = true
     }
 }
