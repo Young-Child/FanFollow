@@ -70,6 +70,7 @@
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
 		EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */; };
+		EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */; };
 		EBAA0A682A56EC140033ED0F /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */; };
 		EBAA0A6A2A56EC4D0033ED0F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A692A56EC4D0033ED0F /* RxBlocking */; };
 		EBAA0A6C2A56EC4D0033ED0F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6B2A56EC4D0033ED0F /* RxRelay */; };
@@ -160,8 +161,9 @@
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; };
+		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; 
 		EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCase.swift; sourceTree = "<group>"; };
+		EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCase.swift; sourceTree = "<group>"; };
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB5DE632A5791CD00DB5B52 /* FollowServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowServiceTests.swift; sourceTree = "<group>"; };
 		EBB5DE642A5791CD00DB5B52 /* UserInformationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationServiceTests.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
+				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */,
+				EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
