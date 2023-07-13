@@ -10,6 +10,6 @@ import Foundation
 struct Fan: User {
     var id: String
     var nickName: String
-    var profilePath: String
+    var profilePath: String?
     var isCreator: Bool = false
 }
