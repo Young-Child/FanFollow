@@ -67,10 +67,9 @@ extension SettingSectionModel: AnimatableSectionModelType {
 extension SettingSectionModel {
     static let defaultModel: [SettingSectionModel] = [
         .profile(title: "", items: [
-            .profile(imageName: "ExampleProfile", nickName: "미니")
-        ]),
-        .registerCreator(title: "", items: [
-            .base(title: "크리에이터 신청")
+            .profile(imageName: "ExampleProfile", nickName: "미니"),
+            .base(title: "크리에이터 신청"),
+            .base(title: "알림 설정")
         ]),
         .customerService(title: "고객 센터", items: [
             .base(title: "버그 제보하기"),

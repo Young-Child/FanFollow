@@ -17,6 +17,10 @@ final class SettingViewController: TopTabBarController {
             ProfileThumbnailCell.self,
             forCellReuseIdentifier: ProfileThumbnailCell.reuseIdentifier
         )
+        $0.register(SettingBaseCell.self, forCellReuseIdentifier: SettingBaseCell.reuseIdentifier)
+        
+        $0.separatorColor = .clear
+        $0.backgroundColor = .clear
     }
     
     // Properties
@@ -32,6 +36,17 @@ final class SettingViewController: TopTabBarController {
         Observable.just(settingSections)
             .bind(to: settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        settingTableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+}
+
+extension SettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == .zero { return .zero }
+        
+        return UITableView.automaticDimension
     }
 }
 
@@ -48,8 +63,12 @@ private extension SettingViewController {
                     let profileImage = UIImage(named: imageName)
                     cell.configureCell(nickName: nickName, image: profileImage)
                     return cell
-                default:
-                    return UITableViewCell()
+                case let .base(title):
+                    let cell: SettingBaseCell = tableView.dequeueReusableCell(
+                        forIndexPath: indexPath
+                    )
+                    cell.configureCell(to: title)
+                    return cell
                 }
             },
             titleForHeaderInSection: { dataSource, index in
