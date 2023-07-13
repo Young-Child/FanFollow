@@ -10,7 +10,7 @@ import RxSwift
 import RxDataSources
 import Then
 
-final class SettingViewController: TopTabBarController {
+final class SettingViewController: UIViewController {
     // View Properties
     private let settingTableView = UITableView().then {
         $0.register(
@@ -34,7 +34,7 @@ final class SettingViewController: TopTabBarController {
     
     // Initializer
     convenience init() {
-        self.init(tabBar: SettingTabBar())
+        self.init(nibName: nil, bundle: nil)
         configureUI()
         
         Observable.just(settingSections)

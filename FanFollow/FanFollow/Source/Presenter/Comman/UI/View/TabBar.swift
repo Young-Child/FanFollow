@@ -64,8 +64,7 @@ private extension TabBar {
     
     func setUpDetail() {
         spacing = 16
-        distribution = .fillProportionally
-        isLayoutMarginsRelativeArrangement = true
-        layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        distribution = .fill
+        axis = .horizontal
     }
 }
