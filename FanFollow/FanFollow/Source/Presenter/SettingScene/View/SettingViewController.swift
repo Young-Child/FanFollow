@@ -70,6 +70,18 @@ extension SettingViewController: UITableViewDelegate {
         if section == .zero { return .zero }
         return 40
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        pushExampleViewController()
+    }
+}
+
+private extension SettingViewController {
+    func pushExampleViewController() {
+        let exampleViewController = UIViewController()
+        exampleViewController.view.backgroundColor = .red
+        navigationController?.pushViewController(exampleViewController, animated: true)
+    }
 }
 
 // RxDataSource Method
