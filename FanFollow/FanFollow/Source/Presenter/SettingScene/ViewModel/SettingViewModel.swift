@@ -9,17 +9,20 @@ import RxSwift
 
 final class SettingViewModel: ViewModel {
     struct Input {
-        
+        var viewWillAppear: Observable<Void>
     }
     
     struct Output {
-        
+        var settingSections: Observable<[SettingSectionModel]>
     }
     
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        return Output()
+        let sections = input.viewWillAppear
+            .map { _ in return SettingSectionModel.defaultModel }
+        
+        return Output(settingSections: sections)
     }
     
 }
