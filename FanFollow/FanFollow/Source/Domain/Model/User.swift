@@ -10,6 +10,6 @@ import Foundation
 protocol User {
     var id: String { get set }
     var nickName: String { get set }
-    var profilePath: String { get set }
+    var profilePath: String? { get set }
     var isCreator: Bool { get set }
 }

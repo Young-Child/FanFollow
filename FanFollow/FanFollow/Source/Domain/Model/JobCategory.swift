@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JobCategory {
+enum JobCategory: Int, CaseIterable {
     case IT
     case art
     case plan
@@ -17,6 +17,7 @@ enum JobCategory {
     case marketing
     case education
     case financial
+    case unSetting
     
     var categoryName: String {
         switch self {
@@ -29,6 +30,7 @@ enum JobCategory {
         case .marketing:    return "마케팅"
         case .education:    return "교육"
         case .financial:    return "금융"
+        case .unSetting:    return "미정"
         }
     }
 }
