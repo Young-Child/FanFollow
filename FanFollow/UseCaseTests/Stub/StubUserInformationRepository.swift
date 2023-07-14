@@ -74,5 +74,33 @@ final class StubUserInformationRepository: UserInformationRepository {
         }
     }
 
-    
+    func fetchRandomCreatorInformations(
+        jobCategory: FanFollow.JobCategory,
+        count: Int
+    ) -> Observable<[FanFollow.UserInformationDTO]> {
+        return Observable.create { observer in
+            if let error = self.error {
+                observer.onError(error)
+            } else {
+                observer.onNext(self.userInformations)
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    func fetchPopularCreatorInformations(
+        jobCategory: FanFollow.JobCategory,
+        count: Int
+    ) -> Observable<[FanFollow.UserInformationDTO]> {
+        return Observable.create { observer in
+            if let error = self.error {
+                observer.onError(error)
+            } else {
+                observer.onNext(self.userInformations)
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
 }
