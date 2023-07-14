@@ -10,7 +10,7 @@ import RxSwift
 
 protocol ExploreUseCase: AnyObject {
     func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
-    func fetchRandomAllCreators(count: Int) -> Observable<[String: [Creator]]>
+    func fetchRandomAllCreators(count: Int) -> Observable<[(String, [Creator])]>
     func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
 }
 
@@ -34,24 +34,20 @@ final class DefaultExploreUseCase: ExploreUseCase {
         }
     }
     
-    func fetchRandomAllCreators(count: Int) -> Observable<[String: [Creator]]> {
-        var categoryCreator: [String: [Creator]] = [:]
+    func fetchRandomAllCreators(count: Int) -> Observable<[(String, [Creator])]> {
         let allJobs = JobCategory.allCases
         
-        let fetchCreatorsObservables = allJobs.map { jobCategory in
-            return fetchRandomCreators(jobCategory: jobCategory, count: count)
-                .map { creators in
-                    return (jobCategory, creators)
-                }
-        }
-        
-        return Observable.zip(fetchCreatorsObservables)
-            .map { results in
-                for (jobCategory, creators) in results {
-                    categoryCreator[jobCategory.categoryName] = creators
-                }
-                return categoryCreator
+        let categoryCreatorsObservables = Observable.from(allJobs)
+            .flatMap { category in
+                return self.fetchRandomCreators(jobCategory: category, count: count)
+                    .map { creators in
+                        return (category.categoryName, creators)
+                    }
             }
+            .toArray()
+            .asObservable()
+        
+        return categoryCreatorsObservables
     }
     
     func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
