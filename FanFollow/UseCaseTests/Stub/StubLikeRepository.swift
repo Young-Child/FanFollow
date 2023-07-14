@@ -12,6 +12,8 @@ import RxSwift
 final class StubLikeRepository: LikeRepository {
     var count = 0
     var error: Error?
+    var isCreatePostLikeCalled = false
+    var isDeletePostLikeCalled = false
 
     func fetchPostLikeCount(postID: String, userID: String?) -> Observable<Int> {
         return Observable.create { observer in
@@ -26,6 +28,8 @@ final class StubLikeRepository: LikeRepository {
     }
 
     func createPostLike(postID: String, userID: String) -> Completable {
+        isCreatePostLikeCalled = true
+
         return Completable.create { observer in
             if let error = self.error {
                 observer(.error(error))
@@ -37,6 +41,8 @@ final class StubLikeRepository: LikeRepository {
     }
 
     func deletePostLike(postID: String, userID: String) -> Completable {
+        isDeletePostLikeCalled = true
+
         return Completable.create { observer in
             if let error = self.error {
                 observer(.error(error))
