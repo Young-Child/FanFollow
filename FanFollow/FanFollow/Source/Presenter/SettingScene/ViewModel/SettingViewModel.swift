@@ -14,6 +14,7 @@ final class SettingViewModel: ViewModel {
     
     struct Output {
         var settingSections: Observable<[SettingSectionModel]>
+        var isCreator: Observable<Bool>
     }
     
     var disposeBag = DisposeBag()
@@ -24,14 +25,20 @@ final class SettingViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let sectionModels = input.viewWillAppear
+        let userInformation = input.viewWillAppear
             .flatMapLatest {
                 return self.userInformationUseCase.fetchUserInformation(for: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2")
             }
-            .debug()
+        
+        let sectionModels = userInformation
             .map { SettingSectionModel.generateDefaultModel(user: $0) }
         
-        return Output(settingSections: sectionModels)
+        let isCreator = userInformation.map(\.isCreator)
+        
+        return Output(
+            settingSections: sectionModels,
+            isCreator: isCreator
+        )
     }
     
 }
