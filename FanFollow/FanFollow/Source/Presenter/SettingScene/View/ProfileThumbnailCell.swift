@@ -15,6 +15,9 @@ final class ProfileThumbnailCell: UITableViewCell {
         imageView.layer.backgroundColor = UIColor(named: "SecondaryColor")?.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.borderColor = UIColor.clear.cgColor
+        imageView.layer.cornerRadius = 25
+        imageView.layer.borderWidth = 1
     }
     
     private let nickNameLabel = UILabel().then { label in
@@ -47,9 +50,16 @@ final class ProfileThumbnailCell: UITableViewCell {
 
 // UI Method
 extension ProfileThumbnailCell {
-    func configureCell(nickName: String, image: UIImage?) {
-        self.profileImageView.image = image
+    func configureCell(nickName: String, imagePath: String) {
         self.nickNameLabel.text = nickName
+        
+        if imagePath.isEmpty {
+            let image = UIImage(systemName: "person")
+            profileImageView.image = image
+            return
+        }
+        
+        // TODO: - Image Load 기능추가
     }
 }
 
@@ -69,11 +79,8 @@ private extension ProfileThumbnailCell {
             $0.leading.equalTo(contentView).offset(16)
             $0.top.equalTo(contentView.snp.top).offset(16)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-16)
-            $0.width.lessThanOrEqualTo(50)
-            $0.height.lessThanOrEqualTo(profileImageView.snp.width).priority(.high)
+            $0.width.height.equalTo(50).priority(.high)
         }
-        
-        profileImageView.layer.cornerRadius = 25
         
         nickNameLabel.snp.makeConstraints {
             $0.bottom.equalTo(contentView.snp.centerY).offset(-5)

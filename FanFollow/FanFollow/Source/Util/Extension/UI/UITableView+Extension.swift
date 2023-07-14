@@ -17,4 +17,12 @@ extension UITableView {
         
         return cell
     }
+    
+    func dequeueReusableHeaderView<T: UITableViewHeaderFooterView>() -> T {
+        guard let headerView = dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as? T else {
+            return T()
+        }
+        
+        return headerView
+    }
 }
