@@ -38,7 +38,7 @@
       "target" : {
         "containerPath" : "container:FanFollow.xcodeproj",
         "identifier" : "18C1E51F2A55488900A41AC5",
-        "name" : "NetworkManagerTests"
+        "name" : "NetworkServiceTests"
       }
     },
     {
@@ -46,7 +46,15 @@
       "target" : {
         "containerPath" : "container:FanFollow.xcodeproj",
         "identifier" : "EBAA0A5E2A56EBEA0033ED0F",
-        "name" : "ServiceTests"
+        "name" : "RepositoryTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FanFollow.xcodeproj",
+        "identifier" : "EBA8EB4E2A5FBE2D00998630",
+        "name" : "UseCaseTests"
       }
     }
   ],
