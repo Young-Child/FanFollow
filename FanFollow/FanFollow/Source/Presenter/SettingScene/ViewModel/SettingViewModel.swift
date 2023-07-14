@@ -17,6 +17,11 @@ final class SettingViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
+    private let userInformationUseCase: FetchUserInformationUseCase
+    
+    init(userInformationUseCase: FetchUserInformationUseCase) {
+        self.userInformationUseCase = userInformationUseCase
+    }
     
     func transform(input: Input) -> Output {
         let sections = input.viewWillAppear
