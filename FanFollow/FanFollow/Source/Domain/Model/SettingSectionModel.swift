@@ -82,4 +82,30 @@ extension SettingSectionModel {
             .base(title: "탈퇴하기")
         ])
     ]
+    
+    static func generateDefaultModel(user: User) -> [SettingSectionModel] {
+        var imageName: String = ""
+        
+        if let profilePath = user.profilePath {
+            imageName = profilePath
+        }
+        
+        return [
+            .profile(title: "", items: [
+                .profile(imageName: imageName, nickName: user.nickName),
+                .base(title: "크리에이터 신청"),
+                .base(title: "알림 설정")
+            ]),
+            .customerService(title: "고객 센터", items: [
+                .base(title: "버그 제보하기"),
+                .base(title: "평가하기"),
+                .base(title: "개인 정보 처리 방침"),
+                .base(title: "오픈 소스 라이센스 고지")
+            ]),
+            .account(title: "계정 설정", items: [
+                .base(title: "로그아웃"),
+                .base(title: "탈퇴하기")
+            ])
+        ]
+    }
 }

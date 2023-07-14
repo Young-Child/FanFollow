@@ -12,7 +12,7 @@ import Then
 
 final class SettingViewController: UIViewController {
     // View Properties
-    private let settingTableView = UITableView().then {
+    private let settingTableView = UITableView(frame: .zero, style: .grouped).then {
         $0.register(
             ProfileThumbnailCell.self,
             forCellReuseIdentifier: ProfileThumbnailCell.reuseIdentifier
@@ -28,47 +28,111 @@ final class SettingViewController: UIViewController {
     }
     
     // Properties
-    private let settingSections = SettingSectionModel.defaultModel
     private var dataSource = SettingViewController.dataSource()
+    private let viewModel: SettingViewModel
     private let disposeBag = DisposeBag()
     
+    weak var settingTabBarDelegate: SettingTabBarDelegate?
+    
     // Initializer
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        configureUI()
+    init(viewModel: SettingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    // Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        Observable.just(settingSections)
-            .bind(to: settingTableView.rx.items(dataSource: dataSource))
+        configureUI()
+        binding()
+    }
+}
+
+// Binding Method
+private extension SettingViewController {
+    func binding() {
+        let output = bindingInput()
+        
+        bindTableView(output)
+        bindCreatorState(output)
+    }
+    
+    func bindCreatorState(_ output: SettingViewModel.Output) {
+        output.isCreator
+            .asDriver(onErrorJustReturn: false)
+            .filter { $0 == false }
+            .drive(onNext: {
+                self.settingTabBarDelegate?.settingController(
+                    self,
+                    removeFeedManageTab: $0
+                )
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindTableView(_ output: SettingViewModel.Output) {
+        output.settingSections
+            .asDriver(onErrorJustReturn: [])
+            .drive(settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         settingTableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
+    
+    func bindingInput() -> SettingViewModel.Output {
+        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
+            .map { _ in }.asObservable()
+        
+        let input = SettingViewModel.Input(viewWillAppear: viewWillAppearEvent)
+        
+        return viewModel.transform(input: input)
+    }
 }
 
+// UITableViewDelegate method
 extension SettingViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
         if section == .zero { return nil }
         
-        guard let cell = tableView.dequeueReusableHeaderFooterView(
-            withIdentifier: SettingSectionHeaderView.reuseIdentifier
-        ) as? SettingSectionHeaderView else {
-            return nil
-        }
+        let cell: SettingSectionHeaderView = tableView.dequeueReusableHeaderView()
         
         let header = dataSource[section].identity
         cell.configureTitle(to: header)
-        
-        let backgroundView = UIView(frame: cell.bounds)
-        backgroundView.backgroundColor = .white
-        cell.backgroundView = backgroundView
-        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
+    ) -> CGFloat {
         if section == .zero { return .zero }
-        return 40
+        return 30
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        pushExampleViewController()
+    }
+}
+
+// Push Controller Method (임시)
+private extension SettingViewController {
+    func pushExampleViewController() {
+        let exampleViewController = UIViewController()
+        exampleViewController.view.backgroundColor = .red
+        navigationController?.pushViewController(exampleViewController, animated: true)
     }
 }
 
@@ -82,8 +146,7 @@ private extension SettingViewController {
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
-                    let profileImage = UIImage(named: imageName)
-                    cell.configureCell(nickName: nickName, image: profileImage)
+                    cell.configureCell(nickName: nickName, imagePath: imageName)
                     return cell
                 case let .base(title):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(

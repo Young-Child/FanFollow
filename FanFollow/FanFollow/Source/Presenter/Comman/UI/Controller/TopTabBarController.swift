@@ -32,6 +32,10 @@ class TopTabBarController<T: TabItem>: UITabBarController {
         view.setNeedsLayout()
     }
     
+    func hideTabBarItem(to index: Int) {
+        customTabBar.hideItem(index: index)
+    }
+    
     private func configureTopTabBar() {
         tabBar.isHidden = true
         
