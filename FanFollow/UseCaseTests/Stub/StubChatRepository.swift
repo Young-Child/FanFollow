@@ -43,6 +43,7 @@ final class StubChatRepository: ChatRepository {
                 observer.onError(error)
             } else {
                 observer.onNext(Void())
+                observer.onCompleted()
             }
             
             return Disposables.create()
