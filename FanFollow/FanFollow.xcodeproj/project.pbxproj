@@ -66,6 +66,7 @@
 		3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6C92A5E99FA00DE6109 /* Creator.swift */; };
 		3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */; };
 		3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */; };
+		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -176,6 +177,7 @@
 		3CFDF6C92A5E99FA00DE6109 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fan.swift; sourceTree = "<group>"; };
 		3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategory.swift; sourceTree = "<group>"; };
+		EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 				EBA8EB622A5FC03600998630 /* Stub */,
 				EBA8EB662A5FC0D500998630 /* FetchFeedUseCaseTests.swift */,
 				EBA8EB6C2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift */,
+				EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */,
 				EBA8EB672A5FC0D500998630 /* FetchFeedUseCaseTests.swift in Sources */,
 				EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
