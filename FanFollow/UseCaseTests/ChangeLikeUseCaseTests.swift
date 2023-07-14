@@ -105,9 +105,10 @@ final class ChangeLikeUseCaseTests: XCTestCase {
         .disposed(by: disposeBag)
     }
 
-    /// 정상적인 조건에서 togglePostLike가 제대로 동작하는 지 테스트
-    func test_TogglePostLikeInNormalCondition() {
+    /// 정상적인 조건에서 togglePostLike가 createPostLike를 호출하는 지 테스트
+    func test_TogglePostLikeCallCreatePostLikeInNormalCondition() {
         //given
+        likeRepository.count = TestData.emptyCount
         likeRepository.error = nil
         let postID = TestData.postID
         let userID = TestData.userID
@@ -117,7 +118,29 @@ final class ChangeLikeUseCaseTests: XCTestCase {
 
         // then
         observable.subscribe(onCompleted: {
-            XCTAssertTrue(true)
+            XCTAssertEqual(self.likeRepository.isCreatePostLikeCalled, true)
+            XCTAssertEqual(self.likeRepository.isDeletePostLikeCalled, false)
+        }, onError: { error in
+            XCTFail(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    /// 정상적인 조건에서 togglePostLike가 deletePostLike를 호출하는 지 테스트
+    func test_TogglePostLikeCallDeletePostLikeInNormalCondition() {
+        //given
+        likeRepository.count = TestData.count
+        likeRepository.error = nil
+        let postID = TestData.postID
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.togglePostLike(postID: postID, userID: userID)
+
+        // then
+        observable.subscribe(onCompleted: {
+            XCTAssertEqual(self.likeRepository.isCreatePostLikeCalled, false)
+            XCTAssertEqual(self.likeRepository.isDeletePostLikeCalled, true)
         }, onError: { error in
             XCTFail(error.localizedDescription)
         })
@@ -146,6 +169,7 @@ final class ChangeLikeUseCaseTests: XCTestCase {
 
 extension ChangeLikeUseCaseTests {
     private enum TestData {
+        static let emptyCount = 0
         static let count = 1
         static let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
