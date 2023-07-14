@@ -71,6 +71,7 @@
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
+		3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D4992A61114200713FAF /* StubChatRepository.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -79,11 +80,11 @@
 		3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6C92A5E99FA00DE6109 /* Creator.swift */; };
 		3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */; };
 		3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */; };
+		3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */; };
 		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
 		EB82EAC62A60EC3100372BDB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EB82EAC52A60EC3100372BDB /* RxCocoa */; };
-		3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -200,6 +201,7 @@
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
+		3CC1D4992A61114200713FAF /* StubChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubChatRepository.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -207,10 +209,10 @@
 		3CFDF6C92A5E99FA00DE6109 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fan.swift; sourceTree = "<group>"; };
 		3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategory.swift; sourceTree = "<group>"; };
+		3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCase.swift; sourceTree = "<group>"; };
 		EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCaseTests.swift; sourceTree = "<group>"; };
-		3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCase.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -492,7 +494,7 @@
 				3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */,
 				EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
-				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,-
+				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -737,7 +739,6 @@
 		EBA8EB502A5FBE2D00998630 /* UseCaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				EBA8EB612A5FC02E00998630 /* Mock */,
 				EBA8EB622A5FC03600998630 /* Stub */,
 				EBA8EB662A5FC0D500998630 /* FetchFeedUseCaseTests.swift */,
 				EBA8EB6C2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift */,
@@ -748,19 +749,13 @@
 			path = UseCaseTests;
 			sourceTree = "<group>";
 		};
-		EBA8EB612A5FC02E00998630 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
 		EBA8EB622A5FC03600998630 /* Stub */ = {
 			isa = PBXGroup;
 			children = (
 				EBA8EB682A5FC16800998630 /* StubPostRepository.swift */,
 				EBA8EB6A2A5FC18000998630 /* StubLikeRepository.swift */,
 				EBA8EB6E2A601C8700998630 /* StubUserInformationRepository.swift */,
+				3CC1D4992A61114200713FAF /* StubChatRepository.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1070,6 +1065,7 @@
 				EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */,
 				EBA8EB672A5FC0D500998630 /* FetchFeedUseCaseTests.swift in Sources */,
 				EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */,
+				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
