@@ -9,7 +9,7 @@ import RxSwift
 
 @testable import FanFollow
 
-final class StubChatRepository {
+final class StubChatRepository: ChatRepository {
     private let datas = [ChatDTO.stubData()]
     var error: Error?
     
