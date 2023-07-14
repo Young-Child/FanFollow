@@ -55,6 +55,23 @@ final class URLRequestBuilder {
     }
     
     func build() -> URLRequest {
+        var request = generateURLRequest()
+        
+        switch body {
+        case let .json(values):
+            let bodyData = try? JSONSerialization.data(withJSONObject: values)
+            request.httpBody = bodyData
+            
+        case let .multipart(data):
+            request.httpBody = data
+            
+        default: break
+        }
+        
+        return request
+    }
+    
+    private func generateURLRequest() -> URLRequest {
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
         
         components?.path = path
@@ -70,11 +87,6 @@ final class URLRequestBuilder {
         
         headers?.forEach {
             urlRequest.addValue($0.value as! String, forHTTPHeaderField: $0.key)
-        }
-        
-        if let body = body {
-            let bodyData = try? JSONSerialization.data(withJSONObject: body)
-            urlRequest.httpBody = bodyData
         }
         
         return urlRequest
