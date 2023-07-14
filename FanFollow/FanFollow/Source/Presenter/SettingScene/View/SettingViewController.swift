@@ -68,7 +68,8 @@ final class SettingViewController: UIViewController {
         let output = viewModel.transform(input: input)
         
         output.settingSections
-            .bind(to: settingTableView.rx.items(dataSource: dataSource))
+            .asDriver(onErrorJustReturn: [])
+            .drive(settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         output.isCreator
