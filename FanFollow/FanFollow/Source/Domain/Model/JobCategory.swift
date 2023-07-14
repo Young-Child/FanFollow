@@ -8,28 +8,28 @@
 import Foundation
 
 enum JobCategory: Int, CaseIterable {
-    case IT
     case art
-    case plan
-    case media
     case design
-    case medical
-    case marketing
     case education
     case financial
+    case IT
+    case media
+    case medical
+    case marketing
+    case plan
     case unSetting
     
     var categoryName: String {
         switch self {
-        case .IT:           return "IT"
         case .art:          return "예술"
-        case .plan:         return "기획"
-        case .media:        return "미디어"
         case .design:       return "디자인"
-        case .medical:      return "의료"
-        case .marketing:    return "마케팅"
         case .education:    return "교육"
         case .financial:    return "금융"
+        case .IT:           return "IT"
+        case .media:        return "미디어"
+        case .medical:      return "의료"
+        case .marketing:    return "마케팅"
+        case .plan:         return "기획"
         case .unSetting:    return "미정"
         }
     }

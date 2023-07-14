@@ -80,6 +80,7 @@
 		3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6C92A5E99FA00DE6109 /* Creator.swift */; };
 		3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */; };
 		3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */; };
+		3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -187,6 +188,7 @@
 		3CFDF6C92A5E99FA00DE6109 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fan.swift; sourceTree = "<group>"; };
 		3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategory.swift; sourceTree = "<group>"; };
+		3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCase.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -453,9 +455,10 @@
 				EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */,
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */,
+				3CFDF6CF2A5EA1CD00DE6109 /* ExploreUseCase.swift */,
 				EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
-				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
+				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,-
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				1846EE542A604CA900437030 /* SettingViewModel.swift in Sources */,
+				3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */,

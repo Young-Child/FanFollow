@@ -21,4 +21,12 @@ protocol UserInformationRepository: SupabaseEndPoint {
         links: [String]?, introduce: String?, isCreator: Bool, createdAt: String
     ) -> Completable
     func deleteUserInformation(userID: String) -> Completable
+    func fetchRandomCreatorInformations(
+        jobCategory: JobCategory,
+        count: Int
+    ) -> Observable<[UserInformationDTO]>
+    func fetchPopularCreatorInformations(
+        jobCategory: JobCategory,
+        count: Int
+    ) -> Observable<[UserInformationDTO]>
 }
