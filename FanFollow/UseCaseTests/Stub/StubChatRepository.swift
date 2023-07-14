@@ -9,8 +9,8 @@ import RxSwift
 
 @testable import FanFollow
 
-final class StubChatRepositor {
-    let datas = [ChatDTO.stubData()]
+final class StubChatRepository {
+    private let datas = [ChatDTO.stubData()]
     var error: Error?
     
     func fetchChattingList(userID: String) -> Observable<[ChatDTO]> {

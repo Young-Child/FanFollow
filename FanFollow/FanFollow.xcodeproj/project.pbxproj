@@ -72,6 +72,7 @@
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
 		3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D4992A61114200713FAF /* StubChatRepository.swift */; };
+		3CC1D49C2A61161100713FAF /* AccessChatRoomUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -202,6 +203,7 @@
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
 		3CC1D4992A61114200713FAF /* StubChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubChatRepository.swift; sourceTree = "<group>"; };
+		3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCaseTests.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -745,6 +747,7 @@
 				EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */,
 				EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */,
 				EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */,
+				3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 			files = (
 				EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */,
 				EBA8EB672A5FC0D500998630 /* FetchFeedUseCaseTests.swift in Sources */,
+				3CC1D49C2A61161100713FAF /* AccessChatRoomUseCaseTests.swift in Sources */,
 				EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */,
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
