@@ -51,27 +51,18 @@ final class SettingViewController: UIViewController {
         configureUI()
         binding()
     }
-    
+}
+
+// Binding Method
+private extension SettingViewController {
     func binding() {
-        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
-            .map { _ in }.asObservable()
+        let output = bindingInput()
         
-        settingTableView.rx.itemSelected
-            .asObservable()
-            .subscribe(onNext: {
-                print($0)
-            })
-            .disposed(by: disposeBag)
-        
-        let input = SettingViewModel.Input(viewWillAppear: viewWillAppearEvent)
-        
-        let output = viewModel.transform(input: input)
-        
-        output.settingSections
-            .asDriver(onErrorJustReturn: [])
-            .drive(settingTableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
+        bindTableView(output)
+        bindCreatorState(output)
+    }
+    
+    func bindCreatorState(_ output: SettingViewModel.Output) {
         output.isCreator
             .asDriver(onErrorJustReturn: false)
             .filter { $0 == false }
@@ -82,14 +73,34 @@ final class SettingViewController: UIViewController {
                 )
             })
             .disposed(by: disposeBag)
+    }
+    
+    func bindTableView(_ output: SettingViewModel.Output) {
+        output.settingSections
+            .asDriver(onErrorJustReturn: [])
+            .drive(settingTableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
         
         settingTableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
+    
+    func bindingInput() -> SettingViewModel.Output {
+        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
+            .map { _ in }.asObservable()
+        
+        let input = SettingViewModel.Input(viewWillAppear: viewWillAppearEvent)
+        
+        return viewModel.transform(input: input)
+    }
 }
 
+// UITableViewDelegate method
 extension SettingViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
         if section == .zero { return nil }
         
         let cell: SettingSectionHeaderView = tableView.dequeueReusableHeaderView()
@@ -99,17 +110,24 @@ extension SettingViewController: UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
+    ) -> CGFloat {
         if section == .zero { return .zero }
         return 30
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         tableView.deselectRow(at: indexPath, animated: true)
         pushExampleViewController()
     }
 }
 
+// Push Controller Method (임시)
 private extension SettingViewController {
     func pushExampleViewController() {
         let exampleViewController = UIViewController()
