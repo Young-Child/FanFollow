@@ -114,8 +114,7 @@ private extension SettingViewController {
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
-                    let profileImage = UIImage(named: imageName)
-                    cell.configureCell(nickName: nickName, image: profileImage)
+                    cell.configureCell(nickName: nickName, imagePath: imageName)
                     return cell
                 case let .base(title):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(
