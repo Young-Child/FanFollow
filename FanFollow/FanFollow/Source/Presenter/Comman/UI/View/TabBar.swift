@@ -34,6 +34,10 @@ class TabBar: UIStackView {
             .forEach { $0.element.isSelected = ($0.offset == index )}
         itemTappedSubject.onNext(index)
     }
+    
+    func hideItem(index: Int) {
+        tabButtons[index].isHidden = true
+    }
 }
 
 // MARK: - Configure UI

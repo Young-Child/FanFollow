@@ -32,6 +32,8 @@ final class SettingViewController: UIViewController {
     private let viewModel: SettingViewModel
     private let disposeBag = DisposeBag()
     
+    weak var settingTabBarDelegate: SettingTabBarDelegate?
+    
     // Initializer
     init(viewModel: SettingViewModel) {
         self.viewModel = viewModel
@@ -67,6 +69,17 @@ final class SettingViewController: UIViewController {
         
         output.settingSections
             .bind(to: settingTableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.isCreator
+            .asDriver(onErrorJustReturn: false)
+            .filter { $0 == false }
+            .drive(onNext: {
+                self.settingTabBarDelegate?.settingController(
+                    self,
+                    removeFeedManageTab: $0
+                )
+            })
             .disposed(by: disposeBag)
         
         settingTableView.rx.setDelegate(self)
