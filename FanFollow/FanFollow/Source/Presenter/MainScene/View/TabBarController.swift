@@ -54,6 +54,10 @@ private extension TabBarController {
         var instance: UIViewController {
             // TODO: - 각 컨트롤러 구성 후 변경
             switch self {
+            case .setting:
+                let controller = SettingTabBarController()
+                controller.tabBarItem = tabBarItem
+                return controller
             default:
                 let rootViewController = UIViewController()
                 rootViewController.title = name
