@@ -12,7 +12,7 @@ import Then
 
 final class SettingViewController: UIViewController {
     // View Properties
-    private let settingTableView = UITableView().then {
+    private let settingTableView = UITableView(frame: .zero, style: .grouped).then {
         $0.register(
             ProfileThumbnailCell.self,
             forCellReuseIdentifier: ProfileThumbnailCell.reuseIdentifier
@@ -54,6 +54,13 @@ final class SettingViewController: UIViewController {
         let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
             .map { _ in }.asObservable()
         
+        settingTableView.rx.itemSelected
+            .asObservable()
+            .subscribe(onNext: {
+                print($0)
+            })
+            .disposed(by: disposeBag)
+        
         let input = SettingViewModel.Input(viewWillAppear: viewWillAppearEvent)
         
         let output = viewModel.transform(input: input)
@@ -79,18 +86,14 @@ extension SettingViewController: UITableViewDelegate {
         
         let header = dataSource[section].identity
         cell.configureTitle(to: header)
-        
-        let backgroundView = UIView(frame: cell.bounds)
-        backgroundView.backgroundColor = .white
-        cell.backgroundView = backgroundView
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == .zero { return .zero }
-        return 40
+        return UITableView.automaticDimension
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         pushExampleViewController()
