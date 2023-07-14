@@ -50,6 +50,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:FanFollow.xcodeproj",
         "identifier" : "EBA8EB4E2A5FBE2D00998630",
