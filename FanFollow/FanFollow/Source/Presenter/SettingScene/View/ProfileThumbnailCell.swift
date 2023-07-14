@@ -13,7 +13,7 @@ final class ProfileThumbnailCell: UITableViewCell {
     private let profileImageView = UIImageView().then { imageView in
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.backgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.clear.cgColor
         imageView.layer.cornerRadius = 25
