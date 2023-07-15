@@ -124,16 +124,6 @@ extension SettingViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
-        pushExampleViewController()
-    }
-}
-
-// Push Controller Method (임시)
-private extension SettingViewController {
-    func pushExampleViewController() {
-        let exampleViewController = UIViewController()
-        exampleViewController.view.backgroundColor = .red
-        navigationController?.pushViewController(exampleViewController, animated: true)
     }
 }
 
