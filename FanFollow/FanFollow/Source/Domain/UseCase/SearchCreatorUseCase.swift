@@ -8,12 +8,7 @@
 import RxSwift
 
 protocol SearchCreatorUseCase: AnyObject {
-    func fetchSearchCreators(
-        text: String,
-        jobCategory: JobCategory,
-        startRange: Int,
-        endRange: Int
-    ) -> Observable<[Creator]>
+    func fetchSearchCreators(text: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
 }
 
 final class DefaultSearchCreatorUseCase: SearchCreatorUseCase {
@@ -23,21 +18,15 @@ final class DefaultSearchCreatorUseCase: SearchCreatorUseCase {
         self.userInformationRepository = userInformationRepository
     }
     
-    func fetchSearchCreators(
-        text: String,
-        jobCategory: JobCategory,
-        startRange: Int,
-        endRange: Int
-    ) -> Observable<[Creator]> {
+    func fetchSearchCreators(text: String, startRange: Int, endRange: Int) -> Observable<[Creator]> {
         let searchList = userInformationRepository.fetchCreatorInformations(
-            jobCategory: jobCategory.rawValue,
+            jobCategory: nil,
             nickName: text,
             startRange: startRange,
             endRange: endRange
         )
         
         return searchList
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .map { userInformationDTOList in
                 userInformationDTOList.map { userInformationDTO in
                     return Creator(userInformationDTO)
