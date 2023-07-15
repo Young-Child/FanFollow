@@ -7,6 +7,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 final class ProfileThumbnailCell: UITableViewCell {
     // View Properties
@@ -15,9 +16,7 @@ final class ProfileThumbnailCell: UITableViewCell {
         imageView.layer.backgroundColor = UIColor(named: "SecondaryColor")?.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.borderColor = UIColor.clear.cgColor
         imageView.layer.cornerRadius = 25
-        imageView.layer.borderWidth = 1
     }
     
     private let nickNameLabel = UILabel().then { label in
@@ -50,16 +49,20 @@ final class ProfileThumbnailCell: UITableViewCell {
 
 // UI Method
 extension ProfileThumbnailCell {
-    func configureCell(nickName: String, imagePath: String) {
+    func configureCell(nickName: String, userID: String) {
         self.nickNameLabel.text = nickName
         
-        if imagePath.isEmpty {
-            let image = UIImage(systemName: "person")
-            profileImageView.image = image
-            return
-        }
+        profileImageView.kf.indicatorType = .activity
         
-        // TODO: - Image Load 기능추가
+        profileImageView.kf.setImage(
+            with: URL(
+                staticString: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png"
+            ),
+            options: [
+                .processor(RoundCornerImageProcessor(cornerRadius: 25)),
+                .onFailureImage(KFCrossPlatformImage(systemName: "person"))
+            ]
+        )
     }
 }
 

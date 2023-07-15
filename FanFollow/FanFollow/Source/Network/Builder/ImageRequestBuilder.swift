@@ -24,6 +24,17 @@ struct ImageRequestBuilder {
             .set(body: .multipart(data: image))
             .build()
     }
+    
+    func requestImage(path: String) -> URLRequest {
+        return builder
+            .set(path: SupabaseConstants.Constants.path + path)
+            .set(method: .get)
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+            ])
+            .build()
+    }
 }
 
 private extension SupabaseConstants {

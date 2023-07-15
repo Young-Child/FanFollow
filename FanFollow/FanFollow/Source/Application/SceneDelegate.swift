@@ -6,6 +6,7 @@
         
 
 import UIKit
+import Kingfisher
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -17,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        setKingFisherModifier()
+        
         window = UIWindow(windowScene: windowScene)
         let controller = TabBarController()
         let navigationController = UINavigationController(rootViewController: controller)
@@ -24,5 +27,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
+    }
+}
+
+private extension SceneDelegate {
+    func setKingFisherModifier() {
+        let modifier = AnyModifier { request in
+            var request = request
+            
+            request.setValue(Bundle.main.apiKey, forHTTPHeaderField: "apikey")
+            request.setValue("Bearer " + Bundle.main.apiKey, forHTTPHeaderField: "Authorization")
+            return request
+        }
+        
+        KingfisherManager.shared.defaultOptions = [.requestModifier(modifier)]
     }
 }
