@@ -72,6 +72,7 @@
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
+		3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */; };
 		3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D4992A61114200713FAF /* StubChatRepository.swift */; };
 		3CC1D49C2A61161100713FAF /* AccessChatRoomUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */; };
 		3CC1D49E2A6134C000713FAF /* ExploreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */; };
@@ -205,6 +206,7 @@
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
+		3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCreatorUseCase.swift; sourceTree = "<group>"; };
 		3CC1D4992A61114200713FAF /* StubChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubChatRepository.swift; sourceTree = "<group>"; };
 		3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCaseTests.swift; sourceTree = "<group>"; };
 		3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCaseTests.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				EBA8EB452A5ED04100998630 /* FetchCreatorInformationUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
 				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
+				3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1050,6 +1053,7 @@
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
+				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */,
