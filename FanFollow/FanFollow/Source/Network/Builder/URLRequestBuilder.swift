@@ -12,7 +12,7 @@ final class URLRequestBuilder {
     var queryItems: [String: String] = [:]
     var method: HTTPMethod = .get
     var headers: [String: Any]?
-    var body: [String: Any?]?
+    var body: HTTPBody?
     
     init(baseURL: URL) {
         self.baseURL = baseURL
@@ -43,12 +43,35 @@ final class URLRequestBuilder {
     }
     
     @discardableResult
-    func set(body: [String: Any?]?) -> Self {
+    func set(body: [String: Any?]) -> Self {
+        self.body = .json(values: body)
+        return self
+    }
+    
+    @discardableResult
+    func set(body: HTTPBody) -> Self {
         self.body = body
         return self
     }
     
     func build() -> URLRequest {
+        var request = generateURLRequest()
+        
+        switch body {
+        case let .json(values):
+            let bodyData = try? JSONSerialization.data(withJSONObject: values)
+            request.httpBody = bodyData
+            
+        case let .multipart(data):
+            request.httpBody = data
+            
+        default: break
+        }
+        
+        return request
+    }
+    
+    private func generateURLRequest() -> URLRequest {
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
         
         components?.path = path
@@ -64,11 +87,6 @@ final class URLRequestBuilder {
         
         headers?.forEach {
             urlRequest.addValue($0.value as! String, forHTTPHeaderField: $0.key)
-        }
-        
-        if let body = body {
-            let bodyData = try? JSONSerialization.data(withJSONObject: body)
-            urlRequest.httpBody = bodyData
         }
         
         return urlRequest

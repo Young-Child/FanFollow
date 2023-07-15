@@ -77,6 +77,7 @@ private extension SettingViewController {
     
     func bindTableView(_ output: SettingViewModel.Output) {
         output.settingSections
+            .debug()
             .asDriver(onErrorJustReturn: [])
             .drive(settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -142,11 +143,11 @@ private extension SettingViewController {
         return RxTableViewSectionedAnimatedDataSource(
             configureCell: { dataSource, tableView, indexPath, model in
                 switch dataSource[indexPath] {
-                case let .profile(imageName, nickName):
+                case let .profile(nickName, userID):
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
-                    cell.configureCell(nickName: nickName, imagePath: imageName)
+                    cell.configureCell(nickName: nickName, userID: userID)
                     return cell
                 case let .base(title):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(

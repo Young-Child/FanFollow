@@ -6,6 +6,7 @@
 
 import RxDataSources
 import RxSwift
+import Foundation
 
 final class SettingViewModel: ViewModel {
     struct Input {
@@ -30,8 +31,9 @@ final class SettingViewModel: ViewModel {
                 return self.userInformationUseCase.fetchUserInformation(for: "a0728b90-0172-4552-9b31-1f3cab84900b")
             }
         
-        let sectionModels = userInformation
-            .map { SettingSectionModel.generateDefaultModel(user: $0) }
+        let sectionModels = userInformation.map {
+            return SettingSectionModel.generateDefaultModel(user: $0)
+        }
         
         let isCreator = userInformation.map(\.isCreator)
         

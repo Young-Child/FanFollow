@@ -4,10 +4,12 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 import RxDataSources
 
 enum SettingSectionItem {
-    case profile(imageName: String, nickName: String)
+    case profile(nickName: String, userID: String)
     case base(title: String)
 }
 
