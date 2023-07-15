@@ -124,6 +124,21 @@ extension SettingViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let section = indexPath.section, row = indexPath.row
+        
+        switch section {
+        case 0:
+            presentProfileSettingController()
+        default:
+            return
+        }
+    }
+}
+
+private extension SettingViewController {
+    func presentProfileSettingController() {
+        let controller = ProfileSettingViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
