@@ -51,17 +51,9 @@ final class ProfileThumbnailCell: UITableViewCell {
 extension ProfileThumbnailCell {
     func configureCell(nickName: String, userID: String) {
         self.nickNameLabel.text = nickName
-        
-        profileImageView.kf.indicatorType = .activity
-        
-        profileImageView.kf.setImage(
-            with: URL(
-                staticString: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png"
-            ),
-            options: [
-                .processor(RoundCornerImageProcessor(cornerRadius: 25)),
-                .onFailureImage(KFCrossPlatformImage(systemName: "person"))
-            ]
+        self.profileImageView.setImageKF(
+            to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
+            failureImage: UIImage(systemName: "person")!
         )
     }
 }

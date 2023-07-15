@@ -64,6 +64,7 @@
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatRepository.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */; };
+		18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC06942A62724A006293B5 /* UIImageView + Extension.swift */; };
 		18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F462A6178C4007C1063 /* HTTPBody.swift */; };
 		18EC4F492A617A5F007C1063 /* ImageRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F482A617A5F007C1063 /* ImageRequestBuilder.swift */; };
 		18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0131B2A53E6AC000603CC /* URL+Extension.swift */; };
@@ -199,6 +200,7 @@
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatRepository.swift; sourceTree = "<group>"; };
+		18EC06942A62724A006293B5 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		18EC4F462A6178C4007C1063 /* HTTPBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBody.swift; sourceTree = "<group>"; };
 		18EC4F482A617A5F007C1063 /* ImageRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestBuilder.swift; sourceTree = "<group>"; };
 		18F0131B2A53E6AC000603CC /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				187949C32A5EA38100ADA01A /* UITableView+Extension.swift */,
+				18EC06942A62724A006293B5 /* UIImageView + Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
 				18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
+				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
 				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
 				18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */,
