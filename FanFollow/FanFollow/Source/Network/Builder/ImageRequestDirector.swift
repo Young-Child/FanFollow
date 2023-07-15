@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct ImageRequestBuilder {
+struct ImageRequestDirector {
     private let builder: URLRequestBuilder
     
     init(builder: URLRequestBuilder) {
