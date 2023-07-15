@@ -65,6 +65,8 @@
 		18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatRepository.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */; };
 		18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC06942A62724A006293B5 /* UIImageView + Extension.swift */; };
+		18EC06972A627746006293B5 /* DefaultImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC06962A627746006293B5 /* DefaultImageRepository.swift */; };
+		18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC06982A62775B006293B5 /* ImageRepository.swift */; };
 		18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F462A6178C4007C1063 /* HTTPBody.swift */; };
 		18EC4F492A617A5F007C1063 /* ImageRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */; };
 		18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0131B2A53E6AC000603CC /* URL+Extension.swift */; };
@@ -201,6 +203,8 @@
 		18E6703B2A53BD1400C52942 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatRepository.swift; sourceTree = "<group>"; };
 		18EC06942A62724A006293B5 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
+		18EC06962A627746006293B5 /* DefaultImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageRepository.swift; sourceTree = "<group>"; };
+		18EC06982A62775B006293B5 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		18EC4F462A6178C4007C1063 /* HTTPBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBody.swift; sourceTree = "<group>"; };
 		18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestDirector.swift; sourceTree = "<group>"; };
 		18F0131B2A53E6AC000603CC /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -695,6 +699,7 @@
 				EBE33E542A52F3CA00C11188 /* DefaultFollowRepository.swift */,
 				3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */,
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
+				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -717,6 +722,7 @@
 				EBE33E4E2A52C42100C11188 /* FollowRepository.swift */,
 				EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */,
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
+				18EC06982A62775B006293B5 /* ImageRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -1013,6 +1019,7 @@
 				187949C82A5EDCE100ADA01A /* SettingSectionModel.swift in Sources */,
 				EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */,
 				3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */,
+				18EC06972A627746006293B5 /* DefaultImageRepository.swift in Sources */,
 				183974692A52637700F0101A /* SupabaseEndPoint.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
@@ -1024,6 +1031,7 @@
 				187949A52A5E6E8B00ADA01A /* TabBar.swift in Sources */,
 				18EC4F492A617A5F007C1063 /* ImageRequestDirector.swift in Sources */,
 				EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */,
+				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
