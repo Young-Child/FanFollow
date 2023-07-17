@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CategoryCell: UICollectionViewCell {
     // View Properties
@@ -20,9 +21,35 @@ final class CategoryCell: UICollectionViewCell {
     // Initializer
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// UI Method
+extension CategoryCell {
+    func configureCell(jobCategory: JobCategory) {
+        categoryLabel.text = jobCategory.categoryName
+    }
+}
+
+// Configure UI
+private extension CategoryCell {
+    func configureUI() {
+        configureHierarchy()
+        makeConstraints()
+    }
+    
+    func configureHierarchy() {
+        contentView.addSubview(categoryLabel)
+    }
+    
+    func makeConstraints() {
+        categoryLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(10)
+        }
     }
 }
