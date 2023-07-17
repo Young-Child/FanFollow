@@ -87,7 +87,9 @@ extension FetchCreatorPostsUseCaseTests {
                 imageURLs: nil,
                 videoURL: nil,
                 nickName: "나미",
-                profilePath: "www.naver.com"
+                profilePath: "www.naver.com",
+                isLiked: true,
+                likeCount: 2
             )
         ]
         static let error = NetworkError.unknown

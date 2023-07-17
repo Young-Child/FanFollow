@@ -49,7 +49,9 @@ struct DefaultPostRepository: PostRepository {
             imageURLs: imageURLs,
             videoURL: videoURL,
             nickName: nil,
-            profilePath: nil
+            profilePath: nil,
+            isLiked: nil,
+            likeCount: nil
         )
         let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
         

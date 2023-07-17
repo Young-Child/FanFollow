@@ -15,6 +15,8 @@ struct Post {
     let videoURL: String?
     let nickName: String?
     let profilePath: String?
+    var isLiked: Bool
+    var likeCount: Int
 
     init(_ postDTO: PostDTO) {
         postID = postDTO.postID
@@ -26,5 +28,7 @@ struct Post {
         videoURL = postDTO.videoURL
         nickName = postDTO.nickName
         profilePath = postDTO.profilePath
+        isLiked = postDTO.isLiked ?? false
+        likeCount = postDTO.likeCount ?? 0
     }
 }

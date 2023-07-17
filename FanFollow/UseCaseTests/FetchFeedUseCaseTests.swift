@@ -87,7 +87,9 @@ extension FetchFeedUseCaseTests {
                 imageURLs: nil,
                 videoURL: nil,
                 nickName: "나미",
-                profilePath: "www.naver.com"
+                profilePath: "www.naver.com",
+                isLiked: true,
+                likeCount: 2
             )
         ]
         static let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
