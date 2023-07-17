@@ -83,6 +83,8 @@
 		3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D4992A61114200713FAF /* StubChatRepository.swift */; };
 		3CC1D49C2A61161100713FAF /* AccessChatRoomUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */; };
 		3CC1D49E2A6134C000713FAF /* ExploreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */; };
+		3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A812A64E70E0081ACC8 /* ExploreViewController.swift */; };
+		3CC69A852A64E7360081ACC8 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A842A64E7360081ACC8 /* ExploreViewModel.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -223,6 +225,8 @@
 		3CC1D4992A61114200713FAF /* StubChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubChatRepository.swift; sourceTree = "<group>"; };
 		3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCaseTests.swift; sourceTree = "<group>"; };
 		3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCaseTests.swift; sourceTree = "<group>"; };
+		3CC69A812A64E70E0081ACC8 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		3CC69A842A64E7360081ACC8 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -511,6 +515,7 @@
 			children = (
 				187949A32A5E6E8200ADA01A /* Comman */,
 				18CF43252A5CE923002FFA1D /* MainScene */,
+				3CC69A802A64E6F40081ACC8 /* ExploreScene */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
 			);
@@ -696,6 +701,31 @@
 				18F0131B2A53E6AC000603CC /* URL+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3CC69A802A64E6F40081ACC8 /* ExploreScene */ = {
+			isa = PBXGroup;
+			children = (
+				3CC69A862A64F5C50081ACC8 /* View */,
+				3CC69A832A64E7270081ACC8 /* ViewModel */,
+			);
+			path = ExploreScene;
+			sourceTree = "<group>";
+		};
+		3CC69A832A64E7270081ACC8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CC69A842A64E7360081ACC8 /* ExploreViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CC69A862A64F5C50081ACC8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CC69A812A64E70E0081ACC8 /* ExploreViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
@@ -1048,6 +1078,7 @@
 				3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
+				3CC69A852A64E7360081ACC8 /* ExploreViewModel.swift in Sources */,
 				18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */,
 				3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */,
 				1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */,
@@ -1081,6 +1112,7 @@
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
+				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */,
