@@ -88,6 +88,7 @@
 		3CC69A882A6504E90081ACC8 /* ExploreSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A872A6504E90081ACC8 /* ExploreSectionModel.swift */; };
 		3CC69A8A2A65116C0081ACC8 /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A892A65116C0081ACC8 /* CreatorCell.swift */; };
 		3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */; };
+		3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -233,6 +234,7 @@
 		3CC69A872A6504E90081ACC8 /* ExploreSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionModel.swift; sourceTree = "<group>"; };
 		3CC69A892A65116C0081ACC8 /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionItem.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				3CFDF6CB2A5E9A0100DE6109 /* Fan.swift */,
 				3CFDF6CD2A5E9A1500DE6109 /* JobCategory.swift */,
 				3CC69A872A6504E90081ACC8 /* ExploreSectionModel.swift */,
+				3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1063,6 +1066,7 @@
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
 				187949CA2A5EDE3400ADA01A /* SettingSectionItem.swift in Sources */,
 				187949AC2A5E7C3D00ADA01A /* SettingTabItem.swift in Sources */,
+				3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,

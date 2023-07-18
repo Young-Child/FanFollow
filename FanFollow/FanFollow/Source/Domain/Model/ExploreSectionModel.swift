@@ -8,15 +8,22 @@
 import RxSwift
 import RxDataSources
 
-struct ExploreSectionModel {
-    var title: String
-    var items: [Creator]
-}
-
-extension ExploreSectionModel: SectionModelType {
-    typealias Item = Creator
+struct ExploreSectionModel: AnimatableSectionModelType {
+    typealias Identity = String
     
-    init(original: ExploreSectionModel, items: [Creator]) {
+    var title: String
+    var items: [ExploreSectionItem]
+    
+    var identity: String {
+        return title
+    }
+    
+    init(title: String, items: [ExploreSectionItem]) {
+        self.title = title
+        self.items = items
+    }
+    
+    init(original: ExploreSectionModel, items: [ExploreSectionItem]) {
         self = original
         self.items = items
     }
