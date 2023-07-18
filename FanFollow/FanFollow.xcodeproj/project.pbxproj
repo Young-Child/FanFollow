@@ -91,6 +91,7 @@
 		3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */; };
 		3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */; };
 		3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */; };
+		3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -239,6 +240,7 @@
 		3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionItem.swift; sourceTree = "<group>"; };
 		3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTapItem.swift; sourceTree = "<group>"; };
+		3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabBarController.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			children = (
 				187949B02A5E7DBB00ADA01A /* TopTabBarController.swift */,
 				18513FDE2A5FD8A300580A1A /* SettingTabBarController.swift */,
+				3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1132,6 +1135,7 @@
 				18BC320D2A5C27D900F910B7 /* ExampleUseCase.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */,
+				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
