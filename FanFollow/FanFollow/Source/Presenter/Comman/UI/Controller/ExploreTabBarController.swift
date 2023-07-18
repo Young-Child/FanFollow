@@ -21,10 +21,19 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     }
 }
 
+// Action
+private extension ExploreTabBarController {
+    @objc private func searchButtonTapped() {
+        //TODO: - 추후 구현
+    }
+}
+
+// Configure UI
 private extension ExploreTabBarController {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     func configureHierarchy() {
