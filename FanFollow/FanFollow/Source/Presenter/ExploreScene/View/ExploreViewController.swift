@@ -36,6 +36,36 @@ final class ExploreViewController: UIViewController {
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureUI()
+        binding()
+    }
+}
+
+// Binding
+extension ExploreViewController {
+    func binding() {
+        let output = bindingInput()
+        
+        bindCollectionView(output)
+    }
+    
+    func bindCollectionView(_ output: ExploreViewModel.Output) {        
+        output.exploreSectionModel
+            .debug()
+            .asDriver(onErrorJustReturn: [])
+            .drive(exploreCollectionView.rx.items(dataSource: viewModel.dataSource))
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> ExploreViewModel.Output {
+        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
+            .map { _ in }.asObservable()
+        
+        let viewByJob = Observable.from(JobCategory.allCases)
+        let input = ExploreViewModel.Input(viewWillAppear: viewWillAppearEvent, viewByJob: viewByJob)
+        
+        return viewModel.transform(input: input)
     }
 }
 
@@ -43,25 +73,26 @@ final class ExploreViewController: UIViewController {
 extension ExploreViewController {
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let categoryGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalHeight(0.3),
-            heightDimension: .fractionalHeight(0.5)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(0.1)
         )
-        
+
         let categoryGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: categoryGroupSize,
-            subitems: [item]
+            subitem: item,
+            count: 4
         )
         
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
         categorySection.interGroupSpacing = 10
-        
+
         return categorySection
     }
     
     private func createCreatorSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let creatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalHeight(0.3),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension: .fractionalWidth(0.3),
+            heightDimension: .fractionalHeight(0.3)
         )
         
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
@@ -71,6 +102,20 @@ extension ExploreViewController {
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
         creatorSection.orthogonalScrollingBehavior = .continuous
+        
+        // Header
+        let headerFooterSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(30.0)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerFooterSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        creatorSection.boundarySupplementaryItems = [header]
+        
         
         return creatorSection
     }
@@ -89,5 +134,27 @@ extension ExploreViewController {
         }
         
         return layout
+    }
+}
+
+// Configure UI
+private extension ExploreViewController {
+    func configureUI() {
+        view.backgroundColor = .systemBackground
+        exploreCollectionView.collectionViewLayout = createLayout()
+        
+        configureHierarchy()
+        makeConstraints()
+    }
+    
+    func configureHierarchy() {
+        view.addSubview(exploreCollectionView)
+    }
+    
+    func makeConstraints() {
+        exploreCollectionView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
