@@ -85,26 +85,12 @@ extension ExploreViewController {
         let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
             switch item {
             case .category(let job):
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: CategoryCell.reuseIdentifier,
-                    for: indexPath
-                ) as? CategoryCell
-                else {
-                    fatalError()
-                }
-                
+                let cell: CategoryCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
                 cell.configureCell(jobCategory: job)
                 
                 return cell
             case .creator(let nickName, let userID):
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: CreatorCell.reuseIdentifier,
-                    for: indexPath
-                ) as? CreatorCell
-                else {
-                    fatalError()
-                }
-                
+                let cell: CreatorCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID)
                 
                 return cell
@@ -112,16 +98,13 @@ extension ExploreViewController {
         } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
             switch kind {
             case UICollectionView.elementKindSectionHeader:
-                let header = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: ExploreCollectionReusableHeaderView.reuseIdentifier,
-                    for: indexPath
-                ) as? ExploreCollectionReusableHeaderView
+                let headerView: ExploreCollectionReusableHeaderView = collectionView
+                    .dequeueReusableSupplementaryView(forIndexPath: indexPath, kind: kind)
                 
                 let sectionTitle = dataSource.sectionModels[indexPath.section].title
-                header?.bind(title: sectionTitle)
+                headerView.bind(title: sectionTitle)
                 
-                return header ?? UICollectionReusableView()
+                return headerView
             default:
                 fatalError()
             }
