@@ -161,9 +161,22 @@ extension ExploreViewController {
         
         let commonItem = NSCollectionLayoutItem(layoutSize: commonItemSize)
         
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(30.0)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            return sectionIndex == .zero ?
+            let section = sectionIndex == .zero ?
             self.createCategorySection(item: commonItem) : self.createCreatorSection(item: commonItem)
+            section.boundarySupplementaryItems = [header]
+            
+            return section
         }
         
         return layout
