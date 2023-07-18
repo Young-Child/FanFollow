@@ -57,16 +57,18 @@ final class ExploreViewModel: ViewModel {
             allCreatorsByJob: allCreatorsByJob
         )
     }
-    
-    private func convertCreatorSectionModel(
+}
+
+// Convert Method
+private extension ExploreViewModel {
+    func convertCreatorSectionModel(
         from observable: Observable<[(String, [Creator])]>
     ) -> Observable<[ExploreSectionModel]> {
         return observable.map { datas in
-            datas
-                .filter({ (_, creators) in
-                    return !creators.isEmpty
-                })
-                .map { (jobCategory, creators) in
+            datas.filter({ (_, creators) in
+                return !creators.isEmpty
+            })
+            .map { (jobCategory, creators) in
                 let sectionItem = creators.map {
                     ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
                 }
@@ -76,7 +78,7 @@ final class ExploreViewModel: ViewModel {
         }
     }
     
-    private func convertCategorySectionModel(
+    func convertCategorySectionModel(
         from observable: Observable<[JobCategory]>
     ) -> Observable<[ExploreSectionModel]> {
         return observable.map { datas in
