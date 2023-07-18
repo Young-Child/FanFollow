@@ -154,7 +154,7 @@ extension ExploreViewController {
     private func createCreatorSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let creatorGroupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.3),
-            heightDimension: .fractionalHeight(0.3)
+            heightDimension: .fractionalHeight(0.2)
         )
         
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
