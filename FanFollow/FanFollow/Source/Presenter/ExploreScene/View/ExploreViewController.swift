@@ -28,46 +28,8 @@ final class ExploreViewController: UIViewController {
     }
     
     // Properties
-    let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
-        switch item {
-        case .category(let job):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CategoryCell.reuseIdentifier,
-                for: indexPath
-            ) as? CategoryCell
-            else {
-                fatalError()
-            }
-
-            cell.configureCell(jobCategory: job)
-
-            return cell
-        case .creator(let nickName, let userID):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CreatorCell.reuseIdentifier,
-                for: indexPath
-            ) as? CreatorCell
-            else {
-                fatalError()
-            }
-
-            cell.configureCell(nickName: nickName, userID: userID)
-
-            return cell
-        }
-    } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ExploreCollectionReusableHeaderView.reuseIdentifier, for: indexPath) as? ExploreCollectionReusableHeaderView
-            let sectionTitle = dataSource.sectionModels[indexPath.section].title
-            header?.bind(title: sectionTitle)
-            return header ?? UICollectionReusableView()
-        default:
-            fatalError()
-        }
-    }
-    
     private let viewModel: ExploreViewModel
+    private let dataSource = ExploreViewController.dataSource()
     private let disposeBag = DisposeBag()
     
     // Initializer
@@ -97,7 +59,7 @@ extension ExploreViewController {
         bindCollectionView(output)
     }
     
-    func bindCollectionView(_ output: ExploreViewModel.Output) {        
+    func bindCollectionView(_ output: ExploreViewModel.Output) {
         output.exploreSectionModel
             .debug()
             .asDriver(onErrorJustReturn: [])
@@ -107,12 +69,65 @@ extension ExploreViewController {
     
     func bindingInput() -> ExploreViewModel.Output {
         let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
-            .map { _ in }.asObservable()
+            .map { _ in }
+            .asObservable()
         
         let viewByJob = Observable.from(JobCategory.allCases)
         let input = ExploreViewModel.Input(viewWillAppear: viewWillAppearEvent, viewByJob: viewByJob)
         
         return viewModel.transform(input: input)
+    }
+}
+
+// DataSource From RxDataSource
+extension ExploreViewController {
+    static func dataSource() -> ExploreDataSource {
+        let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
+            switch item {
+            case .category(let job):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CategoryCell.reuseIdentifier,
+                    for: indexPath
+                ) as? CategoryCell
+                else {
+                    fatalError()
+                }
+                
+                cell.configureCell(jobCategory: job)
+                
+                return cell
+            case .creator(let nickName, let userID):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CreatorCell.reuseIdentifier,
+                    for: indexPath
+                ) as? CreatorCell
+                else {
+                    fatalError()
+                }
+                
+                cell.configureCell(nickName: nickName, userID: userID)
+                
+                return cell
+            }
+        } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: ExploreCollectionReusableHeaderView.reuseIdentifier,
+                    for: indexPath
+                ) as? ExploreCollectionReusableHeaderView
+                
+                let sectionTitle = dataSource.sectionModels[indexPath.section].title
+                header?.bind(title: sectionTitle)
+                
+                return header ?? UICollectionReusableView()
+            default:
+                fatalError()
+            }
+        }
+        
+        return dataSource
     }
 }
 
@@ -123,7 +138,7 @@ extension ExploreViewController {
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(0.1)
         )
-
+        
         let categoryGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: categoryGroupSize,
             subitem: item,
@@ -132,7 +147,7 @@ extension ExploreViewController {
         
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
         categorySection.interGroupSpacing = 10
-
+        
         return categorySection
     }
     
