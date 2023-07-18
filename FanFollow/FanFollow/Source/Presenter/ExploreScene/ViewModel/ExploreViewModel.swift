@@ -6,7 +6,6 @@
 //
 
 import RxSwift
-import RxDataSources
 
 final class ExploreViewModel: ViewModel {
     struct Input {
@@ -59,8 +58,22 @@ final class ExploreViewModel: ViewModel {
     }
 }
 
-// Convert Method
+// Convert Method & Constant
 private extension ExploreViewModel {
+    private enum Constant {
+        case creator(job: String)
+        case category
+        
+        var title: String {
+            switch self {
+            case .creator(let job):
+                return "추천 \(job) 크리에이터"
+            case .category:
+                return "카테고리로 보기"
+            }
+        }
+    }
+    
     func convertCreatorSectionModel(
         from observable: Observable<[(String, [Creator])]>
     ) -> Observable<[ExploreSectionModel]> {
@@ -68,12 +81,12 @@ private extension ExploreViewModel {
             datas.filter({ (_, creators) in
                 return !creators.isEmpty
             })
-            .map { (jobCategory, creators) in
+            .map { (job, creators) in
                 let sectionItem = creators.map {
                     ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
                 }
                 
-                return ExploreSectionModel(title: "추천 \(jobCategory) 크리에이터", items: sectionItem)
+                return ExploreSectionModel(title: Constant.creator(job: job).title, items: sectionItem)
             }
         }
     }
@@ -86,7 +99,7 @@ private extension ExploreViewModel {
                 return ExploreSectionItem.category(job: jobCategory)
             }
             
-            return [ExploreSectionModel(title: "카테고리로 보기", items: sectionItem)]
+            return [ExploreSectionModel(title: Constant.category.title, items: sectionItem)]
         }
     }
 }
