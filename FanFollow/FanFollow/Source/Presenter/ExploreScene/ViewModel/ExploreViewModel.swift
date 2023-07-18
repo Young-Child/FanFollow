@@ -33,7 +33,11 @@ final class ExploreViewModel: ViewModel {
             }
         
         let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
-        let jobCategoryObservable = convertCategorySectionModel(from: Observable.just(JobCategory.allCases))
+        
+        var jobAllcase = JobCategory.allCases
+        jobAllcase.removeLast()
+        
+        let jobCategoryObservable = convertCategorySectionModel(from: Observable.just(jobAllcase))
         let exploreSectionModel = Observable.combineLatest(
             jobCategoryObservable, recommandAllCreatorsSectionModel
         ) { categories, recommand in
