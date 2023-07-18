@@ -29,6 +29,6 @@ struct Post {
         nickName = postDTO.nickName
         profilePath = postDTO.profilePath
         isLiked = postDTO.isLiked ?? false
-        likeCount = postDTO.likeCount ?? 0
+        likeCount = postDTO.likeCount ?? .zero
     }
 }
