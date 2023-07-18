@@ -27,6 +27,12 @@ final class CategoryCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        categoryLabel.layer.cornerRadius = 10
+        categoryLabel.clipsToBounds = true
+    }
 }
 
 // UI Method

@@ -136,7 +136,7 @@ extension ExploreViewController {
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let categoryGroupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(0.1)
+            heightDimension: .fractionalHeight(0.07)
         )
         
         let categoryGroup = NSCollectionLayoutGroup.horizontal(

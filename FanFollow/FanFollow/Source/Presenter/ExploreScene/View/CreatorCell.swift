@@ -33,6 +33,12 @@ final class CreatorCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        profileImageView.layer.cornerRadius = profileImageView.bounds.size.width / 2
+        profileImageView.clipsToBounds = true
+    }
 }
 
 // UI Method
