@@ -42,7 +42,7 @@ private extension ExploreTabBarController {
     
     func makeConstraints() {
         searchButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.trailing.equalToSuperview().offset(-20)
         }
     }
