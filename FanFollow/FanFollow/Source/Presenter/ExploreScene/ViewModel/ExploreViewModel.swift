@@ -7,20 +7,58 @@
 
 import RxSwift
 import RxDataSources
+import RxCocoa
 
 final class ExploreViewModel: ViewModel {
+    typealias ExploreDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
+    
     struct Input {
         var viewWillAppear: Observable<Void>
         var viewByJob: Observable<JobCategory>
     }
     
     struct Output {
-        var recommandAllCreators: Observable<[ExploreSectionModel]>
+        var exploreSectionModel: Observable<[ExploreSectionModel]>
         var popularCreatorsByJob: Observable<[Creator]>
         var allCreatorsByJob: Observable<[Creator]>
     }
     
     var disposeBag = DisposeBag()
+    
+    let dataSource: ExploreDataSource = {
+        let dataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
+            switch item {
+            case .category(let job):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CategoryCell.reuseIdentifier,
+                    for: indexPath
+                ) as? CategoryCell
+                else {
+                    fatalError()
+                }
+                
+                cell.configureCell(jobCategory: job)
+                
+                return cell
+            case .creator(let nickName, let userID):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CreatorCell.reuseIdentifier,
+                    for: indexPath
+                ) as? CreatorCell
+                else {
+                    fatalError()
+                }
+                
+                cell.configureCell(nickName: nickName, userID: userID)
+                
+                return cell
+            }
+        }
+        
+        return dataSource
+    }()
+    
+    
     private let exploreUseCase: ExploreUseCase
     
     init(exploreUseCase: ExploreUseCase) {
@@ -33,7 +71,13 @@ final class ExploreViewModel: ViewModel {
                 return self.exploreUseCase.fetchRandomAllCreators(count: 20)
             }
         
-        let recommandAllCreatorsSectionModel = convertSectionModel(from: recommandAllCreators)
+        let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
+        let jobCategoryObservable = convertCategorySectionModel(from: Observable.just(JobCategory.allCases))
+        let exploreSectionModel = Observable.combineLatest(
+            jobCategoryObservable, recommandAllCreatorsSectionModel
+        ) { categories, recommand in
+            return categories + recommand
+        }
         
         let popularCreatorsByJob = input.viewByJob
             .flatMapLatest { jobCategory in
@@ -46,17 +90,36 @@ final class ExploreViewModel: ViewModel {
             }
         
         return Output(
-            recommandAllCreators: recommandAllCreatorsSectionModel,
+            exploreSectionModel: exploreSectionModel,
             popularCreatorsByJob: popularCreatorsByJob,
             allCreatorsByJob: allCreatorsByJob
         )
     }
     
-    private func convertSectionModel(from observable: Observable<[(String, [Creator])]>) -> Observable<[ExploreSectionModel]> {
+    private func convertCreatorSectionModel(
+        from observable: Observable<[(String, [Creator])]>
+    ) -> Observable<[ExploreSectionModel]> {
         return observable.map { datas in
             datas.map { (jobCategory, creators) in
-                return ExploreSectionModel(title: jobCategory, items: creators)
+                let sectionItem = creators.map {
+                    ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
+                }
+                
+                return ExploreSectionModel(title: jobCategory, items: sectionItem)
             }
         }
     }
+    
+    private func convertCategorySectionModel(
+        from observable: Observable<[JobCategory]>
+    ) -> Observable<[ExploreSectionModel]> {
+        return observable.map { datas in
+            let sectionItem = datas.map { jobCategory in
+                return ExploreSectionItem.category(job: jobCategory)
+            }
+            
+            return [ExploreSectionModel(title: "category", items: sectionItem)]
+        }
+    }
+
 }
