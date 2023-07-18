@@ -45,7 +45,7 @@ private extension ExploreCollectionReusableHeaderView {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().offset(10)
-            $0.bottom.equalToSuperview().offset(10)
+            $0.bottom.equalToSuperview().offset(-10)
             $0.trailing.equalToSuperview()
         }
     }
