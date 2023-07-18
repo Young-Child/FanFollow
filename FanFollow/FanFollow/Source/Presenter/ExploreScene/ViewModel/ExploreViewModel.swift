@@ -7,11 +7,8 @@
 
 import RxSwift
 import RxDataSources
-import RxCocoa
 
 final class ExploreViewModel: ViewModel {
-    typealias ExploreDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
-    
     struct Input {
         var viewWillAppear: Observable<Void>
         var viewByJob: Observable<JobCategory>
@@ -24,41 +21,6 @@ final class ExploreViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
-    
-    let dataSource: ExploreDataSource = {
-        let dataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
-            switch item {
-            case .category(let job):
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: CategoryCell.reuseIdentifier,
-                    for: indexPath
-                ) as? CategoryCell
-                else {
-                    fatalError()
-                }
-                
-                cell.configureCell(jobCategory: job)
-                
-                return cell
-            case .creator(let nickName, let userID):
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: CreatorCell.reuseIdentifier,
-                    for: indexPath
-                ) as? CreatorCell
-                else {
-                    fatalError()
-                }
-                
-                cell.configureCell(nickName: nickName, userID: userID)
-                
-                return cell
-            }
-        }
-        
-        return dataSource
-    }()
-    
-    
     private let exploreUseCase: ExploreUseCase
     
     init(exploreUseCase: ExploreUseCase) {
@@ -100,12 +62,16 @@ final class ExploreViewModel: ViewModel {
         from observable: Observable<[(String, [Creator])]>
     ) -> Observable<[ExploreSectionModel]> {
         return observable.map { datas in
-            datas.map { (jobCategory, creators) in
+            datas
+                .filter({ (_, creators) in
+                    return !creators.isEmpty
+                })
+                .map { (jobCategory, creators) in
                 let sectionItem = creators.map {
                     ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
                 }
                 
-                return ExploreSectionModel(title: jobCategory, items: sectionItem)
+                return ExploreSectionModel(title: "추천 \(jobCategory) 크리에이터", items: sectionItem)
             }
         }
     }
@@ -118,8 +84,7 @@ final class ExploreViewModel: ViewModel {
                 return ExploreSectionItem.category(job: jobCategory)
             }
             
-            return [ExploreSectionModel(title: "category", items: sectionItem)]
+            return [ExploreSectionModel(title: "카테고리로 보기", items: sectionItem)]
         }
     }
-
 }

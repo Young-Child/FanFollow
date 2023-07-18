@@ -7,8 +7,11 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
 
 final class ExploreViewController: UIViewController {
+    typealias ExploreDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
+    
     // View Properties
     private let exploreCollectionView = UICollectionView(
         frame: .zero,
@@ -16,10 +19,54 @@ final class ExploreViewController: UIViewController {
     ).then {
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
         $0.register(CreatorCell.self, forCellWithReuseIdentifier: CreatorCell.reuseIdentifier)
+        $0.register(
+            ExploreCollectionReusableHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ExploreCollectionReusableHeaderView.reuseIdentifier
+        )
         $0.backgroundColor = .clear
     }
     
     // Properties
+    let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
+        switch item {
+        case .category(let job):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CategoryCell.reuseIdentifier,
+                for: indexPath
+            ) as? CategoryCell
+            else {
+                fatalError()
+            }
+
+            cell.configureCell(jobCategory: job)
+
+            return cell
+        case .creator(let nickName, let userID):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CreatorCell.reuseIdentifier,
+                for: indexPath
+            ) as? CreatorCell
+            else {
+                fatalError()
+            }
+
+            cell.configureCell(nickName: nickName, userID: userID)
+
+            return cell
+        }
+    } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ExploreCollectionReusableHeaderView.reuseIdentifier, for: indexPath) as? ExploreCollectionReusableHeaderView
+            let sectionTitle = dataSource.sectionModels[indexPath.section].title
+            header?.bind(title: sectionTitle)
+            return header ?? UICollectionReusableView()
+        default:
+            fatalError()
+        }
+    }
+    
     private let viewModel: ExploreViewModel
     private let disposeBag = DisposeBag()
     
@@ -54,7 +101,7 @@ extension ExploreViewController {
         output.exploreSectionModel
             .debug()
             .asDriver(onErrorJustReturn: [])
-            .drive(exploreCollectionView.rx.items(dataSource: viewModel.dataSource))
+            .drive(exploreCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
     
@@ -102,20 +149,6 @@ extension ExploreViewController {
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
         creatorSection.orthogonalScrollingBehavior = .continuous
-        
-        // Header
-        let headerFooterSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(30.0)
-        )
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerFooterSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        
-        creatorSection.boundarySupplementaryItems = [header]
-        
         
         return creatorSection
     }
