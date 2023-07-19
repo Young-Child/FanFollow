@@ -9,7 +9,7 @@ import UIKit
 final class UnderLineTextField: UITextField {
     private let underLineLayer: CALayer = {
         let layer = CALayer()
-        layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
+        layer.backgroundColor = UIColor.systemGray5.cgColor
         return layer
     }()
     
@@ -18,9 +18,9 @@ final class UnderLineTextField: UITextField {
         
         underLineLayer.frame = CGRect(
             x: 0,
-            y: frame.size.height + 2,
+            y: frame.size.height + 5,
             width: self.frame.width,
-            height: 2
+            height: 1
         )
         layer.addSublayer(underLineLayer)
     }
