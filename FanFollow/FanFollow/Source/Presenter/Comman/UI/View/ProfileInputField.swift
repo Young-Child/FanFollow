@@ -37,6 +37,17 @@ final class ProfileInputField: UIStackView {
     }
 }
 
+extension ProfileInputField {
+    func configureInputView(to view: UIView, with accessoryView: UIView) {
+        self.textField.inputView = view
+        self.textField.inputAccessoryView = accessoryView
+    }
+    
+    func setText(with text: String) {
+        self.textField.text = text
+    }
+}
+
 private extension ProfileInputField {
     func configureUI() {
         configureHierarchy()
