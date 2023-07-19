@@ -13,12 +13,12 @@ final class FeedViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
         var refresh: Observable<Void>
-        var lastCellDisplayed: Observable<Void>
+        var lastCellDisplayed: Observable<Bool>
         var likeButtonTap: Observable<String>
     }
 
     struct Output {
-        var posts: Driver<[Post]>
+        var posts: Observable<[Post]>
     }
 
     var disposeBag = DisposeBag()
@@ -26,6 +26,7 @@ final class FeedViewModel: ViewModel {
     private let changeLikeUseCase: ChangeLikeUseCase
     private let followerID: String
     private let pageSize = 10
+    private var isLoading = BehaviorRelay(value: false)
 
     private let posts = BehaviorRelay<[Post]>(value: [])
 
@@ -36,25 +37,32 @@ final class FeedViewModel: ViewModel {
     }
 
     func transform(input: Input) -> Output {
-        Observable.merge(input.viewWillAppear, input.refresh)
+        let newItems = Observable.merge(input.viewWillAppear, input.refresh)
+            .debug()
             .flatMapLatest { [weak self] _ in
                 guard let self else { return Observable<[Post]>.empty() }
                 return self.fetchPosts(startIndex: 0)
+            }.do { [weak self] newPosts in
+                guard let self else { return }
+                self.posts.accept(newPosts)
             }
-            .bind(to: posts)
-            .disposed(by: disposeBag)
 
-        input.lastCellDisplayed
+        let newItems2 = Observable.combineLatest(
+            isLoading.asObservable(),
+            input.lastCellDisplayed
+        ) { isLoading, lastCellDisplayed in
+            return isLoading == false && lastCellDisplayed == true
+        }
             .flatMapLatest { [weak self] _ in
                 guard let self else { return Observable<[Post]>.empty() }
                 return self.fetchPosts(startIndex: self.posts.value.count)
             }
             .map({ [weak self] newPosts in
                 guard let self else { return [] }
-                return self.posts.value + newPosts
+                return newPosts + self.posts.value
             })
-            .bind(to: posts)
-            .disposed(by: disposeBag)
+
+        let items = Observable.merge(newItems, newItems2)
 
         input.likeButtonTap
             .flatMapLatest { [weak self] postID in
@@ -67,12 +75,15 @@ final class FeedViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
 
-        return Output(posts: posts.asDriver(onErrorJustReturn: []))
+        return Output(posts: items)
     }
 
     private func fetchPosts(startIndex: Int) -> Observable<[Post]> {
         let endRange = startIndex + pageSize - 1
         return fetchFeedUseCase.fetchFollowPosts(followerID: followerID, startRange: startIndex, endRange: endRange)
+            .do { [weak self] _ in
+                self?.isLoading.accept(false)
+            }
     }
 
     private func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
