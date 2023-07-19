@@ -23,12 +23,3 @@ enum ExploreSectionItem: IdentifiableType, Equatable {
         }
     }
 }
-
-// Objc ExploreSectionItem Class
-@objc class ExploreSectionItemWrapper: NSObject {
-    let sectionItem: ExploreSectionItem
-    
-    init(sectionItem: ExploreSectionItem) {
-        self.sectionItem = sectionItem
-    }
-}
