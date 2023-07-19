@@ -52,8 +52,11 @@
 		18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32122A5C2A8E00F910B7 /* ViewModel.swift */; };
 		18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32142A5C2B6200F910B7 /* ExampleViewModel.swift */; };
 		18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32172A5C2B6E00F910B7 /* ExampleModel.swift */; };
+		18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F52A67B4D900060616 /* UILabel+Extension.swift */; };
+		18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */; };
 		18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */; };
 		18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */; };
+		18BDA9872A62F40D00E00116 /* ProfileInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDA9862A62F40D00E00116 /* ProfileInputField.swift */; };
 		18C1E5232A55488900A41AC5 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5222A55488900A41AC5 /* NetworkServiceTests.swift */; };
 		18C1E5392A55717000A41AC5 /* StubURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5382A55717000A41AC5 /* StubURLSession.swift */; };
 		18C1E53C2A55B92A00A41AC5 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53B2A55B92A00A41AC5 /* Mock.swift */; };
@@ -193,8 +196,11 @@
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BC32142A5C2B6200F910B7 /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
 		18BC32172A5C2B6E00F910B7 /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
+		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategoryPickerView.swift; sourceTree = "<group>"; };
 		18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		18BDA9862A62F40D00E00116 /* ProfileInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputField.swift; sourceTree = "<group>"; };
 		18C1E5202A55488900A41AC5 /* NetworkServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C1E5222A55488900A41AC5 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		18C1E5382A55717000A41AC5 /* StubURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLSession.swift; sourceTree = "<group>"; };
@@ -438,6 +444,8 @@
 			children = (
 				187949A42A5E6E8B00ADA01A /* TabBar.swift */,
 				18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */,
+				18BDA9862A62F40D00E00116 /* ProfileInputField.swift */,
+				18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,6 +480,7 @@
 			children = (
 				187949C32A5EA38100ADA01A /* UITableView+Extension.swift */,
 				18EC06942A62724A006293B5 /* UIImageView + Extension.swift */,
+				18BD41F52A67B4D900060616 /* UILabel+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1041,8 +1050,10 @@
 				3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */,
 				18EC06972A627746006293B5 /* DefaultImageRepository.swift in Sources */,
 				183974692A52637700F0101A /* SupabaseEndPoint.swift in Sources */,
+				18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
+				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
@@ -1093,6 +1104,7 @@
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
+				18BDA9872A62F40D00E00116 /* ProfileInputField.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */,
