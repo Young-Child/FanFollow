@@ -36,7 +36,7 @@ final class FeedViewModel: ViewModel {
     }
 
     func transform(input: Input) -> Output {
-        Observable.zip(input.viewWillAppear, input.refresh)
+        Observable.merge(input.viewWillAppear, input.refresh)
             .flatMapLatest { [weak self] _ in
                 guard let self else { return Observable<[Post]>.empty() }
                 return self.fetchPosts(startIndex: 0)
