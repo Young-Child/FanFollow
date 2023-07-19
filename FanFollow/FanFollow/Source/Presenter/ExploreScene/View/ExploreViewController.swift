@@ -61,9 +61,14 @@ extension ExploreViewController {
     
     func bindCollectionView(_ output: ExploreViewModel.Output) {
         output.exploreSectionModel
-            .debug()
             .asDriver(onErrorJustReturn: [])
             .drive(exploreCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
+            .subscribe { data in
+                print(data)
+            }
             .disposed(by: disposeBag)
     }
     
