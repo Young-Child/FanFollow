@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class ProfileSettingViewController: UIViewController {
+    // View Properties
     private let profileImageView = UIImageView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 50
@@ -35,9 +36,16 @@ final class ProfileSettingViewController: UIViewController {
         
         configureUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
-extension ProfileSettingViewController {
+// Configure Category Accessory View Configure Method
+private extension ProfileSettingViewController {
     func configureJobCategoryAccessoryView(with pickerView: UIPickerView) -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -79,7 +87,6 @@ extension ProfileSettingViewController {
 private extension ProfileSettingViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
-        navigationController?.setNavigationBarHidden(false, animated: true)
         
         configureHierarchy()
         configureCategoryPickerView()
