@@ -87,10 +87,18 @@ private extension ProfileSettingViewController {
 private extension ProfileSettingViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
-        
+
+        configureNavigationBar()
         configureHierarchy()
         configureCategoryPickerView()
         makeConstraints()
+    }
+    
+    func configureNavigationBar() {
+        let completeButton = UIBarButtonItem(title: "완료")
+        navigationItem.rightBarButtonItem = completeButton
+        
+        navigationController?.navigationBar.topItem?.title = "뒤로"
     }
     
     func configureCategoryPickerView() {
