@@ -64,12 +64,6 @@ extension ExploreViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(exploreCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-        
-        exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
-            .subscribe { data in
-                print(data)
-            }
-            .disposed(by: disposeBag)
     }
     
     func bindingInput() -> ExploreViewModel.Output {
@@ -77,8 +71,14 @@ extension ExploreViewController {
             .map { _ in }
             .asObservable()
         
-        let viewByJob = Observable.from(JobCategory.allCases)
-        let input = ExploreViewModel.Input(viewWillAppear: viewWillAppearEvent, viewByJob: viewByJob)
+        let collectionViewTouchEvent = exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asObservable()
+        
+        let input = ExploreViewModel.Input(
+            viewWillAppear: viewWillAppearEvent,
+            viewByJopCategory: collectionViewTouchEvent
+        )
         
         return viewModel.transform(input: input)
     }
