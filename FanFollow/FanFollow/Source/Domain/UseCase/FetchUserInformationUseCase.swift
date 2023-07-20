@@ -9,6 +9,7 @@ import RxSwift
 
 protocol FetchUserInformationUseCase: AnyObject {
     func fetchUserInformation(for userID: String) -> Observable<User>
+    func fetchCreatorInformation(for userID: String) -> Observable<Creator>
 }
 
 final class DefaultFetchUserInformationUseCase: FetchUserInformationUseCase {
@@ -27,5 +28,10 @@ final class DefaultFetchUserInformationUseCase: FetchUserInformationUseCase {
                     return Fan(userInformationDTO)
                 }
             }
+    }
+    
+    func fetchCreatorInformation(for userID: String) -> Observable<Creator> {
+        return userInformationRepository.fetchUserInformation(for: userID)
+            .map { Creator($0) }
     }
 }

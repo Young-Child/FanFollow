@@ -6,6 +6,7 @@
 
 import UIKit
 
+import RxSwift
 import SnapKit
 
 final class ProfileSettingViewController: UIViewController {
@@ -26,6 +27,7 @@ final class ProfileSettingViewController: UIViewController {
         $0.textColor = UIColor(named: "AccentColor")
     }
     
+    private let pickerView = JobCategoryPickerView()
     private let jobCategoryInput = ProfileInputField(title: "분야")
     private let linkInput = ProfileInputField(title: "링크")
     private let introduceInput = ProfileInputField(title: "소개")
@@ -65,9 +67,12 @@ private extension ProfileSettingViewController {
     func transformInput() -> ProfileSettingViewModel.Output {
         let viewWillAppear = rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable()
         
-        
         let input = ProfileSettingViewModel.Input(
-            viewWillAppear: viewWillAppear
+            viewWillAppear: viewWillAppear,
+            nickNameChanged: nickNameInput.textField.rx.text.orEmpty.asObservable(),
+            categoryChanged: pickerView.rx.itemSelected.map(\.row).asObservable(),
+            linksChanged: linkInput.textField.rx.text.compactMap { $0 }.toArray().asObservable(),
+            introduceChanged: introduceInput.textField.rx.text.orEmpty.asObservable()
         )
         
         return viewModel.transform(input: input)
@@ -109,7 +114,7 @@ private extension ProfileSettingViewController {
             let row = pickerView.selectedRow(inComponent: 0)
             let textFieldItem = JobCategory.allCases[row].categoryName
             
-            self.jobCategoryInput.setText(with: textFieldItem)
+            self.jobCategoryInput.textField.text = textFieldItem
             self.jobCategoryInput.endEditing(true)
         }
         
@@ -121,7 +126,7 @@ private extension ProfileSettingViewController {
 private extension ProfileSettingViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
-
+        
         configureNavigationBar()
         configureHierarchy()
         configureCategoryPickerView()
@@ -136,7 +141,6 @@ private extension ProfileSettingViewController {
     }
     
     func configureCategoryPickerView() {
-        let pickerView = JobCategoryPickerView()
         let toolbar = configureJobCategoryAccessoryView(with: pickerView)
         
         jobCategoryInput.configureInputView(to: pickerView, with: toolbar)

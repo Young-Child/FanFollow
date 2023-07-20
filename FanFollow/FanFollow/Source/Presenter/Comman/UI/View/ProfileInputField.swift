@@ -6,6 +6,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import Then
 import SnapKit
 
@@ -17,12 +19,15 @@ final class ProfileInputField: UIStackView {
         $0.adjustsFontSizeToFitWidth = true
     }
     
-    private let textField = UnderLineTextField().then {
+    let textField = UnderLineTextField().then {
         $0.font = .systemFont(ofSize: 17)
         $0.autocapitalizationType = .none
         $0.autocorrectionType = .no
         $0.textAlignment = .left
     }
+    
+    private var disposeBag = DisposeBag()
+    var prevText: String = ""
     
     init(title: String) {
         self.titleLabel.text = title
@@ -30,6 +35,10 @@ final class ProfileInputField: UIStackView {
         
         configureAttributes()
         configureUI()
+        
+        textField.rx.text.orEmpty
+            .bind(to: self.rx.prevText)
+            .disposed(by: disposeBag)
     }
     
     required init(coder: NSCoder) {
@@ -41,10 +50,6 @@ extension ProfileInputField {
     func configureInputView(to view: UIView, with accessoryView: UIView) {
         self.textField.inputView = view
         self.textField.inputAccessoryView = accessoryView
-    }
-    
-    func setText(with text: String) {
-        self.textField.text = text
     }
 }
 

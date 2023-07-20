@@ -7,7 +7,10 @@
 import RxSwift
 
 protocol UpdateUserInformationUseCase: AnyObject {
-    func updateUserInformation() -> Observable<Void>
+    func updateUserInformation(
+        userID: String,
+        updateInformation: (nickName: String, category: Int?, links: [String]?, introduce: String?)
+    ) -> Observable<Void>
 }
 
 final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
@@ -17,6 +20,24 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
         self.userInformationRepository = userInformationRepository
     }
     
-    func updateUserInformation() -> Observable<Void> {
+    func updateUserInformation(
+        userID: String,
+        updateInformation: (nickName: String, category: Int?, links: [String]?, introduce: String?)
+    ) -> Observable<Void> {
+        return userInformationRepository.fetchUserInformation(for: userID)
+            .flatMapLatest { information in
+                return self.userInformationRepository.upsertUserInformation(
+                    userID: userID,
+                    nickName: updateInformation.nickName,
+                    profilePath: nil,
+                    jobCategory: updateInformation.category,
+                    links: updateInformation.links,
+                    introduce: updateInformation.introduce,
+                    isCreator: information.isCreator,
+                    createdAt: information.createdAt
+                )
+                .andThen(Observable<Void>.just(()))
+            }
+            .asObservable()
     }
 }
