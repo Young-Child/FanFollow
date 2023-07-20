@@ -27,7 +27,6 @@ final class ProfileInputField: UIStackView {
     }
     
     private var disposeBag = DisposeBag()
-    var prevText: String = ""
     
     init(title: String) {
         self.titleLabel.text = title
@@ -35,10 +34,6 @@ final class ProfileInputField: UIStackView {
         
         configureAttributes()
         configureUI()
-        
-        textField.rx.text.orEmpty
-            .bind(to: self.rx.prevText)
-            .disposed(by: disposeBag)
     }
     
     required init(coder: NSCoder) {
