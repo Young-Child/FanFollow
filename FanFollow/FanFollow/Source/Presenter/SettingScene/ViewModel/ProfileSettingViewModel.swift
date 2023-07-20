@@ -20,7 +20,7 @@ final class ProfileSettingViewModel: ViewModel {
         var jobCategory: Observable<JobCategory?>
         var links: Observable<[String]?>
         var introduce: Observable<String?>
-        var isCreator: Observable<Bool>
+        var isFan: Observable<Bool>
         var updateResult: Observable<Void>
     }
     
@@ -84,7 +84,7 @@ final class ProfileSettingViewModel: ViewModel {
             jobCategory: user.map(\.jobCategory),
             links: user.map(\.links),
             introduce: user.map(\.introduce),
-            isCreator: user.map(\.isCreator),
+            isFan: user.map(\.isCreator).map { $0 == false },
             updateResult: updateResult
         )
     }

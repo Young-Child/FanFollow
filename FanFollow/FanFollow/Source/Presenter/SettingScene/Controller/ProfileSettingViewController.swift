@@ -33,6 +33,7 @@ final class ProfileSettingViewController: UIViewController {
     private let introduceInput = ProfileInputField(title: "소개")
     
     private var viewModel: ProfileSettingViewModel
+    private var disposeBag = DisposeBag()
     
     init(viewModel: ProfileSettingViewModel) {
         self.viewModel = viewModel
@@ -48,6 +49,7 @@ final class ProfileSettingViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        binding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +81,44 @@ private extension ProfileSettingViewController {
     }
     
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
+        output.nickName
+            .debug()
+            .asDriver(onErrorJustReturn: "")
+            .drive(nickNameInput.textField.rx.text)
+            .disposed(by: disposeBag)
         
+        output.isFan
+            .asDriver(onErrorJustReturn: true)
+            .drive(jobCategoryInput.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
+        
+        output.isFan
+            .asDriver(onErrorJustReturn: true)
+            .drive(linkInput.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
+        
+        output.isFan
+            .asDriver(onErrorJustReturn: true)
+            .drive(introduceInput.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
+        
+        output.jobCategory.compactMap { $0?.rawValue }
+            .asDriver(onErrorJustReturn: Int.zero)
+            .map { ($0, 0, true) }
+            .drive(onNext: pickerView.selectRow)
+            .disposed(by: disposeBag)
+        
+        output.links
+            .compactMap { $0 }
+            .asDriver(onErrorJustReturn: [])
+            .map { $0.joined(separator: ",") }
+            .drive(linkInput.textField.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.introduce
+            .asDriver(onErrorJustReturn: nil)
+            .drive(introduceInput.textField.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 
