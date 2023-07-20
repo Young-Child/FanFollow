@@ -11,6 +11,7 @@ import RxDataSources
 enum ExploreSectionItem: IdentifiableType, Equatable {
     case category(job: JobCategory)
     case creator(nickName: String, userID: String)
+    case popular(nickName: String, userID: String)
     
     typealias Identity = String
 
@@ -20,6 +21,8 @@ enum ExploreSectionItem: IdentifiableType, Equatable {
             return "category_\(job.rawValue)"
         case .creator(_, let userID):
             return "creator_\(userID)"
+        case .popular(_, let userID):
+            return "popular_\(userID)"
         }
     }
 }
