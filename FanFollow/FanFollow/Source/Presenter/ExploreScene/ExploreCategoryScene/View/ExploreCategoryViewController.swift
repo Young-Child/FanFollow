@@ -118,7 +118,7 @@ extension ExploreCategoryViewController {
 extension ExploreCategoryViewController {
     private func createPopularSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let popularCreatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.3),
+            widthDimension: .fractionalWidth(1.0 / 3.0),
             heightDimension: .fractionalHeight(0.2)
         )
         
@@ -135,8 +135,8 @@ extension ExploreCategoryViewController {
     
     private func createCreatorSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let creatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.3),
-            heightDimension: .fractionalHeight(1.0)
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.2)
         )
         
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
