@@ -97,6 +97,27 @@ final class ExploreUseCaseTests: XCTestCase {
         }
     }
     
+    func test_fetchCreatorsIsCorrectWhenSendCorrectData() throws {
+        // given
+        userInformationRepository.error = nil
+        userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
+        
+        // when
+        let creatorsObservable = exploreUseCase.fetchCreators(by: .IT, startRange: 0, endRange: 2)
+        
+        //then
+        let result = creatorsObservable.toBlocking()
+        
+        XCTAssertEqual(try? result.first()?.count, 3)
+        
+        switch result.materialize() {
+        case .completed:
+            XCTAssertTrue(true)
+        case .failed(_, let error):
+            XCTAssertThrowsError(error, "We expected Completed Event, But Occur Error Event")
+        }
+    }
+    
     ////  RPC를 실행 없이 Repository에서 전달받은 에러를 반환하는지 확인하는 테스트
     func test_fetchRandomCreatorsIsErrorWhenSendCorrectData() throws {
         // given
