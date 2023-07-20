@@ -710,6 +710,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3C1804352A68F3210019DE79 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3CC69A892A65116C0081ACC8 /* CreatorCell.swift */,
+				3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		3C29C8F32A4EAD95002F0037 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -765,6 +774,7 @@
 		3CC69A802A64E6F40081ACC8 /* ExploreScene */ = {
 			isa = PBXGroup;
 			children = (
+				3C1804352A68F3210019DE79 /* Common */,
 				3C18042C2A67B13D0019DE79 /* ExploreMainScene */,
 				3C18042D2A67B14B0019DE79 /* ExploreCategoryScene */,
 			);
@@ -783,9 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC69A812A64E70E0081ACC8 /* ExploreViewController.swift */,
-				3CC69A892A65116C0081ACC8 /* CreatorCell.swift */,
 				3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */,
-				3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
