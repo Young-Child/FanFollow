@@ -13,13 +13,12 @@ final class ProfileSettingViewController: UIViewController {
     // View Properties
     private let profileImageView = UIImageView().then {
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = 50
+        $0.layer.cornerRadius = 75
         $0.contentMode = .scaleAspectFill
         $0.image = UIImage(named: "ExampleProfile")
     }
     
     private let nickNameInput = ProfileInputField(title: "닉네임")
-    private let emailInput = ProfileInputField(title: "이메일")
     
     private let creatorInformationLabel = UILabel().then {
         $0.text = "소개 및 상세 정보는 크리에이터만 수정할 수 있습니다."
@@ -122,6 +121,45 @@ private extension ProfileSettingViewController {
     }
 }
 
+private extension ProfileSettingViewController {
+    func configureImageViewGesture() {
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapImageChangeButton)
+        )
+        
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func didTapImageChangeButton() {
+        let pickerView = UIImagePickerController().then { pickerView in
+            pickerView.sourceType = .photoLibrary
+            pickerView.allowsEditing = true
+            pickerView.delegate = self
+            pickerView.modalPresentationStyle = .currentContext
+        }
+        
+        self.present(pickerView, animated: true)
+    }
+}
+
+extension ProfileSettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        self.dismiss(animated: true) {
+            let image = info[.editedImage] as? UIImage
+            self.profileImageView.image = image
+        }
+    }
+}
+
 // Configure Category Accessory View Configure Method
 private extension ProfileSettingViewController {
     func configureJobCategoryAccessoryView(with pickerView: UIPickerView) -> UIToolbar {
@@ -169,6 +207,7 @@ private extension ProfileSettingViewController {
         configureNavigationBar()
         configureHierarchy()
         configureCategoryPickerView()
+        configureImageViewGesture()
         makeConstraints()
     }
     
@@ -189,7 +228,6 @@ private extension ProfileSettingViewController {
         [
             profileImageView,
             nickNameInput,
-            emailInput,
             creatorInformationLabel,
             jobCategoryInput,
             linkInput,
@@ -201,8 +239,8 @@ private extension ProfileSettingViewController {
         profileImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.width.equalTo(100).priority(.high)
-            $0.height.equalTo(100).priority(.high)
+            $0.width.equalTo(150).priority(.high)
+            $0.height.equalTo(150).priority(.high)
         }
         
         nickNameInput.snp.makeConstraints {
@@ -213,18 +251,10 @@ private extension ProfileSettingViewController {
             $0.height.equalTo(50)
         }
         
-        emailInput.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(nickNameInput.snp.bottom).offset(24)
-            $0.height.equalTo(50)
-        }
-        
         creatorInformationLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(emailInput.snp.bottom).offset(32)
+            $0.top.equalTo(nickNameInput.snp.bottom).offset(32)
         }
         
         jobCategoryInput.snp.makeConstraints {
