@@ -60,7 +60,7 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomAllCreatorsByCategory(count: 10)
+        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomCreatorsByAllCategory(count: 10)
         
         // then
         let result = randomAllCreatorsObservalble.toBlocking()

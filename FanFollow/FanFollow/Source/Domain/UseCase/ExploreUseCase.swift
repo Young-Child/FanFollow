@@ -9,7 +9,7 @@ import RxSwift
 
 protocol ExploreUseCase: AnyObject {
     func fetchRandomCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
-    func fetchRandomAllCreatorsByCategory(count: Int) -> Observable<[(String, [Creator])]>
+    func fetchRandomCreatorsByAllCategory(count: Int) -> Observable<[(String, [Creator])]>
     func fetchPopularCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
 }
 
@@ -33,7 +33,7 @@ final class DefaultExploreUseCase: ExploreUseCase {
         }
     }
     
-    func fetchRandomAllCreatorsByCategory(count: Int) -> Observable<[(String, [Creator])]> {
+    func fetchRandomCreatorsByAllCategory(count: Int) -> Observable<[(String, [Creator])]> {
         let allJobs = JobCategory.allCases
         
         let categoryCreatorsObservables = Observable.from(allJobs)
@@ -61,4 +61,6 @@ final class DefaultExploreUseCase: ExploreUseCase {
             }
         }       
     }
+    
+    
 }

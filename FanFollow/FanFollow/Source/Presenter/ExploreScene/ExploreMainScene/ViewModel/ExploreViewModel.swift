@@ -28,7 +28,7 @@ final class ExploreViewModel: ViewModel {
         // About viewWillAppear Input
         let recommandAllCreators = input.viewWillAppear
             .flatMapLatest {
-                return self.exploreUseCase.fetchRandomAllCreatorsByCategory(count: 20)
+                return self.exploreUseCase.fetchRandomCreatorsByAllCategory(count: 20)
             }
         
         let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
