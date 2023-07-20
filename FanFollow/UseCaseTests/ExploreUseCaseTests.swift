@@ -38,7 +38,7 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(jobCategory: .IT, count: 3)
+        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
         let result = randomCreatorsObservalble.toBlocking()
@@ -60,7 +60,7 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomAllCreators(count: 10)
+        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomAllCreatorsByCategory(count: 10)
         
         // then
         let result = randomAllCreatorsObservalble.toBlocking()
@@ -82,7 +82,7 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchPopularCreators(jobCategory: .IT, count: 1)
+        let randomCreatorsObservalble = exploreUseCase.fetchPopularCreators(by: .IT, count: 1)
         
         // then
         let result = randomCreatorsObservalble.toBlocking()
@@ -104,7 +104,7 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(jobCategory: .IT, count: 3)
+        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
         let result =  randomCreatorsObservalble.toBlocking().materialize()

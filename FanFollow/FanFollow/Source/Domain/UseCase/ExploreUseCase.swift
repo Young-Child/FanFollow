@@ -8,9 +8,9 @@
 import RxSwift
 
 protocol ExploreUseCase: AnyObject {
-    func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
-    func fetchRandomAllCreators(count: Int) -> Observable<[(String, [Creator])]>
-    func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
+    func fetchRandomCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
+    func fetchRandomAllCreatorsByCategory(count: Int) -> Observable<[(String, [Creator])]>
+    func fetchPopularCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
 }
 
 final class DefaultExploreUseCase: ExploreUseCase {
@@ -20,7 +20,7 @@ final class DefaultExploreUseCase: ExploreUseCase {
         self.userInformationRepository = userInformationRepository
     }
     
-    func fetchRandomCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
+    func fetchRandomCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
         let creatorList = userInformationRepository.fetchRandomCreatorInformations(
             jobCategory: jobCategory,
             count: count
@@ -33,12 +33,12 @@ final class DefaultExploreUseCase: ExploreUseCase {
         }
     }
     
-    func fetchRandomAllCreators(count: Int) -> Observable<[(String, [Creator])]> {
+    func fetchRandomAllCreatorsByCategory(count: Int) -> Observable<[(String, [Creator])]> {
         let allJobs = JobCategory.allCases
         
         let categoryCreatorsObservables = Observable.from(allJobs)
             .flatMap { category in
-                return self.fetchRandomCreators(jobCategory: category, count: count)
+                return self.fetchRandomCreators(by: category, count: count)
                     .map { creators in
                         return (category.categoryName, creators)
                     }
@@ -49,7 +49,7 @@ final class DefaultExploreUseCase: ExploreUseCase {
         return categoryCreatorsObservables
     }
     
-    func fetchPopularCreators(jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
+    func fetchPopularCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]> {
         let creatorList = userInformationRepository.fetchPopularCreatorInformations(
             jobCategory: jobCategory,
             count: count

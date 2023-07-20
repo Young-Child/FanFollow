@@ -29,7 +29,7 @@ final class ExploreCategoryViewModel: ViewModel {
         // About PopularCreator By Category
         let popularCreatorsByJob = input.viewWillAppear
             .flatMapLatest {
-                return self.exploreUseCase.fetchPopularCreators(jobCategory: self.jobCategory, count: 20)
+                return self.exploreUseCase.fetchPopularCreators(by: self.jobCategory, count: 20)
             }
         let popularSectionModel = convertCreatorSectionModel(
             type: .popular(job: self.jobCategory.categoryName),
@@ -39,7 +39,7 @@ final class ExploreCategoryViewModel: ViewModel {
         // About AllCreator By Category
         let allCreatorsByJob = input.viewWillAppear
             .flatMapLatest {
-                return self.exploreUseCase.fetchRandomCreators(jobCategory: self.jobCategory, count: 10)
+                return self.exploreUseCase.fetchRandomCreators(by: self.jobCategory, count: 10)
             }
         
         let creatorSectionModel = convertCreatorSectionModel(
