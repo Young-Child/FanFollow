@@ -30,6 +30,17 @@ final class ProfileSettingViewController: UIViewController {
     private let linkInput = ProfileInputField(title: "링크")
     private let introduceInput = ProfileInputField(title: "소개")
     
+    private var viewModel: ProfileSettingViewModel
+    
+    init(viewModel: ProfileSettingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +52,29 @@ final class ProfileSettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+}
+
+// Binding Method
+private extension ProfileSettingViewController {
+    func binding() {
+        let output = transformInput()
+        bindingOutput(to: output)
+    }
+    
+    func transformInput() -> ProfileSettingViewModel.Output {
+        let viewWillAppear = rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable()
+        
+        
+        let input = ProfileSettingViewModel.Input(
+            viewWillAppear: viewWillAppear
+        )
+        
+        return viewModel.transform(input: input)
+    }
+    
+    func bindingOutput(to output: ProfileSettingViewModel.Output) {
+        
     }
 }
 

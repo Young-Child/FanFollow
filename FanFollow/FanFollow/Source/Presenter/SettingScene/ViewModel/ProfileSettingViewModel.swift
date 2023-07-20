@@ -9,7 +9,6 @@ import RxSwift
 final class ProfileSettingViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
-        var updateUser: Observable<>
     }
     
     struct Output {
