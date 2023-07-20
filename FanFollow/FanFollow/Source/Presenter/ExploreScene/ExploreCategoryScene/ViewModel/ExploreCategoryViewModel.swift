@@ -10,6 +10,7 @@ import RxSwift
 final class ExploreCategoryViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
+        var viewDidScroll: Observable<Void>
     }
     
     struct Output {
@@ -27,29 +28,40 @@ final class ExploreCategoryViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         // About PopularCreator By Category
-        let popularCreatorsByJob = input.viewWillAppear
+        let popularCreators = input.viewWillAppear
             .flatMapLatest {
                 return self.exploreUseCase.fetchPopularCreators(by: self.jobCategory, count: 20)
             }
+        
         let popularSectionModel = convertCreatorSectionModel(
             type: .popular(job: self.jobCategory.categoryName),
-            from: popularCreatorsByJob
+            from: popularCreators
         )
         
         // About AllCreator By Category
-        let allCreatorsByJob = input.viewWillAppear
+        let creators = input.viewWillAppear
             .flatMapLatest {
-                return self.exploreUseCase.fetchRandomCreators(by: self.jobCategory, count: 10)
+                return self.exploreUseCase.fetchCreators(by: self.jobCategory, startRange: 0, endRange: 3)
             }
         
         let creatorSectionModel = convertCreatorSectionModel(
             type: .creator(job: self.jobCategory.categoryName),
-            from: allCreatorsByJob
+            from: creators
         )
         
-        return Output(
-            categoryCreatorSectionModel: Observable.concat(popularSectionModel, creatorSectionModel)
-        )
+        let exploreSectionModel = Observable.combineLatest(
+            popularSectionModel, creatorSectionModel
+        ) { popular, creator in
+            return popular + creator
+        }
+        
+        input.viewDidScroll
+            .subscribe(onNext: { _ in
+                print("SCROLL")
+            })
+            .disposed(by: disposeBag)
+        
+        return Output(categoryCreatorSectionModel: exploreSectionModel)
     }
 }
 

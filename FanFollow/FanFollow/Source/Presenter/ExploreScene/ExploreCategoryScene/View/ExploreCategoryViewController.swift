@@ -70,7 +70,13 @@ extension ExploreCategoryViewController {
             .map { _ in }
             .asObservable()
         
-        let input = ExploreCategoryViewModel.Input(viewWillAppear: viewWillAppearEvent)
+        let viewDidScrollEvent = exploreCategoryCollectionView.rx.didScroll
+            .asObservable()
+                
+        let input = ExploreCategoryViewModel.Input(
+            viewWillAppear: viewWillAppearEvent,
+            viewDidScroll: viewDidScrollEvent
+        )
         
         return viewModel.transform(input: input)
     }
@@ -130,7 +136,7 @@ extension ExploreCategoryViewController {
     private func createCreatorSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let creatorGroupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.3),
-            heightDimension: .fractionalHeight(0.2)
+            heightDimension: .fractionalHeight(1.0)
         )
         
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
