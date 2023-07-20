@@ -43,8 +43,8 @@ extension SettingSectionModel: AnimatableSectionModelType {
             return title
         case .customerService(let title, _):
             return title
-        case .profile(let title, _):
-            return title
+        case .profile(_, let items):
+            return items.map(\.identity).joined(separator: "_")
         case .registerCreator(let title, _):
             return title
         }
