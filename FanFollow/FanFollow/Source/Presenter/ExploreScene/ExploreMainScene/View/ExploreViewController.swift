@@ -99,6 +99,8 @@ extension ExploreViewController {
                 cell.configureCell(nickName: nickName, userID: userID)
                 
                 return cell
+            default:
+                fatalError()
             }
         } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
             switch kind {
