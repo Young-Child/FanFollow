@@ -11,6 +11,7 @@ protocol ExploreUseCase: AnyObject {
     func fetchRandomCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
     func fetchRandomCreatorsByAllCategory(count: Int) -> Observable<[(String, [Creator])]>
     func fetchPopularCreators(by jobCategory: JobCategory, count: Int) -> Observable<[Creator]>
+    func fetchCreators(by jobCategory: JobCategory, startRange: Int, endRange: Int) -> Observable<[Creator]>
 }
 
 final class DefaultExploreUseCase: ExploreUseCase {
@@ -62,5 +63,18 @@ final class DefaultExploreUseCase: ExploreUseCase {
         }       
     }
     
-    
+    func fetchCreators(by jobCategory: JobCategory, startRange: Int, endRange: Int) -> Observable<[Creator]> {
+        let creatorList = userInformationRepository.fetchCreatorInformations(
+            jobCategory: jobCategory.rawValue,
+            nickName: nil,
+            startRange: startRange,
+            endRange: endRange
+        )
+        
+        return creatorList.map { userInformationDTOList in
+            userInformationDTOList.map { userInformationDTO in
+                return Creator(userInformationDTO)
+            }
+        }
+    }
 }
