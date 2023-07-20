@@ -71,13 +71,13 @@ extension ExploreViewController {
             .map { _ in }
             .asObservable()
         
-        let collectionViewTouchEvent = exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
+        let cellSelectEvent = exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asObservable()
         
         let input = ExploreViewModel.Input(
             viewWillAppear: viewWillAppearEvent,
-            viewByJopCategory: collectionViewTouchEvent
+            cellDidSelected: cellSelectEvent
         )
         
         return viewModel.transform(input: input)

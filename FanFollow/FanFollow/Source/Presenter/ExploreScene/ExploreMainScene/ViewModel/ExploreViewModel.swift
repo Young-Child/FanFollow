@@ -10,7 +10,7 @@ import RxSwift
 final class ExploreViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
-        var viewByJopCategory: Observable<ExploreSectionItem>
+        var cellDidSelected: Observable<ExploreSectionItem>
     }
     
     struct Output {
@@ -44,7 +44,7 @@ final class ExploreViewModel: ViewModel {
         }
         
         // About viewByJopCategory Input
-        input.viewByJopCategory
+        input.cellDidSelected
             .subscribe { sectionItem in
                 switch sectionItem.element {
                 case .category(let job):
