@@ -18,6 +18,5 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
     }
     
     func updateUserInformation() -> Observable<Void> {
-        <#code#>
     }
 }

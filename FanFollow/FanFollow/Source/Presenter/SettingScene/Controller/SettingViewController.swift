@@ -137,7 +137,19 @@ extension SettingViewController: UITableViewDelegate {
 
 private extension SettingViewController {
     func presentProfileSettingController() {
-        let controller = ProfileSettingViewController()
+        let userInformationRepository = DefaultUserInformationRepository(
+            DefaultNetworkService()
+        )
+        let viewModel = ProfileSettingViewModel(
+            userID: "a0728b90-0172-4552-9b31-1f3cab84900b",
+            fetchUseCase: DefaultFetchUserInformationUseCase(
+                userInformationRepository: userInformationRepository
+            ),
+            updateUseCase: DefaultUpdateUserInformationUseCase(
+                userInformationRepository: userInformationRepository
+            )
+        )
+        let controller = ProfileSettingViewController(viewModel: viewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
