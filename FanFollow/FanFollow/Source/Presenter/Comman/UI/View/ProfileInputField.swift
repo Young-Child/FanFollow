@@ -27,12 +27,18 @@ final class ProfileInputField: UIStackView {
     }
     
     private var disposeBag = DisposeBag()
+    override var isUserInteractionEnabled: Bool {
+        willSet {
+            if newValue == false {
+                self.titleLabel.textColor = .systemGray5
+            }
+        }
+    }
     
     init(title: String) {
         self.titleLabel.text = title
         super.init(frame: .zero)
         
-        configureAttributes()
         configureUI()
     }
     
@@ -50,6 +56,7 @@ extension ProfileInputField {
 
 private extension ProfileInputField {
     func configureUI() {
+        configureAttributes()
         configureHierarchy()
     }
     
