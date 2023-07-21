@@ -52,7 +52,7 @@ final class ExploreCategoryViewModel: ViewModel {
                 return self.exploreUseCase.fetchCreators(
                     by: self.jobCategory,
                     startRange: self.creatorList.value.items.count,
-                    endRange: self.creatorList.value.items.count + 3
+                    endRange: self.creatorList.value.items.count + 10
                 )
             }
             .map {
