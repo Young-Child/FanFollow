@@ -46,7 +46,7 @@ extension Post {
     var formattedCreatedDate: String? {
         guard let createdDate else { return nil }
         let dateFormatter = DateFormatter().then { dateFormatter in
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = "yyyy.MM.dd"
         }
         return dateFormatter.string(from: createdDate)
     }
