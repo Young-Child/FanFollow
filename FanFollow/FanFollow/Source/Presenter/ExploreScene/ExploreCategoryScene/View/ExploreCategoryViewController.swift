@@ -96,7 +96,7 @@ extension ExploreCategoryViewController {
     static func dataSource() -> ExploreCategoryDataSource {
         let dataSource = ExploreCategoryDataSource { dataSource, collectionView, indexPath, item in
             switch item {
-            case .popular(let nickName, let userID), .creator(let nickName, let userID):
+            case .creator(let nickName, let userID):
                 let cell: CreatorCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID)
                 
@@ -127,7 +127,7 @@ extension ExploreCategoryViewController {
 extension ExploreCategoryViewController {
     private func createPopularSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let popularCreatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 4.0),
+            widthDimension: .fractionalWidth(1.0 / 3.0),
             heightDimension: .fractionalHeight(0.2)
         )
         

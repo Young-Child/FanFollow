@@ -62,20 +62,20 @@ final class ExploreCategoryViewModel: ViewModel {
                 )
             }
             .map { datas in
-                let oldValue = self.creatorList.value.items
-                let newValue = datas.items
+                let prevSectionItem = self.creatorList.value.items
+                let newSectionItem = datas.items
                 
                 // Pagination
                 let newSectionModel = ExploreSectionModel(
                     title: datas.title,
-                    items: oldValue + newValue
+                    items: prevSectionItem + newSectionItem
                 )
                 self.creatorList.accept(newSectionModel)
                 
                 return newSectionModel
             }
             
-        // Target/ 페이지네이션할때는 creatorSectionModel만 더 받아오기
+        // Target
         let exploreCategorySectionModel = Observable.combineLatest(popularSectionModel, creatorSectionModel) {
             popular, creator in
             
@@ -103,20 +103,10 @@ private extension ExploreCategoryViewModel {
     }
     
     func convertCreatorSectionModel(type: Constant, creators: [Creator]) -> ExploreSectionModel {
-        switch type {
-        case .popular(let job):
-            let items = creators.map { creator in
-                return ExploreSectionItem.popular(nickName: creator.nickName, userID: creator.id)
-            }
-            
-            return ExploreSectionModel(title: Constant.popular(job: job).title, items: items)
-            
-        case .creator(let job):
-            let items = creators.map {
-                return ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
-            }
-            
-            return ExploreSectionModel(title: Constant.creator(job: job).title, items: items)
+        let items = creators.map { creator in
+            return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id)
         }
+        
+        return ExploreSectionModel(title: type.title, items: items)
     }
 }
