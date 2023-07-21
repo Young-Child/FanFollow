@@ -36,8 +36,7 @@ final class PostCell: UITableViewCell {
     private let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
         label.textColor = Constants.creatorNickNameLabelTextColor
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
-        label.adjustsFontForContentSizeCategory = true
+        label.font = .systemFont(ofSize: 17, weight: .regular)
     }
 
     let creatorUnderLineView = UIView().then { view in
@@ -46,8 +45,7 @@ final class PostCell: UITableViewCell {
 
     private let titleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.adjustsFontForContentSizeCategory = true
+        label.font = .systemFont(ofSize: 20, weight: .bold)
     }
 
     private let postContentView = UIView()
@@ -80,8 +78,7 @@ final class PostCell: UITableViewCell {
 
     private let contentLabel = UILabel().then { label in
         label.numberOfLines = Constants.unexpandedNumberOfLines
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
+        label.font = .systemFont(ofSize: 16, weight: .regular)
     }
 
     let contentUnderLineView = UIView().then { view in
@@ -99,14 +96,12 @@ final class PostCell: UITableViewCell {
 
     private let likeCountLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
+        label.font = .systemFont(ofSize: 16, weight: .regular)
     }
 
     private let createdDateLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
     }
 
