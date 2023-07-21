@@ -7,13 +7,12 @@
 
 import RxSwift
 import RxRelay
-import RxCocoa
 
 final class FeedViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
         var refresh: Observable<Void>
-        var lastCellDisplayed: Observable<Bool>
+        var lastCellDisplayed: Observable<Void>
         var likeButtonTap: Observable<String>
     }
 
@@ -26,9 +25,9 @@ final class FeedViewModel: ViewModel {
     private let changeLikeUseCase: ChangeLikeUseCase
     private let followerID: String
     private let pageSize = 10
-    private var isLoading = BehaviorRelay(value: false)
 
     private let posts = BehaviorRelay<[Post]>(value: [])
+    private let reachedLastPost = BehaviorRelay(value: false)
 
     init(fetchFeedUseCase: FetchFeedUseCase, changeLikeUseCase: ChangeLikeUseCase, followerID: String) {
         self.fetchFeedUseCase = fetchFeedUseCase
@@ -37,71 +36,70 @@ final class FeedViewModel: ViewModel {
     }
 
     func transform(input: Input) -> Output {
-        let newItems = Observable.merge(input.viewWillAppear, input.refresh)
-            .debug()
-            .flatMapLatest { [weak self] _ in
-                guard let self else { return Observable<[Post]>.empty() }
-                return self.fetchPosts(startIndex: 0)
-            }.do { [weak self] newPosts in
-                guard let self else { return }
+        let fetchedNewPosts = Observable.merge(input.viewWillAppear, input.refresh)
+            .withUnretained(self)
+            .flatMapFirst { _ in self.fetchPosts(startIndex: 0) }
+            .do { fetchedPosts in
+                let reachedLastPosts = fetchedPosts.count < self.pageSize
+                self.reachedLastPost.accept(reachedLastPosts)
+
+                self.posts.accept(fetchedPosts)
+            }
+
+        let fetchedMorePosts = input.lastCellDisplayed
+            .withUnretained(self)
+            .flatMapFirst { _ -> Observable<[Post]> in
+                let reachedLastPost = self.reachedLastPost.value
+                return reachedLastPost ? .empty() : self.fetchPosts(startIndex: self.posts.value.count)
+            }
+            .flatMap { fetchedPosts -> Observable<[Post]> in
+                guard fetchedPosts.isEmpty == false else {
+                    self.reachedLastPost.accept(true)
+                    return .empty()
+                }
+
+                let reachedLastPosts = fetchedPosts.count < self.pageSize
+                self.reachedLastPost.accept(reachedLastPosts)
+
+                let newPosts = self.posts.value + fetchedPosts
                 self.posts.accept(newPosts)
+                return .just(newPosts)
             }
 
-        let newItems2 = Observable.combineLatest(
-            isLoading.asObservable(),
-            input.lastCellDisplayed
-        ) { isLoading, lastCellDisplayed in
-            return isLoading == false && lastCellDisplayed == true
-        }
-            .flatMapLatest { [weak self] _ in
-                guard let self else { return Observable<[Post]>.empty() }
-                return self.fetchPosts(startIndex: self.posts.value.count)
+        let updatedPosts = input.likeButtonTap
+            .withUnretained(self)
+            .flatMapFirst { _, postID in self.toggleLike(postID: postID) }
+            .flatMap { postID, isLiked, likeCount in
+                self.updatedPosts(postID: postID, isLiked: isLiked, likeCount: likeCount)
             }
-            .map({ [weak self] newPosts in
-                guard let self else { return [] }
-                return newPosts + self.posts.value
-            })
+            .do { updatedPosts in self.posts.accept(updatedPosts) }
 
-        let items = Observable.merge(newItems, newItems2)
+        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
 
-        input.likeButtonTap
-            .flatMapLatest { [weak self] postID in
-                guard let self else { return Observable<(String, Bool, Int)>.empty() }
-                return self.toggleLike(postID: postID)
-            }
-            .subscribe { [weak self] postID, isLiked, likeCount in
-                guard let self else { return }
-                self.updateLikeInfoInPosts(postID: postID, isLiked: isLiked, likeCount: likeCount)
-            }
-            .disposed(by: disposeBag)
-
-        return Output(posts: items)
+        return Output(posts: posts)
     }
 
     private func fetchPosts(startIndex: Int) -> Observable<[Post]> {
         let endRange = startIndex + pageSize - 1
         return fetchFeedUseCase.fetchFollowPosts(followerID: followerID, startRange: startIndex, endRange: endRange)
-            .do { [weak self] _ in
-                self?.isLoading.accept(false)
-            }
     }
 
     private func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
         return changeLikeUseCase.togglePostLike(postID: postID, userID: followerID)
             .andThen(Observable.zip(
-                    changeLikeUseCase.checkPostLiked(by: followerID, postID: postID),
-                    changeLikeUseCase.fetchPostLikeCount(postID: postID)
+                changeLikeUseCase.checkPostLiked(by: followerID, postID: postID),
+                changeLikeUseCase.fetchPostLikeCount(postID: postID)
             ))
             .map { (isLiked, likeCount) in
                 return (postID, isLiked, likeCount)
             }
     }
 
-    private func updateLikeInfoInPosts(postID: String, isLiked: Bool, likeCount: Int) {
+    private func updatedPosts(postID: String, isLiked: Bool, likeCount: Int) -> Observable<[Post]> {
         var posts = self.posts.value
-        guard let index = posts.firstIndex(where: { $0.postID == postID }) else { return }
+        guard let index = posts.firstIndex(where: { $0.postID == postID }) else { return .empty() }
         posts[index].isLiked = isLiked
         posts[index].likeCount = likeCount
-        self.posts.accept(posts)
+        return .just(posts)
     }
 }
