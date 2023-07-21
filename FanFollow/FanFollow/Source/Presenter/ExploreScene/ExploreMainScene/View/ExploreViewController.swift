@@ -75,6 +75,31 @@ extension ExploreViewController {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asObservable()
         
+        // MARK: - 임시 View 이동 구현
+        cellSelectEvent
+            .subscribe { data in
+                switch data.element {
+                case .category(let job):
+                    let viewController = ExploreCategoryViewController(
+                        viewModel: ExploreCategoryViewModel(
+                            exploreUseCase: DefaultExploreUseCase(
+                                userInformationRepository: DefaultUserInformationRepository(
+                                    DefaultNetworkService()
+                                )
+                            ),
+                            jobCategory: job
+                        )
+                    )
+                    
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+
+        
+        
         let input = ExploreViewModel.Input(
             viewWillAppear: viewWillAppearEvent,
             cellDidSelected: cellSelectEvent
