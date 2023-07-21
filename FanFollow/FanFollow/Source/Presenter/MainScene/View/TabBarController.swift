@@ -76,6 +76,10 @@ private extension TabBarController {
                 let controller = SettingTabBarController()
                 controller.tabBarItem = tabBarItem
                 return controller
+            case .explore:
+                let controller = ExploreTabBarController()
+                controller.tabBarItem = tabBarItem
+                return controller
             default:
                 let rootViewController = UIViewController()
                 rootViewController.title = name
