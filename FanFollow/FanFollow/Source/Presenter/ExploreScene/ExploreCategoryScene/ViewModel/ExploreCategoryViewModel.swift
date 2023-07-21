@@ -34,49 +34,52 @@ final class ExploreCategoryViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        // About PopularCreator By Category
-        let popularCreators = input.viewWillAppear
+        // PopularCreator By Category
+        let popularSectionModel = input.viewWillAppear
             .flatMapLatest {
                 return self.exploreUseCase.fetchPopularCreators(by: self.jobCategory, count: 20)
             }
-        
-        let popularSectionModel = convertCreatorSectionModel(
-            type: .popular(job: self.jobCategory.categoryName),
-            from: popularCreators
-        )
-        
-        // About AllCreator By Category
-        let creatorsList = Observable.merge(input.viewWillAppear, input.viewDidScroll)
-            .flatMapLatest {
-                return self.exploreUseCase.fetchCreators(
-                    by: self.jobCategory,
-                    startRange: 0,
-                    endRange: self.creatorList.value.items.count + 3
+            .map {
+                self.convertCreatorSectionModel(
+                    type: .popular(job: self.jobCategory.categoryName),
+                    creators: $0
                 )
             }
         
-        let creatorSectionModel = convertCreatorSectionModel(
-            type: .creator(job: self.jobCategory.categoryName),
-            from: creatorsList
-        )
-        .map { datas in
-            let oldValue = self.creatorList.value.items
-            let newValue = datas.first?.items ?? []
-            
-            let newSectionModel = ExploreSectionModel(
-                title: datas.first?.title ?? "" ,
-                items: oldValue + newValue
-            )
-            self.creatorList.accept(newSectionModel)
-            
-            return newSectionModel
-        }
+        // AllCreator By Category
+        let creatorSectionModel = Observable.merge(input.viewWillAppear, input.viewDidScroll)
+            .flatMapLatest {
+                return self.exploreUseCase.fetchCreators(
+                    by: self.jobCategory,
+                    startRange: self.creatorList.value.items.count,
+                    endRange: self.creatorList.value.items.count + 3
+                )
+            }
+            .map {
+                self.convertCreatorSectionModel(
+                    type: .creator(job: self.jobCategory.categoryName),
+                    creators: $0
+                )
+            }
+            .map { datas in
+                let oldValue = self.creatorList.value.items
+                let newValue = datas.items
+                
+                // Pagination
+                let newSectionModel = ExploreSectionModel(
+                    title: datas.title,
+                    items: oldValue + newValue
+                )
+                self.creatorList.accept(newSectionModel)
+                
+                return newSectionModel
+            }
             
         // Target/ 페이지네이션할때는 creatorSectionModel만 더 받아오기
         let exploreCategorySectionModel = Observable.combineLatest(popularSectionModel, creatorSectionModel) {
             popular, creator in
             
-            return popular + [creator]
+            return [popular, creator]
         }
         
         return Output(categoryCreatorSectionModel: exploreCategorySectionModel)
@@ -99,27 +102,21 @@ private extension ExploreCategoryViewModel {
         }
     }
     
-    func convertCreatorSectionModel(
-        type: Constant,
-        from observable: Observable<[Creator]>
-    ) -> Observable<[ExploreSectionModel]> {
+    func convertCreatorSectionModel(type: Constant, creators: [Creator]) -> ExploreSectionModel {
         switch type {
         case .popular(let job):
-            return observable.map { datas in
-                let sectionItem = datas.map { creator in
-                    return ExploreSectionItem.popular(nickName: creator.nickName, userID: creator.id)
-                }
-                
-                return [ExploreSectionModel(title: Constant.popular(job: job).title, items: sectionItem)]
+            let items = creators.map { creator in
+                return ExploreSectionItem.popular(nickName: creator.nickName, userID: creator.id)
             }
+            
+            return ExploreSectionModel(title: Constant.popular(job: job).title, items: items)
+            
         case .creator(let job):
-            return observable.map { datas in
-                let sectionItem = datas.map { creator in
-                    return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id)
-                }
-                
-                return [ExploreSectionModel(title: Constant.creator(job: job).title, items: sectionItem)]
+            let items = creators.map {
+                return ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
             }
+            
+            return ExploreSectionModel(title: Constant.creator(job: job).title, items: items)
         }
     }
 }
