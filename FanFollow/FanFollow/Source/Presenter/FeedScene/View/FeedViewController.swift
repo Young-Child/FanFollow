@@ -11,107 +11,145 @@ import RxRelay
 import RxCocoa
 
 final class FeedViewController: UIViewController {
-
+    // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
+        tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .systemGray6
         tableView.register(PostCell.self, forCellReuseIdentifier: "Cell")
     }
     private let refreshControl = UIRefreshControl()
-    private let disposeBag = DisposeBag()
-    private let viewModel = FeedViewModel(fetchFeedUseCase: DefaultFetchFeedUseCase(postRepository: DefaultPostRepository(networkService: DefaultNetworkService())), changeLikeUseCase: DefaultChangeLikeUseCase(likeRepository: DefaultLikeRepository(networkService: DefaultNetworkService())), followerID: "5b587434-438c-49d8-ae3c-88bb27a891d4")
-    private let reachedBottom = PublishSubject<Void>()
 
+    // Properties
+    private let disposeBag = DisposeBag()
+    private let viewModel: FeedViewModel
+    private let likeButtonTap = PublishRelay<String>()
+    private let lastCellDisplayed = BehaviorRelay(value: false)
+    private var tableViewLastContentOffset = CGFloat(0)
+
+    // Initializer
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.refreshControl = refreshControl
-        tableView.delegate = self
 
-        let lastCellDisplayed = tableView.rx.contentOffset
-            .map { [weak self] offset in
-                guard let self else { return false }
-                return offset.y + self.tableView.frame.size.height > self.tableView.contentSize.height
-            }
+        configureUI()
+        binding()
+    }
+}
 
-        let input = FeedViewModel.Input(
-            viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
-            refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
-            lastCellDisplayed: lastCellDisplayed,
-            likeButtonTap: Observable.just("")
-        )
-
+// Binding Method
+private extension FeedViewController {
+    func binding() {
+        let input = input()
         let output = viewModel.transform(input: input)
-        output.posts.observe(on: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.refreshControl.endRefreshing()
-            })
-            .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { _, post, cell in
-                cell.configure(with: post)
+        bindTableView(output)
+    }
+
+    func input() -> FeedViewModel.Input {
+        tableView.rx.didScroll
+            .withUnretained(self)
+            .subscribe { _ in
+                guard self.lastCellDisplayed.value == false else { return }
+                let offsetY = self.tableView.contentOffset.y
+                let contentHeight = self.tableView.contentSize.height
+                let lastCellDisplayed = offsetY > (contentHeight - self.tableView.frame.size.height)
+                if lastCellDisplayed {
+                    self.lastCellDisplayed.accept(true)
+                }
             }
             .disposed(by: disposeBag)
 
+        return FeedViewModel.Input(
+            viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
+            lastCellDisplayed: lastCellDisplayed.asObservable().filter { $0 == true }.map { _ in },
+            likeButtonTap: likeButtonTap.asObservable()
+        )
+    }
+
+    func bindTableView(_ output: FeedViewModel.Output) {
+        output.posts.observe(on: MainScheduler.instance)
+            .do { [weak self] newPosts in
+                guard let self else { return }
+                self.refreshControl.endRefreshing()
+                self.lastCellDisplayed.accept(false)
+            }
+            .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { _, post, cell in
+                cell.configure(with: post, delegate: self)
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+// UITableViewDelegate
+extension FeedViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollUp = tableViewLastContentOffset > scrollView.contentOffset.y
+        let scrollDown = tableViewLastContentOffset < scrollView.contentOffset.y && tableViewLastContentOffset > 0
+        if scrollUp {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        } else if scrollDown {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+        tableViewLastContentOffset = scrollView.contentOffset.y
+    }
+}
+
+// PostCellDelegate
+extension FeedViewController: PostCellDelegate {
+    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
+        tableView.performBatchUpdates(updates)
+    }
+
+    func likeButtonTap(postID: String) {
+        likeButtonTap.accept(postID)
+    }
+}
+
+// Configure UI
+private extension FeedViewController {
+    func configureUI() {
+        configureHierarchy()
+        configureConstraints()
+        configureNavigationItem()
+        configureTableView()
+    }
+
+    func configureHierarchy() {
+        view.addSubview(tableView)
+    }
+
+    func configureConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
-}
 
-extension FeedViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-
-/*
-final class FeedViewController: UIViewController {
-
-    private var collectionView: UICollectionView?
-    private let refreshControl = UIRefreshControl()
-    private let disposeBag = DisposeBag()
-    private let viewModel = FeedViewModel(fetchFeedUseCase: DefaultFetchFeedUseCase(postRepository: DefaultPostRepository(networkService: DefaultNetworkService())), changeLikeUseCase: DefaultChangeLikeUseCase(likeRepository: DefaultLikeRepository(networkService: DefaultNetworkService())), followerID: "5b587434-438c-49d8-ae3c-88bb27a891d4")
-    private let reachedBottom = PublishSubject<Void>()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(600))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(600))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        let collectionView = UICollectionView(
-            frame: view.bounds, collectionViewLayout: layout
-        ).then { collectionView in
-            collectionView.refreshControl = refreshControl
-            collectionView.backgroundColor = .systemBackground
-            collectionView.register(PostCell.self, forCellWithReuseIdentifier: "Cell")
-        }
-        view.addSubview(collectionView)
-        self.collectionView = collectionView
-
-        let input = FeedViewModel.Input(
-            viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
-            refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
-            lastCellDisplayed: Observable.just(()),
-            likeButtonTap: Observable.just("")
-        )
-
-        let output = viewModel.transform(input: input)
-        output.posts
-            .do(onNext: { [weak self] _ in
+    func configureNavigationItem() {
+        let image = UIImage(named: "FeedTopAppImage")
+        let barButtonItem = UIBarButtonItem(
+            image: image,
+            primaryAction: UIAction(handler: { [weak self] _ in
                 guard let self else { return }
-                self.refreshControl.endRefreshing()
+                let contentOffset = CGPoint(x: 0, y: -self.tableView.safeAreaInsets.top)
+                self.tableView.setContentOffset(contentOffset, animated: true)
             })
-            .drive(collectionView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { index, post, cell in
-                cell.configure(with: post)
-            }
-            .disposed(by: disposeBag)
+        )
+        navigationItem.leftBarButtonItem = barButtonItem
+    }
+
+    func configureTableView() {
+        tableView.refreshControl = refreshControl
+        tableView.delegate = self
+        tableViewLastContentOffset = tableView.contentOffset.y
     }
 }
-*/
