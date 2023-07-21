@@ -49,6 +49,12 @@ final class ExploreViewController: UIViewController {
         configureUI()
         binding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
 }
 
 // Binding
@@ -124,8 +130,6 @@ extension ExploreViewController {
                 cell.configureCell(nickName: nickName, userID: userID)
                 
                 return cell
-            default:
-                fatalError()
             }
         } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
             switch kind {
