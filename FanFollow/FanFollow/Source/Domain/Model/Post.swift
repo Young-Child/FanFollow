@@ -5,7 +5,7 @@
 //  Created by junho lee on 2023/07/11.
 //
 
-import UIKit
+import Foundation
 
 struct Post {
     let postID: String?
@@ -14,11 +14,9 @@ struct Post {
     let title: String
     let content: String
     let imageURLs: [String]?
-    var images: [UIImage]?
     let videoURL: String?
     let nickName: String?
     let profilePath: String?
-    var profileImage: UIImage?
     var isLiked: Bool
     var likeCount: Int
 
