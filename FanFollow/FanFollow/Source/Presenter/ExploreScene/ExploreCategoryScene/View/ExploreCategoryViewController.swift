@@ -71,6 +71,15 @@ extension ExploreCategoryViewController {
             .asObservable()
         
         let viewDidScrollEvent = exploreCategoryCollectionView.rx.didScroll
+            .flatMap{ _ in
+                let collectionViewContentSizeY = self.exploreCategoryCollectionView.contentSize.height
+                let contentOffsetY = self.exploreCategoryCollectionView.contentOffset.y
+                let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
+                let frameHeight = self.exploreCategoryCollectionView.frame.size.height
+                
+                return heightRemainBottomHeight < frameHeight ?
+                Observable<Void>.just(()) : Observable<Void>.empty()
+            }
             .asObservable()
                 
         let input = ExploreCategoryViewModel.Input(
@@ -118,7 +127,7 @@ extension ExploreCategoryViewController {
 extension ExploreCategoryViewController {
     private func createPopularSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let popularCreatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 3.0),
+            widthDimension: .fractionalWidth(1.0 / 4.0),
             heightDimension: .fractionalHeight(0.2)
         )
         
@@ -142,7 +151,7 @@ extension ExploreCategoryViewController {
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: creatorGroupSize,
             subitem: item,
-            count: 3
+            count: 4
         )
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)

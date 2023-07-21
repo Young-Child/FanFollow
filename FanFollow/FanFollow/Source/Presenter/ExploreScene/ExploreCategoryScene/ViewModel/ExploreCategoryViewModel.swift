@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 final class ExploreCategoryViewModel: ViewModel {
     struct Input {
@@ -20,6 +21,12 @@ final class ExploreCategoryViewModel: ViewModel {
     var disposeBag = DisposeBag()
     private let exploreUseCase: ExploreUseCase
     private let jobCategory: JobCategory
+    
+    // Pagination Properties
+    private let creatorList = BehaviorRelay<ExploreSectionModel>(
+        value: ExploreSectionModel(title: "", items: [])
+    )
+    private var currentPage = 1
     
     init(exploreUseCase: ExploreUseCase, jobCategory: JobCategory) {
         self.exploreUseCase = exploreUseCase
@@ -39,29 +46,40 @@ final class ExploreCategoryViewModel: ViewModel {
         )
         
         // About AllCreator By Category
-        let creators = input.viewWillAppear
+        let creatorsList = Observable.merge(input.viewWillAppear, input.viewDidScroll)
             .flatMapLatest {
-                return self.exploreUseCase.fetchCreators(by: self.jobCategory, startRange: 0, endRange: 3)
+                return self.exploreUseCase.fetchCreators(
+                    by: self.jobCategory,
+                    startRange: 0,
+                    endRange: self.creatorList.value.items.count + 3
+                )
             }
         
         let creatorSectionModel = convertCreatorSectionModel(
             type: .creator(job: self.jobCategory.categoryName),
-            from: creators
+            from: creatorsList
         )
-        
-        let exploreSectionModel = Observable.combineLatest(
-            popularSectionModel, creatorSectionModel
-        ) { popular, creator in
-            return popular + creator
+        .map { datas in
+            let oldValue = self.creatorList.value.items
+            let newValue = datas.first?.items ?? []
+            
+            let newSectionModel = ExploreSectionModel(
+                title: datas.first?.title ?? "" ,
+                items: oldValue + newValue
+            )
+            self.creatorList.accept(newSectionModel)
+            
+            return newSectionModel
+        }
+            
+        // Target/ 페이지네이션할때는 creatorSectionModel만 더 받아오기
+        let exploreCategorySectionModel = Observable.combineLatest(popularSectionModel, creatorSectionModel) {
+            popular, creator in
+            
+            return popular + [creator]
         }
         
-        input.viewDidScroll
-            .subscribe(onNext: { _ in
-                print("SCROLL")
-            })
-            .disposed(by: disposeBag)
-        
-        return Output(categoryCreatorSectionModel: exploreSectionModel)
+        return Output(categoryCreatorSectionModel: exploreCategorySectionModel)
     }
 }
 
