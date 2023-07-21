@@ -28,6 +28,27 @@ extension UIImageView {
         
         setImage(to: imageURL, failureImage: failureImage, round: round)
     }
+
+    func setImageKF(
+        to url: String,
+        onSuccess: ((UIImageView) -> Void)? = nil,
+        onFailure: ((UIImageView) -> Void)? = nil
+    ) {
+        guard let url = URL(string: url) else {
+            onFailure?(self)
+            return
+        }
+        KingfisherManager.shared.retrieveImage(with: url) { result in
+            switch result {
+            case .success(let value):
+                self.image = value.image
+                onSuccess?(self)
+            case .failure:
+                onFailure?(self)
+            }
+        }
+    }
+
     private func setImage(to url: URL, failureImage: UIImage, round: RoundCase) {
         var options = KingfisherOptionsInfo()
         
