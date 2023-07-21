@@ -127,6 +127,7 @@ final class PostCell: UITableViewCell {
         super.prepareForReuse()
         contentLabel.numberOfLines = Constants.unexpandedNumberOfLines
         imagesStackView.arrangedSubviews.forEach { view in view.isHidden = true }
+        if videoWebView.isLoading { videoWebView.stopLoading() }
     }
 }
 
