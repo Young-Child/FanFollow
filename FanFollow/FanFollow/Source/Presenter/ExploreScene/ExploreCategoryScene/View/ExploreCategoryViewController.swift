@@ -48,6 +48,12 @@ final class ExploreCategoryViewController: UIViewController {
         configureUI()
         binding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
 }
 
 // Binding
@@ -151,7 +157,7 @@ extension ExploreCategoryViewController {
         let creatorGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: creatorGroupSize,
             subitem: item,
-            count: 4
+            count: 3
         )
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
