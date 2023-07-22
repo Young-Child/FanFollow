@@ -55,7 +55,8 @@ private extension CategoryCell {
     
     func makeConstraints() {
         categoryLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(10)
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
     }
 }

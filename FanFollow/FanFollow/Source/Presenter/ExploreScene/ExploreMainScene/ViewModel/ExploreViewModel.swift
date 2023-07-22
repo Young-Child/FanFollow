@@ -10,13 +10,11 @@ import RxSwift
 final class ExploreViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
-        var viewByJob: Observable<JobCategory>
+        var cellDidSelected: Observable<ExploreSectionItem>
     }
     
     struct Output {
         var exploreSectionModel: Observable<[ExploreSectionModel]>
-        var popularCreatorsByJob: Observable<[Creator]>
-        var allCreatorsByJob: Observable<[Creator]>
     }
     
     var disposeBag = DisposeBag()
@@ -27,9 +25,10 @@ final class ExploreViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
+        // About viewWillAppear Input
         let recommandAllCreators = input.viewWillAppear
             .flatMapLatest {
-                return self.exploreUseCase.fetchRandomAllCreators(count: 20)
+                return self.exploreUseCase.fetchRandomCreatorsByAllCategory(count: 20)
             }
         
         let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
@@ -44,21 +43,21 @@ final class ExploreViewModel: ViewModel {
             return categories + recommand
         }
         
-        let popularCreatorsByJob = input.viewByJob
-            .flatMapLatest { jobCategory in
-                return self.exploreUseCase.fetchPopularCreators(jobCategory: jobCategory, count: 20)
+        // About viewByJopCategory Input
+        input.cellDidSelected
+            .subscribe { sectionItem in
+                switch sectionItem.element {
+                case .category(let job):
+                    print("JOB:", job)
+                case .creator(let nickName, let userID):
+                    print("CREATOR:", nickName, userID)
+                default:
+                    break
+                }
             }
+            .disposed(by: disposeBag)
         
-        let allCreatorsByJob = input.viewByJob
-            .flatMapLatest { jobCategory in
-                return self.exploreUseCase.fetchRandomCreators(jobCategory: jobCategory, count: 20)
-            }
-        
-        return Output(
-            exploreSectionModel: exploreSectionModel,
-            popularCreatorsByJob: popularCreatorsByJob,
-            allCreatorsByJob: allCreatorsByJob
-        )
+        return Output(exploreSectionModel: exploreSectionModel)
     }
 }
 

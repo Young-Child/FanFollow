@@ -49,6 +49,12 @@ final class ExploreViewController: UIViewController {
         configureUI()
         binding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
 }
 
 // Binding
@@ -61,7 +67,6 @@ extension ExploreViewController {
     
     func bindCollectionView(_ output: ExploreViewModel.Output) {
         output.exploreSectionModel
-            .debug()
             .asDriver(onErrorJustReturn: [])
             .drive(exploreCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -72,8 +77,39 @@ extension ExploreViewController {
             .map { _ in }
             .asObservable()
         
-        let viewByJob = Observable.from(JobCategory.allCases)
-        let input = ExploreViewModel.Input(viewWillAppear: viewWillAppearEvent, viewByJob: viewByJob)
+        let cellSelectEvent = exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asObservable()
+        
+        // MARK: - 임시 View 이동 구현
+        cellSelectEvent
+            .subscribe { data in
+                switch data.element {
+                case .category(let job):
+                    let viewController = ExploreCategoryViewController(
+                        viewModel: ExploreCategoryViewModel(
+                            exploreUseCase: DefaultExploreUseCase(
+                                userInformationRepository: DefaultUserInformationRepository(
+                                    DefaultNetworkService()
+                                )
+                            ),
+                            jobCategory: job
+                        )
+                    )
+                    
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+
+        
+        
+        let input = ExploreViewModel.Input(
+            viewWillAppear: viewWillAppearEvent,
+            cellDidSelected: cellSelectEvent
+        )
         
         return viewModel.transform(input: input)
     }
