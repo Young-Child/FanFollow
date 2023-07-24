@@ -52,7 +52,6 @@
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
 		18BC320D2A5C27D900F910B7 /* ExampleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC320C2A5C27D900F910B7 /* ExampleUseCase.swift */; };
 		18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32122A5C2A8E00F910B7 /* ViewModel.swift */; };
-		18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32142A5C2B6200F910B7 /* ExampleViewModel.swift */; };
 		18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32172A5C2B6E00F910B7 /* ExampleModel.swift */; };
 		18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F52A67B4D900060616 /* UILabel+Extension.swift */; };
 		18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */; };
@@ -198,7 +197,6 @@
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18BC320C2A5C27D900F910B7 /* ExampleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUseCase.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		18BC32142A5C2B6200F910B7 /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
 		18BC32172A5C2B6E00F910B7 /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategoryPickerView.swift; sourceTree = "<group>"; };
@@ -528,7 +526,6 @@
 			children = (
 				187949A32A5E6E8200ADA01A /* Comman */,
 				18CF43252A5CE923002FFA1D /* MainScene */,
-				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
 			);
 			path = Presenter;
@@ -549,22 +546,6 @@
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
 			);
 			path = UseCase;
-			sourceTree = "<group>";
-		};
-		18BC320E2A5C2A6800F910B7 /* ExampleScene */ = {
-			isa = PBXGroup;
-			children = (
-				18BC32102A5C2A7500F910B7 /* ViewModel */,
-			);
-			path = ExampleScene;
-			sourceTree = "<group>";
-		};
-		18BC32102A5C2A7500F910B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				18BC32142A5C2B6200F910B7 /* ExampleViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		18BC32162A5C2B6700F910B7 /* Model */ = {
@@ -1115,7 +1096,6 @@
 				18BDA9872A62F40D00E00116 /* ProfileInputField.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
-				18BC32152A5C2B6200F910B7 /* ExampleViewModel.swift in Sources */,
 				18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
