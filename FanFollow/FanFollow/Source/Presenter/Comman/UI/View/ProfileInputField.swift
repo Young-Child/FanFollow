@@ -11,7 +11,7 @@ import RxSwift
 import Then
 import SnapKit
 
-final class ProfileInputField: UIStackView {
+class ProfileInputField: UIStackView {
     private let titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textColor = UIColor(named: "AccentColor")
@@ -72,3 +72,4 @@ private extension ProfileInputField {
         titleLabel.addCharacterSpacing()
     }
 }
+

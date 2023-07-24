@@ -29,7 +29,7 @@ final class ProfileSettingViewController: UIViewController {
     
     private let pickerView = JobCategoryPickerView()
     private let jobCategoryInput = ProfileInputField(title: "분야")
-    private let linkInput = ProfileInputField(title: "링크")
+    private let linkInput = ProfileLinkInput(title: "링크")
     private let introduceInput = ProfileInputField(title: "소개")
     
     private var viewModel: ProfileSettingViewModel
@@ -119,7 +119,7 @@ private extension ProfileSettingViewController {
             .compactMap { $0 }
             .asDriver(onErrorJustReturn: [])
             .map { $0.joined(separator: ",") }
-            .drive(linkInput.textField.rx.text)
+            .drive(onNext: linkInput.updateText(to:))
             .disposed(by: disposeBag)
         
         output.introduce
