@@ -5,6 +5,7 @@
 //  Copyright (c) 2023 Minii All rights reserved.
 
 import UIKit
+import PhotosUI
 
 import RxSwift
 import SnapKit
@@ -73,7 +74,8 @@ private extension ProfileSettingViewController {
             nickNameChanged: nickNameInput.textField.rx.text.orEmpty.asObservable(),
             categoryChanged: pickerView.rx.itemSelected.map(\.row).asObservable(),
             linksChanged: linkInput.textField.rx.text.compactMap { $0 }.toArray().asObservable(),
-            introduceChanged: introduceInput.textField.rx.text.orEmpty.asObservable()
+            introduceChanged: introduceInput.textField.rx.text.orEmpty.asObservable(),
+            didTapUpdate: configureRightButtonTapEvent()
         )
         
         return viewModel.transform(input: input)
@@ -118,6 +120,30 @@ private extension ProfileSettingViewController {
             .asDriver(onErrorJustReturn: nil)
             .drive(introduceInput.textField.rx.text)
             .disposed(by: disposeBag)
+        
+        output.updateResult
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureRightButtonTapEvent() -> Observable<(String?, Int, [String]?, String?)> {
+        guard let rightButton = navigationItem.rightBarButtonItem else {
+            return .empty()
+        }
+        
+        return rightButton.rx.tap
+            .map { _ in
+                return (
+                    self.nickNameInput.textField.text ?? "",
+                    self.pickerView.selectedRow(inComponent: .zero),
+                    self.linkInput.textField.text?.components(separatedBy: ","),
+                    self.introduceInput.textField.text
+                )
+            }
+            .asObservable()
     }
 }
 
@@ -133,30 +159,6 @@ private extension ProfileSettingViewController {
     }
     
     @objc private func didTapImageChangeButton() {
-        let pickerView = UIImagePickerController().then { pickerView in
-            pickerView.sourceType = .photoLibrary
-            pickerView.allowsEditing = true
-            pickerView.delegate = self
-            pickerView.modalPresentationStyle = .currentContext
-        }
-        
-        self.present(pickerView, animated: true)
-    }
-}
-
-extension ProfileSettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true)
-    }
-    
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-    ) {
-        self.dismiss(animated: true) {
-            let image = info[.editedImage] as? UIImage
-            self.profileImageView.image = image
-        }
     }
 }
 
@@ -275,4 +277,32 @@ private extension ProfileSettingViewController {
             $0.top.equalTo(linkInput.snp.bottom).offset(32)
         }
     }
+}
+
+final class ImagePickerViewController: UIImagePickerController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        delegate = self
+    }
+}
+
+extension ImagePickerViewController: UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        self.dismiss(animated: true) {
+            let image = info[.editedImage] as? UIImage
+//            self.profileImageView.image = image
+        }
+    }
+}
+
+extension ImagePickerViewController: UINavigationControllerDelegate {
+    
 }

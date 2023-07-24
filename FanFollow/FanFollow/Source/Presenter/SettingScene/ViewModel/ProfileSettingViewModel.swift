@@ -4,6 +4,8 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 import RxSwift
 
 final class ProfileSettingViewModel: ViewModel {
@@ -13,6 +15,7 @@ final class ProfileSettingViewModel: ViewModel {
         var categoryChanged: Observable<Int>
         var linksChanged: Observable<[String]>
         var introduceChanged: Observable<String>
+        var didTapUpdate: Observable<(String?, Int, [String]?, String?)>
     }
     
     struct Output {
@@ -43,41 +46,14 @@ final class ProfileSettingViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let user = fetchUserInformationUseCase.fetchCreatorInformation(for: self.userID)
         
-        let isCreator = user.map(\.isCreator)
-        
-        let creatorUpdateInformation = isCreator
-            .take(while: { $0 })
-            .flatMapLatest { _ in
-                return Observable.zip(
-                    input.nickNameChanged,
-                    input.categoryChanged,
-                    input.linksChanged,
-                    input.introduceChanged
-                )
-            }
-            .flatMapLatest {
+        let updateResult = input.didTapUpdate
+            .flatMapLatest { updateInformation in
                 return self.updateUserInformationUseCase.updateUserInformation(
                     userID: self.userID,
-                    updateInformation: $0
+                    updateInformation: updateInformation
                 )
             }
-        
-        let userUpdateInformation = isCreator
-            .take(while: { $0 == false })
-            .flatMapLatest { _ in
-                return input.nickNameChanged
-            }
-            .flatMapLatest { nickName in
-                return self.updateUserInformationUseCase.updateUserInformation(
-                    userID: self.userID,
-                    updateInformation: (nickName, nil, nil, nil)
-                )
-            }
-        
-        let updateResult = Observable.merge(
-            creatorUpdateInformation,
-            userUpdateInformation
-        )
+            .asObservable()
         
         return Output(
             nickName: user.map(\.nickName),
