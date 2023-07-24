@@ -37,17 +37,31 @@ struct Post {
 
 extension Post {
     var createdDate: Date? {
-        let dateFormatter = ISO8601DateFormatter().then { dateFormatter in
-            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        }
-        return dateFormatter.date(from: createdDateText)
+        return createdDateText.toDate()
     }
 
     var formattedCreatedDate: String? {
         guard let createdDate else { return nil }
-        let dateFormatter = DateFormatter().then { dateFormatter in
-            dateFormatter.dateFormat = "yyyy.MM.dd"
-        }
-        return dateFormatter.string(from: createdDate)
+        return createdDate.formattedString()
+    }
+}
+
+private extension String {
+    static let dateFormatter = ISO8601DateFormatter().then { formatter in
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    }
+
+    func toDate() -> Date? {
+        Self.dateFormatter.date(from: self)
+    }
+}
+
+private extension Date {
+    static let dateFormatter = DateFormatter().then { dateFormatter in
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+    }
+
+    func formattedString() -> String? {
+        return Self.dateFormatter.string(from: self)
     }
 }
