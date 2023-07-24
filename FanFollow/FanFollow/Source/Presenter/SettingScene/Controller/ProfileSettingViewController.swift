@@ -88,17 +88,17 @@ private extension ProfileSettingViewController {
             .drive(nickNameInput.textField.rx.text)
             .disposed(by: disposeBag)
         
-        output.isFan
+        output.isCreator
             .asDriver(onErrorJustReturn: true)
             .drive(jobCategoryInput.rx.isUserInteractionEnabled)
             .disposed(by: disposeBag)
         
-        output.isFan
+        output.isCreator
             .asDriver(onErrorJustReturn: true)
             .drive(linkInput.rx.isUserInteractionEnabled)
             .disposed(by: disposeBag)
         
-        output.isFan
+        output.isCreator
             .asDriver(onErrorJustReturn: true)
             .drive(introduceInput.rx.isUserInteractionEnabled)
             .disposed(by: disposeBag)

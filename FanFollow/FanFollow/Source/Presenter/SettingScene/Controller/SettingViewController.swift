@@ -141,7 +141,7 @@ private extension SettingViewController {
             DefaultNetworkService()
         )
         let viewModel = ProfileSettingViewModel(
-            userID: "a0728b90-0172-4552-9b31-1f3cab84900b",
+            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
             fetchUseCase: DefaultFetchUserInformationUseCase(
                 userInformationRepository: userInformationRepository
             ),

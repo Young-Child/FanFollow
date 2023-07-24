@@ -100,7 +100,6 @@
 		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
-		EB82EAC62A60EC3100372BDB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EB82EAC52A60EC3100372BDB /* RxCocoa */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -304,7 +303,6 @@
 			files = (
 				EBA8EB602A5FBE8300998630 /* RxTest in Frameworks */,
 				EBA8EB5E2A5FBE8300998630 /* RxSwift in Frameworks */,
-				EB82EAC62A60EC3100372BDB /* RxCocoa in Frameworks */,
 				EBA8EB5C2A5FBE8300998630 /* RxRelay in Frameworks */,
 				EBA8EB5A2A5FBE8300998630 /* RxBlocking in Frameworks */,
 			);
@@ -873,7 +871,6 @@
 				EBA8EB5B2A5FBE8300998630 /* RxRelay */,
 				EBA8EB5D2A5FBE8300998630 /* RxSwift */,
 				EBA8EB5F2A5FBE8300998630 /* RxTest */,
-				EB82EAC52A60EC3100372BDB /* RxCocoa */,
 			);
 			productName = UseCaseTests;
 			productReference = EBA8EB4F2A5FBE2D00998630 /* UseCaseTests.xctest */;
@@ -1639,11 +1636,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 18FCE41D2A6245250048AD7A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		EB82EAC52A60EC3100372BDB /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 18287CEA2A56927A0042E0F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
 		};
 		EBA8EB592A5FBE8300998630 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
