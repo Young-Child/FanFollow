@@ -10,7 +10,7 @@ import Foundation
 struct Post {
     let postID: String?
     let userID: String
-    let createdDateText: String
+    let createdDate: Date
     let title: String
     let content: String
     let imageURLs: [String]?
@@ -23,7 +23,7 @@ struct Post {
     init(_ postDTO: PostDTO) {
         postID = postDTO.postID
         userID = postDTO.userID
-        createdDateText = postDTO.createdData
+        createdDate = postDTO.createdDate
         title = postDTO.title
         content = postDTO.content
         imageURLs = postDTO.imageURLs
@@ -36,32 +36,7 @@ struct Post {
 }
 
 extension Post {
-    var createdDate: Date? {
-        return createdDateText.toDate()
-    }
-
-    var formattedCreatedDate: String? {
-        guard let createdDate else { return nil }
-        return createdDate.formattedString()
-    }
-}
-
-private extension String {
-    static let dateFormatter = ISO8601DateFormatter().then { formatter in
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-    }
-
-    func toDate() -> Date? {
-        Self.dateFormatter.date(from: self)
-    }
-}
-
-private extension Date {
-    static let dateFormatter = DateFormatter().then { dateFormatter in
-        dateFormatter.dateFormat = "yyyy.MM.dd"
-    }
-
-    func formattedString() -> String? {
-        return Self.dateFormatter.string(from: self)
+    var createdDateDescription: String? {
+        return createdDate.toString(format: "yyyy. MM. dd")
     }
 }

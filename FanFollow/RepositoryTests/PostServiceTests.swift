@@ -78,7 +78,7 @@ final class PostServiceTest: XCTestCase {
         
         // when
         let upsertResultObservable = postRepository.upsertPost(
-            postID: nil, userID: "testUserID", createdDate: "testData", title: "testTitle",
+            postID: nil, userID: "testUserID", createdDate: Date(), title: "testTitle",
             content: "testContent", imageURLs: nil, videoURL: nil
         )
         

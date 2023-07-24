@@ -144,7 +144,7 @@ extension PostCell {
             likeButton.setImage(Constants.unselectedLikeButtonImage, for: .normal)
         }
         likeCountLabel.text = "\(post.likeCount)개"
-        createdDateLabel.text = post.formattedCreatedDate
+        createdDateLabel.text = post.createdDateDescription
         configurePostContentView(with: post)
 
         self.postID = post.postID
