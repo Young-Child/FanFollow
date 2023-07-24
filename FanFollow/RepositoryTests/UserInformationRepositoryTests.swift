@@ -1,5 +1,5 @@
 //
-//  UserInformationServiceTests.swift
+//  UserInformationRepositoryTests.swift
 //  ServiceTests
 //
 //  Created by junho lee on 2023/07/06.
@@ -10,7 +10,7 @@ import RxSwift
 
 @testable import FanFollow
 
-final class UserInformationServiceTests: XCTestCase {
+final class UserInformationRepositoryTests: XCTestCase {
     private var sut: DefaultUserInformationRepository!
     private var networkService: StubNetworkService!
     private var disposeBag: DisposeBag!
@@ -231,7 +231,7 @@ final class UserInformationServiceTests: XCTestCase {
     }
 }
 
-extension UserInformationServiceTests {
+extension UserInformationRepositoryTests {
     enum TestData {
         static let userID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let nickName = "나미"

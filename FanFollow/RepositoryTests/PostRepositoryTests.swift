@@ -1,5 +1,5 @@
 //
-//  PostServiceTest.swift
+//  PostRepositoryTest.swift
 //  NetworkManagerTests
 //
 //  Created by parkhyo on 2023/07/06.
@@ -14,7 +14,7 @@ import RxRelay
 
 @testable import FanFollow
 
-final class PostServiceTest: XCTestCase {
+final class PostRepositoryTest: XCTestCase {
     private var networkService: StubNetworkService!
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!

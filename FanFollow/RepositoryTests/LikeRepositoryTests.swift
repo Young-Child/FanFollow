@@ -1,5 +1,5 @@
 //
-//  LikeServiceTests.swift
+//  LikeRepositoryTests.swift
 //  ServiceTests
 //
 //  Created by parkhyo on 2023/07/07.
@@ -14,7 +14,7 @@ import RxRelay
 
 @testable import FanFollow
 
-final class LikeServiceTests: XCTestCase {
+final class LikeRepositoryTests: XCTestCase {
     private var networkService: StubNetworkService!
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!

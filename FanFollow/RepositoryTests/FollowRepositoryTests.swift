@@ -1,5 +1,5 @@
 //
-//  FollowServiceTests.swift
+//  FollowRepositoryTests.swift
 //  NetworkManagerTests
 //
 //  Created by junho lee on 2023/07/06.
@@ -9,7 +9,7 @@ import XCTest
 import RxSwift
 @testable import FanFollow
 
-final class FollowServiceTests: XCTestCase {
+final class FollowRepositoryTests: XCTestCase {
     private var sut: DefaultFollowRepository!
     private var networkService: StubNetworkService!
     private var disposeBag: DisposeBag!
@@ -326,7 +326,7 @@ final class FollowServiceTests: XCTestCase {
     }
 }
 
-extension FollowServiceTests {
+extension FollowRepositoryTests {
     private enum TestData {
         static let followerID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let followingID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
