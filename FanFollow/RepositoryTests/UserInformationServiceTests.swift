@@ -237,7 +237,7 @@ extension UserInformationServiceTests {
         static let nickName = "나미"
         static let jobCategory = 1
         static let isCreator = true
-        static let createdAt = "2023-07-04T08:40:02.189472+00:00"
+        static let createdAt = Date()
         static let startRange = 0
         static let endRange = 9
         static let userInformationData = """
