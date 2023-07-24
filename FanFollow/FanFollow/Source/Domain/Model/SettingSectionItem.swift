@@ -18,8 +18,8 @@ extension SettingSectionItem: IdentifiableType {
     
     var identity: String {
         switch self {
-        case .profile(_, let nickName):
-            return nickName
+        case .profile(let nickName, let userID):
+            return nickName + "_" + userID
         case .base(let title):
             return title
         }
