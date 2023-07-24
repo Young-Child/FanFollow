@@ -12,7 +12,12 @@ final class PhotoAssetGridViewController: UIViewController {
     private let collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
-    )
+    ).then { collectionView in
+        collectionView.register(
+            ImageGridCell.self,
+            forCellWithReuseIdentifier: ImageGridCell.reuseIdentifier
+        )
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,10 @@ extension PhotoAssetGridViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell: ImageGridCell = collectionView.dequeReusableCell(forIndexPath: indexPath)
+        
+        cell.setImage(to: UIImage(systemName: "person")!)
+        return cell
     }
     
     

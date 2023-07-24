@@ -70,6 +70,8 @@
 		18CF43282A5CE936002FFA1D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF43272A5CE936002FFA1D /* TabBarController.swift */; };
 		18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */; };
 		18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */; };
+		18D0073A2A6EC32E00D46248 /* ImageGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007392A6EC32E00D46248 /* ImageGridCell.swift */; };
+		18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */; };
 		18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E670392A53BCC400C52942 /* ChatDTO.swift */; };
 		18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703B2A53BD1400C52942 /* ChatRepository.swift */; };
 		18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */; };
@@ -217,6 +219,8 @@
 		18CF43272A5CE936002FFA1D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAssetGridViewController.swift; sourceTree = "<group>"; };
+		18D007392A6EC32E00D46248 /* ImageGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridCell.swift; sourceTree = "<group>"; };
+		18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extension.swift"; sourceTree = "<group>"; };
 		18E670392A53BCC400C52942 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
 		18E6703B2A53BD1400C52942 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		18E6703D2A53BE2C00C52942 /* DefaultChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultChatRepository.swift; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				18BDA9862A62F40D00E00116 /* ProfileInputField.swift */,
 				18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */,
 				180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */,
+				18D007392A6EC32E00D46248 /* ImageGridCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				187949C32A5EA38100ADA01A /* UITableView+Extension.swift */,
 				18EC06942A62724A006293B5 /* UIImageView + Extension.swift */,
 				18BD41F52A67B4D900060616 /* UILabel+Extension.swift */,
+				18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1049,6 +1055,7 @@
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				18D0073A2A6EC32E00D46248 /* ImageGridCell.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,
 				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
@@ -1079,6 +1086,7 @@
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
 				180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */,
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
+				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
