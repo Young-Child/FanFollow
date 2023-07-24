@@ -175,11 +175,12 @@ extension PostCell {
             guard let imageView = view as? UIImageView else { return }
             let imageName = "\(offset + 1)"
             let url = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\(imageName)"
-            imageView.setImageKF(
-                to: url,
-                onSuccess: { imageView in imageView.isHidden = false },
-                onFailure: { imageView in imageView.isHidden = true }
-            )
+            imageView.setImageKF(to: url) { result in
+                switch result {
+                case .success: imageView.isHidden = false
+                case .failure: imageView.isHidden = true
+                }
+            }
         }
     }
 }
