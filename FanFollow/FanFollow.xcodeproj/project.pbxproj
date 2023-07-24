@@ -107,6 +107,7 @@
 		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
+		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB82EAC62A60EC3100372BDB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EB82EAC52A60EC3100372BDB /* RxCocoa */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
@@ -261,6 +262,7 @@
 		EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCaseTests.swift; sourceTree = "<group>"; };
+		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				187949C22A5EA36C00ADA01A /* UI */,
 				3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */,
 				18F0131B2A53E6AC000603CC /* URL+Extension.swift */,
+				EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1170,6 +1173,7 @@
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
 				EBD9366C2A67AA9500C03427 /* PostCell.swift in Sources */,
