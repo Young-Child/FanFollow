@@ -76,13 +76,14 @@ private extension FeedViewController {
     }
 
     func bindTableView(_ output: FeedViewModel.Output) {
-        output.posts.observe(on: MainScheduler.instance)
+        output.posts
+            .asDriver(onErrorJustReturn: [])
             .do { [weak self] newPosts in
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
             }
-            .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { _, post, cell in
+            .drive(tableView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { _, post, cell in
                 cell.configure(with: post, delegate: self)
             }
             .disposed(by: disposeBag)
