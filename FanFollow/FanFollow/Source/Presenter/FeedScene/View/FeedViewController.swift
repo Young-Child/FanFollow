@@ -55,23 +55,22 @@ private extension FeedViewController {
     }
 
     func input() -> FeedViewModel.Input {
-        tableView.rx.didScroll
+        let lastCellDisplayed = tableView.rx.didScroll
             .withUnretained(self)
-            .subscribe { _ in
-                guard self.lastCellDisplayed.value == false else { return }
+            .flatMap({ _, _ -> Observable<Void> in
+                guard self.lastCellDisplayed.value == false else { return .empty() }
                 let offsetY = self.tableView.contentOffset.y
                 let contentHeight = self.tableView.contentSize.height
-                let lastCellDisplayed = offsetY > (contentHeight - self.tableView.frame.size.height)
-                if lastCellDisplayed {
-                    self.lastCellDisplayed.accept(true)
-                }
-            }
-            .disposed(by: disposeBag)
+                let frameHeight = self.tableView.frame.size.height
+                let lastCellDisplayed = offsetY > (contentHeight - frameHeight)
+                self.lastCellDisplayed.accept(lastCellDisplayed)
+                return lastCellDisplayed ? .just(()) : .empty()
+            })
 
         return FeedViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
-            lastCellDisplayed: lastCellDisplayed.asObservable().filter { $0 == true }.map { _ in },
+            lastCellDisplayed: lastCellDisplayed,
             likeButtonTap: likeButtonTap.asObservable()
         )
     }
