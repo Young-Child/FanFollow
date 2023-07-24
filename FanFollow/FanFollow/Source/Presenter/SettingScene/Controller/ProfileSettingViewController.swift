@@ -109,6 +109,12 @@ private extension ProfileSettingViewController {
             .drive(onNext: pickerView.selectRow)
             .disposed(by: disposeBag)
         
+        output.jobCategory
+            .compactMap { $0?.categoryName }
+            .asDriver(onErrorJustReturn: "")
+            .drive(jobCategoryInput.textField.rx.text)
+            .disposed(by: disposeBag)
+        
         output.links
             .compactMap { $0 }
             .asDriver(onErrorJustReturn: [])
