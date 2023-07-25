@@ -83,6 +83,7 @@
 		18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0131B2A53E6AC000603CC /* URL+Extension.swift */; };
 		18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */; };
 		18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */; };
+		18F815912A6FD4300065878F /* UpdateProfileImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */; };
 		18FCE41F2A6245250048AD7A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 18FCE41E2A6245250048AD7A /* Kingfisher */; };
 		3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10F7B32A53B862001E9B21 /* PostRepository.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
@@ -234,6 +235,7 @@
 		18F0131B2A53E6AC000603CC /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewController.swift; sourceTree = "<group>"; };
 		18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewModel.swift; sourceTree = "<group>"; };
+		18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileImageUseCase.swift; sourceTree = "<group>"; };
 		3C10F7B32A53B862001E9B21 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				EBA8EB492A5F824E00998630 /* FetchUserInformationUseCase.swift */,
 				3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */,
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
+				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
 				18513FDD2A5FB55500580A1A /* SettingSectionHeaderView.swift in Sources */,
 				18513FDF2A5FD8A300580A1A /* SettingTabBarController.swift in Sources */,
+				18F815912A6FD4300065878F /* UpdateProfileImageUseCase.swift in Sources */,
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
 				187949CA2A5EDE3400ADA01A /* SettingSectionItem.swift in Sources */,
 				187949AC2A5E7C3D00ADA01A /* SettingTabItem.swift in Sources */,

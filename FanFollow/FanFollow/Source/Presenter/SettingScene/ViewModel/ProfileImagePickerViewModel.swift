@@ -4,11 +4,13 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 import RxSwift
 
 final class ProfileImagePickerViewModel: ViewModel {
     struct Input {
-        var updateImage: Observable<Void>
+        var updateImage: Observable<Data?>
     }
     
     struct Output {
@@ -16,8 +18,23 @@ final class ProfileImagePickerViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
+    private let userID: String
+    private let profileImageUploadUseCase: UpdateProfileImageUseCase
+    
+    init(userID: String, profileImageUploadUseCase: UpdateProfileImageUseCase) {
+        self.userID = userID
+        self.profileImageUploadUseCase = profileImageUploadUseCase
+    }
     
     func transform(input: Input) -> Output {
-        return Output(imageUploadResult: .just(()))
+        let updateResult = input.updateImage
+            .flatMap { imageData in
+                return self.profileImageUploadUseCase.upsertProfileImage(
+                    to: self.userID,
+                    with: imageData
+                )
+            }
+        
+        return Output(imageUploadResult: updateResult)
     }
 }

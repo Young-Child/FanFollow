@@ -165,18 +165,20 @@ private extension ProfileSettingViewController {
     }
     
     @objc private func didTapImageChangeButton() {
-        let imagePickerViewController = ProfileImagePickerViewController()
-        imagePickerViewController.delegate = self
+        let viewModel = ProfileImagePickerViewModel(
+            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
+            profileImageUploadUseCase: DefaultUpdateProfileImageUseCase(
+                imageRepository: DefaultImageRepository(
+                    network: DefaultNetworkService()
+                )
+            )
+        )
+        
+        let imagePickerViewController = ProfileImagePickerViewController(viewModel: viewModel)
         
         let controller = UINavigationController(rootViewController: imagePickerViewController)
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
-    }
-}
-
-extension ProfileSettingViewController: ProfileImagePickerDelegate {
-    func profileImagePickerViewController(to pickerController: ProfileImagePickerViewController, didSelectedImage image: UIImage?) {
-        self.profileImageView.image = image
     }
 }
 

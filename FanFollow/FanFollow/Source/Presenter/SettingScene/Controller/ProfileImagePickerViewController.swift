@@ -6,27 +6,19 @@
 
 import UIKit
 
-protocol ProfileImagePickerDelegate: AnyObject {
-    func profileImagePickerViewController(
-        to pickerController: ProfileImagePickerViewController,
-        didSelectedImage image: UIImage?
-    )
-}
-
 final class ProfileImagePickerViewController: PhotoAssetGridViewController {
     private var maxImageCount: Int
     private var selectedImage: UIImage?
+    private let profileImagePickerViewModel: ProfileImagePickerViewModel
     
-    weak var delegate: ProfileImagePickerDelegate?
-    
-    init(maxImageCount: Int = 1) {
+    init(viewModel: ProfileImagePickerViewModel, maxImageCount: Int = 1) {
+        self.profileImagePickerViewModel = viewModel
         self.maxImageCount = maxImageCount
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.maxImageCount = 1
-        super.init(coder: coder)
+        fatalError()
     }
     
     override func viewDidLoad() {
@@ -50,21 +42,13 @@ final class ProfileImagePickerViewController: PhotoAssetGridViewController {
 }
 
 private extension ProfileImagePickerViewController {
+    func binding() {
+    }
+}
+
+private extension ProfileImagePickerViewController {
     func configureUI() {
-        let cancelAction = UIAction { _ in
-            self.dismiss(animated: true)
-        }
-        
-        let confirmAction = UIAction { [weak self] _ in
-            guard let self = self else { return }
-            self.delegate?.profileImagePickerViewController(
-                to: self,
-                didSelectedImage: self.selectedImage
-            )
-            self.dismiss(animated: true)
-        }
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: cancelAction)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", primaryAction: confirmAction)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인")
     }
 }
