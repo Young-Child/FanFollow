@@ -16,6 +16,8 @@ final class ExploreSearchViewController: UIViewController {
     }
     
     private let searchBar = UISearchBar().then {
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.systemBackground.cgColor
         $0.barTintColor = .systemBackground
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
@@ -89,6 +91,13 @@ extension ExploreSearchViewController {
     private func bindTableView(_ output: ExploreSearchViewModel.Output) {
         output.searchCreatorResultModel
             .asDriver(onErrorJustReturn: [])
+            .do(onNext: { datas in
+                if datas.count == .zero {
+                    self.showEmptyResultLabel()
+                } else {
+                    self.hideEmptyResultLabel()
+                }
+            })
             .drive(searchTableView.rx.items(cellIdentifier: CreatorListCell.reuseIdentifier,cellType: CreatorListCell.self)) { indexPath, data, cell in
                 cell.configureCell(
                     nickName: data.nickName,
@@ -127,6 +136,29 @@ extension ExploreSearchViewController {
     }
 }
 
+// Search Result Label Setting
+private extension ExploreSearchViewController {
+    private func showEmptyResultLabel() {
+        let searchLabel = UILabel().then {
+            $0.text = searchBar.text == "" ? Constants.noSearch : Constants.noSearchResult
+            $0.textColor = .label
+            $0.textAlignment = .center
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        searchTableView.backgroundView = searchLabel
+        
+        searchLabel.snp.makeConstraints {
+            $0.centerX.equalTo(searchTableView.snp.centerX)
+            $0.top.equalTo(searchTableView.snp.top).offset(50)
+        }
+    }
+    
+    private func hideEmptyResultLabel() {
+        searchTableView.backgroundView = nil
+    }
+}
+
 // Configure UI
 private extension ExploreSearchViewController {
     func configureUI() {
@@ -162,8 +194,10 @@ private extension ExploreSearchViewController {
 // Constants
 private extension ExploreSearchViewController {
     enum Constants {
-        static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
+        static let searchPlaceHolder = "닉네임"
         static let clearImage = "xmark.circle"
         static let backImage = "chevron.backward"
+        static let noSearch = "크리에이터의 닉네임을 검색해보세요."
+        static let noSearchResult = "검색 결과가 없습니다."
     }
 }
