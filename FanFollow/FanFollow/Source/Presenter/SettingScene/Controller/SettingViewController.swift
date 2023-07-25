@@ -140,15 +140,13 @@ private extension SettingViewController {
         let userInformationRepository = DefaultUserInformationRepository(
             DefaultNetworkService()
         )
-        let imageRepository = DefaultImageRepository(network: DefaultNetworkService())
         let viewModel = ProfileSettingViewModel(
             userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
             fetchUseCase: DefaultFetchUserInformationUseCase(
                 userInformationRepository: userInformationRepository
             ),
             updateUseCase: DefaultUpdateUserInformationUseCase(
-                userInformationRepository: userInformationRepository,
-                imageUpdateRepository: imageRepository
+                userInformationRepository: userInformationRepository
             )
         )
         let controller = ProfileSettingViewController(viewModel: viewModel)

@@ -135,7 +135,7 @@ private extension ProfileSettingViewController {
             .disposed(by: disposeBag)
     }
     
-    private func configureRightButtonTapEvent() -> Observable<(Data?, String?, Int, [String]?, String?)> {
+    private func configureRightButtonTapEvent() -> Observable<(String?, Int, [String]?, String?)> {
         guard let rightButton = navigationItem.rightBarButtonItem else {
             return .empty()
         }
@@ -143,7 +143,6 @@ private extension ProfileSettingViewController {
         return rightButton.rx.tap
             .map { _ in
                 return (
-                    self.profileImageView.image?.pngData(),
                     self.nickNameInput.textField.text ?? "",
                     self.pickerView.selectedRow(inComponent: .zero),
                     self.linkInput.textField.text?.components(separatedBy: ","),

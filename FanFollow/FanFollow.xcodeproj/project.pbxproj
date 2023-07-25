@@ -82,6 +82,7 @@
 		18EC4F492A617A5F007C1063 /* ImageRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */; };
 		18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0131B2A53E6AC000603CC /* URL+Extension.swift */; };
 		18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */; };
+		18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */; };
 		18FCE41F2A6245250048AD7A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 18FCE41E2A6245250048AD7A /* Kingfisher */; };
 		3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10F7B32A53B862001E9B21 /* PostRepository.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
@@ -232,6 +233,7 @@
 		18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestDirector.swift; sourceTree = "<group>"; };
 		18F0131B2A53E6AC000603CC /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewController.swift; sourceTree = "<group>"; };
+		18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewModel.swift; sourceTree = "<group>"; };
 		3C10F7B32A53B862001E9B21 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			children = (
 				1846EE532A604CA900437030 /* SettingViewModel.swift */,
 				1879BBDE2A69225200A64DD7 /* ProfileSettingViewModel.swift */,
+				18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
+				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				1846EE542A604CA900437030 /* SettingViewModel.swift in Sources */,
