@@ -9,10 +9,7 @@ import UIKit
 import Photos
 
 final class PhotoAssetGridViewController: UIViewController {
-    private var photos: PHFetchResult<PHAsset>?
-    private let scale = UIScreen.main.scale
-    private var thumbnailSize = CGSize.zero
-    
+    // View Properties
     private let collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
@@ -24,6 +21,12 @@ final class PhotoAssetGridViewController: UIViewController {
         )
     }
     
+    // Properties
+    private var photos: PHFetchResult<PHAsset>?
+    private let scale = UIScreen.main.scale
+    private var thumbnailSize = CGSize.zero
+    
+    // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,18 +51,22 @@ final class PhotoAssetGridViewController: UIViewController {
         let itemLength = (width - columnCount) / columnCount
         
         self.thumbnailSize = CGSize(width: itemLength * scale, height: itemLength * scale)
-        
-        let layoutItemLength = (width / 3 - 1.5)
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: layoutItemLength, height: layoutItemLength)
     }
 }
 
+// UICollectionView DataSource Method
 extension PhotoAssetGridViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return photos?.count ?? .zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell: ImageGridCell = collectionView.dequeReusableCell(forIndexPath: indexPath)
         let asset = photos?.object(at: indexPath.item) ?? PHAsset()
         
@@ -80,20 +87,35 @@ extension PhotoAssetGridViewController: UICollectionViewDataSource {
     }
 }
 
+// UICollectionView Flow Layout Delegate Method
 extension PhotoAssetGridViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         let length = self.view.frame.width / 3 - 1.5
         return CGSize(width: length, height: length)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return 1.5
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return 1.5
     }
 }
 
+// Configuration UI
 private extension PhotoAssetGridViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
