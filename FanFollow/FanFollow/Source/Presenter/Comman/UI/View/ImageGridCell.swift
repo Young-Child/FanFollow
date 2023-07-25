@@ -9,13 +9,16 @@ import UIKit
 import SnapKit
 
 final class ImageGridCell: UICollectionViewCell {
+    // View Properties
     private let imageView = UIImageView().then { imageView in
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
     }
     
+    // Properties
     var identifier: String?
     
+    // Life Cycle
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -28,11 +31,13 @@ final class ImageGridCell: UICollectionViewCell {
         self.imageView.image = nil
     }
     
+    // Configure Method
     func setImage(to image: UIImage?) {
         self.imageView.image = image
     }
 }
 
+// Configure UI Method
 private extension ImageGridCell {
     func configureUI() {
         configureHierarchy()
