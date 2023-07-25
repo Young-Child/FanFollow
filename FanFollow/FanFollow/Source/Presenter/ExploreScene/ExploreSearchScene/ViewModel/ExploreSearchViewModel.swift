@@ -38,55 +38,56 @@ final class ExploreSearchViewModel: ViewModel {
             .do(onNext: { text in
                 self.pageCount.accept(.zero)
             })
-            .flatMap { text in
+            .flatMapLatest { text in
                 guard let searchText = text, !searchText.isEmpty else {
                     return Observable<[Creator]>.just([])
                 }
                 return self.searchCreatorUseCase.fetchSearchCreators(
                     text: text ?? "",
-                    startRange: 0,
-                    endRange: 20
+                    startRange: .zero,
+                    endRange: Constants.pageUnit
                 )
             }
         
         let loadMoreObservable = input.viewDidScroll
             .withLatestFrom(input.textDidSearch)
             .compactMap { $0 }
-            .flatMap { text in
+            .flatMapLatest { text in
                 guard !text.isEmpty else {
                     return Observable<[Creator]>.just([])
-                }
-                guard self.pageCount.value >= 20 else {
-                    return Observable<[Creator]>.empty()
                 }
                 
                 return self.searchCreatorUseCase.fetchSearchCreators(
                     text: text,
-                    startRange: self.pageCount.value,
-                    endRange: self.pageCount.value + 20
+                    startRange: self.pageCount.value + 1,
+                    endRange: self.pageCount.value + Constants.pageUnit
                 )
             }
-
-        let loadMap: Observable<Action> = loadObservable
-              .map { Action.load($0) }
-
-        let loadMoreMap: Observable<Action> = loadMoreObservable
-              .map { Action.loadMore($0) }
         
+        let loadActionObservable = loadObservable
+            .map { Action.load($0) }
         
-        let creatorResult: Observable<[Creator]> =
-          Observable.merge(loadMap, loadMoreMap)
+        let loadMoreActionObservable = loadMoreObservable
+            .map { Action.loadMore($0) }
+        
+        let creatorResult = Observable.merge(loadActionObservable, loadMoreActionObservable)
             .scan(into: [Creator]()) { creators, action in
-              switch action {
-              case .load(let newCreators):
-                  creators = newCreators
-                  self.pageCount.accept(creators.count)
-              case .loadMore(let newCreators):
-                  creators += newCreators
-                  self.pageCount.accept(creators.count)
-              }
-        }
+                switch action {
+                case .load(let newCreators):
+                    creators = newCreators
+                    self.pageCount.accept(creators.count)
+                case .loadMore(let newCreators):
+                    creators += newCreators
+                    self.pageCount.accept(creators.count)
+                }
+            }
         
         return Output(searchCreatorResultModel: creatorResult)
+    }
+}
+
+private extension ExploreSearchViewModel {
+    enum Constants {
+        static let pageUnit = 20
     }
 }
