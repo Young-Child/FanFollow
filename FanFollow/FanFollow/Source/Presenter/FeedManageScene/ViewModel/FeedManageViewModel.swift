@@ -17,8 +17,7 @@ final class FeedManageViewModel: ViewModel {
     }
 
     struct Output {
-        var posts: Observable<[Post]>
-        var creatorInformation: Observable<(Creator, Int)>
+        var feedManageSections: Observable<[FeedManageSectionModel]>
     }
 
     var disposeBag = DisposeBag()
@@ -29,6 +28,7 @@ final class FeedManageViewModel: ViewModel {
     private let pageSize = 10
 
     private let posts = BehaviorRelay<[Post]>(value: [])
+    private let creatorInformation = BehaviorRelay<(creator: [Creator], followerCount: Int)>(value: ([], 0))
     private let reachedLastPost = BehaviorRelay(value: false)
 
     init(
@@ -82,6 +82,8 @@ final class FeedManageViewModel: ViewModel {
             }
             .do { updatedPosts in self.posts.accept(updatedPosts) }
 
+        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+
         let creatorInformation = input.viewWillAppear
             .withUnretained(self)
             .flatMapFirst { _ in
@@ -90,10 +92,27 @@ final class FeedManageViewModel: ViewModel {
                     self.fetchCreatorInformationUseCase.fetchFollowerCount(for: self.creatorID)
                 )
             }
+            .do { creator, followerCount in
+                self.creatorInformation.accept((creator: [creator], followerCount: followerCount))
+            }
 
-        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+        let feedManageSections = Observable.merge(posts.map { _ in }, creatorInformation.map { _ in })
+            .withUnretained(self)
+            .flatMap { _, _ -> Observable<[FeedManageSectionModel]> in
+                let creatorInformation = self.creatorInformation.value
+                let followerCount = creatorInformation.followerCount
+                guard let creator = creatorInformation.creator.first else { return .empty() }
+                let posts = self.posts.value
+                let feedManageSections = [
+                    FeedManageSectionModel.creatorInformation(
+                        items: [CreatorInformationSectionItem(creator: creator, followerCount: followerCount)]
+                    ),
+                    FeedManageSectionModel.posts(items: posts)
+                ]
+                return Observable.just(feedManageSections)
+            }
 
-        return Output(posts: posts, creatorInformation: creatorInformation)
+        return Output(feedManageSections: feedManageSections)
     }
 
     private func fetchPosts(startIndex: Int) -> Observable<[Post]> {
