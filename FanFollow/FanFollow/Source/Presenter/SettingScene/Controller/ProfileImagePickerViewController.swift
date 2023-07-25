@@ -15,11 +15,7 @@ protocol ProfileImagePickerDelegate: AnyObject {
 
 final class ProfileImagePickerViewController: PhotoAssetGridViewController {
     private var maxImageCount: Int
-    private var selectedImage: UIImage? {
-        willSet {
-            delegate?.profileImagePickerViewController(to: self, didSelectedImage: newValue)
-        }
-    }
+    private var selectedImage: UIImage?
     
     weak var delegate: ProfileImagePickerDelegate?
     
@@ -58,6 +54,17 @@ private extension ProfileImagePickerViewController {
         let cancelAction = UIAction { _ in
             self.dismiss(animated: true)
         }
+        
+        let confirmAction = UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.delegate?.profileImagePickerViewController(
+                to: self,
+                didSelectedImage: self.selectedImage
+            )
+            self.dismiss(animated: true)
+        }
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: cancelAction)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", primaryAction: confirmAction)
     }
 }
