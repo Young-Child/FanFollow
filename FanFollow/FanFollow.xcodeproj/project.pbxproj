@@ -420,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				1846EE532A604CA900437030 /* SettingViewModel.swift */,
-				EBBE26AF2A6F62660071234B /* FeedManageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -556,6 +555,7 @@
 				3CC69A802A64E6F40081ACC8 /* ExploreScene */,
 				18BC320E2A5C2A6800F910B7 /* ExampleScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
+				EBBE26B32A6FA1220071234B /* FeedManageScene */,
 				EBEA9F9B2A64D61100A6B6B2 /* FeedScene */,
 			);
 			path = Presenter;
@@ -909,6 +909,30 @@
 				EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */,
 			);
 			path = Stub;
+			sourceTree = "<group>";
+		};
+		EBBE26B32A6FA1220071234B /* FeedManageScene */ = {
+			isa = PBXGroup;
+			children = (
+				EBBE26B42A6FA1300071234B /* ViewModel */,
+				EBBE26B52A6FA13F0071234B /* View */,
+			);
+			path = FeedManageScene;
+			sourceTree = "<group>";
+		};
+		EBBE26B42A6FA1300071234B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBBE26AF2A6F62660071234B /* FeedManageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EBBE26B52A6FA13F0071234B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EBEA9F9B2A64D61100A6B6B2 /* FeedScene */ = {
