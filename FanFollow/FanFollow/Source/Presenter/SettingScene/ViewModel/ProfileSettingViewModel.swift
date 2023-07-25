@@ -15,7 +15,7 @@ final class ProfileSettingViewModel: ViewModel {
         var categoryChanged: Observable<Int>
         var linksChanged: Observable<[String]>
         var introduceChanged: Observable<String>
-        var didTapUpdate: Observable<(String?, Int, [String]?, String?)>
+        var didTapUpdate: Observable<(Data?, String?, Int, [String]?, String?)>
     }
     
     struct Output {
