@@ -19,35 +19,28 @@ final class CreatorListCell: UITableViewCell {
     
     private let nickNameLabel = UILabel().then {
         $0.numberOfLines = 1
-        $0.textAlignment = .center
+        $0.textAlignment = .left
         $0.textColor = UIColor(named: "AccentColor")
-        $0.font = .preferredFont(forTextStyle: .body)
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
     
     private let jobLabel = UILabel().then {
         $0.numberOfLines = 1
-        $0.textAlignment = .center
+        $0.textAlignment = .left
         $0.textColor = UIColor(named: "AccentColor")
-        $0.font = .preferredFont(forTextStyle: .body)
+        $0.font = UIFont.systemFont(ofSize: 14)
     }
     
     private let introduceLabel = UILabel().then {
         $0.numberOfLines = 1
-        $0.textColor = .lightGray
-        $0.textAlignment = .center
-        $0.font = .preferredFont(forTextStyle: .body)
-    }
-    
-    private let labelTopStackView = UIStackView().then {
-        $0.spacing = 20
-        $0.alignment = .fill
-        $0.axis = .horizontal
-        $0.distribution = .fillProportionally
+        $0.textColor = .black
+        $0.textAlignment = .left
+        $0.font = UIFont.systemFont(ofSize: 14)
     }
     
     private let labelStackView = UIStackView().then {
-        $0.spacing = 15
-        $0.alignment = .fill
+        $0.spacing = 5
+        $0.alignment = .leading
         $0.axis = .vertical
         $0.distribution = .fillProportionally
     }
@@ -61,6 +54,13 @@ final class CreatorListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        profileImageView.layer.cornerRadius = profileImageView.bounds.size.width / 2
+        profileImageView.clipsToBounds = true
+    }
+    
 }
 
 // UI Method
@@ -72,8 +72,22 @@ extension CreatorListCell {
             to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
             failureImage: defaultImage
         )
-        jobLabel.text = jobCategory.categoryName
+        jobLabel.text = Constants.category + " " + jobCategory.categoryName
         introduceLabel.text = introduce
+        
+        applyAttributedString()
+    }
+    
+    private func applyAttributedString() {
+        let attributedString = NSMutableAttributedString(string: jobLabel.text ?? "")
+        guard let text = jobLabel.text else { return }
+        
+        attributedString.addAttribute(
+            .foregroundColor,
+            value: UIColor.lightGray,
+            range: (text as NSString).range(of: Constants.category)
+        )
+        jobLabel.attributedText = attributedString
     }
 }
 
@@ -85,23 +99,28 @@ private extension CreatorListCell {
     }
     
     func configureHierarchy() {
-        [nickNameLabel, jobLabel].forEach { labelTopStackView.addArrangedSubview($0) }
-        [labelTopStackView, introduceLabel].forEach { labelStackView.addArrangedSubview($0) }
-        [profileImageView, labelTopStackView, labelStackView].forEach { contentView.addSubview($0) }
+        [nickNameLabel, jobLabel, introduceLabel].forEach { labelStackView.addArrangedSubview($0) }
+        [profileImageView, labelStackView].forEach { contentView.addSubview($0) }
     }
     
     func makeConstraints() {
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(15)
-            $0.leading.equalToSuperview().offset(15)
-            $0.bottom.equalToSuperview().offset(15)
-            $0.width.equalTo(profileImageView.snp.height)
+            $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(15)
+            $0.height.width.equalTo(60)
+            $0.centerY.equalTo(contentView.snp.centerY)
         }
-        
+                
         labelStackView.snp.makeConstraints {
+            $0.top.equalTo(contentView.snp.top).offset(10)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
-            $0.trailing.equalToSuperview().offset(-10)
-            $0.centerY.equalToSuperview()
+            $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-15)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
+    }
+}
+
+private extension CreatorListCell {
+    enum Constants {
+        static let category = "직군"
     }
 }
