@@ -165,6 +165,9 @@ private extension ProfileSettingViewController {
     }
     
     @objc private func didTapImageChangeButton() {
+        let controller = PhotoAssetGridViewController()
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
     }
 }
 

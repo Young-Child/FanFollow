@@ -9,7 +9,12 @@ import UIKit
 import SnapKit
 
 final class ImageGridCell: UICollectionViewCell {
-    private let imageView = UIImageView()
+    private let imageView = UIImageView().then { imageView in
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+    }
+    
+    var identifier: String?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -23,7 +28,7 @@ final class ImageGridCell: UICollectionViewCell {
         self.imageView.image = nil
     }
     
-    func setImage(to image: UIImage) {
+    func setImage(to image: UIImage?) {
         self.imageView.image = image
     }
 }
