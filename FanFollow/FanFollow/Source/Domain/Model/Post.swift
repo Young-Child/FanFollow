@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Differentiator
 
 struct Post {
     let postID: String?
@@ -38,5 +39,19 @@ struct Post {
 extension Post {
     var createdDateDescription: String? {
         return createdDate.toString(format: "yyyy. MM. dd")
+    }
+}
+
+extension Post: IdentifiableType {
+    typealias Identity = String
+
+    var identity: String {
+        return postID ?? ""
+    }
+}
+
+extension Post: Equatable {
+    static func == (lhs: Post, rhs: Post) -> Bool {
+        return lhs.identity == rhs.identity
     }
 }
