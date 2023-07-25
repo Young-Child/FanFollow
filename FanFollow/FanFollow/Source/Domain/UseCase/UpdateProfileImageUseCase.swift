@@ -29,8 +29,6 @@ class DefaultUpdateProfileImageUseCase: UpdateProfileImageUseCase {
                 return self.imageRepository.uploadImage(to: imagePath, with: image)
             }
             .andThen(.just(()))
-            .map { _ in
-                return self.imageRepository.baseURL + "/storage/v1/object/" + imagePath
-            }
+            .map { _ in return "profileImage" }
     }
 }
