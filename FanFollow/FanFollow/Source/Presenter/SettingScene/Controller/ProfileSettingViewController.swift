@@ -165,9 +165,18 @@ private extension ProfileSettingViewController {
     }
     
     @objc private func didTapImageChangeButton() {
-        let controller = PhotoAssetGridViewController()
+        let imagePickerViewController = ProfileImagePickerViewController()
+        imagePickerViewController.delegate = self
+        
+        let controller = UINavigationController(rootViewController: imagePickerViewController)
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
+    }
+}
+
+extension ProfileSettingViewController: ProfileImagePickerDelegate {
+    func profileImagePickerViewController(to pickerController: ProfileImagePickerViewController, didSelectedImage image: UIImage?) {
+        self.profileImageView.image = image
     }
 }
 
