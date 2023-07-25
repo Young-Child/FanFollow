@@ -29,11 +29,28 @@ final class AssetImageGridCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.imageView.image = nil
+        setSelected(to: false)
     }
     
     // Configure Method
     func setImage(to image: UIImage?) {
         self.imageView.image = image
+    }
+    
+    func setSelected(to isSelected: Bool) {
+        if isSelected == true {
+            self.backgroundColor = UIColor.systemGray2
+            self.imageView.alpha = 0.5
+        }
+        
+        if isSelected == false {
+            self.backgroundColor = nil
+            self.imageView.alpha = 1.0
+        }
+    }
+    
+    func getImage() -> UIImage? {
+        return imageView.image
     }
 }
 
