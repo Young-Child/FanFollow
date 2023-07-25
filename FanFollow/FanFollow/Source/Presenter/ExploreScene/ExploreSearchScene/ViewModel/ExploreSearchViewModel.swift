@@ -40,8 +40,7 @@ final class ExploreSearchViewModel: ViewModel {
             })
             .flatMap { text in
                 guard let searchText = text, !searchText.isEmpty else {
-                    // 검색어가 비어있는 경우 빈 Observable 반환
-                    return Observable<[Creator]>.empty()
+                    return Observable<[Creator]>.just([])
                 }
                 return self.searchCreatorUseCase.fetchSearchCreators(
                     text: text ?? "",
@@ -50,11 +49,19 @@ final class ExploreSearchViewModel: ViewModel {
                 )
             }
         
-        let loadMoreObservable = Observable.combineLatest(input.textDidSearch, input.viewDidScroll)
-            .flatMap { (text, _) in
+        let loadMoreObservable = input.viewDidScroll
+            .withLatestFrom(input.textDidSearch)
+            .compactMap { $0 }
+            .flatMap { text in
+                guard !text.isEmpty else {
+                    return Observable<[Creator]>.just([])
+                }
+                guard self.pageCount.value >= 20 else {
+                    return Observable<[Creator]>.empty()
+                }
                 
                 return self.searchCreatorUseCase.fetchSearchCreators(
-                    text: text ?? "",
+                    text: text,
                     startRange: self.pageCount.value,
                     endRange: self.pageCount.value + 20
                 )
@@ -72,14 +79,10 @@ final class ExploreSearchViewModel: ViewModel {
             .scan(into: [Creator]()) { creators, action in
               switch action {
               case .load(let newCreators):
-                  print("LOAD")
                   creators = newCreators
-                  print(creators.count)
                   self.pageCount.accept(creators.count)
               case .loadMore(let newCreators):
-                  print("LOADMORE")
-                  creators = creators + newCreators
-                  print(creators.count)
+                  creators += newCreators
                   self.pageCount.accept(creators.count)
               }
         }
