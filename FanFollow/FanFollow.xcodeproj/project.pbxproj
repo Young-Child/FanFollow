@@ -133,6 +133,7 @@
 		EBAA0A702A56EC4D0033ED0F /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = EBAA0A6F2A56EC4D0033ED0F /* RxTest */; };
 		EBB5DE652A5791CD00DB5B52 /* FollowRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB5DE632A5791CD00DB5B52 /* FollowRepositoryTests.swift */; };
 		EBB5DE662A5791CD00DB5B52 /* UserInformationRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB5DE642A5791CD00DB5B52 /* UserInformationRepositoryTests.swift */; };
+		EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */; };
 		EBC4E98E2A54F22700A1F6AE /* UserInformationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */; };
 		EBC4E9902A55133000A1F6AE /* DefaultUserInformationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */; };
 		EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */; };
@@ -281,6 +282,7 @@
 		EBAA0A5F2A56EBEA0033ED0F /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB5DE632A5791CD00DB5B52 /* FollowRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRepositoryTests.swift; sourceTree = "<group>"; };
 		EBB5DE642A5791CD00DB5B52 /* UserInformationRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationRepositoryTests.swift; sourceTree = "<group>"; };
+		EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubFollowRepository.swift; sourceTree = "<group>"; };
 		EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationRepository.swift; sourceTree = "<group>"; };
 		EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserInformationRepository.swift; sourceTree = "<group>"; };
 		EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDirector.swift; sourceTree = "<group>"; };
@@ -901,6 +903,7 @@
 				EBA8EB6A2A5FC18000998630 /* StubLikeRepository.swift */,
 				EBA8EB6E2A601C8700998630 /* StubUserInformationRepository.swift */,
 				3CC1D4992A61114200713FAF /* StubChatRepository.swift */,
+				EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				3CC1D49E2A6134C000713FAF /* ExploreUseCaseTests.swift in Sources */,
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
+				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
 				EBA8EB6F2A601C8700998630 /* StubUserInformationRepository.swift in Sources */,
