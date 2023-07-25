@@ -92,13 +92,12 @@ extension ExploreSearchViewController {
         output.searchCreatorResultModel
             .asDriver(onErrorJustReturn: [])
             .do(onNext: { datas in
-                if datas.count == .zero {
-                    self.showEmptyResultLabel()
-                } else {
-                    self.hideEmptyResultLabel()
-                }
+                datas.count == .zero ? self.showEmptyResultLabel() : self.hideEmptyResultLabel()
             })
-            .drive(searchTableView.rx.items(cellIdentifier: CreatorListCell.reuseIdentifier,cellType: CreatorListCell.self)) { indexPath, data, cell in
+            .drive(searchTableView.rx.items(
+                cellIdentifier: CreatorListCell.reuseIdentifier,
+                cellType: CreatorListCell.self)
+            ) { indexPath, data, cell in
                 cell.configureCell(
                     nickName: data.nickName,
                     userID: data.id,
