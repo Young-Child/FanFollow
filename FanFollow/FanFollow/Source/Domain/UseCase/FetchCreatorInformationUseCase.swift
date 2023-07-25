@@ -9,13 +9,16 @@ import RxSwift
 
 protocol FetchCreatorInformationUseCase: AnyObject {
     func fetchCreatorInformation(for creatorID: String) -> Observable<Creator>
+    func fetchFollowerCount(for creatorID: String) -> Observable<Int>
 }
 
 final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCase {
     private let userInformationRepository: UserInformationRepository
+    private let followRepository: FollowRepository
 
-    init(userInformationRepository: UserInformationRepository) {
+    init(userInformationRepository: UserInformationRepository, followRepository: FollowRepository) {
         self.userInformationRepository = userInformationRepository
+        self.followRepository = followRepository
     }
 
     func fetchCreatorInformation(for creatorID: String) -> Observable<Creator> {
@@ -23,5 +26,9 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
             .compactMap { userInformationDTO in
                 return Creator(userInformationDTO)
             }
+    }
+
+    func fetchFollowerCount(for creatorID: String) -> Observable<Int> {
+        return followRepository.fetchFollowerCount(followingID: creatorID)
     }
 }
