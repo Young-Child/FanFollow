@@ -38,20 +38,37 @@ final class FeedViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let fetchedNewPosts = Observable.merge(input.viewWillAppear, input.refresh)
             .withUnretained(self)
-            .flatMapFirst { _ in self.fetchPosts(startIndex: 0) }
+            .flatMapFirst { _ in self.fetchNewPosts() }
+
+        let fetchedMorePosts = input.lastCellDisplayed
+            .withUnretained(self)
+            .flatMapFirst { _ in self.fetchMorePosts() }
+
+        let updatedPosts = input.likeButtonTap
+            .withUnretained(self)
+            .flatMapFirst { _, postID in self.updatePosts(postID: postID) }
+
+        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+
+        return Output(posts: posts)
+    }
+}
+
+private extension FeedViewModel {
+    func fetchNewPosts() -> Observable<[Post]> {
+        return fetchPosts(startIndex: 0)
             .do { fetchedPosts in
                 let reachedLastPosts = fetchedPosts.count < self.pageSize
                 self.reachedLastPost.accept(reachedLastPosts)
 
                 self.posts.accept(fetchedPosts)
             }
+    }
 
-        let fetchedMorePosts = input.lastCellDisplayed
-            .withUnretained(self)
-            .flatMapFirst { _ -> Observable<[Post]> in
-                let reachedLastPost = self.reachedLastPost.value
-                return reachedLastPost ? .empty() : self.fetchPosts(startIndex: self.posts.value.count)
-            }
+    func fetchMorePosts() -> Observable<[Post]> {
+        let reachedLastPost = reachedLastPost.value
+        guard reachedLastPost == false else { return .empty() }
+        return fetchPosts(startIndex: posts.value.count)
             .flatMap { fetchedPosts -> Observable<[Post]> in
                 guard fetchedPosts.isEmpty == false else {
                     self.reachedLastPost.accept(true)
@@ -65,26 +82,22 @@ final class FeedViewModel: ViewModel {
                 self.posts.accept(newPosts)
                 return .just(newPosts)
             }
-
-        let updatedPosts = input.likeButtonTap
-            .withUnretained(self)
-            .flatMapFirst { _, postID in self.toggleLike(postID: postID) }
-            .flatMap { postID, isLiked, likeCount in
-                self.updatedPosts(postID: postID, isLiked: isLiked, likeCount: likeCount)
-            }
-            .do { updatedPosts in self.posts.accept(updatedPosts) }
-
-        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
-
-        return Output(posts: posts)
     }
 
-    private func fetchPosts(startIndex: Int) -> Observable<[Post]> {
+    func fetchPosts(startIndex: Int) -> Observable<[Post]> {
         let endRange = startIndex + pageSize - 1
         return fetchFeedUseCase.fetchFollowPosts(followerID: followerID, startRange: startIndex, endRange: endRange)
     }
 
-    private func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
+    func updatePosts(postID: String) -> Observable<[Post]> {
+        return toggleLike(postID: postID)
+            .flatMap { postID, isLiked, likeCount in
+                self.updatedPosts(postID: postID, isLiked: isLiked, likeCount: likeCount)
+            }
+            .do { updatedPosts in self.posts.accept(updatedPosts) }
+    }
+
+    func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
         return changeLikeUseCase.togglePostLike(postID: postID, userID: followerID)
             .andThen(Observable.zip(
                 changeLikeUseCase.checkPostLiked(by: followerID, postID: postID),
@@ -95,7 +108,7 @@ final class FeedViewModel: ViewModel {
             }
     }
 
-    private func updatedPosts(postID: String, isLiked: Bool, likeCount: Int) -> Observable<[Post]> {
+    func updatedPosts(postID: String, isLiked: Bool, likeCount: Int) -> Observable<[Post]> {
         var posts = self.posts.value
         guard let index = posts.firstIndex(where: { $0.postID == postID }) else { return .empty() }
         posts[index].isLiked = isLiked
