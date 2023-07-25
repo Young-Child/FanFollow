@@ -119,6 +119,17 @@ private extension FeedManageViewController {
     }
 }
 
+// PostCellDelegate
+extension FeedManageViewController: PostCellDelegate {
+    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
+        tableView.performBatchUpdates(updates)
+    }
+
+    func likeButtonTap(postID: String) {
+        likeButtonTap.accept(postID)
+    }
+}
+
 // Configure UI
 private extension FeedManageViewController {
     func configureUI() {
@@ -134,7 +145,8 @@ private extension FeedManageViewController {
 
     func configureConstraints() {
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 
@@ -151,16 +163,5 @@ private extension FeedManageViewController {
     func configureTableView() {
         tableView.backgroundColor = .systemBackground
         tableView.refreshControl = refreshControl
-    }
-}
-
-// PostCellDelegate
-extension FeedManageViewController: PostCellDelegate {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
-        tableView.performBatchUpdates(updates)
-    }
-
-    func likeButtonTap(postID: String) {
-        likeButtonTap.accept(postID)
     }
 }
