@@ -10,7 +10,6 @@ import Foundation
 struct Creator: User {
     var id: String
     var nickName: String
-    var profilePath: String?
     var isCreator: Bool = true
     
     var links: [String]?
@@ -20,7 +19,6 @@ struct Creator: User {
     init(_ userInformationDTO: UserInformationDTO) {
         id = userInformationDTO.userID
         nickName = userInformationDTO.nickName
-        profilePath = userInformationDTO.profilePath
         links = userInformationDTO.links
         introduce = userInformationDTO.introduce
         jobCategory = JobCategory(rawValue: userInformationDTO.jobCategory ?? JobCategory.unSetting.rawValue)

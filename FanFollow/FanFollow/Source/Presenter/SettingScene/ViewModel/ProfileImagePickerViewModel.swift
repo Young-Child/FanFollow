@@ -14,7 +14,7 @@ final class ProfileImagePickerViewModel: ViewModel {
     }
     
     struct Output {
-        var imageUploadResult: Observable<Void>
+        var imageUploadResult: Observable<String>
     }
     
     var disposeBag = DisposeBag()

@@ -7,6 +7,7 @@
 import UIKit
 
 import RxSwift
+import Kingfisher
 
 final class ProfileImagePickerViewController: PhotoAssetGridViewController {
     private var maxImageCount: Int
@@ -59,7 +60,10 @@ private extension ProfileImagePickerViewController {
     func bindingOutput(to output: ProfileImagePickerViewModel.Output) {
         output.imageUploadResult
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { self.dismiss(animated: true) })
+            .subscribe(onNext: {
+                self.removeCacheKF(to: $0)
+                self.dismiss(animated: true)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -68,6 +72,12 @@ private extension ProfileImagePickerViewController {
         
         return rightButton.rx.tap
             .map { _ in return self.selectedImage?.pngData() }
+    }
+    
+    func removeCacheKF(to url: String) {
+        if ImageCache.default.isCached(forKey: url) {
+            ImageCache.default.removeImage(forKey: url)
+        }
     }
 }
 

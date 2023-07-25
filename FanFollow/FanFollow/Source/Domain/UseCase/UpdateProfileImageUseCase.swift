@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol UpdateProfileImageUseCase: AnyObject {
-    func upsertProfileImage(to userID: String, with image: Data?) -> Observable<Void>
+    func upsertProfileImage(to userID: String, with image: Data?) -> Observable<String>
 }
 
 class DefaultUpdateProfileImageUseCase: UpdateProfileImageUseCase {
@@ -19,15 +19,18 @@ class DefaultUpdateProfileImageUseCase: UpdateProfileImageUseCase {
         self.imageRepository = imageRepository
     }
     
-    func upsertProfileImage(to userID: String, with image: Data?) -> Observable<Void> {
-        guard let image = image else {
-            return .error(APIError.requestBuilderFailed)
-        }
-        let path = "ProfileImage/\(userID)/profileImage.png"
-        return imageRepository.updateImage(to: path, with: image)
+    func upsertProfileImage(to userID: String, with image: Data?) -> Observable<String> {
+        guard let image = image else { return .error(APIError.requestBuilderFailed) }
+        
+        let imagePath = "ProfileImage/\(userID)/profileImage.png"
+        
+        return imageRepository.updateImage(to: imagePath, with: image)
             .catch { _ in
-                return self.imageRepository.uploadImage(to: path, with: image)
+                return self.imageRepository.uploadImage(to: imagePath, with: image)
             }
             .andThen(.just(()))
+            .map { _ in
+                return self.imageRepository.baseURL + "/storage/v1/object/" + imagePath
+            }
     }
 }

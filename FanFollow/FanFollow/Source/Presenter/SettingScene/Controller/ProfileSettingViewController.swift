@@ -16,7 +16,6 @@ final class ProfileSettingViewController: UIViewController {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 75
         $0.contentMode = .scaleAspectFill
-        $0.image = UIImage(named: "ExampleProfile")
     }
     
     private let nickNameInput = ProfileInputField(title: "닉네임")
@@ -82,6 +81,14 @@ private extension ProfileSettingViewController {
     }
     
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
+        output.profileURL
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: {
+                // TODO: - Profile Image View Set Image KF 삭제
+                self.profileImageView.setImageKF(to: $0, failureImage: UIImage(systemName: "person")!)
+            })
+            .disposed(by: disposeBag)
+        
         output.nickName
             .debug()
             .asDriver(onErrorJustReturn: "")
