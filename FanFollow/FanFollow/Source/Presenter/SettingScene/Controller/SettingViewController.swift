@@ -156,8 +156,8 @@ private extension SettingViewController {
 
 // RxDataSource Method
 private extension SettingViewController {
-    static func dataSource() -> RxTableViewSectionedAnimatedDataSource<SettingSectionModel> {
-        return RxTableViewSectionedAnimatedDataSource(
+    static func dataSource() -> RxTableViewSectionedReloadDataSource<SettingSectionModel> {
+        return RxTableViewSectionedReloadDataSource(
             configureCell: { dataSource, tableView, indexPath, model in
                 switch dataSource[indexPath] {
                 case let .profile(nickName, userID, profileURL):

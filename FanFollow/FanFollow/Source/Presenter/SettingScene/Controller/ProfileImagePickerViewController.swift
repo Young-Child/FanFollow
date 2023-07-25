@@ -59,11 +59,8 @@ private extension ProfileImagePickerViewController {
     
     func bindingOutput(to output: ProfileImagePickerViewModel.Output) {
         output.imageUploadResult
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: {
-                self.removeCacheKF(to: $0)
-                self.dismiss(animated: true)
-            })
+            .asDriver(onErrorJustReturn: "profileImage")
+            .drive(onNext: setKFCache)
             .disposed(by: disposeBag)
     }
     
@@ -74,10 +71,18 @@ private extension ProfileImagePickerViewController {
             .map { _ in return self.selectedImage?.pngData() }
     }
     
-    func removeCacheKF(to url: String) {
-        if ImageCache.default.isCached(forKey: url) {
-            ImageCache.default.removeImage(forKey: url)
+    func setKFCache(to key: String) {
+        guard let selectedImage = selectedImage else { return }
+        
+        let cache = ImageCache.default
+        
+        if cache.isCached(forKey: key) {
+            cache.removeImage(forKey: key)
+            
+            cache.memoryStorage.store(value: selectedImage, forKey: key)
         }
+        
+        self.dismiss(animated: true)
     }
 }
 

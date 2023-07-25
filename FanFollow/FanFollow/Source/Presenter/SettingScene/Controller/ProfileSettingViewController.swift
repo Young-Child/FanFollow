@@ -84,13 +84,15 @@ private extension ProfileSettingViewController {
         output.profileURL
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: {
-                // TODO: - Profile Image View Set Image KF 삭제
-                self.profileImageView.setImageKF(to: $0, failureImage: UIImage(systemName: "person")!)
+                self.profileImageView.setImageKF(
+                    to: $0,
+                    key: "profileImage",
+                    failureImage: UIImage(systemName: "person")
+                )
             })
             .disposed(by: disposeBag)
         
         output.nickName
-            .debug()
             .asDriver(onErrorJustReturn: "")
             .drive(nickNameInput.textField.rx.text)
             .disposed(by: disposeBag)
