@@ -10,6 +10,11 @@ import RxSwift
 
 final class ExploreSearchViewController: UIViewController {
     // View Properties
+    private let backButton = UIButton().then {
+        $0.tintColor = UIColor(named: "AccentColor")
+        $0.setImage(UIImage(systemName: Constants.backImage), for: .normal)
+    }
+    
     private let searchBar = UISearchBar().then {
         $0.barTintColor = .systemBackground
         $0.layer.cornerRadius = 10
@@ -53,12 +58,6 @@ final class ExploreSearchViewController: UIViewController {
         configureUI()
         binding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = false
-    }
 }
 
 // Bind SearchBarDelegate
@@ -74,8 +73,17 @@ extension ExploreSearchViewController {
     func binding() {
         let output = bindingInput()
         
+        bindBackButton()
         bindSearchBar()
         bindTableView(output)
+    }
+    
+    private func bindBackButton() {
+        backButton.rx.tap
+            .bind {
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindTableView(_ output: ExploreSearchViewModel.Output) {
@@ -129,13 +137,19 @@ private extension ExploreSearchViewController {
     }
     
     func configureHierarchy() {
-        [searchBar, searchTableView].forEach { view.addSubview($0) }
+        [backButton, searchBar, searchTableView].forEach { view.addSubview($0) }
     }
     
     func makeConstraints() {
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.leading.equalTo(backButton.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().inset(10)
+        }
+        
+        backButton.snp.makeConstraints {
+            $0.centerY.equalTo(searchBar.snp.centerY)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
         }
         
         searchTableView.snp.makeConstraints {
@@ -150,5 +164,6 @@ private extension ExploreSearchViewController {
     enum Constants {
         static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
         static let clearImage = "xmark.circle"
+        static let backImage = "chevron.backward"
     }
 }
