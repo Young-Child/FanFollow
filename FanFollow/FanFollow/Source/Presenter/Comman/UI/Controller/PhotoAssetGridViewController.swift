@@ -8,7 +8,7 @@ import UIKit
 
 import Photos
 
-final class PhotoAssetGridViewController: UIViewController {
+class PhotoAssetGridViewController: UIViewController {
     // View Properties
     private let collectionView = UICollectionView(
         frame: .zero,
