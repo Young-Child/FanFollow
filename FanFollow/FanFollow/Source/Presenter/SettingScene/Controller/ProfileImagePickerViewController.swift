@@ -6,9 +6,12 @@
 
 import UIKit
 
+import RxSwift
+
 final class ProfileImagePickerViewController: PhotoAssetGridViewController {
     private var maxImageCount: Int
     private var selectedImage: UIImage?
+    private var disposeBag = DisposeBag()
     private let profileImagePickerViewModel: ProfileImagePickerViewModel
     
     init(viewModel: ProfileImagePickerViewModel, maxImageCount: Int = 1) {
@@ -25,6 +28,7 @@ final class ProfileImagePickerViewController: PhotoAssetGridViewController {
         super.viewDidLoad()
         
         configureUI()
+        binding()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -43,6 +47,27 @@ final class ProfileImagePickerViewController: PhotoAssetGridViewController {
 
 private extension ProfileImagePickerViewController {
     func binding() {
+        let input = ProfileImagePickerViewModel.Input(
+            updateImage: configureUpdateEvent()
+        )
+        
+        let output = profileImagePickerViewModel.transform(input: input)
+        
+        bindingOutput(to: output)
+    }
+    
+    func bindingOutput(to output: ProfileImagePickerViewModel.Output) {
+        output.imageUploadResult
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { self.dismiss(animated: true) })
+            .disposed(by: disposeBag)
+    }
+    
+    func configureUpdateEvent() -> Observable<Data?> {
+        guard let rightButton = navigationItem.rightBarButtonItem else { return .empty() }
+        
+        return rightButton.rx.tap
+            .map { _ in return self.selectedImage?.pngData() }
     }
 }
 
