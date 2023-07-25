@@ -31,9 +31,9 @@ extension SettingTabBarController: SettingTabBarDelegate {
         guard let itemCount = viewControllers?.count else { return }
         if itemCount <= 1 { return }
         
-        let lastIndex = (itemCount - 1)
-        viewControllers?.remove(at: lastIndex)
-        hideTabBarItem(to: lastIndex)
+//        let lastIndex = (itemCount - 1)
+//        viewControllers?.remove(at: lastIndex)
+//        hideTabBarItem(to: lastIndex)
         view.setNeedsLayout()
     }
 }

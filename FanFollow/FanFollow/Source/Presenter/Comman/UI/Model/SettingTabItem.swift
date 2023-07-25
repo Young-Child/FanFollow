@@ -29,7 +29,20 @@ enum SettingTabItem: Int, TabItem {
             )
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
-        case .feedManage: return UIViewController()
+        case .feedManage:
+            let fetchCreatorPostUseCase = DefaultFetchCreatorPostsUseCase(
+                postRepository: DefaultPostRepository(networkService: DefaultNetworkService())
+            )
+            let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
+                userInformationRepository: DefaultUserInformationRepository(DefaultNetworkService()),
+                followRepository: DefaultFollowRepository(DefaultNetworkService())
+            )
+            let changeLikeUseCase = DefaultChangeLikeUseCase(
+                likeRepository: DefaultLikeRepository(networkService: DefaultNetworkService())
+            )
+            // TODO: 로그인한 UserID를 creatorID에 입력
+            let viewModel = FeedManageViewModel(fetchCreatorPostUseCase: fetchCreatorPostUseCase, fetchCreatorInformationUseCase: fetchCreatorInformationUseCase, changeLikeUseCase: changeLikeUseCase, creatorID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2")
+            return FeedManageViewController(viewModel: viewModel)
         }
     }
 }
