@@ -16,8 +16,8 @@ final class PhotoAssetGridViewController: UIViewController {
     ).then { collectionView in
         collectionView.layer.backgroundColor = UIColor.systemBackground.cgColor
         collectionView.register(
-            ImageGridCell.self,
-            forCellWithReuseIdentifier: ImageGridCell.reuseIdentifier
+            AssetImageGridCell.self,
+            forCellWithReuseIdentifier: AssetImageGridCell.reuseIdentifier
         )
     }
     
@@ -67,7 +67,7 @@ extension PhotoAssetGridViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell: ImageGridCell = collectionView.dequeReusableCell(forIndexPath: indexPath)
+        let cell: AssetImageGridCell = collectionView.dequeReusableCell(forIndexPath: indexPath)
         let asset = photos?.object(at: indexPath.item) ?? PHAsset()
         
         cell.identifier = asset.localIdentifier

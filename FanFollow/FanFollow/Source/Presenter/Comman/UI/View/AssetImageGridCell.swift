@@ -8,7 +8,7 @@ import UIKit
 
 import SnapKit
 
-final class ImageGridCell: UICollectionViewCell {
+final class AssetImageGridCell: UICollectionViewCell {
     // View Properties
     private let imageView = UIImageView().then { imageView in
         imageView.clipsToBounds = true
@@ -38,7 +38,7 @@ final class ImageGridCell: UICollectionViewCell {
 }
 
 // Configure UI Method
-private extension ImageGridCell {
+private extension AssetImageGridCell {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
