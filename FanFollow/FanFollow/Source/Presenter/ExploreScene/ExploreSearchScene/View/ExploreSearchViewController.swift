@@ -27,7 +27,7 @@ final class ExploreSearchViewController: UIViewController {
     }
     
     private let searchTableView = UITableView(frame: .zero, style: .plain).then {
-        $0.separatorColor = .clear
+        $0.separatorColor = .lightGray
         $0.backgroundColor = .clear
         $0.register(CreatorListCell.self, forCellReuseIdentifier: CreatorListCell.reuseIdentifier)
     }
@@ -51,6 +51,71 @@ final class ExploreSearchViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        binding()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
+}
+
+// Bind SearchBarDelegate
+extension ExploreSearchViewController: UISearchBarDelegate {
+    private func bindSearchBar() {
+        searchBar.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+}
+
+// Binding
+extension ExploreSearchViewController {
+    func binding() {
+        let output = bindingInput()
+        
+        bindSearchBar()
+        bindTableView(output)
+    }
+    
+    private func bindTableView(_ output: ExploreSearchViewModel.Output) {
+        output.searchCreatorResultModel
+            .asDriver(onErrorJustReturn: [])
+            .drive(searchTableView.rx.items(cellIdentifier: CreatorListCell.reuseIdentifier,cellType: CreatorListCell.self)) { indexPath, data, cell in
+                cell.configureCell(
+                    nickName: data.nickName,
+                    userID: data.id,
+                    jobCategory: data.jobCategory ?? .unSetting,
+                    introduce: data.introduce ?? ""
+                )
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> ExploreSearchViewModel.Output {
+        let searchBarEvent = searchBar.rx.text
+            .distinctUntilChanged()
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .asObservable()
+        
+        let viewDidScrollEvent = searchTableView.rx.didScroll
+            .flatMap{ _ in
+                let collectionViewContentSizeY = self.searchTableView.contentSize.height
+                let contentOffsetY = self.searchTableView.contentOffset.y
+                let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
+                let frameHeight = self.searchTableView.frame.size.height
+                
+                return heightRemainBottomHeight < frameHeight ?
+                Observable<Void>.just(()) : Observable<Void>.empty()
+            }
+            .asObservable()
+        
+        let input = ExploreSearchViewModel.Input(
+            textDidSearch: searchBarEvent,
+            viewDidScroll: viewDidScrollEvent
+        )
+        
+        return viewModel.transform(input: input)
     }
 }
 
@@ -69,7 +134,8 @@ private extension ExploreSearchViewController {
     
     func makeConstraints() {
         searchBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(10)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         
         searchTableView.snp.makeConstraints {
