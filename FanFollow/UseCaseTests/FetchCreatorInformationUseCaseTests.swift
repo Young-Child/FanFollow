@@ -78,7 +78,7 @@ extension FetchCreatorInformationUseCaseTests {
             links: ["www.naver.com","www.google.com"],
             introduce: "사랑의 몸이 하여도 것이다.",
             isCreator: true,
-            createdAt: "2023-07-04 08:40:02.189472+00"
+            createdDate: Date()
         )
         static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let error = NetworkError.unknown

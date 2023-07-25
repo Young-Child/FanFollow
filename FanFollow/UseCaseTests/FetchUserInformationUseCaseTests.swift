@@ -99,7 +99,7 @@ extension FetchUserInformationUseCaseTests {
             links: nil,
             introduce: nil,
             isCreator: false,
-            createdAt: "2023-07-05 10:25:45.474385+00"
+            createdDate: Date()
         )
         static let creatorInformation = UserInformationDTO(
             userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
@@ -109,7 +109,7 @@ extension FetchUserInformationUseCaseTests {
             links: ["www.naver.com","www.google.com"],
             introduce: "사랑의 몸이 하여도 것이다.",
             isCreator: true,
-            createdAt: "2023-07-04 08:40:02.189472+00"
+            createdDate: Date()
         )
         static let fanID = "a0728b90-0172-4552-9b31-1f3cab84900b"
         static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
