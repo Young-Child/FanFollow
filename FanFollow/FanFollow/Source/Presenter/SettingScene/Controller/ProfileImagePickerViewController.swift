@@ -73,7 +73,11 @@ private extension ProfileImagePickerViewController {
 
 private extension ProfileImagePickerViewController {
     func configureUI() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소")
+        let dismissAction = UIAction { _ in
+            self.dismiss(animated: true)
+        }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: dismissAction)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인")
     }
 }
