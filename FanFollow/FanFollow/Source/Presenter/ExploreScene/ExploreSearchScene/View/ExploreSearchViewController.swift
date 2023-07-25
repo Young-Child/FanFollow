@@ -11,18 +11,18 @@ import RxSwift
 final class ExploreSearchViewController: UIViewController {
     // View Properties
     private let searchBar = UISearchBar().then {
-        $0.barTintColor = .blue
+        $0.barTintColor = .systemBackground
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
-        $0.tintColor = .white
-        $0.searchTextField.textColor = .white
+        $0.tintColor = .systemGray
+        $0.searchTextField.textColor = .label
         $0.searchTextField.clearButtonMode = .whileEditing
         $0.searchTextField.leftView?.tintColor = .white
-        $0.searchTextField.backgroundColor = .red
-        $0.setImage(UIImage(systemName: Constants.searchImage), for: .clear, state: .normal)
+        $0.searchTextField.backgroundColor = .systemGray4
+        $0.setImage(UIImage(systemName: Constants.clearImage), for: .clear, state: .normal)
         $0.searchTextField.attributedPlaceholder = NSAttributedString(
             string: Constants.searchPlaceHolder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
     }
     
@@ -149,6 +149,6 @@ private extension ExploreSearchViewController {
 private extension ExploreSearchViewController {
     enum Constants {
         static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
-        static let searchImage = "magnifyingglass"
+        static let clearImage = "xmark.circle"
     }
 }
