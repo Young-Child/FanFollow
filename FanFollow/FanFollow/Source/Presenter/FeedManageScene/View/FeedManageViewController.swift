@@ -22,11 +22,13 @@ final class FeedManageViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
 
     // Properties
+    typealias DataSource = RxTableViewSectionedReloadDataSource<FeedManageSectionModel>
+
     private let disposeBag = DisposeBag()
     private let viewModel: FeedManageViewModel
     private let likeButtonTap = PublishRelay<String>()
     private let lastCellDisplayed = BehaviorRelay(value: false)
-    private var dataSource: RxTableViewSectionedReloadDataSource<FeedManageSectionModel>!
+    private var dataSource: DataSource!
 
     // Initializer
     init(viewModel: FeedManageViewModel) {
@@ -48,28 +50,30 @@ final class FeedManageViewController: UIViewController {
     }
 
     private func configureDataSource() {
-        dataSource = RxTableViewSectionedReloadDataSource<FeedManageSectionModel>(
-            configureCell: { dataSource, tableView, indexPath, item in
-                switch dataSource[indexPath.section] {
-                case .creatorInformation(let items):
-                    guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: "CreatorInformationCell", for: indexPath
-                    ) as? CreatorInformationCell else { return UITableViewCell() }
-                    let item = items[indexPath.row]
-                    let creator = item.creator
-                    let followerCount = item.followerCount
-                    cell.configure(with: creator, followerCount: followerCount)
-                    return cell
-                case .posts(let items):
-                    guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: "PostCell", for: indexPath
-                    ) as? PostCell else { return UITableViewCell() }
-                    let item = items[indexPath.row]
-                    cell.configure(with: item, delegate: self, creatorViewIsHidden: true)
-                    return cell
-                }
+        dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
+            switch dataSource[indexPath.section] {
+            case .creatorInformation(let items):
+                guard let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "CreatorInformationCell", for: indexPath
+                ) as? CreatorInformationCell else { return UITableViewCell() }
+
+                let item = items[indexPath.row]
+                let creator = item.creator
+                let followerCount = item.followerCount
+
+                cell.configure(with: creator, followerCount: followerCount)
+                return cell
+            case .posts(let items):
+                guard let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "PostCell", for: indexPath
+                ) as? PostCell else { return UITableViewCell() }
+
+                let item = items[indexPath.row]
+
+                cell.configure(with: item, delegate: self, creatorViewIsHidden: true)
+                return cell
             }
-        )
+        })
     }
 }
 
