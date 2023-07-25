@@ -160,11 +160,11 @@ private extension SettingViewController {
         return RxTableViewSectionedAnimatedDataSource(
             configureCell: { dataSource, tableView, indexPath, model in
                 switch dataSource[indexPath] {
-                case let .profile(nickName, userID):
+                case let .profile(nickName, userID, profileURL):
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
-                    cell.configureCell(nickName: nickName, userID: userID)
+                    cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                     return cell
                 case let .base(title):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(
