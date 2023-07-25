@@ -16,7 +16,7 @@ enum SettingSectionModel {
     case registerCreator(title: String, items: [SettingSectionItem])
 }
 
-extension SettingSectionModel: AnimatableSectionModelType {
+extension SettingSectionModel: SectionModelType {
     typealias Item = SettingSectionItem
     typealias Identity = String
     

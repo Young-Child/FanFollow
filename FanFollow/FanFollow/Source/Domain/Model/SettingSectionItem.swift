@@ -19,7 +19,7 @@ extension SettingSectionItem: IdentifiableType {
     var identity: String {
         switch self {
         case .profile(let nickName, let userID, _):
-            return nickName + "_" + userID
+            return nickName + "_" + userID + "_" + UUID().uuidString
         case .base(let title):
             return title
         }
