@@ -110,7 +110,6 @@ final class PostCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemGray6
         configureUI()
     }
 
@@ -128,7 +127,7 @@ final class PostCell: UITableViewCell {
 
 // UI Method
 extension PostCell {
-    func configure(with post: Post, delegate: PostCellDelegate? = nil) {
+    func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
         let userID = post.userID
         creatorImageView.setImageKF(
             to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
@@ -149,6 +148,15 @@ extension PostCell {
 
         self.postID = post.postID
         self.delegate = delegate
+
+        switch creatorViewIsHidden {
+        case false:
+            [creatorStackView, creatorUnderLineView].forEach { $0.isHidden = false }
+            contentView.backgroundColor = .systemGray6
+        case true:
+            [creatorStackView, creatorUnderLineView].forEach { $0.isHidden = true }
+            contentView.backgroundColor = .systemBackground
+        }
     }
 
     private func configurePostContentView(with post: Post) {
@@ -188,7 +196,6 @@ extension PostCell {
 // Configure UI
 private extension PostCell {
     func configureUI() {
-
         configureHierarchy()
         configureConstraints()
         configureLikeButtonAction()
