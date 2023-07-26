@@ -10,7 +10,7 @@ import Kingfisher
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var mainCoordinator: MainCoordinator?
+    var mainCoordinator: AppCoordinator?
 
     func scene(
         _ scene: UIScene,
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         navigationController.navigationBar.isHidden = true
         
-        mainCoordinator = MainCoordinator(navigationController: navigationController)
+        mainCoordinator = AppCoordinator(navigationController: navigationController)
         mainCoordinator?.start()
         
         window?.rootViewController = navigationController
