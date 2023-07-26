@@ -12,7 +12,6 @@ import Kingfisher
 final class PostCell: UITableViewCell {
     // View Properties
     private let outerView = UIView().then { view in
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
     }
 

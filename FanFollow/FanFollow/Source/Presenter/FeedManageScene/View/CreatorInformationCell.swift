@@ -10,7 +10,6 @@ import UIKit
 final class CreatorInformationCell: UITableViewCell {
     // View Properties
     private let stackView = UIStackView().then { stackView in
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 20
