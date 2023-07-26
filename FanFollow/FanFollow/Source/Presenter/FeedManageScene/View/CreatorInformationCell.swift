@@ -12,25 +12,25 @@ final class CreatorInformationCell: UITableViewCell {
     private let stackView = UIStackView().then { stackView in
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.spacing = 20
+        stackView.spacing = 16
     }
 
     private let creatorImageView = UIImageView().then { imageView in
         imageView.layer.backgroundColor = Constants.creatorImageViewBackgroundColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 25
     }
 
     private let creatorStackView = UIStackView().then { stackView in
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 10
+        stackView.spacing = 5
     }
 
     private let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .bold)
     }
 
     private let followerCountLabel = UILabel().then { label in
@@ -64,11 +64,11 @@ extension CreatorInformationCell {
         let attributedText = [
             NSAttributedString(
                 string: "팔로워 ",
-                attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)]
+                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
             ),
             NSAttributedString(
                 string: "\(count)명",
-                attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .bold),
+                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold),
                              .foregroundColor: Constants.followerCountLabelTextColor]
             )
         ].reduce(into: NSMutableAttributedString()) {
@@ -93,10 +93,10 @@ private extension CreatorInformationCell {
     
     func configureConstraints() {
         creatorImageView.snp.makeConstraints {
-            $0.width.height.equalTo(80).priority(.required)
+            $0.width.height.equalTo(50).priority(.required)
         }
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(20)
+            $0.edges.equalToSuperview().inset(16)
         }
     }
 }
