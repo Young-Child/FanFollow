@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 final class ExploreSearchViewController: UIViewController {
     // View Properties
@@ -47,6 +48,7 @@ final class ExploreSearchViewController: UIViewController {
     // Properties
     private let viewModel: ExploreSearchViewModel
     private let disposeBag = DisposeBag()
+    private var isLoading = BehaviorRelay<Bool>(value: false)
     
     // Initializer
     init(viewModel: ExploreSearchViewModel) {
@@ -131,14 +133,18 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .asObservable()
         
         let viewDidScrollEvent = searchTableView.rx.didScroll
-            .flatMap{ _ in
+            .flatMap { _ in
+                if self.isLoading.value { return Observable<Void>.empty() }
+                
                 let collectionViewContentSizeY = self.searchTableView.contentSize.height
                 let contentOffsetY = self.searchTableView.contentOffset.y
                 let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
                 let frameHeight = self.searchTableView.frame.size.height
+                let reachBottom = heightRemainBottomHeight < frameHeight
                 
-                return heightRemainBottomHeight < frameHeight ?
-                Observable<Void>.just(()) : Observable<Void>.empty()
+                self.isLoading.accept(reachBottom)
+                
+                return reachBottom ? Observable<Void>.just(()) : Observable<Void>.empty()
             }
             .asObservable()
         
