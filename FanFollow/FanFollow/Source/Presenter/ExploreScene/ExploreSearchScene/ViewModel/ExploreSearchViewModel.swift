@@ -35,15 +35,9 @@ final class ExploreSearchViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let loadObservable = input.textDidSearch
-            .do(onNext: { text in
-                self.pageCount.accept(.zero)
-            })
-            .flatMapLatest { text in
-                guard let searchText = text, !searchText.isEmpty else {
-                    return Observable<[Creator]>.just([])
-                }
+            .flatMapLatest {
                 return self.searchCreatorUseCase.fetchSearchCreators(
-                    text: text ?? "",
+                    text: $0,
                     startRange: .zero,
                     endRange: Constants.pageUnit
                 )
@@ -51,14 +45,9 @@ final class ExploreSearchViewModel: ViewModel {
         
         let loadMoreObservable = input.viewDidScroll
             .withLatestFrom(input.textDidSearch)
-            .compactMap { $0 }
-            .flatMapLatest { text in
-                guard !text.isEmpty else {
-                    return Observable<[Creator]>.just([])
-                }
-                
+            .flatMapLatest {
                 return self.searchCreatorUseCase.fetchSearchCreators(
-                    text: text,
+                    text: $0,
                     startRange: self.pageCount.value + 1,
                     endRange: self.pageCount.value + Constants.pageUnit
                 )
