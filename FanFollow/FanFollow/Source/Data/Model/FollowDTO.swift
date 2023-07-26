@@ -5,11 +5,13 @@
 //  Created by junho lee on 2023/07/03.
 //
 
+import Foundation
+
 struct FollowDTO: Decodable {
     let followID: String
     let followerID: String
     let followingID: String
-    let createdDate: String
+    let createdDate: Date
     let userInformation: UserInformationDTO
 
     enum CodingKeys: String, CodingKey {

@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/13.
 //
 
+import Foundation
+
 import RxSwift
 
 @testable import FanFollow
@@ -51,7 +53,7 @@ final class StubUserInformationRepository: UserInformationRepository {
         links: [String]?,
         introduce: String?,
         isCreator: Bool,
-        createdAt: String
+        createdAt: Date
     ) -> Completable {
         return Completable.create { observer in
             if let error = self.error {

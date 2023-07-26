@@ -1,5 +1,5 @@
 //
-//  ChatServiceTests.swift
+//  ChatRepositoryTests.swift
 //  ServiceTests
 //
 //  Copyright (c) 2023 Minii All rights reserved.
@@ -11,7 +11,7 @@ import RxTest
 
 @testable import FanFollow
 
-final class ChatServiceTests: XCTestCase {
+final class ChatRepositoryTests: XCTestCase {
     private var successResponse: URLResponse!
     private var failureResponse: URLResponse!
     private var networkService: StubNetworkService!
