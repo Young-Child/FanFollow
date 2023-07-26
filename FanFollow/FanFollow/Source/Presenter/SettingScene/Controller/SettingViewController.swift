@@ -77,7 +77,6 @@ private extension SettingViewController {
     
     func bindTableView(_ output: SettingViewModel.Output) {
         output.settingSections
-            .debug()
             .asDriver(onErrorJustReturn: [])
             .drive(settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)

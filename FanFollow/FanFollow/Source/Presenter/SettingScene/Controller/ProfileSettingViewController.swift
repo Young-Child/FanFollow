@@ -12,10 +12,25 @@ import SnapKit
 
 final class ProfileSettingViewController: UIViewController {
     // View Properties
+    private let scrollView = UIScrollView().then {
+        $0.showsVerticalScrollIndicator = false
+        $0.keyboardDismissMode = .interactive
+    }
+    private let scrollViewContentView = UIView()
+    
     private let profileImageView = UIImageView().then {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 75
         $0.contentMode = .scaleAspectFill
+    }
+    
+    private let profileInputStackView = UIStackView().then {
+        $0.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        $0.isLayoutMarginsRelativeArrangement = true
+        $0.alignment = .fill
+        $0.spacing = 16
+        $0.distribution = .fillProportionally
+        $0.axis = .vertical
     }
     
     private let nickNameInput = ProfileInputField(title: "닉네임")
@@ -240,12 +255,13 @@ private extension ProfileSettingViewController {
         configureCategoryPickerView()
         configureImageViewGesture()
         makeConstraints()
+        
     }
     
     func configureNavigationBar() {
         let completeButton = UIBarButtonItem(title: "완료")
         navigationItem.rightBarButtonItem = completeButton
-        
+        navigationItem.title = "프로필 편집"
         navigationController?.navigationBar.topItem?.title = "뒤로"
     }
     
@@ -256,54 +272,37 @@ private extension ProfileSettingViewController {
     }
     
     func configureHierarchy() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollViewContentView)
+        
         [
-            profileImageView,
-            nickNameInput,
-            creatorInformationLabel,
-            jobCategoryInput,
-            linkInput,
-            introduceInput
-        ].forEach(view.addSubview)
+            nickNameInput, creatorInformationLabel,
+            jobCategoryInput, linkInput, introduceInput
+        ].forEach(profileInputStackView.addArrangedSubview)
+        
+        [profileImageView, profileInputStackView].forEach(scrollViewContentView.addSubview(_:))
     }
     
     func makeConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        scrollViewContentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.high)
+        }
+        
         profileImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(16)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.width.equalTo(150).priority(.high)
-            $0.height.equalTo(150).priority(.high)
+            $0.width.height.equalTo(150)
         }
         
-        nickNameInput.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(profileImageView.snp.bottom).offset(24)
-            $0.height.equalTo(50)
-        }
-        
-        creatorInformationLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(nickNameInput.snp.bottom).offset(32)
-        }
-        
-        jobCategoryInput.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(creatorInformationLabel.snp.bottom).offset(16)
-        }
-        
-        linkInput.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(jobCategoryInput.snp.bottom).offset(32)
-        }
-        
-        introduceInput.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.top.equalTo(linkInput.snp.bottom).offset(32)
+        profileInputStackView.snp.makeConstraints {
+            $0.top.equalTo(profileImageView.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
         }
     }
 }
