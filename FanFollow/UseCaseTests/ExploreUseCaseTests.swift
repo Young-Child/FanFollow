@@ -38,10 +38,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
+        let randomCreatorsObservable = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
-        let result = randomCreatorsObservalble.toBlocking()
+        let result = randomCreatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, 3)
         
@@ -60,10 +60,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomCreatorsByAllCategory(count: 10)
+        let randomAllCreatorsObservable = exploreUseCase.fetchRandomCreatorsByAllCategory(count: 10)
         
         // then
-        let result = randomAllCreatorsObservalble.toBlocking()
+        let result = randomAllCreatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, JobCategory.allCases.count)
         
@@ -82,10 +82,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchPopularCreators(by: .IT, count: 1)
+        let randomCreatorsObservable = exploreUseCase.fetchPopularCreators(by: .IT, count: 1)
         
         // then
-        let result = randomCreatorsObservalble.toBlocking()
+        let result = randomCreatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, 3)
         
@@ -125,10 +125,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
+        let randomCreatorsObservable = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
-        let result =  randomCreatorsObservalble.toBlocking().materialize()
+        let result =  randomCreatorsObservable.toBlocking().materialize()
         
         switch result {
         case .completed:
@@ -149,7 +149,7 @@ private extension UserInformationDTO {
             links: [],
             introduce: "CreatorTestIntroduce",
             isCreator: true,
-            createdAt: "CreatorTestDate"
+            createdDate: Date()
         )
     }
     
@@ -163,7 +163,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -174,7 +174,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -185,7 +185,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
         ]
     }
@@ -200,7 +200,7 @@ private extension UserInformationDTO {
             links: nil,
             introduce: nil,
             isCreator: false,
-            createdAt: "FanTestDate"
+            createdDate: Date()
         )
     }
 }

@@ -86,7 +86,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -97,7 +97,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -108,7 +108,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             )
         ]
     }

@@ -9,7 +9,7 @@ import Foundation
 struct ChatDTO: Decodable {
     var chatID: String = UUID().uuidString
     var isAccept: Bool = false
-    var createdDate: String = Date().description
+    var createdDate: Date = Date()
     let creatorID: String?
     let creatorNickName: String?
     let creatorProfilePath: String?

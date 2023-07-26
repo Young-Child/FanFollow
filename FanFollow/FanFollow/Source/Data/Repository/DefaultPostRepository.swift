@@ -20,7 +20,7 @@ struct DefaultPostRepository: PostRepository {
             .requestMyPosts(userID: userID, startRange: startRange, endRange: endRange)
         
         return networkService.data(request)
-            .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([PostDTO].self, from: $0) }
     }
 
     func fetchFollowPosts(followerID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
@@ -28,13 +28,13 @@ struct DefaultPostRepository: PostRepository {
             .requestFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
 
         return networkService.data(request)
-            .compactMap { try? JSONDecoder().decode([PostDTO].self, from: $0) }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([PostDTO].self, from: $0) }
     }
 
     func upsertPost(
         postID: String?,
         userID: String,
-        createdDate: String,
+        createdDate: Date,
         title: String,
         content: String,
         imageURLs: [String]?,
@@ -43,13 +43,15 @@ struct DefaultPostRepository: PostRepository {
         let postItem = PostDTO(
             postID: postID,
             userID: userID,
-            createdData: createdDate,
+            createdDate: createdDate,
             title: title,
             content: content,
             imageURLs: imageURLs,
             videoURL: videoURL,
             nickName: nil,
-            profilePath: nil
+            profilePath: nil,
+            isLiked: nil,
+            likeCount: nil
         )
         let request = PostRequestDirector(builder: builder).requestPostUpsert(item: postItem)
         

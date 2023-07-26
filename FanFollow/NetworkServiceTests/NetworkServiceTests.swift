@@ -48,8 +48,8 @@ final class NetworkServiceTests: XCTestCase {
         //then
         fetchResult
             .subscribe(onNext: { data in
-                let result = try! JSONDecoder().decode(ChatDTO.self, from: data)
-                let expected = try! JSONDecoder().decode(ChatDTO.self, from: self.sample.sampleData)
+                let result = try! JSONDecoder.ISODecoder.decode(ChatDTO.self, from: data)
+                let expected = try! JSONDecoder.ISODecoder.decode(ChatDTO.self, from: self.sample.sampleData)
                 
                 XCTAssertEqual(result.chatID, expected.chatID)
             }, onError: { _ in

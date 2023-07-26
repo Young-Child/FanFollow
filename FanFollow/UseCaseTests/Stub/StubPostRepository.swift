@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/13.
 //
 
+import Foundation
+
 import RxSwift
 
 @testable import FanFollow
@@ -38,7 +40,7 @@ final class StubPostRepository: PostRepository {
     }
 
     func upsertPost(
-        postID: String?, userID: String, createdDate: String,
+        postID: String?, userID: String, createdDate: Date,
         title: String, content: String, imageURLs: [String]?, videoURL: String?
     ) -> Completable {
         return Completable.create { observer in

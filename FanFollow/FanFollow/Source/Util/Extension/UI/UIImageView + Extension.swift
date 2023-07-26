@@ -28,6 +28,19 @@ extension UIImageView {
         
         setImage(to: imageURL, failureImage: failureImage, round: round)
     }
+
+    func setImageKF(to url: String, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)?) {
+        self.kf.indicatorType = .activity
+
+        guard let url = URL(string: url) else {
+            return
+        }
+
+        kf.setImage(with: url, placeholder: nil, options: nil) { result in
+            completionHandler?(result)
+        }
+    }
+
     private func setImage(to url: URL, failureImage: UIImage, round: RoundCase) {
         var options = KingfisherOptionsInfo()
         
