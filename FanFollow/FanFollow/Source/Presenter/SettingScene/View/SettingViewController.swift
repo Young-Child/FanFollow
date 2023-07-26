@@ -131,9 +131,7 @@ extension SettingViewController: UITableViewDelegate {
 // Push Controller Method (임시)
 private extension SettingViewController {
     func pushExampleViewController() {
-        let exampleViewController = UIViewController()
-        exampleViewController.view.backgroundColor = .red
-        navigationController?.pushViewController(exampleViewController, animated: true)
+        settingTabBarDelegate?.settingController(self, didTapPresent: true)
     }
 }
 

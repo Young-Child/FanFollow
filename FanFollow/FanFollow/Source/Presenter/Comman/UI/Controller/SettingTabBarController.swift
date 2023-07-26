@@ -8,9 +8,11 @@ import UIKit
 
 protocol SettingTabBarDelegate: AnyObject {
     func settingController(_ controller: SettingViewController, removeFeedManageTab isCreator: Bool)
+    func settingController(_ controller: SettingViewController, didTapPresent animated: Bool)
 }
 
 final class SettingTabBarController: TopTabBarController<SettingTabItem> {
+    weak var coordinator: SettingCoordinator?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,5 +37,9 @@ extension SettingTabBarController: SettingTabBarDelegate {
         viewControllers?.remove(at: lastIndex)
         hideTabBarItem(to: lastIndex)
         view.setNeedsLayout()
+    }
+    
+    func settingController(_ controller: SettingViewController, didTapPresent animated: Bool) {
+        coordinator?.presentSettingViewController()
     }
 }
