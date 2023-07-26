@@ -39,6 +39,11 @@ final class ExploreSearchViewController: UIViewController {
         $0.register(CreatorListCell.self, forCellReuseIdentifier: CreatorListCell.reuseIdentifier)
     }
     
+    private let searchLabel = UILabel().then {
+        $0.textColor = .label
+        $0.textAlignment = .center
+    }
+    
     // Properties
     private let viewModel: ExploreSearchViewModel
     private let disposeBag = DisposeBag()
@@ -81,6 +86,15 @@ extension ExploreSearchViewController: UISearchBarDelegate {
     }
     
     private func bindSearchBar() {
+        searchBar.rx.text
+            .compactMap { $0 }
+            .asDriver(onErrorJustReturn: "")
+            .map {
+                $0.isEmpty ? Constants.noSearch : Constants.noSearchResult
+            }
+            .drive(searchLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         searchBar.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
@@ -88,9 +102,6 @@ extension ExploreSearchViewController: UISearchBarDelegate {
     private func bindTableView(_ output: ExploreSearchViewModel.Output) {
         output.searchCreatorResultModel
             .asDriver(onErrorJustReturn: [])
-            .do(onNext: { datas in
-                datas.count == .zero ? self.showEmptyResultLabel() : self.hideEmptyResultLabel()
-            })
             .drive(searchTableView.rx.items(
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
@@ -102,6 +113,14 @@ extension ExploreSearchViewController: UISearchBarDelegate {
                     introduce: data.introduce ?? ""
                 )
             }
+            .disposed(by: disposeBag)
+        
+        output.searchCreatorResultModel
+            .asDriver(onErrorJustReturn: [])
+            .map { datas in
+                return !(datas.count == .zero)
+            }
+            .drive(self.searchLabel.rx.isHidden)
             .disposed(by: disposeBag)
     }
     
@@ -132,33 +151,11 @@ extension ExploreSearchViewController: UISearchBarDelegate {
     }
 }
 
-// Search Result Label Setting
-private extension ExploreSearchViewController {
-    private func showEmptyResultLabel() {
-        let searchLabel = UILabel().then {
-            $0.text = searchBar.text == "" ? Constants.noSearch : Constants.noSearchResult
-            $0.textColor = .label
-            $0.textAlignment = .center
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        searchTableView.backgroundView = searchLabel
-        
-        searchLabel.snp.makeConstraints {
-            $0.centerX.equalTo(searchTableView.snp.centerX)
-            $0.top.equalTo(searchTableView.snp.top).offset(50)
-        }
-    }
-    
-    private func hideEmptyResultLabel() {
-        searchTableView.backgroundView = nil
-    }
-}
-
 // Configure UI
 private extension ExploreSearchViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
+        searchTableView.backgroundView = searchLabel
         
         configureHierarchy()
         makeConstraints()
@@ -183,6 +180,11 @@ private extension ExploreSearchViewController {
         searchTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(10)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        searchLabel.snp.makeConstraints {
+            $0.centerX.equalTo(searchTableView.snp.centerX)
+            $0.top.equalTo(searchTableView.snp.top).offset(50)
         }
     }
 }
