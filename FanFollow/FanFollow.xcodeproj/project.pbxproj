@@ -77,6 +77,10 @@
 		3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
+		3C4FA9A92A57C323003A1683 /* PostServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostServiceTests.swift */; };
+		3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65412A6CFAC5004F9698 /* ExploreSearchViewController.swift */; };
+		3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */; };
+		3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
@@ -240,6 +244,10 @@
 		3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewModel.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
+		3C4FA9A82A57C323003A1683 /* PostServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceTests.swift; sourceTree = "<group>"; };
+		3C5F65412A6CFAC5004F9698 /* ExploreSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSearchViewController.swift; sourceTree = "<group>"; };
+		3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSearchViewModel.swift; sourceTree = "<group>"; };
+		3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorListCell.swift; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
@@ -740,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC69A892A65116C0081ACC8 /* CreatorCell.swift */,
+				3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */,
 				3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */,
 			);
 			path = Common;
@@ -799,12 +808,38 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		3C5F653E2A6CFA92004F9698 /* ExploreSearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C5F653F2A6CFAAD004F9698 /* View */,
+				3C5F65402A6CFAB2004F9698 /* ViewModel */,
+			);
+			path = ExploreSearchScene;
+			sourceTree = "<group>";
+		};
+		3C5F653F2A6CFAAD004F9698 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C5F65412A6CFAC5004F9698 /* ExploreSearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C5F65402A6CFAB2004F9698 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3CC69A802A64E6F40081ACC8 /* ExploreScene */ = {
 			isa = PBXGroup;
 			children = (
 				3C1804352A68F3210019DE79 /* Common */,
 				3C18042C2A67B13D0019DE79 /* ExploreMainScene */,
 				3C18042D2A67B14B0019DE79 /* ExploreCategoryScene */,
+				3C5F653E2A6CFA92004F9698 /* ExploreSearchScene */,
 			);
 			path = ExploreScene;
 			sourceTree = "<group>";
@@ -1229,6 +1264,7 @@
 				18EC4F492A617A5F007C1063 /* ImageRequestDirector.swift in Sources */,
 				EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */,
 				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
+				3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
@@ -1263,6 +1299,7 @@
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
 				18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */,
+				3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
@@ -1282,6 +1319,7 @@
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
+				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,

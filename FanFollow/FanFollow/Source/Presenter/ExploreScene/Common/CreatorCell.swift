@@ -11,8 +11,6 @@ import SnapKit
 final class CreatorCell: UICollectionViewCell {
     // View Properties
     private let profileImageView = UIImageView().then {
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 25
         $0.contentMode = .scaleAspectFill
         $0.backgroundColor = UIColor(named: "SecondaryColor")
     }

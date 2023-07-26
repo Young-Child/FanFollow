@@ -26,7 +26,6 @@ final class ExploreCategoryViewModel: ViewModel {
     private let creatorList = BehaviorRelay<ExploreSectionModel>(
         value: ExploreSectionModel(title: "", items: [])
     )
-    private var currentPage = 1
     
     init(exploreUseCase: ExploreUseCase, jobCategory: JobCategory) {
         self.exploreUseCase = exploreUseCase
