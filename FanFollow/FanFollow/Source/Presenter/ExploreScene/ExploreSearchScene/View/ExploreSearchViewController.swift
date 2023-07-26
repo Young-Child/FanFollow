@@ -62,16 +62,8 @@ final class ExploreSearchViewController: UIViewController {
     }
 }
 
-// Bind SearchBarDelegate
-extension ExploreSearchViewController: UISearchBarDelegate {
-    private func bindSearchBar() {
-        searchBar.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-    }
-}
-
 // Binding
-extension ExploreSearchViewController {
+extension ExploreSearchViewController: UISearchBarDelegate {
     func binding() {
         let output = bindingInput()
         
@@ -85,6 +77,11 @@ extension ExploreSearchViewController {
             .bind {
                 self.navigationController?.popViewController(animated: true)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindSearchBar() {
+        searchBar.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
     
