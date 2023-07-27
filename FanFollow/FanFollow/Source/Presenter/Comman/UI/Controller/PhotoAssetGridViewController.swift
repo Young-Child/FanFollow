@@ -33,13 +33,8 @@ class PhotoAssetGridViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        configureLibraryImages()
         configureUI()
-        
-        let option = PHFetchOptions()
-        option.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        
-        self.photos = PHAsset.fetchAssets(with: .image, options: option)
-        self.collectionView.reloadData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -112,6 +107,94 @@ extension PhotoAssetGridViewController: UICollectionViewDelegateFlowLayout {
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         return 1.5
+    }
+}
+
+private extension PhotoAssetGridViewController {
+    func configureLibraryImages() {
+        checkPhotoAuthorization()
+        
+        PHPhotoLibrary.shared().register(self)
+        
+        let option = PHFetchOptions()
+        option.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        photos = PHAsset.fetchAssets(with: .image, options: option)
+        
+        collectionView.reloadData()
+    }
+    
+    func checkPhotoAuthorization() {
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch status {
+                case .denied, .restricted:
+                    self.presentDeniedAlert()
+                default:
+                    return
+                }
+            }
+        }
+    }
+    
+    func presentDeniedAlert() {
+        let alertController = UIAlertController(
+            title: "사진 권한을 변경해주세요.",
+            message: "설정 > 팬팔에서 사진 접근 권한을 변경해주세요",
+            preferredStyle: .alert
+        )
+        
+        let action = UIAlertAction(title: "확인", style: .default) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        alertController.addAction(action)
+        
+        self.present(alertController, animated: true)
+    }
+}
+
+// Photo Selected Changed Observer
+extension PhotoAssetGridViewController: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        guard let photos = photos,
+              let changes = changeInstance.changeDetails(for: photos) else { return }
+        
+        DispatchQueue.main.sync {
+            self.photos = changes.fetchResultAfterChanges
+            
+            if changes.hasIncrementalChanges {
+                collectionView.performBatchUpdates {
+                    if let removed = changes.removedIndexes,
+                       removed.isEmpty == false {
+                        let indexPaths = removed.map { IndexPath(item: $0, section: .zero) }
+                        collectionView.deleteItems(at: indexPaths)
+                    }
+                    
+                    if let inserted = changes.insertedIndexes,
+                       inserted.isEmpty == false {
+                        let indexPaths = inserted.map { IndexPath(item: $0, section: .zero)}
+                        collectionView.insertItems(at: indexPaths)
+                    }
+                    
+                    changes.enumerateMoves { from, to in
+                        let fromIndexPath = IndexPath(item: from, section: .zero)
+                        let toIndexPath = IndexPath(item: to, section: .zero)
+                        self.collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
+                    }
+                    
+                    if let changed = changes.changedIndexes,
+                       changed.isEmpty == false {
+                        let indexPaths = changed.map { IndexPath(item: $0, section: .zero) }
+                        collectionView.reloadItems(at: indexPaths)
+                    }
+                }
+            }
+            else {
+                collectionView.reloadData()
+            }
+        }
     }
 }
 
