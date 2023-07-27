@@ -68,10 +68,7 @@ extension CreatorListCell {
     func configureCell(nickName: String, userID: String, jobCategory: JobCategory, introduce: String) {
         guard let defaultImage = UIImage(systemName: "person") else { return }
         nickNameLabel.text = nickName
-        profileImageView.setImageKF(
-            to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
-            failureImage: defaultImage
-        )
+        profileImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png")
         jobLabel.text = Constants.category + " " + jobCategory.categoryName
         introduceLabel.text = introduce
         

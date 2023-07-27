@@ -128,11 +128,7 @@ final class PostCell: UITableViewCell {
 extension PostCell {
     func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
         let userID = post.userID
-        creatorImageView.setImageKF(
-            to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
-            failureImage: Constants.failureProfileImage,
-            round: .round(cornerRadius: 25)
-        )
+        creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png")
         creatorNickNameLabel.text = post.nickName
         titleLabel.text = post.title
         contentLabel.text = post.content
@@ -181,11 +177,15 @@ extension PostCell {
         imagesStackView.arrangedSubviews.enumerated().forEach { offset, view in
             guard let imageView = view as? UIImageView else { return }
             let imageName = "\(offset + 1)"
+            let path = postID + "_" + imageName
+            print(postID, path)
             let url = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\(imageName)"
-            imageView.setImageKF(to: url) { result in
+            imageView.setImagePostImage(to: url, key: path) { result in
                 switch result {
-                case .success: imageView.isHidden = false
-                case .failure: imageView.isHidden = true
+                case .success:
+                    imageView.isHidden = false
+                case .failure:
+                    imageView.isHidden = true
                 }
             }
         }

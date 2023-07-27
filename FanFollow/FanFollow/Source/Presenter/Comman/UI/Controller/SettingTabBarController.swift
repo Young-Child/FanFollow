@@ -19,6 +19,12 @@ final class SettingTabBarController: TopTabBarController<SettingTabItem> {
         setDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setDelegate() {
         guard let controller = viewControllers?.first as? SettingViewController else { return }
         controller.settingTabBarDelegate = self
