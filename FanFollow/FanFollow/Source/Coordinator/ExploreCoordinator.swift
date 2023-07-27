@@ -8,9 +8,12 @@
 import UIKit
 
 class ExploreCoordinator: Coordinator {
+    // Coordinator Propertiese
     weak var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    
+    // Dependency
     private let userInformationRepository: UserInformationRepository
     private let exploreUseCase: ExploreUseCase
     private let searchUseCase: SearchCreatorUseCase
@@ -37,8 +40,8 @@ class ExploreCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func presentProfileViewController() {
-        
+    func presentProfileViewController(to userID: String) {
+        // TODO: - Profile 이동 구현
     }
     
     func presentSearchViewController() {
