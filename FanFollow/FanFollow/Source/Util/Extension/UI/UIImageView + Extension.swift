@@ -9,69 +9,39 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    enum RoundCase {
-        case none
-        case round(cornerRadius: Int)
+    enum CustomCacheKey: String {
+        case profile
     }
     
-    func setImageKF(
-        to url: String,
-        key: String,
-        failureImage: UIImage?,
-        round: RoundCase = .none
-    ) {
+    func setImageProfileImage(to urlPath: String) {
         self.kf.indicatorType = .activity
         
-        guard let imageURL = URL(string: url) else {
-            self.image = failureImage
-            return
-        }
+        let options: KingfisherOptionsInfo = [
+            .cacheMemoryOnly,
+            .cacheOriginalImage
+        ]
         
-        let resource = ImageResource(downloadURL: imageURL, cacheKey: key)
-        
-        setImage(to: resource, failureImage: failureImage, round: round)
+        setImageWithCustomCacheKey(to: urlPath, key: .profile, options: options)
     }
     
-    func setImageKF(
-        to url: String,
-        failureImage: UIImage,
-        round: RoundCase = .none
+    private func setImageWithCustomCacheKey(
+        to urlPath: String,
+        key: CustomCacheKey,
+        options: KingfisherOptionsInfo
     ) {
-        self.kf.indicatorType = .activity
         
-        guard let imageURL = URL(string: url) else {
-            self.image = failureImage
-            return
-        }
         
-        setImage(to: imageURL, failureImage: failureImage, round: round)
+        guard let imageURL = URL(string: urlPath) else { return }
+        
+        let resource = ImageResource(downloadURL: imageURL, cacheKey: key.rawValue)
+        
+        kf.setImage(with: resource, options: options)
     }
-    
-    private func setImage(to resource: Resource, failureImage: UIImage?, round: RoundCase) {
-        self.kf.cancelDownloadTask()
-        
-        var options = KingfisherOptionsInfo()
-        options.append(.onFailureImage(failureImage))
-        
-        switch round {
-        case .round(let radius):
-            let roundProcessor = RoundCornerImageProcessor(cornerRadius: CGFloat(radius))
-            options.append(.processor(roundProcessor))
-        case .none:
-            break
-        }
-        
-        self.kf.setImage(with: resource, options: options) { result in
-            switch result {
-            case .success(let image):
-                ImageCache.default.memoryStorage.store(
-                    value: image.image,
-                    forKey: resource.cacheKey
-                )
-                
-            case .failure:
-                break
-            }
-        }
+}
+
+extension ImageCache {
+    func changeMemoryImage(to image: KFCrossPlatformImage, key: String) {
+        memoryStorage.remove(forKey: key)
+        memoryStorage.store(value: image, forKey: key)
     }
 }

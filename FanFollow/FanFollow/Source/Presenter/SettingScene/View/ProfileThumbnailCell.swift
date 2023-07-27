@@ -51,12 +51,7 @@ final class ProfileThumbnailCell: UITableViewCell {
 extension ProfileThumbnailCell {
     func configureCell(nickName: String, userID: String, profileURL: String) {
         self.nickNameLabel.text = nickName
-        
-        self.profileImageView.setImageKF(
-            to: profileURL,
-            key: "profileImage",
-            failureImage: UIImage(systemName: "person")
-        )
+        self.profileImageView.setImageProfileImage(to: profileURL)
     }
 }
 

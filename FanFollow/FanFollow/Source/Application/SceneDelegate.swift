@@ -40,5 +40,6 @@ private extension SceneDelegate {
         }
         
         KingfisherManager.shared.defaultOptions = [.requestModifier(modifier)]
+        ImageCache.default.cleanExpiredCache()
     }
 }

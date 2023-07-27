@@ -9,6 +9,7 @@ import PhotosUI
 
 import RxSwift
 import SnapKit
+import Kingfisher
 
 final class ProfileSettingViewController: UIViewController {
     // View Properties
@@ -98,13 +99,7 @@ private extension ProfileSettingViewController {
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
         output.profileURL
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext: {
-                self.profileImageView.setImageKF(
-                    to: $0,
-                    key: "profileImage",
-                    failureImage: UIImage(systemName: "person")
-                )
-            })
+            .drive(onNext: setImage)
             .disposed(by: disposeBag)
         
         output.nickName
@@ -186,6 +181,10 @@ private extension ProfileSettingViewController {
         
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setImage(to url: String) {
+        self.profileImageView.setImageProfileImage(to: url)
     }
     
     @objc private func didTapImageChangeButton() {
