@@ -86,6 +86,8 @@ private extension MainTabBarCoordinator {
             navigationController.tabBarItem = tabBarItem
             
             switch self {
+            case .feed:
+                return FeedCoordinator(navigationController: navigationController)
             case .setting:
                 return SettingCoordinator(navigationController: navigationController)
             default:
