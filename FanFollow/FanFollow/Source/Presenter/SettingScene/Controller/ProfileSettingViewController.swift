@@ -77,8 +77,22 @@ final class ProfileSettingViewController: UIViewController {
 // Binding Method
 private extension ProfileSettingViewController {
     func binding() {
+        bindingKeyboardHeight()
         let output = transformInput()
         bindingOutput(to: output)
+    }
+    
+    func bindingKeyboardHeight() {
+        Observable.of(
+            Notification.keyboardWillShow(),
+            Notification.keyboardWillHide()
+        )
+        .merge()
+        .asDriver(onErrorJustReturn: .zero)
+        .drive {
+            self.scrollView.contentInset.bottom = $0
+        }
+        .disposed(by: disposeBag)
     }
     
     func transformInput() -> ProfileSettingViewModel.Output {
@@ -302,6 +316,7 @@ private extension ProfileSettingViewController {
         profileInputStackView.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom).offset(32)
             $0.leading.trailing.equalToSuperview()
+            $0.bottom.lessThanOrEqualToSuperview()
         }
     }
 }
