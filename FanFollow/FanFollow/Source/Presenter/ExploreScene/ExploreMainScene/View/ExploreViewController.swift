@@ -28,6 +28,7 @@ final class ExploreViewController: UIViewController {
     }
     
     // Properties
+    weak var coordinator: ExploreCoordinator?
     private let viewModel: ExploreViewModel
     private let dataSource = ExploreViewController.dataSource()
     private let disposeBag = DisposeBag()
@@ -86,25 +87,12 @@ extension ExploreViewController {
             .subscribe { data in
                 switch data.element {
                 case .category(let job):
-                    let viewController = ExploreCategoryViewController(
-                        viewModel: ExploreCategoryViewModel(
-                            exploreUseCase: DefaultExploreUseCase(
-                                userInformationRepository: DefaultUserInformationRepository(
-                                    DefaultNetworkService()
-                                )
-                            ),
-                            jobCategory: job
-                        )
-                    )
-                    
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    self.coordinator?.presentCategoryViewController(for: job)
                 default:
                     break
                 }
             }
             .disposed(by: disposeBag)
-
-        
         
         let input = ExploreViewModel.Input(
             viewWillAppear: viewWillAppearEvent,

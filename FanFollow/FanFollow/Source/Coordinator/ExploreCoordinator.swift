@@ -12,22 +12,24 @@ class ExploreCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     private let userInformationRepository: UserInformationRepository
+    private let exploreUseCase: ExploreUseCase
+    private let searchUseCase: SearchCreatorUseCase
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         
         userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService())
+        exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
+        searchUseCase = DefaultSearchCreatorUseCase(userInformationRepository: userInformationRepository)
     }
     
     func start() {
         let controller = ExploreTabBarController()
         controller.coordinator = self
-        
         navigationController.pushViewController(controller, animated: true)
     }
     
     func presentCategoryViewController(for jobCategory: JobCategory) {
-        let exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
         let viewModel = ExploreCategoryViewModel(exploreUseCase: exploreUseCase, jobCategory: jobCategory)
         let controller = ExploreCategoryViewController(viewModel: viewModel)
         
@@ -39,7 +41,6 @@ class ExploreCoordinator: Coordinator {
     }
     
     func presentSearchViewController() {
-        let searchUseCase = DefaultSearchCreatorUseCase(userInformationRepository: userInformationRepository)
         let viewModel = ExploreSearchViewModel(searchCreatorUseCase: searchUseCase)
         let controller = ExploreSearchViewController(viewModel: viewModel)
         

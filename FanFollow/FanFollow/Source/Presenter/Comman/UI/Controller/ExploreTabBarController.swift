@@ -24,6 +24,17 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
         configureUI()
         bindSearchButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setCoordinator()
+    }
+    
+    private func setCoordinator() {
+        guard let controller = viewControllers?.first as? ExploreViewController else { return }
+        
+        controller.coordinator = self.coordinator
+    }
 }
 
 // Binding
