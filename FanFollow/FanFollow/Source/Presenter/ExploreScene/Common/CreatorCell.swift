@@ -42,12 +42,9 @@ final class CreatorCell: UICollectionViewCell {
 // UI Method
 extension CreatorCell {
     func configureCell(nickName: String, userID: String) {
-        guard let defaultImage = UIImage(systemName: "person") else { return }
         nickNameLabel.text = nickName
-        profileImageView.setImageKF(
-            to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png",
-            failureImage: defaultImage
-        )
+        let path = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png"
+        profileImageView.setImageProfileImage(to: path)
     }
 }
 

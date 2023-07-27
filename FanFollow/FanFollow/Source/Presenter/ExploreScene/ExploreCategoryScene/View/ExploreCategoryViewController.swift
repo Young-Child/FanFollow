@@ -103,7 +103,7 @@ extension ExploreCategoryViewController {
         let dataSource = ExploreCategoryDataSource { dataSource, collectionView, indexPath, item in
             switch item {
             case .creator(let nickName, let userID):
-                let cell: CreatorCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
+                let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID)
                 
                 return cell

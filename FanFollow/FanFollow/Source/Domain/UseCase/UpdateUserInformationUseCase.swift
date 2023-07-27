@@ -36,7 +36,7 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
                     links: updateInformation.links ?? information.links,
                     introduce: updateInformation.introduce ?? information.introduce,
                     isCreator: information.isCreator,
-                    createdAt: information.createdAt
+                    createdAt: information.createdDate
                 )
                 .andThen(Observable<Void>.just(()))
             }

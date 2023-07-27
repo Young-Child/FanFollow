@@ -65,7 +65,7 @@ extension PhotoAssetGridViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell: AssetImageGridCell = collectionView.dequeReusableCell(forIndexPath: indexPath)
+        let cell: AssetImageGridCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         let asset = photos?.object(at: indexPath.item) ?? PHAsset()
         
         cell.identifier = asset.localIdentifier
