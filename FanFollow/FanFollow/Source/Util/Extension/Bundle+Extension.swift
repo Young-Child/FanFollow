@@ -13,7 +13,7 @@ extension Bundle {
         
         guard let resource = NSDictionary(contentsOfFile: file) else { return "" }
         
-        guard let key = resource["API_KEY"] as? String else {
+        guard let key = resource["API_KEY"] as? String, key.isEmpty == false else {
             fatalError("SupabaseInfo.plist에 API_KEY 설정을 해주세요.")
         }
         

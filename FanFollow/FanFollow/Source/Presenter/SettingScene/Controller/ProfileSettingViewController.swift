@@ -44,7 +44,7 @@ final class ProfileSettingViewController: UIViewController {
     private let pickerView = JobCategoryPickerView()
     private let jobCategoryInput = ProfileInputField(title: "분야")
     private let linkInput = ProfileLinkInput(title: "링크")
-    private let introduceInput = ProfileInputField(title: "소개")
+    private let introduceInput = ProfileInputTextView(title: "소개")
     
     private var viewModel: ProfileSettingViewModel
     private var disposeBag = DisposeBag()
@@ -87,8 +87,8 @@ private extension ProfileSettingViewController {
             viewWillAppear: viewWillAppear,
             nickNameChanged: nickNameInput.textField.rx.text.orEmpty.asObservable(),
             categoryChanged: pickerView.rx.itemSelected.map(\.row).asObservable(),
-            linksChanged: linkInput.textField.rx.text.compactMap { $0 }.toArray().asObservable(),
-            introduceChanged: introduceInput.textField.rx.text.orEmpty.asObservable(),
+            linksChanged: linkInput.textContainer.textView.rx.text.compactMap { $0 }.toArray().asObservable(),
+            introduceChanged: introduceInput.textContainer.textView.rx.text.orEmpty.asObservable(),
             didTapUpdate: configureRightButtonTapEvent()
         )
         
@@ -148,7 +148,7 @@ private extension ProfileSettingViewController {
         
         output.introduce
             .asDriver(onErrorJustReturn: nil)
-            .drive(introduceInput.textField.rx.text)
+            .drive(introduceInput.textContainer.textView.rx.text)
             .disposed(by: disposeBag)
         
         output.updateResult
@@ -169,8 +169,8 @@ private extension ProfileSettingViewController {
                 return (
                     self.nickNameInput.textField.text ?? "",
                     self.pickerView.selectedRow(inComponent: .zero),
-                    self.linkInput.textField.text?.components(separatedBy: ","),
-                    self.introduceInput.textField.text
+                    self.linkInput.textContainer.textView.text?.components(separatedBy: ","),
+                    self.introduceInput.textContainer.textView.text
                 )
             }
             .asObservable()

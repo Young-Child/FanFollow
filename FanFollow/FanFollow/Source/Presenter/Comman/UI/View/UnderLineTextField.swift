@@ -25,3 +25,38 @@ final class UnderLineTextField: UITextField {
         layer.addSublayer(underLineLayer)
     }
 }
+
+final class UnderLineTextView: UIStackView {
+    let textView = UITextView().then {
+        $0.isScrollEnabled = false
+    }
+    
+    let underLine = UIView().then {
+        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
+    init() {
+        super.init(frame: .zero)
+        
+        backgroundColor = .clear
+        axis = .vertical
+        alignment = .fill
+        distribution = .fill
+        spacing = .zero
+        
+        underLine.snp.makeConstraints {
+            $0.height.equalTo(1)
+        }
+        
+        textView.snp.makeConstraints {
+            $0.height.greaterThanOrEqualTo(80)
+        }
+        
+        [textView, underLine].forEach(addArrangedSubview(_:))
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
