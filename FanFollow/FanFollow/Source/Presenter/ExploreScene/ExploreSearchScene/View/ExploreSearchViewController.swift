@@ -46,6 +46,7 @@ final class ExploreSearchViewController: UIViewController {
     }
     
     // Properties
+    weak var coordinator: ExploreCoordinator?
     private let viewModel: ExploreSearchViewModel
     private let disposeBag = DisposeBag()
     private var isLoading = BehaviorRelay<Bool>(value: false)

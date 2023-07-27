@@ -90,6 +90,8 @@ private extension MainTabBarCoordinator {
                 return FeedCoordinator(navigationController: navigationController)
             case .setting:
                 return SettingCoordinator(navigationController: navigationController)
+            case .explore:
+                return ExploreCoordinator(navigationController: navigationController)
             default:
                 return SettingCoordinator(navigationController: navigationController)
             }
