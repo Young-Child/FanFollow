@@ -88,6 +88,8 @@ private extension MainTabBarCoordinator {
             switch self {
             case .setting:
                 return SettingCoordinator(navigationController: navigationController)
+            case .explore:
+                return ExploreCoordinator(navigationController: navigationController)
             default:
                 return SettingCoordinator(navigationController: navigationController)
             }
