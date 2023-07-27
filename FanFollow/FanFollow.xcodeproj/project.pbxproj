@@ -157,6 +157,7 @@
 		EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E542A52F3CA00C11188 /* DefaultFollowRepository.swift */; };
 		EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */; };
 		EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9F9E2A64DA3700A6B6B2 /* FeedViewModel.swift */; };
+		EBEB29EE2A728C760028270C /* ProfileSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -317,6 +318,7 @@
 		EBE33E542A52F3CA00C11188 /* DefaultFollowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFollowRepository.swift; sourceTree = "<group>"; };
 		EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
 		EBEA9F9E2A64DA3700A6B6B2 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,6 +625,7 @@
 				3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */,
 				EBBE26BC2A6FEFDC0071234B /* FeedManageSectionModel.swift */,
 				EBBE26BE2A6FF04F0071234B /* CreatorInformationSectionItem.swift */,
+				EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1302,6 +1305,7 @@
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */,
 				3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */,
+				EBEB29EE2A728C760028270C /* ProfileSectionItem.swift in Sources */,
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
