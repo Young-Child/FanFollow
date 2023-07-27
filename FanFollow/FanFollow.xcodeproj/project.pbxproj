@@ -157,6 +157,7 @@
 		EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E542A52F3CA00C11188 /* DefaultFollowRepository.swift */; };
 		EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */; };
 		EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9F9E2A64DA3700A6B6B2 /* FeedViewModel.swift */; };
+		EBEB29EC2A728C570028270C /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29EB2A728C570028270C /* ProfileSectionModel.swift */; };
 		EBEB29EE2A728C760028270C /* ProfileSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +319,7 @@
 		EBE33E542A52F3CA00C11188 /* DefaultFollowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFollowRepository.swift; sourceTree = "<group>"; };
 		EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
 		EBEA9F9E2A64DA3700A6B6B2 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		EBEB29EB2A728C570028270C /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
 		EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -625,6 +627,7 @@
 				3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */,
 				EBBE26BC2A6FEFDC0071234B /* FeedManageSectionModel.swift */,
 				EBBE26BE2A6FF04F0071234B /* CreatorInformationSectionItem.swift */,
+				EBEB29EB2A728C570028270C /* ProfileSectionModel.swift */,
 				EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */,
 			);
 			path = Model;
@@ -1234,6 +1237,7 @@
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
+				EBEB29EC2A728C570028270C /* ProfileSectionModel.swift in Sources */,
 				187949C82A5EDCE100ADA01A /* SettingSectionModel.swift in Sources */,
 				EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */,
 				3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */,
