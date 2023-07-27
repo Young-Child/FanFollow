@@ -33,6 +33,7 @@ class ExploreCoordinator: Coordinator {
         let viewModel = ExploreCategoryViewModel(exploreUseCase: exploreUseCase, jobCategory: jobCategory)
         let controller = ExploreCategoryViewController(viewModel: viewModel)
         
+        controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
     
@@ -44,6 +45,7 @@ class ExploreCoordinator: Coordinator {
         let viewModel = ExploreSearchViewModel(searchCreatorUseCase: searchUseCase)
         let controller = ExploreSearchViewController(viewModel: viewModel)
         
+        controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
 }
