@@ -3,8 +3,6 @@
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
-<<<<<<< HEAD
-
 import UIKit
 import PhotosUI
 
@@ -321,8 +319,3 @@ private extension ProfileSettingViewController {
         }
     }
 }
-=======
-        
-
-import Foundation
->>>>>>> c291a9f (config : scene 밑 Controller 폴더 생성 및 ProfileSettingViewCOntroller 파일 생성)
