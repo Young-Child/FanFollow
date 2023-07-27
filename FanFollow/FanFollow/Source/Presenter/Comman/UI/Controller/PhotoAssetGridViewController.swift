@@ -26,6 +26,9 @@ class PhotoAssetGridViewController: UIViewController {
     private let scale = UIScreen.main.scale
     private var thumbnailSize = CGSize.zero
     
+    // Deinit
+    deinit { PHPhotoLibrary.shared().unregisterChangeObserver(self) }
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
