@@ -127,7 +127,7 @@ extension SettingViewController: UITableViewDelegate {
         
         switch section {
         case 0:
-            presentProfileSettingController()
+            pushSettingViewController()
         default:
             return
         }
@@ -135,21 +135,8 @@ extension SettingViewController: UITableViewDelegate {
 }
 
 private extension SettingViewController {
-    func presentProfileSettingController() {
-        let userInformationRepository = DefaultUserInformationRepository(
-            DefaultNetworkService()
-        )
-        let viewModel = ProfileSettingViewModel(
-            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-            fetchUseCase: DefaultFetchUserInformationUseCase(
-                userInformationRepository: userInformationRepository
-            ),
-            updateUseCase: DefaultUpdateUserInformationUseCase(
-                userInformationRepository: userInformationRepository
-            )
-        )
-        let controller = ProfileSettingViewController(viewModel: viewModel)
-        navigationController?.pushViewController(controller, animated: true)
+    func pushSettingViewController() {
+        settingTabBarDelegate?.settingController(self, didTapPresent: true)
     }
 }
 

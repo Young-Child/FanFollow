@@ -27,6 +27,7 @@ final class ExploreCategoryViewController: UIViewController {
     }
     
     // Properties
+    weak var coordinator: ExploreCoordinator?
     private let viewModel: ExploreCategoryViewModel
     private let dataSource = ExploreCategoryViewController.dataSource()
     private let disposeBag = DisposeBag()
@@ -52,7 +53,7 @@ final class ExploreCategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

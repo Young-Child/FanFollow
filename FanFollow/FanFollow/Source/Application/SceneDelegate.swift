@@ -10,6 +10,7 @@ import Kingfisher
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var mainCoordinator: AppCoordinator?
 
     func scene(
         _ scene: UIScene,
@@ -21,10 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         setKingFisherModifier()
         
         window = UIWindow(windowScene: windowScene)
-        let controller = TabBarController()
-        let navigationController = UINavigationController(rootViewController: controller)
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.isHidden = true
+        
+        mainCoordinator = AppCoordinator(navigationController: navigationController)
+        mainCoordinator?.start()
+        
         window?.rootViewController = navigationController
-        window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }
 }
