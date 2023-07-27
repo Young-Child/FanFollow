@@ -36,6 +36,7 @@ final class FeedCoordinator: Coordinator {
             followerID: userID
         )
         let feedViewController = FeedViewController(viewModel: feedViewModel)
+        feedViewController.coordinator = self
 
         navigationController.pushViewController(feedViewController, animated: true)
     }
