@@ -15,31 +15,23 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
         $0.backgroundColor = .clear
     }
     
+    weak var coordinator: ExploreCoordinator?
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
-        bind()
+        bindSearchButton()
     }
 }
 
 // Binding
 private extension ExploreTabBarController {
-    func bind() {
-        // 화면 이동 임시 구현
+    func bindSearchButton() {
         searchButton.rx.tap
             .bind { _ in
-                let searchViewModel = ExploreSearchViewModel(
-                    searchCreatorUseCase: DefaultSearchCreatorUseCase(
-                        userInformationRepository: DefaultUserInformationRepository(
-                            DefaultNetworkService()
-                        )
-                    )
-                )
-                let viewController = ExploreSearchViewController(viewModel: searchViewModel)
-                self.navigationController?.pushViewController(viewController, animated: true)
+                self.coordinator?.presentSearchViewController()
             }
             .disposed(by: disposeBag)
     }
