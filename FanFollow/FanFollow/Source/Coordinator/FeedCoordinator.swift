@@ -23,12 +23,14 @@ final class FeedCoordinator: Coordinator {
     }
 
     func presentFeedViewController(userID: String) {
-        let fetchFeedUseCase = DefaultFetchFeedUseCase(
-            postRepository: DefaultPostRepository(networkService: DefaultNetworkService())
-        )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(
-            likeRepository: DefaultLikeRepository(networkService: DefaultNetworkService())
-        )
+        let session = URLSession.shared
+        let networkService = DefaultNetworkService(session: session)
+
+        let postRepository = DefaultPostRepository(networkService: networkService)
+        let fetchFeedUseCase = DefaultFetchFeedUseCase(postRepository: postRepository)
+
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
         let feedViewModel = FeedViewModel(
             fetchFeedUseCase: fetchFeedUseCase,
