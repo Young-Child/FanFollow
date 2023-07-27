@@ -21,6 +21,7 @@ final class FeedViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
 
     // Properties
+    weak var coordinator: FeedCoordinator?
     private let disposeBag = DisposeBag()
     private let viewModel: FeedViewModel
     private let likeButtonTap = PublishRelay<String>()
