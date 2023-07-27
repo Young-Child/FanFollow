@@ -17,4 +17,19 @@ extension UICollectionView {
         
         return cell
     }
+    
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(
+        forIndexPath indexPath: IndexPath,
+        kind: String
+    ) -> T {
+        guard let headerView = dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: T.reuseIdentifier,
+            for: indexPath
+        ) as? T else {
+            return T()
+        }
+        
+        return headerView
+    }
 }

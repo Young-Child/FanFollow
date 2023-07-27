@@ -38,10 +38,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(jobCategory: .IT, count: 3)
+        let randomCreatorsObservable = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
-        let result = randomCreatorsObservalble.toBlocking()
+        let result = randomCreatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, 3)
         
@@ -60,10 +60,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomAllCreatorsObservalble = exploreUseCase.fetchRandomAllCreators(count: 10)
+        let randomAllCreatorsObservable = exploreUseCase.fetchRandomCreatorsByAllCategory(count: 10)
         
         // then
-        let result = randomAllCreatorsObservalble.toBlocking()
+        let result = randomAllCreatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, JobCategory.allCases.count)
         
@@ -82,10 +82,31 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchPopularCreators(jobCategory: .IT, count: 1)
+        let randomCreatorsObservable = exploreUseCase.fetchPopularCreators(by: .IT, count: 1)
         
         // then
-        let result = randomCreatorsObservalble.toBlocking()
+        let result = randomCreatorsObservable.toBlocking()
+        
+        XCTAssertEqual(try? result.first()?.count, 3)
+        
+        switch result.materialize() {
+        case .completed:
+            XCTAssertTrue(true)
+        case .failed(_, let error):
+            XCTAssertThrowsError(error, "We expected Completed Event, But Occur Error Event")
+        }
+    }
+    
+    func test_fetchCreatorsIsCorrectWhenSendCorrectData() throws {
+        // given
+        userInformationRepository.error = nil
+        userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
+        
+        // when
+        let creatorsObservable = exploreUseCase.fetchCreators(by: .IT, startRange: 0, endRange: 2)
+        
+        //then
+        let result = creatorsObservable.toBlocking()
         
         XCTAssertEqual(try? result.first()?.count, 3)
         
@@ -104,10 +125,10 @@ final class ExploreUseCaseTests: XCTestCase {
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
         
         // when
-        let randomCreatorsObservalble = exploreUseCase.fetchRandomCreators(jobCategory: .IT, count: 3)
+        let randomCreatorsObservable = exploreUseCase.fetchRandomCreators(by: .IT, count: 3)
         
         // then
-        let result =  randomCreatorsObservalble.toBlocking().materialize()
+        let result =  randomCreatorsObservable.toBlocking().materialize()
         
         switch result {
         case .completed:
@@ -128,7 +149,7 @@ private extension UserInformationDTO {
             links: [],
             introduce: "CreatorTestIntroduce",
             isCreator: true,
-            createdAt: "CreatorTestDate"
+            createdDate: Date()
         )
     }
     
@@ -142,7 +163,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -153,7 +174,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
             
             UserInformationDTO(
@@ -164,7 +185,7 @@ private extension UserInformationDTO {
                 links: [],
                 introduce: "CreatorTestIntroduce",
                 isCreator: true,
-                createdAt: "CreatorTestDate"
+                createdDate: Date()
             ),
         ]
     }
@@ -179,7 +200,7 @@ private extension UserInformationDTO {
             links: nil,
             introduce: nil,
             isCreator: false,
-            createdAt: "FanTestDate"
+            createdDate: Date()
         )
     }
 }

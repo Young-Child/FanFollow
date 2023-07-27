@@ -30,7 +30,7 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             )
 
         return networkService.data(request)
-            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0) }
     }
 
     func fetchUserInformation(for userID: String) -> Observable<UserInformationDTO> {
@@ -38,7 +38,7 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             .requestFetchUserInformation(for: userID)
 
         return networkService.data(reuqest)
-            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0).first }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0).first }
     }
 
     func upsertUserInformation(
@@ -49,11 +49,11 @@ struct DefaultUserInformationRepository: UserInformationRepository {
         links: [String]?,
         introduce: String?,
         isCreator: Bool,
-        createdAt: String
+        createdAt: Date
     ) -> Completable {
         let userInformationDTO = UserInformationDTO(
             userID: userID, nickName: nickName, profilePath: profilePath, jobCategory: jobCategory,
-            links: links, introduce: introduce, isCreator: isCreator, createdAt: createdAt
+            links: links, introduce: introduce, isCreator: isCreator, createdDate: createdAt
         )
 
         let request = UserRequestDirector(builder: builder)
@@ -77,7 +77,7 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             .requestRandomCreatorInformations(jobCategory: jobCategory, count: count)
         
         return networkService.data(request)
-            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0) }
     }
     
     func fetchPopularCreatorInformations(
@@ -88,6 +88,6 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             .requestPopularCreatorInformations(jobCategory: jobCategory, count: count)
         
         return networkService.data(request)
-            .compactMap { try? JSONDecoder().decode([UserInformationDTO].self, from: $0) }
+            .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0) }
     }
 }

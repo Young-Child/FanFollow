@@ -19,7 +19,7 @@ struct DefaultChatRepository: ChatRepository {
             .requestChattingList(userID: userID)
         
         return networkService.data(request)
-            .compactMap { try JSONDecoder().decode([ChatDTO].self, from: $0) }
+            .compactMap { try JSONDecoder.ISODecoder.decode([ChatDTO].self, from: $0) }
     }
     
     func createNewChatRoom(from fanID: String, to creatorID: String) -> Completable {

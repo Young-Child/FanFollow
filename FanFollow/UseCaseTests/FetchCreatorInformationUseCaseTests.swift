@@ -13,18 +13,24 @@ import RxSwift
 final class FetchCreatorInformationUseCaseTests: XCTestCase {
     private var sut: DefaultFetchCreatorInformationUseCase!
     private var userInformationRepository: StubUserInformationRepository!
+    private var followRepository: StubFollowRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
-        sut = DefaultFetchCreatorInformationUseCase(userInformationRepository: userInformationRepository)
+        followRepository = StubFollowRepository()
+        sut = DefaultFetchCreatorInformationUseCase(
+            userInformationRepository: userInformationRepository,
+            followRepository: followRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         userInformationRepository = nil
+        followRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -66,6 +72,44 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         })
         .disposed(by: disposeBag)
     }
+
+    /// 정상적인 조건에서 fetchFollowerCount가 제대로 동작하는 지 테스트
+    func test_FetchFollowerCountInNormalCondition() {
+        // given
+        followRepository.followerCount = TestData.followerCount
+        followRepository.error = nil
+        let creatorID = TestData.creatorID
+
+        // when
+        let observable = sut.fetchFollowerCount(for: creatorID)
+
+        // then
+        observable.subscribe(onNext: { count in
+            XCTAssertEqual(count, TestData.followerCount)
+        }, onError: { error in
+            XCTFail(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    /// 에러가 발생하는 조건에서 checkPostLiked가 에러를 반환하는 지 테스트
+    func test_FetchFollowerCountInErrorCondition() {
+        // given
+        followRepository.followerCount = TestData.followerCount
+        followRepository.error = TestData.error
+        let creatorID = TestData.creatorID
+
+        // when
+        let observable = sut.fetchFollowerCount(for: creatorID)
+
+        // then
+        observable.subscribe(onNext: { _ in
+            XCTFail("test_FetchFollowerCountInErrorCondition must occur error event.")
+        }, onError: { error in
+            XCTAssertEqual(error as? NetworkError, TestData.error)
+        })
+        .disposed(by: disposeBag)
+    }
 }
 
 extension FetchCreatorInformationUseCaseTests {
@@ -78,9 +122,10 @@ extension FetchCreatorInformationUseCaseTests {
             links: ["www.naver.com","www.google.com"],
             introduce: "사랑의 몸이 하여도 것이다.",
             isCreator: true,
-            createdAt: "2023-07-04 08:40:02.189472+00"
+            createdDate: Date()
         )
         static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
+        static let followerCount = 5
         static let error = NetworkError.unknown
     }
 }

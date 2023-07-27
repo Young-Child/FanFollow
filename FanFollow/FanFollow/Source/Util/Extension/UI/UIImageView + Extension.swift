@@ -29,8 +29,6 @@ extension UIImageView {
         key: CustomCacheKey,
         options: KingfisherOptionsInfo
     ) {
-        
-        
         guard let imageURL = URL(string: urlPath) else { return }
         
         let resource = ImageResource(downloadURL: imageURL, cacheKey: key.rawValue)

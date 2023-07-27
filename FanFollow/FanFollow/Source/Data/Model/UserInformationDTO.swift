@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/03.
 //
 
+import Foundation
+
 struct UserInformationDTO: Decodable {
     let userID: String
     let nickName: String
@@ -13,7 +15,7 @@ struct UserInformationDTO: Decodable {
     let links: [String]?
     let introduce: String?
     let isCreator: Bool
-    let createdAt: String
+    let createdDate: Date
 
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
@@ -23,7 +25,7 @@ struct UserInformationDTO: Decodable {
         case links = "links"
         case introduce = "introduce"
         case isCreator = "is_creator"
-        case createdAt = "created_at"
+        case createdDate = "created_at"
     }
 
     func convertBody() -> [String: Any] {

@@ -81,13 +81,15 @@ extension FetchFeedUseCaseTests {
             PostDTO(
                 postID: "2936bffa-196f-4c87-92a6-121f7e83f24b",
                 userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-                createdData: "2023-07-05 00:53:40.940424+00",
+                createdDate: Date(),
                 title: "테스트",
                 content: "테스트 컨텐츠",
                 imageURLs: nil,
                 videoURL: nil,
                 nickName: "나미",
-                profilePath: "www.naver.com"
+                profilePath: "www.naver.com",
+                isLiked: true,
+                likeCount: 2
             )
         ]
         static let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
