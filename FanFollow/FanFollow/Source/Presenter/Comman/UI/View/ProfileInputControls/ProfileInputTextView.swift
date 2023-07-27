@@ -4,6 +4,8 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import UIKit
+
 class ProfileInputTextView: ProfileInput {
     let textContainer = UnderLineTextView().then {
         $0.textView.font = .systemFont(ofSize: 17)
