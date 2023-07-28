@@ -109,12 +109,12 @@ extension ExploreViewController {
         let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
             switch item {
             case .category(let job):
-                let cell: CategoryCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
+                let cell: CategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configureCell(jobCategory: job)
                 
                 return cell
             case .creator(let nickName, let userID):
-                let cell: CreatorCell = collectionView.dequeueReuseableCell(forIndexPath: indexPath)
+                let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID)
                 
                 return cell

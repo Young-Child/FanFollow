@@ -1,14 +1,13 @@
 //
-//  UICollectionView+Extension.swift
+//  UICollectionView + Extension.swift
 //  FanFollow
 //
-//  Created by parkhyo on 2023/07/18.
-//
+//  Copyright (c) 2023 Minii All rights reserved.
 
 import UIKit
 
 extension UICollectionView {
-    func dequeueReuseableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T {
+    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(
             withReuseIdentifier: T.reuseIdentifier,
             for: indexPath

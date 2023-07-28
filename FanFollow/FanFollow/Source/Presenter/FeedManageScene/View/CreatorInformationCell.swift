@@ -51,11 +51,7 @@ final class CreatorInformationCell: UITableViewCell {
 extension CreatorInformationCell {
     func configure(with creator: Creator, followerCount: Int) {
         let creatorID = creator.id
-        creatorImageView.setImageKF(
-            to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(creatorID)/profileImage.png",
-            failureImage: Constants.failureProfileImage,
-            round: .round(cornerRadius: 40)
-        )
+        creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(creatorID)/profileImage.png")
         creatorNickNameLabel.text = creator.nickName
         configureFollowerCountLabel(count: followerCount)
     }

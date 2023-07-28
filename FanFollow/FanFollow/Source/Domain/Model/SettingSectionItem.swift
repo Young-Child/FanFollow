@@ -9,7 +9,7 @@ import Foundation
 import RxDataSources
 
 enum SettingSectionItem {
-    case profile(nickName: String, userID: String)
+    case profile(nickName: String, userID: String, profileURL: String)
     case base(title: String)
 }
 
@@ -18,8 +18,8 @@ extension SettingSectionItem: IdentifiableType {
     
     var identity: String {
         switch self {
-        case .profile(_, let nickName):
-            return nickName
+        case .profile(let nickName, let userID, _):
+            return nickName + "_" + userID + "_" + UUID().uuidString
         case .base(let title):
             return title
         }

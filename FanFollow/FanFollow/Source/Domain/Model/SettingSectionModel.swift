@@ -16,7 +16,7 @@ enum SettingSectionModel {
     case registerCreator(title: String, items: [SettingSectionItem])
 }
 
-extension SettingSectionModel: AnimatableSectionModelType {
+extension SettingSectionModel: SectionModelType {
     typealias Item = SettingSectionItem
     typealias Identity = String
     
@@ -43,8 +43,8 @@ extension SettingSectionModel: AnimatableSectionModelType {
             return title
         case .customerService(let title, _):
             return title
-        case .profile(let title, _):
-            return title
+        case .profile(_, let items):
+            return items.map(\.identity).joined(separator: "_")
         case .registerCreator(let title, _):
             return title
         }
@@ -70,7 +70,7 @@ extension SettingSectionModel {
     static func generateDefaultModel(user: User) -> [SettingSectionModel] {
         return [
             .profile(title: "", items: [
-                .profile(nickName: user.nickName, userID: user.id),
+                .profile(nickName: user.nickName, userID: user.id, profileURL: user.profileURL),
                 .base(title: "크리에이터 신청"),
                 .base(title: "알림 설정")
             ]),

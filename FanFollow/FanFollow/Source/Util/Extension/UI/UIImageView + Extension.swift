@@ -9,49 +9,67 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    enum RoundCase {
-        case none
-        case round(cornerRadius: Int)
+    enum CustomCacheKey {
+        case profile
+        case post(path: String)
+        
+        var description: String {
+            switch self {
+            case .profile:
+                return "profile"
+            case .post(let path):
+                return path
+            }
+        }
     }
     
-    func setImageKF(
-        to url: String,
-        failureImage: UIImage,
-        round: RoundCase = .none
+    func setImageProfileImage(to urlPath: String) {
+        self.kf.indicatorType = .activity
+        
+        let options: KingfisherOptionsInfo = [
+            .cacheMemoryOnly,
+            .cacheOriginalImage
+        ]
+        
+        setImageWithCustomCacheKey(to: urlPath, key: .profile, options: options)
+    }
+    
+    func setImagePostImage(
+        to urlPath: String,
+        key: String,
+        completion: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil
     ) {
         self.kf.indicatorType = .activity
         
-        guard let imageURL = URL(string: url) else {
-            self.image = failureImage
-            return
-        }
+        let options: KingfisherOptionsInfo = [
+            .cacheOriginalImage
+        ]
         
-        setImage(to: imageURL, failureImage: failureImage, round: round)
+        setImageWithCustomCacheKey(
+            to: urlPath,
+            key: .post(path: key),
+            options: options,
+            completion: completion
+        )
     }
-
-    func setImageKF(to url: String, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)?) {
-        self.kf.indicatorType = .activity
-
-        guard let url = URL(string: url) else {
-            return
-        }
-
-        kf.setImage(with: url, placeholder: nil, options: nil) { result in
-            completionHandler?(result)
-        }
+    
+    private func setImageWithCustomCacheKey(
+        to urlPath: String,
+        key: CustomCacheKey,
+        options: KingfisherOptionsInfo,
+        completion: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil
+    ) {
+        guard let imageURL = URL(string: urlPath) else { return }
+        
+        let resource = ImageResource(downloadURL: imageURL, cacheKey: key.description)
+        
+        kf.setImage(with: resource, options: options, completionHandler: completion)
     }
+}
 
-    private func setImage(to url: URL, failureImage: UIImage, round: RoundCase) {
-        var options = KingfisherOptionsInfo()
-        
-        switch round {
-        case .round(let radius):
-            let roundProcessor = RoundCornerImageProcessor(cornerRadius: CGFloat(radius))
-            options.append(.processor(roundProcessor))
-        case .none:
-            break
-        }
-        
-        self.kf.setImage(with: url, options: options)
+extension ImageCache {
+    func changeMemoryImage(to image: KFCrossPlatformImage, key: String) {
+        memoryStorage.remove(forKey: key)
+        memoryStorage.store(value: image, forKey: key)
     }
 }

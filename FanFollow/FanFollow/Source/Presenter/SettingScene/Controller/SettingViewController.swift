@@ -77,7 +77,6 @@ private extension SettingViewController {
     
     func bindTableView(_ output: SettingViewModel.Output) {
         output.settingSections
-            .debug()
             .asDriver(onErrorJustReturn: [])
             .drive(settingTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -124,28 +123,34 @@ extension SettingViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
-        pushExampleViewController()
+        let section = indexPath.section, row = indexPath.row
+        
+        switch section {
+        case 0:
+            pushSettingViewController()
+        default:
+            return
+        }
     }
 }
 
-// Push Controller Method (임시)
 private extension SettingViewController {
-    func pushExampleViewController() {
+    func pushSettingViewController() {
         settingTabBarDelegate?.settingController(self, didTapPresent: true)
     }
 }
 
 // RxDataSource Method
 private extension SettingViewController {
-    static func dataSource() -> RxTableViewSectionedAnimatedDataSource<SettingSectionModel> {
-        return RxTableViewSectionedAnimatedDataSource(
+    static func dataSource() -> RxTableViewSectionedReloadDataSource<SettingSectionModel> {
+        return RxTableViewSectionedReloadDataSource(
             configureCell: { dataSource, tableView, indexPath, model in
                 switch dataSource[indexPath] {
-                case let .profile(nickName, userID):
+                case let .profile(nickName, userID, profileURL):
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
-                    cell.configureCell(nickName: nickName, userID: userID)
+                    cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                     return cell
                 case let .base(title):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(
