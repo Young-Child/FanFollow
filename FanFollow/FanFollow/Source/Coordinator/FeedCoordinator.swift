@@ -52,12 +52,21 @@ final class FeedCoordinator: Coordinator {
 
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
-        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(userInformationRepository: userInformationRepository, followRepository: followRepository)
+        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
+            userInformationRepository: userInformationRepository,
+            followRepository: followRepository
+        )
 
         let likeRepository = DefaultLikeRepository(networkService: networkService)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
-        let profileFeedViewModel = ProfileFeedViewModel(fetchCreatorPostUseCase: fetchCreatorPostsUseCase, fetchCreatorInformationUseCase: fetchCreatorInformationUseCase, changeLikeUseCase: changeLikeUseCase, creatorID: creatorID, userID: userID)
+        let profileFeedViewModel = ProfileFeedViewModel(
+            fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
+            fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
+            changeLikeUseCase: changeLikeUseCase,
+            creatorID: creatorID,
+            userID: userID
+        )
         let profileViewController = ProfileFeedViewController(viewModel: profileFeedViewModel, viewType: .profileFeed)
 
         navigationController.pushViewController(profileViewController, animated: true)
