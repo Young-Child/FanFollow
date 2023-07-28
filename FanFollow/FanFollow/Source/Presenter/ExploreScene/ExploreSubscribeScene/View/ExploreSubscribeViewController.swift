@@ -36,6 +36,58 @@ final class ExploreSubscribeViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        binding()
+    }
+}
+
+// Binding
+extension ExploreSubscribeViewController {
+    func binding() {
+        let output = bindingInput()
+        
+        bindTableView(output)
+    }
+    
+    func bindingInput() -> ExploreSubscribeViewModel.Output {
+        let viewWillAppearEvent = rx.methodInvoked(#selector(viewWillAppear))
+            .map { _ in }
+            .asObservable()
+        
+        let viewDidScrollEvent = subscribeTableView.rx.didScroll
+            .flatMap { _ in
+                let collectionViewContentSizeY = self.subscribeTableView.contentSize.height
+                let contentOffsetY = self.subscribeTableView.contentOffset.y
+                let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
+                let frameHeight = self.subscribeTableView.frame.size.height
+                let reachBottom = heightRemainBottomHeight < frameHeight
+                
+                return reachBottom ? Observable<Void>.just(()) : Observable<Void>.empty()
+            }
+            .asObservable()
+        
+        let input = ExploreSubscribeViewModel.Input(
+            viewWillAppear: viewWillAppearEvent,
+            viewDidScroll: viewDidScrollEvent
+        )
+        
+        return viewModel.transform(input: input)
+    }
+    
+    private func bindTableView(_ output: ExploreSubscribeViewModel.Output) {
+        output.creatorListModel
+            .asDriver(onErrorJustReturn: [])
+            .drive(subscribeTableView.rx.items(
+                cellIdentifier: CreatorListCell.reuseIdentifier,
+                cellType: CreatorListCell.self)
+            ) { indexPath, data, cell in
+                cell.configureCell(
+                    nickName: data.nickName,
+                    userID: data.id,
+                    jobCategory: data.jobCategory ?? .unSetting,
+                    introduce: data.introduce ?? ""
+                )
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -54,7 +106,7 @@ private extension ExploreSubscribeViewController {
     
     func makeConstraints() {
         subscribeTableView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
