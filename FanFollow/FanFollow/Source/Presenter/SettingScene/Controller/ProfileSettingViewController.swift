@@ -11,6 +11,8 @@ import SnapKit
 import Kingfisher
 
 final class ProfileSettingViewController: UIViewController {
+    weak var coordinator: ProfileSettingCoordinator?
+    
     // View Properties
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false

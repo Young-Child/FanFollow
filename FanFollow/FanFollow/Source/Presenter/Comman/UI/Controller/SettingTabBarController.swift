@@ -46,6 +46,6 @@ extension SettingTabBarController: SettingTabBarDelegate {
     }
     
     func settingController(_ controller: SettingViewController, didTapPresent animated: Bool) {
-        coordinator?.presentSettingViewController()
+        coordinator?.presentProfileSettingViewController()
     }
 }

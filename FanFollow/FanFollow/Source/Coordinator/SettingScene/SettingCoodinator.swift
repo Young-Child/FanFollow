@@ -22,5 +22,10 @@ class SettingCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func presentSettingViewController() { }
+    func presentProfileSettingViewController() {
+        let coordinator = ProfileSettingCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        
+        coordinator.start()
+    }
 }
