@@ -29,7 +29,38 @@ enum SettingTabItem: Int, TabItem {
             )
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
-        case .feedManage: return UIViewController()
+        case .feedManage:
+            let session = URLSession.shared
+            let networkService = DefaultNetworkService(session: session)
+
+            let postRepository = DefaultPostRepository(networkService: networkService)
+            let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+
+            let userInformationRepository = DefaultUserInformationRepository(networkService)
+            let followRepository = DefaultFollowRepository(networkService)
+            let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
+                userInformationRepository: userInformationRepository,
+                followRepository: followRepository
+            )
+
+            let likeRepository = DefaultLikeRepository(networkService: networkService)
+            let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+
+            // TODO: 로그인한 creatorID 입력
+            let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
+            let profileFeedViewModel = ProfileFeedViewModel(
+                fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
+                fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
+                changeLikeUseCase: changeLikeUseCase,
+                creatorID: creatorID,
+                userID: creatorID
+            )
+            let profileViewController = ProfileFeedViewController(
+                viewModel: profileFeedViewModel,
+                viewType: .feedManage
+            )
+
+            return profileViewController
         }
     }
 }
