@@ -83,9 +83,9 @@ extension ExploreCategoryViewController {
                 let contentOffsetY = self.exploreCategoryCollectionView.contentOffset.y
                 let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
                 let frameHeight = self.exploreCategoryCollectionView.frame.size.height
+                let reachBottom = heightRemainBottomHeight < frameHeight
                 
-                return heightRemainBottomHeight < frameHeight ?
-                Observable<Void>.just(()) : Observable<Void>.empty()
+                return reachBottom ? Observable<Void>.just(()) : Observable<Void>.empty()
             }
             .asObservable()
                 
