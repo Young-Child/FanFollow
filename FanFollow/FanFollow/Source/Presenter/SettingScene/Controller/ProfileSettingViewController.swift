@@ -114,7 +114,7 @@ private extension ProfileSettingViewController {
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
         output.profileURL
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext: setImage)
+            .drive(onNext: self.profileImageView.setImageProfileImage(to:))
             .disposed(by: disposeBag)
         
         output.nickName
@@ -124,17 +124,11 @@ private extension ProfileSettingViewController {
         
         output.isCreator
             .asDriver(onErrorJustReturn: true)
-            .drive(jobCategoryInput.rx.isUserInteractionEnabled)
-            .disposed(by: disposeBag)
-        
-        output.isCreator
-            .asDriver(onErrorJustReturn: true)
-            .drive(linkInput.rx.isUserInteractionEnabled)
-            .disposed(by: disposeBag)
-        
-        output.isCreator
-            .asDriver(onErrorJustReturn: true)
-            .drive(introduceInput.rx.isUserInteractionEnabled)
+            .drive(
+                jobCategoryInput.rx.isUserInteractionEnabled,
+                linkInput.rx.isUserInteractionEnabled,
+                introduceInput.rx.isUserInteractionEnabled
+            )
             .disposed(by: disposeBag)
         
         output.jobCategory.compactMap { $0?.rawValue }
@@ -198,25 +192,8 @@ private extension ProfileSettingViewController {
         profileImageView.addGestureRecognizer(tapGesture)
     }
     
-    private func setImage(to url: String) {
-        self.profileImageView.setImageProfileImage(to: url)
-    }
-    
     @objc private func didTapImageChangeButton() {
-        let viewModel = ProfileImagePickerViewModel(
-            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-            profileImageUploadUseCase: DefaultUpdateProfileImageUseCase(
-                imageRepository: DefaultImageRepository(
-                    network: DefaultNetworkService()
-                )
-            )
-        )
-        
-        let imagePickerViewController = ProfileImagePickerViewController(viewModel: viewModel)
-        
-        let controller = UINavigationController(rootViewController: imagePickerViewController)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true)
+        coordinator?.presentSelectImagePickerViewController()
     }
 }
 

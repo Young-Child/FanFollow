@@ -29,8 +29,16 @@ class ProfileSettingCoordinator: Coordinator {
             updateUseCase: updateUseCase
         )
         let controller = ProfileSettingViewController(viewModel: profileSettingViewModel)
+        controller.coordinator = self
         controller.hidesBottomBarWhenPushed = true
         
         navigationController.pushViewController(controller, animated: true)
+    }
+    
+    func presentSelectImagePickerViewController() {
+        let coordinator = ProfileImagePickerCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        
+        coordinator.start()
     }
 }
