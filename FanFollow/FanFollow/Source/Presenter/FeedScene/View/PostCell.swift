@@ -163,8 +163,7 @@ extension PostCell {
         } else {
             (imagesScrollView.isHidden, videoWebView.isHidden) = (false, true)
 
-            guard let postID = post.postID else { return }
-            configurePostImages(postID: postID)
+            configurePostImages(to: post)
         }
     }
 
@@ -173,13 +172,14 @@ extension PostCell {
         self.videoWebView.load(videoRequest)
     }
 
-    private func configurePostImages(postID: String) {
+    private func configurePostImages(to post: Post) {
         imagesStackView.arrangedSubviews.enumerated().forEach { offset, view in
-            guard let imageView = view as? UIImageView else { return }
-            let imageName = "\(offset + 1)"
-            let path = postID + "_" + imageName
-            print(postID, path)
-            let url = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\(imageName)"
+            guard let imageView = view as? UIImageView,
+                  let postID = post.postID else { return }
+            
+            let url = post.generatePostImageURL(for: postID, to: offset)
+            let path = postID + "_" + (offset + 1).description
+            
             imageView.setImagePostImage(to: url, key: path) { result in
                 switch result {
                 case .success:
