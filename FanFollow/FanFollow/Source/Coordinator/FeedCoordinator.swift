@@ -43,9 +43,22 @@ final class FeedCoordinator: Coordinator {
         navigationController.pushViewController(feedViewController, animated: true)
     }
 
-    func presentProfileViewController(creatorID: String) {
-        // TODO: ProfileViewController 생성 후 수정
-        let profileViewController = UIViewController()
+    func presentProfileViewController(creatorID: String, userID: String) {
+        let session = URLSession.shared
+        let networkService = DefaultNetworkService(session: session)
+
+        let postRepository = DefaultPostRepository(networkService: networkService)
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+
+        let userInformationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
+        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(userInformationRepository: userInformationRepository, followRepository: followRepository)
+
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+
+        let profileFeedViewModel = ProfileFeedViewModel(fetchCreatorPostUseCase: fetchCreatorPostsUseCase, fetchCreatorInformationUseCase: fetchCreatorInformationUseCase, changeLikeUseCase: changeLikeUseCase, creatorID: creatorID, userID: userID)
+        let profileViewController = ProfileFeedViewController(viewModel: profileFeedViewModel, viewType: .profileFeed)
 
         navigationController.pushViewController(profileViewController, animated: true)
     }
