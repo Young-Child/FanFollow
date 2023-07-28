@@ -176,6 +176,7 @@
 		EBEB29EA2A7284220028270C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29E92A7284220028270C /* ProfileViewModel.swift */; };
 		EBEB29EC2A728C570028270C /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29EB2A728C570028270C /* ProfileSectionModel.swift */; };
 		EBEB29EE2A728C760028270C /* ProfileSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */; };
+		EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29EF2A7351CD0028270C /* ProfileCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -355,6 +356,7 @@
 		EBEB29E92A7284220028270C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		EBEB29EB2A728C570028270C /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
 		EBEB29ED2A728C760028270C /* ProfileSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionItem.swift; sourceTree = "<group>"; };
+		EBEB29EF2A7351CD0028270C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1076,6 +1078,7 @@
 		EBEB29E72A72838F0028270C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EBEB29EF2A7351CD0028270C /* ProfileCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1343,6 +1346,7 @@
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
 				18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */,
