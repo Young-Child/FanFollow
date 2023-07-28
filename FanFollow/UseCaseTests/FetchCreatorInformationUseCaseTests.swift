@@ -129,6 +129,84 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         })
         .disposed(by: disposeBag)
     }
+
+    /// 정상적인 조건에서 checkFollow가 제대로 동작하는 지 테스트
+    func test_CheckFollowInNormalCondition() {
+        // given
+        followRepository.isFollow = true
+        followRepository.error = nil
+        let creatorID = TestData.creatorID
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.checkFollow(creatorID: creatorID, userID: userID)
+
+        // then
+        observable.subscribe(onNext: { value in
+            XCTAssertEqual(value, true)
+        }, onError: { error in
+            XCTFail(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    /// 에러가 발생하는 조건에서 checkFollow가 에러를 반환하는 지 테스트
+    func test_CheckFollowInErrorCondition() {
+        // given
+        followRepository.isFollow = true
+        followRepository.error = TestData.error
+        let creatorID = TestData.creatorID
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.checkFollow(creatorID: creatorID, userID: userID)
+
+        // then
+        observable.subscribe(onNext: { _ in
+            XCTFail("test_CheckFollowInErrorCondition must occur error event.")
+        }, onError: { error in
+            XCTAssertEqual(error as? NetworkError, TestData.error)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    /// 정상적인 조건에서 toggleFollow가 제대로 동작하는 지 테스트
+    func test_ToggleFollowInNormalCondition() {
+        // given
+        followRepository.error = nil
+        let creatorID = TestData.creatorID
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.toggleFollow(creatorID: creatorID, userID: userID)
+
+        // then
+        observable.subscribe(onCompleted: {
+            XCTAssertTrue(true)
+        }, onError: { error in
+            XCTFail(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    /// 에러가 발생하는 조건에서 toggleFollow가 에러를 반환하는 지 테스트
+    func test_ToggleFollowInErrorCondition() {
+        // given
+        followRepository.error = TestData.error
+        let creatorID = TestData.creatorID
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.toggleFollow(creatorID: creatorID, userID: userID)
+
+        // then
+        observable.subscribe(onCompleted: {
+            XCTFail("test_ToggleFollowInErrorCondition must occur error event.")
+        }, onError: { error in
+            XCTAssertEqual(error as? NetworkError, TestData.error)
+        })
+        .disposed(by: disposeBag)
+    }
 }
 
 extension FetchCreatorInformationUseCaseTests {
