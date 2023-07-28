@@ -51,7 +51,7 @@ final class CreatorInformationCell: UITableViewCell {
 extension CreatorInformationCell {
     func configure(with creator: Creator, followerCount: Int) {
         let creatorID = creator.id
-        creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(creatorID)/profileImage.png")
+        creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(creatorID)/profileImage.png", for: creatorID)
         creatorNickNameLabel.text = creator.nickName
         configureFollowerCountLabel(count: followerCount)
     }

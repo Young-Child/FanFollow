@@ -40,6 +40,10 @@ extension Post {
     var createdDateDescription: String? {
         return createdDate.toString(format: "yyyy. MM. dd")
     }
+    
+    var writerProfileImageURL: String {
+        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "profileImage.png"
+    }
 }
 
 extension Post: IdentifiableType {

@@ -59,7 +59,7 @@ private extension ProfileImagePickerViewController {
     
     func bindingOutput(to output: ProfileImagePickerViewModel.Output) {
         output.imageUploadResult
-            .asDriver(onErrorJustReturn: "profile")
+            .asDriver(onErrorJustReturn: "")
             .drive(onNext: setKFCache)
             .disposed(by: disposeBag)
     }
@@ -70,8 +70,9 @@ private extension ProfileImagePickerViewController {
             .map { _ in return self.selectedImage?.pngData() }
     }
     
-    func setKFCache(to key: String) {
+    func setKFCache(to userID: String) {
         guard let selectedImage = selectedImage else { return }
+        let key = "profile_\(userID)"
         ImageCache.default.changeMemoryImage(to: selectedImage, key: key)
         
         self.dismiss(animated: true)

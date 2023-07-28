@@ -19,7 +19,7 @@ final class ProfileSettingViewModel: ViewModel {
     }
     
     struct Output {
-        var profileURL: Observable<String>
+        var profileURL: Observable<(String, String)>
         var nickName: Observable<String>
         var jobCategory: Observable<JobCategory?>
         var links: Observable<[String]?>
@@ -59,8 +59,13 @@ final class ProfileSettingViewModel: ViewModel {
             }
             .asObservable()
         
+        let profileInformation = Observable.combineLatest(
+            user.map(\.profileURL),
+            user.map(\.id)
+        )
+        
         return Output(
-            profileURL: user.map(\.profileURL),
+            profileURL: profileInformation.asObservable(),
             nickName: user.map(\.nickName),
             jobCategory: user.map(\.jobCategory),
             links: user.map(\.links),

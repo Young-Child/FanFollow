@@ -128,7 +128,7 @@ final class PostCell: UITableViewCell {
 extension PostCell {
     func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
         let userID = post.userID
-        creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png")
+        creatorImageView.setImageProfileImage(to: post.writerProfileImageURL, for: userID)
         creatorNickNameLabel.text = post.nickName
         titleLabel.text = post.title
         contentLabel.text = post.content

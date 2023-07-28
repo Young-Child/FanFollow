@@ -112,7 +112,7 @@ private extension ProfileSettingViewController {
     
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
         output.profileURL
-            .asDriver(onErrorJustReturn: "")
+            .asDriver(onErrorJustReturn: ("", ""))
             .drive(onNext: setImage)
             .disposed(by: disposeBag)
         
@@ -197,8 +197,8 @@ private extension ProfileSettingViewController {
         profileImageView.addGestureRecognizer(tapGesture)
     }
     
-    private func setImage(to url: String) {
-        self.profileImageView.setImageProfileImage(to: url)
+    private func setImage(to url: String, with id: String) {
+        self.profileImageView.setImageProfileImage(to: url, for: id)
     }
     
     @objc private func didTapImageChangeButton() {

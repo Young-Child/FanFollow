@@ -10,28 +10,27 @@ import Kingfisher
 
 extension UIImageView {
     enum CustomCacheKey {
-        case profile
+        case profile(userID: String)
         case post(path: String)
         
         var description: String {
             switch self {
-            case .profile:
-                return "profile"
+            case .profile(let userID):
+                return "profile_\(userID)"
             case .post(let path):
                 return path
             }
         }
     }
     
-    func setImageProfileImage(to urlPath: String) {
+    func setImageProfileImage(to urlPath: String, for userID: String) {
         self.kf.indicatorType = .activity
         
         let options: KingfisherOptionsInfo = [
-            .cacheMemoryOnly,
             .cacheOriginalImage
         ]
         
-        setImageWithCustomCacheKey(to: urlPath, key: .profile, options: options)
+        setImageWithCustomCacheKey(to: urlPath, key: .profile(userID: userID), options: options)
     }
     
     func setImagePostImage(

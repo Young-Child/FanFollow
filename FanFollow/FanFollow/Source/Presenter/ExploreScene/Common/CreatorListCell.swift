@@ -65,12 +65,11 @@ final class CreatorListCell: UITableViewCell {
 
 // UI Method
 extension CreatorListCell {
-    func configureCell(nickName: String, userID: String, jobCategory: JobCategory, introduce: String) {
-        guard let defaultImage = UIImage(systemName: "person") else { return }
-        nickNameLabel.text = nickName
-        profileImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png")
-        jobLabel.text = Constants.category + " " + jobCategory.categoryName
-        introduceLabel.text = introduce
+    func configureCell(creator: Creator) {
+        nickNameLabel.text = creator.nickName
+        profileImageView.setImageProfileImage(to: creator.profileURL, for: creator.id)
+        jobLabel.text = Constants.category + " " + (creator.jobCategory?.categoryName ?? "")
+        introduceLabel.text = creator.introduce
         
         applyAttributedString()
     }
