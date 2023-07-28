@@ -65,7 +65,7 @@ final class ProfileCell: UITableViewCell {
 
 // UI Method
 extension ProfileCell {
-    func configure(with creator: Creator, followerCount: Int, isFollow: Bool, delegate: ProfileCellDelegate? = nil, isHiddenFollowButton: Bool) {
+    func configure(with creator: Creator, followerCount: Int, isFollow: Bool, delegate: ProfileCellDelegate? = nil, followButtonIsHidden: Bool) {
         let creatorID = creator.id
         creatorImageView.setImageProfileImage(to: "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(creatorID)/profileImage.png")
 
@@ -74,7 +74,7 @@ extension ProfileCell {
 
         let followButtonTitle = isFollow ? Constants.unfollowButtonText : Constants.followButtonText
         followButton.setTitle(followButtonTitle, for: .normal)
-        followButton.isHidden = isHiddenFollowButton
+        followButton.isHidden = followButtonIsHidden
 
         introduceLabel.text = creator.introduce
 

@@ -1,5 +1,5 @@
 //
-//  ProfileViewModel.swift
+//  ProfileFeedViewModel.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/27.
@@ -8,7 +8,7 @@
 import RxSwift
 import RxRelay
 
-final class ProfileViewModel: ViewModel {
+final class ProfileFeedViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
         var refresh: Observable<Void>
@@ -18,7 +18,7 @@ final class ProfileViewModel: ViewModel {
     }
 
     struct Output {
-        var profileSections: Observable<[ProfileSectionModel]>
+        var profileFeedSections: Observable<[ProfileFeedSectionModel]>
     }
 
     var disposeBag = DisposeBag()
@@ -85,11 +85,11 @@ final class ProfileViewModel: ViewModel {
             Observable.merge(fetchedAll, updatedPostsAndProfile, postsAndUpdatedProfile)
         )
 
-        return Output(profileSections: profileSections)
+        return Output(profileFeedSections: profileSections)
     }
 }
 
-private extension ProfileViewModel {
+private extension ProfileFeedViewModel {
     func fetchNewPosts() -> Observable<[Post]> {
         return fetchPosts(startIndex: 0)
             .do { fetchedPosts in
@@ -182,14 +182,14 @@ private extension ProfileViewModel {
             }
     }
 
-    func profileSections(_ observable: Observable<([Post], Creator, Int, Bool)>) -> Observable<[ProfileSectionModel]> {
+    func profileSections(_ observable: Observable<([Post], Creator, Int, Bool)>) -> Observable<[ProfileFeedSectionModel]> {
         return observable
-            .map { posts, creator, followerCount, isFollow -> [ProfileSectionModel] in
+            .map { posts, creator, followerCount, isFollow -> [ProfileFeedSectionModel] in
                 return [
-                    ProfileSectionModel.profile(items: [
-                        ProfileSectionItem(creator: creator, followerCount: followerCount, isFollow: isFollow)
+                    ProfileFeedSectionModel.profile(items: [
+                        ProfileFeedSectionItem(creator: creator, followerCount: followerCount, isFollow: isFollow)
                     ]),
-                    ProfileSectionModel.posts(items: posts)
+                    ProfileFeedSectionModel.posts(items: posts)
                 ]
             }
     }

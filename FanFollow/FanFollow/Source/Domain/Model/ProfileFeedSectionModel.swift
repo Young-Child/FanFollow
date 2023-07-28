@@ -1,5 +1,5 @@
 //
-//  ProfileSectionModel.swift
+//  ProfileFeedSectionModel.swift
 //  FanFollow
 //
 //  Created by junho lee on 2023/07/27.
@@ -7,12 +7,12 @@
 
 import Differentiator
 
-enum ProfileSectionModel {
-    case profile(items: [ProfileSectionItem])
+enum ProfileFeedSectionModel {
+    case profile(items: [ProfileFeedSectionItem])
     case posts(items: [Post])
 }
 
-extension ProfileSectionModel: SectionModelType {
+extension ProfileFeedSectionModel: SectionModelType {
     typealias Item = Any
 
     var items: [Item] {
@@ -24,7 +24,7 @@ extension ProfileSectionModel: SectionModelType {
         }
     }
 
-    init(original: ProfileSectionModel, items: [Item]) {
+    init(original: ProfileFeedSectionModel, items: [Item]) {
         switch original {
         case .profile(let items):
             self = .profile(items: items)
