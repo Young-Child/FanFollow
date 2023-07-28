@@ -40,7 +40,7 @@ final class ProfileViewModel: ViewModel {
         fetchCreatorInformationUseCase: FetchCreatorInformationUseCase,
         changeLikeUseCase: ChangeLikeUseCase,
         creatorID: String,
-        userID: String
+        userID: String = ""
     ) {
         self.fetchCreatorPostUseCase = fetchCreatorPostUseCase
         self.fetchCreatorInformationUseCase = fetchCreatorInformationUseCase
