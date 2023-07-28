@@ -107,6 +107,8 @@ extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
     func likeButtonTap(postID: String) {
         likeButtonTapped.accept(postID)
     }
+
+    func creatorNickNameLabelTap(creatorID: String) {}
 }
 
 extension ProfileFeedViewController {
