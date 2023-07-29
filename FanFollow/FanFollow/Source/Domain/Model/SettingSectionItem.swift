@@ -9,8 +9,20 @@ import Foundation
 import RxDataSources
 
 enum SettingSectionItem {
-    case profile(nickName: String, userID: String, profileURL: String)
-    case base(title: String)
+    enum PresentType {
+        case profile
+        case creator
+        case alert
+        case bugReport
+        case evaluation
+        case privacy
+        case openSource
+        case logOut
+        case registerOut
+    }
+    
+    case profile(nickName: String, userID: String, profileURL: String, action: PresentType)
+    case base(title: String, action: PresentType)
 }
 
 extension SettingSectionItem: IdentifiableType {
@@ -18,10 +30,19 @@ extension SettingSectionItem: IdentifiableType {
     
     var identity: String {
         switch self {
-        case .profile(let nickName, let userID, _):
+        case .profile(let nickName, let userID, _, _):
             return nickName + "_" + userID + "_" + UUID().uuidString
-        case .base(let title):
+        case .base(let title, _):
             return title
+        }
+    }
+    
+    var presentType: PresentType {
+        switch self {
+        case .profile(_, _, _, let action):
+            return action
+        case .base(_, let action):
+            return action
         }
     }
 }
