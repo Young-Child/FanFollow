@@ -83,6 +83,11 @@ private extension SettingViewController {
         
         settingTableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+        
+        settingTableView.rx.modelSelected(SettingSectionItem.self)
+            .asDriver()
+            .drive(onNext: { self.settingTabBarDelegate?.settingController(self, didTapPresent: $0) })
+            .disposed(by: disposeBag)
     }
     
     func bindingInput() -> SettingViewModel.Output {
@@ -117,27 +122,6 @@ extension SettingViewController: UITableViewDelegate {
         if section == .zero { return .zero }
         return 30
     }
-    
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let section = indexPath.section, row = indexPath.row
-        
-        switch section {
-        case 0:
-            pushSettingViewController()
-        default:
-            return
-        }
-    }
-}
-
-private extension SettingViewController {
-    func pushSettingViewController() {
-        settingTabBarDelegate?.settingController(self, didTapPresent: true)
-    }
 }
 
 // RxDataSource Method
@@ -146,13 +130,13 @@ private extension SettingViewController {
         return RxTableViewSectionedReloadDataSource(
             configureCell: { dataSource, tableView, indexPath, model in
                 switch dataSource[indexPath] {
-                case let .profile(nickName, userID, profileURL):
+                case let .profile(nickName, userID, profileURL, _):
                     let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )
                     cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                     return cell
-                case let .base(title):
+                case let .base(title, _):
                     let cell: SettingBaseCell = tableView.dequeueReusableCell(
                         forIndexPath: indexPath
                     )

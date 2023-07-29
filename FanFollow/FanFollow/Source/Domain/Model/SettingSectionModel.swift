@@ -70,19 +70,19 @@ extension SettingSectionModel {
     static func generateDefaultModel(user: User) -> [SettingSectionModel] {
         return [
             .profile(title: "", items: [
-                .profile(nickName: user.nickName, userID: user.id, profileURL: user.profileURL),
-                .base(title: "크리에이터 신청"),
-                .base(title: "알림 설정")
+                .profile(nickName: user.nickName, userID: user.id, profileURL: user.profileURL, action: .profile),
+                .base(title: "크리에이터 신청", action: .creator),
+                .base(title: "알림 설정", action: .alert)
             ]),
             .customerService(title: "고객 센터", items: [
-                .base(title: "버그 제보하기"),
-                .base(title: "평가하기"),
-                .base(title: "개인 정보 처리 방침"),
-                .base(title: "오픈 소스 라이센스 고지")
+                .base(title: "버그 제보하기", action: .bugReport),
+                .base(title: "평가하기", action: .evaluation),
+                .base(title: "개인 정보 처리 방침", action: .privacy),
+                .base(title: "오픈 소스 라이센스 고지", action: .openSource)
             ]),
             .account(title: "계정 설정", items: [
-                .base(title: "로그아웃"),
-                .base(title: "탈퇴하기")
+                .base(title: "로그아웃", action: .logOut),
+                .base(title: "탈퇴하기", action: .registerOut)
             ])
         ]
     }

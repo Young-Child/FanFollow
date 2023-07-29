@@ -86,5 +86,6 @@ private extension ProfileImagePickerViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: dismissAction)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인")
+        navigationItem.title = "프로필 이미지 선택"
     }
 }

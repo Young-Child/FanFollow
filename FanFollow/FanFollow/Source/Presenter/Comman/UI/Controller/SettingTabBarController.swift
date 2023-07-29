@@ -8,7 +8,7 @@ import UIKit
 
 protocol SettingTabBarDelegate: AnyObject {
     func settingController(_ controller: SettingViewController, removeFeedManageTab isCreator: Bool)
-    func settingController(_ controller: SettingViewController, didTapPresent animated: Bool)
+    func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem)
 }
 
 final class SettingTabBarController: TopTabBarController<SettingTabItem> {
@@ -45,7 +45,7 @@ extension SettingTabBarController: SettingTabBarDelegate {
         view.setNeedsLayout()
     }
     
-    func settingController(_ controller: SettingViewController, didTapPresent animated: Bool) {
-        coordinator?.presentSettingViewController()
+    func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem) {
+        coordinator?.presentSettingDetailController(to: item.presentType)
     }
 }
