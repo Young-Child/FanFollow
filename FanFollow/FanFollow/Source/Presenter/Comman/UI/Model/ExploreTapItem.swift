@@ -19,18 +19,26 @@ enum ExploreTapItem: Int, TabItem {
     }
     
     var viewController: UIViewController {
+        let networkManager = DefaultNetworkService()
+        // TODO: 임시 구현
+        let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        
         switch self {
         case .explore:
             let useCase = DefaultExploreUseCase(
-                userInformationRepository: DefaultUserInformationRepository(
-                    DefaultNetworkService(
-                        session: URLSession.shared
-                    )
-                )
+                userInformationRepository: DefaultUserInformationRepository(networkManager)
             )
             let viewModel = ExploreViewModel(exploreUseCase: useCase)
+            
             return ExploreViewController(viewModel: viewModel)
-        case .subscribe: return UIViewController()
+        case .subscribe:
+            let useCase = DefaultFetchCreatorInformationUseCase(
+                userInformationRepository: DefaultUserInformationRepository(networkManager),
+                followRepository: DefaultFollowRepository(networkManager)
+            )
+            let viewModel = ExploreSubscribeViewModel(userID: userID, fetchCreatorUseCase: useCase)
+            
+            return ExploreSubscribeViewController(viewModel: viewModel)
         }
     }
 }

@@ -110,6 +110,25 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         })
         .disposed(by: disposeBag)
     }
+    
+    /// 정상적인 조건에서 fetchFollowings가 제대로 동작하는 지 테스트
+    func test_FetchFollowingsInNormalCondition() {
+        // given
+        followRepository.followerCount = TestData.followerCount
+        followRepository.error = nil
+        let userID = TestData.userID
+
+        // when
+        let observable = sut.fetchFollowings(for: userID, startRange: 0, endRange: 3)
+
+        // then
+        observable.subscribe(onNext: { creators in
+            XCTAssertEqual(creators.count, .zero)
+        }, onError: { error in
+            XCTFail(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
 }
 
 extension FetchCreatorInformationUseCaseTests {
@@ -125,6 +144,7 @@ extension FetchCreatorInformationUseCaseTests {
             createdDate: Date()
         )
         static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
+        static let userID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let followerCount = 5
         static let error = NetworkError.unknown
     }
