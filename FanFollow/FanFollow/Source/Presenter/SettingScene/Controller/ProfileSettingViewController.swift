@@ -113,8 +113,8 @@ private extension ProfileSettingViewController {
     
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
         output.profileURL
-            .asDriver(onErrorJustReturn: "")
-            .drive(onNext: self.profileImageView.setImageProfileImage(to:))
+            .asDriver(onErrorJustReturn: ("", ""))
+            .drive(onNext: { self.profileImageView.setImageProfileImage(to: $0.0, for: $0.1) })
             .disposed(by: disposeBag)
         
         output.nickName
