@@ -3,7 +3,6 @@
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
-
 import UIKit
 import PhotosUI
 
@@ -12,6 +11,8 @@ import SnapKit
 import Kingfisher
 
 final class ProfileSettingViewController: UIViewController {
+    weak var coordinator: ProfileSettingCoordinator?
+    
     // View Properties
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
@@ -112,8 +113,13 @@ private extension ProfileSettingViewController {
     
     func bindingOutput(to output: ProfileSettingViewModel.Output) {
         output.profileURL
+<<<<<<< HEAD
             .asDriver(onErrorJustReturn: ("", ""))
             .drive(onNext: setImage)
+=======
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: self.profileImageView.setImageProfileImage(to:))
+>>>>>>> develop
             .disposed(by: disposeBag)
         
         output.nickName
@@ -123,17 +129,11 @@ private extension ProfileSettingViewController {
         
         output.isCreator
             .asDriver(onErrorJustReturn: true)
-            .drive(jobCategoryInput.rx.isUserInteractionEnabled)
-            .disposed(by: disposeBag)
-        
-        output.isCreator
-            .asDriver(onErrorJustReturn: true)
-            .drive(linkInput.rx.isUserInteractionEnabled)
-            .disposed(by: disposeBag)
-        
-        output.isCreator
-            .asDriver(onErrorJustReturn: true)
-            .drive(introduceInput.rx.isUserInteractionEnabled)
+            .drive(
+                jobCategoryInput.rx.isUserInteractionEnabled,
+                linkInput.rx.isUserInteractionEnabled,
+                introduceInput.rx.isUserInteractionEnabled
+            )
             .disposed(by: disposeBag)
         
         output.jobCategory.compactMap { $0?.rawValue }
@@ -197,25 +197,15 @@ private extension ProfileSettingViewController {
         profileImageView.addGestureRecognizer(tapGesture)
     }
     
+<<<<<<< HEAD
     private func setImage(to url: String, with id: String) {
         self.profileImageView.setImageProfileImage(to: url, for: id)
     }
     
+=======
+>>>>>>> develop
     @objc private func didTapImageChangeButton() {
-        let viewModel = ProfileImagePickerViewModel(
-            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-            profileImageUploadUseCase: DefaultUpdateProfileImageUseCase(
-                imageRepository: DefaultImageRepository(
-                    network: DefaultNetworkService()
-                )
-            )
-        )
-        
-        let imagePickerViewController = ProfileImagePickerViewController(viewModel: viewModel)
-        
-        let controller = UINavigationController(rootViewController: imagePickerViewController)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true)
+        coordinator?.presentSelectImagePickerViewController()
     }
 }
 

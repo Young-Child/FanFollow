@@ -16,7 +16,6 @@ extension Bundle {
         guard let key = resource["API_KEY"] as? String else {
             fatalError("SupabaseInfo.plist에 API_KEY 설정을 해주세요.")
         }
-        
         return key
     }
 }

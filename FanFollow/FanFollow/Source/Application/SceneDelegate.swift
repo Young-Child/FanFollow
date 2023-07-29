@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         setKingFisherModifier()
         
         window = UIWindow(windowScene: windowScene)
+        
         let navigationController = UINavigationController()
         navigationController.navigationBar.isHidden = true
         
