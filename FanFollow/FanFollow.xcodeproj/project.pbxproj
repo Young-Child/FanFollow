@@ -100,6 +100,8 @@
 		3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */; };
 		3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
+		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
+		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
 		3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D802A52F669000DE463 /* PostDTO.swift */; };
 		3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */; };
@@ -286,6 +288,8 @@
 		3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSearchViewModel.swift; sourceTree = "<group>"; };
 		3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorListCell.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
+		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
+		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		3CAC3D802A52F669000DE463 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestDirector.swift; sourceTree = "<group>"; };
@@ -886,6 +890,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3CA0ED082A73875A00111457 /* ExploreSubscribeScene */ = {
+			isa = PBXGroup;
+			children = (
+				3CA0ED0E2A7387B500111457 /* View */,
+				3CA0ED0D2A7387AB00111457 /* ViewModel */,
+			);
+			path = ExploreSubscribeScene;
+			sourceTree = "<group>";
+		};
+		3CA0ED0D2A7387AB00111457 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CA0ED0E2A7387B500111457 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3CC69A802A64E6F40081ACC8 /* ExploreScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +922,7 @@
 				3C18042C2A67B13D0019DE79 /* ExploreMainScene */,
 				3C18042D2A67B14B0019DE79 /* ExploreCategoryScene */,
 				3C5F653E2A6CFA92004F9698 /* ExploreSearchScene */,
+				3CA0ED082A73875A00111457 /* ExploreSubscribeScene */,
 			);
 			path = ExploreScene;
 			sourceTree = "<group>";
@@ -1366,6 +1396,7 @@
 				180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */,
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
 				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
+				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
@@ -1385,6 +1416,7 @@
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
+				3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */,
 				1879BBDF2A69225200A64DD7 /* ProfileSettingViewModel.swift in Sources */,
 				3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */,
 				3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */,
