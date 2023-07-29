@@ -44,7 +44,7 @@ extension CreatorCell {
     func configureCell(nickName: String, userID: String) {
         nickNameLabel.text = nickName
         let path = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png"
-        profileImageView.setImageProfileImage(to: path)
+        profileImageView.setImageProfileImage(to: path, for: userID)
     }
 }
 

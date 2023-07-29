@@ -80,12 +80,7 @@ extension ExploreSubscribeViewController {
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
             ) { indexPath, data, cell in
-                cell.configureCell(
-                    nickName: data.nickName,
-                    userID: data.id,
-                    jobCategory: data.jobCategory ?? .unSetting,
-                    introduce: data.introduce ?? ""
-                )
+                cell.configureCell(creator: data)
             }
             .disposed(by: disposeBag)
     }

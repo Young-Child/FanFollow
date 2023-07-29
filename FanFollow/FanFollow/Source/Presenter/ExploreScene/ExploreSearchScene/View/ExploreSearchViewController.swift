@@ -108,13 +108,8 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .drive(searchTableView.rx.items(
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
-            ) { indexPath, data, cell in
-                cell.configureCell(
-                    nickName: data.nickName,
-                    userID: data.id,
-                    jobCategory: data.jobCategory ?? .unSetting,
-                    introduce: data.introduce ?? ""
-                )
+            ) { indexPath, creator, cell in
+                cell.configureCell(creator: creator)
             }
             .disposed(by: disposeBag)
         
