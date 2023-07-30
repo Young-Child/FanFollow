@@ -13,6 +13,10 @@ class ExploreCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    // User Property
+    //TODO: - 추후 주입 어떻게 해야할지 논의 필요
+    private let userID: String
+    
     // Dependency
     private let userInformationRepository: UserInformationRepository
     private let exploreUseCase: ExploreUseCase
@@ -20,6 +24,7 @@ class ExploreCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
         userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService())
         exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
@@ -40,8 +45,34 @@ class ExploreCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func presentProfileViewController(to userID: String) {
-        // TODO: - Profile 이동 구현
+    func presentProfileViewController(to creatorID: String) {
+        let networkService = DefaultNetworkService()
+
+        let postRepository = DefaultPostRepository(networkService: networkService)
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+
+        let userInformationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
+        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
+            userInformationRepository: userInformationRepository,
+            followRepository: followRepository
+        )
+
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+
+        
+        let viewModel = ProfileFeedViewModel(
+            fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
+            fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
+            changeLikeUseCase: changeLikeUseCase,
+            creatorID: creatorID,
+            userID: userID
+        )
+        
+        let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
+        
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func presentSearchViewController() {
