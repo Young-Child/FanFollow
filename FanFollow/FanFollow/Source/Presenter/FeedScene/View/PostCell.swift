@@ -31,6 +31,8 @@ final class PostCell: UITableViewCell {
     }
     
     private let contentStackView = UIStackView().then { stackView in
+        stackView.spacing = 8
+        stackView.alignment = .leading
         stackView.layoutMargins = UIEdgeInsets(top: .zero, left: 8, bottom: .zero, right: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .vertical
@@ -145,6 +147,7 @@ final class PostCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        contentLabel.numberOfLines = 5
 //        contentLabel.numberOfLines = Constants.unexpandedNumberOfLines
 //        imagesStackView.arrangedSubviews.forEach { view in view.isHidden = true }
 //        if videoWebView.isLoading { videoWebView.stopLoading() }
@@ -154,6 +157,7 @@ final class PostCell: UITableViewCell {
 // UI Method
 extension PostCell {
     func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
+        self.delegate = delegate
 //        let userID = post.userID
 //        creatorImageView.setImageProfileImage(to: post.writerProfileImageURL, for: userID)
 //        creatorNickNameLabel.text = post.nickName
@@ -226,7 +230,7 @@ private extension PostCell {
         configureHierarchy()
         configureConstraints()
 //        configureLikeButtonAction()
-//        addGestureRecognizerToContentLabel()
+        addGestureRecognizerToContentLabel()
 //        addGestureRecognizerToCreatorNickNameLabel()
     }
 
@@ -302,17 +306,17 @@ private extension PostCell {
     }
 
     func addGestureRecognizerToContentLabel() {
-//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleExpended))
-//        contentLabel.isUserInteractionEnabled = true
-//        contentLabel.addGestureRecognizer(recognizer)
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleExpended))
+        contentLabel.isUserInteractionEnabled = true
+        contentLabel.addGestureRecognizer(recognizer)
     }
 
     @objc
     func toggleExpended() {
-//        delegate?.performTableViewBathUpdates({ [weak self] in
-//            guard let self else { return }
-//            self.contentLabel.numberOfLines = Constants.expandedNumberOfLines
-//        })
+        delegate?.performTableViewBathUpdates({ [weak self] in
+            guard let self else { return }
+            self.contentLabel.numberOfLines = .zero
+        })
     }
 
     func addGestureRecognizerToCreatorNickNameLabel() {
