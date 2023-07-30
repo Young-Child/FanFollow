@@ -55,7 +55,8 @@ final class PostCreatorHeaderView: UIView {
         }
     }
     
-    func configure(with creator: Creator) {
-        self.creatorNickNameLabel.text = creator.nickName
+    func configure(userID: String, nickName: String?, imageURL: String) {
+        self.creatorImageView.setImageProfileImage(to: imageURL, for: userID)
+        self.creatorNickNameLabel.text = nickName
     }
 }
