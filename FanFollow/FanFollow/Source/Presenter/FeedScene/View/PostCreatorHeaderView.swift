@@ -40,17 +40,18 @@ final class PostCreatorHeaderView: UIView {
         [creatorImageView, creatorNickNameLabel, optionsButton].forEach(addSubview)
         
         creatorImageView.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview()
+            $0.top.leading.bottom.equalToSuperview().inset(8)
             $0.width.height.equalTo(50)
         }
         
         creatorNickNameLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalTo(creatorImageView.snp.trailing)
+            $0.top.bottom.equalTo(creatorImageView)
+            $0.leading.equalTo(creatorImageView.snp.trailing).offset(8)
         }
         
         optionsButton.snp.makeConstraints {
-            $0.top.bottom.right.equalToSuperview()
+            $0.top.bottom.equalTo(creatorImageView)
+            $0.trailing.equalToSuperview().inset(8)
         }
     }
     
