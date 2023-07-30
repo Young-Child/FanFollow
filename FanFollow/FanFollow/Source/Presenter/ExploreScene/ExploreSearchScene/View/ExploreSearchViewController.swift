@@ -120,6 +120,13 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             }
             .drive(self.searchLabel.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        searchTableView.rx.modelSelected(Creator.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { item in
+                self.coordinator?.presentProfileViewController(to: item.id)
+            }
+            .disposed(by: disposeBag)
     }
     
     func bindingInput() -> ExploreSearchViewModel.Output {
