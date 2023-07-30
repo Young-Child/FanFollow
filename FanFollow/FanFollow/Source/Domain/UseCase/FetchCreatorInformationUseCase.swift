@@ -11,6 +11,8 @@ protocol FetchCreatorInformationUseCase: AnyObject {
     func fetchCreatorInformation(for creatorID: String) -> Observable<Creator>
     func fetchFollowerCount(for creatorID: String) -> Observable<Int>
     func fetchFollowings(for userID: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
+    func checkFollow(creatorID: String, userID: String) -> Observable<Bool>
+    func toggleFollow(creatorID: String, userID: String) -> Completable
 }
 
 final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCase {
@@ -41,5 +43,21 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
                     return Creator(followDTO.userInformation)
                 }
             }
+    }
+
+    func checkFollow(creatorID: String, userID: String) -> Observable<Bool> {
+        return followRepository.checkFollow(followingID: creatorID, followerID: userID)
+    }
+
+    func toggleFollow(creatorID: String, userID: String) -> Completable {
+        return checkFollow(creatorID: creatorID, userID: userID)
+            .flatMap { isFollow in
+                if isFollow {
+                    return self.followRepository.deleteFollow(followingID: creatorID, followerID: userID)
+                } else {
+                    return self.followRepository.insertFollow(followingID: creatorID, followerID: userID)
+                }
+            }
+            .asCompletable()
     }
 }

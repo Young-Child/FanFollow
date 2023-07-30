@@ -105,6 +105,7 @@ final class PostCell: UITableViewCell {
     }
 
     private var postID: String?
+    private var creatorID: String?
     private weak var delegate: PostCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -142,6 +143,7 @@ extension PostCell {
         configurePostContentView(with: post)
 
         self.postID = post.postID
+        self.creatorID = userID
         self.delegate = delegate
 
         switch creatorViewIsHidden {
@@ -199,6 +201,7 @@ private extension PostCell {
         configureConstraints()
         configureLikeButtonAction()
         addGestureRecognizerToContentLabel()
+        addGestureRecognizerToCreatorNickNameLabel()
     }
 
     func configureHierarchy() {
@@ -272,6 +275,18 @@ private extension PostCell {
             self.contentLabel.numberOfLines = Constants.expandedNumberOfLines
         })
     }
+
+    func addGestureRecognizerToCreatorNickNameLabel() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(creatorNickNameLabelTap))
+        creatorNickNameLabel.isUserInteractionEnabled = true
+        creatorNickNameLabel.addGestureRecognizer(recognizer)
+    }
+
+    @objc
+    func creatorNickNameLabelTap() {
+        guard let creatorID else { return }
+        delegate?.creatorNickNameLabelTap(creatorID: creatorID)
+    }
 }
 
 // Constants
@@ -292,4 +307,5 @@ private extension PostCell {
 protocol PostCellDelegate: AnyObject {
     func performTableViewBathUpdates(_ updates: (() -> Void)?)
     func likeButtonTap(postID: String)
+    func creatorNickNameLabelTap(creatorID: String)
 }

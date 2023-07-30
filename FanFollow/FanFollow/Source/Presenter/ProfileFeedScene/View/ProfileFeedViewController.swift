@@ -1,8 +1,8 @@
 //
-//  FeedManageViewController.swift
+//  ProfileFeedViewController.swift
 //  FanFollow
 //
-//  Created by junho lee on 2023/07/25.
+//  Created by junho lee on 2023/07/28.
 //
 
 import UIKit
@@ -10,30 +10,33 @@ import RxSwift
 import RxRelay
 import RxDataSources
 
-final class FeedManageViewController: UIViewController {
+final class ProfileFeedViewController: UIViewController {
     // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemGray6
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
-        tableView.register(CreatorInformationCell.self, forCellReuseIdentifier: "CreatorInformationCell")
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: "ProfileCell")
     }
     private let refreshControl = UIRefreshControl()
 
     // Properties
-    typealias DataSource = RxTableViewSectionedReloadDataSource<FeedManageSectionModel>
+    typealias DataSource = RxTableViewSectionedReloadDataSource<ProfileFeedSectionModel>
 
     private let disposeBag = DisposeBag()
-    private let viewModel: FeedManageViewModel
-    private let likeButtonTap = PublishRelay<String>()
-    private let lastCellDisplayed = BehaviorRelay(value: false)
+    private let viewModel: ProfileFeedViewModel
+    private let likeButtonTapped = PublishRelay<String>()
+    private let followButtonTapped = PublishRelay<Void>()
+    private let lastCellDisplayed = BehaviorRelay(value: true)
+    private let viewType: ViewType
     private var dataSource: DataSource!
 
-    // Initializer
-    init(viewModel: FeedManageViewModel) {
+    init(viewModel: ProfileFeedViewModel, viewType: ViewType) {
         self.viewModel = viewModel
+        self.viewType = viewType
         super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = .systemBackground
     }
 
     required init?(coder: NSCoder) {
@@ -52,16 +55,30 @@ final class FeedManageViewController: UIViewController {
     private func configureDataSource() {
         dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
             switch dataSource[indexPath.section] {
-            case .creatorInformation(let items):
+            case .profile(let items):
                 guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "CreatorInformationCell", for: indexPath
-                ) as? CreatorInformationCell else { return UITableViewCell() }
+                    withIdentifier: "ProfileCell", for: indexPath
+                ) as? ProfileCell else { return UITableViewCell() }
 
                 let item = items[indexPath.row]
                 let creator = item.creator
                 let followerCount = item.followerCount
+                let isFollow = item.isFollow
+                let followButtonIsHidden: Bool
+                switch self.viewType {
+                case .feedManage:
+                    followButtonIsHidden = true
+                case .profileFeed:
+                    followButtonIsHidden = false
+                }
 
-                cell.configure(with: creator, followerCount: followerCount)
+                cell.configure(
+                    with: creator,
+                    followerCount: followerCount,
+                    isFollow: isFollow,
+                    delegate: self,
+                    followButtonIsHidden: followButtonIsHidden
+                )
                 return cell
             case .posts(let items):
                 guard let cell = tableView.dequeueReusableCell(
@@ -77,15 +94,39 @@ final class FeedManageViewController: UIViewController {
     }
 }
 
+// ProfileCellDelegate, PostCellDelegate
+extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
+    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
+        tableView.performBatchUpdates(updates)
+    }
+
+    func followButtonTap() {
+        followButtonTapped.accept(())
+    }
+
+    func likeButtonTap(postID: String) {
+        likeButtonTapped.accept(postID)
+    }
+
+    func creatorNickNameLabelTap(creatorID: String) {}
+}
+
+extension ProfileFeedViewController {
+    enum ViewType {
+        case profileFeed
+        case feedManage
+    }
+}
+
 // Binding Method
-private extension FeedManageViewController {
+private extension ProfileFeedViewController {
     func binding() {
         let input = input()
         let output = viewModel.transform(input: input)
         bindTableView(output)
     }
 
-    func input() -> FeedManageViewModel.Input {
+    func input() -> ProfileFeedViewModel.Input {
         let lastCellDisplayed = tableView.rx.didScroll
             .withUnretained(self)
             .flatMap({ _, _ -> Observable<Void> in
@@ -98,18 +139,19 @@ private extension FeedManageViewController {
                 return lastCellDisplayed ? .just(()) : .empty()
             })
 
-        return FeedManageViewModel.Input(
+        return ProfileFeedViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
             lastCellDisplayed: lastCellDisplayed,
-            likeButtonTap: likeButtonTap.asObservable()
+            likeButtonTap: likeButtonTapped.asObservable(),
+            followButtonTap: followButtonTapped.asObservable()
         )
     }
 
-    func bindTableView(_ output: FeedManageViewModel.Output) {
-        output.feedManageSections
+    func bindTableView(_ output: ProfileFeedViewModel.Output) {
+        output.profileFeedSections
             .asDriver(onErrorJustReturn: [])
-            .do { [weak self] _ in
+            .do { [weak self] value in
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
@@ -119,19 +161,8 @@ private extension FeedManageViewController {
     }
 }
 
-// PostCellDelegate
-extension FeedManageViewController: PostCellDelegate {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
-        tableView.performBatchUpdates(updates)
-    }
-
-    func likeButtonTap(postID: String) {
-        likeButtonTap.accept(postID)
-    }
-}
-
 // Configure UI
-private extension FeedManageViewController {
+private extension ProfileFeedViewController {
     func configureUI() {
         configureHierarchy()
         configureConstraints()
@@ -145,19 +176,23 @@ private extension FeedManageViewController {
 
     func configureConstraints() {
         tableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
     }
 
     func configureNavigationItem() {
-        let barButtonItem = UIBarButtonItem(
-            systemItem: .add,
-            primaryAction: UIAction(handler: { _ in
-
-            })
-        )
-        navigationItem.rightBarButtonItem = barButtonItem
+        switch viewType {
+        case .profileFeed:
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        case .feedManage:
+            let barButtonItem = UIBarButtonItem(
+                systemItem: .add,
+                primaryAction: UIAction(handler: { _ in
+                    // TODO: 게시글 작성 화면 작업 후 코드 작성
+                })
+            )
+            navigationItem.rightBarButtonItem = barButtonItem
+        }
     }
 
     func configureTableView() {
