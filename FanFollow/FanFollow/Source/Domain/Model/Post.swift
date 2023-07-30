@@ -40,6 +40,14 @@ extension Post {
     var createdDateDescription: String? {
         return createdDate.toString(format: "yyyy. MM. dd")
     }
+    
+    var writerProfileImageURL: String {
+        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "profileImage.png"
+    }
+    
+    func generatePostImageURL(for postID: String, to index: Int) -> String {
+        "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\(index + 1)"
+    }
 }
 
 extension Post: IdentifiableType {
