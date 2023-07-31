@@ -19,6 +19,7 @@ class HorizontalImageSlideView: UIView {
             
             if let pageControl = pageControl {
                 addSubview(pageControl)
+                pageControl.addTarget(self, action: #selector(didChangedCurrentPage), for: .valueChanged)
             }
             
             setNeedsLayout()
@@ -94,7 +95,7 @@ class HorizontalImageSlideView: UIView {
     func layoutScrollView() {
         let pageControlSize = pageControl?.frame.size
         let topPadding = CGFloat(8)
-        let bottomHeight = (pageControlSize?.height ?? .zero) + topPadding 
+        let bottomHeight = (pageControlSize?.height ?? .zero) + topPadding
         scrollView.frame = CGRect(
             x: .zero,
             y: .zero,
@@ -149,6 +150,23 @@ class HorizontalImageSlideView: UIView {
         
         reloadScrollView()
         layoutScrollView()
+    }
+    
+    @objc private func didChangedCurrentPage() {
+        if let newPage = pageControl?.currentPage {
+            self.currentPage = newPage
+        }
+        
+        if currentPage < slideShowItems.count {
+            let scrollTarget = CGRect(
+                x: scrollView.frame.size.width * CGFloat(currentPage),
+                y: .zero,
+                width: scrollView.frame.size.width,
+                height: scrollView.frame.size.height
+            )
+            
+            scrollView.scrollRectToVisible(scrollTarget, animated: true)
+        }
     }
 }
 
