@@ -88,16 +88,20 @@ extension PostCell {
         
         titleLabel.text = post.title
         contentLabel.text = post.content
-        
-        if post.imageURLs.isEmpty {
+        createdDateLabel.text = post.createdDateDescription
+        configureImageSlideView(with: post.imageURLs)
+    }
+    
+    private func configureImageSlideView(with imageURLs: [String]) {
+        if imageURLs.isEmpty {
             imageSlideView.snp.updateConstraints {
                 $0.height.equalTo(0)
             }
-        } else {
-            imageSlideView.setImageInputs(post.imageURLs)
+            
+            return
         }
         
-        
+        imageSlideView.setImageInputs(imageURLs)
     }
     
     private func configurePostContentView(with post: Post) {
@@ -181,7 +185,7 @@ private extension PostCell {
         }
         
         contentStackView.snp.makeConstraints {
-            $0.top.equalTo(imageSlideView.snp.bottom)
+            $0.top.equalTo(imageSlideView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
         }
         
