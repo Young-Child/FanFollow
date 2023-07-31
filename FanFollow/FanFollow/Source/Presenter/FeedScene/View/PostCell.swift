@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import WebKit
+import LinkPresentation
+
 import Kingfisher
 
 final class PostCell: UITableViewCell {
@@ -29,6 +30,8 @@ final class PostCell: UITableViewCell {
     private let contentLabel = UILabel().then { label in
         label.numberOfLines = 5
     }
+    
+    private let linkPreview = LinkPreview()
     
     private let contentStackView = UIStackView().then { stackView in
         stackView.spacing = 8
@@ -88,6 +91,7 @@ extension PostCell {
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
         configureImageSlideView(with: post.imageURLs)
+        configureLinkPreviews(with: post.videoURL)
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
@@ -101,6 +105,24 @@ extension PostCell {
         
         imageSlideView.pageControl = pageControl
         imageSlideView.setImageInputs(imageURLs)
+        linkPreview.isHidden = true
+        linkPreview.snp.updateConstraints {
+            $0.height.equalTo(0)
+        }
+    }
+    
+    private func configureLinkPreviews(with urlString: String?) {
+        guard let urlString = urlString,
+              let url = URL(string: urlString) else { return }
+        
+        let metaProvider = LPMetadataProvider()
+        metaProvider.startFetchingMetadata(for: url) { meta, error in
+            if let meta = meta {
+                DispatchQueue.main.async {
+                    self.linkPreview.setData(meta: meta)
+                }
+            }
+        }
     }
 }
 
@@ -121,6 +143,7 @@ private extension PostCell {
             creatorHeaderView,
             imageSlideView,
             contentStackView,
+            linkPreview,
             likeButton,
             createdDateLabel
         ].forEach(contentView.addSubview(_:))
@@ -142,13 +165,19 @@ private extension PostCell {
             $0.leading.trailing.equalToSuperview()
         }
         
-        likeButton.snp.makeConstraints {
+        linkPreview.snp.makeConstraints {
             $0.top.equalTo(contentStackView.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(80)
+        }
+        
+        likeButton.snp.makeConstraints {
+            $0.top.equalTo(linkPreview.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview().inset(8)
         }
         
         createdDateLabel.snp.makeConstraints {
-            $0.top.equalTo(contentStackView.snp.bottom).offset(8)
+            $0.top.equalTo(linkPreview.snp.bottom).offset(8)
             $0.trailing.bottom.equalToSuperview().inset(8)
         }
     }

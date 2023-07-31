@@ -10,6 +10,7 @@
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
+		1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB22A7803AA005F5F84 /* LinkPreview.swift */; };
 		18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CED2A56927A0042E0F2 /* RxCocoa */; };
 		18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CEF2A56927A0042E0F2 /* RxRelay */; };
 		18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF12A56927A0042E0F2 /* RxSwift */; };
@@ -211,6 +212,7 @@
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
+		1816AEB22A7803AA005F5F84 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
 		1829B50D2A71078300D873DF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1829B50F2A71079D00D873DF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		1829B5112A714A9600D873DF /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */,
 				18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */,
 				1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */,
+				1816AEB22A7803AA005F5F84 /* LinkPreview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */,
+				1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */,
 				1829B50E2A71078300D873DF /* AppCoordinator.swift in Sources */,
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
 				EBBE26BF2A6FF04F0071234B /* CreatorInformationSectionItem.swift in Sources */,
