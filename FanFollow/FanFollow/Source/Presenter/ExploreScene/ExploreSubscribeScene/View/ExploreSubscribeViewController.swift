@@ -83,6 +83,13 @@ extension ExploreSubscribeViewController {
                 cell.configureCell(creator: data)
             }
             .disposed(by: disposeBag)
+        
+        subscribeTableView.rx.modelSelected(Creator.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { item in
+                self.coordinator?.presentProfileViewController(to: item.id)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

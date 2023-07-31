@@ -10,7 +10,6 @@ import RxSwift
 final class ExploreViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
-        var cellDidSelected: Observable<ExploreSectionItem>
     }
     
     struct Output {
@@ -42,20 +41,6 @@ final class ExploreViewModel: ViewModel {
         ) { categories, recommand in
             return categories + recommand
         }
-        
-        // About viewByJopCategory Input
-        input.cellDidSelected
-            .subscribe { sectionItem in
-                switch sectionItem.element {
-                case .category(let job):
-                    print("JOB:", job)
-                case .creator(let nickName, let userID):
-                    print("CREATOR:", nickName, userID)
-                default:
-                    break
-                }
-            }
-            .disposed(by: disposeBag)
         
         return Output(exploreSectionModel: exploreSectionModel)
     }

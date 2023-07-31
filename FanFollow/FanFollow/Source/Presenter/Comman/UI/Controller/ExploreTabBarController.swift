@@ -27,13 +27,17 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setCoordinator()
+        setExplorCoordinator()
     }
     
-    private func setCoordinator() {
-        guard let controller = viewControllers?.first as? ExploreViewController else { return }
-        
-        controller.coordinator = self.coordinator
+    private func setExplorCoordinator() {
+        viewControllers?.forEach({ viewController in
+            if let controller = viewController as? ExploreViewController {
+                controller.coordinator = self.coordinator
+            } else if let controller = viewController as? ExploreSubscribeViewController {
+                controller.coordinator = self.coordinator
+            }
+        })
     }
 }
 

@@ -27,6 +27,10 @@ class SettingCoordinator: Coordinator {
         childCoordinators.append(coordinator)
         coordinator.start()
     }
+    
+    func presentPostBottomViewController() {
+        //TODO: - 추후 구현
+    }
 }
 
 private extension SettingCoordinator {

@@ -71,6 +71,18 @@ extension ExploreViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(exploreCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+         exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { item in
+                switch item {
+                case .category(let job):
+                    self.coordinator?.presentCategoryViewController(for: job)
+                case .creator(_, let creatorID):
+                    self.coordinator?.presentProfileViewController(to: creatorID)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     func bindingInput() -> ExploreViewModel.Output {
@@ -78,26 +90,7 @@ extension ExploreViewController {
             .map { _ in }
             .asObservable()
         
-        let cellSelectEvent = exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
-            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .asObservable()
-        
-        // MARK: - 임시 View 이동 구현
-        cellSelectEvent
-            .subscribe { data in
-                switch data.element {
-                case .category(let job):
-                    self.coordinator?.presentCategoryViewController(for: job)
-                default:
-                    break
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        let input = ExploreViewModel.Input(
-            viewWillAppear: viewWillAppearEvent,
-            cellDidSelected: cellSelectEvent
-        )
+        let input = ExploreViewModel.Input(viewWillAppear: viewWillAppearEvent)
         
         return viewModel.transform(input: input)
     }
