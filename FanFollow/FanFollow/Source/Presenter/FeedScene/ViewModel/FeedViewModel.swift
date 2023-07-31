@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/17.
 //
 
+import Foundation
+
 import RxSwift
 import RxRelay
 
@@ -17,7 +19,7 @@ final class FeedViewModel: ViewModel {
     }
 
     struct Output {
-        var posts: Observable<[Post]>
+        var posts: Observable<[PostSectionModel]>
     }
 
     var disposeBag = DisposeBag()
@@ -49,6 +51,7 @@ final class FeedViewModel: ViewModel {
             .flatMapFirst { _, postID in self.updatePosts(postID: postID) }
 
         let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+            .map { [PostSectionModel(title: UUID().uuidString, items: $0)] }
 
         return Output(posts: posts)
     }

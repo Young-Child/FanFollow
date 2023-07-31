@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
+import RxDataSources
 
 final class FeedViewController: UIViewController {
     // View Properties
@@ -16,7 +17,7 @@ final class FeedViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemGray6
-        tableView.register(PostCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     private let refreshControl = UIRefreshControl()
 
@@ -77,6 +78,8 @@ private extension FeedViewController {
     }
 
     func bindTableView(_ output: FeedViewModel.Output) {
+        let dataSource = configureDataSource()
+        
         output.posts
             .asDriver(onErrorJustReturn: [])
             .do { [weak self] newPosts in
@@ -84,10 +87,18 @@ private extension FeedViewController {
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
             }
-            .drive(tableView.rx.items(cellIdentifier: "Cell", cellType: PostCell.self)) { _, post, cell in
-                cell.configure(with: post, delegate: self)
-            }
+            .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+}
+
+extension FeedViewController {
+    func configureDataSource() -> RxTableViewSectionedReloadDataSource<PostSectionModel> {
+        return RxTableViewSectionedReloadDataSource { dataSource, tableView, indexPath, model in
+            let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: model, delegate: self)
+            return cell
+        }
     }
 }
 
@@ -109,6 +120,10 @@ extension FeedViewController: UITableViewDelegate {
 extension FeedViewController: PostCellDelegate {
     func postCell(expandLabel updates: (() -> Void)?) {
         tableView.performBatchUpdates(updates)
+    }
+    
+    func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
+        likeButtonTap.accept(postID)
     }
 
     func likeButtonTap(postID: String) {

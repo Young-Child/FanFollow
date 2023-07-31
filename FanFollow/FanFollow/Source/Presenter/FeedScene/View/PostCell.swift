@@ -44,11 +44,17 @@ final class PostCell: UITableViewCell {
     
     private let likeButton = UIButton().then { button in
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22)
-        let image = UIImage(
-            systemName: "hand.thumbsup",
+        let unSelectedImage = UIImage(
+            systemName: "heart",
             withConfiguration: imageConfiguration
         )
-        button.setImage(image, for: .normal)
+        let selectedImage = UIImage(
+            systemName: "heart.fill",
+            withConfiguration: imageConfiguration
+        )
+        
+        button.setImage(unSelectedImage, for: .normal)
+        button.setImage(selectedImage, for: .selected)
     }
     
     private let createdDateLabel = UILabel().then { label in
@@ -72,6 +78,7 @@ final class PostCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         contentLabel.numberOfLines = 5
     }
 }
@@ -86,12 +93,13 @@ extension PostCell {
             nickName: post.nickName,
             imageURL: post.writerProfileImageURL
         )
-        
+        likeButton.isSelected = post.isLiked
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
         configureImageSlideView(with: post.imageURLs)
         configureLinkPreviews(with: post.videoURL)
+        configureLikeButtonAction(with: post.postID)
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
@@ -124,6 +132,15 @@ extension PostCell {
             }
         }
     }
+    
+    private func configureLikeButtonAction(with postID: String?) {
+        let action = UIAction { [weak self] _ in
+            guard let postID = postID, let self = self else { return }
+            self.likeButton.isSelected.toggle()
+            self.delegate?.postCell(self, didTappedLikeButton: postID)
+        }
+        likeButton.addAction(action, for: .touchUpInside)
+    }
 }
 
 // Configure UI
@@ -131,9 +148,9 @@ private extension PostCell {
     func configureUI() {
         configureHierarchy()
         configureConstraints()
-        //        configureLikeButtonAction()
+        
         addGestureRecognizerToContentLabel()
-        //        addGestureRecognizerToCreatorNickNameLabel()
+        addGestureRecognizerToCreatorNickNameLabel()
     }
     
     func configureHierarchy() {
@@ -182,13 +199,6 @@ private extension PostCell {
         }
     }
     
-    func configureLikeButtonAction() {
-        //        likeButton.addAction(UIAction(handler: { [weak self] _ in
-        //            guard let postID = self?.postID else { return }
-        //            self?.delegate?.likeButtonTap(postID: postID)
-        //        }), for: .touchUpInside)
-    }
-    
     func addGestureRecognizerToContentLabel() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleExpended))
         contentLabel.isUserInteractionEnabled = true
@@ -231,6 +241,6 @@ private extension PostCell {
 // PostCellDelegate
 protocol PostCellDelegate: AnyObject {
     func postCell(expandLabel updateAction: (() -> Void)?)
-    func likeButtonTap(postID: String)
+    func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
     func creatorNickNameLabelTap(creatorID: String)
 }
