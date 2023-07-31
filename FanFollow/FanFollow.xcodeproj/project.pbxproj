@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
+		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
 		18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CED2A56927A0042E0F2 /* RxCocoa */; };
 		18287CF02A56927A0042E0F2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CEF2A56927A0042E0F2 /* RxRelay */; };
 		18287CF22A56927A0042E0F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18287CF12A56927A0042E0F2 /* RxSwift */; };
@@ -209,6 +210,7 @@
 /* Begin PBXFileReference section */
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
+		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
 		1829B50D2A71078300D873DF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1829B50F2A71079D00D873DF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		1829B5112A714A9600D873DF /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */,
 				18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */,
 				18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */,
+				1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1367,6 +1370,7 @@
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
+				1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */,
 				18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,

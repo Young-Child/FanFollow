@@ -13,6 +13,8 @@ final class PostCell: UITableViewCell {
     // View Properties
     private let creatorHeaderView = PostCreatorHeaderView()
     
+    private let imageSlideView = HorizontalImageSlideView()
+    
     private let titleLabel = UILabel().then { label in
         label.text = "Example Title"
         label.numberOfLines = 1
@@ -86,7 +88,16 @@ extension PostCell {
         
         titleLabel.text = post.title
         contentLabel.text = post.content
-        print(post.imageURLs)
+        
+        if post.imageURLs.isEmpty {
+            imageSlideView.snp.updateConstraints {
+                $0.height.equalTo(0)
+            }
+        } else {
+            imageSlideView.setImageInputs(post.imageURLs)
+        }
+        
+        
     }
     
     private func configurePostContentView(with post: Post) {
@@ -151,6 +162,7 @@ private extension PostCell {
         
         [
             creatorHeaderView,
+            imageSlideView,
             contentStackView,
             likeButton,
             createdDateLabel
@@ -162,8 +174,14 @@ private extension PostCell {
             $0.top.leading.trailing.equalToSuperview()
         }
         
-        contentStackView.snp.makeConstraints {
+        imageSlideView.snp.makeConstraints {
             $0.top.equalTo(creatorHeaderView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        contentStackView.snp.makeConstraints {
+            $0.top.equalTo(imageSlideView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
         
