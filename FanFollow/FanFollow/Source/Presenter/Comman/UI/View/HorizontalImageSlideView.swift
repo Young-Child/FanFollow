@@ -123,11 +123,7 @@ class HorizontalImageSlideView: UIView {
     }
     
     func reloadScrollView() {
-        for view in slideShowItems {
-            view.removeFromSuperview()
-        }
-        
-        slideShowItems = []
+        resetImages()
         
         for image in resources {
             let frame = CGRect(x: .zero, y: .zero, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
@@ -139,6 +135,14 @@ class HorizontalImageSlideView: UIView {
             slideShowItems.append(imageView)
             scrollView.addSubview(imageView)
         }
+    }
+    
+    func resetImages() {
+        for view in slideShowItems {
+            view.removeFromSuperview()
+        }
+        
+        slideShowItems = []
     }
     
     func setImageInputs(_ inputs: [String]) {

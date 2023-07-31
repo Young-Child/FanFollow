@@ -79,7 +79,20 @@ final class PostCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        titleLabel.text = nil
+        contentLabel.text = nil
         contentLabel.numberOfLines = 5
+        imageSlideView.resetImages()
+        imageSlideView.isHidden = false
+        linkPreview.isHidden = false
+        
+        imageSlideView.snp.updateConstraints {
+            $0.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        linkPreview.snp.updateConstraints {
+            $0.height.equalTo(80)
+        }
     }
 }
 
