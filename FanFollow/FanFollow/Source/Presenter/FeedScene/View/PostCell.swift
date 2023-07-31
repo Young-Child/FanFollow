@@ -15,6 +15,12 @@ final class PostCell: UITableViewCell {
     
     private let imageSlideView = HorizontalImageSlideView()
     
+    private let pageControl = UIPageControl().then {
+        $0.pageIndicatorTintColor = UIColor.systemGray5
+        $0.backgroundStyle = .minimal
+        $0.currentPageIndicatorTintColor = UIColor(named: "AccentColor")
+    }
+    
     private let titleLabel = UILabel().then { label in
         label.text = "Example Title"
         label.numberOfLines = 1
@@ -101,6 +107,7 @@ extension PostCell {
             return
         }
         
+        imageSlideView.pageControl = pageControl
         imageSlideView.setImageInputs(imageURLs)
     }
     

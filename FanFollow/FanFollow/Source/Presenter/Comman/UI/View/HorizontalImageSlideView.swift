@@ -8,10 +8,35 @@ import UIKit
 
 import Kingfisher
 
+protocol ImageSlideDelegate: AnyObject {
+    func imageSlideView(_ slideView: HorizontalImageSlideView, didChangeCurrentPage page: Int)
+}
+
 class HorizontalImageSlideView: UIView {
+    public var pageControl: UIPageControl? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            
+            if let pageControl = pageControl {
+                addSubview(pageControl)
+            }
+            
+            setNeedsLayout()
+        }
+    }
+    
     let scrollView = UIScrollView()
     var resources: [Resource] = []
     private var slideShowItems: [UIImageView] = []
+    private var currentPage: Int = .zero {
+        didSet {
+            if oldValue != currentPage {
+                pageControl?.currentPage = currentPage
+            }
+        }
+    }
+    
+    weak var delegate: ImageSlideDelegate?
     
     init() {
         super.init(frame: .zero)
@@ -28,6 +53,7 @@ class HorizontalImageSlideView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        layoutPageControl()
         layoutScrollView()
     }
     
@@ -45,12 +71,41 @@ class HorizontalImageSlideView: UIView {
         
         addSubview(scrollView)
         
+        if let pageControl = pageControl {
+            addSubview(pageControl)
+        }
+        
         layoutScrollView()
     }
     
+    func layoutPageControl() {
+        if let pageControl = pageControl {
+            let topPadding = CGFloat(8)
+            pageControl.sizeToFit()
+            pageControl.frame = CGRect(
+                x: frame.size.width / 2 - pageControl.frame.size.width / 2,
+                y: frame.size.height - pageControl.frame.height - topPadding,
+                width: pageControl.frame.size.width,
+                height: pageControl.frame.size.height + topPadding
+            )
+        }
+    }
+    
     func layoutScrollView() {
-        scrollView.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(slideShowItems.count), height: frame.size.height)
+        let pageControlSize = pageControl?.frame.size
+        let topPadding = CGFloat(8)
+        let bottomHeight = (pageControlSize?.height ?? .zero) + topPadding 
+        scrollView.frame = CGRect(
+            x: .zero,
+            y: .zero,
+            width: frame.size.width,
+            height: frame.size.height - bottomHeight
+        )
+        
+        scrollView.contentSize = CGSize(
+            width: scrollView.frame.size.width * CGFloat(slideShowItems.count),
+            height: scrollView.frame.size.height
+        )
         
         let size = scrollView.frame.size
         
@@ -62,6 +117,8 @@ class HorizontalImageSlideView: UIView {
                 height: size.height
             )
         }
+        
+        pageControl?.numberOfPages = slideShowItems.count
     }
     
     func reloadScrollView() {
@@ -96,5 +153,13 @@ class HorizontalImageSlideView: UIView {
 }
 
 extension HorizontalImageSlideView: UIScrollViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = scrollView.frame.size.width
+        
+        if width > .zero {
+            let offset = scrollView.contentOffset.x
+            let currentPage = Int(offset + width / 2) / Int(width)
+            self.currentPage = currentPage
+        }
+    }
 }
