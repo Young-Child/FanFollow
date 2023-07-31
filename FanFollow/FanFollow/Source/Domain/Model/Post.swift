@@ -14,7 +14,7 @@ struct Post {
     let createdDate: Date
     let title: String
     let content: String
-    let imageURLs: [String]?
+    var imageURLs: [String]
     let videoURL: String?
     let nickName: String?
     let profilePath: String?
@@ -27,7 +27,7 @@ struct Post {
         createdDate = postDTO.createdDate
         title = postDTO.title
         content = postDTO.content
-        imageURLs = postDTO.imageURLs
+        imageURLs = postDTO.imageURLs ?? []
         videoURL = postDTO.videoURL
         nickName = postDTO.nickName
         profilePath = postDTO.profilePath
