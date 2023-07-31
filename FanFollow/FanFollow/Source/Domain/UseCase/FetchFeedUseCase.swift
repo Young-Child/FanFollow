@@ -32,7 +32,7 @@ final class DefaultFetchFeedUseCase: FetchFeedUseCase {
             return Observable.zip(fetchImageURLs) { imageURLs -> [Post] in
                 return zip(postDTOs, imageURLs).map { postDTO, imageURLs in
                     var post = Post(postDTO)
-                    post.imageURLs = imageURLs
+                    post.imageNames = imageURLs
                     return post
                 }
             }

@@ -14,7 +14,7 @@ struct Post {
     let createdDate: Date
     let title: String
     let content: String
-    var imageURLs: [String]
+    var imageNames: [String]
     let videoURL: String?
     let nickName: String?
     let profilePath: String?
@@ -27,7 +27,7 @@ struct Post {
         createdDate = postDTO.createdDate
         title = postDTO.title
         content = postDTO.content
-        imageURLs = postDTO.imageURLs ?? []
+        imageNames = postDTO.imageURLs ?? []
         videoURL = postDTO.videoURL
         nickName = postDTO.nickName
         profilePath = postDTO.profilePath
@@ -45,8 +45,12 @@ extension Post {
         return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "profileImage.png"
     }
     
-    func generatePostImageURL(for postID: String, to index: Int) -> String {
-        "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\(index + 1)"
+    var imageURLs: [String] {
+        guard let postID = postID else { return [] }
+        
+        return imageNames.map {
+            return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\($0)"
+        }
     }
 }
 

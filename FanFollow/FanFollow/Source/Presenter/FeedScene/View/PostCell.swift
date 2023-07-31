@@ -86,6 +86,7 @@ extension PostCell {
         
         titleLabel.text = post.title
         contentLabel.text = post.content
+        print(post.imageURLs)
     }
     
     private func configurePostContentView(with post: Post) {
