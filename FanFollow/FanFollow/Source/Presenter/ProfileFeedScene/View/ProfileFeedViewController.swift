@@ -96,8 +96,12 @@ final class ProfileFeedViewController: UIViewController {
 
 // ProfileCellDelegate, PostCellDelegate
 extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
-        tableView.performBatchUpdates(updates)
+    func postCell(expandLabel expandAction: (() -> Void)?) {
+        tableView.performBatchUpdates(expandAction)
+    }
+    
+    func profileCell(expandLabel expandAction: (() -> Void)?) {
+        tableView.performBatchUpdates(expandAction)
     }
 
     func followButtonTap() {

@@ -173,7 +173,6 @@ class HorizontalImageSlideView: UIView {
 extension HorizontalImageSlideView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.bounces = (currentPage == slideShowItems.count - 1) && (currentPage == 0)
-        print(scrollView.bounces, currentPage, slideShowItems.count)
         
         let width = scrollView.frame.size.width
         

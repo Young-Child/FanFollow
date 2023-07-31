@@ -107,7 +107,7 @@ extension FeedViewController: UITableViewDelegate {
 
 // PostCellDelegate
 extension FeedViewController: PostCellDelegate {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
+    func postCell(expandLabel updates: (() -> Void)?) {
         tableView.performBatchUpdates(updates)
     }
 
