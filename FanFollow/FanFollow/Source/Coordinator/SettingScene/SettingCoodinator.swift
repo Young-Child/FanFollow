@@ -29,7 +29,7 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentPostBottomViewController() {
-        let controller = PostBottomSheetViewController()
+        let controller = UploadBottomSheetViewController()
         controller.modalPresentationStyle = .overFullScreen
         controller.coordinator = self
         

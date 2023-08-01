@@ -1,5 +1,5 @@
 //
-//  PostBottomSheetView.swift
+//  UploadBottomSheetView.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/08/01.
@@ -14,7 +14,7 @@ protocol SheetButtonDelegate: AnyObject {
     func cancelButtonTapped()
 }
 
-final class PostBottomSheetView: UIView {
+final class UploadBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
         $0.text = "게시물 업로드"
@@ -90,7 +90,7 @@ final class PostBottomSheetView: UIView {
 }
 
 // Configure UI
-private extension PostBottomSheetView {
+private extension UploadBottomSheetView {
     func configureUI() {
         configureHierarchy()
         makeConstraints()

@@ -1,5 +1,5 @@
 //
-//  PostBottomSheetViewController.swift
+//  UploadBottomSheetViewController.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/08/01.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class PostBottomSheetViewController: UIViewController {
+final class UploadBottomSheetViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
         $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
-    private let bottomSheetView = PostBottomSheetView(
+    private let bottomSheetView = UploadBottomSheetView(
         frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100))
     ).then {
         $0.backgroundColor = .white
@@ -43,7 +43,7 @@ final class PostBottomSheetViewController: UIViewController {
 }
 
 // Button Delegate Method
-extension PostBottomSheetViewController: SheetButtonDelegate {
+extension UploadBottomSheetViewController: SheetButtonDelegate {
     func photoButtonTapped() {
         // TODO: - PostView로 이동
     }
@@ -58,7 +58,7 @@ extension PostBottomSheetViewController: SheetButtonDelegate {
 }
 
 // Configure UI
-private extension PostBottomSheetViewController {
+private extension UploadBottomSheetViewController {
     func configureUI() {
         bottomSheetView.buttonDelegate = self
         
