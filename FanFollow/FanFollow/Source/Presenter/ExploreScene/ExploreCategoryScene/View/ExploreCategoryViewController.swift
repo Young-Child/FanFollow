@@ -114,15 +114,16 @@ extension ExploreCategoryViewController {
 extension ExploreCategoryViewController {
     static func dataSource() -> ExploreCategoryDataSource {
         let dataSource = ExploreCategoryDataSource { dataSource, collectionView, indexPath, item in
-            switch item {
-            case let .creator(nickName, userID, profileURL):
+            
+            if case let .creator(nickName, userID, profileURL) = item {
                 let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                 
                 return cell
-            default:
-                fatalError()
             }
+            
+            return CreatorCell()
+            
         } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
             switch kind {
             case UICollectionView.elementKindSectionHeader:
@@ -146,7 +147,7 @@ extension ExploreCategoryViewController {
 extension ExploreCategoryViewController {
     private func createPopularSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let popularCreatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 / 3.0),
+            widthDimension: .fractionalWidth(0.3),
             heightDimension: .fractionalHeight(0.2)
         )
         
@@ -163,7 +164,7 @@ extension ExploreCategoryViewController {
     
     private func createCreatorSection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let creatorGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
+            widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(0.2)
         )
         
@@ -174,7 +175,7 @@ extension ExploreCategoryViewController {
         )
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
-        creatorSection.interGroupSpacing = 10
+        creatorSection.interGroupSpacing = 8
         
         return creatorSection
     }
@@ -201,6 +202,7 @@ extension ExploreCategoryViewController {
             let section = sectionIndex == .zero ?
             self.createPopularSection(item: commonItem) : self.createCreatorSection(item: commonItem)
             section.boundarySupplementaryItems = [header]
+            section.contentInsets = Constants.defaultEdgeInset
             
             return section
         }
@@ -228,5 +230,11 @@ private extension ExploreCategoryViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+private extension ExploreCategoryViewController {
+    enum Constants {
+        static let defaultEdgeInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
     }
 }
