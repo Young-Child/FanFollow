@@ -14,12 +14,15 @@ import RxDataSources
 final class FeedViewController: UIViewController {
     // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
+        tableView.layoutMargins.top = 80
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.backgroundColor = .systemGray6
+        tableView.backgroundColor = .systemBackground
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
-    private let refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl().then {
+        $0.tintColor = UIColor(named: "AccentColor")
+    }
     
     // Properties
     weak var coordinator: FeedCoordinator?
@@ -102,20 +105,6 @@ extension FeedViewController {
     }
 }
 
-// UITableViewDelegate
-extension FeedViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollUp = tableViewLastContentOffset > scrollView.contentOffset.y
-        let scrollDown = tableViewLastContentOffset < scrollView.contentOffset.y && tableViewLastContentOffset > 0
-        if scrollUp {
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        } else if scrollDown {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-        tableViewLastContentOffset = scrollView.contentOffset.y
-    }
-}
-
 // PostCellDelegate
 extension FeedViewController: PostCellDelegate {
     func postCell(expandLabel updates: (() -> Void)?) {
@@ -140,6 +129,7 @@ extension FeedViewController: PostCellDelegate {
 // Configure UI
 private extension FeedViewController {
     func configureUI() {
+        view.backgroundColor = .systemBackground
         configureHierarchy()
         configureConstraints()
         configureNavigationItem()
@@ -152,29 +142,34 @@ private extension FeedViewController {
     
     func configureConstraints() {
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     func configureNavigationItem() {
-        let image = UIImage(named: "FeedTopAppImage")
-        
+        let image = UIImage(named: "iconImage")?.withRenderingMode(.alwaysOriginal)
+
         let scrollToTopAction = UIAction { _ in
             let firstIndexPath = IndexPath(row: .zero, section: .zero)
             self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
         }
-        
+
         let barButtonItem = UIBarButtonItem(
             image: image,
             primaryAction: scrollToTopAction
         )
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+
         navigationItem.leftBarButtonItem = barButtonItem
+        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     func configureTableView() {
         tableView.refreshControl = refreshControl
-        tableView.delegate = self
         tableViewLastContentOffset = tableView.contentOffset.y
     }
 }
