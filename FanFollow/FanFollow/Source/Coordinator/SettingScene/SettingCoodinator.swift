@@ -29,7 +29,11 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentPostBottomViewController() {
-        //TODO: - 추후 구현
+        let controller = PostBottomSheetViewController()
+        controller.modalPresentationStyle = .overFullScreen
+        controller.coordinator = self
+        
+        navigationController.present(controller, animated: false)
     }
 }
 
