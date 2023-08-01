@@ -46,24 +46,26 @@ final class LinkPreview: UIView {
             
             DispatchQueue.main.async {
                 if let image = image as? UIImage {
-                    let path = UIBezierPath(
-                        roundedRect: self.imageView.bounds,
-                        byRoundingCorners: [.topRight, .bottomRight],
-                        cornerRadii: CGSize(width: 12, height: 12)
-                    )
-                    
-                    let mask = CAShapeLayer().then { $0.path = path.cgPath }
-                    
-                    self.imageView.layer.mask = mask
-                    self.imageView.image = image
+                    self.configureRoundingImageView(with: image)
                     self.titleLabel.text = meta.title
                     self.urlLabel.text = meta.originalURL?.absoluteString
                     self.loadingView.stopAnimating()
-                    
-                    self.setNeedsLayout()
                 }
             }
         }
+    }
+    
+    private func configureRoundingImageView(with image: UIImage) {
+        let path = UIBezierPath(
+            roundedRect: self.imageView.bounds,
+            byRoundingCorners: [.topRight, .bottomRight],
+            cornerRadii: CGSize(width: 12, height: 12)
+        )
+        
+        let mask = CAShapeLayer().then { $0.path = path.cgPath }
+        
+        self.imageView.layer.mask = mask
+        self.imageView.image = image
     }
     
     func resetData() {

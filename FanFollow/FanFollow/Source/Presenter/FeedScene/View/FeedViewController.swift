@@ -30,7 +30,6 @@ final class FeedViewController: UIViewController {
     private let viewModel: FeedViewModel
     private let likeButtonTap = PublishRelay<String>()
     private let lastCellDisplayed = BehaviorRelay(value: false)
-    private var tableViewLastContentOffset = CGFloat(0)
     
     // Initializer
     init(viewModel: FeedViewModel) {
@@ -170,6 +169,5 @@ private extension FeedViewController {
     
     func configureTableView() {
         tableView.refreshControl = refreshControl
-        tableViewLastContentOffset = tableView.contentOffset.y
     }
 }

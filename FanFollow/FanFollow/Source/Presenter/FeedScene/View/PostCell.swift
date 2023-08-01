@@ -64,6 +64,7 @@ final class PostCell: UITableViewCell {
     }
     
     private weak var delegate: PostCellDelegate?
+    private var postID: String? = nil
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -77,6 +78,7 @@ final class PostCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        postID = nil
         titleLabel.text = nil
         contentLabel.text = nil
         contentLabel.numberOfLines = 5
@@ -99,6 +101,7 @@ final class PostCell: UITableViewCell {
 // UI Method
 extension PostCell {
     func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
+        self.postID = post.postID
         self.delegate = delegate
         
         creatorHeaderView.configure(
@@ -112,7 +115,7 @@ extension PostCell {
         createdDateLabel.text = post.createdDateDescription
         configureImageSlideView(with: post.imageURLs)
         configureLinkPreviews(with: post.videoURL)
-        configureLikeButtonAction(with: post.postID)
+        configureLikeButtonAction()
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
@@ -154,10 +157,9 @@ extension PostCell {
         }
     }
     
-    private func configureLikeButtonAction(with postID: String?) {
+    private func configureLikeButtonAction() {
         let action = UIAction { [weak self] _ in
-            guard let postID = postID, let self = self else { return }
-//            self.likeButton.isSelected.toggle()
+            guard let postID = self?.postID, let self = self else { return }
             self.delegate?.postCell(self, didTappedLikeButton: postID)
         }
         likeButton.addAction(action, for: .touchUpInside)

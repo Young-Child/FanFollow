@@ -58,7 +58,9 @@ extension Post: IdentifiableType {
     typealias Identity = String
 
     var identity: String {
-        return postID ?? ""
+        guard let postID = postID else { return "" }
+        
+        return postID
     }
 }
 
