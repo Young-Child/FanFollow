@@ -7,14 +7,14 @@
 import UIKit
 
 final class PostCreatorHeaderView: UIView {
-    private let creatorImageView = UIImageView().then { imageView in
+    let creatorImageView = UIImageView().then { imageView in
         imageView.layer.backgroundColor = UIColor.systemGray5.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 25
     }
     
-    private let creatorNickNameLabel = UILabel().then { label in
+    let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
         label.textColor = UIColor(named: "AccentColor")
         label.font = .systemFont(ofSize: 17, weight: .regular)

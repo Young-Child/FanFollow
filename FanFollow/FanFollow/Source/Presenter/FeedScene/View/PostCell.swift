@@ -10,6 +10,12 @@ import LinkPresentation
 
 import Kingfisher
 
+protocol PostCellDelegate: AnyObject {
+    func postCell(expandLabel updateAction: (() -> Void)?)
+    func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
+    func postCell(didTapPresentButton creatorID: String)
+}
+
 final class PostCell: UITableViewCell {
     // View Properties
     private let creatorHeaderView = PostCreatorHeaderView()
@@ -63,9 +69,11 @@ final class PostCell: UITableViewCell {
         label.textAlignment = .right
     }
     
+    // Properties
     private weak var delegate: PostCellDelegate?
-    private var postID: String? = nil
+    private var post: Post?
     
+    // Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
@@ -78,7 +86,7 @@ final class PostCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        postID = nil
+        post = nil
         titleLabel.text = nil
         contentLabel.text = nil
         contentLabel.numberOfLines = 5
@@ -98,10 +106,10 @@ final class PostCell: UITableViewCell {
     }
 }
 
-// UI Method
+// Setting UI Data
 extension PostCell {
     func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
-        self.postID = post.postID
+        self.post = post
         self.delegate = delegate
         
         creatorHeaderView.configure(
@@ -113,9 +121,13 @@ extension PostCell {
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
+        
         configureImageSlideView(with: post.imageURLs)
         configureLinkPreviews(with: post.videoURL)
+        
         configureLikeButtonAction()
+        addGestureRecognizerToContentLabel()
+        addGestureRecognizerToCreatorNickNameLabel()
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
@@ -157,12 +169,45 @@ extension PostCell {
         }
     }
     
-    private func configureLikeButtonAction() {
+}
+
+// Configure UI Actions
+private extension PostCell {
+    func configureLikeButtonAction() {
         let action = UIAction { [weak self] _ in
-            guard let postID = self?.postID, let self = self else { return }
+            guard let postID = self?.post?.postID, let self = self else { return }
             self.delegate?.postCell(self, didTappedLikeButton: postID)
         }
         likeButton.addAction(action, for: .touchUpInside)
+    }
+    
+    func addGestureRecognizerToContentLabel() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleExpended))
+        contentLabel.isUserInteractionEnabled = true
+        contentLabel.addGestureRecognizer(recognizer)
+    }
+    
+    @objc
+    func toggleExpended() {
+        let expandLabelAction = { self.contentLabel.numberOfLines = .zero }
+        delegate?.postCell(expandLabel: expandLabelAction)
+    }
+    
+    func addGestureRecognizerToCreatorNickNameLabel() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPresentProfile))
+        
+        let imageView = creatorHeaderView.creatorImageView
+        let nameLabel = creatorHeaderView.creatorNickNameLabel
+        
+        [imageView, nameLabel].forEach {
+            $0.isUserInteractionEnabled = true
+            $0.addGestureRecognizer(recognizer)
+        }
+    }
+    
+    @objc func didTapPresentProfile() {
+        guard let creatorID = self.post?.userID else { return }
+        delegate?.postCell(didTapPresentButton: creatorID)
     }
 }
 
@@ -171,9 +216,6 @@ private extension PostCell {
     func configureUI() {
         configureHierarchy()
         configureConstraints()
-        
-        addGestureRecognizerToContentLabel()
-        addGestureRecognizerToCreatorNickNameLabel()
     }
     
     func configureHierarchy() {
@@ -221,30 +263,6 @@ private extension PostCell {
             $0.trailing.bottom.equalToSuperview().inset(8)
         }
     }
-    
-    func addGestureRecognizerToContentLabel() {
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleExpended))
-        contentLabel.isUserInteractionEnabled = true
-        contentLabel.addGestureRecognizer(recognizer)
-    }
-    
-    @objc
-    func toggleExpended() {
-        let expandLabelAction = { self.contentLabel.numberOfLines = .zero }
-        delegate?.postCell(expandLabel: expandLabelAction)
-    }
-    
-    func addGestureRecognizerToCreatorNickNameLabel() {
-        //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(creatorNickNameLabelTap))
-        //        creatorNickNameLabel.isUserInteractionEnabled = true
-        //        creatorNickNameLabel.addGestureRecognizer(recognizer)
-    }
-    
-    @objc
-    func creatorNickNameLabelTap() {
-        //        guard let creatorID else { return }
-        //        delegate?.creatorNickNameLabelTap(creatorID: creatorID)
-    }
 }
 
 // Constants
@@ -259,11 +277,4 @@ private extension PostCell {
         static let failureProfileImage = UIImage(systemName: "person")!
         static let failurePostImage = UIImage(systemName: "photo")!
     }
-}
-
-// PostCellDelegate
-protocol PostCellDelegate: AnyObject {
-    func postCell(expandLabel updateAction: (() -> Void)?)
-    func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
-    func creatorNickNameLabelTap(creatorID: String)
 }

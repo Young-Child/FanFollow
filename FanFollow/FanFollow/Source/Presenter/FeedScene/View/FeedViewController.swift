@@ -118,7 +118,8 @@ extension FeedViewController: PostCellDelegate {
         likeButtonTap.accept(postID)
     }
     
-    func creatorNickNameLabelTap(creatorID: String) {
+    
+    func postCell(didTapPresentButton creatorID: String) {
         // TODO: userID 입력 필요
         let userID = "a0728b90-0172-4552-9b31-1f3cab84900b"
         coordinator?.presentProfileViewController(creatorID: creatorID, userID: userID)
@@ -164,6 +165,7 @@ private extension FeedViewController {
         appearance.backgroundColor = .systemBackground
 
         navigationItem.leftBarButtonItem = barButtonItem
+        navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
