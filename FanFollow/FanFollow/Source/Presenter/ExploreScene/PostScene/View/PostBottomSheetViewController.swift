@@ -13,6 +13,15 @@ final class PostBottomSheetViewController: UIViewController {
         $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
+    private let bottomSheetView = PostBottomSheetView(
+        frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100))
+    ).then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 10
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.clipsToBounds = true
+    }
+        
     // Property
     weak var coordinator: SettingCoordinator?
     
@@ -41,12 +50,19 @@ private extension PostBottomSheetViewController {
     }
 
     func configureHierarchy() {
-        view.addSubview(transparentView)
+        [transparentView, bottomSheetView].forEach(view.addSubview(_:))
     }
 
     func makeConstraints() {
         transparentView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view)
+        }
+        
+        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 2 / 3
+        
+        bottomSheetView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(topConstant)
         }
     }
 }
