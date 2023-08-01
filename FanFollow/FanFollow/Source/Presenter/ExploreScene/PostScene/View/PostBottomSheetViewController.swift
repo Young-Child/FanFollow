@@ -42,9 +42,26 @@ final class PostBottomSheetViewController: UIViewController {
     }
 }
 
+// Button Delegate Method
+extension PostBottomSheetViewController: SheetButtonDelegate {
+    func photoButtonTapped() {
+        // TODO: - PostView로 이동
+    }
+    
+    func linkButtonTapped() {
+        // TODO: - PostView로 이동
+    }
+    
+    func cancelButtonTapped() {
+        dismiss(animated: false)
+    }
+}
+
 // Configure UI
 private extension PostBottomSheetViewController {
     func configureUI() {
+        bottomSheetView.buttonDelegate = self
+        
         configureHierarchy()
         makeConstraints()
     }

@@ -6,6 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+
+protocol SheetButtonDelegate: AnyObject {
+    func photoButtonTapped()
+    func linkButtonTapped()
+    func cancelButtonTapped()
+}
 
 final class PostBottomSheetView: UIView {
     // View Properties
@@ -45,14 +52,40 @@ final class PostBottomSheetView: UIView {
         $0.backgroundColor = UIColor(named: "AccentColor")
     }
     
+    // Property
+    weak var buttonDelegate: SheetButtonDelegate?
+    private let disposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureUI()
+        buttonBind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Binding
+    private func buttonBind() {
+        photoButton.rx.tap
+            .bind { _ in
+                self.buttonDelegate?.photoButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        linkButton.rx.tap
+            .bind { _ in
+                self.buttonDelegate?.linkButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        cancelButton.rx.tap
+            .bind { _ in
+                self.buttonDelegate?.cancelButtonTapped()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -62,12 +95,12 @@ private extension PostBottomSheetView {
         configureHierarchy()
         makeConstraints()
     }
-
+    
     func configureHierarchy() {
         [photoButton, linkButton].forEach(buttonStackView.addArrangedSubview(_:))
         [titleLabel, buttonStackView, cancelButton].forEach(addSubview(_:))
     }
-
+    
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
@@ -80,7 +113,7 @@ private extension PostBottomSheetView {
             $0.height.equalTo(self.snp.height).multipliedBy(0.4)
             $0.trailing.equalToSuperview().offset(-16)
         }
-
+        
         cancelButton.snp.makeConstraints {
             $0.top.equalTo(buttonStackView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(20)
