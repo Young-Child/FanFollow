@@ -79,7 +79,7 @@ class ExploreCoordinator: Coordinator {
     func presentSearchViewController() {
         let viewModel = ExploreSearchViewModel(searchCreatorUseCase: searchUseCase)
         let controller = ExploreSearchViewController(viewModel: viewModel)
-        
+        controller.hidesBottomBarWhenPushed = true
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }
