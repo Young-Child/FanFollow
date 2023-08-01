@@ -10,40 +10,6 @@ import LinkPresentation
 
 import Kingfisher
 
-class LinkMetaCache {
-    static func cache(metaData: LPLinkMetadata) {
-        do {
-            guard let url = metaData.url?.absoluteString,
-                  retrieve(url: url) == nil else { return }
-            
-            let data = try NSKeyedArchiver.archivedData(
-                withRootObject: metaData,
-                requiringSecureCoding: true
-            )
-            
-            UserDefaults.standard.setValue(data, forKey: url)
-        } catch let error {
-            print("Error when Caching Metadata \(error.localizedDescription)")
-        }
-    }
-    
-    static func retrieve(url: String) -> LPLinkMetadata? {
-        do {
-            guard let data = UserDefaults.standard.object(forKey: url) as? Data,
-                  let metaData = try NSKeyedUnarchiver.unarchivedObject(
-                    ofClass: LPLinkMetadata.self,
-                    from: data
-                  ) else {
-                return nil
-            }
-            
-            return metaData
-        } catch {
-            return nil
-        }
-    }
-}
-
 final class PostCell: UITableViewCell {
     // View Properties
     private let creatorHeaderView = PostCreatorHeaderView()
@@ -172,7 +138,7 @@ extension PostCell {
         
         let metaProvider = LPMetadataProvider()
         
-        if let metaData = LinkMetaCache.retrieve(url: urlString) {
+        if let metaData = LinkCacheService.retrieve(url: urlString) {
             self.linkPreview.setData(meta: metaData)
             return
         }
@@ -181,7 +147,7 @@ extension PostCell {
             if let meta = meta {
                 DispatchQueue.main.async {
                     self.linkPreview.setData(meta: meta)
-                    LinkMetaCache.cache(metaData: meta)
+                    LinkCacheService.cache(metaData: meta)
                     metaProvider.cancel()
                 }
             }
