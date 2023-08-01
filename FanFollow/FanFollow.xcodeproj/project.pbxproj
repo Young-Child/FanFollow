@@ -119,6 +119,8 @@
 		3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */; };
 		3CCEC37D2A789311001753DF /* PostBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37C2A789311001753DF /* PostBottomSheetViewController.swift */; };
 		3CCEC37F2A789ABC001753DF /* PostBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37E2A789ABC001753DF /* PostBottomSheetView.swift */; };
+		3CCEC3812A78DF48001753DF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3802A78DF48001753DF /* PostViewController.swift */; };
+		3CCEC3842A78DF5D001753DF /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3832A78DF5D001753DF /* PostViewModel.swift */; };
 		3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */; };
 		3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */; };
 		3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */; };
@@ -311,6 +313,8 @@
 		3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3CCEC37C2A789311001753DF /* PostBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3CCEC37E2A789ABC001753DF /* PostBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetView.swift; sourceTree = "<group>"; };
+		3CCEC3802A78DF48001753DF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		3CCEC3832A78DF5D001753DF /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionItem.swift; sourceTree = "<group>"; };
 		3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTapItem.swift; sourceTree = "<group>"; };
@@ -967,6 +971,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCEC37B2A7892F0001753DF /* View */,
+				3CCEC3822A78DF4C001753DF /* ViewModel */,
 			);
 			name = PostScene;
 			path = ExploreScene/PostScene;
@@ -977,8 +982,17 @@
 			children = (
 				3CCEC37C2A789311001753DF /* PostBottomSheetViewController.swift */,
 				3CCEC37E2A789ABC001753DF /* PostBottomSheetView.swift */,
+				3CCEC3802A78DF48001753DF /* PostViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3CCEC3822A78DF4C001753DF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CCEC3832A78DF5D001753DF /* PostViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
@@ -1427,6 +1441,7 @@
 				EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */,
 				183EDDE02A72303700F1490E /* ProfileInputTextView.swift in Sources */,
 				EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */,
+				3CCEC3842A78DF5D001753DF /* PostViewModel.swift in Sources */,
 				183EDDE72A72B08F00F1490E /* ProfileSettingCoordinator.swift in Sources */,
 				3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */,
 				EBC4E98E2A54F22700A1F6AE /* UserInformationRepository.swift in Sources */,
@@ -1453,6 +1468,7 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
+				3CCEC3812A78DF48001753DF /* PostViewController.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
