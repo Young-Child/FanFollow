@@ -75,7 +75,7 @@ extension ExploreCategoryViewController {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind { item in
                 switch item {
-                case .creator(_, let creatorID):
+                case .creator(_, let creatorID, _):
                     self.coordinator?.presentProfileViewController(to: creatorID)
                 default:
                     break
@@ -115,9 +115,9 @@ extension ExploreCategoryViewController {
     static func dataSource() -> ExploreCategoryDataSource {
         let dataSource = ExploreCategoryDataSource { dataSource, collectionView, indexPath, item in
             switch item {
-            case .creator(let nickName, let userID):
+            case let .creator(nickName, userID, profileURL):
                 let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configureCell(nickName: nickName, userID: userID)
+                cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                 
                 return cell
             default:

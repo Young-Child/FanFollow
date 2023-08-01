@@ -78,7 +78,7 @@ extension ExploreViewController {
                 switch item {
                 case .category(let job):
                     self.coordinator?.presentCategoryViewController(for: job)
-                case .creator(_, let creatorID):
+                case .creator(_, let creatorID, _):
                     self.coordinator?.presentProfileViewController(to: creatorID)
                 }
             }
@@ -106,9 +106,9 @@ extension ExploreViewController {
                 cell.configureCell(jobCategory: job)
                 
                 return cell
-            case .creator(let nickName, let userID):
+            case .creator(let nickName, let userID, let profileURL):
                 let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configureCell(nickName: nickName, userID: userID)
+                cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                 
                 return cell
             }
@@ -135,18 +135,19 @@ extension ExploreViewController {
 extension ExploreViewController {
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let categoryGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(0.07)
+            widthDimension: .estimated(80),
+            heightDimension: .estimated(30)
         )
         
         let categoryGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: categoryGroupSize,
-            subitem: item,
-            count: 4
+            subitems: [item]
         )
         
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
-        categorySection.interGroupSpacing = 10
+        categorySection.orthogonalScrollingBehavior = .continuous
+        categorySection.interGroupSpacing = 8
+        categorySection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         return categorySection
     }
@@ -164,6 +165,7 @@ extension ExploreViewController {
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
         creatorSection.orthogonalScrollingBehavior = .continuous
+        creatorSection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         return creatorSection
     }

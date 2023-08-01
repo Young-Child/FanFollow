@@ -41,10 +41,9 @@ final class CreatorCell: UICollectionViewCell {
 
 // UI Method
 extension CreatorCell {
-    func configureCell(nickName: String, userID: String) {
+    func configureCell(nickName: String, userID: String, profileURL: String) {
         nickNameLabel.text = nickName
-        let path = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(userID)/profileImage.png"
-        profileImageView.setImageProfileImage(to: path, for: userID)
+        profileImageView.setImageProfileImage(to: profileURL, for: userID)
     }
 }
 
@@ -61,15 +60,14 @@ private extension CreatorCell {
     
     func makeConstraints() {
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(15)
-            $0.leading.equalToSuperview().offset(15)
-            $0.trailing.equalToSuperview().offset(-15)
-            $0.height.equalTo(profileImageView.snp.width)
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(contentView.snp.width).multipliedBy(0.8)
         }
         
         nickNameLabel.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(5)
-            $0.centerX.equalToSuperview()
+            $0.top.equalTo(profileImageView.snp.bottom).offset(16)
+            $0.leading.trailing.equalTo(profileImageView)
         }
     }
 }
