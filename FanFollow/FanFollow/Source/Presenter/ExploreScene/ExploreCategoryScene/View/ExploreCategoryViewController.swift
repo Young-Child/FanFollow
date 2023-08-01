@@ -70,6 +70,18 @@ extension ExploreCategoryViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(exploreCategoryCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        exploreCategoryCollectionView.rx.modelSelected(ExploreSectionItem.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { item in
+                switch item {
+                case .creator(_, let creatorID):
+                    self.coordinator?.presentProfileViewController(to: creatorID)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     func bindingInput() -> ExploreCategoryViewModel.Output {
