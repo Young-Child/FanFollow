@@ -68,6 +68,12 @@ final class ExploreSearchViewController: UIViewController {
         configureUI()
         binding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 // Binding
@@ -119,6 +125,13 @@ extension ExploreSearchViewController: UISearchBarDelegate {
                 return !(datas.count == .zero)
             }
             .drive(self.searchLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        searchTableView.rx.modelSelected(Creator.self)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { item in
+                self.coordinator?.presentProfileViewController(to: item.id)
+            }
             .disposed(by: disposeBag)
     }
     
