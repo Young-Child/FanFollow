@@ -20,7 +20,7 @@ final class FeedViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     private let refreshControl = UIRefreshControl()
-
+    
     // Properties
     weak var coordinator: FeedCoordinator?
     private let disposeBag = DisposeBag()
@@ -28,21 +28,21 @@ final class FeedViewController: UIViewController {
     private let likeButtonTap = PublishRelay<String>()
     private let lastCellDisplayed = BehaviorRelay(value: false)
     private var tableViewLastContentOffset = CGFloat(0)
-
+    
     // Initializer
     init(viewModel: FeedViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         binding()
     }
@@ -55,7 +55,7 @@ private extension FeedViewController {
         let output = viewModel.transform(input: input)
         bindTableView(output)
     }
-
+    
     func input() -> FeedViewModel.Input {
         let lastCellDisplayed = tableView.rx.didScroll
             .withUnretained(self)
@@ -68,7 +68,7 @@ private extension FeedViewController {
                 self.lastCellDisplayed.accept(lastCellDisplayed)
                 return lastCellDisplayed ? .just(()) : .empty()
             })
-
+        
         return FeedViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
@@ -76,7 +76,7 @@ private extension FeedViewController {
             likeButtonTap: likeButtonTap.asObservable()
         )
     }
-
+    
     func bindTableView(_ output: FeedViewModel.Output) {
         let dataSource = configureDataSource()
         
@@ -125,11 +125,11 @@ extension FeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
         likeButtonTap.accept(postID)
     }
-
+    
     func likeButtonTap(postID: String) {
         likeButtonTap.accept(postID)
     }
-
+    
     func creatorNickNameLabelTap(creatorID: String) {
         // TODO: userID 입력 필요
         let userID = "a0728b90-0172-4552-9b31-1f3cab84900b"
@@ -145,30 +145,33 @@ private extension FeedViewController {
         configureNavigationItem()
         configureTableView()
     }
-
+    
     func configureHierarchy() {
         view.addSubview(tableView)
     }
-
+    
     func configureConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
-
+    
     func configureNavigationItem() {
         let image = UIImage(named: "FeedTopAppImage")
+        
+        let scrollToTopAction = UIAction { _ in
+            let firstIndexPath = IndexPath(row: .zero, section: .zero)
+            self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
+        }
+        
         let barButtonItem = UIBarButtonItem(
             image: image,
-            primaryAction: UIAction(handler: { [weak self] _ in
-                guard let self else { return }
-                let contentOffset = CGPoint(x: 0, y: -self.tableView.safeAreaInsets.top)
-                self.tableView.setContentOffset(contentOffset, animated: true)
-            })
+            primaryAction: scrollToTopAction
         )
+        
         navigationItem.leftBarButtonItem = barButtonItem
     }
-
+    
     func configureTableView() {
         tableView.refreshControl = refreshControl
         tableView.delegate = self
