@@ -116,10 +116,14 @@ extension FeedViewController: PostCellDelegate {
         likeButtonTap.accept(postID)
     }
     
-    func postCell(didTapPresentButton creatorID: String) {
+    func postCell(didTapProfilePresentButton creatorID: String) {
         // TODO: userID 입력 필요
         let userID = "a0728b90-0172-4552-9b31-1f3cab84900b"
         coordinator?.presentProfileViewController(creatorID: creatorID, userID: userID)
+    }
+    
+    func postCell(didTapLinkPresentButton link: URL) {
+        coordinator?.presentLinkViewController(to: link)
     }
 }
 
@@ -149,8 +153,6 @@ private extension FeedViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         
-        
-        navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.standardAppearance = appearance
     }
 }

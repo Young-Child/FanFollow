@@ -13,7 +13,8 @@ import Kingfisher
 protocol PostCellDelegate: AnyObject {
     func postCell(expandLabel updateAction: (() -> Void)?)
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
-    func postCell(didTapPresentButton creatorID: String)
+    func postCell(didTapProfilePresentButton creatorID: String)
+    func postCell(didTapLinkPresentButton link: URL)
 }
 
 final class PostCell: UITableViewCell {
@@ -125,9 +126,7 @@ extension PostCell {
         configureImageSlideView(with: post.imageURLs)
         configureLinkPreviews(with: post.videoURL)
         
-        configureLikeButtonAction()
-        addGestureRecognizerToContentLabel()
-        addGestureRecognizerToCreatorNickNameLabel()
+        addGestures()
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
@@ -173,6 +172,13 @@ extension PostCell {
 
 // Configure UI Actions
 private extension PostCell {
+    func addGestures() {
+        configureLikeButtonAction()
+        addGestureRecognizerToContentLabel()
+        addGestureRecognizerToPresentProfileViews()
+        addGestureRecognizerToPresentLink()
+    }
+    
     func configureLikeButtonAction() {
         let action = UIAction { [weak self] _ in
             guard let postID = self?.post?.postID, let self = self else { return }
@@ -193,7 +199,7 @@ private extension PostCell {
         delegate?.postCell(expandLabel: expandLabelAction)
     }
     
-    func addGestureRecognizerToCreatorNickNameLabel() {
+    func addGestureRecognizerToPresentProfileViews() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPresentProfile))
         
         let imageView = creatorHeaderView.creatorImageView
@@ -207,7 +213,20 @@ private extension PostCell {
     
     @objc func didTapPresentProfile() {
         guard let creatorID = self.post?.userID else { return }
-        delegate?.postCell(didTapPresentButton: creatorID)
+        delegate?.postCell(didTapProfilePresentButton: creatorID)
+    }
+    
+    func addGestureRecognizerToPresentLink() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPresentLink))
+        
+        linkPreview.isUserInteractionEnabled = true
+        linkPreview.addGestureRecognizer(recognizer)
+    }
+    
+    @objc func didTapPresentLink() {
+        guard let urlString = post?.videoURL,
+              let url = URL(string: urlString) else { return }
+        delegate?.postCell(didTapLinkPresentButton: url)
     }
 }
 

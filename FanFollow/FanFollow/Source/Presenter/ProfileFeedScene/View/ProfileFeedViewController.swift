@@ -112,7 +112,8 @@ extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
         followButtonTapped.accept(())
     }
     
-    func postCell(didTapPresentButton creatorID: String) {}
+    func postCell(didTapProfilePresentButton creatorID: String) {}
+    func postCell(didTapLinkPresentButton link: URL) { }
 }
 
 extension ProfileFeedViewController {
