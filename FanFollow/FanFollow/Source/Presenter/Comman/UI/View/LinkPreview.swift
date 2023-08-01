@@ -25,6 +25,12 @@ final class LinkPreview: UIView {
         $0.numberOfLines = 1
     }
     
+    private let loadingView = UIActivityIndicatorView().then {
+        $0.style = .medium
+        $0.color = UIColor(named: "AccentColor")
+        $0.startAnimating()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -32,10 +38,12 @@ final class LinkPreview: UIView {
     }
     
     func setData(meta: LPLinkMetadata) {
-        titleLabel.text = meta.title
-        urlLabel.text = meta.originalURL?.absoluteString
+        loadingView.startAnimating()
+        loadingView.isHidden = false
         
-        meta.imageProvider?.loadObject(ofClass: UIImage.self) { image, error in
+        meta.imageProvider?.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+            guard let self = self else { return }
+            
             DispatchQueue.main.async {
                 if let image = image as? UIImage {
                     let path = UIBezierPath(
@@ -43,11 +51,14 @@ final class LinkPreview: UIView {
                         byRoundingCorners: [.topRight, .bottomRight],
                         cornerRadii: CGSize(width: 12, height: 12)
                     )
-                    let mask = CAShapeLayer().then {
-                        $0.path = path.cgPath
-                    }
+                    
+                    let mask = CAShapeLayer().then { $0.path = path.cgPath }
+                    
                     self.imageView.layer.mask = mask
                     self.imageView.image = image
+                    self.titleLabel.text = meta.title
+                    self.urlLabel.text = meta.originalURL?.absoluteString
+                    self.loadingView.stopAnimating()
                     
                     self.setNeedsLayout()
                 }
@@ -59,13 +70,15 @@ final class LinkPreview: UIView {
         titleLabel.text = nil
         urlLabel.text = nil
         imageView.image = nil
+        loadingView.startAnimating()
+        loadingView.isHidden = false
     }
     
     private func configureLayout() {
         backgroundColor = UIColor.systemGray5
         layer.cornerRadius = 12
         
-        [imageView, titleLabel, urlLabel].forEach(addSubview(_:))
+        [imageView, titleLabel, urlLabel, loadingView].forEach(addSubview(_:))
         
         imageView.snp.makeConstraints {
             $0.width.equalTo(80)
@@ -82,6 +95,10 @@ final class LinkPreview: UIView {
         urlLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.trailing.equalTo(titleLabel)
+        }
+        
+        loadingView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 }
