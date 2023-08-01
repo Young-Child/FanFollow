@@ -45,6 +45,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
         configureUI()
         binding()
     }
@@ -94,6 +95,7 @@ private extension FeedViewController {
     }
 }
 
+// Configure Data Source
 extension FeedViewController {
     func configureDataSource() -> RxTableViewSectionedReloadDataSource<PostSectionModel> {
         return RxTableViewSectionedReloadDataSource { dataSource, tableView, indexPath, model in
@@ -104,7 +106,7 @@ extension FeedViewController {
     }
 }
 
-// PostCellDelegate
+// Post Cell Delegate Method
 extension FeedViewController: PostCellDelegate {
     func postCell(expandLabel updates: (() -> Void)?) {
         tableView.performBatchUpdates(updates)
@@ -114,11 +116,6 @@ extension FeedViewController: PostCellDelegate {
         likeButtonTap.accept(postID)
     }
     
-    func likeButtonTap(postID: String) {
-        likeButtonTap.accept(postID)
-    }
-    
-    
     func postCell(didTapPresentButton creatorID: String) {
         // TODO: userID 입력 필요
         let userID = "a0728b90-0172-4552-9b31-1f3cab84900b"
@@ -126,14 +123,47 @@ extension FeedViewController: PostCellDelegate {
     }
 }
 
+// Configure NavigationBar Method
+private extension FeedViewController {
+    func configureNavigationBar() {
+        configureLeftBarButton()
+        configureAppearance()
+    }
+    
+    func configureLeftBarButton() {
+        let image = UIImage(named: "iconImage")?.withRenderingMode(.alwaysOriginal)
+        let scrollToTopAction = UIAction { _ in
+            let firstIndexPath = IndexPath(row: .zero, section: .zero)
+            self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
+        }
+        let barButtonItem = UIBarButtonItem(
+            image: image,
+            primaryAction: scrollToTopAction
+        )
+        
+        navigationItem.leftBarButtonItem = barButtonItem
+    }
+    
+    func configureAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        
+        navigationController?.hidesBottomBarWhenPushed = true
+        navigationController?.navigationBar.standardAppearance = appearance
+    }
+}
+
+
 // Configure UI
 private extension FeedViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
+        tableView.refreshControl = refreshControl
+        
         configureHierarchy()
         configureConstraints()
-        configureNavigationItem()
-        configureTableView()
     }
     
     func configureHierarchy() {
@@ -146,30 +176,5 @@ private extension FeedViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    func configureNavigationItem() {
-        let image = UIImage(named: "iconImage")?.withRenderingMode(.alwaysOriginal)
-
-        let scrollToTopAction = UIAction { _ in
-            let firstIndexPath = IndexPath(row: .zero, section: .zero)
-            self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
-        }
-
-        let barButtonItem = UIBarButtonItem(
-            image: image,
-            primaryAction: scrollToTopAction
-        )
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemBackground
-
-        navigationItem.leftBarButtonItem = barButtonItem
-        navigationController?.hidesBottomBarWhenPushed = true
-        navigationController?.navigationBar.standardAppearance = appearance
-    }
-    
-    func configureTableView() {
-        tableView.refreshControl = refreshControl
-    }
 }
+
