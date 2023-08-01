@@ -10,6 +10,40 @@ import LinkPresentation
 
 import Kingfisher
 
+class LinkMetaCache {
+    static func cache(metaData: LPLinkMetadata) {
+        do {
+            guard let url = metaData.url?.absoluteString,
+                  retrieve(url: url) == nil else { return }
+            
+            let data = try NSKeyedArchiver.archivedData(
+                withRootObject: metaData,
+                requiringSecureCoding: true
+            )
+            
+            UserDefaults.standard.setValue(data, forKey: url)
+        } catch let error {
+            print("Error when Caching Metadata \(error.localizedDescription)")
+        }
+    }
+    
+    static func retrieve(url: String) -> LPLinkMetadata? {
+        do {
+            guard let data = UserDefaults.standard.object(forKey: url) as? Data,
+                  let metaData = try NSKeyedUnarchiver.unarchivedObject(
+                    ofClass: LPLinkMetadata.self,
+                    from: data
+                  ) else {
+                return nil
+            }
+            
+            return metaData
+        } catch {
+            return nil
+        }
+    }
+}
+
 final class PostCell: UITableViewCell {
     // View Properties
     private let creatorHeaderView = PostCreatorHeaderView()
@@ -63,8 +97,6 @@ final class PostCell: UITableViewCell {
         label.textAlignment = .right
     }
     
-    private var postID: String?
-    private var creatorID: String?
     private weak var delegate: PostCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -82,9 +114,11 @@ final class PostCell: UITableViewCell {
         titleLabel.text = nil
         contentLabel.text = nil
         contentLabel.numberOfLines = 5
+        likeButton.isSelected = false
         imageSlideView.resetImages()
         imageSlideView.isHidden = false
         linkPreview.isHidden = false
+        linkPreview.resetData()
         
         imageSlideView.snp.updateConstraints {
             $0.height.equalTo(UIScreen.main.bounds.width)
@@ -137,10 +171,18 @@ extension PostCell {
               let url = URL(string: urlString) else { return }
         
         let metaProvider = LPMetadataProvider()
+        
+        if let metaData = LinkMetaCache.retrieve(url: urlString) {
+            self.linkPreview.setData(meta: metaData)
+            return
+        }
+        
         metaProvider.startFetchingMetadata(for: url) { meta, error in
             if let meta = meta {
                 DispatchQueue.main.async {
                     self.linkPreview.setData(meta: meta)
+                    LinkMetaCache.cache(metaData: meta)
+                    metaProvider.cancel()
                 }
             }
         }
@@ -149,7 +191,7 @@ extension PostCell {
     private func configureLikeButtonAction(with postID: String?) {
         let action = UIAction { [weak self] _ in
             guard let postID = postID, let self = self else { return }
-            self.likeButton.isSelected.toggle()
+//            self.likeButton.isSelected.toggle()
             self.delegate?.postCell(self, didTappedLikeButton: postID)
         }
         likeButton.addAction(action, for: .touchUpInside)
@@ -196,18 +238,18 @@ private extension PostCell {
         }
         
         linkPreview.snp.makeConstraints {
-            $0.top.equalTo(contentStackView.snp.bottom).offset(8)
+            $0.top.equalTo(contentStackView.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(80)
         }
         
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(8)
+            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
             $0.leading.bottom.equalToSuperview().inset(8)
         }
         
         createdDateLabel.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(8)
+            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
             $0.trailing.bottom.equalToSuperview().inset(8)
         }
     }

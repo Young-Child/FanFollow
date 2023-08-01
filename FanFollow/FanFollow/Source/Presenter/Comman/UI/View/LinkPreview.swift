@@ -55,6 +55,12 @@ final class LinkPreview: UIView {
         }
     }
     
+    func resetData() {
+        titleLabel.text = nil
+        urlLabel.text = nil
+        imageView.image = nil
+    }
+    
     private func configureLayout() {
         backgroundColor = UIColor.systemGray5
         layer.cornerRadius = 12
