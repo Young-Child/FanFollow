@@ -119,8 +119,9 @@
 		3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */; };
 		3CCEC37D2A789311001753DF /* UploadBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */; };
 		3CCEC37F2A789ABC001753DF /* UploadBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */; };
-		3CCEC3812A78DF48001753DF /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3802A78DF48001753DF /* UploadViewController.swift */; };
+		3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */; };
 		3CCEC3842A78DF5D001753DF /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */; };
+		3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3852A78F831001753DF /* UploadImageCell.swift */; };
 		3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */; };
 		3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */; };
 		3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */; };
@@ -313,8 +314,9 @@
 		3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBottomSheetView.swift; sourceTree = "<group>"; };
-		3CCEC3802A78DF48001753DF /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
 		3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
+		3CCEC3852A78F831001753DF /* UploadImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageCell.swift; sourceTree = "<group>"; };
 		3CE762882A665A3A00E1411E /* ExploreSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionItem.swift; sourceTree = "<group>"; };
 		3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTapItem.swift; sourceTree = "<group>"; };
@@ -982,7 +984,8 @@
 			children = (
 				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
 				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
-				3CCEC3802A78DF48001753DF /* UploadViewController.swift */,
+				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
+				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1468,7 +1471,7 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
-				3CCEC3812A78DF48001753DF /* UploadViewController.swift in Sources */,
+				3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
@@ -1485,6 +1488,7 @@
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
+				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */,
