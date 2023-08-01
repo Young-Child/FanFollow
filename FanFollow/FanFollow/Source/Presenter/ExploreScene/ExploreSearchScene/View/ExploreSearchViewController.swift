@@ -38,6 +38,7 @@ final class ExploreSearchViewController: UIViewController {
     
     private let searchTableView = UITableView(frame: .zero, style: .plain).then {
         $0.separatorColor = .lightGray
+        $0.separatorInset = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
         $0.backgroundColor = .clear
         $0.register(CreatorListCell.self, forCellReuseIdentifier: CreatorListCell.reuseIdentifier)
     }
@@ -129,6 +130,10 @@ extension ExploreSearchViewController: UISearchBarDelegate {
         searchTableView.rx.modelSelected(Creator.self)
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind { item in
+                guard let indexPath = self.searchTableView.indexPathForSelectedRow else { return }
+                
+                self.searchBar.endEditing(true)
+                self.searchTableView.deselectRow(at: indexPath, animated: true)
                 self.coordinator?.presentProfileViewController(to: item.id)
             }
             .disposed(by: disposeBag)

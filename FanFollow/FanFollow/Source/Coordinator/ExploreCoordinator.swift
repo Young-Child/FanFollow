@@ -72,7 +72,6 @@ class ExploreCoordinator: Coordinator {
         
         let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
         
-        navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(controller, animated: true)
     }
     
