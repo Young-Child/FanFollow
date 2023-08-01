@@ -32,8 +32,17 @@ final class UploadImageCell: UICollectionViewCell {
 // Configure UI
 private extension UploadImageCell {
     func configureUI() {
+        backgroundColor = .white
+        
+        configureLayer()
         configureHierarchy()
         makeConstraints()
+    }
+    
+    func configureLayer() {
+        layer.cornerRadius = 10
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.systemGray4.cgColor
     }
     
     func configureHierarchy() {
