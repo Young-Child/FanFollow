@@ -29,7 +29,7 @@ final class ApplyCreatorUseCaseTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    /// 정상적인 조건에서 checkPostLiked가 제대로 동작하는 지 테스트
+    /// 정상적인 조건에서 applyCreator가 제대로 동작하는 지 테스트
     func test_ApplyCreatorInNormalCondition() {
         // given
         userInformationRepository.userInformation = TestData.userInformation
@@ -49,7 +49,7 @@ final class ApplyCreatorUseCaseTests: XCTestCase {
         .disposed(by: disposeBag)
     }
 
-    /// 에러가 발생하는 조건에서 checkPostLiked가 에러를 반환하는 지 테스트
+    /// 에러가 발생하는 조건에서 applyCreator가 에러를 반환하는 지 테스트
     func test_ApplyCreatorInErrorCondition() {
         userInformationRepository.userInformation = TestData.userInformation
         userInformationRepository.error = TestData.error
