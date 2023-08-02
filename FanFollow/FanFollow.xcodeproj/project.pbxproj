@@ -104,6 +104,7 @@
 		3C639B242A7A08AB003E2E44 /* UploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B232A7A08AB003E2E44 /* UploadCoordinator.swift */; };
 		3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */; };
 		3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */; };
+		3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
@@ -302,6 +303,7 @@
 		3C639B232A7A08AB003E2E44 /* UploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCoordinator.swift; sourceTree = "<group>"; };
 		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
@@ -995,6 +997,7 @@
 				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
 				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
 				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
+				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1420,6 +1423,7 @@
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,
 				183EDDE22A7272D200F1490E /* Notification + Extension.swift in Sources */,
+				3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */,
 				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
 				1829B5102A71079D00D873DF /* Coordinator.swift in Sources */,
 				EBD9366C2A67AA9500C03427 /* PostCell.swift in Sources */,
