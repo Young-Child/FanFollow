@@ -83,11 +83,43 @@ extension UploadPhotoViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
-        let collectionCellWidth = UIScreen.main.bounds.width / 2 - 10
+        let collectionCellWidth = UIScreen.main.bounds.width / 2 - 30
         
         layout.itemSize  = CGSize(width: collectionCellWidth, height: collectionCellWidth)
         
         return layout
+    }
+}
+
+extension UploadPhotoViewController: UploadImageCellDelegate {
+    func uploadImageCell() {
+        // TODO: - Picker로 이동
+    }
+}
+
+// UICollectionViewDelegate, DataSource Method
+extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        
+        let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        
+        cell.pickerDelegate = self
+        
+        if indexPath.item == registerImage.count {
+            cell.createButton()
+        } else {
+            let data = registerImage[indexPath.item]
+            cell.configureCell(data)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return registerImage.count < 5 ? registerImage.count + 1 : 5
     }
 }
 
@@ -117,10 +149,16 @@ private extension UploadPhotoViewController {
     
     func configureUI() {
         view.backgroundColor = .systemBackground
-        photoCollectionView.collectionViewLayout = createLayout()
         
         configureHierarchy()
+        configureCollectionView()
         makeConstraints()
+    }
+    
+    func configureCollectionView() {
+        photoCollectionView.collectionViewLayout = createLayout()
+        photoCollectionView.delegate = self
+        photoCollectionView.dataSource = self
     }
     
     func configureHierarchy() {
