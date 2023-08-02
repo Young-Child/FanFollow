@@ -41,6 +41,8 @@ private extension SettingCoordinator {
         switch viewType {
         case .profile:
             return ProfileSettingCoordinator(navigationController: navigationController)
+        case .creator:
+            return CreatorApplicationCoordinator(navigationController: navigationController)
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }
