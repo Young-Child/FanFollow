@@ -50,6 +50,7 @@ final class UploadPhotoViewController: UIViewController {
     // Properties
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
+    private let disposeBag = DisposeBag()
     private var registerImage: [UIImage] = []
     
     // Initializer
@@ -68,6 +69,7 @@ final class UploadPhotoViewController: UIViewController {
         
         configureUI()
         configureNavgationBar()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +77,22 @@ final class UploadPhotoViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         photoCollectionView.reloadData()
+    }
+}
+
+// Bind
+extension UploadPhotoViewController {
+    func bind() {
+        navigationButtonBind()
+    }
+    
+    private func navigationButtonBind() {
+        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
+        leftBarButton.rx.tap
+            .bind {
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
