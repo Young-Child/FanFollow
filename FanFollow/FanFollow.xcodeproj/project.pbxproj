@@ -137,6 +137,7 @@
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
 		EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */; };
+		EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
@@ -330,6 +331,7 @@
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
 		EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCaseTests.swift; sourceTree = "<group>"; };
+		EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStepView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 				187949C52A5EA4B500ADA01A /* ProfileThumbnailCell.swift */,
 				18513FD72A5FB01E00580A1A /* SettingBaseCell.swift */,
 				18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */,
+				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
+				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */,
 				1879BBDF2A69225200A64DD7 /* ProfileSettingViewModel.swift in Sources */,
