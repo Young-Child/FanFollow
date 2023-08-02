@@ -133,6 +133,13 @@ extension ExploreViewController {
 
 // UICollectionView Layout Method
 extension ExploreViewController {
+    private func createSection(
+        to sectionIndex: Int,
+        item: NSCollectionLayoutItem
+    ) -> NSCollectionLayoutSection {
+        return (sectionIndex == .zero) ? createCategorySection(item: item) : createCreatorSection(item: item)
+    }
+    
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let categoryGroupSize = NSCollectionLayoutSize(
             widthDimension: .estimated(80),
@@ -147,7 +154,6 @@ extension ExploreViewController {
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
         categorySection.orthogonalScrollingBehavior = .continuous
         categorySection.interGroupSpacing = 8
-        categorySection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         return categorySection
     }
@@ -165,7 +171,6 @@ extension ExploreViewController {
         
         let creatorSection = NSCollectionLayoutSection(group: creatorGroup)
         creatorSection.orthogonalScrollingBehavior = .continuous
-        creatorSection.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         return creatorSection
     }
@@ -189,8 +194,8 @@ extension ExploreViewController {
         )
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let section = sectionIndex == .zero ?
-            self.createCategorySection(item: commonItem) : self.createCreatorSection(item: commonItem)
+            let section = createSection(to: sectionIndex, item: commonItem)
+            section.contentInsets = Constants.defaultEdgeInset
             section.boundarySupplementaryItems = [header]
             
             return section
@@ -219,5 +224,11 @@ private extension ExploreViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+private extension ExploreViewController {
+    enum Constants {
+        static let defaultEdgeInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
     }
 }
