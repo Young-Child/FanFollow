@@ -16,7 +16,7 @@ protocol UploadPostUseCase: AnyObject {
     ) -> Completable
 }
 
-class DefaultUploadPostUseCase: UploadPostUseCase {
+final class DefaultUploadPostUseCase: UploadPostUseCase {
     private let postRepository: PostRepository
     
     init(postRepository: PostRepository) {

@@ -12,7 +12,7 @@ protocol UpdateProfileImageUseCase: AnyObject {
     func upsertProfileImage(to userID: String, with image: Data?) -> Observable<String>
 }
 
-class DefaultUpdateProfileImageUseCase: UpdateProfileImageUseCase {
+final class DefaultUpdateProfileImageUseCase: UpdateProfileImageUseCase {
     private let imageRepository: ImageRepository
     
     init(imageRepository: ImageRepository) {
