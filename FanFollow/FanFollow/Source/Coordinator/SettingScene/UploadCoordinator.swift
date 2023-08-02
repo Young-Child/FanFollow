@@ -32,6 +32,8 @@ class UploadCoordinator: Coordinator {
         case .photo:
             let controller = UploadPhotoViewController(viewModel: viewModel)
             controller.coordinator = self
+            controller.hidesBottomBarWhenPushed = true
+            
             navigationController.pushViewController(controller, animated: false)
         default:
             return
