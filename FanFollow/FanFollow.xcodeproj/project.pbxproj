@@ -102,6 +102,7 @@
 		3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */; };
 		3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */; };
 		3C639B242A7A08AB003E2E44 /* UploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B232A7A08AB003E2E44 /* UploadCoordinator.swift */; };
+		3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
@@ -298,6 +299,7 @@
 		3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSearchViewModel.swift; sourceTree = "<group>"; };
 		3C5F65452A6E4E91004F9698 /* CreatorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorListCell.swift; sourceTree = "<group>"; };
 		3C639B232A7A08AB003E2E44 /* UploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCoordinator.swift; sourceTree = "<group>"; };
+		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */,
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
+				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1389,6 +1392,7 @@
 				187949AC2A5E7C3D00ADA01A /* SettingTabItem.swift in Sources */,
 				183EDDDE2A72300300F1490E /* ProfileInputTextField.swift in Sources */,
 				3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */,
+				3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
