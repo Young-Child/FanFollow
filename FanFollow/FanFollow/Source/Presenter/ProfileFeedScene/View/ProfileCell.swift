@@ -165,10 +165,8 @@ private extension ProfileCell {
 
     @objc
     func toggleExpended() {
-        delegate?.performTableViewBathUpdates({ [weak self] in
-            guard let self else { return }
-            self.introduceLabel.numberOfLines = Constants.expandedNumberOfLines
-        })
+        let expandAction = { self.introduceLabel.numberOfLines = Constants.expandedNumberOfLines }
+        delegate?.profileCell(expandLabel: expandAction)
     }
 }
 
@@ -194,6 +192,6 @@ private extension ProfileCell {
 
 // ProfileCellDelegate
 protocol ProfileCellDelegate: AnyObject {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?)
+    func profileCell(expandLabel expandAction: (() -> Void)?)
     func followButtonTap()
 }

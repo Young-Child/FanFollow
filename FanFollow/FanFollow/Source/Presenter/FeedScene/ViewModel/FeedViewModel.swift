@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/17.
 //
 
+import Foundation
+
 import RxSwift
 import RxRelay
 
@@ -17,7 +19,7 @@ final class FeedViewModel: ViewModel {
     }
 
     struct Output {
-        var posts: Observable<[Post]>
+        var posts: Observable<[PostSectionModel]>
     }
 
     var disposeBag = DisposeBag()
@@ -27,7 +29,6 @@ final class FeedViewModel: ViewModel {
     private let pageSize = 10
 
     private let posts = BehaviorRelay<[Post]>(value: [])
-    private let reachedLastPost = BehaviorRelay(value: false)
 
     init(fetchFeedUseCase: FetchFeedUseCase, changeLikeUseCase: ChangeLikeUseCase, followerID: String) {
         self.fetchFeedUseCase = fetchFeedUseCase
@@ -38,63 +39,47 @@ final class FeedViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let fetchedNewPosts = Observable.merge(input.viewWillAppear, input.refresh)
             .withUnretained(self)
-            .flatMapFirst { _ in self.fetchNewPosts() }
+            .flatMapFirst { _ in
+                return self.fetchFeedUseCase.fetchFollowPosts(
+                    followerID: self.followerID,
+                    startRange: .zero,
+                    endRange: self.pageSize
+                )
+            }
 
         let fetchedMorePosts = input.lastCellDisplayed
-            .withUnretained(self)
-            .flatMapFirst { _ in self.fetchMorePosts() }
+            .flatMapFirst { posts in
+                let lastCount = self.posts.value.count
+                
+                return self.fetchFeedUseCase.fetchFollowPosts(
+                    followerID: self.followerID,
+                    startRange: lastCount,
+                    endRange: lastCount + self.pageSize - 1
+                )
+            }
+            .map {
+                let lastValue = self.posts.value
+                return lastValue + $0
+            }
 
         let updatedPosts = input.likeButtonTap
             .withUnretained(self)
             .flatMapFirst { _, postID in self.updatePosts(postID: postID) }
 
         let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+            .do { self.posts.accept($0) }
+            .map { [PostSectionModel(title: UUID().uuidString, items: $0)] }
 
         return Output(posts: posts)
     }
 }
 
 private extension FeedViewModel {
-    func fetchNewPosts() -> Observable<[Post]> {
-        return fetchPosts(startIndex: 0)
-            .do { fetchedPosts in
-                let reachedLastPosts = fetchedPosts.count < self.pageSize
-                self.reachedLastPost.accept(reachedLastPosts)
-
-                self.posts.accept(fetchedPosts)
-            }
-    }
-
-    func fetchMorePosts() -> Observable<[Post]> {
-        let reachedLastPost = reachedLastPost.value
-        guard reachedLastPost == false else { return .empty() }
-        return fetchPosts(startIndex: posts.value.count)
-            .flatMap { fetchedPosts -> Observable<[Post]> in
-                guard fetchedPosts.isEmpty == false else {
-                    self.reachedLastPost.accept(true)
-                    return .empty()
-                }
-
-                let reachedLastPosts = fetchedPosts.count < self.pageSize
-                self.reachedLastPost.accept(reachedLastPosts)
-
-                let newPosts = self.posts.value + fetchedPosts
-                self.posts.accept(newPosts)
-                return .just(newPosts)
-            }
-    }
-
-    func fetchPosts(startIndex: Int) -> Observable<[Post]> {
-        let endRange = startIndex + pageSize - 1
-        return fetchFeedUseCase.fetchFollowPosts(followerID: followerID, startRange: startIndex, endRange: endRange)
-    }
-
     func updatePosts(postID: String) -> Observable<[Post]> {
         return toggleLike(postID: postID)
             .flatMap { postID, isLiked, likeCount in
                 self.updatedPosts(postID: postID, isLiked: isLiked, likeCount: likeCount)
             }
-            .do { updatedPosts in self.posts.accept(updatedPosts) }
     }
 
     func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {

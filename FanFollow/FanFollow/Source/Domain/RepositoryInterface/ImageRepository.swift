@@ -12,4 +12,5 @@ protocol ImageRepository: SupabaseEndPoint {
     func uploadImage(to path: String, with image: Data) -> Completable
     func updateImage(to path: String, with image: Data) -> Completable
     func deleteImage(to path: String) -> Completable
+    func readImageList(to path: String, keyword: String) -> Observable<[SupabaseImageResource]>
 }
