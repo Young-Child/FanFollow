@@ -25,14 +25,6 @@ class ImagePickerViewController: PhotoAssetGridViewController {
         configureUI()
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
-        cell?.setSelected(to: true)
-        
-        let image = cell?.getImage()
-        self.selectedImage = image
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
         cell?.setSelected(to: false)
