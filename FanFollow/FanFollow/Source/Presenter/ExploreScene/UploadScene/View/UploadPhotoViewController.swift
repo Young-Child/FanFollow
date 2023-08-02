@@ -47,6 +47,21 @@ final class UploadPhotoViewController: UIViewController {
         $0.axis = .vertical
     }
     
+    // Properties
+    weak var coordinator: UploadCoordinator?
+    private let viewModel: UploadViewModel
+    
+    // Initializer
+    init(viewModel: UploadViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +75,7 @@ extension UploadPhotoViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
-        let collectionCellWidth = UIScreen.main.bounds.width / 4 - 10
+        let collectionCellWidth = UIScreen.main.bounds.width / 2 - 10
         
         layout.itemSize  = CGSize(width: collectionCellWidth, height: collectionCellWidth)
         
