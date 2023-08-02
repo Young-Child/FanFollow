@@ -12,7 +12,7 @@ import RxSwift
 protocol UploadPostUseCase: AnyObject {
     func upsertPost(
         userID: String, title: String,
-        content: String, imageURLs: [String], videoURL: String
+        content: String, imageURLs: [String], videoURL: String?
     ) -> Completable
 }
 
@@ -26,7 +26,7 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
     func upsertPost(
         userID: String, title: String,
         content: String, imageURLs: [String],
-        videoURL: String
+        videoURL: String?
     ) -> Completable {
         return postRepository.upsertPost(
             postID: nil,
