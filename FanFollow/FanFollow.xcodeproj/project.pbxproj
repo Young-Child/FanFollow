@@ -138,6 +138,7 @@
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
 		EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */; };
 		EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */; };
+		EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */; };
 		EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */; };
 		EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */; };
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
@@ -335,6 +336,7 @@
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
 		EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCaseTests.swift; sourceTree = "<group>"; };
 		EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewController.swift; sourceTree = "<group>"; };
+		EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationCoordinator.swift; sourceTree = "<group>"; };
 		EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStepView.swift; sourceTree = "<group>"; };
 		EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldView.swift; sourceTree = "<group>"; };
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				1829B5132A714B4500D873DF /* SettingCoodinator.swift */,
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
+				EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -1441,6 +1444,7 @@
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
 				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
+				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
 				18BC32182A5C2B6E00F910B7 /* ExampleModel.swift in Sources */,
