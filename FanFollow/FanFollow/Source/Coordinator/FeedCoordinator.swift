@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class FeedCoordinator: Coordinator {
     weak var parentCoordinator: MainTabBarCoordinator?
@@ -39,6 +40,7 @@ final class FeedCoordinator: Coordinator {
         )
         let feedViewController = FeedViewController(viewModel: feedViewModel)
         feedViewController.coordinator = self
+        feedViewController.hidesBottomBarWhenPushed = true
 
         navigationController.pushViewController(feedViewController, animated: true)
     }
@@ -70,5 +72,13 @@ final class FeedCoordinator: Coordinator {
         let profileViewController = ProfileFeedViewController(viewModel: profileFeedViewModel, viewType: .profileFeed)
 
         navigationController.pushViewController(profileViewController, animated: true)
+    }
+    
+    func presentLinkViewController(to presentURL: URL) {
+        let controller = SFSafariViewController(url: presentURL)
+        controller.dismissButtonStyle = .close
+        controller.hidesBottomBarWhenPushed = true
+        
+        navigationController.present(controller, animated: true)
     }
 }

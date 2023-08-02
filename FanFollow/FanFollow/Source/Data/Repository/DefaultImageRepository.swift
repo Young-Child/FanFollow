@@ -8,6 +8,10 @@ import Foundation
 
 import RxSwift
 
+struct SupabaseImageResource: Codable {
+    let name: String
+}
+
 final class DefaultImageRepository: ImageRepository {
     private let network: NetworkService
     
@@ -31,5 +35,13 @@ final class DefaultImageRepository: ImageRepository {
         let request = ImageRequestDirector(builder: builder)
             .deleteImage(path: path)
         return network.execute(request)
+    }
+    
+    func readImageList(to path: String, keyword: String) -> Observable<[SupabaseImageResource]> {
+        let request = ImageRequestDirector(builder: builder)
+            .readImageList(path: path, keyword: keyword)
+        return network.data(request)
+            .decode(type: [SupabaseImageResource].self, decoder: JSONDecoder())
+        
     }
 }
