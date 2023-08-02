@@ -96,19 +96,24 @@ final class ProfileFeedViewController: UIViewController {
 
 // ProfileCellDelegate, PostCellDelegate
 extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
-    func performTableViewBathUpdates(_ updates: (() -> Void)?) {
+    func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
+        likeButtonTapped.accept(postID)
+    }
+    
+    func postCell(expandLabel updates: (() -> Void)?) {
         tableView.performBatchUpdates(updates)
+    }
+    
+    func profileCell(expandLabel expandAction: (() -> Void)?) {
+        tableView.performBatchUpdates(expandAction)
     }
 
     func followButtonTap() {
         followButtonTapped.accept(())
     }
-
-    func likeButtonTap(postID: String) {
-        likeButtonTapped.accept(postID)
-    }
-
-    func creatorNickNameLabelTap(creatorID: String) {}
+    
+    func postCell(didTapProfilePresentButton creatorID: String) {}
+    func postCell(didTapLinkPresentButton link: URL) { }
 }
 
 extension ProfileFeedViewController {
