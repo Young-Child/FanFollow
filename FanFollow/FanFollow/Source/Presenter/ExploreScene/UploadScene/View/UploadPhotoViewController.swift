@@ -77,13 +77,6 @@ final class UploadPhotoViewController: UIViewController {
     }
 }
 
-// UICollectionViewDelegate
-extension UploadPhotoViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            // TODO: - Crop으로 이미지 전달
-    }
-}
-
 // UICollectionView Layout Method
 extension UploadPhotoViewController {
     private func createLayout() -> UICollectionViewFlowLayout {

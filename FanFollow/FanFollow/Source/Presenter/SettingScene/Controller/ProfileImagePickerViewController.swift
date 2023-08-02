@@ -29,16 +29,6 @@ final class ProfileImagePickerViewController: ImagePickerViewController {
     }
 }
 
-extension ProfileImagePickerViewController {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
-        cell?.setSelected(to: true)
-        
-        let image = cell?.getImage()
-        self.selectedImage = image
-    }
-}
-
 private extension ProfileImagePickerViewController {
     func binding() {
         let input = ProfileImagePickerViewModel.Input(
