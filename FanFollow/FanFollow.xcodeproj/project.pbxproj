@@ -139,6 +139,7 @@
 		EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */; };
 		EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */; };
 		EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */; };
+		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
@@ -334,6 +335,7 @@
 		EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCaseTests.swift; sourceTree = "<group>"; };
 		EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStepView.swift; sourceTree = "<group>"; };
 		EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldView.swift; sourceTree = "<group>"; };
+		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
@@ -792,6 +794,7 @@
 				18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */,
 				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
 				EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */,
+				EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1433,6 +1436,7 @@
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
 				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
+				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
