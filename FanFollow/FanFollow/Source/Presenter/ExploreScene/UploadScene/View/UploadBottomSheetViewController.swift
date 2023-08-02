@@ -45,11 +45,11 @@ final class UploadBottomSheetViewController: UIViewController {
 // Button Delegate Method
 extension UploadBottomSheetViewController: SheetButtonDelegate {
     func photoButtonTapped() {
-        // TODO: - PostView로 이동
+        coordinator?.presentPostViewControlelr(viewController: self, type: .photo)
     }
     
     func linkButtonTapped() {
-        // TODO: - PostView로 이동
+        coordinator?.presentPostViewControlelr(viewController: self, type: .link)
     }
     
     func cancelButtonTapped() {

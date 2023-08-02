@@ -24,8 +24,18 @@ class UploadCoordinator: Coordinator {
         navigationController.present(controller, animated: false)
     }
     
-    func presentPostViewControlelr(type: UploadType) {
-        // TODO: - 추후 구현
+    func presentPostViewControlelr(viewController: UIViewController, type: UploadType) {
+        close(viewController: viewController)
+        
+        let viewModel = UploadViewModel()
+        switch type {
+        case .photo:
+            let controller = UploadPhotoViewController(viewModel: viewModel)
+            controller.coordinator = self
+            navigationController.pushViewController(controller, animated: false)
+        default:
+            return
+        }
     }
     
     func close(viewController: UIViewController) {
