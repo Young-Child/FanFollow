@@ -44,8 +44,8 @@ final class UploadImageCell: UICollectionViewCell {
         imageStackView.addArrangedSubview(pickerButton)
     }
     
-    func configureCell(_ data: Data) {
-        let imageView = UIImageView(image: UIImage(data: data))
+    func configureCell(_ image: UIImage) {
+        let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleToFill
     
         imageStackView.addArrangedSubview(imageView)

@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import Mantis
 import RxSwift
+
+protocol UploadCropImageDelegate: AnyObject {
+    func uploadCropImage(_ image: UIImage)
+}
 
 final class UploadImagePickerViewController: ImagePickerViewController {
     private var disposeBag = DisposeBag()
+    
+    weak var uploadCropImageDelegate: UploadCropImageDelegate?
     
     init() {
         super.init(title: Constants.title)
@@ -21,9 +28,53 @@ final class UploadImagePickerViewController: ImagePickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
     }
 }
 
+// Bind Method
+extension UploadImagePickerViewController {
+    private func bind() {
+        guard let rightButton = navigationItem.rightBarButtonItem else { return }
+        
+        rightButton.rx.tap
+            .bind {
+                self.moveMantis()
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+// Mantis - CropViewControllerDelegate Method
+extension UploadImagePickerViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(
+        _ cropViewController: CropViewController,
+        cropped: UIImage,
+        transformation: Transformation,
+        cropInfo: CropInfo
+    ) {
+        uploadCropImageDelegate?.uploadCropImage(cropped)
+        cropViewController.dismiss(animated: true) {
+            self.dismiss(animated: true)
+        }
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true)
+    }
+    
+    private func moveMantis() {
+        guard let image = selectedImage else { return }
+        let imageCropViewController = Mantis.cropViewController(image: image)
+        imageCropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1.0)
+
+        imageCropViewController.delegate = self
+        present(imageCropViewController, animated: true)
+    }
+}
+
+// Constant
 private extension UploadImagePickerViewController {
     enum Constants {
         static let title = "게시물 이미지 선택"

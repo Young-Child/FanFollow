@@ -50,7 +50,7 @@ final class UploadPhotoViewController: UIViewController {
     // Properties
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
-    private let registerImage: [Data] = []
+    private var registerImage: [UIImage] = []
     
     // Initializer
     init(viewModel: UploadViewModel) {
@@ -74,6 +74,7 @@ final class UploadPhotoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+        photoCollectionView.reloadData()
     }
 }
 
@@ -91,9 +92,15 @@ extension UploadPhotoViewController {
     }
 }
 
+extension UploadPhotoViewController: UploadCropImageDelegate {
+    func uploadCropImage(_ image: UIImage) {
+        self.registerImage.append(image)
+    }
+}
+
 extension UploadPhotoViewController: UploadImageCellDelegate {
     func uploadImageCell() {
-        coordinator?.presentImagePickerViewController()
+        coordinator?.presentImagePickerViewController(cropImageDelegate: self)
     }
 }
 
@@ -111,8 +118,8 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
         if indexPath.item == registerImage.count {
             cell.createButton()
         } else {
-            let data = registerImage[indexPath.item]
-            cell.configureCell(data)
+            let image = registerImage[indexPath.item]
+            cell.configureCell(image)
         }
         
         return cell
@@ -169,7 +176,7 @@ private extension UploadPhotoViewController {
     
     func makeConstraints() {
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.top.equalToSuperview().offset(10)
             $0.height.equalTo(240)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)

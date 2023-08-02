@@ -43,8 +43,10 @@ class UploadCoordinator: Coordinator {
         }
     }
     
-    func presentImagePickerViewController() {
+    func presentImagePickerViewController(cropImageDelegate: UploadCropImageDelegate) {
         let controller = UploadImagePickerViewController()
+        controller.uploadCropImageDelegate = cropImageDelegate
+        
         let childNavigationController = UINavigationController(rootViewController: controller)
         childNavigationController.modalPresentationStyle = .fullScreen
         
