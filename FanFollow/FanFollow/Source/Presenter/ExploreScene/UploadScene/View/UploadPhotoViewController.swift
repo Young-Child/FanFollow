@@ -50,6 +50,7 @@ final class UploadPhotoViewController: UIViewController {
     // Properties
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
+    private let registerImage: [Data] = []
     
     // Initializer
     init(viewModel: UploadViewModel) {
@@ -73,6 +74,13 @@ final class UploadPhotoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+}
+
+// UICollectionViewDelegate
+extension UploadPhotoViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            // TODO: - Crop으로 이미지 전달
     }
 }
 
