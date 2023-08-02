@@ -23,7 +23,7 @@ final class UploadBottomSheetViewController: UIViewController {
     }
         
     // Property
-    weak var coordinator: SettingCoordinator?
+    weak var coordinator: UploadCoordinator?
     
     // Initializer
     init() {

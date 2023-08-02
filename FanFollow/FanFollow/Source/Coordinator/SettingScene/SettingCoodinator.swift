@@ -29,11 +29,9 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentPostBottomViewController() {
-        let controller = UploadBottomSheetViewController()
-        controller.modalPresentationStyle = .overFullScreen
-        controller.coordinator = self
-        
-        navigationController.present(controller, animated: false)
+        let coordinator = UploadCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }
 
