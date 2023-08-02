@@ -53,7 +53,7 @@ extension UploadBottomSheetViewController: SheetButtonDelegate {
     }
     
     func cancelButtonTapped() {
-        dismiss(animated: false)
+        coordinator?.close(viewController: self)
     }
 }
 

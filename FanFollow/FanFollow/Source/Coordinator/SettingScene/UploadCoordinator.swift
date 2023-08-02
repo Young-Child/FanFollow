@@ -10,6 +10,7 @@ import UIKit
 class UploadCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    weak var parentCoordinator: SettingCoordinator?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -25,6 +26,11 @@ class UploadCoordinator: Coordinator {
     
     func presentPostViewControlelr(type: UploadType) {
         // TODO: - 추후 구현
+    }
+    
+    func close(viewController: UIViewController) {
+        viewController.dismiss(animated: false)
+        parentCoordinator?.removeChildCoordinator(self)
     }
 }
 
