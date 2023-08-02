@@ -24,11 +24,12 @@ class UploadCoordinator: Coordinator {
         navigationController.present(controller, animated: false)
     }
     
-    func presentPostViewControlelr(viewController: UIViewController, type: UploadType) {
-        close(viewController: viewController)
+    func presentPostViewController(viewController: UIViewController, type: UploadType) {
         let repository = DefaultPostRepository(networkService: DefaultNetworkService())
         let useCase = DefaultUploadPostUseCase(postRepository: repository)
         let viewModel = UploadViewModel(uploadUseCase: useCase)
+        
+        viewController.dismiss(animated: true)
         
         switch type {
         case .photo:
@@ -40,6 +41,13 @@ class UploadCoordinator: Coordinator {
         default:
             return
         }
+    }
+    
+    func presentImagePickerViewController() {
+        let controller = UploadImagePickerViewController()
+        controller.modalPresentationStyle = .fullScreen
+        
+        navigationController.present(controller, animated: true)
     }
     
     func close(viewController: UIViewController) {

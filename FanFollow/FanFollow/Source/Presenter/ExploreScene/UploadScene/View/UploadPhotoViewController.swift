@@ -93,7 +93,7 @@ extension UploadPhotoViewController {
 
 extension UploadPhotoViewController: UploadImageCellDelegate {
     func uploadImageCell() {
-        // TODO: - Picker로 이동
+        coordinator?.presentImagePickerViewController()
     }
 }
 
