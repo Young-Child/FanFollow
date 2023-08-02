@@ -26,7 +26,7 @@ final class UploadPhotoViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let titleTextField = UITextField().then {
+    private let titleTextField = UnderLineTextField().then {
         $0.placeholder = Constants.content
         $0.font = UIFont.preferredFont(forTextStyle: .body)
     }
@@ -36,8 +36,8 @@ final class UploadPhotoViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let contentsTextView = UITextView().then {
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+    private let contentsTextView = UnderLineTextView().then {
+        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
     private let uploadStackView = UIStackView().then {
@@ -66,6 +66,13 @@ final class UploadPhotoViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureNavgationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
 
@@ -85,6 +92,28 @@ extension UploadPhotoViewController {
 
 // Configure UI
 private extension UploadPhotoViewController {
+    func configureNavgationBar() {
+        title = Constants.navigationTitle
+        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
+        
+        let backLeftButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.backward"),
+            style: .plain,
+            target: self, 
+            action: nil
+        )
+        
+        let uploadRightButton = UIBarButtonItem(
+            title: Constants.register,
+            style: .done,
+            target: self,
+            action: nil
+        )
+        
+        navigationItem.leftBarButtonItem = backLeftButton
+        navigationItem.rightBarButtonItem = uploadRightButton
+    }
+    
     func configureUI() {
         view.backgroundColor = .systemBackground
         photoCollectionView.collectionViewLayout = createLayout()
@@ -123,5 +152,7 @@ private extension UploadPhotoViewController {
         static let content = "내용"
         static let titlePlaceholder = "제목을 작성해보세요."
         static let contentPlaceholder = "글을 작성해보세요."
+        static let navigationTitle = "게시물 작성"
+        static let register = "완료"
     }
 }
