@@ -6,26 +6,60 @@
 //
 
 import UIKit
+import RxSwift
+
+protocol UploadImageCellDelegate: AnyObject {
+    func uploadImageCell()
+}
 
 final class UploadImageCell: UICollectionViewCell {
     // View Property
-    private let imageView = UIImageView().then {
-        $0.contentMode = .scaleToFill
+    private let imageStackView = UIStackView().then {
+        $0.alignment = .fill
     }
+    
+    private let pickerButton = UIButton().then {
+        $0.tintColor = .label
+        $0.backgroundColor = .systemGray5
+        $0.setImage(UIImage(systemName: "plus"), for: .normal)
+    }
+    
+    // Property
+    weak var pickerDelegate: UploadImageCellDelegate?
+    private let disposeBag = DisposeBag()
     
     // Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureUI()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func createButton() {
+        imageStackView.addArrangedSubview(pickerButton)
+    }
+    
     func configureCell(_ data: Data) {
-        imageView.image = UIImage(data: data)
+        let imageView = UIImageView(image: UIImage(data: data))
+        imageView.contentMode = .scaleToFill
+    
+        imageStackView.addArrangedSubview(imageView)
+    }
+}
+
+// Bind
+private extension UploadImageCell {
+    func bind() {
+        pickerButton.rx.tap
+            .bind {
+                self.pickerDelegate?.uploadImageCell()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -46,11 +80,11 @@ private extension UploadImageCell {
     }
     
     func configureHierarchy() {
-        contentView.addSubview(imageView)
+        contentView.addSubview(imageStackView)
     }
     
     func makeConstraints() {
-        imageView.snp.makeConstraints {
+        imageStackView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(contentView)
         }
     }
