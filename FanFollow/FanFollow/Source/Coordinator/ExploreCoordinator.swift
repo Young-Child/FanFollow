@@ -72,14 +72,13 @@ class ExploreCoordinator: Coordinator {
         
         let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
         
-        navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(controller, animated: true)
     }
     
     func presentSearchViewController() {
         let viewModel = ExploreSearchViewModel(searchCreatorUseCase: searchUseCase)
         let controller = ExploreSearchViewController(viewModel: viewModel)
-        
+        controller.hidesBottomBarWhenPushed = true
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

@@ -78,7 +78,7 @@ extension ExploreViewController {
                 switch item {
                 case .category(let job):
                     self.coordinator?.presentCategoryViewController(for: job)
-                case .creator(_, let creatorID):
+                case .creator(_, let creatorID, _):
                     self.coordinator?.presentProfileViewController(to: creatorID)
                 }
             }
@@ -106,9 +106,9 @@ extension ExploreViewController {
                 cell.configureCell(jobCategory: job)
                 
                 return cell
-            case .creator(let nickName, let userID):
+            case .creator(let nickName, let userID, let profileURL):
                 let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configureCell(nickName: nickName, userID: userID)
+                cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                 
                 return cell
             }
@@ -133,20 +133,27 @@ extension ExploreViewController {
 
 // UICollectionView Layout Method
 extension ExploreViewController {
+    private func createSection(
+        to sectionIndex: Int,
+        item: NSCollectionLayoutItem
+    ) -> NSCollectionLayoutSection {
+        return (sectionIndex == .zero) ? createCategorySection(item: item) : createCreatorSection(item: item)
+    }
+    
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
         let categoryGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(0.07)
+            widthDimension: .estimated(80),
+            heightDimension: .estimated(30)
         )
         
         let categoryGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: categoryGroupSize,
-            subitem: item,
-            count: 4
+            subitems: [item]
         )
         
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
-        categorySection.interGroupSpacing = 10
+        categorySection.orthogonalScrollingBehavior = .continuous
+        categorySection.interGroupSpacing = 8
         
         return categorySection
     }
@@ -187,8 +194,8 @@ extension ExploreViewController {
         )
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let section = sectionIndex == .zero ?
-            self.createCategorySection(item: commonItem) : self.createCreatorSection(item: commonItem)
+            let section = self.createSection(to: sectionIndex, item: commonItem)
+            section.contentInsets = Constants.defaultEdgeInset
             section.boundarySupplementaryItems = [header]
             
             return section
@@ -217,5 +224,11 @@ private extension ExploreViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+private extension ExploreViewController {
+    enum Constants {
+        static let defaultEdgeInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
     }
 }
