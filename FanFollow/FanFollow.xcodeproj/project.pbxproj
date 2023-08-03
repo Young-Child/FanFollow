@@ -148,6 +148,7 @@
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
+		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
 		EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */; };
 		EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
@@ -352,6 +353,7 @@
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
 		EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldCell.swift; sourceTree = "<group>"; };
 		EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 		18BDA9812A62EF8A00E00116 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EB3A90802A7B3E3F007F400A /* CreatorApplication */,
 				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
 				18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */,
 				18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */,
@@ -1044,6 +1047,14 @@
 				18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		EB3A90802A7B3E3F007F400A /* CreatorApplication */ = {
+			isa = PBXGroup;
+			children = (
+				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
+			);
+			path = CreatorApplication;
 			sourceTree = "<group>";
 		};
 		EB5668CD2A56B0EA007A3860 /* RepositoryTests */ = {
@@ -1465,6 +1476,7 @@
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
 				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
+				EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */,
 				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
