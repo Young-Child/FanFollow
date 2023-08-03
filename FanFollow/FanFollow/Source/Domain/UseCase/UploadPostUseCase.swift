@@ -31,7 +31,7 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         content: String, imageDatas: [Data],
         videoURL: String?
     ) -> Completable {
-        let postID = UUID().uuidString
+        let postID = UUID().uuidString.lowercased()
         
         let results = Observable.from(imageDatas).enumerated()
             .flatMap { index, item in
