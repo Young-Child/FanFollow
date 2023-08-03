@@ -27,6 +27,7 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let titleTextField = UnderLineTextField().then {
+        $0.leadPadding(5)
         $0.placeholder = Constants.content
         $0.font = UIFont.preferredFont(forTextStyle: .body)
     }
@@ -37,6 +38,8 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let contentsTextView = UnderLineTextView().then {
+        $0.textView.textColor = .systemGray4
+        $0.textView.text = Constants.contentPlaceholder
         $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
@@ -193,7 +196,7 @@ private extension UploadPhotoViewController {
         let backLeftButton = UIBarButtonItem(
             image: UIImage(systemName: "chevron.backward"),
             style: .plain,
-            target: self, 
+            target: self,
             action: nil
         )
         
