@@ -194,7 +194,7 @@ extension ExploreViewController {
         )
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let section = createSection(to: sectionIndex, item: commonItem)
+            let section = self.createSection(to: sectionIndex, item: commonItem)
             section.contentInsets = Constants.defaultEdgeInset
             section.boundarySupplementaryItems = [header]
             
