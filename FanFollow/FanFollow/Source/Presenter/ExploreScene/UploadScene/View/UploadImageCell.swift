@@ -77,6 +77,7 @@ private extension UploadImageCell {
         layer.cornerRadius = 10
         layer.borderWidth = 1
         layer.borderColor = UIColor.systemGray4.cgColor
+        clipsToBounds = true
     }
     
     func configureHierarchy() {
