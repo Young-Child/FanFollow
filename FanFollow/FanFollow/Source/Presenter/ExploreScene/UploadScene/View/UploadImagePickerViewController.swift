@@ -66,10 +66,13 @@ extension UploadImagePickerViewController: CropViewControllerDelegate {
     
     private func moveMantis() {
         guard let image = selectedImage else { return }
-        let imageCropViewController = Mantis.cropViewController(image: image)
-        imageCropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1.0)
-
+        var config = Mantis.Config()
+        config.cropViewConfig.cropShapeType = .square
+        config.cropViewConfig.builtInRotationControlViewType = .slideDial()
+        
+        let imageCropViewController = Mantis.cropViewController(image: image, config: config)
         imageCropViewController.delegate = self
+        
         present(imageCropViewController, animated: true)
     }
 }
