@@ -62,6 +62,7 @@
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */; };
+		18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* BugReportCoordinator.swift */; };
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
@@ -259,6 +260,7 @@
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		18906B112A7BE946000D7715 /* BugReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportCoordinator.swift; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				1829B5132A714B4500D873DF /* SettingCoodinator.swift */,
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
+				18906B112A7BE946000D7715 /* BugReportCoordinator.swift */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -1375,6 +1378,7 @@
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
+				18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
