@@ -18,6 +18,7 @@ struct ImageRequestDirector {
             .set(path: SupabaseConstants.Constants.path + path)
             .set(method: .post)
             .set(headers: [
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.png,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])

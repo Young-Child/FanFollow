@@ -32,16 +32,15 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         videoURL: String?
     ) -> Completable {
         let postID = UUID().uuidString
-
-        return Observable.of(imageDatas)
-            .map { datas in
-                return datas.enumerated().map { index, data in
-                    let path = "PostImages/\(postID)/\(index + 1)"
-                    
-                    return self.imageRepository.uploadImage(to: path, with: data)
-                        .asObservable()
-                }
+        
+        let results = Observable.from(imageDatas).enumerated()
+            .flatMap { index, item in
+                let path = "PostImages/\(postID)/\(index + 1).png"
+                return self.imageRepository.uploadImage(to: path, with: item)
+                    .asObservable()
             }
+            .toArray()
+            .asObservable()
             .flatMap { _ in
                 return self.postRepository.upsertPost(
                     postID: postID,
@@ -53,6 +52,8 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
                     videoURL: videoURL
                 )
             }
+        
+        return results
             .asCompletable()
     }
 }
