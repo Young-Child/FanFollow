@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 final class CreatorApplicationViewController: UIViewController {
     // View Properties
@@ -22,31 +23,7 @@ final class CreatorApplicationViewController: UIViewController {
 
     private let stepView = CreatorApplicationStepView()
 
-    private let inputContentView = UIView()
-
-    private let jobCategoryPickerView = JobCategoryPickerView()
-
-    private let linkScrollView = UIScrollView().then { scrollView in
-        scrollView.isHidden = true
-    }
-
-    private let linkStackView = UIStackView().then { stackView in
-        stackView.axis = .vertical
-        let linkTextFieldView = CreatorApplicationTextFieldView()
-        linkTextFieldView.title = "링크1"
-        linkTextFieldView.keyboardType = .URL
-        stackView.addArrangedSubview(linkTextFieldView)
-    }
-
-    private let introduceTextView = PlaceholderTextView().then { textView in
-        textView.isHidden = true
-        textView.font = .systemFont(ofSize: 14, weight: .regular)
-        textView.placeholder = Constants.introduceInputViewPlaceholder
-    }
-
-    private let addLinkButton = UIButton(type: .roundedRect).then { button in
-        button.setAttributedTitle(Constants.addLinkButtonTitle, for: .normal)
-    }
+    private let creatorApplicationPageViewController = CreatorApplicationPageViewController()
 
     private let nextButton = UIButton(type: .roundedRect).then { button in
         button.layer.cornerRadius = 10
@@ -58,6 +35,9 @@ final class CreatorApplicationViewController: UIViewController {
     weak var coordinator: CreatorApplicationCoordinator?
     private let disposeBag = DisposeBag()
     private let viewModel: CreatorApplicationViewModel
+    private let category = BehaviorRelay(value: 0)
+    private let links = BehaviorRelay(value: [String]())
+    private let introduce = BehaviorRelay(value: "")
 
     // Initializer
     init(viewModel: CreatorApplicationViewModel) {
@@ -75,7 +55,8 @@ final class CreatorApplicationViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-        binding()
+        bindingView()
+        bindingViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +74,33 @@ final class CreatorApplicationViewController: UIViewController {
 
 // Binding Method
 private extension CreatorApplicationViewController {
-    func binding() {
+    func bindingView() {
+        creatorApplicationPageViewController.updatedJobCategoryIndex
+            .subscribe(onNext: { [weak self] category in
+                guard let self else { return }
+                self.category.accept(category)
+                self.configureNextButton(for: .category)
+            })
+            .disposed(by: disposeBag)
+
+        creatorApplicationPageViewController.updatedLinks
+            .subscribe(onNext: { [weak self] links in
+                guard let self else { return }
+                self.links.accept(links)
+                self.configureNextButton(for: .links)
+            })
+            .disposed(by: disposeBag)
+
+        creatorApplicationPageViewController.updatedIntroduce
+            .subscribe(onNext: { [weak self] introduce in
+                guard let self else { return }
+                self.introduce.accept(introduce)
+                self.configureNextButton(for: .introduce)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func bindingViewModel() {
         let input = input()
         let output = viewModel.transform(input: input)
         bind(output)
@@ -104,14 +111,9 @@ private extension CreatorApplicationViewController {
             .withUnretained(self)
             .throttle(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapFirst { _ -> Observable<CreatorApplicationViewModel.CreatorInformation> in
-                let category = self.jobCategoryPickerView.selectedRow(inComponent: .zero)
-                let links: [String] = self.linkStackView.arrangedSubviews.compactMap { view in
-                    guard let view = view as? CreatorApplicationTextFieldView,
-                          let text = view.text,
-                          text.isEmpty == false else { return nil }
-                    return text
-                }
-                let introduce = self.introduceTextView.text
+                let category = self.category.value
+                let links = self.links.value
+                let introduce = self.introduce.value
                 return .just((category, links, introduce))
             }
 
@@ -129,29 +131,41 @@ private extension CreatorApplicationViewController {
             .asDriver(onErrorJustReturn: .back)
             .drive { [weak self] creatorApplicationStep in
                 guard let self else { return }
-                let isHidden: (Bool, Bool, Bool)
-                let nextButtonTitle: NSAttributedString
-                switch creatorApplicationStep {
-                case .back:
+                if case .back = creatorApplicationStep {
                     self.navigationController?.popViewController(animated: true)
                     return
-                case .category:
-                    nextButtonTitle = Constants.nextButtonTitleToGoNext
-                    isHidden = (false, true, true)
-                case .links:
-                    nextButtonTitle = Constants.nextButtonTitleToGoNext
-                    isHidden = (true, false, true)
-                case .introduce:
-                    nextButtonTitle = Constants.nextButtonTitleToConform
-                    isHidden = (true, true, false)
                 }
-                self.nextButton.setAttributedTitle(nextButtonTitle, for: .normal)
-                self.jobCategoryPickerView.isHidden = isHidden.0
-                self.linkScrollView.isHidden = isHidden.1
-                self.introduceTextView.isHidden = isHidden.2
+                self.creatorApplicationPageViewController.setViewController(
+                    for: creatorApplicationStep,
+                    direction: .forward
+                )
+                self.configureNextButton(for: creatorApplicationStep)
                 self.stepView.configure(creatorApplicationStep)
             }
             .disposed(by: disposeBag)
+    }
+
+    func configureNextButton(for creatorApplicationStep: CreatorApplicationStep) {
+        switch creatorApplicationStep {
+        case .category:
+            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
+            nextButton.isEnabled = true
+        case .links:
+            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
+            let someLinksAreEmpty = links.value.filter { $0.isEmpty }.count > 0
+            nextButton.isEnabled = someLinksAreEmpty == false
+        case .introduce:
+            nextButton.setAttributedTitle(Constants.nextButtonTitleToConform, for: .normal)
+            let introduceIsEmpty = introduce.value.isEmpty
+            nextButton.isEnabled = introduceIsEmpty == false
+        default:
+            return
+        }
+        if nextButton.isEnabled {
+            nextButton.backgroundColor = UIColor(named: "AccentColor")
+        } else {
+            nextButton.backgroundColor = UIColor(named: "SecondaryColor")
+        }
     }
 }
 
@@ -161,33 +175,17 @@ private extension CreatorApplicationViewController {
         configureHierarchy()
         configureConstraints()
         configureNavigationItem()
-        configureAddButtonAction()
     }
 
     func configureHierarchy() {
-        linkScrollView.addSubview(linkStackView)
-        linkStackView.addArrangedSubview(addLinkButton)
-        [jobCategoryPickerView, linkScrollView, introduceTextView].forEach(inputContentView.addSubview)
-
-        [topLineView, stepView, inputContentView, nextButton].forEach(stackView.addArrangedSubview)
+        addChild(creatorApplicationPageViewController)
+        [topLineView, stepView, creatorApplicationPageViewController.view, nextButton].forEach(stackView.addArrangedSubview)
+        creatorApplicationPageViewController.didMove(toParent: self)
         view.addSubview(stackView)
     }
 
     func configureConstraints() {
         topLineView.snp.makeConstraints { $0.height.equalTo(1) }
-        jobCategoryPickerView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        [linkScrollView, introduceTextView].forEach { view in
-            view.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
-        introduceTextView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        linkStackView.snp.makeConstraints {
-            $0.edges.equalTo(linkScrollView.contentLayoutGuide)
-            $0.width.equalToSuperview()
-        }
         nextButton.snp.makeConstraints {
             $0.height.equalTo(40)
         }
@@ -199,32 +197,12 @@ private extension CreatorApplicationViewController {
     func configureNavigationItem() {
         navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
     }
-
-    func configureAddButtonAction() {
-        addLinkButton.addAction(
-            UIAction(handler: { [weak self] _ in
-                guard let self else { return }
-                let index = self.linkStackView.arrangedSubviews.count
-                let linkTextFieldView = CreatorApplicationTextFieldView(
-                    frame: CGRect(x: 0, y: 0, width: self.linkStackView.frame.width, height: 20)
-                )
-                linkTextFieldView.title = "링크\(index)"
-                linkTextFieldView.keyboardType = .URL
-                self.linkStackView.insertArrangedSubview(linkTextFieldView, at: index - 1)
-            }),
-            for: .touchUpInside
-        )
-    }
 }
 
 // Constants
 private extension CreatorApplicationViewController {
     enum Constants {
         static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
-        static let addLinkButtonTitle = NSAttributedString(
-            string: "링크 추가하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-        )
         static let nextButtonTitleToGoNext = NSAttributedString(
             string: "다음",
             attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]
@@ -233,6 +211,5 @@ private extension CreatorApplicationViewController {
             string: "확인",
             attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]
         )
-        static let introduceInputViewPlaceholder = "소개글을 작성해주세요."
     }
 }

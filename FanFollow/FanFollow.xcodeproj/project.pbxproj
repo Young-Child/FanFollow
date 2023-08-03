@@ -755,7 +755,6 @@
 				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
 				18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */,
 				18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */,
-				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1058,6 +1057,7 @@
 		EB3A90802A7B3E3F007F400A /* CreatorApplication */ = {
 			isa = PBXGroup;
 			children = (
+				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
 				EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */,
 				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
 				EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */,
