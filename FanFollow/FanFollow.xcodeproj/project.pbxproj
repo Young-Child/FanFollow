@@ -64,6 +64,7 @@
 		18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */; };
 		18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* BugReportCoordinator.swift */; };
 		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
+		18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18906B152A7BFB4D000D7715 /* Settings.bundle */; };
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
@@ -263,6 +264,7 @@
 		18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		18906B112A7BE946000D7715 /* BugReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportCoordinator.swift; sourceTree = "<group>"; };
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
+		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 		188CC3F72A4D7FD900BAB85A = {
 			isa = PBXGroup;
 			children = (
+				18906B152A7BFB4D000D7715 /* Settings.bundle */,
 				184E772C2A55D2850082E318 /* FanFollow.xctestplan */,
 				188CC4022A4D7FD900BAB85A /* FanFollow */,
 				18C1E5212A55488900A41AC5 /* NetworkServiceTests */,
@@ -1287,6 +1290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */,
 				3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */,
 				188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */,
 				188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */,
