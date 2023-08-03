@@ -135,6 +135,7 @@
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
 		3CF4CE8A2A7B794B0079E996 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */; };
 		3CF4CE8C2A7B85E70079E996 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */; };
+		3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
 		3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */; };
@@ -337,6 +338,7 @@
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
 		3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLinkViewController.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepositoryTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		3CFDF6C52A5E958600DE6109 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
 				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
 				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
+				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1447,6 +1450,7 @@
 				EBA8EB4A2A5F824E00998630 /* FetchUserInformationUseCase.swift in Sources */,
 				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
 				3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */,
+				3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
