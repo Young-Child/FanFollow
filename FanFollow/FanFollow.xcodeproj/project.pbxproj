@@ -65,6 +65,7 @@
 		18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* BugReportCoordinator.swift */; };
 		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
 		18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18906B152A7BFB4D000D7715 /* Settings.bundle */; };
+		18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */; };
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
@@ -265,6 +266,7 @@
 		18906B112A7BE946000D7715 /* BugReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportCoordinator.swift; sourceTree = "<group>"; };
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 		183EDDE52A72B05900F1490E /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
+				18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */,
 				1829B5132A714B4500D873DF /* SettingCoodinator.swift */,
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
@@ -1473,6 +1476,7 @@
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
+				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
 			);

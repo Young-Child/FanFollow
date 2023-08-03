@@ -50,6 +50,10 @@ private extension SettingCoordinator {
         case .evaluation:
             let coordinator = EvaluateAppCoordinator(navigationController: navigationController)
             return coordinator
+            
+        case .openSource:
+            let coordinator = OpenSourceCoordinator(navigationController: navigationController)
+            return coordinator
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }
