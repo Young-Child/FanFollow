@@ -187,6 +187,23 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
+// TextView Delegate
+extension UploadPhotoViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Constants.contentPlaceholder && textView.textColor == .systemGray4 {
+            textView.text = ""
+            textView.textColor = .label
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = Constants.contentPlaceholder
+            textView.textColor = .systemGray4
+        }
+    }
+}
+
 // Configure UI
 private extension UploadPhotoViewController {
     func configureNavgationBar() {
@@ -216,7 +233,12 @@ private extension UploadPhotoViewController {
         
         configureHierarchy()
         configureCollectionView()
+        configureTextFieldView()
         makeConstraints()
+    }
+    
+    func configureTextFieldView() {
+        contentsTextView.textView.delegate = self
     }
     
     func configureCollectionView() {
