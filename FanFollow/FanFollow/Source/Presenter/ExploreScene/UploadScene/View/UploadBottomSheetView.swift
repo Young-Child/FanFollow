@@ -23,6 +23,7 @@ final class UploadBottomSheetView: UIView {
     }
     
     private let photoButton = UIButton().then {
+        $0.tintColor = .label
         $0.layer.cornerRadius = 10
         $0.setTitle("사진", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -31,6 +32,7 @@ final class UploadBottomSheetView: UIView {
     }
     
     private let linkButton = UIButton().then {
+        $0.tintColor = .label
         $0.layer.cornerRadius = 10
         $0.setTitle("링크", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -94,6 +96,8 @@ private extension UploadBottomSheetView {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
+        
+        [photoButton, linkButton].forEach { $0.alignTextBelow() }
     }
     
     func configureHierarchy() {

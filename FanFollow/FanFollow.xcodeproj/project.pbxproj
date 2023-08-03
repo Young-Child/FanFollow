@@ -133,6 +133,7 @@
 		3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */; };
 		3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */; };
 		3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */; };
+		3CF4CE8A2A7B794B0079E996 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
 		3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */; };
@@ -333,6 +334,7 @@
 		3CE7628C2A6687DF00E1411E /* ExploreTapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTapItem.swift; sourceTree = "<group>"; };
 		3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabBarController.swift; sourceTree = "<group>"; };
 		3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessChatRoomUseCase.swift; sourceTree = "<group>"; };
+		3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepositoryTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		3CFDF6C52A5E958600DE6109 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				18EC06942A62724A006293B5 /* UIImageView + Extension.swift */,
 				18BD41F52A67B4D900060616 /* UILabel+Extension.swift */,
 				18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */,
+				3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1503,6 +1506,7 @@
 				1879BBDF2A69225200A64DD7 /* ProfileSettingViewModel.swift in Sources */,
 				18B6F50D2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift in Sources */,
 				3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */,
+				3CF4CE8A2A7B794B0079E996 /* UIButton+Extension.swift in Sources */,
 				3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */,
 				EBEB29EE2A728C760028270C /* ProfileFeedSectionItem.swift in Sources */,
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
