@@ -65,7 +65,7 @@ final class ExploreUseCaseTests: XCTestCase {
         // then
         let result = randomAllCreatorsObservable.toBlocking()
         
-        XCTAssertEqual(try? result.first()?.count, JobCategory.allCases.count)
+        XCTAssertEqual(try? result.first()?.count, JobCategory.allCases.count - 1)
         
         switch result.materialize() {
         case .completed:
