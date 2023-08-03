@@ -83,7 +83,43 @@ final class UploadPhotoViewController: UIViewController {
 // Bind
 extension UploadPhotoViewController {
     func bind() {
+        let output = bindingInput()
+        
         navigationButtonBind()
+        bindingView(output)
+    }
+    
+    func bindingView(_ output: UploadViewModel.Output) {
+        output.registerResult
+            .observe(on: MainScheduler.instance)
+            .bind {
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> UploadViewModel.Output {
+        let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
+        
+        return viewModel.transform(input: input)
+    }
+    
+    func configureRightButtonTapEvent() -> Observable<Upload> {
+        guard let rightBarButton = navigationItem.rightBarButtonItem else {
+            return .empty()
+        }
+        
+        return rightBarButton.rx.tap
+            .map { _ in
+                let data = self.registerImage.compactMap { $0.pngData() }
+                let upload = Upload(
+                    title: self.titleTextField.text,
+                    content: self.contentsTextView.textView.text,
+                    imageDatas: data,
+                    videoURL: nil
+                )
+                return upload
+            }
     }
     
     private func navigationButtonBind() {

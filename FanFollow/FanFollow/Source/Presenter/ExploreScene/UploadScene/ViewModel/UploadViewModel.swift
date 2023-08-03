@@ -9,7 +9,7 @@ import RxSwift
 
 final class UploadViewModel: ViewModel {
     struct Input {
-        var registerButtonTap: Observable<Post>
+        var registerButtonTap: Observable<Upload>
     }
     
     struct Output {
@@ -28,8 +28,10 @@ final class UploadViewModel: ViewModel {
             .flatMapLatest { uploadData in
                 return self.uploadUseCase
                     .upsertPost(
-                        userID: uploadData.userID, title: uploadData.title,
-                        content: uploadData.content, imageURLs: uploadData.imageURLs ?? [],
+                        userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
+                        title: uploadData.title ?? "",
+                        content: uploadData.content,
+                        imageDatas: uploadData.imageDatas,
                         videoURL: uploadData.videoURL
                     )
                     .andThen(Observable.just(()))
