@@ -148,6 +148,7 @@
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
+		EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
@@ -350,6 +351,7 @@
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
@@ -811,6 +813,7 @@
 				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
 				EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */,
 				EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */,
+				EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
+				EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
