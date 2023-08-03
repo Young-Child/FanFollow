@@ -46,6 +46,10 @@ private extension SettingCoordinator {
             let coordinator = BugReportCoordinator(navigationController: navigationController)
             coordinator.parentCoordinator = self
             return coordinator
+            
+        case .evaluation:
+            let coordinator = EvaluateAppCoordinator(navigationController: navigationController)
+            return coordinator
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }

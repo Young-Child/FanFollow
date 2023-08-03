@@ -63,6 +63,7 @@
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */; };
 		18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* BugReportCoordinator.swift */; };
+		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
@@ -261,6 +262,7 @@
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		18906B112A7BE946000D7715 /* BugReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportCoordinator.swift; sourceTree = "<group>"; };
+		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
 				18906B112A7BE946000D7715 /* BugReportCoordinator.swift */,
+				18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -1419,6 +1422,7 @@
 				EBC4E9902A55133000A1F6AE /* DefaultUserInformationRepository.swift in Sources */,
 				EBA8EB402A5D1B6100998630 /* Post.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
+				18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */,
 				EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */,
 				183EDDE02A72303700F1490E /* ProfileInputTextView.swift in Sources */,
 				EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */,
