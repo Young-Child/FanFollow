@@ -32,8 +32,7 @@ final class ExploreViewModel: ViewModel {
         
         let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
         
-        var jobAllcase = JobCategory.allCases
-        jobAllcase.removeLast()
+        let jobAllcase = JobCategory.allCases.filter { $0 != .unSetting }
         
         let jobCategoryObservable = convertCategorySectionModel(from: Observable.just(jobAllcase))
         let exploreSectionModel = Observable.combineLatest(
@@ -48,20 +47,6 @@ final class ExploreViewModel: ViewModel {
 
 // Convert Method & Constant
 private extension ExploreViewModel {
-    private enum Constant {
-        case creator(job: String)
-        case category
-        
-        var title: String {
-            switch self {
-            case .creator(let job):
-                return "추천 \(job) 크리에이터"
-            case .category:
-                return "카테고리로 보기"
-            }
-        }
-    }
-    
     func convertCreatorSectionModel(
         from observable: Observable<[(String, [Creator])]>
     ) -> Observable<[ExploreSectionModel]> {
@@ -70,11 +55,9 @@ private extension ExploreViewModel {
                 return !creators.isEmpty
             })
             .map { (job, creators) in
-                let sectionItem = creators.map {
-                    ExploreSectionItem.creator(nickName: $0.nickName, userID: $0.id)
-                }
-                
-                return ExploreSectionModel(title: Constant.creator(job: job).title, items: sectionItem)
+                let sectionItem = creators.map { ExploreSectionItem.generateCreator(with: $0) }
+                let title = String(format: Constants.recommendCreatorTitleFormat, job)
+                return ExploreSectionModel(title: title, items: sectionItem)
             }
         }
     }
@@ -87,7 +70,12 @@ private extension ExploreViewModel {
                 return ExploreSectionItem.category(job: jobCategory)
             }
             
-            return [ExploreSectionModel(title: Constant.category.title, items: sectionItem)]
+            return [ExploreSectionModel(title: Constants.categoryTitle, items: sectionItem)]
         }
+    }
+    
+    enum Constants {
+        static let recommendCreatorTitleFormat = "추천 %@ 크리에이터"
+        static let categoryTitle = "카테고리로 보기"
     }
 }

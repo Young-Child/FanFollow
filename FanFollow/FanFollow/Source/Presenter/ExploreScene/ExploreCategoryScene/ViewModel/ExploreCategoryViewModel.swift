@@ -103,7 +103,7 @@ private extension ExploreCategoryViewModel {
     
     func convertCreatorSectionModel(type: Constant, creators: [Creator]) -> ExploreSectionModel {
         let items = creators.map { creator in
-            return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id)
+            return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id, profileURL: creator.profileURL)
         }
         
         return ExploreSectionModel(title: type.title, items: items)

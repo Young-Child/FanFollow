@@ -30,7 +30,7 @@ final class CategoryCell: UICollectionViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        categoryLabel.layer.cornerRadius = 10
+        categoryLabel.layer.cornerRadius = rect.height / 2
         categoryLabel.clipsToBounds = true
     }
 }
@@ -38,7 +38,7 @@ final class CategoryCell: UICollectionViewCell {
 // UI Method
 extension CategoryCell {
     func configureCell(jobCategory: JobCategory) {
-        categoryLabel.text = jobCategory.categoryName
+        categoryLabel.text = "#" + jobCategory.categoryName
     }
 }
 
@@ -55,8 +55,7 @@ private extension CategoryCell {
     
     func makeConstraints() {
         categoryLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.edges.equalToSuperview()
         }
     }
 }

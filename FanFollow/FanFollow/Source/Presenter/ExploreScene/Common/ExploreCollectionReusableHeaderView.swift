@@ -9,7 +9,7 @@ import UIKit
 
 final class ExploreCollectionReusableHeaderView: UICollectionReusableView {
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20)
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textColor = .label
     }
     
@@ -43,9 +43,9 @@ private extension ExploreCollectionReusableHeaderView {
     
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.leading.equalToSuperview().offset(10)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
     }

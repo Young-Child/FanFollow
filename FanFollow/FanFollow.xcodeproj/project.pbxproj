@@ -61,6 +61,7 @@
 		188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */; };
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
+		18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */; };
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
@@ -68,7 +69,6 @@
 		18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32122A5C2A8E00F910B7 /* ViewModel.swift */; };
 		18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F52A67B4D900060616 /* UILabel+Extension.swift */; };
 		18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */; };
-		18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */; };
 		18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */; };
 		18C1E5232A55488900A41AC5 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5222A55488900A41AC5 /* NetworkServiceTests.swift */; };
 		18C1E5392A55717000A41AC5 /* StubURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5382A55717000A41AC5 /* StubURLSession.swift */; };
@@ -258,11 +258,11 @@
 		188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		18BD41F72A67BA3100060616 /* JobCategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCategoryPickerView.swift; sourceTree = "<group>"; };
-		18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		18BDA9842A62F25A00E00116 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		18C1E5202A55488900A41AC5 /* NetworkServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C1E5222A55488900A41AC5 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
@@ -718,8 +718,8 @@
 			isa = PBXGroup;
 			children = (
 				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
-				18BDA9822A62EF9F00E00116 /* ProfileSettingViewController.swift */,
 				18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */,
+				18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1462,8 +1462,7 @@
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
-				18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */,
-				18BDA9832A62EF9F00E00116 /* ProfileSettingViewController.swift in Sources */,
+				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

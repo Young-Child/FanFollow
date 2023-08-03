@@ -51,6 +51,12 @@ final class ProfileFeedViewController: UIViewController {
         configureDataSource()
         binding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     private func configureDataSource() {
         dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
