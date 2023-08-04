@@ -149,6 +149,7 @@ extension UploadLinkViewController {
     }
 }
 
+// TextField Method & LinkView Display Method
 extension UploadLinkViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField != linkTextField { return }
@@ -163,18 +164,26 @@ extension UploadLinkViewController: UITextFieldDelegate {
         let metaDataProvider = LPMetadataProvider()
         
         metaDataProvider.startFetchingMetadata(for: url) { metaData, error in
-            if error != nil { return }
-            guard let metaData = metaData else { return }
+            guard let metaData = metaData, error == nil else {
+                self.configureDefaultLinkView()
+                return
+            }
             
             self.configureLinkView(metaData: metaData)
         }
     }
     
-    func configureLinkView(metaData: LPLinkMetadata) {
+    private func configureLinkView(metaData: LPLinkMetadata) {
         let linkView = LPLinkView(metadata: metaData)
         
         DispatchQueue.main.async {
-            self.linkPreView.showLinkView(view: linkView)
+            self.linkPreView.showLinkView(linkView)
+        }
+    }
+    
+    private func configureDefaultLinkView() {
+        DispatchQueue.main.async {
+            self.linkPreView.showDefaultImage()
         }
     }
 }

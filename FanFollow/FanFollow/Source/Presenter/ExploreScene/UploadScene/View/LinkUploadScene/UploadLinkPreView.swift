@@ -28,15 +28,21 @@ final class UploadLinkPreView: UIView {
 
 // Link Method
 extension UploadLinkPreView {
-    func showLinkView(view: UIView) {
+    func showLinkView(_ linkView: UIView) {
         defaultImageView.isHidden = true
         
-        view.subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
-        addSubview(view)
+        subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
+        addSubview(linkView)
         
-        view.snp.makeConstraints {
+        linkView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    func showDefaultImage() {
+        subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
+        
+        defaultImageView.isHidden = false
     }
 }
 
