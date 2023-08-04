@@ -52,3 +52,15 @@ private extension UploadLinkPreView {
         }
     }
 }
+
+extension UploadLinkPreView {
+    func showLinkView(view: UIView) {
+        defaultImageView.isHidden = true
+        view.subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
+
+        addSubview(view)
+        view.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
