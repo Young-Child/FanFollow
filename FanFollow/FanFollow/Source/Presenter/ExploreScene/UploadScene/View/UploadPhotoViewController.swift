@@ -28,7 +28,7 @@ final class UploadPhotoViewController: UIViewController {
     
     private let titleTextField = UnderLineTextField().then {
         $0.leadPadding(5)
-        $0.placeholder = Constants.content
+        $0.placeholder = Constants.titlePlaceholder
         $0.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
@@ -44,7 +44,7 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let uploadStackView = UIStackView().then {
-        $0.spacing = 10
+        $0.spacing = 8
         $0.alignment = .fill
         $0.distribution = .fill
         $0.axis = .vertical
@@ -275,8 +275,8 @@ private extension UploadPhotoViewController {
     enum Constants {
         static let title = "제목"
         static let content = "내용"
-        static let titlePlaceholder = "제목을 작성해보세요."
-        static let contentPlaceholder = "글을 작성해보세요."
+        static let titlePlaceholder = "제목을 입력해주세요."
+        static let contentPlaceholder = "내용을 입력해주세요."
         static let navigationTitle = "게시물 작성"
         static let register = "완료"
     }
