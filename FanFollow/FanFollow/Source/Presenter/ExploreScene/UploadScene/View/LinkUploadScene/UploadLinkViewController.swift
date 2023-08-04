@@ -127,6 +127,26 @@ extension UploadLinkViewController {
             return .empty()
         }
         
+        // UIComponent Contents Button Bind
+        let isTitleNotEmpty = titleTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        
+        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
+            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+        }
+        
+        let isLinkNotEmpty = linkTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        
+        Observable<Bool>.combineLatest(
+            isTitleNotEmpty,
+            isContentNotEmpty,
+            isLinkNotEmpty,
+            resultSelector: {
+                return $0 && $1 && $2
+            }
+        )
+        .bind(to: rightBarButton.rx.isEnabled)
+        .disposed(by: disposeBag)
+        
         return rightBarButton.rx.tap
             .map { _ in
                 let upload = Upload(
@@ -152,8 +172,8 @@ extension UploadLinkViewController {
 // TextField Method & LinkView Display Method
 extension UploadLinkViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField != linkTextField { return }
-        var linkText = textField.text ?? ""
+        guard var linkText = linkTextField.text else { return }
+        if textField != linkTextField || linkText.isEmpty { return }
         
         if !linkText.contains(Constants.http) {
             linkText = Constants.http + linkText

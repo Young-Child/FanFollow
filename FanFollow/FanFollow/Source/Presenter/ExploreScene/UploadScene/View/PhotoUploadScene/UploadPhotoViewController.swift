@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class UploadPhotoViewController: UIViewController {
     // View Properties
@@ -54,7 +55,14 @@ final class UploadPhotoViewController: UIViewController {
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
     private let disposeBag = DisposeBag()
-    private var registerImage: [UIImage] = []
+    private var registerImage: [UIImage] = [] {
+        willSet {
+            imageCount.accept(newValue.count)
+        }
+    }
+    
+    // Property
+    private let imageCount = BehaviorRelay(value: 0)
     
     // Initializer
     init(viewModel: UploadViewModel) {
@@ -111,6 +119,24 @@ extension UploadPhotoViewController {
         guard let rightBarButton = navigationItem.rightBarButtonItem else {
             return .empty()
         }
+        
+        // UIComponent Contents Button Bind
+        let isTitleNotEmpty = titleTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        
+        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
+            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+        }
+        
+        Observable<Bool>.combineLatest(
+            isTitleNotEmpty,
+            isContentNotEmpty,
+            imageCount.map { $0 != .zero },
+            resultSelector: {
+                return $0 && $1 && $2
+            }
+        )
+        .bind(to: rightBarButton.rx.isEnabled)
+        .disposed(by: disposeBag)
         
         return rightBarButton.rx.tap
             .map { _ in
