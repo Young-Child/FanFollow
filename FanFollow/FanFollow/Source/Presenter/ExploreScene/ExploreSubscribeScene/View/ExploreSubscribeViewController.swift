@@ -11,7 +11,7 @@ import RxSwift
 final class ExploreSubscribeViewController: UIViewController {
     // View Property
     private let subscribeTableView = UITableView().then {
-        $0.separatorColor = .lightGray
+        $0.separatorStyle = .none
         $0.backgroundColor = .clear
         $0.register(CreatorListCell.self, forCellReuseIdentifier: CreatorListCell.reuseIdentifier)
     }

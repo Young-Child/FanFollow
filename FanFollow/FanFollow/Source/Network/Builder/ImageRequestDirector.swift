@@ -48,6 +48,19 @@ struct ImageRequestDirector {
             .set(body: .multipart(data: image))
             .build()
     }
+    
+    func readImageList(path: String, keyword: String) -> URLRequest {
+        return builder
+            .set(path: SupabaseConstants.Constants.path + "list/" + path)
+            .set(headers: [
+                "Content-Type": "application/json",
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+            ])
+            .set(method: .post)
+            .set(body: .json(values: ["prefix": keyword]))
+            .build()
+    }
 }
 
 private extension SupabaseConstants {
