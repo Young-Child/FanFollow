@@ -1008,13 +1008,9 @@
 		3CCEC37B2A7892F0001753DF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
-				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
-				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
-				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
-				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
-				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
-				3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */,
+				3CF4CE912A7CC7DD0079E996 /* BottomSheetScene */,
+				3CF4CE922A7CC80A0079E996 /* PhotoUploadScene */,
+				3CF4CE932A7CC8150079E996 /* LinkUploadScene */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1025,6 +1021,34 @@
 				3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CF4CE912A7CC7DD0079E996 /* BottomSheetScene */ = {
+			isa = PBXGroup;
+			children = (
+				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
+				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
+			);
+			path = BottomSheetScene;
+			sourceTree = "<group>";
+		};
+		3CF4CE922A7CC80A0079E996 /* PhotoUploadScene */ = {
+			isa = PBXGroup;
+			children = (
+				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
+				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
+				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
+			);
+			path = PhotoUploadScene;
+			sourceTree = "<group>";
+		};
+		3CF4CE932A7CC8150079E996 /* LinkUploadScene */ = {
+			isa = PBXGroup;
+			children = (
+				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
+				3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */,
+			);
+			path = LinkUploadScene;
 			sourceTree = "<group>";
 		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
