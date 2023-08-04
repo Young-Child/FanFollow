@@ -17,7 +17,7 @@ protocol SheetButtonDelegate: AnyObject {
 final class UploadBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
-        $0.text = "게시물 업로드"
+        $0.text = Constants.title
         $0.font = UIFont.systemFont(ofSize: 17)
         $0.textColor = .black
     }
@@ -25,7 +25,7 @@ final class UploadBottomSheetView: UIView {
     private let photoButton = UIButton().then {
         $0.tintColor = .label
         $0.layer.cornerRadius = 10
-        $0.setTitle("사진", for: .normal)
+        $0.setTitle(Constants.photo, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .systemGray6
         $0.setImage(UIImage(systemName: "photo.fill.on.rectangle.fill"), for: .normal)
@@ -34,7 +34,7 @@ final class UploadBottomSheetView: UIView {
     private let linkButton = UIButton().then {
         $0.tintColor = .label
         $0.layer.cornerRadius = 10
-        $0.setTitle("링크", for: .normal)
+        $0.setTitle(Constants.link, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .systemGray6
         $0.setImage(UIImage(systemName: "link.badge.plus"), for: .normal)
@@ -49,7 +49,7 @@ final class UploadBottomSheetView: UIView {
     
     private let cancelButton = UIButton().then {
         $0.layer.cornerRadius = 10
-        $0.setTitle("취소", for: .normal)
+        $0.setTitle(Constants.cancel, for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(named: "AccentColor")
     }
@@ -124,5 +124,14 @@ private extension UploadBottomSheetView {
             $0.trailing.equalToSuperview().offset(-20)
             $0.height.equalTo(40)
         }
+    }
+}
+
+extension UploadBottomSheetView {
+    enum Constants {
+        static let title = "게시물 업로드"
+        static let photo = "사진"
+        static let link = "링크"
+        static let cancel = "취소"
     }
 }

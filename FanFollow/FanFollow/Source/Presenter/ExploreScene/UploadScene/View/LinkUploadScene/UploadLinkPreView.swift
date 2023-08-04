@@ -8,11 +8,13 @@
 import UIKit
 
 final class UploadLinkPreView: UIView {
+    // View Properties
     private let defaultImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.image = UIImage(systemName: "link")
     }
     
+    // Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,6 +26,21 @@ final class UploadLinkPreView: UIView {
     }
 }
 
+// Link Method
+extension UploadLinkPreView {
+    func showLinkView(view: UIView) {
+        defaultImageView.isHidden = true
+        
+        view.subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
+        addSubview(view)
+        
+        view.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
+
+// Configure UI
 private extension UploadLinkPreView {
     func configureUI() {
         backgroundColor = .systemGray5
@@ -49,18 +66,6 @@ private extension UploadLinkPreView {
             $0.height.width.equalTo(70)
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
-        }
-    }
-}
-
-extension UploadLinkPreView {
-    func showLinkView(view: UIView) {
-        defaultImageView.isHidden = true
-        view.subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
-
-        addSubview(view)
-        view.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
