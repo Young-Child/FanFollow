@@ -53,8 +53,23 @@ private extension SettingCoordinator {
         switch viewType {
         case .profile:
             return ProfileSettingCoordinator(navigationController: navigationController)
+
+        case .bugReport:
+            let coordinator = BugReportCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
+            
+        case .evaluation:
+            let coordinator = EvaluateAppCoordinator(navigationController: navigationController)
+            return coordinator
+            
+        case .openSource:
+            let coordinator = OpenSourceCoordinator(navigationController: navigationController)
+            return coordinator
+          
         case .creator:
             return CreatorApplicationCoordinator(navigationController: navigationController)
+
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }

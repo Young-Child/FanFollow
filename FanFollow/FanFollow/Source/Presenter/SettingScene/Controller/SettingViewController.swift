@@ -84,10 +84,16 @@ private extension SettingViewController {
         settingTableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         
-        settingTableView.rx.modelSelected(SettingSectionItem.self)
-            .asDriver()
-            .drive(onNext: { self.settingTabBarDelegate?.settingController(self, didTapPresent: $0) })
-            .disposed(by: disposeBag)
+        Observable.zip(
+            settingTableView.rx.itemSelected,
+            settingTableView.rx.modelSelected(SettingSectionItem.self)
+        )
+        .asDriver(onErrorJustReturn: (IndexPath(), SettingSectionItem.base(title: "'", action: .profile)))
+        .drive(onNext: { indexPath, item in
+            self.settingTableView.deselectRow(at: indexPath, animated: true)
+            self.settingTabBarDelegate?.settingController(self, didTapPresent: item)
+        })
+        .disposed(by: disposeBag)
     }
     
     func bindingInput() -> SettingViewModel.Output {
