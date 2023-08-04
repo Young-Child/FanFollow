@@ -32,6 +32,7 @@ final class ProfileFeedViewController: UIViewController {
     private let viewType: ViewType
     private var dataSource: DataSource!
 
+    // Initializer
     init(viewModel: ProfileFeedViewModel, viewType: ViewType) {
         self.viewModel = viewModel
         self.viewType = viewType

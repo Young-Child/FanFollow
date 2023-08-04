@@ -137,8 +137,23 @@
 		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
+		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
+		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
+		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
+		EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */; };
+		EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */; };
+		EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */; };
+		EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */; };
+		EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */; };
+		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
+		EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */; };
+		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
+		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
+		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
+		EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */; };
+		EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
@@ -330,8 +345,23 @@
 		EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCaseTests.swift; sourceTree = "<group>"; };
+		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
+		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
+		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
+		EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCaseTests.swift; sourceTree = "<group>"; };
+		EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewController.swift; sourceTree = "<group>"; };
+		EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationCoordinator.swift; sourceTree = "<group>"; };
+		EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStepView.swift; sourceTree = "<group>"; };
+		EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldView.swift; sourceTree = "<group>"; };
+		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationPageViewController.swift; sourceTree = "<group>"; };
+		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
+		EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorLinksTableViewController.swift; sourceTree = "<group>"; };
+		EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorIntroduceViewController.swift; sourceTree = "<group>"; };
+		EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldCell.swift; sourceTree = "<group>"; };
+		EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
@@ -518,6 +548,7 @@
 				1829B5132A714B4500D873DF /* SettingCoodinator.swift */,
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
+				EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -528,6 +559,7 @@
 				1846EE532A604CA900437030 /* SettingViewModel.swift */,
 				1879BBDE2A69225200A64DD7 /* ProfileSettingViewModel.swift */,
 				18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */,
+				EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -688,6 +720,7 @@
 				3CB6FE592A625B6000BE1655 /* SearchCreatorUseCase.swift */,
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
+				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -710,6 +743,7 @@
 				EBEB29EB2A728C570028270C /* ProfileFeedSectionModel.swift */,
 				EBEB29ED2A728C760028270C /* ProfileFeedSectionItem.swift */,
 				187480692A781041000B6C2E /* PostSectionModel.swift */,
+				EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -717,6 +751,7 @@
 		18BDA9812A62EF8A00E00116 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EB3A90802A7B3E3F007F400A /* CreatorApplication */,
 				18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */,
 				18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */,
 				18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */,
@@ -785,6 +820,11 @@
 				187949C52A5EA4B500ADA01A /* ProfileThumbnailCell.swift */,
 				18513FD72A5FB01E00580A1A /* SettingBaseCell.swift */,
 				18513FDC2A5FB55500580A1A /* SettingSectionHeaderView.swift */,
+				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
+				EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */,
+				EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */,
+				EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */,
+				EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1014,6 +1054,18 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		EB3A90802A7B3E3F007F400A /* CreatorApplication */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
+				EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */,
+				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
+				EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */,
+				EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */,
+			);
+			path = CreatorApplication;
+			sourceTree = "<group>";
+		};
 		EB5668CD2A56B0EA007A3860 /* RepositoryTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1100,7 @@
 				3CC1D49B2A61161100713FAF /* AccessChatRoomUseCaseTests.swift */,
 				3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */,
 				3CB6FE5B2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift */,
+				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1372,6 +1425,7 @@
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				18DD39962A76440D00AD13BE /* PostCreatorHeaderView.swift in Sources */,
+				EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */,
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
@@ -1398,6 +1452,7 @@
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
+				EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */,
 				1846EE542A604CA900437030 /* SettingViewModel.swift in Sources */,
 				3CFDF6D02A5EA1CD00DE6109 /* ExploreUseCase.swift in Sources */,
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
@@ -1413,6 +1468,7 @@
 				EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */,
 				3CFDF6C62A5E958600DE6109 /* User.swift in Sources */,
 				EBC4E9902A55133000A1F6AE /* DefaultUserInformationRepository.swift in Sources */,
+				EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */,
 				EBA8EB402A5D1B6100998630 /* Post.swift in Sources */,
 				1839746F2A52A29D00F0101A /* APIError.swift in Sources */,
 				EBA8EB462A5ED04100998630 /* FetchCreatorInformationUseCase.swift in Sources */,
@@ -1423,19 +1479,26 @@
 				1874806A2A781041000B6C2E /* PostSectionModel.swift in Sources */,
 				EBC4E98E2A54F22700A1F6AE /* UserInformationRepository.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL+Extension.swift in Sources */,
+				EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */,
 				EBE33E512A52E6BB00C11188 /* UserInformationDTO.swift in Sources */,
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
 				180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */,
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
 				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
+				EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */,
+				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
+				EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
+				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
 				3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
+				EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */,
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
+				EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
@@ -1444,8 +1507,10 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
+				EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
+				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
 				3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */,
 				1879BBDF2A69225200A64DD7 /* ProfileSettingViewModel.swift in Sources */,
@@ -1459,7 +1524,9 @@
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
+				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
+				EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
 				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
@@ -1493,6 +1560,7 @@
 				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
+				EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */,
 				EBA8EB6F2A601C8700998630 /* StubUserInformationRepository.swift in Sources */,
 				EBA8EB6B2A5FC18000998630 /* StubLikeRepository.swift in Sources */,
 			);
