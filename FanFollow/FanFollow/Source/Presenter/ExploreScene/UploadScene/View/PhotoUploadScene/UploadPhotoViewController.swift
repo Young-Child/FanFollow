@@ -51,6 +51,9 @@ final class UploadPhotoViewController: UIViewController {
         $0.axis = .vertical
     }
     
+    private let contentView = UIView()
+    private let scrollView = UIScrollView()
+    
     // Properties
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
@@ -60,8 +63,6 @@ final class UploadPhotoViewController: UIViewController {
             imageCount.accept(newValue.count)
         }
     }
-    
-    // Property
     private let imageCount = BehaviorRelay(value: 0)
     
     // Initializer
@@ -97,7 +98,21 @@ extension UploadPhotoViewController {
         let output = bindingInput()
         
         navigationButtonBind()
+        bindingKeyboardHeight()
         bindingView(output)
+    }
+    
+    func bindingKeyboardHeight() {
+        Observable.of(
+            Notification.keyboardWillShow(),
+            Notification.keyboardWillHide()
+        )
+        .merge()
+        .asDriver(onErrorJustReturn: .zero)
+        .drive {
+            self.scrollView.contentInset.bottom = $0
+        }
+        .disposed(by: disposeBag)
     }
     
     func bindingView(_ output: UploadViewModel.Output) {
@@ -276,12 +291,25 @@ private extension UploadPhotoViewController {
     func configureHierarchy() {
         [titleLabel, titleTextField, contentsLabel, contentsTextView]
             .forEach(uploadStackView.addArrangedSubview(_:))
-        [photoCollectionView, uploadStackView].forEach(view.addSubview(_:))
+        [photoCollectionView, uploadStackView].forEach(contentView.addSubview(_:))
+        
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
     }
     
     func makeConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.low)
+        }
+        
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
+            $0.top.equalToSuperview().offset(10)
             $0.height.equalTo(UIScreen.main.bounds.width / 2)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
@@ -291,7 +319,7 @@ private extension UploadPhotoViewController {
             $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.bottom.lessThanOrEqualToSuperview()
         }
     }
 }

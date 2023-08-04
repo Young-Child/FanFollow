@@ -67,6 +67,9 @@ final class UploadLinkViewController: UIViewController {
         $0.axis = .vertical
     }
     
+    private let contentView = UIView()
+    private let scrollView = UIScrollView()
+    
     // Properties
     weak var coordinator: UploadCoordinator?
     private let viewModel: UploadViewModel
@@ -104,7 +107,21 @@ extension UploadLinkViewController {
         let output = bindingInput()
         
         navigationButtonBind()
+        bindingKeyboardHeight()
         bindingView(output)
+    }
+    
+    func bindingKeyboardHeight() {
+        Observable.of(
+            Notification.keyboardWillShow(),
+            Notification.keyboardWillHide()
+        )
+        .merge()
+        .asDriver(onErrorJustReturn: .zero)
+        .drive {
+            self.scrollView.contentInset.bottom = $0
+        }
+        .disposed(by: disposeBag)
     }
     
     func bindingView(_ output: UploadViewModel.Output) {
@@ -262,17 +279,29 @@ private extension UploadLinkViewController {
         linkTextField.delegate = self
     }
     
-    
     func configureHierarchy() {
         [linkLabel, linkPreView, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
         [titleLabel, titleTextField].forEach(titleStackView.addArrangedSubview(_:))
         [contentsLabel, contentsTextView].forEach(contentsStackView.addArrangedSubview(_:))
-        [titleStackView, linkStackView, contentsStackView].forEach(view.addSubview(_:))
+        [titleStackView, linkStackView, contentsStackView].forEach(contentView.addSubview(_:))
+        
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
     }
     
     func makeConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.low)
+        }
+        
         titleStackView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
         }
@@ -287,6 +316,7 @@ private extension UploadLinkViewController {
             $0.top.equalTo(linkStackView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.lessThanOrEqualToSuperview()
         }
 
         linkPreView.snp.makeConstraints {
