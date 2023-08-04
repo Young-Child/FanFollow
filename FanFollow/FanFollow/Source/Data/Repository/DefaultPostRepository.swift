@@ -37,7 +37,7 @@ struct DefaultPostRepository: PostRepository {
         createdDate: Date,
         title: String,
         content: String,
-        imageURLs: [String]?,
+        imageURLs: [String]? = nil,
         videoURL: String?
     ) -> Completable {
         let postItem = PostDTO(

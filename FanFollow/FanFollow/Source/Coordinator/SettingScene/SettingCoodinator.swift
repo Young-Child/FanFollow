@@ -29,7 +29,19 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentPostBottomViewController() {
-        //TODO: - 추후 구현
+        let coordinator = UploadCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.parentCoordinator = self
+        
+        coordinator.start()
+    }
+    
+    func removeChildCoordinator(_ coordinator: Coordinator) {
+        for (index, targetCoordinator) in childCoordinators.enumerated() {
+            if targetCoordinator === coordinator {
+                childCoordinators.remove(at: index)
+            }
+        }
     }
 }
 
