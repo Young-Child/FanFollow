@@ -156,6 +156,7 @@ extension UploadLinkViewController: UITextFieldDelegate {
         
         if !linkText.contains(Constants.http) {
             linkText = Constants.http + linkText
+            textField.text = linkText
         }
         
         guard let url = URL(string: linkText) else { return }
