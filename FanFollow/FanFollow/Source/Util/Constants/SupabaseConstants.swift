@@ -24,6 +24,7 @@ enum SupabaseConstants {
         static let range = "Range"
         static let contentType = "Content-Type"
         static let json = "application/json"
+        static let png = "image/png"
         static let prefer = "Prefer"
     }
 }

@@ -14,10 +14,17 @@ protocol SettingTabBarDelegate: AnyObject {
 }
 
 final class SettingTabBarController: TopTabBarController<SettingTabItem> {
-    private let postButton = UIButton().then {
+    private let uploadButton = UIButton().then {
         $0.setImage(UIImage(systemName: "plus"), for: .normal)
         $0.tintColor = .label
         $0.backgroundColor = .clear
+    }
+    
+    override var selectedIndex: Int {
+        willSet {
+            let buttonHidden = newValue == .zero
+            uploadButton.isHidden = buttonHidden
+        }
     }
     
     weak var coordinator: SettingCoordinator?
@@ -65,7 +72,7 @@ extension SettingTabBarController: SettingTabBarDelegate {
 // Binding
 private extension SettingTabBarController {
     func bindPostButton() {
-        postButton.rx.tap
+        uploadButton.rx.tap
             .bind { _ in
                 self.coordinator?.presentPostBottomViewController()
             }
@@ -81,11 +88,11 @@ private extension SettingTabBarController {
     }
     
     func configureHierarchy() {
-        view.addSubview(postButton)
+        view.addSubview(uploadButton)
     }
     
     func makeConstraints() {
-        postButton.snp.makeConstraints {
+        uploadButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             $0.trailing.equalToSuperview().offset(-20)
         }
