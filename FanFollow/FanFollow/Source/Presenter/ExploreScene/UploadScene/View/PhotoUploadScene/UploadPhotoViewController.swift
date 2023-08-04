@@ -116,7 +116,7 @@ extension UploadPhotoViewController {
             .map { _ in
                 let data = self.registerImage.compactMap { $0.pngData() }
                 let upload = Upload(
-                    title: self.titleTextField.text,
+                    title: self.titleTextField.text ?? "",
                     content: self.contentsTextView.textView.text,
                     imageDatas: data,
                     videoURL: nil

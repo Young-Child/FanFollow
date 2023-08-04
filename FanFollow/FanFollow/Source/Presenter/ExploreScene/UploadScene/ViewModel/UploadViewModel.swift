@@ -28,11 +28,8 @@ final class UploadViewModel: ViewModel {
             .flatMapLatest { uploadData in
                 return self.uploadUseCase
                     .upsertPost(
-                        userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-                        title: uploadData.title ?? "",
-                        content: uploadData.content,
-                        imageDatas: uploadData.imageDatas,
-                        videoURL: uploadData.videoURL
+                        uploadData,
+                        userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
                     )
                     .andThen(Observable.just(()))
             }

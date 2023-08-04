@@ -130,7 +130,7 @@ extension UploadLinkViewController {
         return rightBarButton.rx.tap
             .map { _ in
                 let upload = Upload(
-                    title: self.titleTextField.text,
+                    title: self.titleTextField.text ?? "",
                     content: self.contentsTextView.textView.text,
                     imageDatas: [],
                     videoURL: self.linkTextField.text

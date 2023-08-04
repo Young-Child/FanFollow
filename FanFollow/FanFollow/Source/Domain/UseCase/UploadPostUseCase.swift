@@ -10,10 +10,7 @@ import Foundation
 import RxSwift
 
 protocol UploadPostUseCase: AnyObject {
-    func upsertPost(
-        userID: String, title: String,
-        content: String, imageDatas: [Data], videoURL: String?
-    ) -> Completable
+    func upsertPost(_ upload: Upload, userID: String) -> Completable
 }
 
 final class DefaultUploadPostUseCase: UploadPostUseCase {
@@ -39,23 +36,19 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         return results
     }
     
-    func upsertPost(
-        userID: String, title: String,
-        content: String, imageDatas: [Data],
-        videoURL: String?
-    ) -> Completable {
+    func upsertPost(_ upload: Upload, userID: String) -> Completable {
         let postID = UUID().uuidString.lowercased()
         let result: Completable
         
-        if videoURL == nil {
-            result = uploadImages(postID: postID, imageDatas: imageDatas)
+        if upload.videoURL == nil {
+            result = uploadImages(postID: postID, imageDatas: upload.imageDatas)
                 .flatMap { _ in
                     return self.postRepository.upsertPost(
                         postID: postID,
                         userID: userID,
                         createdDate: Date(),
-                        title: title,
-                        content: content,
+                        title: upload.title,
+                        content: upload.content,
                         imageURLs: [],
                         videoURL: nil
                     )
@@ -66,10 +59,10 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
                 postID: postID,
                 userID: userID,
                 createdDate: Date(),
-                title: title,
-                content: content,
+                title: upload.title,
+                content: upload.content,
                 imageURLs: [],
-                videoURL: videoURL
+                videoURL: upload.videoURL
             )
         }
         

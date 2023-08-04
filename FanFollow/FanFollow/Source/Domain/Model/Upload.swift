@@ -8,7 +8,7 @@
 import UIKit
 
 struct Upload {
-    let title: String?
+    let title: String
     let content: String
     let imageDatas: [Data]
     let videoURL: String?
