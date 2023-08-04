@@ -41,8 +41,12 @@ class UploadCoordinator: Coordinator {
             controller.hidesBottomBarWhenPushed = true
             
             navigationController.pushViewController(controller, animated: false)
-        default:
-            return
+        case .link:
+            let controller = UploadLinkViewController(viewModel: viewModel)
+            controller.coordinator = self
+            controller.hidesBottomBarWhenPushed = true
+            
+            navigationController.pushViewController(controller, animated: false)
         }
     }
     
