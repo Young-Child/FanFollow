@@ -52,7 +52,10 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let contentView = UIView()
-    private let scrollView = UIScrollView()
+    private let scrollView = UIScrollView().then {
+        $0.keyboardDismissMode = .interactive
+        $0.showsVerticalScrollIndicator = false
+    }
     
     // Properties
     weak var coordinator: UploadCoordinator?
