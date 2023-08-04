@@ -44,7 +44,7 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let uploadStackView = UIStackView().then {
-        $0.spacing = 8
+        $0.spacing = 16
         $0.alignment = .fill
         $0.distribution = .fill
         $0.axis = .vertical
@@ -255,14 +255,14 @@ private extension UploadPhotoViewController {
     
     func makeConstraints() {
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.height.equalTo(240)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
+            $0.height.equalTo(UIScreen.main.bounds.width / 2)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
         }
         
         uploadStackView.snp.makeConstraints {
-            $0.top.equalTo(photoCollectionView.snp.bottom).offset(10)
+            $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-10)
             $0.bottom.equalToSuperview().offset(-10)
