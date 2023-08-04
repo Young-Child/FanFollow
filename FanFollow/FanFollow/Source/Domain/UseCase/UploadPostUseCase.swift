@@ -26,13 +26,7 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         self.imageRepository = imageRepository
     }
     
-    func upsertPost(
-        userID: String, title: String,
-        content: String, imageDatas: [Data],
-        videoURL: String?
-    ) -> Completable {
-        let postID = UUID().uuidString.lowercased()
-        
+    private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<[Never]> {
         let results = Observable.from(imageDatas).enumerated()
             .flatMap { index, item in
                 let path = "PostImages/\(postID)/\(index + 1).png"
@@ -41,19 +35,44 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
             }
             .toArray()
             .asObservable()
-            .flatMap { _ in
-                return self.postRepository.upsertPost(
-                    postID: postID,
-                    userID: userID,
-                    createdDate: Date(),
-                    title: title,
-                    content: content,
-                    imageURLs: [],
-                    videoURL: videoURL
-                )
-            }
         
         return results
-            .asCompletable()
+    }
+    
+    func upsertPost(
+        userID: String, title: String,
+        content: String, imageDatas: [Data],
+        videoURL: String?
+    ) -> Completable {
+        let postID = UUID().uuidString.lowercased()
+        let result: Completable
+        
+        if videoURL == nil {
+            result = uploadImages(postID: postID, imageDatas: imageDatas)
+                .flatMap { _ in
+                    return self.postRepository.upsertPost(
+                        postID: postID,
+                        userID: userID,
+                        createdDate: Date(),
+                        title: title,
+                        content: content,
+                        imageURLs: [],
+                        videoURL: nil
+                    )
+                }
+                .asCompletable()
+        } else {
+            result = self.postRepository.upsertPost(
+                postID: postID,
+                userID: userID,
+                createdDate: Date(),
+                title: title,
+                content: content,
+                imageURLs: [],
+                videoURL: videoURL
+            )
+        }
+        
+        return result
     }
 }
