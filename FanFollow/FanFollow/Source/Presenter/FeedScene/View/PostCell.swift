@@ -117,11 +117,10 @@ final class PostCell: UITableViewCell {
 
 // Setting UI Data
 extension PostCell {
-    func configure(with post: Post, delegate: PostCellDelegate? = nil, isHiddenHeader: Bool = false) {
+    func configure(with post: Post, delegate: PostCellDelegate? = nil) {
         self.post = post
         self.delegate = delegate
         
-        creatorHeaderView.isHidden = isHiddenHeader
         creatorHeaderView.configure(
             userID: post.userID,
             nickName: post.nickName,

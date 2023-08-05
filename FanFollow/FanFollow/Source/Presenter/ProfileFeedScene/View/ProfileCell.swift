@@ -19,7 +19,7 @@ final class ProfileCell: UITableViewCell {
         imageView.layer.backgroundColor = Constants.creatorImageViewBackgroundColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 25
+        imageView.layer.cornerRadius = 40
     }
 
     private let creatorStackView = UIStackView().then { stackView in
@@ -30,7 +30,7 @@ final class ProfileCell: UITableViewCell {
 
     private let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
     }
 
     private let followerCountLabel = UILabel().then { label in
@@ -49,15 +49,16 @@ final class ProfileCell: UITableViewCell {
         }
         button.setAttributedTitle(Constants.followButtonText, for: .normal)
         button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
         return button
     }()
 
     private let introduceLabel = UILabel().then { label in
         label.numberOfLines = Constants.unexpandedNumberOfLines
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .light)
     }
 
-    private weak var delegate: ProfileCellDelegate?
+    weak var delegate: ProfileCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -76,38 +77,27 @@ final class ProfileCell: UITableViewCell {
 
 // UI Method
 extension ProfileCell {
-    func configure(
-        with creator: Creator,
-        followerCount: Int,
-        isFollow: Bool,
-        delegate: ProfileCellDelegate? = nil,
-        followButtonIsHidden: Bool
-    ) {
-        let id = creator.id
-        let url = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(id)/profileImage.png"
-        creatorImageView.setImageProfileImage(to: url, for: id)
-
-        creatorNickNameLabel.text = creator.nickName
-        configureFollowerCountLabel(count: followerCount)
-
-        let followButtonTitle = isFollow ? Constants.unfollowButtonText : Constants.followButtonText
-        followButton.setAttributedTitle(followButtonTitle, for: .normal)
-        followButton.isHidden = followButtonIsHidden
-
-        introduceLabel.text = creator.introduce
-
-        self.delegate = delegate
+    func configure(with profile: Profile, viewType: ProfileFeedViewController.ViewType) {
+        creatorImageView.setImageProfileImage(
+            to: profile.creator.profileURL,
+            for: profile.creator.id
+        )
+        
+        creatorNickNameLabel.text = profile.creator.nickName
+        configureFollowerCountLabel(count: profile.followersCount)
+        followButton.isHidden = (viewType == .feedManage)
+        introduceLabel.text = profile.creator.introduce
     }
-
+    
     private func configureFollowerCountLabel(count: Int) {
         let attributedText = [
             NSAttributedString(
                 string: "팔로워 ",
-                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+                attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
             ),
             NSAttributedString(
                 string: "\(count)명",
-                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold),
                              .foregroundColor: Constants.followerCountLabelTextColor]
             )
         ].reduce(into: NSMutableAttributedString()) {
@@ -136,25 +126,25 @@ private extension ProfileCell {
         [creatorNickNameLabel, followerCountLabel, followButton].forEach {
             $0.setContentHuggingPriority(.required, for: .vertical)
         }
+        
         creatorImageView.snp.makeConstraints {
-            $0.width.height.equalTo(50).priority(.required)
+            $0.width.height.equalTo(80).priority(.required)
         }
+        
         stackView.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview().inset(16)
         }
+        
         introduceLabel.snp.makeConstraints {
-            $0.leading.equalTo(stackView.snp.leading)
-            $0.trailing.equalTo(stackView.snp.trailing)
-            $0.top.equalTo(stackView.snp.bottom)
-            $0.bottom.equalToSuperview().inset(16)
+            $0.top.equalTo(stackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalTo(stackView)
+            $0.bottom.equalToSuperview().offset(-16)
         }
     }
 
     func configureFollowButtonAction() {
-        followButton.addAction(UIAction(handler: { [weak self] _ in
-            guard let self else { return }
-            self.delegate?.followButtonTap()
-        }), for: .touchUpInside)
+        let action = UIAction { _ in self.delegate?.profileCell(didTapFollowButton: self) }
+        followButton.addAction(action, for: .touchUpInside)
     }
 
     func addGestureRecognizerToIntroduceLabel() {
@@ -166,7 +156,7 @@ private extension ProfileCell {
     @objc
     func toggleExpended() {
         let expandAction = { self.introduceLabel.numberOfLines = Constants.expandedNumberOfLines }
-        delegate?.profileCell(expandLabel: expandAction)
+        delegate?.profileCell(cell: self, expandLabel: expandAction)
     }
 }
 
@@ -179,11 +169,11 @@ private extension ProfileCell {
         static let failureProfileImage = UIImage(systemName: "person")!
         static let followButtonText = NSAttributedString(
             string: "팔로우 하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+            attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
         )
         static let unfollowButtonText = NSAttributedString(
             string: "팔로우 취소하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+            attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
         )
         static let expandedNumberOfLines = 5
         static let unexpandedNumberOfLines = 2
@@ -192,6 +182,6 @@ private extension ProfileCell {
 
 // ProfileCellDelegate
 protocol ProfileCellDelegate: AnyObject {
-    func profileCell(expandLabel expandAction: (() -> Void)?)
-    func followButtonTap()
+    func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?)
+    func profileCell(didTapFollowButton cell: ProfileCell)
 }

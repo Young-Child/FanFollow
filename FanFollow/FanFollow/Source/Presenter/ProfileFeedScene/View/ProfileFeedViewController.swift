@@ -16,8 +16,8 @@ final class ProfileFeedViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemGray6
-        tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
-        tableView.register(ProfileCell.self, forCellReuseIdentifier: "ProfileCell")
+        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
     }
     private let refreshControl = UIRefreshControl()
 
@@ -64,32 +64,18 @@ final class ProfileFeedViewController: UIViewController {
             switch dataSource[indexPath.section] {
             case .profile(let items):
                 let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-
                 let item = items[indexPath.row]
-                let creator = item.creator
-                let followerCount = item.followerCount
-                let isFollow = item.isFollow
-                let followButtonIsHidden: Bool
-                switch self.viewType {
-                case .feedManage:
-                    followButtonIsHidden = true
-                case .profileFeed:
-                    followButtonIsHidden = false
-                }
-
-                cell.configure(
-                    with: creator,
-                    followerCount: followerCount,
-                    isFollow: isFollow,
-                    delegate: self,
-                    followButtonIsHidden: followButtonIsHidden
-                )
+                let profile = Profile(creator: item.creator, followersCount: item.followerCount)
+                
+                cell.delegate = self
+                cell.configure(with: profile, viewType: self.viewType)
+                
                 return cell
             case .posts(let items):
                 let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
 
                 let item = items[indexPath.row]
-                cell.configure(with: item, delegate: self, isHiddenHeader: true)
+                cell.configure(with: item, delegate: self)
                 return cell
             }
         })
@@ -97,7 +83,7 @@ final class ProfileFeedViewController: UIViewController {
 }
 
 // ProfileCellDelegate, PostCellDelegate
-extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
+extension ProfileFeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
         likeButtonTapped.accept(postID)
     }
@@ -106,16 +92,19 @@ extension ProfileFeedViewController: ProfileCellDelegate, PostCellDelegate {
         tableView.performBatchUpdates(updates)
     }
     
-    func profileCell(expandLabel expandAction: (() -> Void)?) {
-        tableView.performBatchUpdates(expandAction)
-    }
-
-    func followButtonTap() {
-        followButtonTapped.accept(())
-    }
-    
     func postCell(didTapProfilePresentButton creatorID: String) {}
     func postCell(didTapLinkPresentButton link: URL) { }
+}
+
+extension ProfileFeedViewController: ProfileCellDelegate {
+    func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?) {
+        tableView.performBatchUpdates(expandAction)
+
+    }
+    
+    func profileCell(didTapFollowButton cell: ProfileCell) {
+        followButtonTapped.accept(())
+    }
 }
 
 extension ProfileFeedViewController {
