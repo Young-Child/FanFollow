@@ -93,8 +93,7 @@ final class ProfileFeedViewController: UIViewController {
                 ) as? PostCell else { return UITableViewCell() }
 
                 let item = items[indexPath.row]
-
-                cell.configure(with: item, delegate: self, creatorViewIsHidden: true)
+                cell.configure(with: item, delegate: self, isHiddenHeader: true)
                 return cell
             }
         })

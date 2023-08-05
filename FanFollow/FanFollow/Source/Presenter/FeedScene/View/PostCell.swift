@@ -70,6 +70,14 @@ final class PostCell: UITableViewCell {
         label.textAlignment = .right
     }
     
+    private let likeButtonStackView = UIView()
+    
+    private let postCellContentView = UIStackView().then { stackView in
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+    }
+    
     // Properties
     private weak var delegate: PostCellDelegate?
     private var post: Post?
@@ -109,10 +117,11 @@ final class PostCell: UITableViewCell {
 
 // Setting UI Data
 extension PostCell {
-    func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
+    func configure(with post: Post, delegate: PostCellDelegate? = nil, isHiddenHeader: Bool = false) {
         self.post = post
         self.delegate = delegate
         
+        creatorHeaderView.isHidden = isHiddenHeader
         creatorHeaderView.configure(
             userID: post.userID,
             nickName: post.nickName,
@@ -130,20 +139,13 @@ extension PostCell {
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
-        if imageURLs.isEmpty {
-            imageSlideView.snp.updateConstraints {
-                $0.height.equalTo(0)
-            }
-            
-            return
-        }
+        let isHidden = imageURLs.isEmpty
+        
+        imageSlideView.isHidden = isHidden
+        linkPreview.isHidden = (isHidden == false)
         
         imageSlideView.pageControl = pageControl
         imageSlideView.setImageInputs(imageURLs)
-        linkPreview.isHidden = true
-        linkPreview.snp.updateConstraints {
-            $0.height.equalTo(0)
-        }
     }
     
     private func configureLinkPreviews(with urlString: String?) {
@@ -239,47 +241,39 @@ private extension PostCell {
     
     func configureHierarchy() {
         [titleLabel, contentLabel].forEach(contentStackView.addArrangedSubview(_:))
+        [likeButton, createdDateLabel].forEach(likeButtonStackView.addSubview(_:))
         
         [
             creatorHeaderView,
             imageSlideView,
             contentStackView,
             linkPreview,
-            likeButton,
-            createdDateLabel
-        ].forEach(contentView.addSubview(_:))
+            likeButtonStackView
+        ].forEach(postCellContentView.addArrangedSubview(_:))
+        
+        contentView.addSubview(postCellContentView)
     }
     
     func configureConstraints() {
-        creatorHeaderView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        
-        imageSlideView.snp.makeConstraints {
-            $0.top.equalTo(creatorHeaderView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        contentStackView.snp.makeConstraints {
-            $0.top.equalTo(imageSlideView.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
-        }
-        
-        linkPreview.snp.makeConstraints {
-            $0.top.equalTo(contentStackView.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(80)
-        }
-        
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
-            $0.leading.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.leading.equalToSuperview().inset(8)
         }
         
         createdDateLabel.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
-            $0.trailing.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.trailing.equalToSuperview().inset(8)
+        }
+        
+        
+        postCellContentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        imageSlideView.snp.makeConstraints {
+            $0.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        linkPreview.snp.makeConstraints {
+            $0.height.equalTo(UIScreen.main.bounds.width).multipliedBy(0.3)
         }
     }
 }
