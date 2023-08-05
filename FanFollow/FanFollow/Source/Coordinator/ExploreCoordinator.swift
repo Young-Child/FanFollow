@@ -49,7 +49,11 @@ class ExploreCoordinator: Coordinator {
         let networkService = DefaultNetworkService()
 
         let postRepository = DefaultPostRepository(networkService: networkService)
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+        let imageRepository = DefaultImageRepository(network: networkService)
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
+            postRepository: postRepository,
+            imageRepository: imageRepository
+        )
 
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)

@@ -56,16 +56,14 @@ final class ProfileFeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     private func configureDataSource() {
         dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
             switch dataSource[indexPath.section] {
             case .profile(let items):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "ProfileCell", for: indexPath
-                ) as? ProfileCell else { return UITableViewCell() }
+                let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
 
                 let item = items[indexPath.row]
                 let creator = item.creator
@@ -88,9 +86,7 @@ final class ProfileFeedViewController: UIViewController {
                 )
                 return cell
             case .posts(let items):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "PostCell", for: indexPath
-                ) as? PostCell else { return UITableViewCell() }
+                let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
 
                 let item = items[indexPath.row]
                 cell.configure(with: item, delegate: self, isHiddenHeader: true)
