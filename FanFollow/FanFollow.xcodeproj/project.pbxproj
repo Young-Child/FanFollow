@@ -104,6 +104,7 @@
 		3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804312A67B1E20019DE79 /* ExploreCategoryViewController.swift */; };
 		3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */; };
 		3C3356512A7F5F4500BF632B /* StubImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356502A7F5F4500BF632B /* StubImageRepository.swift */; };
+		3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
@@ -333,6 +334,7 @@
 		3C1804312A67B1E20019DE79 /* ExploreCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewController.swift; sourceTree = "<group>"; };
 		3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewModel.swift; sourceTree = "<group>"; };
 		3C3356502A7F5F4500BF632B /* StubImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubImageRepository.swift; sourceTree = "<group>"; };
+		3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCaseTest.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
@@ -1208,6 +1210,7 @@
 				3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */,
 				3CB6FE5B2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift */,
 				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
+				3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1687,6 +1690,7 @@
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
 				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
+				3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
 				EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */,
