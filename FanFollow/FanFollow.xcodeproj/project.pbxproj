@@ -341,7 +341,6 @@
 		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
-		3C639B322A7B3B75003E2E44 /* Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
@@ -719,7 +718,6 @@
 				EBA8EB502A5FBE2D00998630 /* UseCaseTests */,
 				188CC4012A4D7FD900BAB85A /* Products */,
 				18C1E5462A55C33D00A41AC5 /* Frameworks */,
-				3CF4CE942A7CDFBA0079E996 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1113,14 +1111,6 @@
 				3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */,
 			);
 			path = LinkUploadScene;
-			sourceTree = "<group>";
-		};
-		3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				3C639B322A7B3B75003E2E44 /* Upload.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
