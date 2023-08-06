@@ -157,6 +157,7 @@ extension UploadPhotoViewController {
         .disposed(by: disposeBag)
         
         return rightBarButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { _ in
                 let data = self.registerImage.compactMap { $0.pngData() }
                 let upload = Upload(

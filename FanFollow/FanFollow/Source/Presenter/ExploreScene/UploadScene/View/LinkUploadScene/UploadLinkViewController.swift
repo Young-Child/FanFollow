@@ -168,6 +168,7 @@ extension UploadLinkViewController {
         .disposed(by: disposeBag)
         
         return rightBarButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { _ in
                 let upload = Upload(
                     title: self.titleTextField.text ?? "",
