@@ -13,12 +13,14 @@ import RxSwift
 final class FetchCreatorPostsUseCaseTests: XCTestCase {
     private var sut: DefaultFetchCreatorPostsUseCase!
     private var postRepository: StubPostRepository!
+    private var imageRepository: ImageRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         postRepository = StubPostRepository()
-        sut = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+        imageRepository = DefaultImageRepository(network: DefaultNetworkService())
+        sut = DefaultFetchCreatorPostsUseCase(postRepository: postRepository, imageRepository: imageRepository)
         disposeBag = DisposeBag()
     }
 

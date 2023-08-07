@@ -64,9 +64,11 @@ final class ProfileFeedViewModel: ViewModel {
         let fetchedMorePosts = input.lastCellDisplayed
             .withUnretained(self)
             .flatMapFirst { _ in self.fetchMorePosts() }
+        
         let updatedPosts = input.likeButtonTap
             .withUnretained(self)
             .flatMapFirst { _, postID in self.updatePosts(postID: postID) }
+        
         let updatedPostsAndProfile = Observable.merge(fetchedMorePosts, updatedPosts)
             .flatMap { posts -> Observable<([Post], Creator, Int, Bool)> in
                 guard let creator = self.creator.value else { return .empty() }

@@ -25,8 +25,3 @@ struct Creator: User {
         isCreator = true
     }
 }
-
-struct Profile {
-    let creator: Creator
-    let followersCount: Int
-}

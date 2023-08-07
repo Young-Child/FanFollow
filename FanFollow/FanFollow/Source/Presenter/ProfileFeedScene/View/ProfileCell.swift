@@ -44,6 +44,8 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let followButton = UIButton().then { button in
+        button.setTitle(Constants.unfollowButtonText, for: .selected)
+        button.setTitleColor(UIColor.systemGray3, for: .selected)
         button.setTitle(Constants.followButtonText, for: .normal)
         button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
         button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
@@ -76,16 +78,17 @@ final class ProfileCell: UITableViewCell {
 
 // UI Method
 extension ProfileCell {
-    func configure(with profile: Profile, viewType: ProfileFeedViewController.ViewType) {
+    func configure(with profile: ProfileFeedSectionItem, viewType: ProfileFeedViewController.ViewType) {
         creatorImageView.setImageProfileImage(
             to: profile.creator.profileURL,
             for: profile.creator.id
         )
-        
         creatorNickNameLabel.text = profile.creator.nickName
-        configureFollowerCountLabel(count: profile.followersCount)
         followButton.isHidden = (viewType == .feedManage)
         introduceLabel.text = profile.creator.introduce
+        
+        configureFollowerCountLabel(count: profile.followerCount)
+        configureFollowButton(isFollow: profile.isFollow)
         configureFollowButtonAction()
     }
     
@@ -108,6 +111,12 @@ extension ProfileCell {
             $0.append($1)
         }
         followerCountLabel.attributedText = attributedText
+    }
+    
+    private func configureFollowButton(isFollow: Bool) {
+        followButton.isSelected = isFollow
+        let backgroundColor = isFollow ? UIColor.systemGray5 : Constants.followerCountLabelTextColor
+        followButton.layer.backgroundColor = backgroundColor?.cgColor
     }
 }
 
@@ -162,10 +171,12 @@ private extension ProfileCell {
         static let followerCountLabelTextColor = UIColor(named: "AccentColor")
         static let followButtonTitleColor = UIColor.white
         static let failureProfileImage = UIImage(systemName: "person")
-        static let followButtonText = "팔로우 하기"
-        static let unfollowButtonText = "팔로우 취소하기"
+        static let followButtonText = "팔로우"
+        static let unfollowButtonText = "팔로잉"
         static let expandedNumberOfLines = 5
         static let unexpandedNumberOfLines = 2
+        
+        static let followingBackground = UIColor.systemGray5
     }
 }
 

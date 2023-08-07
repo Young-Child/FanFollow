@@ -140,10 +140,9 @@ private extension ProfileFeedViewController {
             case .profile(let items):
                 let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 let item = items[indexPath.row]
-                let profile = Profile(creator: item.creator, followersCount: item.followerCount)
                 
                 cell.delegate = self
-                cell.configure(with: profile, viewType: self.viewType)
+                cell.configure(with: item, viewType: self.viewType)
                 
                 return cell
                 
