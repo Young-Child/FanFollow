@@ -134,7 +134,7 @@ private extension ProfileFeedViewController {
             .disposed(by: disposeBag)
     }
     
-    private func generateDataSource() -> DataSource {
+    func generateDataSource() -> DataSource {
         return DataSource { dataSource, tableView, indexPath, item in
             switch dataSource[indexPath.section] {
             case .profile(let items):

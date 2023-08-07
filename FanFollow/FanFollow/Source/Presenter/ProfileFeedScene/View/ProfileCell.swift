@@ -7,6 +7,12 @@
 
 import UIKit
 
+// ProfileCellDelegate
+protocol ProfileCellDelegate: AnyObject {
+    func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?)
+    func profileCell(didTapFollowButton cell: ProfileCell)
+}
+
 final class ProfileCell: UITableViewCell {
     // View Properties
     private let stackView = UIStackView().then { stackView in
@@ -80,6 +86,7 @@ extension ProfileCell {
         configureFollowerCountLabel(count: profile.followersCount)
         followButton.isHidden = (viewType == .feedManage)
         introduceLabel.text = profile.creator.introduce
+        configureFollowButtonAction()
     }
     
     private func configureFollowerCountLabel(count: Int) {
@@ -162,8 +169,3 @@ private extension ProfileCell {
     }
 }
 
-// ProfileCellDelegate
-protocol ProfileCellDelegate: AnyObject {
-    func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?)
-    func profileCell(didTapFollowButton cell: ProfileCell)
-}
