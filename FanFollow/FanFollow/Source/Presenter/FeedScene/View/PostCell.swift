@@ -62,6 +62,7 @@ final class PostCell: UITableViewCell {
             withConfiguration: imageConfiguration
         )
         
+        button.setTitleColor(.label, for: .normal)
         button.setImage(unSelectedImage, for: .normal)
         button.setImage(selectedImage, for: .selected)
     }
@@ -130,6 +131,7 @@ extension PostCell {
             couldEdit: couldEdit
         )
         likeButton.isSelected = post.isLiked
+        likeButton.setTitle(post.likeCount.description, for: .normal)
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
@@ -277,7 +279,6 @@ private extension PostCell {
         createdDateLabel.snp.makeConstraints {
             $0.top.bottom.trailing.equalToSuperview().inset(8)
         }
-        
         
         postCellContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
