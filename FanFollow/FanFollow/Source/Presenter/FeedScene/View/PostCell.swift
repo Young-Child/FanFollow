@@ -272,7 +272,7 @@ private extension PostCell {
         }
         
         linkPreview.snp.makeConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.width).multipliedBy(0.3)
+            $0.height.equalTo(80)
         }
     }
 }
