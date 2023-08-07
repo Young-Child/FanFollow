@@ -61,7 +61,8 @@ final class PostCell: UITableViewCell {
             systemName: "heart.fill",
             withConfiguration: imageConfiguration
         )
-        
+        button.titleLabel?.font = .systemFont(ofSize: 22)
+        button.contentMode = .scaleToFill
         button.setTitleColor(.label, for: .normal)
         button.setImage(unSelectedImage, for: .normal)
         button.setImage(selectedImage, for: .selected)
@@ -107,14 +108,6 @@ final class PostCell: UITableViewCell {
         imageSlideView.isHidden = false
         linkPreview.isHidden = false
         linkPreview.resetData()
-        
-        imageSlideView.snp.updateConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        linkPreview.snp.updateConstraints {
-            $0.height.equalTo(80)
-        }
     }
 }
 
@@ -132,7 +125,6 @@ extension PostCell {
         )
         likeButton.isSelected = post.isLiked
         likeButton.setTitle(post.likeCount.description, for: .normal)
-        likeButton.invalidateIntrinsicContentSize()
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription

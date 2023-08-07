@@ -40,7 +40,6 @@ final class ProfileFeedViewController: UIViewController {
         self.viewModel = viewModel
         self.viewType = viewType
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .systemBackground
     }
 
     required init?(coder: NSCoder) {
@@ -56,9 +55,8 @@ final class ProfileFeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureNavigationItem()
+        super.viewWillAppear(animated)
     }
 }
 
@@ -173,6 +171,7 @@ private extension ProfileFeedViewController {
 // Configure UI
 private extension ProfileFeedViewController {
     func configureUI() {
+        view.backgroundColor = .systemBackground
         configureHierarchy()
         configureConstraints()
         configureTableView()
