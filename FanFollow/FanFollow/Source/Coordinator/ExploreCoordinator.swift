@@ -26,7 +26,7 @@ class ExploreCoordinator: Coordinator {
         self.navigationController = navigationController
         self.userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
-        userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService())
+        userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
         exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
         searchUseCase = DefaultSearchCreatorUseCase(userInformationRepository: userInformationRepository)
     }
@@ -46,22 +46,20 @@ class ExploreCoordinator: Coordinator {
     }
     
     func presentProfileViewController(to creatorID: String) {
-        let networkService = DefaultNetworkService()
-
+        let networkService = DefaultNetworkService.shared
+        
         let postRepository = DefaultPostRepository(networkService: networkService)
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
-
         let userInformationRepository = DefaultUserInformationRepository(networkService)
-        let followRepository = DefaultFollowRepository(networkService)
+        let followRepository = DefaultFollowRepository(DefaultNetworkService.shared)
+        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
             followRepository: followRepository
         )
-
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
-        
         let viewModel = ProfileFeedViewModel(
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
             fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,

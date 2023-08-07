@@ -18,21 +18,16 @@ enum SettingTabItem: Int, TabItem {
     }
     
     var viewController: UIViewController {
+        let networkService = DefaultNetworkService.shared
+        
         switch self {
         case .setting:
             let useCase = DefaultFetchUserInformationUseCase(
-                userInformationRepository: DefaultUserInformationRepository(
-                    DefaultNetworkService(
-                        session: URLSession.shared
-                    )
-                )
+                userInformationRepository: DefaultUserInformationRepository(networkService)
             )
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
-            let session = URLSession.shared
-            let networkService = DefaultNetworkService(session: session)
-
             let postRepository = DefaultPostRepository(networkService: networkService)
             let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
 
