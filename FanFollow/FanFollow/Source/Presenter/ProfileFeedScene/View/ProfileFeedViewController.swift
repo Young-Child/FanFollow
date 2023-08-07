@@ -29,6 +29,7 @@ final class ProfileFeedViewController: UIViewController {
     private let likeButtonTapped = PublishRelay<String>()
     private let followButtonTapped = PublishRelay<Void>()
     private let lastCellDisplayed = BehaviorRelay(value: true)
+    private let didTapPostDeleteButton = PublishRelay<Post>()
     private let viewType: ViewType
 
     // Initializer
@@ -76,7 +77,7 @@ extension ProfileFeedViewController: PostCellDelegate {
     }
     
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post) {
-        print(post)
+        self.didTapPostDeleteButton.accept(post)
     }
 }
 
@@ -124,7 +125,8 @@ private extension ProfileFeedViewController {
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
             lastCellDisplayed: lastCellDisplayed,
             likeButtonTap: likeButtonTapped.asObservable(),
-            followButtonTap: followButtonTapped.asObservable()
+            followButtonTap: followButtonTapped.asObservable(),
+            deletePost: didTapPostDeleteButton.asObservable()
         )
     }
 

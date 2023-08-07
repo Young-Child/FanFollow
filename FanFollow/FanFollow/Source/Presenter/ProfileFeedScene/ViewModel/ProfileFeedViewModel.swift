@@ -15,6 +15,7 @@ final class ProfileFeedViewModel: ViewModel {
         var lastCellDisplayed: Observable<Void>
         var likeButtonTap: Observable<String>
         var followButtonTap: Observable<Void>
+        var deletePost: Observable<Post>
     }
 
     struct Output {
@@ -82,9 +83,23 @@ final class ProfileFeedViewModel: ViewModel {
                 guard let creator = self.creator.value else { return .empty() }
                 return .just((self.posts.value, creator, followerCount, isFollow))
             }
-
+        
+        let deletePost = input.deletePost
+            .flatMap {
+                return self.fetchCreatorPostUseCase.deletePost(
+                    post: $0,
+                    endRange: self.pageSize
+                )
+            }
+            .flatMap { posts -> Observable<([Post], Creator, Int, Bool)> in
+                guard let creator = self.creator.value else { return .empty() }
+                return .just((posts, creator, self.followerCount.value, self.isFollow.value))
+            }
+        
+        let fetchedPosts = Observable.merge([fetchedAll, deletePost])
+        
         let profileSections = profileSections(
-            Observable.merge(fetchedAll, updatedPostsAndProfile, postsAndUpdatedProfile)
+            Observable.merge(fetchedPosts, updatedPostsAndProfile, postsAndUpdatedProfile)
         )
 
         return Output(profileFeedSections: profileSections)

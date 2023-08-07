@@ -9,6 +9,7 @@ import RxSwift
 
 protocol FetchCreatorPostsUseCase: AnyObject {
     func fetchCreatorPosts(creatorID: String, startRange: Int, endRange: Int) -> Observable<[Post]>
+    func deletePost(post: Post, endRange: Int) -> Observable<[Post]>
 }
 
 final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
@@ -42,6 +43,18 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
         }
         
         return imageLinksUpdatedPost
+    }
+    
+    func deletePost(post: Post, endRange: Int) -> Observable<[Post]> {
+        return postRepository.deletePost(postID: post.postID ?? "")
+            .andThen(Observable<Void>.just(()))
+            .flatMap { _ in
+                return self.fetchCreatorPosts(
+                    creatorID: post.userID,
+                    startRange: .zero,
+                    endRange: endRange
+                )
+            }
     }
     
     private func fetchPostImageLinks(postID: String) -> Observable<[String]> {
