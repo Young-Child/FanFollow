@@ -125,6 +125,9 @@ extension FeedViewController: PostCellDelegate {
     func postCell(didTapLinkPresentButton link: URL) {
         coordinator?.presentLinkViewController(to: link)
     }
+    
+    func postCell(_ cell: PostCell, didTapEditButton post: Post) { }
+    func postCell(_ cell: PostCell, didTapDeleteButton post: Post) { }
 }
 
 // Configure NavigationBar Method

@@ -70,6 +70,14 @@ extension ProfileFeedViewController: PostCellDelegate {
     
     func postCell(didTapProfilePresentButton creatorID: String) {}
     func postCell(didTapLinkPresentButton link: URL) { }
+    
+    func postCell(_ cell: PostCell, didTapEditButton post: Post) {
+        print(post)
+    }
+    
+    func postCell(_ cell: PostCell, didTapDeleteButton post: Post) {
+        print(post)
+    }
 }
 
 extension ProfileFeedViewController: ProfileCellDelegate {
@@ -150,7 +158,7 @@ private extension ProfileFeedViewController {
                 let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
 
                 let item = items[indexPath.row]
-                cell.configure(with: item, delegate: self)
+                cell.configure(with: item, couldEdit: self.viewType == .feedManage, delegate: self)
                 return cell
             }
         }

@@ -15,6 +15,8 @@ protocol PostCellDelegate: AnyObject {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
     func postCell(didTapProfilePresentButton creatorID: String)
     func postCell(didTapLinkPresentButton link: URL)
+    func postCell(_ cell: PostCell, didTapEditButton post: Post)
+    func postCell(_ cell: PostCell, didTapDeleteButton post: Post)
 }
 
 final class PostCell: UITableViewCell {
@@ -117,14 +119,15 @@ final class PostCell: UITableViewCell {
 
 // Setting UI Data
 extension PostCell {
-    func configure(with post: Post, delegate: PostCellDelegate? = nil) {
+    func configure(with post: Post, couldEdit: Bool = false, delegate: PostCellDelegate? = nil) {
         self.post = post
         self.delegate = delegate
         
         creatorHeaderView.configure(
             userID: post.userID,
             nickName: post.nickName,
-            imageURL: post.writerProfileImageURL
+            imageURL: post.writerProfileImageURL,
+            couldEdit: couldEdit
         )
         likeButton.isSelected = post.isLiked
         titleLabel.text = post.title
@@ -135,6 +138,19 @@ extension PostCell {
         configureLinkPreviews(with: post.videoURL)
         
         addGestures()
+        addHeaderAction(to: post)
+    }
+    
+    private func addHeaderAction(to post: Post) {
+        let modifyAction = UIAction(title: "수정하기") { _ in
+            self.delegate?.postCell(self, didTapEditButton: post)
+        }
+        
+        let deleteAction = UIAction(title: "삭제하기", attributes: .destructive) { _ in
+            self.delegate?.postCell(self, didTapDeleteButton: post)
+        }
+        
+        creatorHeaderView.configureAction(modifyAction: modifyAction, deleteAction: deleteAction)
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
