@@ -172,13 +172,15 @@ extension UploadLinkViewController {
         }
         
         // UIComponent Contents Button Bind
-        let isTitleNotEmpty = titleTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
+            .map { $0 != nil && $0?.count != .zero }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
             return $0.isEmpty == false && $0 != Constants.contentPlaceholder
         }
         
-        let isLinkNotEmpty = linkTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        let isLinkNotEmpty = linkTextField.rx.observe(String.self, "text")
+            .map { $0 != nil && $0?.count != .zero }
         
         Observable<Bool>.combineLatest(
             isTitleNotEmpty,
