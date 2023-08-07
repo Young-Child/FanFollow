@@ -104,9 +104,9 @@ extension UploadPhotoViewController {
     func bind() {
         let output = bindingInput()
         
-        navigationButtonBind()
         bindingKeyboardHeight()
         bindingView(output)
+        navigationButtonBind()
     }
     
     func bindingKeyboardHeight() {
@@ -123,12 +123,17 @@ extension UploadPhotoViewController {
     }
     
     func bindingView(_ output: UploadViewModel.Output) {
-        output.post
-            .asDriver(onErrorJustReturn: nil)
-            .drive { self.configurePostItem(to: $0) }
+        let post = output.post.asDriver(onErrorJustReturn: nil)
+        
+        post.compactMap { $0?.title }
+            .drive(titleTextField.rx.text)
             .disposed(by: disposeBag)
         
-        output.postDatas
+        post.compactMap { $0?.content }
+            .drive(contentsTextView.textView.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.postImageDatas
             .asDriver(onErrorJustReturn: [])
             .drive { self.configureImages(to: $0) }
             .disposed(by: disposeBag)
@@ -154,8 +159,10 @@ extension UploadPhotoViewController {
         }
     }
     
-    func configureImages(to imageDatas: [Data]) {
-        self.registerImage = imageDatas.compactMap { UIImage(data: $0) }
+    func configureImages(to imageDatas: [(String, Data)]) {
+        self.registerImage = imageDatas.sorted(by: { $0.0 < $1.0 }).compactMap {
+            return UIImage(data: $0.1)
+        }
         photoCollectionView.reloadData()
     }
     
@@ -165,7 +172,8 @@ extension UploadPhotoViewController {
         }
         
         // UIComponent Contents Button Bind
-        let isTitleNotEmpty = titleTextField.rx.text.orEmpty.map { $0.isEmpty == false }
+        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
+            .map { $0?.count != .zero && $0 != nil }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
             return $0.isEmpty == false && $0 != Constants.contentPlaceholder
@@ -296,6 +304,7 @@ private extension UploadPhotoViewController {
         
         navigationItem.leftBarButtonItem = backLeftButton
         navigationItem.rightBarButtonItem = uploadRightButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     func configureUI() {

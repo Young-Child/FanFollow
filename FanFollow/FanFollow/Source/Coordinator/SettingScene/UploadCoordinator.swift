@@ -36,18 +36,16 @@ class UploadCoordinator: Coordinator {
         let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository)
         let viewModel = UploadViewModel(uploadUseCase: useCase, post: post)
         
-        let controller = type.generateInstance(with: viewModel)
+        let controller = type.generateInstance(with: viewModel, coordinator: self)
         
-        if let controller = controller as? UploadPhotoViewController {
-            controller.coordinator = self
-        }
-        
-        if let controller = controller as? UploadLinkViewController {
-            controller.coordinator = self
-        }
-        
-        viewController?.dismiss(animated: true) {
+        func presentController() {
             self.navigationController.pushViewController(controller, animated: true)
+        }
+        
+        if viewController != nil {
+            viewController?.dismiss(animated: true) { presentController() }
+        } else {
+            presentController()
         }
     }
     
@@ -72,16 +70,20 @@ extension UploadCoordinator {
         case photo
         case link
         
-        func generateInstance(with viewModel: UploadViewModel) -> UIViewController {
+        func generateInstance(with viewModel: UploadViewModel, coordinator: UploadCoordinator) -> UIViewController {
             switch self {
             case .photo:
                 let controller = UploadPhotoViewController(viewModel: viewModel)
                 controller.hidesBottomBarWhenPushed = true
+                controller.coordinator = coordinator
+                
                 return controller
                 
             case .link:
                 let controller = UploadLinkViewController(viewModel: viewModel)
                 controller.hidesBottomBarWhenPushed = true
+                controller.coordinator = coordinator
+                
                 return controller
             }
         }

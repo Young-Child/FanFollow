@@ -16,7 +16,7 @@ final class UploadViewModel: ViewModel {
     
     struct Output {
         var post: Observable<Post?>
-        var postDatas: Observable<[Data]>
+        var postImageDatas: Observable<[(String, Data)]>
         var registerResult: Observable<Void>
     }
     
@@ -48,7 +48,7 @@ final class UploadViewModel: ViewModel {
         
         return Output(
             post: .just(self.post),
-            postDatas: postDatas,
+            postImageDatas: postDatas,
             registerResult: registerResult
         )
     }
