@@ -40,7 +40,6 @@ final class FeedCoordinator: Coordinator {
         )
         let feedViewController = FeedViewController(viewModel: feedViewModel)
         feedViewController.coordinator = self
-        feedViewController.hidesBottomBarWhenPushed = true
 
         navigationController.pushViewController(feedViewController, animated: true)
     }
@@ -70,7 +69,8 @@ final class FeedCoordinator: Coordinator {
             userID: userID
         )
         let profileViewController = ProfileFeedViewController(viewModel: profileFeedViewModel, viewType: .profileFeed)
-
+        profileViewController.hidesBottomBarWhenPushed = true
+        
         navigationController.pushViewController(profileViewController, animated: true)
     }
     

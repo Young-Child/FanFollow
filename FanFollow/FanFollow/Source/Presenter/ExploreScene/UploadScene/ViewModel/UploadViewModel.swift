@@ -27,7 +27,7 @@ final class UploadViewModel: ViewModel {
         let registerResult = input.registerButtonTap
             .flatMapLatest { uploadData in
                 return self.uploadUseCase
-                    .upsertPost(
+                    .uploadPost(
                         uploadData,
                         userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
                     )
