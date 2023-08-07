@@ -48,10 +48,10 @@ class ExploreCoordinator: Coordinator {
     func presentProfileViewController(to creatorID: String) {
         let networkService = DefaultNetworkService.shared
         
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
-        let followRepository = DefaultFollowRepository(DefaultNetworkService.shared)
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let followRepository = DefaultFollowRepository(networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
         
         let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(

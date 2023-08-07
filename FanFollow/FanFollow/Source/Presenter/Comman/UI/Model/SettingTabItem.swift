@@ -28,7 +28,7 @@ enum SettingTabItem: Int, TabItem {
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
-            let postRepository = DefaultPostRepository(networkService: networkService)
+            let postRepository = DefaultPostRepository(networkService)
             let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
 
             let userInformationRepository = DefaultUserInformationRepository(networkService)
@@ -38,7 +38,7 @@ enum SettingTabItem: Int, TabItem {
                 followRepository: followRepository
             )
 
-            let likeRepository = DefaultLikeRepository(networkService: networkService)
+            let likeRepository = DefaultLikeRepository(networkService)
             let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
             // TODO: 로그인한 creatorID 입력

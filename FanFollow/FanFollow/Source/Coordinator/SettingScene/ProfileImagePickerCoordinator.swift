@@ -17,9 +17,7 @@ final class ProfileImagePickerCoordinator: Coordinator {
     
     func start() {
         let profileImageUploadUseCase = DefaultUpdateProfileImageUseCase(
-            imageRepository: DefaultImageRepository(
-                network: DefaultNetworkService.shared
-            )
+            imageRepository: DefaultImageRepository(DefaultNetworkService.shared)
         )
         
         let viewModel = ProfileImagePickerViewModel(

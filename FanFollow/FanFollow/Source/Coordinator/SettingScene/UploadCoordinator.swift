@@ -27,8 +27,8 @@ class UploadCoordinator: Coordinator {
     func presentPostViewController(viewController: UIViewController, type: UploadType) {
         let networkService = DefaultNetworkService.shared
         
-        let repository = DefaultPostRepository(networkService: networkService)
-        let imageRepository = DefaultImageRepository(network: networkService)
+        let repository = DefaultPostRepository(networkService)
+        let imageRepository = DefaultImageRepository(networkService)
         
         let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository)
         let viewModel = UploadViewModel(uploadUseCase: useCase)

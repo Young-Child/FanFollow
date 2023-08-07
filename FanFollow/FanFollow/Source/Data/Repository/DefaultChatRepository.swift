@@ -10,7 +10,7 @@ import RxSwift
 struct DefaultChatRepository: ChatRepository {
     private let networkService: NetworkService
     
-    init(networkService: NetworkService) {
+    init(_ networkService: NetworkService) {
         self.networkService = networkService
     }
     

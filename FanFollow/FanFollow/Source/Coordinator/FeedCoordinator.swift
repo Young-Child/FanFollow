@@ -25,8 +25,8 @@ final class FeedCoordinator: Coordinator {
 
     func presentFeedViewController(userID: String) {
         let networkService = DefaultNetworkService.shared
-        let postRepository = DefaultPostRepository(networkService: networkService)
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
         
         let fetchFeedUseCase = DefaultFetchFeedUseCase(postRepository: postRepository)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
@@ -45,10 +45,10 @@ final class FeedCoordinator: Coordinator {
     func presentProfileViewController(creatorID: String, userID: String) {
         let networkService = DefaultNetworkService.shared
         
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
         
         let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(

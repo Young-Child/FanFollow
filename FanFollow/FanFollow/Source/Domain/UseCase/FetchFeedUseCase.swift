@@ -17,7 +17,7 @@ final class DefaultFetchFeedUseCase: FetchFeedUseCase {
 
     init(postRepository: PostRepository) {
         self.postRepository = postRepository
-        self.imageRepository = DefaultImageRepository(network: DefaultNetworkService.shared)
+        self.imageRepository = DefaultImageRepository(DefaultNetworkService.shared)
     }
 
     func fetchFollowPosts(followerID: String, startRange: Int, endRange: Int) -> Observable<[Post]> {
