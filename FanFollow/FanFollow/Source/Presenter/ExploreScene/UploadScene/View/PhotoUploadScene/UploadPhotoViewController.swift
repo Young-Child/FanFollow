@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import Kingfisher
+
 final class UploadPhotoViewController: UIViewController {
     // View Properties
     private let photoCollectionView = UICollectionView(
@@ -119,11 +121,19 @@ extension UploadPhotoViewController {
     }
     
     func bindingView(_ output: UploadViewModel.Output) {
+        output.post
+            .asDriver(onErrorJustReturn: nil)
+            .drive { self.configurePostItem(to: $0) }
+            .disposed(by: disposeBag)
+        
+        output.postDatas
+            .asDriver(onErrorJustReturn: [])
+            .drive { self.configureImages(to: $0) }
+            .disposed(by: disposeBag)
+            
         output.registerResult
-            .observe(on: MainScheduler.instance)
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in self.navigationController?.popViewController(animated: true) }
             .disposed(by: disposeBag)
     }
     
@@ -131,6 +141,16 @@ extension UploadPhotoViewController {
         let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
         
         return viewModel.transform(input: input)
+    }
+    
+    func configurePostItem(to post: Post?) {
+        self.titleTextField.text = post?.title
+        self.contentsTextView.textView.text = post?.content
+    }
+    
+    func configureImages(to imageDatas: [Data]) {
+        self.registerImage = imageDatas.compactMap { UIImage(data: $0) }
+        photoCollectionView.reloadData()
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {

@@ -11,6 +11,7 @@ import RxSwift
 
 protocol UploadPostUseCase: AnyObject {
     func upsertPost(_ upload: Upload, userID: String) -> Completable
+    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[Data]>
 }
 
 final class DefaultUploadPostUseCase: UploadPostUseCase {
@@ -67,5 +68,15 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         }
         
         return result
+    }
+    
+    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[Data]> {
+        return Observable.from(0..<imageCount)
+            .flatMap { postImageID in
+                let path = "PostImages/\(postID)/\(postImageID + 1).png"
+                return self.imageRepository.readImage(to: path)
+            }
+            .toArray()
+            .asObservable()
     }
 }

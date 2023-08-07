@@ -23,6 +23,8 @@ final class ProfileFeedViewController: UIViewController {
 
     // Properties
     typealias DataSource = RxTableViewSectionedReloadDataSource<ProfileFeedSectionModel>
+    
+    weak var settingDelegate: SettingTabBarDelegate?
 
     private let disposeBag = DisposeBag()
     private let viewModel: ProfileFeedViewModel
@@ -73,7 +75,7 @@ extension ProfileFeedViewController: PostCellDelegate {
     func postCell(didTapLinkPresentButton link: URL) { }
     
     func postCell(_ cell: PostCell, didTapEditButton post: Post) {
-        print(post)
+        self.settingDelegate?.settingController(self, didTapEdit: post)
     }
     
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post) {

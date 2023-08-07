@@ -19,6 +19,12 @@ final class DefaultImageRepository: ImageRepository {
         self.network = network
     }
     
+    func readImage(to path: String) -> Observable<Data> {
+        let request = ImageRequestDirector(builder: builder)
+            .requestImageData(path: path)
+        return network.data(request)
+    }
+    
     func uploadImage(to path: String, with image: Data) -> Completable {
         let request = ImageRequestDirector(builder: builder)
             .requestSaveImage(path: path, image: image)

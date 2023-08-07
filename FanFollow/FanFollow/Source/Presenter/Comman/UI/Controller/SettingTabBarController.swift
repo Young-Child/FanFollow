@@ -11,6 +11,7 @@ import RxSwift
 protocol SettingTabBarDelegate: AnyObject {
     func settingController(_ controller: SettingViewController, removeFeedManageTab isCreator: Bool)
     func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem)
+    func settingController(_ controller: ProfileFeedViewController, didTapEdit item: Post)
 }
 
 final class SettingTabBarController: TopTabBarController<SettingTabItem> {
@@ -45,8 +46,15 @@ final class SettingTabBarController: TopTabBarController<SettingTabItem> {
     }
     
     private func setDelegate() {
-        guard let controller = viewControllers?.first as? SettingViewController else { return }
-        controller.settingTabBarDelegate = self
+        viewControllers?.forEach { controller in
+            if let controller = controller as? SettingViewController {
+                controller.settingTabBarDelegate = self
+            }
+            
+            if let controller = controller as? ProfileFeedViewController {
+                controller.settingDelegate = self
+            }
+        }
     }
 }
 
@@ -67,6 +75,11 @@ extension SettingTabBarController: SettingTabBarDelegate {
     func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem) {
         coordinator?.presentSettingDetailController(to: item.presentType)
     }
+    
+    func settingController(_ controller: ProfileFeedViewController, didTapEdit item: Post) {
+        coordinator?.presentEditPostViewController(post: item)
+    }
+    
 }
 
 // Binding
