@@ -17,6 +17,8 @@ final class UploadPhotoViewController: UIViewController {
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
     ).then { collectionView in
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = UIEdgeInsets(top: .zero, left: 8, bottom: .zero, right: 8)
         collectionView.layer.backgroundColor = UIColor.systemBackground.cgColor
         collectionView.register(
             UploadImageCell.self,
@@ -336,10 +338,10 @@ private extension UploadPhotoViewController {
         }
         
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
+            $0.top.equalToSuperview()
             $0.height.equalTo(UIScreen.main.bounds.width / 2)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-10)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
         
         uploadStackView.snp.makeConstraints {

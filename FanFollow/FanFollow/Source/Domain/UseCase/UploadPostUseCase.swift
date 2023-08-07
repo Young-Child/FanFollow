@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol UploadPostUseCase: AnyObject {
-    func upsertPost(_ upload: Upload, userID: String) -> Completable
+    func upsertPost(_ upload: Upload, userID: String, existPostID: String?) -> Completable
     func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[Data]>
 }
 
@@ -37,9 +37,13 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         return results
     }
     
-    func upsertPost(_ upload: Upload, userID: String) -> Completable {
-        let postID = UUID().uuidString.lowercased()
+    func upsertPost(_ upload: Upload, userID: String, existPostID: String? = nil) -> Completable {
+        var postID = UUID().uuidString.lowercased()
         let result: Completable
+        
+        if let existPostID = existPostID {
+            postID = existPostID
+        }
         
         if upload.videoURL == nil {
             result = uploadImages(postID: postID, imageDatas: upload.imageDatas)

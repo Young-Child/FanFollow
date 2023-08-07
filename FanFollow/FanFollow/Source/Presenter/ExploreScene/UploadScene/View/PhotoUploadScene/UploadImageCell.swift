@@ -40,13 +40,19 @@ final class UploadImageCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    }
+    
     func createButton() {
         imageStackView.addArrangedSubview(pickerButton)
     }
     
     func configureCell(_ image: UIImage) {
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
     
         imageStackView.addArrangedSubview(imageView)
     }

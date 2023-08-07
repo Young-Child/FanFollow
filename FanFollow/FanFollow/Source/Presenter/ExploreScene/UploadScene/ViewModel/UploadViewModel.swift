@@ -35,7 +35,8 @@ final class UploadViewModel: ViewModel {
                 return self.uploadUseCase
                     .upsertPost(
                         uploadData,
-                        userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
+                        userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
+                        existPostID: self.post?.postID
                     )
                     .andThen(Observable.just(()))
             }

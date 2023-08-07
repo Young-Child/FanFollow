@@ -128,12 +128,36 @@ extension UploadLinkViewController {
     }
     
     func bindingView(_ output: UploadViewModel.Output) {
+        output.post
+            .asDriver(onErrorJustReturn: nil)
+            .drive { self.configureInitState($0) }
+            .disposed(by: disposeBag)
+        
+        output.post.compactMap { $0?.videoURL }
+            .asDriver(onErrorJustReturn: "")
+            .compactMap { URL(string: $0) }
+            .drive {
+                self.linkTextField.text = $0.description
+                self.configureLinkView(url: $0)
+            }
+            .disposed(by: disposeBag)
+        
         output.registerResult
             .observe(on: MainScheduler.instance)
             .bind {
                 self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func configureInitState(_ post: Post?) {
+        if let content = post?.content {
+            self.contentsTextView.textView.text = content
+            self.contentsTextView.textView.textColor = .label
+        }
+        
+        self.titleTextField.text = post?.title
+        self.linkTextField.text = post?.videoURL
     }
     
     func bindingInput() -> UploadViewModel.Output {
@@ -201,6 +225,11 @@ extension UploadLinkViewController: UITextFieldDelegate {
         }
         
         guard let url = URL(string: linkText) else { return }
+        
+        configureLinkView(url: url)
+    }
+    
+    private func configureLinkView(url: URL) {
         let metaDataProvider = LPMetadataProvider()
         
         metaDataProvider.startFetchingMetadata(for: url) { metaData, error in
