@@ -14,7 +14,7 @@ import RxDataSources
 final class FeedViewController: UIViewController {
     // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
-        tableView.layoutMargins.top = 80
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemBackground

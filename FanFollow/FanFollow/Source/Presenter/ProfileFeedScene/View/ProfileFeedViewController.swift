@@ -13,6 +13,7 @@ import RxDataSources
 final class ProfileFeedViewController: UIViewController {
     // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemGray6

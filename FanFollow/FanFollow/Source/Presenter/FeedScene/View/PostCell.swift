@@ -132,6 +132,7 @@ extension PostCell {
         )
         likeButton.isSelected = post.isLiked
         likeButton.setTitle(post.likeCount.description, for: .normal)
+        likeButton.invalidateIntrinsicContentSize()
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
@@ -278,6 +279,7 @@ private extension PostCell {
         
         createdDateLabel.snp.makeConstraints {
             $0.top.bottom.trailing.equalToSuperview().inset(8)
+            $0.width.equalToSuperview().multipliedBy(0.3)
         }
         
         postCellContentView.snp.makeConstraints {
