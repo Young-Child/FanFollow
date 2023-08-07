@@ -108,20 +108,18 @@ private extension UploadBottomSheetView {
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
-            $0.height.equalTo(30)
+            $0.trailing.equalToSuperview().offset(-16)
         }
         
         buttonStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(16)
-            $0.height.equalTo(self.snp.height).multipliedBy(0.4)
-            $0.trailing.equalToSuperview().offset(-16)
+            $0.leading.trailing.equalTo(titleLabel)
+            $0.height.equalToSuperview().multipliedBy(0.4)
         }
         
         cancelButton.snp.makeConstraints {
             $0.top.equalTo(buttonStackView.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.leading.trailing.equalTo(buttonStackView)
             $0.height.equalTo(40)
         }
     }

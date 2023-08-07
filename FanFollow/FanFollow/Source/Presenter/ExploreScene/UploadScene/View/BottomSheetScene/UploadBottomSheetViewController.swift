@@ -13,9 +13,7 @@ final class UploadBottomSheetViewController: UIViewController {
         $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
-    private let bottomSheetView = UploadBottomSheetView(
-        frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100))
-    ).then {
+    private let bottomSheetView = UploadBottomSheetView(frame: .zero).then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -76,7 +74,7 @@ extension UploadBottomSheetViewController: SheetButtonDelegate {
     }
     
     func showBottomSheet() {
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 2 / 3
+        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.7
         
         bottomSheetView.snp.remakeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
