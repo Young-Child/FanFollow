@@ -30,7 +30,6 @@ final class ProfileFeedViewController: UIViewController {
     private let followButtonTapped = PublishRelay<Void>()
     private let lastCellDisplayed = BehaviorRelay(value: true)
     private let viewType: ViewType
-    private var dataSource: DataSource!
 
     // Initializer
     init(viewModel: ProfileFeedViewModel, viewType: ViewType) {
@@ -49,36 +48,13 @@ final class ProfileFeedViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-        configureDataSource()
         binding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-
-    private func configureDataSource() {
-        dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
-            switch dataSource[indexPath.section] {
-            case .profile(let items):
-                let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                let item = items[indexPath.row]
-                let profile = Profile(creator: item.creator, followersCount: item.followerCount)
-                
-                cell.delegate = self
-                cell.configure(with: profile, viewType: self.viewType)
-                
-                return cell
-            case .posts(let items):
-                let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-
-                let item = items[indexPath.row]
-                cell.configure(with: item, delegate: self)
-                return cell
-            }
-        })
+        configureNavigationItem()
     }
 }
 
@@ -145,6 +121,8 @@ private extension ProfileFeedViewController {
     }
 
     func bindTableView(_ output: ProfileFeedViewModel.Output) {
+        let dataSource = generateDataSource()
+        
         output.profileFeedSections
             .asDriver(onErrorJustReturn: [])
             .do { [weak self] value in
@@ -155,6 +133,29 @@ private extension ProfileFeedViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
+    
+    private func generateDataSource() -> DataSource {
+        return DataSource { dataSource, tableView, indexPath, item in
+            switch dataSource[indexPath.section] {
+            case .profile(let items):
+                let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let item = items[indexPath.row]
+                let profile = Profile(creator: item.creator, followersCount: item.followerCount)
+                
+                cell.delegate = self
+                cell.configure(with: profile, viewType: self.viewType)
+                
+                return cell
+                
+            case .posts(let items):
+                let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+
+                let item = items[indexPath.row]
+                cell.configure(with: item, delegate: self)
+                return cell
+            }
+        }
+    }
 }
 
 // Configure UI
@@ -162,7 +163,6 @@ private extension ProfileFeedViewController {
     func configureUI() {
         configureHierarchy()
         configureConstraints()
-        configureNavigationItem()
         configureTableView()
     }
 
@@ -177,18 +177,8 @@ private extension ProfileFeedViewController {
     }
 
     func configureNavigationItem() {
-        switch viewType {
-        case .profileFeed:
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        case .feedManage:
-            let barButtonItem = UIBarButtonItem(
-                systemItem: .add,
-                primaryAction: UIAction(handler: { _ in
-                    // TODO: 게시글 작성 화면 작업 후 코드 작성
-                })
-            )
-            navigationItem.rightBarButtonItem = barButtonItem
-        }
+        let navigationBarIsHidden = (viewType == .feedManage)
+        navigationController?.setNavigationBarHidden(navigationBarIsHidden, animated: false)
     }
 
     func configureTableView() {
