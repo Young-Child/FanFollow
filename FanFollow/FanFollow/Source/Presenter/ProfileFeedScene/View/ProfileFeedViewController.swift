@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxRelay
+
 import RxDataSources
+import RxRelay
+import RxSwift
 
 final class ProfileFeedViewController: UIViewController {
     // View Properties

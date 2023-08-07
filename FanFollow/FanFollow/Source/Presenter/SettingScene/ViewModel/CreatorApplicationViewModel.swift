@@ -5,8 +5,8 @@
 //  Created by junho lee on 2023/07/31.
 //
 
-import RxSwift
 import RxRelay
+import RxSwift
 
 final class CreatorApplicationViewModel: ViewModel {
     struct Input {

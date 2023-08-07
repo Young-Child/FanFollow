@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 import RxSwift
 
 struct DefaultPostRepository: PostRepository {

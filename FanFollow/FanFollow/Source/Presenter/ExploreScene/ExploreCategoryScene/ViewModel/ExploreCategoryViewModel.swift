@@ -5,8 +5,8 @@
 //  Created by parkhyo on 2023/07/19.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class ExploreCategoryViewModel: ViewModel {
     struct Input {

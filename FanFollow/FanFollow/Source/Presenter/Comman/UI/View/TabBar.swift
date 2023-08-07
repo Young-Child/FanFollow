@@ -5,9 +5,10 @@
 //  Copyright (c) 2023 Minii All rights reserved.
 
 import UIKit
-import RxSwift
+
 import RxCocoa
 import RxRelay
+import RxSwift
 
 class TabBar: UIStackView {
     private var tabButtons = [UIButton]()
