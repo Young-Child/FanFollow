@@ -145,7 +145,11 @@ extension UploadPhotoViewController {
     
     func configurePostItem(to post: Post?) {
         self.titleTextField.text = post?.title
-        self.contentsTextView.textView.text = post?.content
+        
+        if post?.content != nil {
+            self.contentsTextView.textView.text = post?.content
+            self.contentsTextView.textView.textColor = .label
+        }
     }
     
     func configureImages(to imageDatas: [Data]) {
