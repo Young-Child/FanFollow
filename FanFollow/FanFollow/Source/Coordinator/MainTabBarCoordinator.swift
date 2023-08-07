@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainTabBarCoordinator: Coordinator {
+final class MainTabBarCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     
     var childCoordinators: [Coordinator] = []

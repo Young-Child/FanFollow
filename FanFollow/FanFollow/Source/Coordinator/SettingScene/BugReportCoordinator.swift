@@ -6,7 +6,7 @@
 
 import MessageUI
 
-class BugReportCoordinator: NSObject, Coordinator {
+final class BugReportCoordinator: NSObject, Coordinator {
     weak var parentCoordinator: SettingCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController

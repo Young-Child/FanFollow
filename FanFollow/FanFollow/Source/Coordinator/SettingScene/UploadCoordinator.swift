@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UploadCoordinator: Coordinator {
+final class UploadCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     weak var parentCoordinator: SettingCoordinator?

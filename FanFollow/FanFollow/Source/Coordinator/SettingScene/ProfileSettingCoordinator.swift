@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ProfileSettingCoordinator: Coordinator {
+final class ProfileSettingCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     

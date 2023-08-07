@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator {
+final class ExploreCoordinator: Coordinator {
     // Coordinator Propertiese
     weak var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
@@ -34,6 +34,7 @@ class ExploreCoordinator: Coordinator {
     func start() {
         let controller = ExploreTabBarController()
         controller.coordinator = self
+        
         navigationController.pushViewController(controller, animated: true)
     }
     
