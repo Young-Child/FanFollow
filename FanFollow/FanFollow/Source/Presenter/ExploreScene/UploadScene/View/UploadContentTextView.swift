@@ -30,10 +30,6 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
     }
     
     func observeInput() {
-        textView.rx.text
-            .subscribe(onNext: setTextViewLabel(to:))
-            .disposed(by: disposeBag)
-        
         textView.rx.didBeginEditing
             .map { _ in return self.textView.text }
             .subscribe(onNext: setTextViewLabel(to:))
@@ -43,6 +39,11 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
             .map { _ in return self.textView.text }
             .subscribe(onNext: self.setTextViewPlaceholder(to:))
             .disposed(by: disposeBag)
+    }
+    
+    func setInitialState(to text: String) {
+        self.textView.text = text
+        self.textView.textColor = .label
     }
     
     private func setTextViewPlaceholder(to text: String?) {

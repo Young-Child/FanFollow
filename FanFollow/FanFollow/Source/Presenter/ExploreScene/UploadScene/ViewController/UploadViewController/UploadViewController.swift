@@ -47,6 +47,7 @@ class UploadViewController: UIViewController {
     init(viewModel: UploadViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        addKeyBoardGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +77,7 @@ class UploadViewController: UIViewController {
             .disposed(by: disposeBag)
         
         post.compactMap { $0?.content }
-            .drive(contentsTextView.textView.rx.text)
+            .drive(onNext: contentsTextView.setInitialState(to:))
             .disposed(by: disposeBag)
         
         output.registerResult
@@ -123,6 +124,18 @@ class UploadViewController: UIViewController {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
         }
+    }
+    
+    func addKeyBoardGesture() {
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapKeyboardDismiss)
+        )
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func didTapKeyboardDismiss() {
+        self.view.endEditing(true)
     }
 }
 

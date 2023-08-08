@@ -161,7 +161,7 @@ extension UploadPhotoViewController: UploadImageCellDelegate {
     }
 }
 
-// UICollectionViewDelegate, DataSource Method
+// UICollectionView DataSource Method
 extension UploadPhotoViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
