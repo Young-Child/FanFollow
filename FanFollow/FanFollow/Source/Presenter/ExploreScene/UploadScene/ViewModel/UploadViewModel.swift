@@ -33,7 +33,7 @@ final class UploadViewModel: ViewModel {
         let registerResult = input.registerButtonTap
             .flatMapLatest { uploadData in
                 return self.uploadUseCase
-                    .uploadPost(
+                    .upsertPost(
                         uploadData,
                         userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
                         existPostID: self.post?.postID
@@ -44,11 +44,10 @@ final class UploadViewModel: ViewModel {
         let postDatas = uploadUseCase.fetchPostImageDatas(
             self.post?.postID ?? "",
             imageCount: self.post?.imageURLs.count ?? .zero
-        )
-            .map { datas in
-                return datas.sorted(by: { $0.0 < $1.0 })
-                    .map { $0.1 }
-            }
+        ).map { datas in
+            return datas.sorted(by: { $0.0 < $1.0 })
+                .map { $0.1 }
+        }
         
         return Output(
             post: .just(self.post),
