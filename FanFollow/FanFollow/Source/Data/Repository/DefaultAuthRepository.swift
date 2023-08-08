@@ -61,11 +61,7 @@ struct DefaultAuthRepository: AuthRepository {
         guard let storedSession = userDefaultsService.object(forKey: Constants.session) as? StoredSession else {
             return .error(SessionError.notLoggedIn)
         }
-        if storedSession.isValid {
-            return .just(storedSession)
-        } else {
-            return refreshSession(with: storedSession.refreshToken)
-        }
+        return storedSession.isValid ? .just(storedSession) : refreshSession(with: storedSession.refreshToken)
     }
 }
 
