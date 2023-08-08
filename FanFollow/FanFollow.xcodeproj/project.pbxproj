@@ -564,7 +564,6 @@
 				1839746C2A52A28100F0101A /* HTTPMethod.swift */,
 				1839746E2A52A29D00F0101A /* APIError.swift */,
 				18EC4F462A6178C4007C1063 /* HTTPBody.swift */,
-				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -594,6 +593,7 @@
 				EB28F3312A8203F5001337A7 /* SessionDTO.swift */,
 				EB28F3392A822050001337A7 /* StoredSession.swift */,
 				EB28F33B2A8222B0001337A7 /* SessionError.swift */,
+				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
