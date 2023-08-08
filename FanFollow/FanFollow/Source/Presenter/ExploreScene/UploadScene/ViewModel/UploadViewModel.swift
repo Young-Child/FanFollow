@@ -16,7 +16,7 @@ final class UploadViewModel: ViewModel {
     
     struct Output {
         var post: Observable<Post?>
-        var postImageDatas: Observable<[(String, Data)]>
+        var postImageDatas: Observable<[Data]>
         var registerResult: Observable<Void>
     }
     
@@ -45,6 +45,10 @@ final class UploadViewModel: ViewModel {
             self.post?.postID ?? "",
             imageCount: self.post?.imageURLs.count ?? .zero
         )
+            .map { datas in
+                return datas.sorted(by: { $0.0 < $1.0 })
+                    .map { $0.1 }
+            }
         
         return Output(
             post: .just(self.post),

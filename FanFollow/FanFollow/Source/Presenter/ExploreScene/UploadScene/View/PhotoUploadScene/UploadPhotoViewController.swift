@@ -58,6 +58,7 @@ final class UploadPhotoViewController: UIViewController {
     }
     
     private let contentView = UIView()
+    
     private let scrollView = UIScrollView().then {
         $0.keyboardDismissMode = .interactive
         $0.showsVerticalScrollIndicator = false
@@ -97,33 +98,65 @@ final class UploadPhotoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-        photoCollectionView.reloadData()
     }
 }
 
-// Bind
+// Crop View Controller Delegate Method
+extension UploadPhotoViewController: UploadCropImageDelegate {
+    func uploadCropImage(_ image: UIImage) {
+        self.registerImage.append(image)
+    }
+}
+
+// Upload Image Cell Delegate
+extension UploadPhotoViewController: UploadImageCellDelegate {
+    func uploadImageCell() {
+        coordinator?.presentImagePickerViewController(cropImageDelegate: self)
+    }
+}
+
+// UICollectionViewDelegate, DataSource Method
+extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        
+        let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let isButton = indexPath.item == registerImage.count
+        let image = registerImage[safe: indexPath.item]
+        
+        cell.pickerDelegate = self
+        cell.configure(with: isButton, image: image)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if registerImage.count >= 5 { return registerImage.count }
+        return registerImage.count + 1
+    }
+}
+
+// Binding Method
 extension UploadPhotoViewController {
     func bind() {
-        let output = bindingInput()
-        
         bindingKeyboardHeight()
-        bindingView(output)
+        
+        let output = bindingInput()
+        bindingOutput(output)
     }
     
     func bindingKeyboardHeight() {
-        Observable.of(
-            Notification.keyboardWillShow(),
-            Notification.keyboardWillHide()
-        )
-        .merge()
-        .asDriver(onErrorJustReturn: .zero)
-        .drive {
-            self.scrollView.contentInset.bottom = $0
-        }
-        .disposed(by: disposeBag)
+        Observable.merge([Notification.keyboardWillShow(), Notification.keyboardWillHide()])
+            .asDriver(onErrorJustReturn: .zero)
+            .drive {
+                self.scrollView.contentInset.bottom = $0
+            }
+            .disposed(by: disposeBag)
     }
     
-    func bindingView(_ output: UploadViewModel.Output) {
+    func bindingOutput(_ output: UploadViewModel.Output) {
         let post = output.post.asDriver(onErrorJustReturn: nil)
         
         post.compactMap { $0?.title }
@@ -136,7 +169,7 @@ extension UploadPhotoViewController {
         
         output.postImageDatas
             .asDriver(onErrorJustReturn: [])
-            .drive { self.configureImages(to: $0) }
+            .drive(onNext: configureImages(to:))
             .disposed(by: disposeBag)
         
         output.registerResult
@@ -151,28 +184,8 @@ extension UploadPhotoViewController {
         return viewModel.transform(input: input)
     }
     
-    func configurePostItem(to post: Post?) {
-        self.titleTextField.text = post?.title
-        
-        if post?.content != nil {
-            self.contentsTextView.textView.text = post?.content
-            self.contentsTextView.textView.textColor = .label
-        }
-    }
-    
-    func configureImages(to imageDatas: [(String, Data)]) {
-        self.registerImage = imageDatas.sorted(by: { $0.0 < $1.0 }).compactMap {
-            return UIImage(data: $0.1)
-        }
-        photoCollectionView.reloadData()
-    }
-    
-    
-    
     func configureRightButtonTapEvent() -> Observable<Upload> {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else {
-            return .empty()
-        }
+        guard let rightBarButton = navigationItem.rightBarButtonItem else { return .empty() }
         
         return rightBarButton.rx.tap
             .map { _ in
@@ -211,9 +224,14 @@ extension UploadPhotoViewController {
     }
 }
 
-// UICollectionView Layout Method
-extension UploadPhotoViewController {
-    private func createLayout() -> UICollectionViewFlowLayout {
+// UI Update Method
+private extension UploadPhotoViewController {
+    func configureImages(to imageDatas: [Data]) {
+        self.registerImage = imageDatas.compactMap { UIImage(data: $0) }
+        photoCollectionView.reloadData()
+    }
+    
+    func createLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
@@ -222,41 +240,6 @@ extension UploadPhotoViewController {
         layout.itemSize  = CGSize(width: collectionCellWidth, height: collectionCellWidth)
         
         return layout
-    }
-}
-
-extension UploadPhotoViewController: UploadCropImageDelegate {
-    func uploadCropImage(_ image: UIImage) {
-        self.registerImage.append(image)
-    }
-}
-
-extension UploadPhotoViewController: UploadImageCellDelegate {
-    func uploadImageCell() {
-        coordinator?.presentImagePickerViewController(cropImageDelegate: self)
-    }
-}
-
-// UICollectionViewDelegate, DataSource Method
-extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        
-        let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        let isButton = indexPath.item == registerImage.count
-        let image = registerImage[safe: indexPath.item]
-        
-        cell.pickerDelegate = self
-        cell.configure(with: isButton, image: image)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if registerImage.count >= 5 { return registerImage.count }
-        return registerImage.count + 1
     }
 }
 
