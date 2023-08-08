@@ -153,7 +153,11 @@ extension UploadPhotoViewController: UploadImageCellDelegate {
     }
     
     func uploadImageCell(didTapRemoveImage cell: UploadImageCell) {
-        print(cell)
+        guard let indexPath = photoCollectionView.indexPath(for: cell),
+              let item = registerImage[safe: indexPath.item] else { return }
+        
+        registerImage.removeAll(where: { $0 == item })
+        photoCollectionView.reloadItems(at: [indexPath])
     }
 }
 
