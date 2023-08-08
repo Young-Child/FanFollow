@@ -56,17 +56,6 @@ final class CreatorApplicationLinkCell: UITableViewCell {
         
         textField.addAction(textChangeAction, for: .editingChanged)
     }
-    
-//    func configure(
-//        title: String?,
-//        text: String? = nil,
-//        keyboardType: UIKeyboardType = .default,
-//        onTextChanged: ((String?) -> Void)? = nil) {
-//            titleLabel.text = title
-//            textField.text = text
-//            textField.keyboardType = keyboardType
-//            self.onTextChanged = onTextChanged
-//        }
 }
 
 private extension CreatorApplicationLinkCell {
