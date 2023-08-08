@@ -56,15 +56,7 @@ final class UploadPhotoViewController: UploadViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func bindingOutput(_ output: UploadViewModel.Output) {
-        super.bindingOutput(output)
-        
-        output.postImageDatas
-            .asDriver(onErrorJustReturn: [])
-            .drive(onNext: configureImages(to:))
-            .disposed(by: disposeBag)
-    }
-    
+    // Configure UI Method
     override func configureHierarchy() {
         super.configureHierarchy()
         [titleLabel, titleTextField, contentsLabel, contentsTextView]
@@ -92,42 +84,14 @@ final class UploadPhotoViewController: UploadViewController {
         let output = bindingInput()
         bindingOutput(output)
     }
-}
-
-// Crop View Controller Delegate Method
-extension UploadPhotoViewController: UploadCropImageDelegate {
-    func uploadCropImage(_ image: UIImage) {
-        self.registerImage.append(image)
-    }
-}
-
-// Upload Image Cell Delegate
-extension UploadPhotoViewController: UploadImageCellDelegate {
-    func uploadImageCell() {
-        coordinator?.presentImagePickerViewController(cropImageDelegate: self)
-    }
-}
-
-// UICollectionViewDelegate, DataSource Method
-extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        
-        let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        let isButton = indexPath.item == registerImage.count
-        let image = registerImage[safe: indexPath.item]
-        
-        cell.pickerDelegate = self
-        cell.configure(with: isButton, image: image)
-        
-        return cell
-    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if registerImage.count >= 5 { return registerImage.count }
-        return registerImage.count + 1
+    override func bindingOutput(_ output: UploadViewModel.Output) {
+        super.bindingOutput(output)
+        
+        output.postImageDatas
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: configureImages(to:))
+            .disposed(by: disposeBag)
     }
 }
 
@@ -135,12 +99,13 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
 extension UploadPhotoViewController {
     func bindingInput() -> UploadViewModel.Output {
         let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
-        
         return viewModel.transform(input: input)
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
         guard let rightBarButton = navigationItem.rightBarButtonItem else { return .empty() }
+        
+        bindingRightBarButton(with: rightBarButton)
         
         return rightBarButton.rx.tap
             .map { _ in
@@ -170,6 +135,44 @@ extension UploadPhotoViewController {
         ) { $0 && $1 && $2 }
             .bind(to: barButton.rx.isEnabled)
             .disposed(by: disposeBag)
+    }
+}
+
+// Crop View Controller Delegate Method
+extension UploadPhotoViewController: UploadCropImageDelegate {
+    func uploadCropImage(_ image: UIImage) {
+        self.registerImage.append(image)
+        photoCollectionView.reloadData()
+    }
+}
+
+// Upload Image Cell Delegate
+extension UploadPhotoViewController: UploadImageCellDelegate {
+    func uploadImageCell() {
+        coordinator?.presentImagePickerViewController(cropImageDelegate: self)
+    }
+}
+
+// UICollectionViewDelegate, DataSource Method
+extension UploadPhotoViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        
+        let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let isButton = indexPath.item == registerImage.count
+        let image = registerImage[safe: indexPath.item]
+        
+        cell.pickerDelegate = self
+        cell.configure(with: isButton, image: image)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if registerImage.count >= 5 { return registerImage.count }
+        return registerImage.count + 1
     }
 }
 
@@ -203,7 +206,6 @@ private extension UploadPhotoViewController {
     
     func configureCollectionView() {
         photoCollectionView.collectionViewLayout = createLayout()
-        photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
     }
 }

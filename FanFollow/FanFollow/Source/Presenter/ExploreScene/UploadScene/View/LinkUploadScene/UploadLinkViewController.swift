@@ -133,32 +133,10 @@ extension UploadLinkViewController {
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else {
-            return .empty()
-        }
+        guard let rightBarButton = navigationItem.rightBarButtonItem else { return .empty() }
         
-        // UIComponent Contents Button Bind
-        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
-            .map { $0 != nil && $0?.count != .zero }
-        
-        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
-        }
-        
-        let isLinkNotEmpty = linkTextField.rx.observe(String.self, "text")
-            .map { $0 != nil && $0?.count != .zero }
-        
-        Observable<Bool>.combineLatest(
-            isTitleNotEmpty,
-            isContentNotEmpty,
-            isLinkNotEmpty,
-            resultSelector: {
-                return $0 && $1 && $2
-            }
-        )
-        .bind(to: rightBarButton.rx.isEnabled)
-        .disposed(by: disposeBag)
-        
+        bindingRightBarButton(with: rightBarButton)
+
         return rightBarButton.rx.tap
             .map { _ in
                 let upload = Upload(
@@ -169,6 +147,24 @@ extension UploadLinkViewController {
                 )
                 return upload
             }
+    }
+    
+    func bindingRightBarButton(with barButton: UIBarButtonItem) {
+        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
+            .map { $0?.count != .zero && $0 != nil }
+        
+        let isLinkNotEmpty = linkTextField.rx.observe(String.self, "text")
+            .map { $0 != nil && $0?.count != .zero }
+        
+        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
+            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+        }
+        
+        Observable.combineLatest(isTitleNotEmpty, isLinkNotEmpty, isContentNotEmpty) {
+            $0 && $1 && $2
+        }
+        .bind(to: barButton.rx.isEnabled)
+        .disposed(by: disposeBag)
     }
 }
 

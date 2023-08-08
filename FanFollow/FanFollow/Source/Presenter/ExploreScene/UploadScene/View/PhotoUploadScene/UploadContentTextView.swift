@@ -16,6 +16,9 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
         self.placeholder = placeHolder
         super.init()
         
+        self.textView.text = placeholder
+        self.textView.textColor = .systemGray4
+        
         observeInput()
     }
     
@@ -28,27 +31,23 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
     
     func observeInput() {
         textView.rx.didBeginEditing
-            .compactMap { _ in self.textView.text }
-            .asDriver(onErrorJustReturn: "")
-            .debug()
-            .drive {
-                if $0 == self.placeholder {
-                    self.textView.text = nil
-                    self.textView.textColor = .label
+            .subscribe(onNext: { [self] in
+                if textView.text == self.placeholder {
+                    textView.text = nil
+                    textView.textColor = .label
                 }
-            }
+            })
             .disposed(by: disposeBag)
         
         textView.rx.didEndEditing
-            .compactMap { _ in self.textView.text }
-            .asDriver(onErrorJustReturn: "")
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
-            .drive {
-                if $0 {
+            .subscribe(onNext: { [self] in
+                let newText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                textView.text = newText
+                if textView.text == nil || textView.text == "" {
                     self.textView.text = self.placeholder
-                    self.textView.textColor = .systemGray4
+                    textView.textColor = .systemGray4
                 }
-            }
+            })
             .disposed(by: disposeBag)
     }
 }
