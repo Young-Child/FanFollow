@@ -5,8 +5,8 @@
 //  Created by parkhyo on 2023/07/17.
 //
 
-import RxSwift
 import RxDataSources
+import RxSwift
 
 struct ExploreSectionModel: AnimatableSectionModelType {
     typealias Identity = String

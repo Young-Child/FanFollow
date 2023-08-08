@@ -6,7 +6,7 @@
 
 import LinkPresentation
 
-class LinkCacheService {
+final class LinkCacheService {
     static func cache(metaData: LPLinkMetadata) {
         do {
             guard let url = metaData.url?.absoluteString,

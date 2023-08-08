@@ -53,7 +53,7 @@ final class PostRepositoryTest: XCTestCase {
     func test_FetchAllPostIsCorrectWhenSendCorrectData() {
         // given
         networkService.response = successResponse
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         let firstPostID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
         let firstUserID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         let secondPostID = "aa1f8c34-9b26-4407-b323-691903226867"
@@ -74,7 +74,7 @@ final class PostRepositoryTest: XCTestCase {
     func test_UpsertPostIsCorrectWhenSendCorrectData() throws {
         // given
         networkService.response = successResponse
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         
         // when
         let upsertResultObservable = postRepository.upsertPost(
@@ -97,7 +97,7 @@ final class PostRepositoryTest: XCTestCase {
     func test_DeletePostIsCorrectWhenSendCorrectData() throws {
         // given
         networkService.response = successResponse
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         
         // when
         let deleteResultObservable = postRepository.deletePost(postID: "testPostID")
@@ -117,7 +117,7 @@ final class PostRepositoryTest: XCTestCase {
     func test_FetchAllPostThrowErrorWhenSendCorrectData() throws {
         // given
         networkService.response = failureResponse
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let postRepository = DefaultPostRepository(networkService)
         
         // when
         let postListObservable = postRepository.fetchMyPosts(userID: "testUserID", startRange: 0, endRange: 3)

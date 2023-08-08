@@ -6,10 +6,11 @@
 //
 
 import UIKit
-import RxSwift
-import RxRelay
+
 import RxCocoa
 import RxDataSources
+import RxRelay
+import RxSwift
 
 final class FeedViewController: UIViewController {
     // View Properties

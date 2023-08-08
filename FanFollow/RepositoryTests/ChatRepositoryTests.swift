@@ -55,7 +55,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.response = successResponse
         
         // when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let chatListObservable = chatRepository.fetchChattingList(userID: userID)
         
         // then
@@ -73,7 +73,7 @@ final class ChatRepositoryTests: XCTestCase {
         self.networkService.error = NetworkError.unknown
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let chatListObservable = chatRepository.fetchChattingList(userID: userID)
         
         // then
@@ -95,7 +95,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.response = successResponse
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.createNewChatRoom(from: fanID, to: creatorID)
         
         //then
@@ -118,7 +118,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.error = NetworkError.unknown
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.createNewChatRoom(from: fanID, to: creatorID)
         
         //then
@@ -140,7 +140,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.response = successResponse
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
         
         //then
@@ -163,7 +163,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.error = NetworkError.unknown
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.leaveChatRoom(to: chatID, userID: fanID, isCreator: false)
         
         //then
@@ -187,7 +187,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.response = successResponse
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.deleteChatRoom(to: chatID)
         
         //then
@@ -209,7 +209,7 @@ final class ChatRepositoryTests: XCTestCase {
         networkService.error = NetworkError.unknown
         
         //when
-        let chatRepository = DefaultChatRepository(networkService: self.networkService)
+        let chatRepository = DefaultChatRepository(self.networkService)
         let observable = chatRepository.deleteChatRoom(to: chatID)
         
         //then

@@ -5,8 +5,8 @@
 //  Created by junho lee on 2023/07/27.
 //
 
-import RxSwift
 import RxRelay
+import RxSwift
 
 final class ProfileFeedViewModel: ViewModel {
     struct Input {

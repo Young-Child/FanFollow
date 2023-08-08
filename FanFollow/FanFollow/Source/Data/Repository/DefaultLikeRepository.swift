@@ -5,12 +5,13 @@
 //  Copyright (c) 2023 Minii All rights reserved.
 
 import Foundation
+
 import RxSwift
 
 struct DefaultLikeRepository: LikeRepository {
     private let networkService: NetworkService
     
-    init(networkService: NetworkService) {
+    init(_ networkService: NetworkService) {
         self.networkService = networkService
     }
     
