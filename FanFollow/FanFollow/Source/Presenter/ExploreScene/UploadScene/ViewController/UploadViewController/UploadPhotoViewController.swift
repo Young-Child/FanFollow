@@ -148,8 +148,12 @@ extension UploadPhotoViewController: UploadCropImageDelegate {
 
 // Upload Image Cell Delegate
 extension UploadPhotoViewController: UploadImageCellDelegate {
-    func uploadImageCell() {
+    func uploadImageCell(didTapPickImage cell: UploadImageCell) {
         coordinator?.presentImagePickerViewController(cropImageDelegate: self)
+    }
+    
+    func uploadImageCell(didTapRemoveImage cell: UploadImageCell) {
+        print(cell)
     }
 }
 

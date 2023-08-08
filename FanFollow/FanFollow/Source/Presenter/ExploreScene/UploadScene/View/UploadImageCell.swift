@@ -9,13 +9,19 @@ import UIKit
 import RxSwift
 
 protocol UploadImageCellDelegate: AnyObject {
-    func uploadImageCell()
+    func uploadImageCell(didTapPickImage cell: UploadImageCell)
+    func uploadImageCell(didTapRemoveImage cell: UploadImageCell)
 }
 
 final class UploadImageCell: UICollectionViewCell {
     // View Property
     private let imageStackView = UIStackView().then {
         $0.alignment = .fill
+    }
+    
+    private let deleteButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        $0.tintColor = UIColor(named: "AccentColor")
     }
     
     private let pickerButton = UIButton().then {
@@ -33,7 +39,6 @@ final class UploadImageCell: UICollectionViewCell {
         super.init(frame: frame)
         
         configureUI()
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -48,28 +53,28 @@ final class UploadImageCell: UICollectionViewCell {
     
     func configure(with isButton: Bool, image: UIImage? = nil) {
         func createButton() {
+            let pickingAction = UIAction { _ in
+                self.pickerDelegate?.uploadImageCell(didTapPickImage: self)
+            }
+            pickerButton.addAction(pickingAction, for: .touchUpInside)
             imageStackView.addArrangedSubview(pickerButton)
+            deleteButton.isHidden = true
         }
         
         func configureCell(_ image: UIImage?) {
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFill
-        
+            
             imageStackView.addArrangedSubview(imageView)
+            
+            let deleteAction = UIAction { _ in
+                self.pickerDelegate?.uploadImageCell(didTapRemoveImage: self)
+            }
+            deleteButton.addAction(deleteAction, for: .touchUpInside)
+            deleteButton.isHidden = false
         }
         
         isButton ? createButton() : configureCell(image)
-    }
-}
-
-// Bind
-private extension UploadImageCell {
-    func bind() {
-        pickerButton.rx.tap
-            .bind {
-                self.pickerDelegate?.uploadImageCell()
-            }
-            .disposed(by: disposeBag)
     }
 }
 
@@ -92,11 +97,16 @@ private extension UploadImageCell {
     
     func configureHierarchy() {
         contentView.addSubview(imageStackView)
+        contentView.addSubview(deleteButton)
     }
     
     func makeConstraints() {
         imageStackView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(contentView)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.top.trailing.equalToSuperview().inset(8)
         }
     }
 }
