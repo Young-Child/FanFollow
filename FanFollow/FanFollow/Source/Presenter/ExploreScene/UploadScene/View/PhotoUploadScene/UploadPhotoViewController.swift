@@ -108,7 +108,6 @@ extension UploadPhotoViewController {
         
         bindingKeyboardHeight()
         bindingView(output)
-        navigationButtonBind()
     }
     
     func bindingKeyboardHeight() {
@@ -168,29 +167,12 @@ extension UploadPhotoViewController {
         photoCollectionView.reloadData()
     }
     
+    
+    
     func configureRightButtonTapEvent() -> Observable<Upload> {
         guard let rightBarButton = navigationItem.rightBarButtonItem else {
             return .empty()
         }
-        
-        // UIComponent Contents Button Bind
-        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
-            .map { $0?.count != .zero && $0 != nil }
-        
-        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
-        }
-        
-        Observable<Bool>.combineLatest(
-            isTitleNotEmpty,
-            isContentNotEmpty,
-            imageCount.map { $0 != .zero },
-            resultSelector: {
-                return $0 && $1 && $2
-            }
-        )
-        .bind(to: rightBarButton.rx.isEnabled)
-        .disposed(by: disposeBag)
         
         return rightBarButton.rx.tap
             .map { _ in
@@ -205,12 +187,26 @@ extension UploadPhotoViewController {
             }
     }
     
-    private func navigationButtonBind() {
-        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
-        leftBarButton.rx.tap
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
+    func bindingLeftBarButton(with barButton: UIBarButtonItem) {
+        barButton.rx.tap
+            .bind { self.navigationController?.popViewController(animated: true) }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingRightBarButton(with barButton: UIBarButtonItem) {
+        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
+            .map { $0?.count != .zero && $0 != nil }
+        
+        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
+            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+        }
+        
+        Observable.combineLatest(
+            isTitleNotEmpty,
+            isContentNotEmpty,
+            imageCount.map { $0 != .zero }
+        ) { $0 && $1 && $2 }
+            .bind(to: barButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }
@@ -249,21 +245,18 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
     ) -> UICollectionViewCell {
         
         let cell: UploadImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let isButton = indexPath.item == registerImage.count
+        let image = registerImage[safe: indexPath.item]
         
         cell.pickerDelegate = self
-        
-        if indexPath.item == registerImage.count {
-            cell.createButton()
-        } else {
-            let image = registerImage[indexPath.item]
-            cell.configureCell(image)
-        }
+        cell.configure(with: isButton, image: image)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return registerImage.count < 5 ? registerImage.count + 1 : 5
+        if registerImage.count >= 5 { return registerImage.count }
+        return registerImage.count + 1
     }
 }
 
@@ -273,23 +266,14 @@ private extension UploadPhotoViewController {
         title = Constants.navigationTitle
         navigationController?.navigationBar.standardAppearance.backgroundColor = .white
         
-        let backLeftButton = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.backward"),
-            style: .plain,
-            target: self,
-            action: nil
-        )
+        let popButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"))
+        let uploadButton = UIBarButtonItem(title: Constants.register)
         
-        let uploadRightButton = UIBarButtonItem(
-            title: Constants.register,
-            style: .done,
-            target: self,
-            action: nil
-        )
+        navigationItem.leftBarButtonItem = popButton
+        navigationItem.rightBarButtonItem = uploadButton
         
-        navigationItem.leftBarButtonItem = backLeftButton
-        navigationItem.rightBarButtonItem = uploadRightButton
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        bindingRightBarButton(with: uploadButton)
+        bindingLeftBarButton(with: popButton)
     }
     
     func configureUI() {

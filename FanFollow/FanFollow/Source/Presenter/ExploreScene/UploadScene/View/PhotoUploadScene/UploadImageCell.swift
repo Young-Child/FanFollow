@@ -46,15 +46,19 @@ final class UploadImageCell: UICollectionViewCell {
         imageStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
-    func createButton() {
-        imageStackView.addArrangedSubview(pickerButton)
-    }
-    
-    func configureCell(_ image: UIImage) {
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-    
-        imageStackView.addArrangedSubview(imageView)
+    func configure(with isButton: Bool, image: UIImage? = nil) {
+        func createButton() {
+            imageStackView.addArrangedSubview(pickerButton)
+        }
+        
+        func configureCell(_ image: UIImage?) {
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFill
+        
+            imageStackView.addArrangedSubview(imageView)
+        }
+        
+        isButton ? createButton() : configureCell(image)
     }
 }
 
