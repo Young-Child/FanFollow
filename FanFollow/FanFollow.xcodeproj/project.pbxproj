@@ -164,6 +164,7 @@
 		EB28F3302A81FCA7001337A7 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */; };
 		EB28F3322A8203F5001337A7 /* SessionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3312A8203F5001337A7 /* SessionDTO.swift */; };
 		EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */; };
+		EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */; };
 		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
 		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
@@ -400,6 +401,7 @@
 		EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		EB28F3312A8203F5001337A7 /* SessionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDTO.swift; sourceTree = "<group>"; };
 		EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUserDefaultsService.swift; sourceTree = "<group>"; };
 		EB28F3392A822050001337A7 /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
 		EB28F33B2A8222B0001337A7 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 			isa = PBXGroup;
 			children = (
 				EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */,
+				EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1742,6 +1745,7 @@
 				1866AFC32A57087E000FFFD7 /* ChatRepositoryTests.swift in Sources */,
 				3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */,
 				3CFC16D32A57E97D00B16ADF /* LikeRepositoryTests.swift in Sources */,
+				EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
