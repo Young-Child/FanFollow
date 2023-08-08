@@ -106,6 +106,8 @@
 		3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10F7B32A53B862001E9B21 /* PostRepository.swift */; };
 		3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804312A67B1E20019DE79 /* ExploreCategoryViewController.swift */; };
 		3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */; };
+		3C3356512A7F5F4500BF632B /* StubImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356502A7F5F4500BF632B /* StubImageRepository.swift */; };
+		3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
@@ -337,6 +339,8 @@
 		3C10F7B32A53B862001E9B21 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		3C1804312A67B1E20019DE79 /* ExploreCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewController.swift; sourceTree = "<group>"; };
 		3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewModel.swift; sourceTree = "<group>"; };
+		3C3356502A7F5F4500BF632B /* StubImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubImageRepository.swift; sourceTree = "<group>"; };
+		3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCaseTest.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
@@ -347,7 +351,6 @@
 		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
-		3C639B322A7B3B75003E2E44 /* Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
@@ -762,7 +765,6 @@
 				EBA8EB502A5FBE2D00998630 /* UseCaseTests */,
 				188CC4012A4D7FD900BAB85A /* Products */,
 				18C1E5462A55C33D00A41AC5 /* Frameworks */,
-				3CF4CE942A7CDFBA0079E996 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1132,12 +1134,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				3C639B322A7B3B75003E2E44 /* Upload.swift */,
-			);
-			name = "Recovered References";
+        3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
+            isa = PBXGroup;
+            children = (
+                3C639B322A7B3B75003E2E44 /* Upload.swift */,
+            );
+            name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
@@ -1233,6 +1235,7 @@
 				3CC1D49D2A6134C000713FAF /* ExploreUseCaseTests.swift */,
 				3CB6FE5B2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift */,
 				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
+				3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1245,6 +1248,7 @@
 				EBA8EB6E2A601C8700998630 /* StubUserInformationRepository.swift */,
 				3CC1D4992A61114200713FAF /* StubChatRepository.swift */,
 				EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */,
+				3C3356502A7F5F4500BF632B /* StubImageRepository.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1708,11 +1712,13 @@
 				EBA8EB672A5FC0D500998630 /* FetchFeedUseCaseTests.swift in Sources */,
 				3CC1D49C2A61161100713FAF /* AccessChatRoomUseCaseTests.swift in Sources */,
 				EBA8EB692A5FC16800998630 /* StubPostRepository.swift in Sources */,
+				3C3356512A7F5F4500BF632B /* StubImageRepository.swift in Sources */,
 				3CB6FE5C2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift in Sources */,
 				3CC1D49E2A6134C000713FAF /* ExploreUseCaseTests.swift in Sources */,
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
 				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
+				3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
 				EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */,
