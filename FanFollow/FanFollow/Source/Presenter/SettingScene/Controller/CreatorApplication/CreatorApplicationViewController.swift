@@ -12,20 +12,13 @@ import RxRelay
 final class CreatorApplicationViewController: UIViewController {
     // View Properties
     private let backBarButtonItem = UIBarButtonItem(image: Constants.backBarButtonItemImage)
-
-    private let topLineView = UIView().then { view in
-        view.backgroundColor = UIColor.systemGray4
-    }
-
-    private let stackView = UIStackView().then { stackView in
-        stackView.axis = .vertical
-    }
-
+    
     private let stepView = CreatorApplicationStepView()
 
     private let creatorApplicationPageViewController = CreatorApplicationPageViewController()
 
     private let nextButton = UIButton(type: .roundedRect).then { button in
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "AccentColor")
         button.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
@@ -140,7 +133,7 @@ private extension CreatorApplicationViewController {
                     direction: .forward
                 )
                 self.configureNextButton(for: creatorApplicationStep)
-                self.stepView.configure(creatorApplicationStep)
+//                self.stepView.configure(creatorApplicationStep)
             }
             .disposed(by: disposeBag)
     }
@@ -179,18 +172,25 @@ private extension CreatorApplicationViewController {
 
     func configureHierarchy() {
         addChild(creatorApplicationPageViewController)
-        [topLineView, stepView, creatorApplicationPageViewController.view, nextButton].forEach(stackView.addArrangedSubview)
         creatorApplicationPageViewController.didMove(toParent: self)
-        view.addSubview(stackView)
+        [stepView, creatorApplicationPageViewController.view, nextButton].forEach(view.addSubview)
     }
 
     func configureConstraints() {
-        topLineView.snp.makeConstraints { $0.height.equalTo(1) }
-        nextButton.snp.makeConstraints {
-            $0.height.equalTo(40)
+        stepView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
         }
-        stackView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide).inset(16)
+        
+        creatorApplicationPageViewController.view.snp.makeConstraints {
+            $0.top.equalTo(stepView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        nextButton.snp.makeConstraints {
+            $0.top.equalTo(creatorApplicationPageViewController.view.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(8)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
 

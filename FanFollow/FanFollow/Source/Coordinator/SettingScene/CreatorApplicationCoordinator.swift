@@ -28,6 +28,7 @@ final class CreatorApplicationCoordinator: Coordinator {
         )
         let creatorApplicationViewController = CreatorApplicationViewController(viewModel: creatorApplicationViewModel)
         creatorApplicationViewController.coordinator = self
+        creatorApplicationViewController.hidesBottomBarWhenPushed = true
 
         navigationController.pushViewController(creatorApplicationViewController, animated: true)
     }

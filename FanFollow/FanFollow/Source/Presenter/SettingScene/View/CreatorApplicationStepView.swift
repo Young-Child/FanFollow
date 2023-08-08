@@ -7,68 +7,114 @@
 
 import UIKit
 
-final class CreatorApplicationStepView: UIView {
-    // View Properties
-    private let stackView = UIStackView().then { stackView in
-        stackView.spacing = 16
-        stackView.axis = .vertical
+final class CreatorApplicationStepView: UIStackView {
+    private let titleLabel = UILabel().then {
+        $0.numberOfLines = 1
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.textColor = .label
+        $0.text = "Example"
     }
-
-    private let titleLabel = UILabel().then { label in
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-    }
-
-    private let stepStackView = UIStackView(
-        arrangedSubviews: (0...2).map { _ in
+    
+    private let stepStackView = UIStackView().then {
+        let childViews = (0...2).map { _ in
             return UIView().then { view in
+                view.layer.cornerRadius = 10
                 view.backgroundColor = UIColor(named: "SecondaryColor")
-                view.layer.cornerRadius = 8
             }
         }
-    ).then { stackView in
-        stackView.distribution = .fillEqually
+        
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        $0.spacing = 8
+        childViews.forEach($0.addArrangedSubview)
     }
-
-    // Initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
         configureUI()
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func configure(_ creatorApplicationStep: CreatorApplicationStep) {
-        titleLabel.text = creatorApplicationStep.title
-        stepStackView.subviews.enumerated().forEach { (index, view) in
-            let isFill = index < creatorApplicationStep.steps
-            view.backgroundColor = isFill ? UIColor(named: "AccentColor") : UIColor(named: "SecondaryColor")
-        }
-    }
-}
-
-private extension CreatorApplicationStepView {
+    
     func configureUI() {
-        configureHierarchy()
-        configureConstraints()
-    }
-
-    func configureHierarchy() {
-        [titleLabel, stepStackView].forEach(stackView.addArrangedSubview)
-        addSubview(stackView)
-    }
-
-    func configureConstraints() {
+        distribution = .fillProportionally
+        axis = .vertical
+        layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        spacing = 16
+        isLayoutMarginsRelativeArrangement = true
+        [titleLabel, stepStackView].forEach(addArrangedSubview)
+        
         stepStackView.snp.makeConstraints {
-            $0.height.equalTo(16)
-        }
-        stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
+            $0.height.equalTo(20)
         }
     }
 }
+
+//final class CreatorApplicationStepView: UIView {
+//    // View Properties
+//    private let stackView = UIStackView().then { stackView in
+//        stackView.spacing = 16
+//        stackView.axis = .vertical
+//    }
+//
+//    private let titleLabel = UILabel().then { label in
+//        label.numberOfLines = 1
+//        label.font = .systemFont(ofSize: 24, weight: .bold)
+//    }
+//
+//    private let stepStackView = UIStackView(
+//        arrangedSubviews: (0...2).map { _ in
+//            return UIView().then { view in
+//                view.backgroundColor = UIColor(named: "SecondaryColor")
+//                view.layer.cornerRadius = 8
+//            }
+//        }
+//    ).then { stackView in
+//        stackView.axis = .horizontal
+//        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        stackView.isLayoutMarginsRelativeArrangement = true
+//        stackView.spacing = 8
+//        stackView.distribution = .fillEqually
+//    }
+//
+//    // Initializer
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        configureUI()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    func configure(_ creatorApplicationStep: CreatorApplicationStep) {
+//        titleLabel.text = creatorApplicationStep.title
+//        stepStackView.subviews.enumerated().forEach { (index, view) in
+//            let isFill = index < creatorApplicationStep.steps
+//            view.backgroundColor = isFill ? UIColor(named: "AccentColor") : UIColor(named: "SecondaryColor")
+//        }
+//    }
+//}
+//
+//private extension CreatorApplicationStepView {
+//    func configureUI() {
+//        configureHierarchy()
+//        configureConstraints()
+//    }
+//
+//    func configureHierarchy() {
+//        [titleLabel, stepStackView].forEach(stackView.addArrangedSubview)
+//        addSubview(stackView)
+//    }
+//
+//    func configureConstraints() {
+//        stepStackView.snp.makeConstraints {
+//            $0.height.equalTo(16)
+//        }
+//        stackView.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
+//    }
+//}
 
 private extension CreatorApplicationStep {
     var title: String {
