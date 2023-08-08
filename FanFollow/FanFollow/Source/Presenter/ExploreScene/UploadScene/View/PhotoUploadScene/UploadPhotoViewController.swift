@@ -42,7 +42,9 @@ final class UploadPhotoViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let contentsTextView = UnderLineTextView().then {
+    private let contentsTextView = PostUploadContentTextView(
+        placeHolder: Constants.contentPlaceholder
+    ).then {
         $0.textView.textColor = .systemGray4
         $0.textView.text = Constants.contentPlaceholder
         $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
@@ -137,7 +139,7 @@ extension UploadPhotoViewController {
             .asDriver(onErrorJustReturn: [])
             .drive { self.configureImages(to: $0) }
             .disposed(by: disposeBag)
-            
+        
         output.registerResult
             .asDriver(onErrorJustReturn: ())
             .drive { _ in self.navigationController?.popViewController(animated: true) }
@@ -265,23 +267,6 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-// TextView Delegate
-extension UploadPhotoViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == Constants.contentPlaceholder && textView.textColor == .systemGray4 {
-            textView.text = ""
-            textView.textColor = .label
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = Constants.contentPlaceholder
-            textView.textColor = .systemGray4
-        }
-    }
-}
-
 // Configure UI
 private extension UploadPhotoViewController {
     func configureNavgationBar() {
@@ -312,12 +297,7 @@ private extension UploadPhotoViewController {
         
         configureHierarchy()
         configureCollectionView()
-        configureTextFieldView()
         makeConstraints()
-    }
-    
-    func configureTextFieldView() {
-        contentsTextView.textView.delegate = self
     }
     
     func configureCollectionView() {
@@ -347,17 +327,14 @@ private extension UploadPhotoViewController {
         }
         
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(UIScreen.main.bounds.width / 2)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
         }
         
         uploadStackView.snp.makeConstraints {
             $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-10)
-            $0.bottom.lessThanOrEqualToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview()
         }
     }
 }

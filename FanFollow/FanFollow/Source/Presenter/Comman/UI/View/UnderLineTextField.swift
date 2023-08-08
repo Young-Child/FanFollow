@@ -26,7 +26,7 @@ final class UnderLineTextField: UITextField {
     }
 }
 
-final class UnderLineTextView: UIStackView {
+class UnderLineTextView: UIStackView {
     let textView = UITextView().then {
         $0.isScrollEnabled = false
     }
@@ -59,4 +59,9 @@ final class UnderLineTextView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+protocol PlaceHolderInput {
+    var placeHolder: String { get }
+    func observeInput()
 }
