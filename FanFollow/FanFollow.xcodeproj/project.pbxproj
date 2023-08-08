@@ -161,6 +161,7 @@
 		EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */; };
 		EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32D2A81E7F0001337A7 /* Provider.swift */; };
 		EB28F3322A8203F5001337A7 /* SessionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3312A8203F5001337A7 /* SessionDTO.swift */; };
+		EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */; };
 		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
 		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
@@ -394,6 +395,7 @@
 		EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestDirector.swift; sourceTree = "<group>"; };
 		EB28F32D2A81E7F0001337A7 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		EB28F3312A8203F5001337A7 /* SessionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDTO.swift; sourceTree = "<group>"; };
+		EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		EB28F3392A822050001337A7 /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
 		EB28F33B2A8222B0001337A7 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
@@ -1174,6 +1176,7 @@
 				1839745E2A525B1A00F0101A /* NetworkService.swift */,
 				183974602A525B3300F0101A /* DefaultNetworkService.swift */,
 				18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */,
+				EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1670,6 +1673,7 @@
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
+				EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
