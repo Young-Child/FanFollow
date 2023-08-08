@@ -34,7 +34,7 @@ final class UploadLinkViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let linkPreView = UploadLinkPreView()
+    private let linkPreview = UploadLinkPreView()
     
     private let linkTextField = UnderLineTextField().then {
         $0.leadPadding(5)
@@ -54,11 +54,11 @@ final class UploadLinkViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let contentsTextView = UnderLineTextView().then {
-        $0.textView.textColor = .systemGray4
-        $0.textView.text = Constants.contentPlaceholder
-        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
-    }
+    private let contentsTextView = PostUploadContentTextView(placeHolder: Constants.contentPlaceholder)
+        .then {
+            $0.textView.textColor = .systemGray4
+            $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
+        }
     
     private let contentsStackView = UIStackView().then {
         $0.spacing = 16
@@ -248,13 +248,13 @@ extension UploadLinkViewController: UITextFieldDelegate {
         let linkView = LPLinkView(metadata: metaData)
         
         DispatchQueue.main.async {
-            self.linkPreView.showLinkView(linkView)
+            self.linkPreview.showLinkView(linkView)
         }
     }
     
     private func configureDefaultLinkView() {
         DispatchQueue.main.async {
-            self.linkPreView.showDefaultImage()
+            self.linkPreview.showDefaultImage()
         }
     }
 }
@@ -314,7 +314,7 @@ private extension UploadLinkViewController {
     }
     
     func configureHierarchy() {
-        [linkLabel, linkPreView, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
+        [linkLabel, linkPreview, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
         [titleLabel, titleTextField].forEach(titleStackView.addArrangedSubview(_:))
         [contentsLabel, contentsTextView].forEach(contentsStackView.addArrangedSubview(_:))
         [titleStackView, linkStackView, contentsStackView].forEach(contentView.addSubview(_:))
@@ -335,25 +335,22 @@ private extension UploadLinkViewController {
         }
         
         titleStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-10)
+            $0.top.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
         }
         
         linkStackView.snp.makeConstraints {
-            $0.top.equalTo(titleStackView.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-10)
+            $0.top.equalTo(titleStackView).offset(16)
+            $0.leading.trailing.equalTo(titleStackView)
         }
-
+        
         contentsStackView.snp.makeConstraints {
-            $0.top.equalTo(linkStackView.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-10)
-            $0.bottom.lessThanOrEqualToSuperview()
+            $0.top.equalTo(linkStackView).offset(16)
+            $0.leading.trailing.equalTo(linkStackView)
+            $0.bottom.equalToSuperview()
         }
-
-        linkPreView.snp.makeConstraints {
+        
+        linkPreview.snp.makeConstraints {
             $0.height.equalTo(view.snp.height).multipliedBy(0.3)
         }
     }

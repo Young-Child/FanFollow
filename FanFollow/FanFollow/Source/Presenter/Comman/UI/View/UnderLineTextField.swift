@@ -61,7 +61,7 @@ class UnderLineTextView: UIStackView {
     }
 }
 
-protocol PlaceHolderInput {
-    var placeHolder: String { get }
+protocol PlaceholderInput {
+    var placeholder: String? { get set }
     func observeInput()
 }

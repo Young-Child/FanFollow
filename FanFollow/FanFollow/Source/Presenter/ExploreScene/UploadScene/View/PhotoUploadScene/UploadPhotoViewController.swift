@@ -46,7 +46,6 @@ final class UploadPhotoViewController: UIViewController {
         placeHolder: Constants.contentPlaceholder
     ).then {
         $0.textView.textColor = .systemGray4
-        $0.textView.text = Constants.contentPlaceholder
         $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
     }
     

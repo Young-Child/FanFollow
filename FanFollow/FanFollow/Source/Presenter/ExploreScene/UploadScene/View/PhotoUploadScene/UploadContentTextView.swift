@@ -8,19 +8,19 @@ import UIKit
 
 import RxSwift
 
-class PostUploadContentTextView: UnderLineTextView, PlaceHolderInput {
-    var placeHolder: String
+class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
+    var placeholder: String? = nil
     private var disposeBag = DisposeBag()
     
-    init(placeHolder: String) {
-        self.placeHolder = placeHolder
+    init(placeHolder: String? = nil) {
+        self.placeholder = placeHolder
         super.init()
         
         observeInput()
     }
     
     required init(coder: NSCoder) {
-        self.placeHolder = ""
+        self.placeholder = ""
         super.init(coder: coder)
         
         observeInput()
@@ -32,7 +32,7 @@ class PostUploadContentTextView: UnderLineTextView, PlaceHolderInput {
             .asDriver(onErrorJustReturn: "")
             .debug()
             .drive {
-                if $0 == self.placeHolder {
+                if $0 == self.placeholder {
                     self.textView.text = nil
                     self.textView.textColor = .label
                 }
@@ -45,7 +45,7 @@ class PostUploadContentTextView: UnderLineTextView, PlaceHolderInput {
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
             .drive {
                 if $0 {
-                    self.textView.text = self.placeHolder
+                    self.textView.text = self.placeholder
                     self.textView.textColor = .systemGray4
                 }
             }
