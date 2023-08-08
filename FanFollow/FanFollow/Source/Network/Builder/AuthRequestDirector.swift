@@ -57,14 +57,6 @@ struct AuthRequestDirector {
     }
 }
 
-extension AuthRequestDirector {
-    enum Provider: String {
-        case apple
-        case google
-        case kakao
-    }
-}
-
 private extension SupabaseConstants {
     enum Constants {
         static let tokenPath = "/auth/v1/token"

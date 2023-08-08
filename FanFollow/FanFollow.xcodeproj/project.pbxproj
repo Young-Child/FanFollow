@@ -159,6 +159,7 @@
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
 		EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */; };
+		EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32D2A81E7F0001337A7 /* Provider.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -388,6 +389,7 @@
 		EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestDirector.swift; sourceTree = "<group>"; };
+		EB28F32D2A81E7F0001337A7 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				1839746C2A52A28100F0101A /* HTTPMethod.swift */,
 				1839746E2A52A29D00F0101A /* APIError.swift */,
 				18EC4F462A6178C4007C1063 /* HTTPBody.swift */,
+				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1515,6 +1518,7 @@
 				EBBE26BF2A6FF04F0071234B /* CreatorInformationSectionItem.swift in Sources */,
 				187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */,
 				18F36E552A78D92F00D17CE3 /* LinkCacheService.swift in Sources */,
+				EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */,
 				3CC69A882A6504E90081ACC8 /* ExploreSectionModel.swift in Sources */,
 				3CC69A8A2A65116C0081ACC8 /* CreatorCell.swift in Sources */,
 				1829B5142A714B4500D873DF /* SettingCoodinator.swift in Sources */,
