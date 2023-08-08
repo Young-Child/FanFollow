@@ -717,9 +717,38 @@
 		187FD98E2A8216770041EA63 /* UploadViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
+				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
 				187FD98F2A8216840041EA63 /* UploadViewController.swift */,
 			);
 			path = UploadViewController;
+			sourceTree = "<group>";
+		};
+		187FD9912A823D070041EA63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
+				187FD98A2A81DD140041EA63 /* UploadContentTextView.swift */,
+				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
+				3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		187FD9942A823D4F0041EA63 /* UploadImagePickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
+			);
+			path = UploadImagePickerViewController;
+			sourceTree = "<group>";
+		};
+		187FD9952A823D620041EA63 /* UploadBottomSheetViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
+			);
+			path = UploadBottomSheetViewController;
 			sourceTree = "<group>";
 		};
 		188CC3F72A4D7FD900BAB85A = {
@@ -1077,22 +1106,22 @@
 		3CCEC3792A7892D8001753DF /* UploadScene */ = {
 			isa = PBXGroup;
 			children = (
-				3CCEC37B2A7892F0001753DF /* View */,
+				187FD9912A823D070041EA63 /* View */,
+				3CCEC37B2A7892F0001753DF /* ViewController */,
 				3CCEC3822A78DF4C001753DF /* ViewModel */,
 			);
 			name = UploadScene;
 			path = ExploreScene/UploadScene;
 			sourceTree = "<group>";
 		};
-		3CCEC37B2A7892F0001753DF /* View */ = {
+		3CCEC37B2A7892F0001753DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				187FD9952A823D620041EA63 /* UploadBottomSheetViewController */,
+				187FD9942A823D4F0041EA63 /* UploadImagePickerViewController */,
 				187FD98E2A8216770041EA63 /* UploadViewController */,
-				3CF4CE912A7CC7DD0079E996 /* BottomSheetScene */,
-				3CF4CE922A7CC80A0079E996 /* PhotoUploadScene */,
-				3CF4CE932A7CC8150079E996 /* LinkUploadScene */,
 			);
-			path = View;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		3CCEC3822A78DF4C001753DF /* ViewModel */ = {
@@ -1101,35 +1130,6 @@
 				3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		3CF4CE912A7CC7DD0079E996 /* BottomSheetScene */ = {
-			isa = PBXGroup;
-			children = (
-				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
-				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
-			);
-			path = BottomSheetScene;
-			sourceTree = "<group>";
-		};
-		3CF4CE922A7CC80A0079E996 /* PhotoUploadScene */ = {
-			isa = PBXGroup;
-			children = (
-				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
-				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
-				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
-				187FD98A2A81DD140041EA63 /* UploadContentTextView.swift */,
-			);
-			path = PhotoUploadScene;
-			sourceTree = "<group>";
-		};
-		3CF4CE932A7CC8150079E996 /* LinkUploadScene */ = {
-			isa = PBXGroup;
-			children = (
-				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
-				3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */,
-			);
-			path = LinkUploadScene;
 			sourceTree = "<group>";
 		};
 		3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
