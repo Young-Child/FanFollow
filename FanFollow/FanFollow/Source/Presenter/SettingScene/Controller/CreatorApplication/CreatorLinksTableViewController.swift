@@ -10,10 +10,10 @@ import RxSwift
 import RxRelay
 
 final class CreatorLinksTableViewController: UITableViewController {
-    private let links = BehaviorRelay(value: [""])
+    private let links = BehaviorRelay<[String?]>(value: [nil])
 
     var updatedLinks: Observable<[String]> {
-        return links.asObservable()
+        return links.compactMap { $0.compactMap { $0 } }
     }
 
     override func viewDidLoad() {
@@ -21,69 +21,90 @@ final class CreatorLinksTableViewController: UITableViewController {
 
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.register(CreatorApplicationTextFieldCell.self, forCellReuseIdentifier: "LinkCell")
-        tableView.register(ButtonCell.self, forCellReuseIdentifier: "ButtonCell")
+        tableView.register(
+            CreatorApplicationLinkCell.self,
+            forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
+        )
+//        tableView.register(ButtonCell.self, forCellReuseIdentifier: "ButtonCell")
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return links.value.count
-        } else {
-            return 1
-        }
+        return links.value.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LinkCell", for: indexPath)
-            guard let cell = cell as? CreatorApplicationTextFieldCell else { return cell }
-            let title = "링크\(indexPath.row + 1)"
-            let text = links.value[indexPath.row]
-            cell.configure(
-                title: title,
-                text: text,
-                keyboardType: .URL,
-                onTextChanged: { [weak self] updatedText in
-                    guard let self else { return }
-                    self.updateLink(index: indexPath.row, link: updatedText)
-                }
-            )
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-            guard let cell = cell as? ButtonCell else { return cell }
-            cell.configure(
-                attributedTitle: Constants.addLinkButtonTitle,
-                backgroundColor: UIColor(named: "SecondaryColor"),
-                onButtonTapped: { [weak self] in
-                    guard let appendLink = self?.appendLink else { return }
-                    appendLink()
-                }
-            )
-            return cell
+    override func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell: CreatorApplicationLinkCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let index = indexPath.row, text = links.value[index]
+        
+        cell.configure(index: index, link: text)
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 64
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let viewFrame = CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: 64)
+        let footerView = UIView(frame: viewFrame)
+        
+        let addLinkAction = UIAction {
+            _ in self.appendLink()
         }
+        
+        let button = UIButton().then {
+            $0.frame = CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: 32)
+            $0.layer.backgroundColor = UIColor.systemGray5.cgColor
+            $0.layer.cornerRadius = 8
+            $0.setTitle("링크 추가하기", for: .normal)
+        }
+        
+        button.addAction(addLinkAction, for: .touchUpInside)
+        
+        footerView.addSubview(button)
+        
+        return footerView
+    }
+}
+
+extension CreatorLinksTableViewController: CreatorApplicationLinkCellDelegate {
+    func creatorApplicationTextFieldCell(
+        _ cell: CreatorApplicationLinkCell,
+        didChangeText changedText: (index: Int, text: String?)
+    ) {
+        var updated = links.value
+        updated[changedText.index] = changedText.text ?? ""
+        links.accept(updated)
     }
 }
 
 private extension CreatorLinksTableViewController {
     func appendLink() {
-        let current = links.value
-        let someLinksIsEmpty = current.filter { $0.isEmpty }.count > 0
-        guard someLinksIsEmpty == false else { return }
-        let new = current + [""]
-        links.accept(new)
+        var newItems = links.value
+        let existNil = newItems.filter { $0 == nil }.count > .zero
+        let existEmpty = newItems.compactMap { $0 }.filter { $0.isEmpty }.count > .zero
+        
+        if existNil || existEmpty { return }
+        
+        newItems.append(nil)
+        links.accept(newItems)
         tableView.reloadData()
     }
 
     func updateLink(index: Int, link: String?) {
         var updated = links.value
-        updated[index] = link ?? ""
+        updated[index] = link
         links.accept(updated)
     }
 }

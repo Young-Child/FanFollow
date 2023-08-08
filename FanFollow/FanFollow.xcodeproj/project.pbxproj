@@ -152,7 +152,7 @@
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
 		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
-		EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */; };
+		EB54BEC52A7B4DA60095A171 /* CreatorApplicationLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */; };
 		EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
@@ -360,7 +360,7 @@
 		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
 		EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorLinksTableViewController.swift; sourceTree = "<group>"; };
 		EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorIntroduceViewController.swift; sourceTree = "<group>"; };
-		EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldCell.swift; sourceTree = "<group>"; };
+		EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationLinkCell.swift; sourceTree = "<group>"; };
 		EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
@@ -823,7 +823,7 @@
 				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
 				EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */,
 				EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */,
-				EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */,
+				EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */,
 				EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */,
 			);
 			path = View;
@@ -1507,7 +1507,7 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
-				EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */,
+				EB54BEC52A7B4DA60095A171 /* CreatorApplicationLinkCell.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
