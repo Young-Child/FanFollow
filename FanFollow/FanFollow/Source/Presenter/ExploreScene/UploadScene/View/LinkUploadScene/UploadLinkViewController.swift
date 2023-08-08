@@ -25,10 +25,10 @@ final class UploadLinkViewController: UploadViewController {
     
     private let linkPreview = UploadLinkPreview()
     
-    private let linkTextField = UnderLineTextField().then {
-        $0.leadPadding(5)
-        $0.placeholder = Constants.linkPlaceholder
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+    private let linkTextView = PostUploadContentTextView(
+        placeHolder: Constants.linkPlaceholder
+    ).then {
+        $0.textView.font = .preferredFont(forTextStyle: .body)
     }
     
     private let linkStackView = UIStackView().then {
@@ -62,21 +62,12 @@ final class UploadLinkViewController: UploadViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func bindingOutput(_ output: UploadViewModel.Output) {
-        super.bindingOutput(output)
-        
-        output.post.compactMap { $0?.videoURL }
-            .asDriver(onErrorJustReturn: "")
-            .compactMap { URL(string: $0) }
-            .drive {
-            }
-            .disposed(by: disposeBag)
-    }
+    
     
     override func configureHierarchy() {
         super.configureHierarchy()
         
-        [linkLabel, linkPreview, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
+        [linkLabel, linkPreview, linkTextView].forEach(linkStackView.addArrangedSubview(_:))
         [titleLabel, titleTextField].forEach(titleStackView.addArrangedSubview(_:))
         [contentsLabel, contentsTextView].forEach(contentsStackView.addArrangedSubview(_:))
         [titleStackView, linkStackView, contentsStackView].forEach(contentView.addSubview(_:))
@@ -109,8 +100,18 @@ final class UploadLinkViewController: UploadViewController {
     override func binding() {
         super.binding()
         
+        bindingViews()
         let output = bindingInput()
         bindingOutput(output)
+    }
+    
+    override func bindingOutput(_ output: UploadViewModel.Output) {
+        super.bindingOutput(output)
+        
+        output.post.compactMap { $0?.videoURL }
+            .asDriver(onErrorJustReturn: "")
+            .drive(linkTextView.textView.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -129,7 +130,7 @@ extension UploadLinkViewController {
         }
         
         self.titleTextField.text = post?.title
-        self.linkTextField.text = post?.videoURL
+        self.linkTextView.textView.text = post?.videoURL
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
@@ -143,18 +144,33 @@ extension UploadLinkViewController {
                     title: self.titleTextField.text ?? "",
                     content: self.contentsTextView.textView.text,
                     imageDatas: [],
-                    videoURL: self.linkTextField.text
+                    videoURL: self.linkTextView.textView.text ?? ""
                 )
                 return upload
             }
+    }
+    
+    func bindingViews() {
+        linkTextView.textView.rx.text.orEmpty
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: {
+                var urlString = $0
+                if urlString.hasPrefix(Constants.http) == false {
+                    urlString = Constants.http + urlString
+                }
+                guard let url = URL(string: urlString) else { return }
+                self.linkPreview.setLink(to: url)
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindingRightBarButton(with barButton: UIBarButtonItem) {
         let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
             .map { $0?.count != .zero && $0 != nil }
         
-        let isLinkNotEmpty = linkTextField.rx.observe(String.self, "text")
-            .map { $0 != nil && $0?.count != .zero }
+        let isLinkNotEmpty = linkTextView.textView.rx.text.orEmpty
+            .map { $0.isEmpty == false && $0 != Constants.linkPlaceholder }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
             return $0.isEmpty == false && $0 != Constants.contentPlaceholder
@@ -168,53 +184,13 @@ extension UploadLinkViewController {
     }
 }
 
-// TextField Method & LinkView Display Method
-extension UploadLinkViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard var linkText = linkTextField.text else { return }
-        if textField != linkTextField || linkText.isEmpty { return }
-        
-        if !linkText.contains(Constants.http) {
-            linkText = Constants.http + linkText
-            textField.text = linkText
-        }
-        
-        guard let url = URL(string: linkText) else { return }
-        
-        linkPreview.setLink(to: url)
-    }
-}
-
-// TextView Delegate
-extension UploadLinkViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == Constants.contentPlaceholder && textView.textColor == .systemGray4 {
-            textView.text = ""
-            textView.textColor = .label
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = Constants.contentPlaceholder
-            textView.textColor = .systemGray4
-        }
-    }
-}
 
 // Configure UI
 extension UploadLinkViewController {
     func configureUI() {
-        view.backgroundColor = .systemBackground
-
+        configureNavigationBar()
         configureHierarchy()
-        configureTextFieldView()
         makeConstraints()
-    }
-    
-    func configureTextFieldView() {
-        contentsTextView.textView.delegate = self
-        linkTextField.delegate = self
     }
 }
 

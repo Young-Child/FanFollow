@@ -15,7 +15,9 @@ final class UploadLinkPreview: UIView {
         $0.image = UIImage(systemName: "link")
     }
     
-    private let linkPreview = LPLinkView()
+    private let linkPreview = LPLinkView().then {
+        $0.isHidden = true
+    }
     
     // Initializer
     override init(frame: CGRect) {
