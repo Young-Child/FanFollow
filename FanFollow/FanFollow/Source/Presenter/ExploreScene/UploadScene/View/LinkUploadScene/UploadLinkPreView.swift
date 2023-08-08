@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import LinkPresentation
 
-final class UploadLinkPreView: UIView {
+final class UploadLinkPreview: UIView {
     // View Properties
     private let defaultImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
         $0.image = UIImage(systemName: "link")
     }
+    
+    private let linkPreview = LPLinkView()
     
     // Initializer
     override init(frame: CGRect) {
@@ -27,51 +30,52 @@ final class UploadLinkPreView: UIView {
 }
 
 // Link Method
-extension UploadLinkPreView {
-    func showLinkView(_ linkView: UIView) {
-        defaultImageView.isHidden = true
+extension UploadLinkPreview {
+    func setLink(to link: URL) {
+        let provider = LPMetadataProvider()
         
-        subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
-        addSubview(linkView)
-        
-        linkView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+        provider.startFetchingMetadata(for: link) { meta, error in
+            DispatchQueue.main.async {
+                guard let meta = meta, error == nil else {
+                    self.defaultImageView.isHidden = false
+                    self.linkPreview.isHidden = true
+                    return
+                }
+                
+                self.linkPreview.metadata = meta
+                self.defaultImageView.isHidden = true
+                self.linkPreview.isHidden = false
+            }
         }
-    }
-    
-    func showDefaultImage() {
-        subviews.filter { $0 != defaultImageView }.forEach { $0.removeFromSuperview() }
-        
-        defaultImageView.isHidden = false
     }
 }
 
 // Configure UI
-private extension UploadLinkPreView {
+private extension UploadLinkPreview {
     func configureUI() {
-        backgroundColor = .systemGray5
-        
+        configureLayer()
         configureHierarchy()
         makeConstraints()
-        configureLayer()
     }
     
     func configureHierarchy() {
-        addSubview(defaultImageView)
+        [linkPreview, defaultImageView].forEach(addSubview(_:))
     }
     
     func configureLayer() {
-        layer.cornerRadius = 15
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.systemGray4.cgColor
+        layer.cornerRadius = 12
+        layer.backgroundColor = UIColor.systemGray5.cgColor
         clipsToBounds = true
     }
     
     func makeConstraints() {
+        linkPreview.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         defaultImageView.snp.makeConstraints {
-            $0.height.width.equalTo(70)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.centerX.centerY.equalToSuperview()
+            $0.width.height.equalTo(70)
         }
     }
 }

@@ -34,7 +34,7 @@ final class UploadLinkViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let linkPreview = UploadLinkPreView()
+    private let linkPreview = UploadLinkPreview()
     
     private let linkTextField = UnderLineTextField().then {
         $0.leadPadding(5)
@@ -54,11 +54,12 @@ final class UploadLinkViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private let contentsTextView = PostUploadContentTextView(placeHolder: Constants.contentPlaceholder)
-        .then {
-            $0.textView.textColor = .systemGray4
-            $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
-        }
+    private let contentsTextView = PostUploadContentTextView(
+        placeHolder: Constants.contentPlaceholder
+    ).then {
+        $0.textView.textColor = .systemGray4
+        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
+    }
     
     private let contentsStackView = UIStackView().then {
         $0.spacing = 16
@@ -228,7 +229,7 @@ extension UploadLinkViewController: UITextFieldDelegate {
         
         guard let url = URL(string: linkText) else { return }
         
-        configureLinkView(url: url)
+        linkPreview.setLink(to: url)
     }
     
     private func configureLinkView(url: URL) {
@@ -331,7 +332,6 @@ private extension UploadLinkViewController {
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
-            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.low)
         }
         
         titleStackView.snp.makeConstraints {
@@ -340,12 +340,12 @@ private extension UploadLinkViewController {
         }
         
         linkStackView.snp.makeConstraints {
-            $0.top.equalTo(titleStackView).offset(16)
+            $0.top.equalTo(titleStackView.snp.bottom).offset(16)
             $0.leading.trailing.equalTo(titleStackView)
         }
         
         contentsStackView.snp.makeConstraints {
-            $0.top.equalTo(linkStackView).offset(16)
+            $0.top.equalTo(linkStackView.snp.bottom).offset(16)
             $0.leading.trailing.equalTo(linkStackView)
             $0.bottom.equalToSuperview()
         }

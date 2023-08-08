@@ -145,7 +145,7 @@
 		3CF4CE8A2A7B794B0079E996 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */; };
 		3CF4CE8C2A7B85E70079E996 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */; };
 		3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */; };
-		3CF4CE902A7B98840079E996 /* UploadLinkPreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */; };
+		3CF4CE902A7B98840079E996 /* UploadLinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */; };
 		3CF4CE962A7CE02C0079E996 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE952A7CE02C0079E996 /* Upload.swift */; };
 		3CFC16D32A57E97D00B16ADF /* LikeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */; };
 		3CFC16D42A57EC3000B16ADF /* DefaultLikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183974652A52636B00F0101A /* DefaultLikeRepository.swift */; };
@@ -375,7 +375,7 @@
 		3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLinkViewController.swift; sourceTree = "<group>"; };
-		3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLinkPreView.swift; sourceTree = "<group>"; };
+		3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLinkPreview.swift; sourceTree = "<group>"; };
 		3CF4CE952A7CE02C0079E996 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepositoryTests.swift; sourceTree = "<group>"; };
 		3CFDF6BB2A5D513C00DE6109 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -1116,7 +1116,7 @@
 			isa = PBXGroup;
 			children = (
 				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
-				3CF4CE8F2A7B98840079E996 /* UploadLinkPreView.swift */,
+				3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */,
 			);
 			path = LinkUploadScene;
 			sourceTree = "<group>";
@@ -1541,7 +1541,7 @@
 				3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
-				3CF4CE902A7B98840079E996 /* UploadLinkPreView.swift in Sources */,
+				3CF4CE902A7B98840079E996 /* UploadLinkPreview.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
 				EBEB29EC2A728C570028270C /* ProfileFeedSectionModel.swift in Sources */,
 				187949C82A5EDCE100ADA01A /* SettingSectionModel.swift in Sources */,
