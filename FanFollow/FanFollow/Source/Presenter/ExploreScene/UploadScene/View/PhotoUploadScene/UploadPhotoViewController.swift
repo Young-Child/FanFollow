@@ -11,7 +11,7 @@ import RxCocoa
 
 import Kingfisher
 
-final class UploadPhotoViewController: UIViewController {
+final class UploadPhotoViewController: UploadViewController {
     // View Properties
     private let photoCollectionView = UICollectionView(
         frame: .zero,
@@ -26,29 +26,6 @@ final class UploadPhotoViewController: UIViewController {
         )
     }
     
-    private let titleLabel = UILabel().then {
-        $0.text = Constants.title
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
-    }
-    
-    private let titleTextField = UnderLineTextField().then {
-        $0.leadPadding(5)
-        $0.placeholder = Constants.titlePlaceholder
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
-    private let contentsLabel = UILabel().then {
-        $0.text = Constants.content
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
-    }
-    
-    private let contentsTextView = PostUploadContentTextView(
-        placeHolder: Constants.contentPlaceholder
-    ).then {
-        $0.textView.textColor = .systemGray4
-        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
     private let uploadStackView = UIStackView().then {
         $0.spacing = 16
         $0.alignment = .fill
@@ -56,16 +33,7 @@ final class UploadPhotoViewController: UIViewController {
         $0.axis = .vertical
     }
     
-    private let contentView = UIView()
-    
-    private let scrollView = UIScrollView().then {
-        $0.keyboardDismissMode = .interactive
-        $0.showsVerticalScrollIndicator = false
-    }
-    
     // Properties
-    weak var coordinator: UploadCoordinator?
-    private let viewModel: UploadViewModel
     private let disposeBag = DisposeBag()
     private var registerImage: [UIImage] = [] {
         willSet {
@@ -74,29 +42,55 @@ final class UploadPhotoViewController: UIViewController {
     }
     private let imageCount = BehaviorRelay(value: 0)
     
-    // Initializer
-    init(viewModel: UploadViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
-        configureNavgationBar()
-        bind()
+        binding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func bindingOutput(_ output: UploadViewModel.Output) {
+        super.bindingOutput(output)
+        
+        output.postImageDatas
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: configureImages(to:))
+            .disposed(by: disposeBag)
+    }
+    
+    override func configureHierarchy() {
+        super.configureHierarchy()
+        [titleLabel, titleTextField, contentsLabel, contentsTextView]
+            .forEach(uploadStackView.addArrangedSubview(_:))
+        [photoCollectionView, uploadStackView].forEach(contentView.addSubview(_:))
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        photoCollectionView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.bounds.width / 2)
+        }
+        
+        uploadStackView.snp.makeConstraints {
+            $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    override func binding() {
+        super.binding()
+        
+        let output = bindingInput()
+        bindingOutput(output)
     }
 }
 
@@ -139,44 +133,6 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
 
 // Binding Method
 extension UploadPhotoViewController {
-    func bind() {
-        bindingKeyboardHeight()
-        
-        let output = bindingInput()
-        bindingOutput(output)
-    }
-    
-    func bindingKeyboardHeight() {
-        Observable.merge([Notification.keyboardWillShow(), Notification.keyboardWillHide()])
-            .asDriver(onErrorJustReturn: .zero)
-            .drive {
-                self.scrollView.contentInset.bottom = $0
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    func bindingOutput(_ output: UploadViewModel.Output) {
-        let post = output.post.asDriver(onErrorJustReturn: nil)
-        
-        post.compactMap { $0?.title }
-            .drive(titleTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        post.compactMap { $0?.content }
-            .drive(contentsTextView.textView.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.postImageDatas
-            .asDriver(onErrorJustReturn: [])
-            .drive(onNext: configureImages(to:))
-            .disposed(by: disposeBag)
-        
-        output.registerResult
-            .asDriver(onErrorJustReturn: ())
-            .drive { _ in self.navigationController?.popViewController(animated: true) }
-            .disposed(by: disposeBag)
-    }
-    
     func bindingInput() -> UploadViewModel.Output {
         let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
         
@@ -197,12 +153,6 @@ extension UploadPhotoViewController {
                 )
                 return upload
             }
-    }
-    
-    func bindingLeftBarButton(with barButton: UIBarButtonItem) {
-        barButton.rx.tap
-            .bind { self.navigationController?.popViewController(animated: true) }
-            .disposed(by: disposeBag)
     }
     
     func bindingRightBarButton(with barButton: UIBarButtonItem) {
@@ -244,23 +194,8 @@ private extension UploadPhotoViewController {
 
 // Configure UI
 private extension UploadPhotoViewController {
-    func configureNavgationBar() {
-        title = Constants.navigationTitle
-        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
-        
-        let popButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"))
-        let uploadButton = UIBarButtonItem(title: Constants.register)
-        
-        navigationItem.leftBarButtonItem = popButton
-        navigationItem.rightBarButtonItem = uploadButton
-        
-        bindingRightBarButton(with: uploadButton)
-        bindingLeftBarButton(with: popButton)
-    }
-    
     func configureUI() {
-        view.backgroundColor = .systemBackground
-        
+        configureNavigationBar()
         configureHierarchy()
         configureCollectionView()
         makeConstraints()
@@ -270,38 +205,6 @@ private extension UploadPhotoViewController {
         photoCollectionView.collectionViewLayout = createLayout()
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
-    }
-    
-    func configureHierarchy() {
-        [titleLabel, titleTextField, contentsLabel, contentsTextView]
-            .forEach(uploadStackView.addArrangedSubview(_:))
-        [photoCollectionView, uploadStackView].forEach(contentView.addSubview(_:))
-        
-        scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
-    }
-    
-    func makeConstraints() {
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        contentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView.contentLayoutGuide)
-            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
-            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.low)
-        }
-        
-        photoCollectionView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(UIScreen.main.bounds.width / 2)
-        }
-        
-        uploadStackView.snp.makeConstraints {
-            $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview()
-        }
     }
 }
 

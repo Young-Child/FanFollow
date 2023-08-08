@@ -1,0 +1,140 @@
+//
+//  UploadViewController.swift
+//  FanFollow
+//
+//  Copyright (c) 2023 Minii All rights reserved.
+
+import UIKit
+
+import RxSwift
+import RxCocoa
+import Kingfisher
+
+class UploadViewController: UIViewController {
+    let titleLabel = UILabel().then {
+        $0.text = Constants.title
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    let titleTextField = UnderLineTextField().then {
+        $0.leadPadding(5)
+        $0.placeholder = Constants.titlePlaceholder
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+    }
+    
+    let contentsLabel = UILabel().then {
+        $0.text = Constants.content
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    let contentsTextView = PostUploadContentTextView(
+        placeHolder: Constants.contentPlaceholder
+    ).then {
+        $0.textView.textColor = .systemGray4
+        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
+    }
+    
+    let contentView = UIView()
+    
+    let scrollView = UIScrollView().then {
+        $0.keyboardDismissMode = .interactive
+        $0.showsVerticalScrollIndicator = false
+    }
+    
+    weak var coordinator: UploadCoordinator?
+    let viewModel: UploadViewModel
+    private let disposeBag = DisposeBag()
+    
+    init(viewModel: UploadViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func binding() {
+        bindingLeftButton()
+        bindingKeyboardHeight()
+    }
+    
+    func bindingKeyboardHeight() {
+        Observable.merge([Notification.keyboardWillShow(), Notification.keyboardWillHide()])
+            .asDriver(onErrorJustReturn: .zero)
+            .drive {
+                self.scrollView.contentInset.bottom = $0
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    // Binding Method
+    func bindingOutput(_ output: UploadViewModel.Output) {
+        let post = output.post.asDriver(onErrorJustReturn: nil)
+        
+        post.compactMap { $0?.title }
+            .drive(titleTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        post.compactMap { $0?.content }
+            .drive(contentsTextView.textView.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.registerResult
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in self.navigationController?.popViewController(animated: true) }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingLeftButton() {
+        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
+        
+        leftBarButton.rx.tap
+            .bind { self.navigationController?.popViewController(animated: true) }
+            .disposed(by: disposeBag)
+    }
+    
+    func configureNavigationBar() {
+        view.backgroundColor = .systemBackground
+
+        title = Constants.navigationTitle
+        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
+        
+        let popButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"))
+        let uploadButton = UIBarButtonItem(title: Constants.register)
+        
+        navigationItem.leftBarButtonItem = popButton
+        navigationItem.rightBarButtonItem = uploadButton
+        
+        configureHierarchy()
+        makeConstraints()
+    }
+    
+    func configureHierarchy() {
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
+    }
+    
+    func makeConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
+        }
+    }
+}
+
+// Constants
+private extension UploadViewController {
+    enum Constants {
+        static let title = "제목"
+        static let content = "내용"
+        static let titlePlaceholder = "제목을 입력해주세요."
+        static let contentPlaceholder = "내용을 입력해주세요."
+        static let navigationTitle = "게시물 작성"
+        static let register = "완료"
+    }
+}

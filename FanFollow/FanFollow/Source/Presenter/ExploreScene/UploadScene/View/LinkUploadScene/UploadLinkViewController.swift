@@ -9,19 +9,8 @@ import UIKit
 import LinkPresentation
 import RxSwift
 
-final class UploadLinkViewController: UIViewController {
+final class UploadLinkViewController: UploadViewController {
     // View Properties
-    private let titleLabel = UILabel().then {
-        $0.text = Constants.title
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
-    }
-    
-    private let titleTextField = UnderLineTextField().then {
-        $0.leadPadding(5)
-        $0.placeholder = Constants.contentPlaceholder
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
     private let titleStackView = UIStackView().then {
         $0.spacing = 16
         $0.alignment = .fill
@@ -49,18 +38,6 @@ final class UploadLinkViewController: UIViewController {
         $0.axis = .vertical
     }
     
-    private let contentsLabel = UILabel().then {
-        $0.text = Constants.content
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
-    }
-    
-    private let contentsTextView = PostUploadContentTextView(
-        placeHolder: Constants.contentPlaceholder
-    ).then {
-        $0.textView.textColor = .systemGray4
-        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
     private let contentsStackView = UIStackView().then {
         $0.spacing = 16
         $0.alignment = .fill
@@ -68,34 +45,15 @@ final class UploadLinkViewController: UIViewController {
         $0.axis = .vertical
     }
     
-    private let contentView = UIView()
-    private let scrollView = UIScrollView().then {
-        $0.keyboardDismissMode = .interactive
-        $0.showsVerticalScrollIndicator = false
-    }
-    
     // Properties
-    weak var coordinator: UploadCoordinator?
-    private let viewModel: UploadViewModel
     private let disposeBag = DisposeBag()
-    
-    // Initializer
-    init(viewModel: UploadViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
-        configureNavgationBar()
-        bind()
+        binding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,52 +61,65 @@ final class UploadLinkViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-}
-
-// Bind
-extension UploadLinkViewController {
-    func bind() {
-        let output = bindingInput()
-        
-        navigationButtonBind()
-        bindingKeyboardHeight()
-        bindingView(output)
-    }
     
-    func bindingKeyboardHeight() {
-        Observable.of(
-            Notification.keyboardWillShow(),
-            Notification.keyboardWillHide()
-        )
-        .merge()
-        .asDriver(onErrorJustReturn: .zero)
-        .drive {
-            self.scrollView.contentInset.bottom = $0
-        }
-        .disposed(by: disposeBag)
-    }
-    
-    func bindingView(_ output: UploadViewModel.Output) {
-        output.post
-            .asDriver(onErrorJustReturn: nil)
-            .drive { self.configureInitState($0) }
-            .disposed(by: disposeBag)
+    override func bindingOutput(_ output: UploadViewModel.Output) {
+        super.bindingOutput(output)
         
         output.post.compactMap { $0?.videoURL }
             .asDriver(onErrorJustReturn: "")
             .compactMap { URL(string: $0) }
             .drive {
-                self.linkTextField.text = $0.description
-                self.configureLinkView(url: $0)
             }
             .disposed(by: disposeBag)
+    }
+    
+    override func configureHierarchy() {
+        super.configureHierarchy()
         
-        output.registerResult
-            .observe(on: MainScheduler.instance)
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: disposeBag)
+        [linkLabel, linkPreview, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
+        [titleLabel, titleTextField].forEach(titleStackView.addArrangedSubview(_:))
+        [contentsLabel, contentsTextView].forEach(contentsStackView.addArrangedSubview(_:))
+        [titleStackView, linkStackView, contentsStackView].forEach(contentView.addSubview(_:))
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        
+        titleStackView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+        }
+        
+        linkStackView.snp.makeConstraints {
+            $0.top.equalTo(titleStackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalTo(titleStackView)
+        }
+        
+        contentsStackView.snp.makeConstraints {
+            $0.top.equalTo(linkStackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalTo(linkStackView)
+            $0.bottom.equalToSuperview()
+        }
+        
+        linkPreview.snp.makeConstraints {
+            $0.height.equalTo(view.snp.height).multipliedBy(0.3)
+        }
+    }
+    
+    override func binding() {
+        super.binding()
+        
+        let output = bindingInput()
+        bindingOutput(output)
+    }
+}
+
+// Bind
+extension UploadLinkViewController {
+    func bindingInput() -> UploadViewModel.Output {
+        let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
+        
+        return viewModel.transform(input: input)
     }
     
     func configureInitState(_ post: Post?) {
@@ -159,12 +130,6 @@ extension UploadLinkViewController {
         
         self.titleTextField.text = post?.title
         self.linkTextField.text = post?.videoURL
-    }
-    
-    func bindingInput() -> UploadViewModel.Output {
-        let input = UploadViewModel.Input(registerButtonTap: configureRightButtonTapEvent())
-        
-        return viewModel.transform(input: input)
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
@@ -205,15 +170,6 @@ extension UploadLinkViewController {
                 return upload
             }
     }
-    
-    private func navigationButtonBind() {
-        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
-        leftBarButton.rx.tap
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
 }
 
 // TextField Method & LinkView Display Method
@@ -230,33 +186,6 @@ extension UploadLinkViewController: UITextFieldDelegate {
         guard let url = URL(string: linkText) else { return }
         
         linkPreview.setLink(to: url)
-    }
-    
-    private func configureLinkView(url: URL) {
-        let metaDataProvider = LPMetadataProvider()
-        
-        metaDataProvider.startFetchingMetadata(for: url) { metaData, error in
-            guard let metaData = metaData, error == nil else {
-                self.configureDefaultLinkView()
-                return
-            }
-            
-            self.configureLinkView(metaData: metaData)
-        }
-    }
-    
-    private func configureLinkView(metaData: LPLinkMetadata) {
-        let linkView = LPLinkView(metadata: metaData)
-        
-        DispatchQueue.main.async {
-            self.linkPreview.showLinkView(linkView)
-        }
-    }
-    
-    private func configureDefaultLinkView() {
-        DispatchQueue.main.async {
-            self.linkPreview.showDefaultImage()
-        }
     }
 }
 
@@ -278,32 +207,10 @@ extension UploadLinkViewController: UITextViewDelegate {
 }
 
 // Configure UI
-private extension UploadLinkViewController {
-    func configureNavgationBar() {
-        title = Constants.navigationTitle
-        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
-        
-        let backLeftButton = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.backward"),
-            style: .plain,
-            target: self,
-            action: nil
-        )
-        
-        let uploadRightButton = UIBarButtonItem(
-            title: Constants.register,
-            style: .done,
-            target: self,
-            action: nil
-        )
-        
-        navigationItem.leftBarButtonItem = backLeftButton
-        navigationItem.rightBarButtonItem = uploadRightButton
-    }
-    
+extension UploadLinkViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
-        
+
         configureHierarchy()
         configureTextFieldView()
         makeConstraints()
@@ -312,47 +219,6 @@ private extension UploadLinkViewController {
     func configureTextFieldView() {
         contentsTextView.textView.delegate = self
         linkTextField.delegate = self
-    }
-    
-    func configureHierarchy() {
-        [linkLabel, linkPreview, linkTextField].forEach(linkStackView.addArrangedSubview(_:))
-        [titleLabel, titleTextField].forEach(titleStackView.addArrangedSubview(_:))
-        [contentsLabel, contentsTextView].forEach(contentsStackView.addArrangedSubview(_:))
-        [titleStackView, linkStackView, contentsStackView].forEach(contentView.addSubview(_:))
-        
-        scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
-    }
-    
-    func makeConstraints() {
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        contentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView.contentLayoutGuide)
-            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
-        }
-        
-        titleStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(8)
-            $0.trailing.equalToSuperview().offset(-8)
-        }
-        
-        linkStackView.snp.makeConstraints {
-            $0.top.equalTo(titleStackView.snp.bottom).offset(16)
-            $0.leading.trailing.equalTo(titleStackView)
-        }
-        
-        contentsStackView.snp.makeConstraints {
-            $0.top.equalTo(linkStackView.snp.bottom).offset(16)
-            $0.leading.trailing.equalTo(linkStackView)
-            $0.bottom.equalToSuperview()
-        }
-        
-        linkPreview.snp.makeConstraints {
-            $0.height.equalTo(view.snp.height).multipliedBy(0.3)
-        }
     }
 }
 
