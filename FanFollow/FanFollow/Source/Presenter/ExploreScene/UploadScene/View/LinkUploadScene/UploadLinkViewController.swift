@@ -62,8 +62,6 @@ final class UploadLinkViewController: UploadViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    
-    
     override func configureHierarchy() {
         super.configureHierarchy()
         

@@ -30,7 +30,6 @@ class UploadViewController: UIViewController {
     let contentsTextView = PostUploadContentTextView(
         placeHolder: Constants.contentPlaceholder
     ).then {
-        $0.textView.textColor = .systemGray4
         $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
     }
     

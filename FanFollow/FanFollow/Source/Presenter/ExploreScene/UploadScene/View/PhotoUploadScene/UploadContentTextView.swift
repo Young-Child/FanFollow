@@ -16,7 +16,7 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
         self.placeholder = placeHolder
         super.init()
         
-        self.textView.text = placeholder
+        self.textView.text = placeHolder
         self.textView.textColor = .systemGray4
         
         observeInput()
@@ -30,24 +30,34 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
     }
     
     func observeInput() {
+        textView.rx.text
+            .subscribe(onNext: setTextViewLabel(to:))
+            .disposed(by: disposeBag)
+        
         textView.rx.didBeginEditing
-            .subscribe(onNext: { [self] in
-                if textView.text == self.placeholder {
-                    textView.text = nil
-                    textView.textColor = .label
-                }
-            })
+            .map { _ in return self.textView.text }
+            .subscribe(onNext: setTextViewLabel(to:))
             .disposed(by: disposeBag)
         
         textView.rx.didEndEditing
-            .subscribe(onNext: { [self] in
-                let newText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-                textView.text = newText
-                if textView.text == nil || textView.text == "" {
-                    self.textView.text = self.placeholder
-                    textView.textColor = .systemGray4
-                }
-            })
+            .map { _ in return self.textView.text }
+            .subscribe(onNext: self.setTextViewPlaceholder(to:))
             .disposed(by: disposeBag)
+    }
+    
+    private func setTextViewPlaceholder(to text: String?) {
+        let newText = text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if newText == nil || newText == "" {
+            textView.text = placeholder
+            textView.textColor = .systemGray4
+        }
+    }
+    
+    private func setTextViewLabel(to text: String?) {
+        if text == self.placeholder {
+            textView.text = nil
+            textView.textColor = .label
+        }
     }
 }
