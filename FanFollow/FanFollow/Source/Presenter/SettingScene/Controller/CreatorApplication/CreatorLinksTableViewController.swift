@@ -25,11 +25,9 @@ final class CreatorLinksTableViewController: UITableViewController {
             CreatorApplicationLinkCell.self,
             forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
         )
-//        tableView.register(ButtonCell.self, forCellReuseIdentifier: "ButtonCell")
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -78,6 +76,7 @@ final class CreatorLinksTableViewController: UITableViewController {
     }
 }
 
+// CreatorApplicationLinkCell Delegate Method
 extension CreatorLinksTableViewController: CreatorApplicationLinkCellDelegate {
     func creatorApplicationTextFieldCell(
         _ cell: CreatorApplicationLinkCell,
