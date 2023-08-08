@@ -14,6 +14,10 @@ import RxSwift
 final class StubImageRepository: ImageRepository {
     var error: Error?
     
+    func readImage(to path: String) -> Observable<Data> {
+        return Observable.just(Data())
+    }
+    
     func uploadImage(to path: String, with image: Data) -> Completable {
         return Completable.create { observer in
             if let error = self.error {
