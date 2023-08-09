@@ -19,7 +19,7 @@ enum ExploreTapItem: Int, TabItem {
     }
     
     var viewController: UIViewController {
-        let networkManager = DefaultNetworkService()
+        let networkManager = DefaultNetworkService.shared
         // TODO: 임시 구현
         let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         

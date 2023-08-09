@@ -40,7 +40,7 @@ final class NetworkServiceTests: XCTestCase {
             statusCode: 200
         )
         
-        let sut = DefaultNetworkService(session: stubURLSession)
+        let sut = DefaultNetworkService.createForTesting(session: stubURLSession)
         
         // when
         let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
@@ -66,7 +66,7 @@ final class NetworkServiceTests: XCTestCase {
             statusCode: 400
         )
         
-        let sut = DefaultNetworkService(session: stubURLSession)
+        let sut = DefaultNetworkService.createForTesting(session: stubURLSession)
         
         let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
         
@@ -89,7 +89,7 @@ final class NetworkServiceTests: XCTestCase {
             statusCode: 200
         )
         
-        let sut = DefaultNetworkService(session: stubURLSession)
+        let sut = DefaultNetworkService.createForTesting(session: stubURLSession)
         
         let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         
@@ -109,7 +109,7 @@ final class NetworkServiceTests: XCTestCase {
             statusCode: 400
         )
         
-        let sut = DefaultNetworkService(session: stubURLSession)
+        let sut = DefaultNetworkService.createForTesting(session: stubURLSession)
         
         let fetchResult = sut.execute(URLRequest(url: URL(string: self.url)!))
         

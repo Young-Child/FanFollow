@@ -24,13 +24,11 @@ final class FeedCoordinator: Coordinator {
     }
 
     func presentFeedViewController(userID: String) {
-        let session = URLSession.shared
-        let networkService = DefaultNetworkService(session: session)
-
-        let postRepository = DefaultPostRepository(networkService: networkService)
+        let networkService = DefaultNetworkService.shared
+        let postRepository = DefaultPostRepository(networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
+        
         let fetchFeedUseCase = DefaultFetchFeedUseCase(postRepository: postRepository)
-
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
         let feedViewModel = FeedViewModel(
@@ -45,20 +43,18 @@ final class FeedCoordinator: Coordinator {
     }
 
     func presentProfileViewController(creatorID: String, userID: String) {
-        let session = URLSession.shared
-        let networkService = DefaultNetworkService(session: session)
-
-        let postRepository = DefaultPostRepository(networkService: networkService)
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
-
+        let networkService = DefaultNetworkService.shared
+        
+        let postRepository = DefaultPostRepository(networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
+        
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
             followRepository: followRepository
         )
-
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
         let profileFeedViewModel = ProfileFeedViewModel(

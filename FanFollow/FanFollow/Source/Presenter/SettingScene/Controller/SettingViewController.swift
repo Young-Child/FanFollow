@@ -6,8 +6,8 @@
 
 import UIKit
 
-import RxSwift
 import RxDataSources
+import RxSwift
 import Then
 
 final class SettingViewController: UIViewController {

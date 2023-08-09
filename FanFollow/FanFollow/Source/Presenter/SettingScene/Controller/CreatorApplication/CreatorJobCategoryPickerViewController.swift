@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 
 final class CreatorJobCategoryPickerViewController: UIViewController {
     private let jobCategoryPickerView = JobCategoryPickerView()

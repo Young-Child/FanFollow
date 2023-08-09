@@ -6,7 +6,7 @@
 
 import UIKit
 
-class OpenSourceCoordinator: Coordinator {
+final class OpenSourceCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     

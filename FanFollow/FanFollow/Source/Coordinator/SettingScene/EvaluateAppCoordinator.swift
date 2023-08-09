@@ -6,7 +6,7 @@
 
 import UIKit
 
-class EvaluateAppCoordinator: Coordinator {
+final class EvaluateAppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     

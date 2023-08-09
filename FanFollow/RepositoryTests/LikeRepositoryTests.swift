@@ -53,7 +53,7 @@ final class LikeRepositoryTests: XCTestCase {
     func test_FetchPostLikeCountIsCorrectWhenSendCorrectData() {
         // given
         networkService.response = successResponse
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
         let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
         let dataCount = 2
         
@@ -69,7 +69,7 @@ final class LikeRepositoryTests: XCTestCase {
     func test_CreatePostLikeIsCorrectWhenSendCorrectData() throws {
         // given
         networkService.response = successResponse
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
 
         // when
         let createLikeObservable = likeRepository.createPostLike(postID: "testPostID", userID: "testUserID")
@@ -89,7 +89,7 @@ final class LikeRepositoryTests: XCTestCase {
     func test_DeletePostLikeIsCorrectWhenSendCorrectData() {
         // given
         networkService.response = successResponse
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
 
         // when
         let createLikeObservable = likeRepository.deletePostLike(postID: "testPostID", userID: "testUserID")
@@ -110,7 +110,7 @@ final class LikeRepositoryTests: XCTestCase {
         // given
         networkService.response = successResponse
         networkService.data = PostDTO.data
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
         let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
         
         // when
