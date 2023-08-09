@@ -28,20 +28,13 @@ enum SettingTabItem: Int, TabItem {
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
-<<<<<<< HEAD
-            let session = URLSession.shared
-            let networkService = DefaultNetworkService(session: session)
-
-            let postRepository = DefaultPostRepository(networkService: networkService)
-            let imageRepository = DefaultImageRepository(network: networkService)
+            let postRepository = DefaultPostRepository(networkService)
+            let imageRepository = DefaultImageRepository(networkService)
+            
             let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
                 postRepository: postRepository,
                 imageRepository: imageRepository
             )
-=======
-            let postRepository = DefaultPostRepository(networkService)
-            let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
->>>>>>> develop
 
             let userInformationRepository = DefaultUserInformationRepository(networkService)
             let followRepository = DefaultFollowRepository(networkService)
