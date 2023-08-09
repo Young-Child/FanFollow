@@ -15,16 +15,21 @@ final class CreatorApplicationViewController: UIViewController {
     private let backBarButtonItem = UIBarButtonItem(image: Constants.backBarButtonItemImage)
     
     private let stepView = CreatorApplicationStepView()
-
-    private let creatorApplicationPageViewController = CreatorApplicationPageViewController()
-
+    
+    private let pageController = UIPageViewController(
+        transitionStyle: .scroll,
+        navigationOrientation: .horizontal
+    )
+    
     private let nextButton = UIButton(type: .roundedRect).then { button in
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "AccentColor")
         button.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
     }
-
+    
+    private let childControllers = CreatorApplicationStep.allInstance
+    
     // Properties
     weak var coordinator: CreatorApplicationCoordinator?
     private let disposeBag = DisposeBag()
@@ -32,33 +37,35 @@ final class CreatorApplicationViewController: UIViewController {
     private let category = BehaviorRelay(value: 0)
     private let links = BehaviorRelay(value: [String]())
     private let introduce = BehaviorRelay(value: "")
-
+    
+    private var currentStep = BehaviorRelay<CreatorApplicationStep>(value: .category)
+    
     // Initializer
     init(viewModel: CreatorApplicationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .systemBackground
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         bindingView()
         bindingViewModel()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -69,37 +76,38 @@ final class CreatorApplicationViewController: UIViewController {
 // Binding Method
 private extension CreatorApplicationViewController {
     func bindingView() {
-        creatorApplicationPageViewController.updatedJobCategoryIndex
-            .subscribe(onNext: { [weak self] category in
-                guard let self else { return }
-                self.category.accept(category)
-                self.configureNextButton(for: .category)
-            })
-            .disposed(by: disposeBag)
-
-        creatorApplicationPageViewController.updatedLinks
-            .subscribe(onNext: { [weak self] links in
-                guard let self else { return }
-                self.links.accept(links)
-                self.configureNextButton(for: .links)
-            })
-            .disposed(by: disposeBag)
-
-        creatorApplicationPageViewController.updatedIntroduce
-            .subscribe(onNext: { [weak self] introduce in
-                guard let self else { return }
-                self.introduce.accept(introduce)
-                self.configureNextButton(for: .introduce)
-            })
-            .disposed(by: disposeBag)
+        //        creatorApplicationPageViewController.updatedJobCategoryIndex
+        //            .subscribe(onNext: { [weak self] category in
+        //                guard let self else { return }
+        //                self.category.accept(category)
+        //                self.configureNextButton(for: .category)
+        //            })
+        //            .disposed(by: disposeBag)
+        //
+        //        creatorApplicationPageViewController.updatedLinks
+        //            .subscribe(onNext: { [weak self] links in
+        //                guard let self else { return }
+        //                self.links.accept(links)
+        //                self.configureNextButton(for: .links)
+        //            })
+        //            .disposed(by: disposeBag)
+        //
+        //        creatorApplicationPageViewController.updatedIntroduce
+        //            .subscribe(onNext: { [weak self] introduce in
+        //                guard let self else { return }
+        //                self.introduce.accept(introduce)
+        //                self.configureNextButton(for: .introduce)
+        //            })
+        //            .disposed(by: disposeBag)
     }
-
+    
     func bindingViewModel() {
+        bindViews()
         let input = input()
         let output = viewModel.transform(input: input)
         bind(output)
     }
-
+    
     func input() -> CreatorApplicationViewModel.Input {
         let creatorInformation = nextButton.rx.tap
             .withUnretained(self)
@@ -110,7 +118,7 @@ private extension CreatorApplicationViewController {
                 let introduce = self.introduce.value
                 return .just((category, links, introduce))
             }
-
+        g
         return CreatorApplicationViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             backButtonTap: backBarButtonItem.rx.tap
@@ -119,27 +127,43 @@ private extension CreatorApplicationViewController {
             nextButtonTap: creatorInformation
         )
     }
-
+    
     func bind(_ output: CreatorApplicationViewModel.Output) {
-        output.creatorApplicationStep
-            .observe(on: MainScheduler.asyncInstance)
-            .asDriver(onErrorJustReturn: .back)
-            .drive { [weak self] creatorApplicationStep in
-                guard let self else { return }
-                if case .back = creatorApplicationStep {
-                    self.navigationController?.popViewController(animated: true)
-                    return
-                }
-                self.creatorApplicationPageViewController.setViewController(
-                    for: creatorApplicationStep,
-                    direction: .forward
-                )
-                self.configureNextButton(for: creatorApplicationStep)
-//                self.stepView.configure(creatorApplicationStep)
-            }
+        //        output.creatorApplicationStep
+        //            .observe(on: MainScheduler.asyncInstance)
+        //            .asDriver(onErrorJustReturn: .back)
+        //            .drive { [weak self] creatorApplicationStep in
+        //                guard let self else { return }
+        //                if case .back = creatorApplicationStep {
+        //                    self.navigationController?.popViewController(animated: true)
+        //                    return
+        //                }
+        //                self.creatorApplicationPageViewController.setViewController(
+        //                    for: creatorApplicationStep,
+        //                    direction: .forward
+        //                )
+        //                self.configureNextButton(for: creatorApplicationStep)
+        ////                self.stepView.configure(creatorApplicationStep)
+        //            }
+        //            .disposed(by: disposeBag)
+    }
+    
+    func bindViews() {
+        Observable.merge(
+            nextButton.rx.tap.map { true },
+            backBarButtonItem.rx.tap.map { false }
+        )
+        .map { $0 ? self.currentStep.value.next : self.currentStep.value.previous }
+        .asDriver(onErrorJustReturn: .category)
+        .drive(currentStep)
+        .disposed(by: disposeBag)
+        
+        currentStep.asDriver(onErrorJustReturn: .category)
+            .map(\.rawValue)
+            .drive(onNext: self.changePageView)
             .disposed(by: disposeBag)
     }
-
+    
     func configureNextButton(for creatorApplicationStep: CreatorApplicationStep) {
         switch creatorApplicationStep {
         case .category:
@@ -164,6 +188,13 @@ private extension CreatorApplicationViewController {
     }
 }
 
+private extension CreatorApplicationViewController {
+    func changePageView(_ index: Int) {
+        guard let controller = childControllers[safe: index] else { return }
+        pageController.setViewControllers([controller], direction: .forward, animated: false)
+    }
+}
+
 // Configure UI
 private extension CreatorApplicationViewController {
     func configureUI() {
@@ -171,31 +202,31 @@ private extension CreatorApplicationViewController {
         configureConstraints()
         configureNavigationItem()
     }
-
+    
     func configureHierarchy() {
-        addChild(creatorApplicationPageViewController)
-        creatorApplicationPageViewController.didMove(toParent: self)
-        [stepView, creatorApplicationPageViewController.view, nextButton].forEach(view.addSubview)
+        addChild(pageController)
+        pageController.didMove(toParent: self)
+        [stepView, pageController.view, nextButton].forEach(view.addSubview)
     }
-
+    
     func configureConstraints() {
         stepView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
         }
         
-        creatorApplicationPageViewController.view.snp.makeConstraints {
+        pageController.view.snp.makeConstraints {
             $0.top.equalTo(stepView.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints {
-            $0.top.equalTo(creatorApplicationPageViewController.view.snp.bottom)
+            $0.top.equalTo(pageController.view.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(8)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
-
+    
     func configureNavigationItem() {
         navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
     }

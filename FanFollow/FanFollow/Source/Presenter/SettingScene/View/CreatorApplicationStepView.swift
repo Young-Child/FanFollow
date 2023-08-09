@@ -119,8 +119,6 @@ final class CreatorApplicationStepView: UIStackView {
 private extension CreatorApplicationStep {
     var title: String {
         switch self {
-        case .back:
-            return ""
         case .category:
             return "분야 설정"
         case .links:
@@ -132,8 +130,6 @@ private extension CreatorApplicationStep {
 
     var steps: Int {
         switch self {
-        case .back:
-            return 0
         case .category:
             return 1
         case .links:

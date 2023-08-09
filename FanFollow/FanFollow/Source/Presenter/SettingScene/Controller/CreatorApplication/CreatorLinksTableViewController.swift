@@ -21,31 +21,37 @@ final class CreatorLinksTableViewController: UITableViewController {
     private var disposeBag = DisposeBag()
 
     var updatedLinks: Observable<[String]> {
-        return links.compactMap { $0.compactMap { $0 } }
+        get {
+            return links.map { $0.compactMap { $0 } }
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configureTableView()
+        binding()
+    }
+    
+    private func configureTableView() {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.register(
             CreatorApplicationLinkCell.self,
             forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
         )
-        
-        binding()
     }
-
+    
     private func binding() {
         linkAddButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .bind(onNext: appendNewItem)
             .disposed(by: disposeBag)
     }
-    
-    
-    // MARK: - Table view data source
+}
+
+// MARK: - Table view data source
+extension CreatorLinksTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -66,7 +72,10 @@ final class CreatorLinksTableViewController: UITableViewController {
         
         return cell
     }
-    
+}
+
+// TableView Delegate Method
+extension CreatorLinksTableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 64
     }
@@ -93,6 +102,7 @@ extension CreatorLinksTableViewController: CreatorApplicationLinkCellDelegate {
     }
 }
 
+// Properties Update Method
 private extension CreatorLinksTableViewController {
     func appendNewItem() {
         let itemCount = links.value.filter { $0?.isEmpty == false }.count
@@ -112,6 +122,7 @@ private extension CreatorLinksTableViewController {
     }
 }
 
+// Constants
 private extension CreatorLinksTableViewController {
     enum Constants {
         static let addLinkButtonTitle = NSAttributedString(

@@ -82,29 +82,5 @@ private extension CreatorApplicationViewModel {
 }
 
 private extension CreatorApplicationStep {
-    var next: Self {
-        switch self {
-        case .back:
-            return .category
-        case .category:
-            return .links
-        case .links:
-            return .introduce
-        case .introduce:
-            return .back
-        }
-    }
-
-    var previous: Self {
-        switch self {
-        case .back:
-            return .back
-        case .category:
-            return .back
-        case .links:
-            return .category
-        case .introduce:
-            return .links
-        }
-    }
+    
 }
