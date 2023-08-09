@@ -37,12 +37,7 @@ struct DefaultFollowRepository: FollowRepository {
             .requestFollowCount(followingID: followingID)
 
         return networkService.data(request)
-            .flatMap {
-                guard let count = contentCount($0) else {
-                    return Observable<Int>.error(NetworkError.unknown)
-                }
-                return Observable<Int>.just(count)
-            }
+            .compactMap { try contentCount($0) }
     }
 
     func fetchFollowingCount(followerID: String) -> Observable<Int> {
@@ -50,12 +45,7 @@ struct DefaultFollowRepository: FollowRepository {
             .requestFollowCount(followerID: followerID)
 
         return networkService.data(request)
-            .flatMap {
-                guard let count = contentCount($0) else {
-                    return Observable<Int>.error(NetworkError.unknown)
-                }
-                return Observable<Int>.just(count)
-            }
+            .compactMap { try contentCount($0) }
     }
 
     func checkFollow(followingID: String, followerID: String) -> Observable<Bool> {
@@ -63,12 +53,8 @@ struct DefaultFollowRepository: FollowRepository {
             .requestFollowCount(followingID: followingID, followerID: followerID)
 
         return networkService.data(request)
-            .flatMap {
-                guard let count = contentCount($0) else {
-                    return Observable<Bool>.error(NetworkError.unknown)
-                }
-                return Observable<Bool>.just(count > 0)
-            }
+            .compactMap { try contentCount($0) }
+            .map { $0 > 0 }
     }
 
     func insertFollow(followingID: String, followerID: String) -> Completable {
@@ -85,10 +71,10 @@ struct DefaultFollowRepository: FollowRepository {
         return networkService.execute(request)
     }
 
-    private func contentCount(_ data: Data) -> Int? {
+    private func contentCount(_ data: Data) throws -> Int? {
         guard let value = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]],
               let count = value.first?.first?.value as? Int else {
-            return nil
+            throw NetworkError.unknown
         }
         return count
     }

@@ -53,8 +53,12 @@ final class ExploreCoordinator: Coordinator {
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
         let likeRepository = DefaultLikeRepository(networkService)
+        let imageRepository = DefaultImageRepository(networkService)
         
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
+            postRepository: postRepository,
+            imageRepository: imageRepository
+        )
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
             followRepository: followRepository

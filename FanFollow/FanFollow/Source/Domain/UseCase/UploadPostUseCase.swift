@@ -10,7 +10,8 @@ import Foundation
 import RxSwift
 
 protocol UploadPostUseCase: AnyObject {
-    func uploadPost(_ upload: Upload, userID: String) -> Completable
+    func upsertPost(_ upload: Upload, userID: String, existPostID: String?) -> Completable
+    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]>
 }
 
 final class DefaultUploadPostUseCase: UploadPostUseCase {
@@ -23,56 +24,68 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         self.imageRepository = imageRepository
     }
     
-    func uploadPost(_ upload: Upload, userID: String) -> Completable {
-        let postID = UUID().uuidString.lowercased()
-
-        if upload.videoURL == nil {
-            return upsertPostWithImages(postID: postID, upload: upload, userID: userID)
-        } else {
-            return upsertPostWithVideo(postID: postID, upload: upload, userID: userID)
-        }
-    }
-}
-
-private extension DefaultUploadPostUseCase {
-    func uploadImages(postID: String, imageDatas: [Data]) -> Observable<[Never]> {
+    private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<[Never]> {
         let results = Observable.from(imageDatas).enumerated()
             .flatMap { index, item in
                 let path = "PostImages/\(postID)/\(index + 1).png"
                 return self.imageRepository.uploadImage(to: path, with: item)
                     .asObservable()
+                    .catch { _ in
+                        return self.imageRepository.updateImage(to: path, with: item)
+                            .asObservable()
+                    }
             }
             .toArray()
             .asObservable()
         
         return results
     }
-
-    func upsertPostWithImages(postID: String, upload: Upload, userID: String) -> Completable {
-        return uploadImages(postID: postID, imageDatas: upload.imageDatas)
-            .flatMap { _ in
-                return self.postRepository.upsertPost(
-                    postID: postID,
-                    userID: userID,
-                    createdDate: Date(),
-                    title: upload.title,
-                    content: upload.content,
-                    imageURLs: [],
-                    videoURL: nil
-                )
-            }
-            .asCompletable()
+    
+    func upsertPost(_ upload: Upload, userID: String, existPostID: String? = nil) -> Completable {
+        var postID = UUID().uuidString.lowercased()
+        let result: Completable
+        
+        if let existPostID = existPostID {
+            postID = existPostID
+        }
+        
+        if upload.videoURL == nil {
+            result = uploadImages(postID: postID, imageDatas: upload.imageDatas)
+                .flatMap { _ in
+                    return self.postRepository.upsertPost(
+                        postID: postID,
+                        userID: userID,
+                        createdDate: Date(),
+                        title: upload.title,
+                        content: upload.content,
+                        imageURLs: [],
+                        videoURL: nil
+                    )
+                }
+                .asCompletable()
+        } else {
+            result = self.postRepository.upsertPost(
+                postID: postID,
+                userID: userID,
+                createdDate: Date(),
+                title: upload.title,
+                content: upload.content,
+                imageURLs: [],
+                videoURL: upload.videoURL
+            )
+        }
+        
+        return result
     }
-
-    func upsertPostWithVideo(postID: String, upload: Upload, userID: String) -> Completable {
-        return self.postRepository.upsertPost(
-            postID: postID,
-            userID: userID,
-            createdDate: Date(),
-            title: upload.title,
-            content: upload.content,
-            imageURLs: [],
-            videoURL: upload.videoURL
-        )
+    
+    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]> {
+        return Observable.from(0..<imageCount)
+            .flatMap { postImageID in
+                let path = "PostImages/\(postID)/\(postImageID + 1).png"
+                return self.imageRepository.readImage(to: path)
+                    .map { return (path, $0) }
+            }
+            .toArray()
+            .asObservable()
     }
 }

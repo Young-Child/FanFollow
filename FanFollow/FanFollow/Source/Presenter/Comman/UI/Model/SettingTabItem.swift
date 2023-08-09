@@ -29,7 +29,12 @@ enum SettingTabItem: Int, TabItem {
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
             let postRepository = DefaultPostRepository(networkService)
-            let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+            let imageRepository = DefaultImageRepository(networkService)
+            
+            let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
+                postRepository: postRepository,
+                imageRepository: imageRepository
+            )
 
             let userInformationRepository = DefaultUserInformationRepository(networkService)
             let followRepository = DefaultFollowRepository(networkService)

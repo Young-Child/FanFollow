@@ -36,6 +36,14 @@ final class SettingCoordinator: Coordinator {
         coordinator.start()
     }
     
+    func presentEditPostViewController(post: Post) {
+        let coordinator = UploadCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        
+        let uploadType: UploadCoordinator.UploadType = (post.videoURL == nil) ? .photo : .link
+        coordinator.presentPostViewController(type: uploadType, post: post)
+    }
+    
     func removeChildCoordinator(_ coordinator: Coordinator) {
         for (index, targetCoordinator) in childCoordinators.enumerated() {
             if targetCoordinator === coordinator {

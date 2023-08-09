@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 protocol ImageRepository: SupabaseEndPoint {
+    func readImage(to path: String) -> Observable<Data>
     func uploadImage(to path: String, with image: Data) -> Completable
     func updateImage(to path: String, with image: Data) -> Completable
     func deleteImage(to path: String) -> Completable
