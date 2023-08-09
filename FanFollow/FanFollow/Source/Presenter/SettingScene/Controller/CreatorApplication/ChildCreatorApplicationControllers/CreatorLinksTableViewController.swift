@@ -11,15 +11,24 @@ import Then
 import RxRelay
 import RxSwift
 
-final class CreatorLinksTableViewController: UITableViewController {
+final class CreatorLinksTableViewController: CreatorApplicationChildController {
+    private let tableView = UITableView().then { tableView in
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+        tableView.register(
+            CreatorApplicationLinkCell.self,
+            forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
+        )
+    }
+    
     private let linkAddButton = UIButton().then {
         $0.setTitleColor(.white, for: .normal)
         $0.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
         $0.layer.cornerRadius = 8
         $0.setTitle("링크 추가하기", for: .normal)
     }
+    
     private let links = BehaviorRelay<[String?]>(value: [nil])
-    private var disposeBag = DisposeBag()
 
     var updatedLinks: Observable<[String]> {
         get {
@@ -30,17 +39,10 @@ final class CreatorLinksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         binding()
-    }
-    
-    private func configureTableView() {
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
-        tableView.register(
-            CreatorApplicationLinkCell.self,
-            forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
-        )
     }
     
     private func binding() {
@@ -54,6 +56,7 @@ final class CreatorLinksTableViewController: UITableViewController {
             .asDriver(onErrorJustReturn: false)
             .drive {
                 let backgroundColor = $0 ? UIColor.systemGray4.cgColor : UIColor(named: "AccentColor")?.cgColor
+                self.nextButtonEnable.accept($0 == false)
                 self.linkAddButton.layer.backgroundColor = backgroundColor
             }
             .disposed(by: disposeBag)
@@ -61,16 +64,16 @@ final class CreatorLinksTableViewController: UITableViewController {
 }
 
 // MARK: - Table view data source
-extension CreatorLinksTableViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
+extension CreatorLinksTableViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return links.value.count
     }
 
-    override func tableView(
+    func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
@@ -85,12 +88,12 @@ extension CreatorLinksTableViewController {
 }
 
 // TableView Delegate Method
-extension CreatorLinksTableViewController {
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+extension CreatorLinksTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 64
     }
     
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let viewFrame = CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: 64)
         let footerView = UIView(frame: viewFrame)
         linkAddButton.frame = CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: 32)
