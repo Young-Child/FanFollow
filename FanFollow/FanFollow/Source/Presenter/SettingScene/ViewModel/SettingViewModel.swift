@@ -4,9 +4,10 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 import RxDataSources
 import RxSwift
-import Foundation
 
 final class SettingViewModel: ViewModel {
     struct Input {

@@ -5,13 +5,20 @@
 //  Copyright (c) 2023 Minii All rights reserved.
 
 import Foundation
+
 import RxSwift
 
 final class DefaultNetworkService: NetworkService {
     private let session: URLSessionType
+    static let shared = DefaultNetworkService()
     
-    init(session: URLSessionType = URLSession.shared) {
+    private init(session: URLSessionType = URLSession.shared) {
         self.session = session
+    }
+    
+    // For Testing
+    static func createForTesting(session: URLSessionType) -> NetworkService {
+        return DefaultNetworkService(session: session)
     }
     
     func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)> {

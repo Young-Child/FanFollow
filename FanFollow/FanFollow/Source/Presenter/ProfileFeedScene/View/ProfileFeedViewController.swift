@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxRelay
+
 import RxDataSources
+import RxRelay
+import RxSwift
 
 final class ProfileFeedViewController: UIViewController {
     // View Properties
@@ -53,12 +54,6 @@ final class ProfileFeedViewController: UIViewController {
         binding()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
     private func configureDataSource() {
         dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
             switch dataSource[indexPath.section] {

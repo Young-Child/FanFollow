@@ -6,12 +6,13 @@
 //
 
 import Foundation
+
 import RxSwift
 
 struct DefaultPostRepository: PostRepository {
     private let networkService: NetworkService
     
-    init(networkService: NetworkService) {
+    init(_ networkService: NetworkService) {
         self.networkService = networkService
     }
     
@@ -37,7 +38,7 @@ struct DefaultPostRepository: PostRepository {
         createdDate: Date,
         title: String,
         content: String,
-        imageURLs: [String]?,
+        imageURLs: [String]? = nil,
         videoURL: String?
     ) -> Completable {
         let postItem = PostDTO(

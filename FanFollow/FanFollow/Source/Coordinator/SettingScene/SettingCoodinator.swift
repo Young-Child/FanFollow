@@ -6,7 +6,7 @@
 
 import UIKit
 
-class SettingCoordinator: Coordinator {
+final class SettingCoordinator: Coordinator {
     weak var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -29,7 +29,19 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentPostBottomViewController() {
-        //TODO: - 추후 구현
+        let coordinator = UploadCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.parentCoordinator = self
+        
+        coordinator.start()
+    }
+    
+    func removeChildCoordinator(_ coordinator: Coordinator) {
+        for (index, targetCoordinator) in childCoordinators.enumerated() {
+            if targetCoordinator === coordinator {
+                childCoordinators.remove(at: index)
+            }
+        }
     }
 }
 
@@ -41,8 +53,23 @@ private extension SettingCoordinator {
         switch viewType {
         case .profile:
             return ProfileSettingCoordinator(navigationController: navigationController)
+
+        case .bugReport:
+            let coordinator = BugReportCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
+            
+        case .evaluation:
+            let coordinator = EvaluateAppCoordinator(navigationController: navigationController)
+            return coordinator
+            
+        case .openSource:
+            let coordinator = OpenSourceCoordinator(navigationController: navigationController)
+            return coordinator
+          
         case .creator:
             return CreatorApplicationCoordinator(navigationController: navigationController)
+
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }

@@ -32,7 +32,7 @@ final class ExploreUseCaseTests: XCTestCase {
     }
     
     ////  RPC를 실행 없이 Repository에서 전달받은 Creator정보를 반환하는지 확인하는 테스트
-    func test_fetchRandomCreatorsIsCorrectWhenSendCorrectData() throws {
+    func test_FetchRandomCreatorsIsCorrectWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = nil
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
@@ -54,7 +54,7 @@ final class ExploreUseCaseTests: XCTestCase {
     }
     
     ////  RPC를 실행 없이 Repository에서 전달받은 카테고리 별 Creator정보를 반환하는지 확인하는 테스트
-    func test_fetchRandomAllCreatorsIsCorrectWhenSendCorrectData() throws {
+    func test_FetchRandomAllCreatorsIsCorrectWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = nil
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
@@ -76,7 +76,7 @@ final class ExploreUseCaseTests: XCTestCase {
     }
     
     ////  RPC를 실행 없이 Repository에서 전달받은 Popular Creator정보를 반환하는지 확인하는 테스트
-    func test_fetchPopularCreatorsIsCorrectWhenSendCorrectData() throws {
+    func test_FetchPopularCreatorsIsCorrectWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = nil
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
@@ -97,7 +97,7 @@ final class ExploreUseCaseTests: XCTestCase {
         }
     }
     
-    func test_fetchCreatorsIsCorrectWhenSendCorrectData() throws {
+    func test_FetchCreatorsIsCorrectWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = nil
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
@@ -119,7 +119,7 @@ final class ExploreUseCaseTests: XCTestCase {
     }
     
     ////  RPC를 실행 없이 Repository에서 전달받은 에러를 반환하는지 확인하는 테스트
-    func test_fetchRandomCreatorsIsErrorWhenSendCorrectData() throws {
+    func test_FetchRandomCreatorsIsErrorWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = NetworkError.unknown
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()

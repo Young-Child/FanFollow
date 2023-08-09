@@ -32,7 +32,7 @@ final class SearchCreatorUseCaseTests: XCTestCase {
     }
     
     ////  오류가 발생 안했을 경우, 정상값을 반환하는지 확인하는 테스트
-    func test_fetchSearchCreatorsIsCorrectWhenSendCorrectData() throws {
+    func test_FetchSearchCreatorsIsCorrectWhenSendCorrectData() throws {
         // given
         userInformationRepository.error = nil
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()
@@ -54,7 +54,7 @@ final class SearchCreatorUseCaseTests: XCTestCase {
     
     
     //// 오류 발생 시 오류를 반환하는지 확인하는 테스트
-    func test_fetchSearchCreatorsIsErrorWhenSendCorrectData() {
+    func test_FetchSearchCreatorsIsErrorWhenSendCorrectData() {
         // given
         userInformationRepository.error = NetworkError.unknown
         userInformationRepository.userInformations = UserInformationDTO.stubCreatorsData()

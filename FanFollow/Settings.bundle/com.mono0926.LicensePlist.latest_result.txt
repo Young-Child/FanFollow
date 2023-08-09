@@ -1,0 +1,13 @@
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.7.0, source: https://github.com/onevcat/Kingfisher
+
+name: RxDataSources, nameSpecified: RxDataSources, owner: RxSwiftCommunity, version: 5.0.2, source: https://github.com/RxSwiftCommunity/RxDataSources
+
+name: RxSwift, nameSpecified: RxSwift, owner: ReactiveX, version: 6.2.0, source: https://github.com/ReactiveX/RxSwift
+
+name: SnapKit, nameSpecified: SnapKit, owner: SnapKit, version: 5.0.1, source: https://github.com/SnapKit/SnapKit
+
+name: Then, nameSpecified: Then, owner: devxoul, version: 2.6.0, source: https://github.com/devxoul/Then
+
+add-version-numbers: false
+
+LicensePlist Version: 3.24.10

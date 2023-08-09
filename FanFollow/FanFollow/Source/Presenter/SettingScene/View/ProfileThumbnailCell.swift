@@ -6,8 +6,8 @@
 
 import UIKit
 
-import SnapKit
 import Kingfisher
+import SnapKit
 
 final class ProfileThumbnailCell: UITableViewCell {
     // View Properties

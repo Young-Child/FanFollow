@@ -6,19 +6,16 @@
 
 import UIKit
 
-import RxSwift
 import Kingfisher
+import RxSwift
 
-final class ProfileImagePickerViewController: PhotoAssetGridViewController {
-    private var maxImageCount: Int
-    private var selectedImage: UIImage?
+final class ProfileImagePickerViewController: ImagePickerViewController {
     private var disposeBag = DisposeBag()
     private let profileImagePickerViewModel: ProfileImagePickerViewModel
     
-    init(viewModel: ProfileImagePickerViewModel, maxImageCount: Int = 1) {
+    init(viewModel: ProfileImagePickerViewModel) {
         self.profileImagePickerViewModel = viewModel
-        self.maxImageCount = maxImageCount
-        super.init(nibName: nil, bundle: nil)
+        super.init(title: Constants.title)
     }
     
     required init?(coder: NSCoder) {
@@ -28,21 +25,7 @@ final class ProfileImagePickerViewController: PhotoAssetGridViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
         binding()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
-        cell?.setSelected(to: true)
-        
-        let image = cell?.getImage()
-        self.selectedImage = image
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
-        cell?.setSelected(to: false)
     }
 }
 
@@ -80,13 +63,7 @@ private extension ProfileImagePickerViewController {
 }
 
 private extension ProfileImagePickerViewController {
-    func configureUI() {
-        let dismissAction = UIAction { _ in
-            self.dismiss(animated: true)
-        }
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: dismissAction)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인")
-        navigationItem.title = "프로필 이미지 선택"
+    enum Constants {
+        static let title = "프로필 이미지 선택"
     }
 }

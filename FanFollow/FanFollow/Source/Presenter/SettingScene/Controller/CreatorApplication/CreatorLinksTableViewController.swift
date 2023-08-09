@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxRelay
+import RxSwift
 
 final class CreatorLinksTableViewController: UITableViewController {
     private let links = BehaviorRelay<[String?]>(value: [nil])

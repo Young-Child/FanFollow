@@ -41,7 +41,8 @@ extension UIImageView {
         self.kf.indicatorType = .activity
         
         let options: KingfisherOptionsInfo = [
-            .cacheOriginalImage
+            .cacheOriginalImage,
+            .cacheMemoryOnly
         ]
         
         setImageWithCustomCacheKey(
