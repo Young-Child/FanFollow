@@ -50,7 +50,9 @@ final class CreatorApplicationStepView: UIStackView {
     func configAppear(currentStep: CreatorApplicationStep) {
         stepStackView.arrangedSubviews.enumerated().forEach { index, view in
             let backgroundColor = (index <= currentStep.rawValue) ? UIColor(named: "AccentColor") : UIColor.systemGray5
-            view.backgroundColor = backgroundColor
+            UIView.animate(withDuration: 0.25) {
+                view.backgroundColor = backgroundColor
+            }
         }
         
         titleLabel.text = currentStep.title
