@@ -34,7 +34,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
         }
     }
     
-    var controller: UIViewController {
+    var controller: CreatorApplicationChildController {
         switch self {
         case .category:     return CreatorJobCategoryPickerViewController()
         case .links:        return CreatorLinksTableViewController()
@@ -46,7 +46,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
         return [.category, .links, .introduce]
     }
     
-    static var allInstance: [UIViewController] {
+    static var allInstance: [CreatorApplicationChildController] {
         return allCases.map { $0.controller }
     }
 }

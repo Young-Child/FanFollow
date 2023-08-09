@@ -24,8 +24,8 @@ final class CreatorApplicationViewController: UIViewController {
     private let nextButton = UIButton(type: .roundedRect).then { button in
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor(named: "AccentColor")
-        button.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.label, for: .disabled)
     }
     
     private let childControllers = CreatorApplicationStep.allInstance
@@ -158,6 +158,13 @@ private extension CreatorApplicationViewController {
         .drive(currentStep)
         .disposed(by: disposeBag)
         
+        childControllers.forEach { controller in
+            controller.nextButtonEnable
+                .debug()
+                .bind(onNext: configureNextButtonAppear(_:))
+                .disposed(by: disposeBag)
+        }
+        
         currentStep.asDriver(onErrorJustReturn: .category)
             .map(\.rawValue)
             .drive(onNext: self.changePageView)
@@ -192,6 +199,15 @@ private extension CreatorApplicationViewController {
     func changePageView(_ index: Int) {
         guard let controller = childControllers[safe: index] else { return }
         pageController.setViewControllers([controller], direction: .forward, animated: false)
+    }
+    
+    func configureNextButtonAppear(_ isEnable: Bool) {
+        nextButton.isEnabled = isEnable
+        let backgroundColor = isEnable ? UIColor(named: "AccentColor") : UIColor.systemGray5
+        nextButton.backgroundColor = backgroundColor
+        
+        let title = isEnable ? (currentStep.value == .introduce ? "확인" : "다음") : "입력을 완료해주세요."
+        nextButton.setTitle(title, for: .normal)
     }
 }
 

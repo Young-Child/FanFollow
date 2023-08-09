@@ -26,7 +26,7 @@ final class CreatorJobCategoryPickerViewController: CreatorApplicationChildContr
     
     func bind() {
         jobCategoryPickerView.rx.itemSelected
-            .map { $0.row == .zero }
+            .map { $0.row != .zero }
             .bind(to: nextButtonEnable)
             .disposed(by: disposeBag)
     }
