@@ -22,10 +22,10 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     }
     
     private let linkAddButton = UIButton().then {
-        $0.setTitleColor(.white, for: .normal)
-        $0.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
-        $0.layer.cornerRadius = 8
-        $0.setTitle("링크 추가하기", for: .normal)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 32)
+        let image = UIImage(systemName: "plus.circle", withConfiguration: imageConfiguration)
+        $0.layer.backgroundColor = UIColor.clear.cgColor
+        $0.setImage(image, for: .normal)
     }
     
     private let links = BehaviorRelay<[String?]>(value: [nil])
@@ -39,14 +39,7 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
-        }
-        
+        configureUI()
         bind()
     }
     
@@ -60,11 +53,19 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
             .map { $0.filter { $0?.isEmpty ?? true || $0 == nil }.count > .zero }
             .asDriver(onErrorJustReturn: false)
             .drive {
-                let backgroundColor = $0 ? UIColor.systemGray4.cgColor : UIColor(named: "AccentColor")?.cgColor
                 self.nextButtonEnable.accept($0 == false)
-                self.linkAddButton.layer.backgroundColor = backgroundColor
             }
             .disposed(by: disposeBag)
+        
+        Observable.merge([
+            Notification.keyboardWillShow(),
+            Notification.keyboardWillHide()
+        ])
+        .asDriver(onErrorJustReturn: .zero)
+        .drive(onNext: {
+            self.tableView.contentInset.bottom = $0
+        })
+        .disposed(by: disposeBag)
     }
 }
 
@@ -104,36 +105,8 @@ extension CreatorLinksTableViewController: UITableViewDelegate {
     ) -> UISwipeActionsConfiguration? {
         if indexPath.row == .zero { return nil }
         
-        let deleteAction = UIContextualAction(
-            style: .normal,
-            title: ""
-        ) { action, view, completionHandler in
-            view.backgroundColor = .clear
-            self.removeItem(indexPath: indexPath)
-            completionHandler(true)
-        }
-        
-        deleteAction.backgroundColor = UIColor.white
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
-        deleteAction.image = UIImage(
-            systemName: "minus.circle",
-            withConfiguration: imageConfiguration
-        )?.withTintColor(.red, renderingMode: .alwaysOriginal)
-        
+        let deleteAction = generateSwipeAction(with: indexPath)
         return UISwipeActionsConfiguration(actions: [deleteAction])
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 64
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let viewFrame = CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: 64)
-        let footerView = UIView(frame: viewFrame)
-        linkAddButton.frame = CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: 32)
-        footerView.addSubview(linkAddButton)
-        
-        return footerView
     }
 }
 
@@ -180,6 +153,65 @@ private extension CreatorLinksTableViewController {
         var updated = links.value
         updated[index] = link
         links.accept(updated)
+    }
+}
+
+private extension CreatorLinksTableViewController {
+    func configureUI() {
+        configureTableView()
+        configureHierarchy()
+        makeConstraints()
+    }
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = generateFooterView()
+    }
+    
+    func configureHierarchy() {
+        view.addSubview(tableView)
+    }
+    
+    func makeConstraints() {
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func generateSwipeAction(with indexPath: IndexPath) -> UIContextualAction {
+        let deleteAction = UIContextualAction(style: .normal, title: "") { action, view, handler in
+            view.backgroundColor = .clear
+            self.removeItem(indexPath: indexPath)
+            handler(true)
+        }
+        
+        deleteAction.backgroundColor = UIColor.white
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
+        deleteAction.image = UIImage(
+            systemName: "minus.circle",
+            withConfiguration: imageConfiguration
+        )?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        
+        return deleteAction
+    }
+    
+    func generateFooterView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.isUserInteractionEnabled = true
+        view.addSubview(linkAddButton)
+        
+        view.frame = CGRect(
+            origin: .zero,
+            size: CGSize(width: UIView.noIntrinsicMetric, height: 80)
+        )
+        
+        linkAddButton.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.width.equalTo(80)
+        }
+        return view
     }
 }
 
