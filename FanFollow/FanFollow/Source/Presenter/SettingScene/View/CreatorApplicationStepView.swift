@@ -47,6 +47,16 @@ final class CreatorApplicationStepView: UIStackView {
             $0.height.equalTo(20)
         }
     }
+    
+    func configAppear(currentStep: CreatorApplicationStep) {
+        stepStackView.arrangedSubviews.enumerated().forEach { index, view in
+            if index <= currentStep.rawValue {
+                view.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
+            }
+        }
+        
+        titleLabel.text = currentStep.title
+    }
 }
 
 //final class CreatorApplicationStepView: UIView {
@@ -116,26 +126,26 @@ final class CreatorApplicationStepView: UIStackView {
 //    }
 //}
 
-private extension CreatorApplicationStep {
-    var title: String {
-        switch self {
-        case .category:
-            return "분야 설정"
-        case .links:
-            return "링크 설정"
-        case .introduce:
-            return "소개 설정"
-        }
-    }
-
-    var steps: Int {
-        switch self {
-        case .category:
-            return 1
-        case .links:
-            return 2
-        case .introduce:
-            return 3
-        }
-    }
-}
+//private extension CreatorApplicationStep {
+//    var title: String {
+//        switch self {
+//        case .category:
+//            return "분야 설정"
+//        case .links:
+//            return "링크 설정"
+//        case .introduce:
+//            return "소개 설정"
+//        }
+//    }
+//
+//    var steps: Int {
+//        switch self {
+//        case .category:
+//            return 1
+//        case .links:
+//            return 2
+//        case .introduce:
+//            return 3
+//        }
+//    }
+//}
