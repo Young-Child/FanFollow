@@ -31,6 +31,8 @@ final class LinkPreview: UIView {
         $0.startAnimating()
     }
     
+    private let contentView = UIView()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -77,10 +79,11 @@ final class LinkPreview: UIView {
     }
     
     private func configureLayout() {
-        backgroundColor = UIColor.systemGray5
-        layer.cornerRadius = 12
+        contentView.layer.cornerRadius = 12
+        contentView.backgroundColor = .systemGray5
         
-        [imageView, titleLabel, urlLabel, loadingView].forEach(addSubview(_:))
+        [imageView, titleLabel, urlLabel, loadingView].forEach(contentView.addSubview(_:))
+        addSubview(contentView)
         
         imageView.snp.makeConstraints {
             $0.width.equalTo(80)
@@ -101,6 +104,12 @@ final class LinkPreview: UIView {
         
         loadingView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+            $0.top.bottom.equalToSuperview()
         }
     }
 }

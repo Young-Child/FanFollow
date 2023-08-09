@@ -7,6 +7,12 @@
 
 import UIKit
 
+// ProfileCellDelegate
+protocol ProfileCellDelegate: AnyObject {
+    func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?)
+    func profileCell(didTapFollowButton cell: ProfileCell)
+}
+
 final class ProfileCell: UITableViewCell {
     // View Properties
     private let stackView = UIStackView().then { stackView in
@@ -19,45 +25,46 @@ final class ProfileCell: UITableViewCell {
         imageView.layer.backgroundColor = Constants.creatorImageViewBackgroundColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 25
+        imageView.layer.cornerRadius = 40
     }
 
     private let creatorStackView = UIStackView().then { stackView in
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 5
+        stackView.spacing = 8
     }
 
     private let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
     }
 
     private let followerCountLabel = UILabel().then { label in
         label.numberOfLines = 1
     }
 
-    private let followButton: UIButton = {
-        let button: UIButton
-        if #available(iOS 15.0, *) {
-            var content = UIButton.Configuration.plain()
-            content.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-            button = UIButton(configuration: content)
-        } else {
-            button = UIButton()
-            button.contentEdgeInsets = UIEdgeInsets(top: -2, left: 0, bottom: -2, right: 0)
-        }
-        button.setAttributedTitle(Constants.followButtonText, for: .normal)
+    private let followButton = UIButton().then { button in
+        button.setTitle(Constants.unfollowButtonText, for: .selected)
+        button.setTitleColor(UIColor.systemGray3, for: .selected)
+        button.setTitle(Constants.followButtonText, for: .normal)
         button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
-        return button
-    }()
+        button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+    }
 
     private let introduceLabel = UILabel().then { label in
         label.numberOfLines = Constants.unexpandedNumberOfLines
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+    }
+    
+    private let contentStackView = UIStackView().then { stackView in
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 8
     }
 
-    private weak var delegate: ProfileCellDelegate?
+    weak var delegate: ProfileCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -67,53 +74,49 @@ final class ProfileCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        introduceLabel.numberOfLines = Constants.unexpandedNumberOfLines
-    }
 }
 
 // UI Method
 extension ProfileCell {
-    func configure(
-        with creator: Creator,
-        followerCount: Int,
-        isFollow: Bool,
-        delegate: ProfileCellDelegate? = nil,
-        followButtonIsHidden: Bool
-    ) {
-        let id = creator.id
-        let url = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/\(id)/profileImage.png"
-        creatorImageView.setImageProfileImage(to: url, for: id)
-
-        creatorNickNameLabel.text = creator.nickName
-        configureFollowerCountLabel(count: followerCount)
-
-        let followButtonTitle = isFollow ? Constants.unfollowButtonText : Constants.followButtonText
-        followButton.setAttributedTitle(followButtonTitle, for: .normal)
-        followButton.isHidden = followButtonIsHidden
-
-        introduceLabel.text = creator.introduce
-
-        self.delegate = delegate
+    func configure(with profile: ProfileFeedSectionItem, viewType: ProfileFeedViewController.ViewType) {
+        creatorImageView.setImageProfileImage(
+            to: profile.creator.profileURL,
+            for: profile.creator.id
+        )
+        creatorNickNameLabel.text = profile.creator.nickName
+        followButton.isHidden = (viewType == .feedManage)
+        introduceLabel.text = profile.creator.introduce
+        
+        configureFollowerCountLabel(count: profile.followerCount)
+        configureFollowButton(isFollow: profile.isFollow)
+        configureFollowButtonAction()
     }
-
+    
     private func configureFollowerCountLabel(count: Int) {
         let attributedText = [
             NSAttributedString(
                 string: "팔로워 ",
-                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 16, weight: .regular)
+                ]
             ),
             NSAttributedString(
                 string: "\(count)명",
-                attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold),
-                             .foregroundColor: Constants.followerCountLabelTextColor]
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 16, weight: .semibold),
+                    .foregroundColor: Constants.followerCountLabelTextColor ?? .clear
+                ]
             )
         ].reduce(into: NSMutableAttributedString()) {
             $0.append($1)
         }
         followerCountLabel.attributedText = attributedText
+    }
+    
+    private func configureFollowButton(isFollow: Bool) {
+        followButton.isSelected = isFollow
+        let backgroundColor = isFollow ? UIColor.systemGray5 : Constants.followerCountLabelTextColor
+        followButton.layer.backgroundColor = backgroundColor?.cgColor
     }
 }
 
@@ -127,34 +130,25 @@ private extension ProfileCell {
     }
 
     func configureHierarchy() {
-        [creatorNickNameLabel, followerCountLabel, followButton].forEach(creatorStackView.addArrangedSubview)
+        [creatorNickNameLabel, followerCountLabel].forEach(creatorStackView.addArrangedSubview)
         [creatorImageView, creatorStackView].forEach(stackView.addArrangedSubview)
-        [stackView, introduceLabel].forEach(contentView.addSubview)
+        [stackView, followButton, introduceLabel].forEach(contentStackView.addArrangedSubview)
+        contentView.addSubview(contentStackView)
     }
 
     func configureConstraints() {
-        [creatorNickNameLabel, followerCountLabel, followButton].forEach {
-            $0.setContentHuggingPriority(.required, for: .vertical)
-        }
         creatorImageView.snp.makeConstraints {
-            $0.width.height.equalTo(50).priority(.required)
+            $0.width.height.equalTo(80).priority(.required)
         }
-        stackView.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview().inset(16)
-        }
-        introduceLabel.snp.makeConstraints {
-            $0.leading.equalTo(stackView.snp.leading)
-            $0.trailing.equalTo(stackView.snp.trailing)
-            $0.top.equalTo(stackView.snp.bottom)
-            $0.bottom.equalToSuperview().inset(16)
+        
+        contentStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(16)
         }
     }
 
     func configureFollowButtonAction() {
-        followButton.addAction(UIAction(handler: { [weak self] _ in
-            guard let self else { return }
-            self.delegate?.followButtonTap()
-        }), for: .touchUpInside)
+        let action = UIAction { _ in self.delegate?.profileCell(didTapFollowButton: self) }
+        followButton.addAction(action, for: .touchUpInside)
     }
 
     func addGestureRecognizerToIntroduceLabel() {
@@ -166,7 +160,7 @@ private extension ProfileCell {
     @objc
     func toggleExpended() {
         let expandAction = { self.introduceLabel.numberOfLines = Constants.expandedNumberOfLines }
-        delegate?.profileCell(expandLabel: expandAction)
+        delegate?.profileCell(cell: self, expandLabel: expandAction)
     }
 }
 
@@ -174,24 +168,15 @@ private extension ProfileCell {
 private extension ProfileCell {
     enum Constants {
         static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-        static let followerCountLabelTextColor = UIColor(named: "AccentColor")!
-        static let followButtonTitleColor = UIColor.black
-        static let failureProfileImage = UIImage(systemName: "person")!
-        static let followButtonText = NSAttributedString(
-            string: "팔로우 하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-        )
-        static let unfollowButtonText = NSAttributedString(
-            string: "팔로우 취소하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-        )
+        static let followerCountLabelTextColor = UIColor(named: "AccentColor")
+        static let followButtonTitleColor = UIColor.white
+        static let failureProfileImage = UIImage(systemName: "person")
+        static let followButtonText = "팔로우"
+        static let unfollowButtonText = "팔로잉"
         static let expandedNumberOfLines = 5
         static let unexpandedNumberOfLines = 2
+        
+        static let followingBackground = UIColor.systemGray5
     }
 }
 
-// ProfileCellDelegate
-protocol ProfileCellDelegate: AnyObject {
-    func profileCell(expandLabel expandAction: (() -> Void)?)
-    func followButtonTap()
-}

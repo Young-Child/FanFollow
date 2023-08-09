@@ -92,7 +92,7 @@ final class FetchUserInformationUseCaseTests: XCTestCase {
 extension FetchUserInformationUseCaseTests {
     private enum TestData {
         static let fanInformation = UserInformationDTO(
-            userID: "a0728b90-0172-4552-9b31-1f3cab84900b",
+            userID: "56f17fb1-e9d0-4974-bf0b-43aad6a2526f",
             nickName: "하나",
             profilePath: nil,
             jobCategory: nil,
@@ -111,7 +111,7 @@ extension FetchUserInformationUseCaseTests {
             isCreator: true,
             createdDate: Date()
         )
-        static let fanID = "a0728b90-0172-4552-9b31-1f3cab84900b"
+        static let fanID = "56f17fb1-e9d0-4974-bf0b-43aad6a2526f"
         static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let error = NetworkError.unknown
     }

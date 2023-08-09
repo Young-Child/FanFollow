@@ -15,7 +15,7 @@ import RxSwift
 final class FeedViewController: UIViewController {
     // View Properties
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
-        tableView.layoutMargins.top = 80
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .systemBackground
@@ -119,13 +119,16 @@ extension FeedViewController: PostCellDelegate {
     
     func postCell(didTapProfilePresentButton creatorID: String) {
         // TODO: userID 입력 필요
-        let userID = "a0728b90-0172-4552-9b31-1f3cab84900b"
+        let userID = "56f17fb1-e9d0-4974-bf0b-43aad6a2526f"
         coordinator?.presentProfileViewController(creatorID: creatorID, userID: userID)
     }
     
     func postCell(didTapLinkPresentButton link: URL) {
         coordinator?.presentLinkViewController(to: link)
     }
+    
+    func postCell(_ cell: PostCell, didTapEditButton post: Post) { }
+    func postCell(_ cell: PostCell, didTapDeleteButton post: Post) { }
 }
 
 // Configure NavigationBar Method

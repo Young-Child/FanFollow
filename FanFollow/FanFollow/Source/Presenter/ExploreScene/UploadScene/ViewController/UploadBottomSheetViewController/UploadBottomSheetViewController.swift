@@ -13,9 +13,7 @@ final class UploadBottomSheetViewController: UIViewController {
         $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
-    private let bottomSheetView = UploadBottomSheetView(
-        frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100))
-    ).then {
+    private let bottomSheetView = UploadBottomSheetView(frame: .zero).then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -39,21 +37,54 @@ final class UploadBottomSheetViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        
+        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
+        transparentView.addGestureRecognizer(dismissTap)
+        transparentView.isUserInteractionEnabled = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showBottomSheet()
     }
 }
 
 // Button Delegate Method
 extension UploadBottomSheetViewController: SheetButtonDelegate {
     func photoButtonTapped() {
-        coordinator?.presentPostViewController(viewController: self, type: .photo)
+        coordinator?.presentPostViewController(type: .photo, viewController: self)
     }
     
     func linkButtonTapped() {
-        coordinator?.presentPostViewController(viewController: self, type: .link)
+        coordinator?.presentPostViewController(type: .link, viewController: self)
     }
     
-    func cancelButtonTapped() {
-        coordinator?.close(viewController: self)
+    @objc func cancelButtonTapped() {
+        bottomSheetView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+        }
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.transparentView.alpha = .zero
+            self.view.layoutIfNeeded()
+        }) { _ in
+            self.coordinator?.close(viewController: self)
+        }
+    }
+    
+    func showBottomSheet() {
+        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.7
+        
+        bottomSheetView.snp.remakeConstraints {
+            $0.leading.bottom.trailing.equalToSuperview()
+            $0.top.equalToSuperview().offset(topConstant)
+        }
+        
+        UIView.animate(withDuration: 0.25) {
+            self.transparentView.alpha = 0.7
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
@@ -64,6 +95,7 @@ private extension UploadBottomSheetViewController {
         
         configureHierarchy()
         makeConstraints()
+        transparentView.alpha = .zero
     }
 
     func configureHierarchy() {
@@ -75,11 +107,8 @@ private extension UploadBottomSheetViewController {
             $0.top.leading.trailing.bottom.equalTo(view)
         }
         
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 2 / 3
-        
         bottomSheetView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalToSuperview().offset(topConstant)
+            $0.leading.bottom.trailing.equalToSuperview()
         }
     }
 }

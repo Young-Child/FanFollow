@@ -15,6 +15,8 @@ protocol PostCellDelegate: AnyObject {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String)
     func postCell(didTapProfilePresentButton creatorID: String)
     func postCell(didTapLinkPresentButton link: URL)
+    func postCell(_ cell: PostCell, didTapEditButton post: Post)
+    func postCell(_ cell: PostCell, didTapDeleteButton post: Post)
 }
 
 final class PostCell: UITableViewCell {
@@ -59,7 +61,9 @@ final class PostCell: UITableViewCell {
             systemName: "heart.fill",
             withConfiguration: imageConfiguration
         )
-        
+        button.titleLabel?.font = .systemFont(ofSize: 22)
+        button.contentMode = .scaleToFill
+        button.setTitleColor(.label, for: .normal)
         button.setImage(unSelectedImage, for: .normal)
         button.setImage(selectedImage, for: .selected)
     }
@@ -68,6 +72,14 @@ final class PostCell: UITableViewCell {
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
+    }
+    
+    private let likeButtonStackView = UIView()
+    
+    private let postCellContentView = UIStackView().then { stackView in
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
     }
     
     // Properties
@@ -96,29 +108,23 @@ final class PostCell: UITableViewCell {
         imageSlideView.isHidden = false
         linkPreview.isHidden = false
         linkPreview.resetData()
-        
-        imageSlideView.snp.updateConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        linkPreview.snp.updateConstraints {
-            $0.height.equalTo(80)
-        }
     }
 }
 
 // Setting UI Data
 extension PostCell {
-    func configure(with post: Post, delegate: PostCellDelegate? = nil, creatorViewIsHidden: Bool = false) {
+    func configure(with post: Post, couldEdit: Bool = false, delegate: PostCellDelegate? = nil) {
         self.post = post
         self.delegate = delegate
         
         creatorHeaderView.configure(
             userID: post.userID,
             nickName: post.nickName,
-            imageURL: post.writerProfileImageURL
+            imageURL: post.writerProfileImageURL,
+            couldEdit: couldEdit
         )
         likeButton.isSelected = post.isLiked
+        likeButton.setTitle(post.likeCount.description, for: .normal)
         titleLabel.text = post.title
         contentLabel.text = post.content
         createdDateLabel.text = post.createdDateDescription
@@ -127,23 +133,29 @@ extension PostCell {
         configureLinkPreviews(with: post.videoURL)
         
         addGestures()
+        addHeaderAction(to: post)
+    }
+    
+    private func addHeaderAction(to post: Post) {
+        let modifyAction = UIAction(title: "수정하기") { _ in
+            self.delegate?.postCell(self, didTapEditButton: post)
+        }
+        
+        let deleteAction = UIAction(title: "삭제하기", attributes: .destructive) { _ in
+            self.delegate?.postCell(self, didTapDeleteButton: post)
+        }
+        
+        creatorHeaderView.configureAction(modifyAction: modifyAction, deleteAction: deleteAction)
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {
-        if imageURLs.isEmpty {
-            imageSlideView.snp.updateConstraints {
-                $0.height.equalTo(0)
-            }
-            
-            return
-        }
+        let isHidden = imageURLs.isEmpty
+        
+        imageSlideView.isHidden = isHidden
+        linkPreview.isHidden = (isHidden == false)
         
         imageSlideView.pageControl = pageControl
         imageSlideView.setImageInputs(imageURLs)
-        linkPreview.isHidden = true
-        linkPreview.snp.updateConstraints {
-            $0.height.equalTo(0)
-        }
     }
     
     private func configureLinkPreviews(with urlString: String?) {
@@ -239,47 +251,39 @@ private extension PostCell {
     
     func configureHierarchy() {
         [titleLabel, contentLabel].forEach(contentStackView.addArrangedSubview(_:))
+        [likeButton, createdDateLabel].forEach(likeButtonStackView.addSubview(_:))
         
         [
             creatorHeaderView,
             imageSlideView,
             contentStackView,
             linkPreview,
-            likeButton,
-            createdDateLabel
-        ].forEach(contentView.addSubview(_:))
+            likeButtonStackView
+        ].forEach(postCellContentView.addArrangedSubview(_:))
+        
+        contentView.addSubview(postCellContentView)
     }
     
     func configureConstraints() {
-        creatorHeaderView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        
-        imageSlideView.snp.makeConstraints {
-            $0.top.equalTo(creatorHeaderView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        contentStackView.snp.makeConstraints {
-            $0.top.equalTo(imageSlideView.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
-        }
-        
-        linkPreview.snp.makeConstraints {
-            $0.top.equalTo(contentStackView.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(80)
-        }
-        
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
-            $0.leading.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.leading.equalToSuperview().inset(8)
         }
         
         createdDateLabel.snp.makeConstraints {
-            $0.top.equalTo(linkPreview.snp.bottom).offset(16)
-            $0.trailing.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.trailing.equalToSuperview().inset(8)
+            $0.width.equalToSuperview().multipliedBy(0.3)
+        }
+        
+        postCellContentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        imageSlideView.snp.makeConstraints {
+            $0.height.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        linkPreview.snp.makeConstraints {
+            $0.height.equalTo(80)
         }
     }
 }

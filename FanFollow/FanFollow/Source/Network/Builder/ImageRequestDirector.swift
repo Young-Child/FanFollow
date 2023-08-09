@@ -13,6 +13,16 @@ struct ImageRequestDirector {
         self.builder = builder
     }
     
+    func requestImageData(path: String) -> URLRequest {
+        return builder
+            .set(path: SupabaseConstants.Constants.path + path)
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+            ])
+            .build()
+    }
+    
     func requestSaveImage(path: String, image: Data) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path + path)

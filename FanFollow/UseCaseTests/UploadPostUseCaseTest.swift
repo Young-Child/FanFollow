@@ -48,7 +48,7 @@ final class UploadPostUseCaseTests: XCTestCase {
         imageRepository.error = nil
         
         // when
-        let uploadResultObservable = uploadUseCase.uploadPost(uploadData, userID: "TestUserID")
+        let uploadResultObservable = uploadUseCase.upsertPost(uploadData, userID: "TestUserID", existPostID: nil)
         
         // then
         let result = uploadResultObservable.toBlocking().materialize()
@@ -69,7 +69,7 @@ final class UploadPostUseCaseTests: XCTestCase {
         imageRepository.error = NetworkError.unknown
         
         // when
-        let uploadResultObservable = uploadUseCase.uploadPost(uploadData, userID: "TestUserID")
+        let uploadResultObservable = uploadUseCase.upsertPost(uploadData, userID: "TestUserID", existPostID: nil)
         
         // then
         let result = uploadResultObservable.toBlocking().materialize()
@@ -91,7 +91,7 @@ final class UploadPostUseCaseTests: XCTestCase {
         imageRepository.error = nil
         
         // when
-        let uploadResultObservable = uploadUseCase.uploadPost(uploadData, userID: "TestUserID")
+        let uploadResultObservable = uploadUseCase.upsertPost(uploadData, userID: "TestUserID", existPostID: nil)
         
         // then
         let result = uploadResultObservable.toBlocking().materialize()
@@ -112,7 +112,7 @@ final class UploadPostUseCaseTests: XCTestCase {
         imageRepository.error = nil
         
         // when
-        let uploadResultObservable = uploadUseCase.uploadPost(uploadData, userID: "TestUserID")
+        let uploadResultObservable = uploadUseCase.upsertPost(uploadData, userID: "TestUserID", existPostID: nil)
         
         // then
         let result = uploadResultObservable.toBlocking().materialize()
