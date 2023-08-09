@@ -16,8 +16,10 @@ final class CreatorIntroduceViewController: CreatorApplicationChildController {
         textView.placeholder = Constants.introduceInputViewPlaceholder
     }
     
-    var updatedIntroduce: Observable<String?> {
-        return introduceTextView.rx.text.asObservable()
+    var introduce: Observable<String> {
+        get {
+            return introduceTextView.rx.text.orEmpty.asObservable()
+        }
     }
     
     override func viewDidLoad() {

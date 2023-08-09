@@ -34,9 +34,6 @@ final class CreatorApplicationViewController: UIViewController {
     weak var coordinator: CreatorApplicationCoordinator?
     private let disposeBag = DisposeBag()
     private let viewModel: CreatorApplicationViewModel
-    private let category = BehaviorRelay(value: 0)
-    private let links = BehaviorRelay(value: [String]())
-    private let introduce = BehaviorRelay(value: "")
     
     private var currentStep = BehaviorRelay<CreatorApplicationStep>(value: .category)
     
@@ -113,10 +110,11 @@ private extension CreatorApplicationViewController {
             .withUnretained(self)
             .throttle(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapFirst { _ -> Observable<CreatorApplicationViewModel.CreatorInformation> in
-                let category = self.category.value
-                let links = self.links.value
-                let introduce = self.introduce.value
-                return .just((category, links, introduce))
+//                let category = self.category.value
+//                let links = self.links.value
+//                let introduce = self.introduce.value
+//                return .just((category, links, introduce))
+                return .empty()
             }
         
         return CreatorApplicationViewModel.Input(

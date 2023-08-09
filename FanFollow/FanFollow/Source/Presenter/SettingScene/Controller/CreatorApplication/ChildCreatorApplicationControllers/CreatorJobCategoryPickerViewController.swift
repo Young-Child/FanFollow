@@ -29,5 +29,9 @@ final class CreatorJobCategoryPickerViewController: CreatorApplicationChildContr
             .map { $0.row != .zero }
             .bind(to: nextButtonEnable)
             .disposed(by: disposeBag)
+        
+        jobCategoryPickerView.rx.selectedCategory
+            .bind(to: selectedCategory)
+            .disposed(by: disposeBag)
     }
 }
