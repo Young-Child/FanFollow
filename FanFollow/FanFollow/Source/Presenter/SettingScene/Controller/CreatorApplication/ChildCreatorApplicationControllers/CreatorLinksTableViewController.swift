@@ -44,7 +44,7 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(8)
         }
         
         bind()
@@ -94,6 +94,35 @@ extension CreatorLinksTableViewController: UITableViewDataSource {
 
 // TableView Delegate Method
 extension CreatorLinksTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row > 0
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+        if indexPath.row == .zero { return nil }
+        
+        let deleteAction = UIContextualAction(
+            style: .normal,
+            title: ""
+        ) { action, view, completionHandler in
+            view.backgroundColor = .clear
+            self.removeItem(indexPath: indexPath)
+            completionHandler(true)
+        }
+        
+        deleteAction.backgroundColor = UIColor.white
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
+        deleteAction.image = UIImage(
+            systemName: "minus.circle",
+            withConfiguration: imageConfiguration
+        )?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 64
     }
@@ -130,6 +159,20 @@ private extension CreatorLinksTableViewController {
             newItems.append(nil)
             links.accept(newItems)
             tableView.reloadData()
+        }
+    }
+    
+    func removeItem(indexPath: IndexPath) {
+        var newItem = links.value
+        newItem.remove(at: indexPath.row)
+        links.accept(newItem)
+        
+        tableView.performBatchUpdates {
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            newItem.enumerated().forEach { index, item in
+                tableView.reloadRows(at: [IndexPath(row: index, section: .zero)], with: .fade)
+            }
         }
     }
 
