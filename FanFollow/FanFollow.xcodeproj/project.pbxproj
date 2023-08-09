@@ -81,6 +81,7 @@
 		18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53F2A55BA3E00A41AC5 /* MockData.swift */; };
 		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
 		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
+		18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */; };
 		18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */; };
 		18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */; };
 		18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */; };
@@ -183,7 +184,6 @@
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
 		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
-		EB54BEC52A7B4DA60095A171 /* CreatorApplicationLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
@@ -1548,6 +1548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */,
 				183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */,
 				1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */,
 				1829B50E2A71078300D873DF /* AppCoordinator.swift in Sources */,
@@ -1684,9 +1685,7 @@
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
-                EB54BEC52A7B4DA60095A171 /* CreatorApplicationLinkCell.swift in Sources */,
-                    3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,
-                EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */,
+				3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
@@ -1707,7 +1706,7 @@
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
-                3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
+				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,
