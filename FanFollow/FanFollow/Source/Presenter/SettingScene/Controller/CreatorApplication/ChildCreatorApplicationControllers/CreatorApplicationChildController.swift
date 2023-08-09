@@ -6,10 +6,12 @@
 
 import UIKit
 
+import RxSwift
 import RxRelay
 
 class CreatorApplicationChildController: UIViewController {
     private(set) var nextButtonEnable = BehaviorRelay(value: false)
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

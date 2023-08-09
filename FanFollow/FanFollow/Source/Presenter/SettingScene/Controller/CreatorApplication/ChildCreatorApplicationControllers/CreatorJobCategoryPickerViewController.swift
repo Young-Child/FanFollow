@@ -10,13 +10,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class CreatorJobCategoryPickerViewController: UIViewController {
+final class CreatorJobCategoryPickerViewController: CreatorApplicationChildController {
     private let jobCategoryPickerView = JobCategoryPickerView()
-
-    var updatedJobCategoryIndex: Observable<Int> {
-        return jobCategoryPickerView.rx.itemSelected
-            .map { row, _ in return row }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,5 +20,12 @@ final class CreatorJobCategoryPickerViewController: UIViewController {
         jobCategoryPickerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
         }
+    }
+    
+    func bind() {
+        jobCategoryPickerView.rx.itemSelected
+            .map { _ in true }
+            .bind(to: nextButtonEnable)
+            .disposed(by: disposeBag)
     }
 }
