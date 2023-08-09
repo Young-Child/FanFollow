@@ -42,6 +42,11 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()g
+        }
+        
         binding()
     }
     
