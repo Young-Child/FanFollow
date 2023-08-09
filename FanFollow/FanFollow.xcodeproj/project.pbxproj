@@ -184,7 +184,6 @@
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
-		EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */; };
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
 		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
@@ -424,7 +423,6 @@
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationPageViewController.swift; sourceTree = "<group>"; };
 		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
 		EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorLinksTableViewController.swift; sourceTree = "<group>"; };
 		EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorIntroduceViewController.swift; sourceTree = "<group>"; };
@@ -1239,7 +1237,6 @@
 			children = (
 				18C2DFE62A837DA300F09E3D /* ChildCreatorApplicationControllers */,
 				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
-				EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */,
 			);
 			path = CreatorApplication;
 			sourceTree = "<group>";
@@ -1706,7 +1703,6 @@
 				EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */,
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
-				EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
