@@ -8,37 +8,52 @@
 import UIKit
 
 enum CreatorApplicationStep: Int, CaseIterable {
-    case category
-    case links
-    case introduce
+    case back = -1
+    case confirm = -2
+    
+    case category = 0
+    case links = 1
+    case introduce = 2
+    
+    var title: String {
+        switch self {
+        case .category:     return "분야 선택"
+        case .links:        return "링크 설정"
+        case .introduce:    return "소개 설정"
+        default:            return ""
+        }
+    }
     
     var next: Self {
         switch self {
+        case .back:
+            return .category
         case .category:
             return .links
         case .links:
             return .introduce
-        case .introduce:
-            return .introduce
+        case .introduce, .confirm:
+            return .confirm
         }
     }
 
     var previous: Self {
         switch self {
-        case .category:
-            return .category
+        case .back, .category:
+            return .back
         case .links:
             return .category
-        case .introduce:
+        case .introduce, .confirm:
             return .links
         }
     }
     
-    var controller: CreatorApplicationChildController {
+    var controller: CreatorApplicationChildController? {
         switch self {
         case .category:     return CreatorJobCategoryPickerViewController()
         case .links:        return CreatorLinksTableViewController()
         case .introduce:    return CreatorIntroduceViewController()
+        default:            return nil
         }
     }
     
@@ -47,6 +62,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
     }
     
     static var allInstance: [CreatorApplicationChildController] {
-        return allCases.map { $0.controller }
+        print(allCases.compactMap { $0.controller })
+        return allCases.compactMap { $0.controller }
     }
 }
