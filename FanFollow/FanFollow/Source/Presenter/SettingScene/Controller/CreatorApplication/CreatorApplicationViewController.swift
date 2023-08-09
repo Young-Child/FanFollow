@@ -118,7 +118,7 @@ private extension CreatorApplicationViewController {
                 let introduce = self.introduce.value
                 return .just((category, links, introduce))
             }
-        g
+        
         return CreatorApplicationViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             backButtonTap: backBarButtonItem.rx.tap
@@ -165,26 +165,26 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNextButton(for creatorApplicationStep: CreatorApplicationStep) {
-        switch creatorApplicationStep {
-        case .category:
-            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
-            nextButton.isEnabled = true
-        case .links:
-            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
-            let someLinksAreEmpty = links.value.filter { $0.isEmpty }.count > 0
-            nextButton.isEnabled = someLinksAreEmpty == false
-        case .introduce:
-            nextButton.setAttributedTitle(Constants.nextButtonTitleToConform, for: .normal)
-            let introduceIsEmpty = introduce.value.isEmpty
-            nextButton.isEnabled = introduceIsEmpty == false
-        default:
-            return
-        }
-        if nextButton.isEnabled {
-            nextButton.backgroundColor = UIColor(named: "AccentColor")
-        } else {
-            nextButton.backgroundColor = UIColor(named: "SecondaryColor")
-        }
+//        switch creatorApplicationStep {
+//        case .category:
+//            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
+//            nextButton.isEnabled = true
+//        case .links:
+//            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
+//            let someLinksAreEmpty = links.value.filter { $0.isEmpty }.count > 0
+//            nextButton.isEnabled = someLinksAreEmpty == false
+//        case .introduce:
+//            nextButton.setAttributedTitle(Constants.nextButtonTitleToConform, for: .normal)
+//            let introduceIsEmpty = introduce.value.isEmpty
+//            nextButton.isEnabled = introduceIsEmpty == false
+//        default:
+//            return
+//        }
+//        if nextButton.isEnabled {
+//            nextButton.backgroundColor = UIColor(named: "AccentColor")
+//        } else {
+//            nextButton.backgroundColor = UIColor(named: "SecondaryColor")
+//        }
     }
 }
 

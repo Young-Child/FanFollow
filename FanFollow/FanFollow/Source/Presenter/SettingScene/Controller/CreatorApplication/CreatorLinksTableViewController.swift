@@ -13,7 +13,8 @@ import RxSwift
 
 final class CreatorLinksTableViewController: UITableViewController {
     private let linkAddButton = UIButton().then {
-        $0.layer.backgroundColor = UIColor.systemGray5.cgColor
+        $0.setTitleColor(.white, for: .normal)
+        $0.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
         $0.layer.cornerRadius = 8
         $0.setTitle("링크 추가하기", for: .normal)
     }
@@ -41,11 +42,20 @@ final class CreatorLinksTableViewController: UITableViewController {
             forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
         )
     }
-    
+    g
     private func binding() {
         linkAddButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .bind(onNext: appendNewItem)
+            .disposed(by: disposeBag)
+        
+        links
+            .map { $0.filter { $0?.isEmpty ?? true || $0 == nil }.count > .zero }
+            .asDriver(onErrorJustReturn: false)
+            .drive {
+                let backgroundColor = $0 ? UIColor.systemGray4.cgColor : UIColor(named: "AccentColor")?.cgColor
+                self.linkAddButton.layer.backgroundColor = backgroundColor
+            }
             .disposed(by: disposeBag)
     }
 }
