@@ -164,6 +164,7 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNextButtonAppear(_ isEnable: Bool) {
+        print(isEnable)
         nextButton.isEnabled = isEnable
         let backgroundColor = isEnable ? UIColor(named: "AccentColor") : UIColor.systemGray5
         nextButton.backgroundColor = backgroundColor

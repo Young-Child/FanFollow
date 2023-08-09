@@ -12,14 +12,13 @@ final class CreatorApplicationStepView: UIStackView {
         $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 24, weight: .bold)
         $0.textColor = .label
-        $0.text = "Example"
     }
     
     private let stepStackView = UIStackView().then {
         let childViews = (0...2).map { _ in
             return UIView().then { view in
                 view.layer.cornerRadius = 10
-                view.backgroundColor = UIColor(named: "SecondaryColor")
+                view.backgroundColor = UIColor.systemGray5
             }
         }
         
@@ -50,9 +49,8 @@ final class CreatorApplicationStepView: UIStackView {
     
     func configAppear(currentStep: CreatorApplicationStep) {
         stepStackView.arrangedSubviews.enumerated().forEach { index, view in
-            if index <= currentStep.rawValue {
-                view.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
-            }
+            let backgroundColor = (index <= currentStep.rawValue) ? UIColor(named: "AccentColor") : UIColor.systemGray5
+            view.backgroundColor = backgroundColor
         }
         
         titleLabel.text = currentStep.title

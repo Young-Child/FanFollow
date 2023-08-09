@@ -20,6 +20,13 @@ class CreatorApplicationChildController: UIViewController {
         configureKeyboardDismissAction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let currentValue = nextButtonEnable.value
+        nextButtonEnable.accept(currentValue)
+    }
+    
     private func configureKeyboardDismissAction() {
         let tapGesture = UITapGestureRecognizer(
             target: self,
