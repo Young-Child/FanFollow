@@ -12,7 +12,7 @@ import RxCocoa
 extension Reactive where Base: JobCategoryPickerView {
     var selectedCategory: ControlEvent<JobCategory> {
         let source = base.rx.itemSelected.map(\.row)
-            .filter { $0 == .zero }
+            .filter { $0 != .zero }
             .compactMap { base.categories[safe: $0] }
         return ControlEvent(events: source)
     }
