@@ -44,7 +44,7 @@ final class CreatorApplicationLinkCell: UITableViewCell {
     }
     
     func configure(index: Int, link: String? = nil) {
-        titleLabel.text = "링크 \(index)"
+        titleLabel.text = "링크 \(index + 1)"
         textField.text = link
         
         let textChangeAction = UIAction { _ in

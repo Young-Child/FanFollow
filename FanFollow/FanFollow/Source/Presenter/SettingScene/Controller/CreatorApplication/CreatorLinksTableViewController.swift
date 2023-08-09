@@ -7,11 +7,18 @@
 
 import UIKit
 
+import Then
 import RxRelay
 import RxSwift
 
 final class CreatorLinksTableViewController: UITableViewController {
+    private let linkAddButton = UIButton().then {
+        $0.layer.backgroundColor = UIColor.systemGray5.cgColor
+        $0.layer.cornerRadius = 8
+        $0.setTitle("링크 추가하기", for: .normal)
+    }
     private let links = BehaviorRelay<[String?]>(value: [nil])
+    private var disposeBag = DisposeBag()
 
     var updatedLinks: Observable<[String]> {
         return links.compactMap { $0.compactMap { $0 } }
@@ -26,8 +33,18 @@ final class CreatorLinksTableViewController: UITableViewController {
             CreatorApplicationLinkCell.self,
             forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
         )
+        
+        binding()
     }
 
+    private func binding() {
+        linkAddButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(onNext: appendNewItem)
+            .disposed(by: disposeBag)
+    }
+    
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -57,21 +74,8 @@ final class CreatorLinksTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let viewFrame = CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: 64)
         let footerView = UIView(frame: viewFrame)
-        
-        let addLinkAction = UIAction {
-            _ in self.appendLink()
-        }
-        
-        let button = UIButton().then {
-            $0.frame = CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: 32)
-            $0.layer.backgroundColor = UIColor.systemGray5.cgColor
-            $0.layer.cornerRadius = 8
-            $0.setTitle("링크 추가하기", for: .normal)
-        }
-        
-        button.addAction(addLinkAction, for: .touchUpInside)
-        
-        footerView.addSubview(button)
+        linkAddButton.frame = CGRect(x: 16, y: 16, width: tableView.frame.size.width - 32, height: 32)
+        footerView.addSubview(linkAddButton)
         
         return footerView
     }
@@ -90,16 +94,15 @@ extension CreatorLinksTableViewController: CreatorApplicationLinkCellDelegate {
 }
 
 private extension CreatorLinksTableViewController {
-    func appendLink() {
-        var newItems = links.value
-        let existNil = newItems.filter { $0 == nil }.count > .zero
-        let existEmpty = newItems.compactMap { $0 }.filter { $0.isEmpty }.count > .zero
+    func appendNewItem() {
+        let itemCount = links.value.filter { $0?.isEmpty == false }.count
         
-        if existNil || existEmpty { return }
-        
-        newItems.append(nil)
-        links.accept(newItems)
-        tableView.reloadData()
+        if itemCount == links.value.count {
+            var newItems = links.value
+            newItems.append(nil)
+            links.accept(newItems)
+            tableView.reloadData()
+        }
     }
 
     func updateLink(index: Int, link: String?) {

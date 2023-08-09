@@ -122,6 +122,7 @@ private extension CreatorApplicationViewController {
 
     func bind(_ output: CreatorApplicationViewModel.Output) {
         output.creatorApplicationStep
+            .observe(on: MainScheduler.asyncInstance)
             .asDriver(onErrorJustReturn: .back)
             .drive { [weak self] creatorApplicationStep in
                 guard let self else { return }
