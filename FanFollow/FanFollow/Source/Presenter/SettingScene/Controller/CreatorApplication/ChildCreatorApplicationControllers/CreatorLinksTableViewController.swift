@@ -131,7 +131,13 @@ private extension CreatorLinksTableViewController {
             var newItems = links.value
             newItems.append(nil)
             links.accept(newItems)
-            tableView.reloadData()
+            tableView.performBatchUpdates {
+                let indexPath = IndexPath(row: itemCount, section: .zero)
+                tableView.insertRows(at: [indexPath], with: .fade)
+                let cell = tableView.cellForRow(at: indexPath)
+                cell?.becomeFirstResponder()
+            }
+            
         }
     }
     
