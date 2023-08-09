@@ -168,6 +168,7 @@
 		EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */; };
 		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
 		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
+		EB28F33F2A832609001337A7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EB28F33E2A832609001337A7 /* GoogleSignIn */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -472,6 +473,7 @@
 				188CC4232A4D824800BAB85A /* Then in Frameworks */,
 				18287CEE2A56927A0042E0F2 /* RxCocoa in Frameworks */,
 				18FCE41F2A6245250048AD7A /* Kingfisher in Frameworks */,
+				EB28F33F2A832609001337A7 /* GoogleSignIn in Frameworks */,
 				182CAB4E2A5BA9AD00206EF7 /* RxDataSources in Frameworks */,
 				3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */,
 				182CAB4C2A5BA9AD00206EF7 /* Differentiator in Frameworks */,
@@ -1354,6 +1356,7 @@
 				182CAB4D2A5BA9AD00206EF7 /* RxDataSources */,
 				18FCE41E2A6245250048AD7A /* Kingfisher */,
 				3C639B2E2A7A6093003E2E44 /* Mantis */,
+				EB28F33E2A832609001337A7 /* GoogleSignIn */,
 			);
 			productName = FanFollow;
 			productReference = 188CC4002A4D7FD900BAB85A /* FanFollow.app */;
@@ -1475,6 +1478,7 @@
 				182CAB4A2A5BA9AD00206EF7 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				18FCE41D2A6245250048AD7A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3C639B2D2A7A6093003E2E44 /* XCRemoteSwiftPackageReference "Mantis" */,
+				EB28F33D2A832609001337A7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 188CC4012A4D7FD900BAB85A /* Products */;
 			projectDirPath = "";
@@ -2226,6 +2230,14 @@
 				version = 2.13.0;
 			};
 		};
+		EB28F33D2A832609001337A7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2298,6 +2310,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3C639B2D2A7A6093003E2E44 /* XCRemoteSwiftPackageReference "Mantis" */;
 			productName = Mantis;
+		};
+		EB28F33E2A832609001337A7 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB28F33D2A832609001337A7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 		EBA8EB592A5FBE8300998630 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
