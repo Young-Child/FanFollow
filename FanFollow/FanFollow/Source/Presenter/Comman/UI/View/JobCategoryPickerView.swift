@@ -7,7 +7,7 @@
 import UIKit
 
 class JobCategoryPickerView: UIPickerView {
-    private let categories = JobCategory.allCases.dropLast(1)
+    private let categories = JobCategory.allCases
     
     override init(frame: CGRect) {
         super.init(frame: frame)

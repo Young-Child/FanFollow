@@ -20,11 +20,13 @@ final class CreatorJobCategoryPickerViewController: CreatorApplicationChildContr
         jobCategoryPickerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
         }
+        
+        bind()
     }
     
     func bind() {
         jobCategoryPickerView.rx.itemSelected
-            .map { _ in true }
+            .map { $0.row == .zero }
             .bind(to: nextButtonEnable)
             .disposed(by: disposeBag)
     }

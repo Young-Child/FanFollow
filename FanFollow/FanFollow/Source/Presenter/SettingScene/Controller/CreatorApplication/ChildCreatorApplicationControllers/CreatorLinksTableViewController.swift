@@ -44,13 +44,13 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()g
+            $0.edges.equalToSuperview()
         }
         
-        binding()
+        bind()
     }
     
-    private func binding() {
+    private func bind() {
         linkAddButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .bind(onNext: appendNewItem)
