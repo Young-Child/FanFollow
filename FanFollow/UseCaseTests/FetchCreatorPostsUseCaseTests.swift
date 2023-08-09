@@ -19,7 +19,7 @@ final class FetchCreatorPostsUseCaseTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         postRepository = StubPostRepository()
-        imageRepository = DefaultImageRepository(network: DefaultNetworkService())
+        imageRepository = StubImageRepository()
         sut = DefaultFetchCreatorPostsUseCase(postRepository: postRepository, imageRepository: imageRepository)
         disposeBag = DisposeBag()
     }
