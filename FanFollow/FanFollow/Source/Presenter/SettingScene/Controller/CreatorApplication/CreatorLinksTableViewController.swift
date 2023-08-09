@@ -42,7 +42,7 @@ final class CreatorLinksTableViewController: UITableViewController {
             forCellReuseIdentifier: CreatorApplicationLinkCell.reuseIdentifier
         )
     }
-    g
+    
     private func binding() {
         linkAddButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
