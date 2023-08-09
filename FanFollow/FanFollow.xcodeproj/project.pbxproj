@@ -161,6 +161,16 @@
 		EB0260402A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */; };
 		EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */; };
 		EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */; };
+		EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */; };
+		EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32B2A81E783001337A7 /* AuthRepository.swift */; };
+		EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32D2A81E7F0001337A7 /* Provider.swift */; };
+		EB28F3302A81FCA7001337A7 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */; };
+		EB28F3322A8203F5001337A7 /* SessionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3312A8203F5001337A7 /* SessionDTO.swift */; };
+		EB28F3342A82059F001337A7 /* AuthRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3332A82059F001337A7 /* AuthRepositoryTests.swift */; };
+		EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */; };
+		EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */; };
+		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
+		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -392,6 +402,16 @@
 		EB02603F2A60CCF00015F3C9 /* FetchCreatorInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorInformationUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260412A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreatorPostsUseCaseTests.swift; sourceTree = "<group>"; };
 		EB0260432A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInformationUseCaseTests.swift; sourceTree = "<group>"; };
+		EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestDirector.swift; sourceTree = "<group>"; };
+		EB28F32B2A81E783001337A7 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		EB28F32D2A81E7F0001337A7 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
+		EB28F3312A8203F5001337A7 /* SessionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDTO.swift; sourceTree = "<group>"; };
+		EB28F3332A82059F001337A7 /* AuthRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryTests.swift; sourceTree = "<group>"; };
+		EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUserDefaultsService.swift; sourceTree = "<group>"; };
+		EB28F3392A822050001337A7 /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
+		EB28F33B2A8222B0001337A7 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -513,12 +533,12 @@
 		1829B50C2A71077800D873DF /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				3C470A432A822749000669EB /* FeedScene */,
+				3C470A422A82273F000669EB /* ExploreScene */,
 				183EDDE52A72B05900F1490E /* SettingScene */,
 				1829B50D2A71078300D873DF /* AppCoordinator.swift */,
 				1829B50F2A71079D00D873DF /* Coordinator.swift */,
 				1829B5112A714A9600D873DF /* MainTabBarCoordinator.swift */,
-				3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */,
-				EBD4469E2A71F631006B8052 /* FeedCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -564,6 +584,7 @@
 				3CAC3D822A52F6B7000DE463 /* PostRequestDirector.swift */,
 				EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */,
 				18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */,
+				EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -575,6 +596,10 @@
 				3CAC3D802A52F669000DE463 /* PostDTO.swift */,
 				EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */,
 				EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */,
+				EB28F3312A8203F5001337A7 /* SessionDTO.swift */,
+				EB28F3392A822050001337A7 /* StoredSession.swift */,
+				EB28F33B2A8222B0001337A7 /* SessionError.swift */,
+				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1026,6 +1051,22 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		3C470A422A82273F000669EB /* ExploreScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */,
+			);
+			path = ExploreScene;
+			sourceTree = "<group>";
+		};
+		3C470A432A822749000669EB /* FeedScene */ = {
+			isa = PBXGroup;
+			children = (
+				EBD4469E2A71F631006B8052 /* FeedCoordinator.swift */,
+			);
+			path = FeedScene;
+			sourceTree = "<group>";
+		};
 		3C5F653E2A6CFA92004F9698 /* ExploreSearchScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1151,6 +1192,7 @@
 				3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */,
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
+				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1174,6 +1216,7 @@
 				EBE33E6C2A53DD3B00C11188 /* LikeRepository.swift */,
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
 				18EC06982A62775B006293B5 /* ImageRepository.swift */,
+				EB28F32B2A81E783001337A7 /* AuthRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -1184,6 +1227,7 @@
 				1839745E2A525B1A00F0101A /* NetworkService.swift */,
 				183974602A525B3300F0101A /* DefaultNetworkService.swift */,
 				18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */,
+				EB28F3352A8213B0001337A7 /* UserDefaultsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1210,6 +1254,7 @@
 				EBB5DE632A5791CD00DB5B52 /* FollowRepositoryTests.swift */,
 				EBB5DE642A5791CD00DB5B52 /* UserInformationRepositoryTests.swift */,
 				3CFC16D22A57E97D00B16ADF /* LikeRepositoryTests.swift */,
+				EB28F3332A82059F001337A7 /* AuthRepositoryTests.swift */,
 			);
 			path = RepositoryTests;
 			sourceTree = "<group>";
@@ -1218,6 +1263,7 @@
 			isa = PBXGroup;
 			children = (
 				EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */,
+				EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1537,11 +1583,13 @@
 				EBBE26BF2A6FF04F0071234B /* CreatorInformationSectionItem.swift in Sources */,
 				187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */,
 				18F36E552A78D92F00D17CE3 /* LinkCacheService.swift in Sources */,
+				EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */,
 				3CC69A882A6504E90081ACC8 /* ExploreSectionModel.swift in Sources */,
 				3CC69A8A2A65116C0081ACC8 /* CreatorCell.swift in Sources */,
 				1829B5142A714B4500D873DF /* SettingCoodinator.swift in Sources */,
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
 				3CCEC37D2A789311001753DF /* UploadBottomSheetViewController.swift in Sources */,
+				EB28F3302A81FCA7001337A7 /* DefaultAuthRepository.swift in Sources */,
 				18513FDD2A5FB55500580A1A /* SettingSectionHeaderView.swift in Sources */,
 				18513FDF2A5FD8A300580A1A /* SettingTabBarController.swift in Sources */,
 				18F815912A6FD4300065878F /* UpdateProfileImageUseCase.swift in Sources */,
@@ -1556,6 +1604,7 @@
 				3CE762892A665A3A00E1411E /* ExploreSectionItem.swift in Sources */,
 				3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
+				EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				3CF4CE902A7B98840079E996 /* UploadLinkPreview.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
@@ -1610,8 +1659,10 @@
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				3CC69A852A64E7360081ACC8 /* ExploreViewModel.swift in Sources */,
 				187FD98B2A81DD140041EA63 /* UploadContentTextView.swift in Sources */,
+				EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */,
 				18E6703C2A53BD1400C52942 /* ChatRepository.swift in Sources */,
 				1829B5122A714A9600D873DF /* MainTabBarCoordinator.swift in Sources */,
+				EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */,
 				3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */,
 				3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */,
 				EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */,
@@ -1659,6 +1710,8 @@
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
 				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
 				EBD4469F2A71F631006B8052 /* FeedCoordinator.swift in Sources */,
+				EB28F3322A8203F5001337A7 /* SessionDTO.swift in Sources */,
+				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
@@ -1678,6 +1731,7 @@
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
+				EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
@@ -1732,12 +1786,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1894FC702A5727450032E426 /* Mock.swift in Sources */,
+				EB28F3342A82059F001337A7 /* AuthRepositoryTests.swift in Sources */,
 				EBAA0A682A56EC140033ED0F /* StubNetworkService.swift in Sources */,
 				EBB5DE652A5791CD00DB5B52 /* FollowRepositoryTests.swift in Sources */,
 				EBB5DE662A5791CD00DB5B52 /* UserInformationRepositoryTests.swift in Sources */,
 				1866AFC32A57087E000FFFD7 /* ChatRepositoryTests.swift in Sources */,
 				3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */,
 				3CFC16D32A57E97D00B16ADF /* LikeRepositoryTests.swift in Sources */,
+				EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,8 +6,8 @@
 
 import UIKit
 
-import RxSwift
 import Kingfisher
+import RxSwift
 
 final class ProfileImagePickerViewController: ImagePickerViewController {
     private var disposeBag = DisposeBag()

@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxRelay
+
 import RxDataSources
+import RxRelay
+import RxSwift
 
 final class ProfileFeedViewController: UIViewController {
     // View Properties
@@ -54,9 +55,51 @@ final class ProfileFeedViewController: UIViewController {
         binding()
     }
     
+<<<<<<< HEAD
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationItem()
         super.viewWillAppear(animated)
+=======
+    private func configureDataSource() {
+        dataSource = DataSource(configureCell: { dataSource, tableView, indexPath, item in
+            switch dataSource[indexPath.section] {
+            case .profile(let items):
+                guard let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "ProfileCell", for: indexPath
+                ) as? ProfileCell else { return UITableViewCell() }
+
+                let item = items[indexPath.row]
+                let creator = item.creator
+                let followerCount = item.followerCount
+                let isFollow = item.isFollow
+                let followButtonIsHidden: Bool
+                switch self.viewType {
+                case .feedManage:
+                    followButtonIsHidden = true
+                case .profileFeed:
+                    followButtonIsHidden = false
+                }
+
+                cell.configure(
+                    with: creator,
+                    followerCount: followerCount,
+                    isFollow: isFollow,
+                    delegate: self,
+                    followButtonIsHidden: followButtonIsHidden
+                )
+                return cell
+            case .posts(let items):
+                guard let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "PostCell", for: indexPath
+                ) as? PostCell else { return UITableViewCell() }
+
+                let item = items[indexPath.row]
+
+                cell.configure(with: item, delegate: self, creatorViewIsHidden: true)
+                return cell
+            }
+        })
+>>>>>>> develop
     }
 }
 

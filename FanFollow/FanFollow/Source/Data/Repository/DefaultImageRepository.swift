@@ -15,8 +15,8 @@ struct SupabaseImageResource: Codable {
 final class DefaultImageRepository: ImageRepository {
     private let network: NetworkService
     
-    init(network: NetworkService) {
-        self.network = network
+    init(_ networkService: NetworkService) {
+        self.network = networkService
     }
     
     func readImage(to path: String) -> Observable<Data> {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UploadCoordinator: Coordinator {
+final class UploadCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     weak var parentCoordinator: SettingCoordinator?
@@ -24,6 +24,7 @@ class UploadCoordinator: Coordinator {
         navigationController.present(controller, animated: false)
     }
     
+<<<<<<< HEAD
     func presentPostViewController(
         type: UploadType,
         viewController: UIViewController? = nil,
@@ -32,6 +33,13 @@ class UploadCoordinator: Coordinator {
         let networkService = DefaultNetworkService()
         let repository = DefaultPostRepository(networkService: networkService)
         let imageRepository = DefaultImageRepository(network: networkService)
+=======
+    func presentPostViewController(viewController: UIViewController, type: UploadType) {
+        let networkService = DefaultNetworkService.shared
+        
+        let repository = DefaultPostRepository(networkService)
+        let imageRepository = DefaultImageRepository(networkService)
+>>>>>>> develop
         
         let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository)
         let viewModel = UploadViewModel(uploadUseCase: useCase, post: post)

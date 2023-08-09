@@ -18,18 +18,17 @@ enum SettingTabItem: Int, TabItem {
     }
     
     var viewController: UIViewController {
+        let networkService = DefaultNetworkService.shared
+        
         switch self {
         case .setting:
             let useCase = DefaultFetchUserInformationUseCase(
-                userInformationRepository: DefaultUserInformationRepository(
-                    DefaultNetworkService(
-                        session: URLSession.shared
-                    )
-                )
+                userInformationRepository: DefaultUserInformationRepository(networkService)
             )
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
+<<<<<<< HEAD
             let session = URLSession.shared
             let networkService = DefaultNetworkService(session: session)
 
@@ -39,6 +38,10 @@ enum SettingTabItem: Int, TabItem {
                 postRepository: postRepository,
                 imageRepository: imageRepository
             )
+=======
+            let postRepository = DefaultPostRepository(networkService)
+            let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(postRepository: postRepository)
+>>>>>>> develop
 
             let userInformationRepository = DefaultUserInformationRepository(networkService)
             let followRepository = DefaultFollowRepository(networkService)
@@ -47,7 +50,7 @@ enum SettingTabItem: Int, TabItem {
                 followRepository: followRepository
             )
 
-            let likeRepository = DefaultLikeRepository(networkService: networkService)
+            let likeRepository = DefaultLikeRepository(networkService)
             let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
             // TODO: 로그인한 creatorID 입력

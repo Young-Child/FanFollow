@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainTabBarCoordinator: Coordinator {
+final class MainTabBarCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     
     var childCoordinators: [Coordinator] = []
@@ -27,6 +27,15 @@ class MainTabBarCoordinator: Coordinator {
         
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers(controllers, animated: true)
+        
+        // TabBar Appearance Setting
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .systemGray6
+        tabBarController.tabBar.standardAppearance = appearance
+
+        if #available(iOS 15.0, *) {
+            tabBarController.tabBar.scrollEdgeAppearance = appearance
+        }
         
         navigationController.setViewControllers([tabBarController], animated: true)
     }

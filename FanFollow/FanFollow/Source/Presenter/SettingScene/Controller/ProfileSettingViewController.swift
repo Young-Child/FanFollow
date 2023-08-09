@@ -3,12 +3,13 @@
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
+
 import UIKit
 import PhotosUI
 
+import Kingfisher
 import RxSwift
 import SnapKit
-import Kingfisher
 
 final class ProfileSettingViewController: UIViewController {
     weak var coordinator: ProfileSettingCoordinator?

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ProfileSettingCoordinator: Coordinator {
+final class ProfileSettingCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -15,7 +15,7 @@ class ProfileSettingCoordinator: Coordinator {
     }
     
     func start() {
-        let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService())
+        let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
         let fetchUseCase = DefaultFetchUserInformationUseCase(
             userInformationRepository: userInformationRepository
         )

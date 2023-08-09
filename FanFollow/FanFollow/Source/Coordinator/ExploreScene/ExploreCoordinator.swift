@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator {
+final class ExploreCoordinator: Coordinator {
     // Coordinator Propertiese
     weak var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
@@ -26,7 +26,7 @@ class ExploreCoordinator: Coordinator {
         self.navigationController = navigationController
         self.userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
-        userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService())
+        userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
         exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
         searchUseCase = DefaultSearchCreatorUseCase(userInformationRepository: userInformationRepository)
     }
@@ -34,6 +34,7 @@ class ExploreCoordinator: Coordinator {
     func start() {
         let controller = ExploreTabBarController()
         controller.coordinator = self
+        
         navigationController.pushViewController(controller, animated: true)
     }
     
@@ -46,26 +47,24 @@ class ExploreCoordinator: Coordinator {
     }
     
     func presentProfileViewController(to creatorID: String) {
-        let networkService = DefaultNetworkService()
-
-        let postRepository = DefaultPostRepository(networkService: networkService)
-        let imageRepository = DefaultImageRepository(network: networkService)
+        let networkService = DefaultNetworkService.shared
+        
+        let postRepository = DefaultPostRepository(networkService)
+        let userInformationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
+        let likeRepository = DefaultLikeRepository(networkService)
+        let imageRepository = DefaultImageRepository(networkService)
+        
         let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
             postRepository: postRepository,
             imageRepository: imageRepository
         )
-
-        let userInformationRepository = DefaultUserInformationRepository(networkService)
-        let followRepository = DefaultFollowRepository(networkService)
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
             followRepository: followRepository
         )
-
-        let likeRepository = DefaultLikeRepository(networkService: networkService)
         let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
 
-        
         let viewModel = ProfileFeedViewModel(
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
             fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
@@ -76,6 +75,7 @@ class ExploreCoordinator: Coordinator {
         
         let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
         
+        navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(controller, animated: true)
     }
     

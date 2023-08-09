@@ -6,7 +6,7 @@
 
 import UIKit
 
-class SettingCoordinator: Coordinator {
+final class SettingCoordinator: Coordinator {
     weak var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController

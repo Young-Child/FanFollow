@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxDataSources
+import RxSwift
 
 final class ExploreCategoryViewController: UIViewController {
     typealias ExploreCategoryDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>

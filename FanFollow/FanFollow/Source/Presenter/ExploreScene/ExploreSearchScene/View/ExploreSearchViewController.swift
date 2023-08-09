@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxRelay
+import RxSwift
 
 final class ExploreSearchViewController: UIViewController {
     // View Properties
