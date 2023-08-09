@@ -10,77 +10,32 @@ import RxSwift
 
 final class CreatorApplicationViewModel: ViewModel {
     struct Input {
-        var viewWillAppear: Observable<Void>
-        var backButtonTap: Observable<Void>
-        var nextButtonTap: Observable<CreatorInformation>
+        var nextButtonTap: Observable<(Int, [String], String)>
     }
 
     struct Output {
-        var creatorApplicationStep: Observable<CreatorApplicationStep>
+        var updateResult: Observable<Void>
     }
-
-    typealias CreatorInformation = (category: Int?, links: [String]?, introduce: String?)
-
+    
     var disposeBag = DisposeBag()
-    private let applyCreatorUseCase: ApplyCreatorUseCase
+    private let informationUseCase: UpdateUserInformationUseCase
     private let userID: String
-    private let creatorApplicationStep = BehaviorRelay(value: CreatorApplicationStep.category)
 
-    init(applyCreatorUseCase: ApplyCreatorUseCase, userID: String) {
-        self.applyCreatorUseCase = applyCreatorUseCase
+    init(informationUseCase: UpdateUserInformationUseCase, userID: String) {
+        self.informationUseCase = informationUseCase
         self.userID = userID
     }
 
     func transform(input: Input) -> Output {
-        let initialStep = input.viewWillAppear
-            .withUnretained(self)
-            .flatMapFirst { _ -> Observable<CreatorApplicationStep> in
-                return .just(self.creatorApplicationStep.value)
+        let result = input.nextButtonTap
+            .flatMapLatest {
+                return self.informationUseCase.updateUserInformation(
+                    userID: self.userID,
+                    updateInformation: $0
+                )
             }
 
-        let nextStep = input.nextButtonTap
-            .withUnretained(self)
-            .flatMapFirst { _, creatorInformation -> Observable<CreatorApplicationStep> in
-                let currentStep = self.creatorApplicationStep.value
-                let nextStep = currentStep.next
-                switch currentStep {
-                case .introduce:
-                    return self.registerCreatorInformation(creatorInformation).andThen(Observable.just(nextStep))
-                default:
-                    return .just(nextStep)
-                }
-            }
-
-        let previousStep = input.backButtonTap
-            .withUnretained(self)
-            .flatMapFirst { _ -> Observable<CreatorApplicationStep> in
-                let currentStep = self.creatorApplicationStep.value
-                let previousStep = currentStep.previous
-                return .just(previousStep)
-            }
-
-        let creatorApplicationStep = Observable.merge(initialStep, nextStep, previousStep)
-            .do { step in
-                self.creatorApplicationStep.accept(step)
-            }
-
-        return Output(creatorApplicationStep: creatorApplicationStep)
+        return Output(updateResult: result)
     }
 }
 
-private extension CreatorApplicationViewModel {
-    func registerCreatorInformation(_ creatorInformation: CreatorInformation) -> Completable {
-        return self.applyCreatorUseCase.applyCreator(
-            userID: self.userID,
-            creatorInformation: (
-                creatorInformation.category,
-                creatorInformation.links,
-                creatorInformation.introduce
-            )
-        )
-    }
-}
-
-private extension CreatorApplicationStep {
-    
-}
