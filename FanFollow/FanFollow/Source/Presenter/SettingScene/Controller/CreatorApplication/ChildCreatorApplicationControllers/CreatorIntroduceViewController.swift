@@ -27,7 +27,8 @@ final class CreatorIntroduceViewController: CreatorApplicationChildController {
         
         view.addSubview(introduceTextView)
         introduceTextView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview().inset(8)
+            $0.bottom.equalToSuperview()
         }
         
         bind()
