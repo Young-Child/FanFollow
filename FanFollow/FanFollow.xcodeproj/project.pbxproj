@@ -85,6 +85,7 @@
 		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
 		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
 		18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */; };
+		18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */; };
 		18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */; };
 		18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */; };
 		18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */; };
@@ -327,6 +328,7 @@
 		18C1E53F2A55BA3E00A41AC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
 		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
+		18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationChildController.swift; sourceTree = "<group>"; };
 		18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAssetGridViewController.swift; sourceTree = "<group>"; };
 		18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImageGridCell.swift; sourceTree = "<group>"; };
@@ -923,6 +925,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		18C2DFE62A837DA300F09E3D /* ChildCreatorApplicationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */,
+			);
+			path = ChildCreatorApplicationControllers;
+			sourceTree = "<group>";
+		};
 		18CF43292A5D12BA002FFA1D /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1172,14 +1182,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-        3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
-            isa = PBXGroup;
-            children = (
-                3C639B322A7B3B75003E2E44 /* Upload.swift */,
-            );
-            name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1234,7 @@
 		EB3A90802A7B3E3F007F400A /* CreatorApplication */ = {
 			isa = PBXGroup;
 			children = (
+				18C2DFE62A837DA300F09E3D /* ChildCreatorApplicationControllers */,
 				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
 				EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */,
 				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
@@ -1647,6 +1650,7 @@
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
+				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
