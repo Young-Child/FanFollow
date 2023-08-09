@@ -12,6 +12,10 @@ import RxSwift
 
 final class CreatorJobCategoryPickerViewController: CreatorApplicationChildController {
     private let jobCategoryPickerView = JobCategoryPickerView()
+    
+    var selectedCategory: Observable<JobCategory> {
+        return jobCategoryPickerView.rx.selectedCategory.asObservable()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +32,6 @@ final class CreatorJobCategoryPickerViewController: CreatorApplicationChildContr
         jobCategoryPickerView.rx.itemSelected
             .map { $0.row != .zero }
             .bind(to: nextButtonEnable)
-            .disposed(by: disposeBag)
-        
-        jobCategoryPickerView.rx.selectedCategory
-            .bind(to: selectedCategory)
             .disposed(by: disposeBag)
     }
 }

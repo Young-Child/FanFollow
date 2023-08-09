@@ -29,13 +29,13 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     }
     
     private let links = BehaviorRelay<[String?]>(value: [nil])
-
-    var updatedLinks: Observable<[String]> {
+    
+    var writtenLinks: Observable<[String]> {
         get {
-            return links.map { $0.compactMap { $0 } }
+            links.compactMap { $0.compactMap { $0 } }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

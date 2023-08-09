@@ -16,9 +16,9 @@ final class CreatorIntroduceViewController: CreatorApplicationChildController {
         textView.placeholder = Constants.introduceInputViewPlaceholder
     }
     
-    var introduce: Observable<String> {
+    var writtenIntroduce: Observable<String> {
         get {
-            return introduceTextView.rx.text.orEmpty.asObservable()
+            introduceTextView.rx.text.orEmpty.asObservable()
         }
     }
     

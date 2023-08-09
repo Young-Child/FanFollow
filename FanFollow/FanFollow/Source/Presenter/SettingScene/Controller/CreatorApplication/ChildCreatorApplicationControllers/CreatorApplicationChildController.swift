@@ -11,7 +11,6 @@ import RxRelay
 
 class CreatorApplicationChildController: UIViewController {
     private(set) var nextButtonEnable = BehaviorRelay(value: false)
-    var selectedCategory = PublishRelay<JobCategory>()
     
     var disposeBag = DisposeBag()
     

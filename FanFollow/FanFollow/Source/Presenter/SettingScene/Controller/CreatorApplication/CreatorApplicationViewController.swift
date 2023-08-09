@@ -36,6 +36,9 @@ final class CreatorApplicationViewController: UIViewController {
     private let viewModel: CreatorApplicationViewModel
     
     private var currentStep = BehaviorRelay<CreatorApplicationStep>(value: .category)
+    private var selectedCategory = BehaviorRelay<JobCategory>(value: .unSetting)
+    private var writtenLinks = BehaviorRelay<[String]>(value: [])
+    private var writtenIntroduce = BehaviorRelay<String>(value: "")
     
     // Initializer
     init(viewModel: CreatorApplicationViewModel) {
@@ -53,8 +56,7 @@ final class CreatorApplicationViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        bindingView()
-        bindingViewModel()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,33 +74,7 @@ final class CreatorApplicationViewController: UIViewController {
 
 // Binding Method
 private extension CreatorApplicationViewController {
-    func bindingView() {
-        //        creatorApplicationPageViewController.updatedJobCategoryIndex
-        //            .subscribe(onNext: { [weak self] category in
-        //                guard let self else { return }
-        //                self.category.accept(category)
-        //                self.configureNextButton(for: .category)
-        //            })
-        //            .disposed(by: disposeBag)
-        //
-        //        creatorApplicationPageViewController.updatedLinks
-        //            .subscribe(onNext: { [weak self] links in
-        //                guard let self else { return }
-        //                self.links.accept(links)
-        //                self.configureNextButton(for: .links)
-        //            })
-        //            .disposed(by: disposeBag)
-        //
-        //        creatorApplicationPageViewController.updatedIntroduce
-        //            .subscribe(onNext: { [weak self] introduce in
-        //                guard let self else { return }
-        //                self.introduce.accept(introduce)
-        //                self.configureNextButton(for: .introduce)
-        //            })
-        //            .disposed(by: disposeBag)
-    }
-    
-    func bindingViewModel() {
+    func bind() {
         bindViews()
         let input = input()
         let output = viewModel.transform(input: input)
@@ -106,44 +82,28 @@ private extension CreatorApplicationViewController {
     }
     
     func input() -> CreatorApplicationViewModel.Input {
-        let creatorInformation = nextButton.rx.tap
-            .withUnretained(self)
-            .throttle(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
-            .flatMapFirst { _ -> Observable<CreatorApplicationViewModel.CreatorInformation> in
-//                let category = self.category.value
-//                let links = self.links.value
-//                let introduce = self.introduce.value
-//                return .just((category, links, introduce))
-                return .empty()
+        let confirmButtonTapped = nextButton.rx.tap
+            .filter { self.currentStep.value == .confirm }
+            .map { _ in
+                return (
+                    self.selectedCategory.value.rawValue,
+                    self.writtenLinks.value,
+                    self.writtenIntroduce.value
+                )
             }
         
         return CreatorApplicationViewModel.Input(
-            viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
-            backButtonTap: backBarButtonItem.rx.tap
-                .throttle(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
-                .map { _ in }.asObservable(),
-            nextButtonTap: creatorInformation
+            nextButtonTap: confirmButtonTapped
         )
     }
     
     func bind(_ output: CreatorApplicationViewModel.Output) {
-        //        output.creatorApplicationStep
-        //            .observe(on: MainScheduler.asyncInstance)
-        //            .asDriver(onErrorJustReturn: .back)
-        //            .drive { [weak self] creatorApplicationStep in
-        //                guard let self else { return }
-        //                if case .back = creatorApplicationStep {
-        //                    self.navigationController?.popViewController(animated: true)
-        //                    return
-        //                }
-        //                self.creatorApplicationPageViewController.setViewController(
-        //                    for: creatorApplicationStep,
-        //                    direction: .forward
-        //                )
-        //                self.configureNextButton(for: creatorApplicationStep)
-        ////                self.stepView.configure(creatorApplicationStep)
-        //            }
-        //            .disposed(by: disposeBag)
+        output.updateResult
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindViews() {
@@ -158,44 +118,48 @@ private extension CreatorApplicationViewController {
         
         childControllers.forEach { controller in
             controller.nextButtonEnable
-                .debug()
                 .bind(onNext: configureNextButtonAppear(_:))
                 .disposed(by: disposeBag)
+            
+            bindChildViewController(to: controller)
         }
         
         currentStep.asDriver(onErrorJustReturn: .category)
-            .map(\.rawValue)
+            .filter { $0 != .confirm }
             .drive(onNext: self.changePageView)
             .disposed(by: disposeBag)
     }
     
-    func configureNextButton(for creatorApplicationStep: CreatorApplicationStep) {
-//        switch creatorApplicationStep {
-//        case .category:
-//            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
-//            nextButton.isEnabled = true
-//        case .links:
-//            nextButton.setAttributedTitle(Constants.nextButtonTitleToGoNext, for: .normal)
-//            let someLinksAreEmpty = links.value.filter { $0.isEmpty }.count > 0
-//            nextButton.isEnabled = someLinksAreEmpty == false
-//        case .introduce:
-//            nextButton.setAttributedTitle(Constants.nextButtonTitleToConform, for: .normal)
-//            let introduceIsEmpty = introduce.value.isEmpty
-//            nextButton.isEnabled = introduceIsEmpty == false
-//        default:
-//            return
-//        }
-//        if nextButton.isEnabled {
-//            nextButton.backgroundColor = UIColor(named: "AccentColor")
-//        } else {
-//            nextButton.backgroundColor = UIColor(named: "SecondaryColor")
-//        }
+    func bindChildViewController(to controller: CreatorApplicationChildController) {
+        if let controller = controller as? CreatorJobCategoryPickerViewController {
+            controller.selectedCategory
+                .bind(to: selectedCategory)
+                .disposed(by: disposeBag)
+        }
+        
+        if let controller = controller as? CreatorLinksTableViewController {
+            controller.writtenLinks
+                .bind(to: writtenLinks)
+                .disposed(by: disposeBag)
+        }
+        
+        if let controller = controller as? CreatorIntroduceViewController {
+            controller.writtenIntroduce
+                .bind(to: writtenIntroduce)
+                .disposed(by: disposeBag)
+        }
     }
 }
 
 private extension CreatorApplicationViewController {
-    func changePageView(_ index: Int) {
-        guard let controller = childControllers[safe: index] else { return }
+    func changePageView(_ currentStep: CreatorApplicationStep) {
+        if currentStep.rawValue < .zero {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        guard let controller = childControllers[safe: currentStep.rawValue] else { return }
+        stepView.configAppear(currentStep: currentStep)
         pageController.setViewControllers([controller], direction: .forward, animated: false)
     }
     
