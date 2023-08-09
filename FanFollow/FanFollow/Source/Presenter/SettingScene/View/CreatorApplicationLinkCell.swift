@@ -15,18 +15,14 @@ protocol CreatorApplicationLinkCellDelegate: AnyObject {
 }
 
 final class CreatorApplicationLinkCell: UITableViewCell {
-    private let stackView = UIStackView().then { stackView in
-        stackView.spacing = 8
-    }
-    
     private let titleLabel = UILabel().then { label in
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.font = .systemFont(ofSize: 18, weight: .semibold)
     }
     
     private let textField = UnderLineTextField().then { textField in
         textField.textColor = UIColor(named: "AccentColor")
-        textField.font = .systemFont(ofSize: 14, weight: .regular)
+        textField.font = .systemFont(ofSize: 16, weight: .regular)
     }
     
     weak var delegate: CreatorApplicationLinkCellDelegate?
@@ -41,6 +37,13 @@ final class CreatorApplicationLinkCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleLabel.text = nil
+        textField.text = nil
     }
     
     func configure(index: Int, link: String? = nil) {
@@ -65,14 +68,20 @@ private extension CreatorApplicationLinkCell {
     }
     
     func configureHierarchy() {
-        [titleLabel, textField].forEach(stackView.addArrangedSubview)
-        contentView.addSubview(stackView)
+        [titleLabel, textField].forEach(contentView.addSubview(_:))
     }
     
     func configureConstraints() {
-        titleLabel.setContentHuggingPriority(.required, for: .horizontal)
-        stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
+        titleLabel.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(8)
+            $0.width.equalToSuperview().multipliedBy(0.2)
+        }
+        
+        textField.snp.makeConstraints {
+            $0.top.bottom.equalTo(titleLabel)
+            $0.leading.equalTo(titleLabel.snp.trailing).inset(8)
+            $0.trailing.equalToSuperview().inset(8)
         }
     }
 }
