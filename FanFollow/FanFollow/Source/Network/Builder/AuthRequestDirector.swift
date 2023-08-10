@@ -23,6 +23,7 @@ struct AuthRequestDirector {
             .set(method: .post)
             .set(headers: [
                 SupabaseConstants.Constants.accept: SupabaseConstants.Base.json,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .set(body: [
@@ -36,6 +37,7 @@ struct AuthRequestDirector {
         return builder
             .set(path: SupabaseConstants.Constants.tokenPath)
             .set(queryItems: [
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Constants.grantType: SupabaseConstants.Constants.refreshToken
             ])
             .set(method: .post)
