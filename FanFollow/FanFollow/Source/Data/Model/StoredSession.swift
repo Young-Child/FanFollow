@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoredSession {
+struct StoredSession: Codable {
     let accessToken: String
     let refreshToken: String
     let userID: String
