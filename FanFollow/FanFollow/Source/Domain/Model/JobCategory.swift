@@ -33,4 +33,18 @@ enum JobCategory: Int, CaseIterable {
         case .unSetting:    return "미정"
         }
     }
+    
+    static var allCases: [JobCategory] {
+        return [
+            unSetting,
+            .art,
+            .design,
+            .education,
+            .financial,
+            .IT,
+            .media,
+            .medical,
+            .plan
+        ]
+    }
 }
