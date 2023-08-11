@@ -7,93 +7,54 @@
 
 import UIKit
 
-final class CreatorApplicationStepView: UIView {
-    // View Properties
-    private let stackView = UIStackView().then { stackView in
-        stackView.spacing = 16
-        stackView.axis = .vertical
+final class CreatorApplicationStepView: UIStackView {
+    private let titleLabel = UILabel().then {
+        $0.numberOfLines = 1
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.textColor = .label
     }
-
-    private let titleLabel = UILabel().then { label in
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-    }
-
-    private let stepStackView = UIStackView(
-        arrangedSubviews: (0...2).map { _ in
+    
+    private let stepStackView = UIStackView().then {
+        let childViews = (0...2).map { _ in
             return UIView().then { view in
-                view.backgroundColor = UIColor(named: "SecondaryColor")
-                view.layer.cornerRadius = 8
+                view.layer.cornerRadius = 10
+                view.backgroundColor = UIColor.systemGray5
             }
         }
-    ).then { stackView in
-        stackView.distribution = .fillEqually
+        
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        $0.spacing = 8
+        childViews.forEach($0.addArrangedSubview)
     }
-
-    // Initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
         configureUI()
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func configure(_ creatorApplicationStep: CreatorApplicationStep) {
-        titleLabel.text = creatorApplicationStep.title
-        stepStackView.subviews.enumerated().forEach { (index, view) in
-            let isFill = index < creatorApplicationStep.steps
-            view.backgroundColor = isFill ? UIColor(named: "AccentColor") : UIColor(named: "SecondaryColor")
-        }
-    }
-}
-
-private extension CreatorApplicationStepView {
+    
     func configureUI() {
-        configureHierarchy()
-        configureConstraints()
-    }
-
-    func configureHierarchy() {
-        [titleLabel, stepStackView].forEach(stackView.addArrangedSubview)
-        addSubview(stackView)
-    }
-
-    func configureConstraints() {
+        distribution = .fillProportionally
+        axis = .vertical
+        layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        spacing = 16
+        isLayoutMarginsRelativeArrangement = true
+        [titleLabel, stepStackView].forEach(addArrangedSubview)
+        
         stepStackView.snp.makeConstraints {
-            $0.height.equalTo(16)
-        }
-        stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
+            $0.height.equalTo(20)
         }
     }
-}
-
-private extension CreatorApplicationStep {
-    var title: String {
-        switch self {
-        case .back:
-            return ""
-        case .category:
-            return "분야 설정"
-        case .links:
-            return "링크 설정"
-        case .introduce:
-            return "소개 설정"
+    
+    func configAppear(currentStep: CreatorApplicationStep) {
+        stepStackView.arrangedSubviews.enumerated().forEach { index, view in
+            let backgroundColor = (index <= currentStep.rawValue) ? UIColor(named: "AccentColor") : UIColor.systemGray5
+            UIView.animate(withDuration: 0.25) {
+                view.backgroundColor = backgroundColor
+            }
         }
-    }
-
-    var steps: Int {
-        switch self {
-        case .back:
-            return 0
-        case .category:
-            return 1
-        case .links:
-            return 2
-        case .introduce:
-            return 3
-        }
+        
+        titleLabel.text = currentStep.title
     }
 }

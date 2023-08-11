@@ -20,7 +20,8 @@ final class PostCreatorHeaderView: UIView {
         label.font = .systemFont(ofSize: 17, weight: .regular)
     }
     
-    private let optionsButton = UIButton().then { button in
+    let optionsButton = UIButton().then { button in
+        button.showsMenuAsPrimaryAction = true
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
     }
     
@@ -55,8 +56,21 @@ final class PostCreatorHeaderView: UIView {
         }
     }
     
-    func configure(userID: String, nickName: String?, imageURL: String) {
+    func configure(userID: String, nickName: String?, imageURL: String, couldEdit: Bool) {
         self.creatorImageView.setImageProfileImage(to: imageURL, for: userID)
         self.creatorNickNameLabel.text = nickName
+        self.optionsButton.isHidden = (couldEdit == false)
+    }
+    
+    func configureAction(modifyAction: UIAction, deleteAction: UIAction) {
+        let menu = UIMenu(
+            options: .displayInline,
+            children: [
+                modifyAction,
+                deleteAction
+            ]
+        )
+        
+        self.optionsButton.menu = menu
     }
 }
