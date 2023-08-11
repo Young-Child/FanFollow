@@ -8,10 +8,10 @@
 import RxSwift
 
 protocol AppleSigningUseCase {
-    func signIn(with idToken: String) -> Completable
+    func logIn(with idToken: String) -> Observable<StoredSession>
 }
 
-final class DefaultAppleSigningUseCase {
+final class DefaultAppleSigningUseCase: AppleSigningUseCase {
     private let authRepository: AuthRepository
     private let disposeBag = DisposeBag()
     
@@ -19,29 +19,15 @@ final class DefaultAppleSigningUseCase {
         self.authRepository = authRepository
     }
     
-    func signIn(with idToken: String) -> Completable {
-        return Completable.create { completable in
-            let disposable = self.authRepository.storedSession()
-                .subscribe(onNext: { storedSession in
-                    completable(.completed)
-                }, onError: { error in
-                    let signInDisposable = self.authRepository.signIn(with: idToken, of: .apple)
-                        .subscribe { _ in
-                            completable(.completed)
-                        } onError: { error in
-                                completable(.error(error))
-                        }
-                    
-                    return
-                })
-            
-            return Disposables.create {
-                disposable.dispose()
+    func logIn(with idToken: String) -> Observable<StoredSession>  {
+        return authRepository.storedSession()
+            .catch { error in
+                return self.authRepository.signIn(with: idToken, of: .apple)
             }
-        }
     }
 }
 
+// Constants
 private extension DefaultAppleSigningUseCase {
     enum Constants {
         static let session = "session"
