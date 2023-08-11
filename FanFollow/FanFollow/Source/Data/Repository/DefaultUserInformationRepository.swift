@@ -42,6 +42,19 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0).first }
     }
 
+    func checkSignUpUser(for userID: String) -> Observable<Bool> {
+        let request = UserRequestDirector(builder: builder)
+            .requestFetchUserInformation(for: userID)
+
+        return networkService.data(request)
+            .map {
+                guard let result = try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0) else {
+                    return false
+                }
+                return result.isEmpty == false
+            }
+    }
+
     func upsertUserInformation(
         userID: String,
         nickName: String,
