@@ -3,9 +3,9 @@
 //  FanFollow
 //
 //  Copyright (c) 2023 Minii All rights reserved.
+        
 
 import UIKit
-import GoogleSignIn
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,13 +26,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             name: "Default Configuration",
             sessionRole: connectingSceneSession.role
         )
-    }
-
-    func application(
-        _ app: UIApplication,
-        open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-    ) -> Bool {
-        let handled = GIDSignIn.sharedInstance.handle(url)
-        return handled ? true : false
     }
 }
