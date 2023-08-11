@@ -189,6 +189,7 @@
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EB6D42112A865762001B2EC3 /* SignUpUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */; };
+		EB7A70BF2A866D080016D3CB /* SignUpUserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -431,6 +432,7 @@
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
 		EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserUseCase.swift; sourceTree = "<group>"; };
+		EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserUseCaseTests.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; };
@@ -1282,6 +1284,7 @@
 				3CB6FE5B2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift */,
 				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
 				3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */,
+				EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1778,6 +1781,7 @@
 				EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */,
 				EBA8EB6F2A601C8700998630 /* StubUserInformationRepository.swift in Sources */,
 				EBA8EB6B2A5FC18000998630 /* StubLikeRepository.swift in Sources */,
+				EB7A70BF2A866D080016D3CB /* SignUpUserUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
