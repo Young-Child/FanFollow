@@ -169,7 +169,6 @@
 		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
 		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
 		EB28F33F2A832609001337A7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EB28F33E2A832609001337A7 /* GoogleSignIn */; };
-		EB28F3452A8371F3001337A7 /* GoogleSignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3442A8371F3001337A7 /* GoogleSignInUseCase.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -409,7 +408,6 @@
 		EB28F3392A822050001337A7 /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
 		EB28F33B2A8222B0001337A7 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		EB28F3432A8371A4001337A7 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
-		EB28F3442A8371F3001337A7 /* GoogleSignInUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSignInUseCase.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -804,7 +802,6 @@
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
-				EB28F3442A8371F3001337A7 /* GoogleSignInUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1613,7 +1610,6 @@
 				18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */,
 				3CCEC37F2A789ABC001753DF /* UploadBottomSheetView.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
-				EB28F3452A8371F3001337A7 /* GoogleSignInUseCase.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,
 				183EDDE22A7272D200F1490E /* Notification + Extension.swift in Sources */,
 				3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */,
