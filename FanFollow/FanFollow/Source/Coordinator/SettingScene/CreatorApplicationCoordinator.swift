@@ -17,15 +17,18 @@ final class CreatorApplicationCoordinator: Coordinator {
 
     func start() {
         let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
-        let applyCreatorUseCase = DefaultApplyCreatorUseCase(userInformationRepository: userInformationRepository)
+        let userInformationUpdateRepository = DefaultUpdateUserInformationUseCase(
+            userInformationRepository: userInformationRepository
+        )
         // TODO: 로그인한 UserID를 입력
         let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         let creatorApplicationViewModel = CreatorApplicationViewModel(
-            applyCreatorUseCase: applyCreatorUseCase,
+            informationUseCase: userInformationUpdateRepository,
             userID: userID
         )
         let creatorApplicationViewController = CreatorApplicationViewController(viewModel: creatorApplicationViewModel)
         creatorApplicationViewController.coordinator = self
+        creatorApplicationViewController.hidesBottomBarWhenPushed = true
 
         navigationController.pushViewController(creatorApplicationViewController, animated: true)
     }

@@ -84,6 +84,8 @@
 		18C1E5402A55BA3E00A41AC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E53F2A55BA3E00A41AC5 /* MockData.swift */; };
 		18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */; };
 		18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */; };
+		18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */; };
+		18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */; };
 		18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */; };
 		18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */; };
 		18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */; };
@@ -182,12 +184,9 @@
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */; };
-		EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */; };
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
 		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
-		EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */; };
-		EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
@@ -328,6 +327,7 @@
 		18C1E53F2A55BA3E00A41AC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		18C1E5422A55BC4600A41AC5 /* URLSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionType.swift; sourceTree = "<group>"; };
 		18C1E5442A55BC5D00A41AC5 /* URLSessionDataTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskType.swift; sourceTree = "<group>"; };
+		18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationChildController.swift; sourceTree = "<group>"; };
 		18CF432B2A5D14E6002FFA1D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18D007372A6EC26B00D46248 /* PhotoAssetGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAssetGridViewController.swift; sourceTree = "<group>"; };
 		18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImageGridCell.swift; sourceTree = "<group>"; };
@@ -423,12 +423,10 @@
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationPageViewController.swift; sourceTree = "<group>"; };
 		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
 		EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorLinksTableViewController.swift; sourceTree = "<group>"; };
 		EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorIntroduceViewController.swift; sourceTree = "<group>"; };
-		EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldCell.swift; sourceTree = "<group>"; };
-		EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationLinkCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
@@ -925,6 +923,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		18C2DFE62A837DA300F09E3D /* ChildCreatorApplicationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				18C2DFE72A837DBA00F09E3D /* CreatorApplicationChildController.swift */,
+				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
+				EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */,
+				EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */,
+			);
+			path = ChildCreatorApplicationControllers;
+			sourceTree = "<group>";
+		};
 		18CF43292A5D12BA002FFA1D /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,8 +953,7 @@
 				EB3A907A2A79EC09007F400A /* CreatorApplicationStepView.swift */,
 				EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */,
 				EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */,
-				EB54BEC42A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift */,
-				EB54BEC62A7B5F9D0095A171 /* ButtonCell.swift */,
+				EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1175,14 +1183,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-        3CF4CE942A7CDFBA0079E996 /* Recovered References */ = {
-            isa = PBXGroup;
-            children = (
-                3C639B322A7B3B75003E2E44 /* Upload.swift */,
-            );
-            name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		3CF9581B2A5C054500448546 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -1235,11 +1235,8 @@
 		EB3A90802A7B3E3F007F400A /* CreatorApplication */ = {
 			isa = PBXGroup;
 			children = (
+				18C2DFE62A837DA300F09E3D /* ChildCreatorApplicationControllers */,
 				EB3A90762A788571007F400A /* CreatorApplicationViewController.swift */,
-				EB54BEBC2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift */,
-				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
-				EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */,
-				EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */,
 			);
 			path = CreatorApplication;
 			sourceTree = "<group>";
@@ -1576,6 +1573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */,
 				183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */,
 				1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */,
 				1829B50E2A71078300D873DF /* AppCoordinator.swift in Sources */,
@@ -1649,6 +1647,7 @@
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
+				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
@@ -1704,7 +1703,6 @@
 				EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */,
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
-				EB54BEBD2A7B3FCB0095A171 /* CreatorApplicationPageViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
@@ -1716,7 +1714,6 @@
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
 				3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,
-				EB54BEC52A7B4DA60095A171 /* CreatorApplicationTextFieldCell.swift in Sources */,
 				3CEE006C2A5D13DD009EE562 /* AccessChatRoomUseCase.swift in Sources */,
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
@@ -1738,7 +1735,6 @@
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
-				EB54BEC72A7B5F9D0095A171 /* ButtonCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18E6703A2A53BCC400C52942 /* ChatDTO.swift in Sources */,

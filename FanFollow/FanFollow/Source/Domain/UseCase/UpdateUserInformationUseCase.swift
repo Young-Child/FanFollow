@@ -13,6 +13,11 @@ protocol UpdateUserInformationUseCase: AnyObject {
         userID: String,
         updateInformation: (nickName: String?, category: Int?, links: [String]?, introduce: String?)
     ) -> Observable<Void>
+    
+    func updateUserInformation(
+        userID: String,
+        updateInformation: (jobCategory: Int, links: [String], introduce: String)
+    ) -> Observable<Void>
 }
 
 final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
@@ -35,6 +40,26 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
                     jobCategory: updateInformation.category ?? information.jobCategory,
                     links: updateInformation.links ?? information.links,
                     introduce: updateInformation.introduce ?? information.introduce,
+                    isCreator: information.isCreator,
+                    createdAt: information.createdDate
+                )
+                .andThen(Observable<Void>.just(()))
+            }
+    }
+    
+    func updateUserInformation(
+        userID: String,
+        updateInformation: (jobCategory: Int, links: [String], introduce: String)
+    ) -> Observable<Void> {
+        return self.userInformationRepository.fetchUserInformation(for: userID)
+            .flatMapLatest { information in
+                return self.userInformationRepository.upsertUserInformation(
+                    userID: userID,
+                    nickName: information.nickName,
+                    profilePath: nil,
+                    jobCategory: updateInformation.jobCategory,
+                    links: updateInformation.links,
+                    introduce: updateInformation.introduce,
                     isCreator: information.isCreator,
                     createdAt: information.createdDate
                 )
