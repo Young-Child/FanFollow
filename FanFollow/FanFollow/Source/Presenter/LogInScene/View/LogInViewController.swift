@@ -73,7 +73,7 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
         let identityToken = appleIDCredential.identityToken
         
         // TODO: - ViewModel로 전달
-        print("User IdentityToken : \(String(describing: identityToken))")
+        print("User IdentityToken : \(String(data: identityToken ?? Data(), encoding: .utf8))")
     }
 }
 

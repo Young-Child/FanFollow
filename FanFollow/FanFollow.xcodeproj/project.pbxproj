@@ -123,6 +123,7 @@
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
 		3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */; };
 		3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */; };
+		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -369,6 +370,7 @@
 		3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCase.swift; sourceTree = "<group>"; };
+		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -1106,7 +1108,8 @@
 		3C7DE60F2A84BC8D00259E74 /* LogInScene */ = {
 			isa = PBXGroup;
 			children = (
-				3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */,
+				3C7DE6182A8612EE00259E74 /* View */,
+				3C7DE6192A8612F500259E74 /* ViewModel */,
 			);
 			path = LogInScene;
 			sourceTree = "<group>";
@@ -1125,6 +1128,22 @@
 				3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */,
 			);
 			path = LogInScene;
+			sourceTree = "<group>";
+		};
+		3C7DE6182A8612EE00259E74 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C7DE6192A8612F500259E74 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE61A2A86130500259E74 /* LogInViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3CA0ED082A73875A00111457 /* ExploreSubscribeScene */ = {
@@ -1677,6 +1696,7 @@
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
+				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
