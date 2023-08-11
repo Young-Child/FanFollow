@@ -43,10 +43,13 @@ final class LogInViewController: UIViewController {
     
     // Properties
     weak var coordinator: LogInCoordinator?
+    private let viewModel: LogInViewModel
     private var disposeBag = DisposeBag()
+    private let identityToken = PublishRelay<String>()
     
     // Initializer
-    init() {
+    init(viewModel: LogInViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,7 +62,7 @@ final class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        bind()
+        binding()
     }
 }
 
@@ -84,23 +87,36 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
         controller: ASAuthorizationController,
         didCompleteWithAuthorization authorization: ASAuthorization
     ) {
-        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let identityTokenData = appleIDCredential.identityToken,
+              let token = String(data: identityTokenData, encoding: .utf8) else {
             return
         }
         
-        let identityToken = appleIDCredential.identityToken
-        
-        // TODO: - ViewModel로 identity, userValue 전달
-        guard let identity = appleIDCredential.user.identity.components(separatedBy: ".")[safe: 1] else { return }
-        let userValue = String(identity.enumerated().filter { $0.offset < 6 }.map { $0.element })
-        
-        print("User IdentityToken : \(String(data: identityToken ?? Data(), encoding: .utf8))")
+        identityToken.accept(token)
     }
 }
 
 // Bind Method
 extension LogInViewController {
-    func bind() {
+    func binding() {
+        let output = bindingInput()
+        
+        // TODO: - 추후 로직 추가 필요
+        output.logInSuccess
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        buttonBinding()
+    }
+    
+    func bindingInput() -> LogInViewModel.Output {
+        let input = LogInViewModel.Input(logInButtonTapped: identityToken.asObservable())
+        
+        return viewModel.transform(input: input)
+    }
+    
+    private func buttonBinding() {
         appleLogInButton.rx.tap
             .bind {
                 self.appleIDButtonTapped()

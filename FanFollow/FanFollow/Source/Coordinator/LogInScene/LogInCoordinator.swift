@@ -17,7 +17,14 @@ final class LogInCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = LogInViewController()
+        let repository = DefaultAuthRepository(
+            networkService: DefaultNetworkService.shared,
+            userDefaultsService: UserDefaults.standard
+        )
+        let signUseCase = DefaultAppleSigningUseCase(authRepository: repository)
+        let viewModel = LogInViewModel(signUseCase: signUseCase)
+        let controller = LogInViewController(viewModel: viewModel)
+        
         controller.coordinator = self
         
         navigationController.setViewControllers([controller], animated: true)
