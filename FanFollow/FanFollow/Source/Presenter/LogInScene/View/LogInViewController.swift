@@ -33,6 +33,9 @@ final class LogInViewController: UIViewController {
     }
     
     private var appleLogInButton = UIButton().then {
+        $0.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        $0.marginImageWithText(margin: 16)
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 4
         $0.setImage(UIImage(named: "Apple"), for: .normal)
         $0.backgroundColor = .label
@@ -145,20 +148,19 @@ private extension LogInViewController {
         }
         
         mainLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(32)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(30)
             $0.leading.equalTo(logoImageView)
         }
         
         subLabel.snp.makeConstraints {
             $0.top.equalTo(mainLabel.snp.bottom).offset(8)
-            $0.leading.equalTo(logoImageView)
+            $0.leading.equalTo(mainLabel)
         }
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.bottom.equalToSuperview().offset(-150)
-            $0.leading.equalToSuperview().offset(18)
-            $0.trailing.equalToSuperview().offset(-18)
+            $0.bottom.equalToSuperview().offset(-100)
+            $0.leading.trailing.equalToSuperview().inset(18)
         }
     }
 }
