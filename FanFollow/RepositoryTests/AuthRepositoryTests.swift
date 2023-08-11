@@ -47,8 +47,9 @@ final class AuthRepositoryTests: XCTestCase {
         // then
         observable.subscribe(onNext: { value in
             XCTAssertEqual(value.refreshToken, TestData.refreshToken)
-            let userDefaultsData = self.userDefaultsService.data[TestData.session] as? StoredSession
-            XCTAssertEqual(userDefaultsData?.refreshToken, TestData.refreshToken)
+            let userDefaultsData = self.userDefaultsService.data[TestData.session] as! Data
+            let storedSession = try! JSONDecoder().decode(StoredSession.self, from: userDefaultsData)
+            XCTAssertEqual(storedSession.refreshToken, TestData.refreshToken)
         }, onError: { error in
             XCTFail(error.localizedDescription)
         })
@@ -90,8 +91,9 @@ final class AuthRepositoryTests: XCTestCase {
         // then
         observable.subscribe(onNext: { value in
             XCTAssertEqual(value.refreshToken, TestData.refreshToken)
-            let userDefaultsData = self.userDefaultsService.data[TestData.session] as? StoredSession
-            XCTAssertEqual(userDefaultsData?.refreshToken, TestData.refreshToken)
+            let userDefaultsData = self.userDefaultsService.data[TestData.session] as! Data
+            let storedSession = try! JSONDecoder().decode(StoredSession.self, from: userDefaultsData)
+            XCTAssertEqual(storedSession.refreshToken, TestData.refreshToken)
         }, onError: { error in
             XCTFail(error.localizedDescription)
         })
@@ -165,7 +167,8 @@ final class AuthRepositoryTests: XCTestCase {
     func test_StoredSessionInNormalCondition() {
         // given
         let storedSession = StoredSession(session: TestData.sessionDTO)!
-        userDefaultsService.data[TestData.session] = storedSession
+        let storedSessionData = try! JSONEncoder().encode(storedSession)
+        userDefaultsService.data[TestData.session] = storedSessionData
 
         // when
         let observable = sut.storedSession()
@@ -186,7 +189,8 @@ final class AuthRepositoryTests: XCTestCase {
         networkService.error = nil
         networkService.response = TestData.normalResponse
         let storedSession = StoredSession(session: TestData.sessionDTO, expirationDate: Date())!
-        userDefaultsService.data[TestData.session] = storedSession
+        let storedSessionData = try! JSONEncoder().encode(storedSession)
+        userDefaultsService.data[TestData.session] = storedSessionData
 
         // when
         let observable = sut.storedSession()
