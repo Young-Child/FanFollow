@@ -17,7 +17,8 @@ final class AppCoordinator: Coordinator {
     
     func start() {
         // TODO: - 추후 로그인 기능과 함께 사용할 수 있도록 구현
-        presentMainView(authKey: "")
+//        presentMainView(authKey: "")
+        presentLogInView()
     }
     
     func presentMainView(authKey: String) {

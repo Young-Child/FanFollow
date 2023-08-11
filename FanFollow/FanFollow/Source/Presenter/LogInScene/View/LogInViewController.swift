@@ -15,7 +15,7 @@ final class LogInViewController: UIViewController {
     // View Properties
     private let logoImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "mainLogo")
+        $0.image = UIImage(named: "iconImageMiddle")
     }
     
     private let mainLabel = UILabel().then {
