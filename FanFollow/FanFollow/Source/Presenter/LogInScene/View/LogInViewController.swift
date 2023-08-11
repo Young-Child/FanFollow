@@ -14,8 +14,24 @@ import RxCocoa
 final class LogInViewController: UIViewController {
     // View Properties
     private let logoImageView = UIImageView().then {
-        $0.image = UIImage(named: "iconImage")
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(named: "mainLogo")
+    }
+    
+    private let mainLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 32, weight: .bold)
+        $0.text = Constants.mainText
+        $0.textColor = .label
+        $0.textAlignment = .left
+        $0.adjustsFontSizeToFitWidth = true
+    }
+    
+    private let subLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 16, weight: .bold)
+        $0.text = Constants.subText
+        $0.textColor = .label
+        $0.textAlignment = .left
+        $0.adjustsFontSizeToFitWidth = true
     }
     
     private var appleLogInButton = UIButton().then {
@@ -74,7 +90,10 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
         
         let identityToken = appleIDCredential.identityToken
         
-        // TODO: - ViewModel로 전달
+        // TODO: - ViewModel로 identity, userValue 전달
+        guard let identity = appleIDCredential.user.identity.components(separatedBy: ".")[safe: 1] else { return }
+        let userValue = String(identity.enumerated().filter { $0.offset < 6 }.map { $0.element })
+        
         print("User IdentityToken : \(String(data: identityToken ?? Data(), encoding: .utf8))")
     }
 }
@@ -100,14 +119,24 @@ private extension LogInViewController {
     }
     
     func configureHierarchy() {
-        [logoImageView, appleLogInButton].forEach(view.addSubview(_:))
+        [logoImageView, mainLabel, subLabel, appleLogInButton].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
         logoImageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(40)
-            $0.trailing.equalToSuperview().offset(-40)
-            $0.bottom.equalTo(view.snp.centerY).offset(-40)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(90)
+            $0.leading.equalToSuperview().offset(25)
+            $0.height.equalTo(80)
+        }
+        
+        mainLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(45)
+        }
+        
+        subLabel.snp.makeConstraints {
+            $0.top.equalTo(mainLabel.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(45)
         }
         
         appleLogInButton.snp.makeConstraints {
@@ -122,5 +151,7 @@ private extension LogInViewController {
 private extension LogInViewController {
     enum Constants {
         static let appleButtonText = "Apple로 계속하기"
+        static let mainText = "모든 직군의 이야기"
+        static let subText = "나와 같은 사람들의 생각, 기록, 네트워킹"
     }
 }
