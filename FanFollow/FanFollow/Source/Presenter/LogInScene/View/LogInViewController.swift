@@ -18,7 +18,23 @@ final class LogInViewController: UIViewController {
         $0.contentMode = .scaleAspectFill
     }
     
+    private var kakaoLogInButton = UIButton().then {
+        $0.layer.cornerRadius = 10
+        $0.setTitleColor(.black, for: .normal)
+        $0.setImage(UIImage(named: "Kakao"), for: .normal)
+        $0.backgroundColor = Constants.kakaoColor
+        $0.setTitle(Constants.kakaoButtonText, for: .normal)
+    }
+    
+    private var appleLogInButton = UIButton().then {
+        $0.layer.cornerRadius = 10
+        $0.setImage(UIImage(named: "Apple"), for: .normal)
+        $0.backgroundColor = .label
+        $0.setTitle(Constants.appleButtonText, for: .normal)
+    }
+    
     private let buttonStackView = UIStackView().then {
+        $0.spacing = 8
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fillEqually
@@ -42,6 +58,7 @@ final class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        bind()
     }
 }
 
@@ -77,32 +94,29 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
     }
 }
 
+// Bind Method
+extension LogInViewController {
+    func bind() {
+        appleLogInButton.rx.tap
+            .bind {
+                self.appleIDButtonTapped()
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
 // Configure UI
 private extension LogInViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
         
         configureHierarchy()
-        configureAppleLoginButton()
         makeConstraints()
-    }
-    
-    func configureAppleLoginButton() {
-        let appleAuthButton = ASAuthorizationAppleIDButton(
-            authorizationButtonType: .continue,
-            authorizationButtonStyle: .black
-        )
-        buttonStackView.addArrangedSubview(appleAuthButton)
-        
-        appleAuthButton.rx.controlEvent(.touchUpInside)
-            .bind { _ in
-                self.appleIDButtonTapped()
-            }
-            .disposed(by: disposeBag)
     }
     
     func configureHierarchy() {
         [logoImageView, buttonStackView].forEach(view.addSubview(_:))
+        [kakaoLogInButton, appleLogInButton].forEach { buttonStackView.addArrangedSubview($0) }
     }
     
     func makeConstraints() {
@@ -113,9 +127,18 @@ private extension LogInViewController {
         }
         
         buttonStackView.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(20)
+            $0.height.equalTo(100)
+            $0.bottom.equalToSuperview().offset(-150)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
+    }
+}
+
+private extension LogInViewController {
+    enum Constants {
+        static let appleButtonText = "Apple로 계속하기"
+        static let kakaoButtonText = "카카오로 계속하기"
+        static let kakaoColor = UIColor(red: 1.00, green: 0.90, blue: 0.00, alpha: 1.00)
     }
 }
