@@ -19,15 +19,13 @@ final class LogInViewController: UIViewController {
     }
     
     private let mainLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 32, weight: .bold)
-        $0.text = Constants.mainText
-        $0.textColor = .label
+        $0.attributedText = Constants.mainText
+        $0.font = .systemFont(ofSize: 36, weight: .bold)
         $0.textAlignment = .left
-        $0.adjustsFontSizeToFitWidth = true
     }
     
     private let subLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
+        $0.font = .systemFont(ofSize: 16, weight: .medium)
         $0.text = Constants.subText
         $0.textColor = .label
         $0.textAlignment = .left
@@ -140,26 +138,27 @@ private extension LogInViewController {
     
     func makeConstraints() {
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(90)
-            $0.leading.equalToSuperview().offset(25)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.leading.equalToSuperview().offset(18)
             $0.height.equalTo(80)
+            $0.width.equalTo(160)
         }
         
         mainLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(45)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(32)
+            $0.leading.equalTo(logoImageView)
         }
         
         subLabel.snp.makeConstraints {
             $0.top.equalTo(mainLabel.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(45)
+            $0.leading.equalTo(logoImageView)
         }
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
             $0.bottom.equalToSuperview().offset(-150)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.leading.equalToSuperview().offset(18)
+            $0.trailing.equalToSuperview().offset(-18)
         }
     }
 }
@@ -167,7 +166,26 @@ private extension LogInViewController {
 private extension LogInViewController {
     enum Constants {
         static let appleButtonText = "Apple로 계속하기"
-        static let mainText = "모든 직군의 이야기"
+        static let mainText = NSMutableAttributedString()
+            .regular("모든 ")
+            .highlight("직군", to: UIColor(named: "AccentColor"))
+            .regular("의 이야기")
         static let subText = "나와 같은 사람들의 생각, 기록, 네트워킹"
+    }
+}
+
+extension NSMutableAttributedString {
+    func regular(_ value: String) -> NSMutableAttributedString {
+        self.append(NSAttributedString(string: value))
+        return self
+    }
+    
+    func highlight(_ value: String, to color: UIColor?) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: color as Any
+        ]
+        
+        self.append(NSAttributedString(string: value, attributes: attributes))
+        return self
     }
 }
