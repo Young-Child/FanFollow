@@ -26,4 +26,11 @@ final class AppCoordinator: Coordinator {
         
         coordinator.start()
     }
+    
+    func presentLogInView() {
+        let coordinator = LogInCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        
+        coordinator.start()
+    }
 }

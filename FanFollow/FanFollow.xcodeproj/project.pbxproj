@@ -122,6 +122,10 @@
 		3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */; };
 		3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3C639B2E2A7A6093003E2E44 /* Mantis */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
+		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
+		3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */; };
+		3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */; };
+		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -364,6 +368,11 @@
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
+		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
+		3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
+		3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCase.swift; sourceTree = "<group>"; };
+		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -535,6 +544,7 @@
 		1829B50C2A71077800D873DF /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				3C7DE6122A84C4F000259E74 /* LogInScene */,
 				3C470A432A822749000669EB /* FeedScene */,
 				3C470A422A82273F000669EB /* ExploreScene */,
 				183EDDE52A72B05900F1490E /* SettingScene */,
@@ -809,6 +819,7 @@
 		188CC4022A4D7FD900BAB85A /* FanFollow */ = {
 			isa = PBXGroup;
 			children = (
+				3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */,
 				3C29C8F42A4EAD9C002F0037 /* Resource */,
 				3C29C8F32A4EAD95002F0037 /* Source */,
 			);
@@ -818,6 +829,7 @@
 		18BC320A2A5C279C00F910B7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				3C7DE60F2A84BC8D00259E74 /* LogInScene */,
 				187949A32A5E6E8200ADA01A /* Comman */,
 				3CC69A802A64E6F40081ACC8 /* ExploreScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
@@ -831,6 +843,7 @@
 		18BC320B2A5C27B500F910B7 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3C7DE6152A84CEC700259E74 /* LogInScene */,
 				EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */,
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				3CEE006B2A5D13DD009EE562 /* AccessChatRoomUseCase.swift */,
@@ -1101,6 +1114,47 @@
 			isa = PBXGroup;
 			children = (
 				3C5F65432A6CFACF004F9698 /* ExploreSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3C7DE60F2A84BC8D00259E74 /* LogInScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE6182A8612EE00259E74 /* View */,
+				3C7DE6192A8612F500259E74 /* ViewModel */,
+			);
+			path = LogInScene;
+			sourceTree = "<group>";
+		};
+		3C7DE6122A84C4F000259E74 /* LogInScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */,
+			);
+			path = LogInScene;
+			sourceTree = "<group>";
+		};
+		3C7DE6152A84CEC700259E74 /* LogInScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */,
+			);
+			path = LogInScene;
+			sourceTree = "<group>";
+		};
+		3C7DE6182A8612EE00259E74 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C7DE6192A8612F500259E74 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C7DE61A2A86130500259E74 /* LogInViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1653,7 +1707,9 @@
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
-				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
+				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
+				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
+        				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
@@ -1673,6 +1729,7 @@
 				EB4FA4312A6E6CD8007C392A /* Date+Extension.swift in Sources */,
 				3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */,
 				1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */,
+				3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */,
 				EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */,
 				3CFDF6C62A5E958600DE6109 /* User.swift in Sources */,
 				EBC4E9902A55133000A1F6AE /* DefaultUserInformationRepository.swift in Sources */,
@@ -1716,6 +1773,7 @@
 				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
 				EBD4469F2A71F631006B8052 /* FeedCoordinator.swift in Sources */,
 				EB28F3322A8203F5001337A7 /* SessionDTO.swift in Sources */,
+				3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */,
 				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
@@ -1958,6 +2016,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FanFollow/FanFollow.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
@@ -1998,6 +2057,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FanFollow/FanFollow.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
