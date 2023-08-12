@@ -49,7 +49,7 @@ final class ProfileCell: UITableViewCell {
         button.setTitle(Constants.followButtonText, for: .normal)
         button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
         button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = 4
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
     }
 
@@ -61,7 +61,7 @@ final class ProfileCell: UITableViewCell {
     private let contentStackView = UIStackView().then { stackView in
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 8
+        stackView.spacing = 4
     }
 
     weak var delegate: ProfileCellDelegate?
