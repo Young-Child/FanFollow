@@ -318,6 +318,15 @@
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
+		18AAC9B42A877DCB009FCE0E /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream5.otf; path = ../../../../../../../Library/Fonts/SCDream5.otf; sourceTree = "<group>"; };
+		18AAC9B52A877DCB009FCE0E /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream3.otf; path = ../../../../../../../Library/Fonts/SCDream3.otf; sourceTree = "<group>"; };
+		18AAC9B62A877DCC009FCE0E /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream7.otf; path = ../../../../../../../Library/Fonts/SCDream7.otf; sourceTree = "<group>"; };
+		18AAC9B72A877DCC009FCE0E /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream6.otf; path = ../../../../../../../Library/Fonts/SCDream6.otf; sourceTree = "<group>"; };
+		18AAC9B82A877DCC009FCE0E /* SCDream8.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream8.otf; path = ../../../../../../../Library/Fonts/SCDream8.otf; sourceTree = "<group>"; };
+		18AAC9B92A877DCC009FCE0E /* SCDream4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream4.otf; path = ../../../../../../../Library/Fonts/SCDream4.otf; sourceTree = "<group>"; };
+		18AAC9BA2A877DCC009FCE0E /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream2.otf; path = ../../../../../../../Library/Fonts/SCDream2.otf; sourceTree = "<group>"; };
+		18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream1.otf; path = ../../../../../../../Library/Fonts/SCDream1.otf; sourceTree = "<group>"; };
+		18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream9.otf; path = ../../../../../../../Library/Fonts/SCDream9.otf; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -822,6 +831,22 @@
 			path = FanFollow;
 			sourceTree = "<group>";
 		};
+		18AAC9B32A877DBF009FCE0E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */,
+				18AAC9BA2A877DCC009FCE0E /* SCDream2.otf */,
+				18AAC9B52A877DCB009FCE0E /* SCDream3.otf */,
+				18AAC9B92A877DCC009FCE0E /* SCDream4.otf */,
+				18AAC9B42A877DCB009FCE0E /* SCDream5.otf */,
+				18AAC9B72A877DCC009FCE0E /* SCDream6.otf */,
+				18AAC9B62A877DCC009FCE0E /* SCDream7.otf */,
+				18AAC9B82A877DCC009FCE0E /* SCDream8.otf */,
+				18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		18BC320A2A5C279C00F910B7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,6 +1057,7 @@
 		3C29C8F42A4EAD9C002F0037 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				18AAC9B32A877DBF009FCE0E /* Fonts */,
 				188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */,
 				188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */,
 				188CC4112A4D7FDB00BAB85A /* Info.plist */,
@@ -1703,7 +1729,7 @@
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
 				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
-        				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
+				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
