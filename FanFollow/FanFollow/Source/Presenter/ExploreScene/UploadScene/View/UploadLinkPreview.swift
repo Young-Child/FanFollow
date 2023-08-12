@@ -12,7 +12,7 @@ final class UploadLinkPreview: UIView {
     // View Properties
     private let defaultImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(systemName: "link")
+        $0.image = Constants.Image.link
     }
     
     private let linkPreview = LPLinkView().then {

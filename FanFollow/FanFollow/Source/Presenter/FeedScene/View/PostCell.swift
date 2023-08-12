@@ -54,14 +54,9 @@ final class PostCell: UITableViewCell {
     
     private let likeButton = UIButton().then { button in
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 15)
-        let unSelectedImage = UIImage(
-            systemName: "heart",
-            withConfiguration: imageConfiguration
-        )
-        let selectedImage = UIImage(
-            systemName: "heart.fill",
-            withConfiguration: imageConfiguration
-        )
+        let unSelectedImage = Constants.Image.heart?.withConfiguration(imageConfiguration)
+        let selectedImage = Constants.Image.heartFill?.withConfiguration(imageConfiguration)
+        
         button.titleLabel?.font = .coreDreamFont(ofSize: 15, weight: .light)
         button.contentMode = .scaleToFill
         button.setTitleColor(.label, for: .normal)
@@ -291,14 +286,14 @@ private extension PostCell {
 
 // Constants
 private extension PostCell {
-    enum Constants {
+    enum ConstantsPostCell {
         static let expandedNumberOfLines = 0
         static let unexpandedNumberOfLines = 2
         static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
         static let creatorNickNameLabelTextColor = UIColor(named: "AccentColor")
-        static let unselectedLikeButtonImage = UIImage(systemName: "hand.thumbsup")
-        static let selectedLikeButtonImage = UIImage(systemName: "hand.thumbsup.fill")
-        static let failureProfileImage = UIImage(systemName: "person")!
-        static let failurePostImage = UIImage(systemName: "photo")!
+//        static let unselectedLikeButtonImage = UIImage(systemName: "hand.thumbsup")
+//        static let selectedLikeButtonImage = UIImage(systemName: "hand.thumbsup.fill")
+//        static let failureProfileImage = UIImage(systemName: "person")!
+//        static let failurePostImage = UIImage(systemName: "photo")!
     }
 }

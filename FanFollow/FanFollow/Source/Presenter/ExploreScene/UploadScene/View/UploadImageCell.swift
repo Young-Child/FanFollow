@@ -20,14 +20,14 @@ final class UploadImageCell: UICollectionViewCell {
     }
     
     private let deleteButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        $0.setImage(Constants.Image.back, for: .normal)
         $0.tintColor = UIColor(named: "AccentColor")
     }
     
     private let pickerButton = UIButton().then {
         $0.tintColor = .label
         $0.backgroundColor = .systemGray5
-        $0.setImage(UIImage(systemName: "plus"), for: .normal)
+        $0.setImage(Constants.Image.plus, for: .normal)
     }
     
     // Property

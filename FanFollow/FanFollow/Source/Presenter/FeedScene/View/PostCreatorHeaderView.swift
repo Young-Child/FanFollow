@@ -22,7 +22,7 @@ final class PostCreatorHeaderView: UIView {
     
     let optionsButton = UIButton().then { button in
         button.showsMenuAsPrimaryAction = true
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(Constants.Image.more, for: .normal)
     }
     
     override init(frame: CGRect) {

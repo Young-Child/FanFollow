@@ -23,7 +23,7 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     
     private let linkAddButton = UIButton().then {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 32)
-        let image = UIImage(systemName: "plus.circle", withConfiguration: imageConfiguration)
+        let image = Constants.Image.plusCircle?.withConfiguration(imageConfiguration)
         $0.layer.backgroundColor = UIColor.clear.cgColor
         $0.setImage(image, for: .normal)
     }
@@ -194,10 +194,10 @@ private extension CreatorLinksTableViewController {
         
         deleteAction.backgroundColor = UIColor.white
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
-        deleteAction.image = UIImage(
-            systemName: "minus.circle",
-            withConfiguration: imageConfiguration
-        )?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let image = Constants.Image.minusCircle?.withConfiguration(imageConfiguration)
+            .withTintColor(.red, renderingMode: .alwaysOriginal)
+        
+        deleteAction.image = image
         
         return deleteAction
     }
@@ -223,7 +223,7 @@ private extension CreatorLinksTableViewController {
 
 // Constants
 private extension CreatorLinksTableViewController {
-    enum Constants {
+    enum ConstantsCreator {
         static let addLinkButtonTitle = NSAttributedString(
             string: "링크 추가하기",
             attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]

@@ -22,7 +22,7 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let creatorImageView = UIImageView().then { imageView in
-        imageView.layer.backgroundColor = Constants.creatorImageViewBackgroundColor
+        imageView.layer.backgroundColor = ConstantsProfileCell.creatorImageViewBackgroundColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 40
@@ -45,17 +45,17 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let followButton = UIButton().then { button in
-        button.setTitle(Constants.unfollowButtonText, for: .selected)
+        button.setTitle(ConstantsProfileCell.unfollowButtonText, for: .selected)
         button.setTitleColor(UIColor.systemGray3, for: .selected)
-        button.setTitle(Constants.followButtonText, for: .normal)
-        button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
+        button.setTitle(ConstantsProfileCell.followButtonText, for: .normal)
+        button.setTitleColor(ConstantsProfileCell.followButtonTitleColor, for: .normal)
         button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
         button.layer.cornerRadius = 4
         button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
 
     private let introduceLabel = UILabel().then { label in
-        label.numberOfLines = Constants.unexpandedNumberOfLines
+        label.numberOfLines = ConstantsProfileCell.unexpandedNumberOfLines
         label.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
@@ -105,7 +105,7 @@ extension ProfileCell {
                 string: "\(count)명",
                 attributes: [
                     .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
-                    .foregroundColor: Constants.followerCountLabelTextColor ?? .clear
+                    .foregroundColor: ConstantsProfileCell.followerCountLabelTextColor ?? .clear
                 ]
             )
         ].reduce(into: NSMutableAttributedString()) {
@@ -116,7 +116,7 @@ extension ProfileCell {
     
     private func configureFollowButton(isFollow: Bool) {
         followButton.isSelected = isFollow
-        let backgroundColor = isFollow ? UIColor.systemGray5 : Constants.followerCountLabelTextColor
+        let backgroundColor = isFollow ? UIColor.systemGray5 : ConstantsProfileCell.followerCountLabelTextColor
         followButton.layer.backgroundColor = backgroundColor?.cgColor
     }
 }
@@ -160,18 +160,18 @@ private extension ProfileCell {
 
     @objc
     func toggleExpended() {
-        let expandAction = { self.introduceLabel.numberOfLines = Constants.expandedNumberOfLines }
+        let expandAction = { self.introduceLabel.numberOfLines = ConstantsProfileCell.expandedNumberOfLines }
         delegate?.profileCell(cell: self, expandLabel: expandAction)
     }
 }
 
 // Constants
 private extension ProfileCell {
-    enum Constants {
+    enum ConstantsProfileCell {
         static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
         static let followerCountLabelTextColor = UIColor(named: "AccentColor")
         static let followButtonTitleColor = UIColor.white
-        static let failureProfileImage = UIImage(systemName: "person")
+//        static let failureProfileImage = UIImage(systemName: "person")
         static let followButtonText = "팔로우"
         static let unfollowButtonText = "팔로잉"
         static let expandedNumberOfLines = 5

@@ -12,23 +12,23 @@ import Kingfisher
 
 class UploadViewController: UIViewController {
     let titleLabel = UILabel().then {
-        $0.text = Constants.title
+        $0.text = ConstantsUpload.title
         $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let titleTextField = UnderLineTextField().then {
         $0.leadPadding(5)
-        $0.placeholder = Constants.titlePlaceholder
+        $0.placeholder = ConstantsUpload.titlePlaceholder
         $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentsLabel = UILabel().then {
-        $0.text = Constants.content
+        $0.text = ConstantsUpload.content
         $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let contentsTextView = PostUploadContentTextView(
-        placeHolder: Constants.contentPlaceholder
+        placeHolder: ConstantsUpload.contentPlaceholder
     ).then {
         $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
@@ -97,11 +97,11 @@ class UploadViewController: UIViewController {
     func configureNavigationBar() {
         view.backgroundColor = .systemBackground
 
-        title = Constants.navigationTitle
+        title = ConstantsUpload.navigationTitle
         navigationController?.navigationBar.standardAppearance.backgroundColor = .white
         
-        let popButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"))
-        let uploadButton = UIBarButtonItem(title: Constants.register)
+        let popButton = UIBarButtonItem(image: Constants.Image.back)
+        let uploadButton = UIBarButtonItem(title: ConstantsUpload.register)
         
         navigationItem.leftBarButtonItem = popButton
         navigationItem.rightBarButtonItem = uploadButton
@@ -141,7 +141,7 @@ class UploadViewController: UIViewController {
 
 // Constants
 private extension UploadViewController {
-    enum Constants {
+    enum ConstantsUpload {
         static let title = "제목"
         static let content = "내용"
         static let titlePlaceholder = "제목을 입력해주세요."

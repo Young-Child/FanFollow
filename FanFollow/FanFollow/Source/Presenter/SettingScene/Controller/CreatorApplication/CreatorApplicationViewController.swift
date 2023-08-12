@@ -12,7 +12,7 @@ import RxSwift
 
 final class CreatorApplicationViewController: UIViewController {
     // View Properties
-    private let backBarButtonItem = UIBarButtonItem(image: Constants.backBarButtonItemImage)
+    private let backBarButtonItem = UIBarButtonItem(image: Constants.Image.back)
     
     private let stepView = CreatorApplicationStepView()
     
@@ -213,8 +213,8 @@ private extension CreatorApplicationViewController {
 
 // Constants
 private extension CreatorApplicationViewController {
-    enum Constants {
-        static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
+    enum ConstantsCreator {
+//        static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
         static let nextButtonTitleToGoNext = NSAttributedString(
             string: "다음",
             attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]

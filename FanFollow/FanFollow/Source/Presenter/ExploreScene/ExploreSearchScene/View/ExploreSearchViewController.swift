@@ -15,7 +15,7 @@ final class ExploreSearchViewController: UIViewController {
     private let backButton = UIButton().then {
         $0.tintColor = UIColor(named: "AccentColor")
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
-        let image = UIImage(systemName: Constants.backImage, withConfiguration: imageConfiguration)
+        let image = Constants.Image.back?.withConfiguration(imageConfiguration)
         $0.setImage(image, for: .normal)
     }
     
@@ -30,9 +30,9 @@ final class ExploreSearchViewController: UIViewController {
         $0.searchTextField.clearButtonMode = .whileEditing
         $0.searchTextField.leftView = nil
         $0.searchTextField.backgroundColor = .systemGray5
-        $0.setImage(UIImage(systemName: Constants.clearImage), for: .clear, state: .normal)
+        $0.setImage(Constants.Image.xmark, for: .clear, state: .normal)
         $0.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: Constants.searchPlaceHolder,
+            string: ConstantsExplore.searchPlaceHolder,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2]
         )
     }
@@ -47,7 +47,7 @@ final class ExploreSearchViewController: UIViewController {
     private let searchLabel = UILabel().then {
         $0.textColor = .label
         $0.textAlignment = .center
-        $0.text = Constants.noSearchResult
+        $0.text = ConstantsExplore.noSearchResult
     }
     
     // Properties
@@ -124,7 +124,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .disposed(by: disposeBag)
         
         isFullResult
-            .map { $0 == false ? Constants.noSearchResult : "" }
+            .map { $0 == false ? ConstantsExplore.noSearchResult : "" }
             .drive(self.searchLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -218,10 +218,10 @@ private extension ExploreSearchViewController {
 
 // Constants
 private extension ExploreSearchViewController {
-    enum Constants {
+    enum ConstantsExplore {
         static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
-        static let clearImage = "xmark"
-        static let backImage = "chevron.backward"
+//        static let clearImage = "xmark"
+//        static let backImage = "chevron.backward"
         static let noSearch = "크리에이터의 닉네임을 검색해보세요."
         static let noSearchResult = "검색 결과가 없습니다."
     }

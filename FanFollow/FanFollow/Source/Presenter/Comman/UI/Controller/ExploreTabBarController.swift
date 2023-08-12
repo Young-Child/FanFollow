@@ -11,7 +11,7 @@ import RxSwift
 
 final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     private let searchButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        $0.setImage(Constants.Image.magnifyingGlass, for: .normal)
         $0.tintColor = .label
         $0.backgroundColor = .clear
     }

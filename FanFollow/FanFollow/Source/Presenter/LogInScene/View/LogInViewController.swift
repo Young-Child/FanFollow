@@ -20,12 +20,12 @@ final class LogInViewController: UIViewController {
     
     private let mainLabel = UILabel().then {
         $0.attributedText = Constants.mainText
-        $0.font = .systemFont(ofSize: 36, weight: .bold)
+        $0.font = .coreDreamFont(ofSize: 32, weight: .bold)
         $0.textAlignment = .left
     }
     
     private let subLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
         $0.text = Constants.subText
         $0.textColor = .label
         $0.textAlignment = .left
