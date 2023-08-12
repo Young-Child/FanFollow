@@ -22,7 +22,7 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let creatorImageView = UIImageView().then { imageView in
-        imageView.layer.backgroundColor = ConstantsProfileCell.creatorImageViewBackgroundColor
+        imageView.layer.backgroundColor = Constants.Color.gray.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 40
@@ -46,10 +46,10 @@ final class ProfileCell: UITableViewCell {
 
     private let followButton = UIButton().then { button in
         button.setTitle(ConstantsProfileCell.unfollowButtonText, for: .selected)
-        button.setTitleColor(UIColor.systemGray3, for: .selected)
+        button.setTitleColor(Constants.Color.grayDark, for: .selected)
         button.setTitle(ConstantsProfileCell.followButtonText, for: .normal)
-        button.setTitleColor(ConstantsProfileCell.followButtonTitleColor, for: .normal)
-        button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
+        button.setTitleColor(.white, for: .normal)
+        button.layer.backgroundColor = Constants.Color.blue.cgColor
         button.layer.cornerRadius = 4
         button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
@@ -105,7 +105,7 @@ extension ProfileCell {
                 string: "\(count)명",
                 attributes: [
                     .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
-                    .foregroundColor: ConstantsProfileCell.followerCountLabelTextColor ?? .clear
+                    .foregroundColor: Constants.Color.blue
                 ]
             )
         ].reduce(into: NSMutableAttributedString()) {
@@ -116,8 +116,8 @@ extension ProfileCell {
     
     private func configureFollowButton(isFollow: Bool) {
         followButton.isSelected = isFollow
-        let backgroundColor = isFollow ? UIColor.systemGray5 : ConstantsProfileCell.followerCountLabelTextColor
-        followButton.layer.backgroundColor = backgroundColor?.cgColor
+        let backgroundColor = isFollow ? Constants.Color.gray : Constants.Color.blue
+        followButton.layer.backgroundColor = backgroundColor.cgColor
     }
 }
 
@@ -168,16 +168,16 @@ private extension ProfileCell {
 // Constants
 private extension ProfileCell {
     enum ConstantsProfileCell {
-        static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-        static let followerCountLabelTextColor = UIColor(named: "AccentColor")
-        static let followButtonTitleColor = UIColor.white
+//        static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
+//        static let followerCountLabelTextColor = UIColor(named: "AccentColor")
+//        static let followButtonTitleColor = UIColor.white
 //        static let failureProfileImage = UIImage(systemName: "person")
         static let followButtonText = "팔로우"
         static let unfollowButtonText = "팔로잉"
         static let expandedNumberOfLines = 5
         static let unexpandedNumberOfLines = 2
         
-        static let followingBackground = UIColor.systemGray5
+//        static let followingBackground = UIColor.systemGray5
     }
 }
 

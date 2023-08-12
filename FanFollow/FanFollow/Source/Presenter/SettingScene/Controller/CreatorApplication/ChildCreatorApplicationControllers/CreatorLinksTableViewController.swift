@@ -24,7 +24,7 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     private let linkAddButton = UIButton().then {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 32)
         let image = Constants.Image.plusCircle?.withConfiguration(imageConfiguration)
-        $0.layer.backgroundColor = UIColor.clear.cgColor
+        $0.layer.backgroundColor = Constants.Color.clear.cgColor
         $0.setImage(image, for: .normal)
     }
     
@@ -192,7 +192,7 @@ private extension CreatorLinksTableViewController {
             handler(true)
         }
         
-        deleteAction.backgroundColor = UIColor.white
+        deleteAction.backgroundColor = Constants.Color.clear
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
         let image = Constants.Image.minusCircle?.withConfiguration(imageConfiguration)
             .withTintColor(.red, renderingMode: .alwaysOriginal)

@@ -15,18 +15,18 @@ final class LogInViewController: UIViewController {
     // View Properties
     private let logoImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "iconImageMiddle")
+        $0.image = Constants.Image.logoImageMiddle
     }
     
     private let mainLabel = UILabel().then {
-        $0.attributedText = Constants.mainText
+        $0.attributedText = ConstantsLogin.mainText
         $0.font = .coreDreamFont(ofSize: 32, weight: .bold)
         $0.textAlignment = .left
     }
     
     private let subLabel = UILabel().then {
         $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
-        $0.text = Constants.subText
+        $0.text = ConstantsLogin.subText
         $0.textColor = .label
         $0.textAlignment = .left
         $0.adjustsFontSizeToFitWidth = true
@@ -39,12 +39,12 @@ final class LogInViewController: UIViewController {
         $0.layer.cornerRadius = 4
         $0.setImage(UIImage(named: "Apple"), for: .normal)
         $0.backgroundColor = .label
-        $0.setTitle(Constants.appleButtonText, for: .normal)
+        $0.setTitle(ConstantsLogin.appleButtonText, for: .normal)
     }
     
     private var loginInformationLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.text = Constants.information
+        $0.text = ConstantsLogin.information
         $0.font = .systemFont(ofSize: 14, weight: .light)
         $0.textColor = .systemGray4
     }
@@ -184,11 +184,11 @@ private extension LogInViewController {
 }
 
 private extension LogInViewController {
-    enum Constants {
+    enum ConstantsLogin {
         static let appleButtonText = "Apple로 계속하기"
         static let mainText = NSMutableAttributedString()
             .regular("모든 ")
-            .highlight("직군", to: UIColor(named: "AccentColor"))
+            .highlight("직군", to: Constants.Color.blue)
             .regular("의 이야기")
         static let subText = "나와 같은 사람들의 생각, 기록, 네트워킹"
         static let information = "추후 더 많은 로그인 기능을 제공할 예정입니다."

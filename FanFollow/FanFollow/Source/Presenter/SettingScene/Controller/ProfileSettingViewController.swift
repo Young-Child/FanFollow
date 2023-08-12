@@ -41,7 +41,7 @@ final class ProfileSettingViewController: UIViewController {
     private let creatorInformationLabel = UILabel().then {
         $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
         $0.text = "소개 및 상세 정보는 크리에이터만 수정할 수 있습니다."
-        $0.textColor = UIColor(named: "AccentColor")
+        $0.textColor = Constants.Color.blue
     }
     
     private let pickerView = JobCategoryPickerView()

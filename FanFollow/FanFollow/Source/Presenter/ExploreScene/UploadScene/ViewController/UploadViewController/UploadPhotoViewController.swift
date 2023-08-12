@@ -19,7 +19,7 @@ final class UploadPhotoViewController: UploadViewController {
     ).then { collectionView in
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: .zero, left: 8, bottom: .zero, right: 8)
-        collectionView.layer.backgroundColor = UIColor.systemBackground.cgColor
+        collectionView.layer.backgroundColor = Constants.Color.background.cgColor
         collectionView.register(
             UploadImageCell.self,
             forCellWithReuseIdentifier: UploadImageCell.reuseIdentifier
@@ -125,7 +125,7 @@ extension UploadPhotoViewController {
             .map { $0?.count != .zero && $0 != nil }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+            return $0.isEmpty == false && $0 != ConstantsUploadPhoto.contentPlaceholder
         }
         
         Observable.combineLatest(
@@ -220,7 +220,7 @@ private extension UploadPhotoViewController {
 
 // Constants
 private extension UploadPhotoViewController {
-    enum Constants {
+    enum ConstantsUploadPhoto {
         static let title = "제목"
         static let content = "내용"
         static let titlePlaceholder = "제목을 입력해주세요."

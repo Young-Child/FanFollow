@@ -38,7 +38,7 @@ final class AssetImageGridCell: UICollectionViewCell {
     }
     
     func setSelected(to isSelected: Bool) {
-        self.backgroundColor = isSelected ? UIColor.systemGray2 : nil
+        self.backgroundColor = isSelected ? Constants.Color.grayDark : nil
         self.imageView.alpha = isSelected ? 0.5 : 1.0
     }
     

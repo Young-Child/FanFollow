@@ -13,7 +13,7 @@ import RxSwift
 final class ExploreSearchViewController: UIViewController {
     // View Properties
     private let backButton = UIButton().then {
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
         let image = Constants.Image.back?.withConfiguration(imageConfiguration)
         $0.setImage(image, for: .normal)
@@ -21,11 +21,11 @@ final class ExploreSearchViewController: UIViewController {
     
     private let searchBar = UISearchBar().then {
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemBackground.cgColor
+        $0.layer.borderColor = Constants.Color.background.cgColor
         $0.barTintColor = .systemBackground
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
         $0.searchTextField.textColor = .label
         $0.searchTextField.clearButtonMode = .whileEditing
         $0.searchTextField.leftView = nil
@@ -33,7 +33,7 @@ final class ExploreSearchViewController: UIViewController {
         $0.setImage(Constants.Image.xmark, for: .clear, state: .normal)
         $0.searchTextField.attributedPlaceholder = NSAttributedString(
             string: ConstantsExplore.searchPlaceHolder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2]
+            attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.grayDark]
         )
     }
     

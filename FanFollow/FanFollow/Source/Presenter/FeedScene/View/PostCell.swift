@@ -26,9 +26,9 @@ final class PostCell: UITableViewCell {
     private let imageSlideView = HorizontalImageSlideView()
     
     private let pageControl = UIPageControl().then {
-        $0.pageIndicatorTintColor = UIColor.systemGray5
+        $0.pageIndicatorTintColor = Constants.Color.gray
         $0.backgroundStyle = .minimal
-        $0.currentPageIndicatorTintColor = UIColor(named: "AccentColor")
+        $0.currentPageIndicatorTintColor = Constants.Color.blue
     }
     
     private let titleLabel = UILabel().then { label in
@@ -289,11 +289,5 @@ private extension PostCell {
     enum ConstantsPostCell {
         static let expandedNumberOfLines = 0
         static let unexpandedNumberOfLines = 2
-        static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-        static let creatorNickNameLabelTextColor = UIColor(named: "AccentColor")
-//        static let unselectedLikeButtonImage = UIImage(systemName: "hand.thumbsup")
-//        static let selectedLikeButtonImage = UIImage(systemName: "hand.thumbsup.fill")
-//        static let failureProfileImage = UIImage(systemName: "person")!
-//        static let failurePostImage = UIImage(systemName: "photo")!
     }
 }

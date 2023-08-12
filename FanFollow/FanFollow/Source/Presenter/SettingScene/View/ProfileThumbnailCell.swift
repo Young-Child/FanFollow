@@ -13,7 +13,7 @@ final class ProfileThumbnailCell: UITableViewCell {
     // View Properties
     private let profileImageView = UIImageView().then { imageView in
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.backgroundColor = UIColor(named: "SecondaryColor")?.cgColor
+        imageView.layer.backgroundColor = Constants.Color.gray.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 25
@@ -27,7 +27,7 @@ final class ProfileThumbnailCell: UITableViewCell {
     private let subTitleLabel = UILabel().then { label in
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 15)
-        label.textColor = UIColor(named: "SecondaryColor")
+        label.textColor = Constants.Color.grayDark
         label.text = "프로필 수정하기"
     }
     

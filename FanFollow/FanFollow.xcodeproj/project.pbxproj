@@ -83,6 +83,7 @@
 		18AAC9C52A877F1D009FCE0E /* SCDream8.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B82A877DCC009FCE0E /* SCDream8.otf */; };
 		18AAC9C82A877FE5009FCE0E /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */; };
 		18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C92A87C45C009FCE0E /* Constants.swift */; };
+		18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */; };
 		18B6F50D2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */; };
 		18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32122A5C2A8E00F910B7 /* ViewModel.swift */; };
 		18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F52A67B4D900060616 /* UILabel+Extension.swift */; };
@@ -340,6 +341,7 @@
 		18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream9.otf; path = ../../../../../../../Library/Fonts/SCDream9.otf; sourceTree = "<group>"; };
 		18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		18AAC9C92A87C45C009FCE0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -770,6 +772,7 @@
 				18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */,
 				3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */,
 				3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */,
+				18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1821,6 +1824,7 @@
 				3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */,
 				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
+				18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
 				3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,

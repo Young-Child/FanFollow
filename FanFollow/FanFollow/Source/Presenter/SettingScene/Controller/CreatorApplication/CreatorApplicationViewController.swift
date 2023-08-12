@@ -166,7 +166,7 @@ private extension CreatorApplicationViewController {
     
     func configureNextButtonAppear(_ isEnable: Bool) {
         nextButton.isEnabled = isEnable
-        let backgroundColor = isEnable ? UIColor(named: "AccentColor") : UIColor.systemGray5
+        let backgroundColor = isEnable ? Constants.Color.blue : Constants.Color.gray
         nextButton.backgroundColor = backgroundColor
         
         let title = isEnable ? (currentStep.value == .introduce ? "완료" : "다음") : "입력을 완료해주세요."

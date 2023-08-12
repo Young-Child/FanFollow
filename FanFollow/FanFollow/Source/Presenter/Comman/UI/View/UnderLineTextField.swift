@@ -9,7 +9,7 @@ import UIKit
 final class UnderLineTextField: UITextField {
     private let underLineLayer: CALayer = {
         let layer = CALayer()
-        layer.backgroundColor = UIColor.systemGray5.cgColor
+        layer.backgroundColor = Constants.Color.gray.cgColor
         return layer
     }()
     
@@ -32,7 +32,7 @@ class UnderLineTextView: UIStackView {
     }
     
     let underLine = UIView().then {
-        $0.layer.borderColor = UIColor.systemGray5.cgColor
+        $0.layer.borderColor = Constants.Color.gray.cgColor
         $0.layer.borderWidth = 1
     }
     

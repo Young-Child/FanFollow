@@ -27,7 +27,7 @@ final class LinkPreview: UIView {
     
     private let loadingView = UIActivityIndicatorView().then {
         $0.style = .medium
-        $0.color = UIColor(named: "AccentColor")
+        $0.color = Constants.Color.blue
         $0.startAnimating()
     }
     

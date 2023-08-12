@@ -9,7 +9,7 @@ import UIKit
 class ProfileInput: UIStackView {
     let titleLabel = UILabel().then {
         $0.font = .coreDreamFont(ofSize: 20, weight: .medium)
-        $0.textColor = UIColor(named: "AccentColor")
+        $0.textColor = Constants.Color.blue
         $0.textAlignment = .left
         $0.adjustsFontSizeToFitWidth = true
     }

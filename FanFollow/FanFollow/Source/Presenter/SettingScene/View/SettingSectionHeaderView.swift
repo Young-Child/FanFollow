@@ -8,7 +8,7 @@ import UIKit
 
 final class SettingSectionHeaderView: UITableViewHeaderFooterView {
     private let titleLabel = UILabel().then { label in
-        label.textColor = UIColor(named: "AccentColor")
+        label.textColor = Constants.Color.blue
         label.font = .systemFont(ofSize: 18, weight: .semibold)
     }
     

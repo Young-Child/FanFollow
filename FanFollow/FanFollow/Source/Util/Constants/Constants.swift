@@ -25,7 +25,7 @@ enum Constants {
         static let plus = UIImage(systemName: "plus")
         static let plusCircle = UIImage(systemName: "plus.circle")
         static let minusCircle = UIImage(systemName: "minus.circle")
-        static let magnifyingGlass = UIImage(systemName: "magnigyingglass")
+        static let magnifyingGlass = UIImage(systemName: "magnifyingglass")
         static let back = UIImage(systemName: "chevron.backward")
         static let xmark = UIImage(systemName: "xmark")
         static let xmarkCircle = UIImage(systemName: "xmark.circle")
@@ -34,6 +34,15 @@ enum Constants {
         static let more = UIImage(systemName: "ellipsis")
         static let photo = UIImage(systemName: "photo.fill.on.rectangle.fill")
         static let link = UIImage(systemName: "link.badge.plus")
+    }
+    
+    enum Color {
+        static let blue = UIColor.rgba(red: 6, green: 74, blue: 203, alpha: 1)
+        static let blueDisabled = UIColor.rgba(red: 90, green: 129, blue: 203, alpha: 1)
+        static let background = UIColor.systemBackground
+        static let grayDark = UIColor.systemGray2
+        static let gray = UIColor.systemGray5
+        static let clear = UIColor.clear
     }
     
     enum Padding {

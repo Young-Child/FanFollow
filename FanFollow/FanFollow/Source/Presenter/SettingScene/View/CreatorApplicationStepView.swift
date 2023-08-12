@@ -17,7 +17,7 @@ final class CreatorApplicationStepView: UIStackView {
     private let stepStackView = UIStackView().then {
         let childViews = (0...2).map { _ in
             return UIView().then { view in
-                view.backgroundColor = UIColor.systemGray5
+                view.backgroundColor = Constants.Color.grayDark
             }
         }
         
@@ -48,7 +48,7 @@ final class CreatorApplicationStepView: UIStackView {
     
     func configAppear(currentStep: CreatorApplicationStep) {
         stepStackView.arrangedSubviews.enumerated().forEach { index, view in
-            let backgroundColor = (index <= currentStep.rawValue) ? UIColor(named: "AccentColor") : UIColor.systemGray5
+            let backgroundColor = (index <= currentStep.rawValue) ? Constants.Color.blue : Constants.Color.gray
             UIView.animate(withDuration: 0.25) {
                 view.backgroundColor = backgroundColor
             }

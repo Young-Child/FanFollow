@@ -22,7 +22,7 @@ final class FeedViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     private let refreshControl = UIRefreshControl().then {
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
     }
     
     // Properties

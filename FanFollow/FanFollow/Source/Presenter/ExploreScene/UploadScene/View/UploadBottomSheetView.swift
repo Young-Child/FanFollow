@@ -55,7 +55,7 @@ final class UploadBottomSheetView: UIView {
         $0.layer.cornerRadius = 4
         $0.setTitle(ConstantsUploadBottom.cancel, for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = UIColor(named: "AccentColor")
+        $0.backgroundColor = Constants.Color.blue
     }
     
     // Property

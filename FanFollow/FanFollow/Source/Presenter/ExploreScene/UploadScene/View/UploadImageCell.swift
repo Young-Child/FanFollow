@@ -21,7 +21,7 @@ final class UploadImageCell: UICollectionViewCell {
     
     private let deleteButton = UIButton().then {
         $0.setImage(Constants.Image.back, for: .normal)
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
     }
     
     private let pickerButton = UIButton().then {
@@ -91,7 +91,7 @@ private extension UploadImageCell {
     func configureLayer() {
         layer.cornerRadius = 10
         layer.borderWidth = 1
-        layer.borderColor = UIColor.systemGray4.cgColor
+        layer.borderColor = Constants.Color.gray.cgColor
         clipsToBounds = true
     }
     
