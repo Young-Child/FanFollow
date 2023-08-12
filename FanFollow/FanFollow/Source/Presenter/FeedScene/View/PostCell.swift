@@ -33,10 +33,11 @@ final class PostCell: UITableViewCell {
     
     private let titleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
     
     private let contentLabel = UILabel().then { label in
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 5
     }
     
@@ -52,7 +53,7 @@ final class PostCell: UITableViewCell {
     }
     
     private let likeButton = UIButton().then { button in
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 15)
         let unSelectedImage = UIImage(
             systemName: "heart",
             withConfiguration: imageConfiguration
@@ -61,7 +62,7 @@ final class PostCell: UITableViewCell {
             systemName: "heart.fill",
             withConfiguration: imageConfiguration
         )
-        button.titleLabel?.font = .systemFont(ofSize: 22)
+        button.titleLabel?.font = .coreDreamFont(ofSize: 15, weight: .light)
         button.contentMode = .scaleToFill
         button.setTitleColor(.label, for: .normal)
         button.setImage(unSelectedImage, for: .normal)
@@ -70,7 +71,7 @@ final class PostCell: UITableViewCell {
     
     private let createdDateLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .coreDreamFont(ofSize: 15, weight: .light)
         label.textAlignment = .right
     }
     

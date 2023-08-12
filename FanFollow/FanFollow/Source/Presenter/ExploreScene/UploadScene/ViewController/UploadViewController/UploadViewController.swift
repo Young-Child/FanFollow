@@ -13,24 +13,24 @@ import Kingfisher
 class UploadViewController: UIViewController {
     let titleLabel = UILabel().then {
         $0.text = Constants.title
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let titleTextField = UnderLineTextField().then {
         $0.leadPadding(5)
         $0.placeholder = Constants.titlePlaceholder
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentsLabel = UILabel().then {
         $0.text = Constants.content
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let contentsTextView = PostUploadContentTextView(
         placeHolder: Constants.contentPlaceholder
     ).then {
-        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentView = UIView()

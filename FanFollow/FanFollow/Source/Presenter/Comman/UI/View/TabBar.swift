@@ -48,7 +48,7 @@ private extension TabBar {
             $0.setTitle(item.description, for: .normal)
             $0.setTitleColor(UIColor(named: "SecondaryColor"), for: .normal)
             $0.setTitleColor(UIColor(named: "AccentColor"), for: .selected)
-            $0.titleLabel?.font = .systemFont(ofSize: 28, weight: .black)
+            $0.titleLabel?.font = .coreDreamFont(ofSize: 28, weight: .bold)
         }
         
         return button

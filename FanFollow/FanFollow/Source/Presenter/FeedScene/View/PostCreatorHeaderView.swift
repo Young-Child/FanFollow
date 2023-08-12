@@ -17,7 +17,7 @@ final class PostCreatorHeaderView: UIView {
     let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
         label.textColor = UIColor(named: "AccentColor")
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .coreDreamFont(ofSize: 17, weight: .regular)
     }
     
     let optionsButton = UIButton().then { button in

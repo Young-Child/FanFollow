@@ -22,8 +22,9 @@ final class CreatorApplicationViewController: UIViewController {
     )
     
     private let nextButton = UIButton(type: .roundedRect).then { button in
+        button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 4
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.label, for: .disabled)
     }
@@ -164,12 +165,11 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNextButtonAppear(_ isEnable: Bool) {
-        print(isEnable)
         nextButton.isEnabled = isEnable
         let backgroundColor = isEnable ? UIColor(named: "AccentColor") : UIColor.systemGray5
         nextButton.backgroundColor = backgroundColor
         
-        let title = isEnable ? (currentStep.value == .introduce ? "확인" : "다음") : "입력을 완료해주세요."
+        let title = isEnable ? (currentStep.value == .introduce ? "완료" : "다음") : "입력을 완료해주세요."
         nextButton.setTitle(title, for: .normal)
     }
 }

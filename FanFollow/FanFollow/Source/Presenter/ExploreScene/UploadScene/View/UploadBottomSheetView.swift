@@ -19,11 +19,12 @@ final class UploadBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
         $0.text = Constants.title
-        $0.font = UIFont.systemFont(ofSize: 17)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
         $0.textColor = .black
     }
     
     private let photoButton = UIButton().then {
+        $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         $0.tintColor = .label
         $0.layer.cornerRadius = 4
         $0.setTitle(Constants.photo, for: .normal)
@@ -33,6 +34,7 @@ final class UploadBottomSheetView: UIView {
     }
     
     private let linkButton = UIButton().then {
+        $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         $0.tintColor = .label
         $0.layer.cornerRadius = 4
         $0.setTitle(Constants.link, for: .normal)
@@ -49,6 +51,7 @@ final class UploadBottomSheetView: UIView {
     }
     
     private let cancelButton = UIButton().then {
+        $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         $0.layer.cornerRadius = 4
         $0.setTitle(Constants.cancel, for: .normal)
         $0.setTitleColor(.white, for: .normal)

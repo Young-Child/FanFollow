@@ -46,6 +46,12 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIFont.familyNames.sorted().forEach {
+            UIFont.fontNames(forFamilyName: $0).forEach { fontName in
+                print(#fileID, #function, #line, fontName)
+            }
+        }
+        
         configureNavigationBar()
         configureUI()
         binding()

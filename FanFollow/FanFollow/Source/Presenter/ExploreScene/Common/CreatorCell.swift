@@ -20,7 +20,7 @@ final class CreatorCell: UICollectionViewCell {
         $0.numberOfLines = 1
         $0.textAlignment = .center
         $0.textColor = UIColor(named: "AccentColor")
-        $0.font = .preferredFont(forTextStyle: .body)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     // Initializer

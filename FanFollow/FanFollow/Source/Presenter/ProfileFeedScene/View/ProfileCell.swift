@@ -35,11 +35,12 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let creatorNickNameLabel = UILabel().then { label in
+        label.font = .coreDreamFont(ofSize: 20, weight: .bold)
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 20, weight: .bold)
     }
 
     private let followerCountLabel = UILabel().then { label in
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
     }
 
@@ -50,18 +51,18 @@ final class ProfileCell: UITableViewCell {
         button.setTitleColor(Constants.followButtonTitleColor, for: .normal)
         button.layer.backgroundColor = UIColor(named: "AccentColor")?.cgColor
         button.layer.cornerRadius = 4
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
 
     private let introduceLabel = UILabel().then { label in
         label.numberOfLines = Constants.unexpandedNumberOfLines
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     private let contentStackView = UIStackView().then { stackView in
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 4
+        stackView.spacing = 8
     }
 
     weak var delegate: ProfileCellDelegate?
@@ -97,13 +98,13 @@ extension ProfileCell {
             NSAttributedString(
                 string: "팔로워 ",
                 attributes: [
-                    .font: UIFont.systemFont(ofSize: 16, weight: .regular)
+                    .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any
                 ]
             ),
             NSAttributedString(
                 string: "\(count)명",
                 attributes: [
-                    .font: UIFont.systemFont(ofSize: 16, weight: .semibold),
+                    .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
                     .foregroundColor: Constants.followerCountLabelTextColor ?? .clear
                 ]
             )

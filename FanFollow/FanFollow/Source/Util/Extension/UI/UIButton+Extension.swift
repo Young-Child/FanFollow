@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton {
-    func alignTextBelow(spacing: CGFloat = 4.0) {
+    func alignTextBelow(spacing: CGFloat = 8.0) {
         guard let image = self.imageView?.image else { return }
         guard let titleLabel = self.titleLabel else { return }
         guard let titleText = titleLabel.text else { return }

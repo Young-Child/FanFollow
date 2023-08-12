@@ -16,12 +16,12 @@ final class LinkPreview: UIView {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 18, weight: .semibold)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
         $0.numberOfLines = 2
     }
     
     private let urlLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .light)
+        $0.font = .coreDreamFont(ofSize: 12, weight: .light)
         $0.numberOfLines = 1
     }
     
@@ -98,7 +98,7 @@ final class LinkPreview: UIView {
         }
         
         urlLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(titleLabel)
         }
         

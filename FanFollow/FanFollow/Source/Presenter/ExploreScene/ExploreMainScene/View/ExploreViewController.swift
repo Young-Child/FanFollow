@@ -202,6 +202,8 @@ extension ExploreViewController {
             return section
         }
         
+        layout.configuration.interSectionSpacing = 16
+        
         return layout
     }
 }

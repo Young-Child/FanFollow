@@ -10,14 +10,13 @@ import UIKit
 final class CreatorApplicationStepView: UIStackView {
     private let titleLabel = UILabel().then {
         $0.numberOfLines = 1
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.font = .coreDreamFont(ofSize: 28, weight: .bold)
         $0.textColor = .label
     }
     
     private let stepStackView = UIStackView().then {
         let childViews = (0...2).map { _ in
             return UIView().then { view in
-                view.layer.cornerRadius = 10
                 view.backgroundColor = UIColor.systemGray5
             }
         }

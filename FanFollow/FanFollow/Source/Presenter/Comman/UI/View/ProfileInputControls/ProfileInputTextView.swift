@@ -8,7 +8,7 @@ import UIKit
 
 class ProfileInputTextView: ProfileInput {
     let textContainer = UnderLineTextView().then {
-        $0.textView.font = .systemFont(ofSize: 17)
+        $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
         $0.textView.autocapitalizationType = .none
         $0.textView.autocorrectionType = .no
         $0.textView.textAlignment = .left

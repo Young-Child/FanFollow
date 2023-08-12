@@ -16,7 +16,7 @@ final class CategoryCell: UICollectionViewCell {
         $0.textAlignment = .center
         $0.textColor = UIColor(named: "AccentColor")
         $0.backgroundColor = UIColor(named: "CategoryCellColor")
-        $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .bold)
     }
     
     // Initializer
