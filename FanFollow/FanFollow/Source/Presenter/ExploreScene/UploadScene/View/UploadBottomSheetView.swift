@@ -25,7 +25,7 @@ final class UploadBottomSheetView: UIView {
     
     private let photoButton = UIButton().then {
         $0.tintColor = .label
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 4
         $0.setTitle(Constants.photo, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .systemGray6
@@ -34,7 +34,7 @@ final class UploadBottomSheetView: UIView {
     
     private let linkButton = UIButton().then {
         $0.tintColor = .label
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 4
         $0.setTitle(Constants.link, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .systemGray6
@@ -42,14 +42,14 @@ final class UploadBottomSheetView: UIView {
     }
     
     private let buttonStackView = UIStackView().then {
-        $0.spacing = 10
+        $0.spacing = 4
         $0.alignment = .fill
         $0.distribution = .fillEqually
         $0.axis = .horizontal
     }
     
     private let cancelButton = UIButton().then {
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 4
         $0.setTitle(Constants.cancel, for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(named: "AccentColor")
@@ -113,13 +113,13 @@ private extension UploadBottomSheetView {
         }
         
         buttonStackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalToSuperview().multipliedBy(0.4)
+            $0.height.equalToSuperview().multipliedBy(0.35)
         }
         
         cancelButton.snp.makeConstraints {
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(20)
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(32)
             $0.leading.trailing.equalTo(buttonStackView)
             $0.height.equalTo(40)
         }

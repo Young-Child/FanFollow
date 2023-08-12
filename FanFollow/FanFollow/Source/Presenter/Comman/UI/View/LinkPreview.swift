@@ -61,7 +61,7 @@ final class LinkPreview: UIView {
         let path = UIBezierPath(
             roundedRect: self.imageView.bounds,
             byRoundingCorners: [.topRight, .bottomRight],
-            cornerRadii: CGSize(width: 12, height: 12)
+            cornerRadii: CGSize(width: 4, height: 4)
         )
         
         let mask = CAShapeLayer().then { $0.path = path.cgPath }
@@ -79,7 +79,7 @@ final class LinkPreview: UIView {
     }
     
     private func configureLayout() {
-        contentView.layer.cornerRadius = 12
+        contentView.layer.cornerRadius = 4
         contentView.backgroundColor = .systemGray5
         
         [imageView, titleLabel, urlLabel, loadingView].forEach(contentView.addSubview(_:))
