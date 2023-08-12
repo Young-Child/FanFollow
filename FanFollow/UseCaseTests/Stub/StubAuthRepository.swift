@@ -15,7 +15,9 @@ final class StubAuthRepository: AuthRepository {
     var error: Error?
     
     func signIn(with idToken: String, of provider: Provider) -> Observable<StoredSession> {
-        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: idToken)) else {
+        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: idToken)),
+              error == nil
+        else {
             return Observable.error(error!)
         }
         
@@ -23,7 +25,9 @@ final class StubAuthRepository: AuthRepository {
     }
     
     func refreshSession(with refreshToken: String) -> Observable<StoredSession> {
-        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: refreshToken)) else {
+        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: refreshToken)),
+              error == nil
+        else {
             return Observable.error(error!)
         }
         
@@ -42,7 +46,9 @@ final class StubAuthRepository: AuthRepository {
     }
     
     func storedSession() -> Observable<StoredSession> {
-        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: "Stored")) else {
+        guard let storedSessionData = StoredSession(session: SessionDTO.testData(idToken: "Stored")),
+              error == nil
+        else {
             return Observable.error(error!)
         }
         
