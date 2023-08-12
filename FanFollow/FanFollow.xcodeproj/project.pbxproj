@@ -126,6 +126,7 @@
 		3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */; };
 		3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */; };
 		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
+		3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -373,6 +374,7 @@
 		3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCase.swift; sourceTree = "<group>"; };
 		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCaseTests.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -1339,6 +1341,7 @@
 				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
 				3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */,
 				EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */,
+				3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1709,7 +1712,7 @@
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
 				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
-        				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
+				18C2DFE82A837DBA00F09E3D /* CreatorApplicationChildController.swift in Sources */,
 				18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */,
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTapItem.swift in Sources */,
@@ -1833,6 +1836,7 @@
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
 				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
+				3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */,
 				3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
