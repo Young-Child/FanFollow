@@ -42,6 +42,13 @@ final class LogInViewController: UIViewController {
         $0.setTitle(Constants.appleButtonText, for: .normal)
     }
     
+    private var loginInformationLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.text = Constants.information
+        $0.font = .systemFont(ofSize: 14, weight: .light)
+        $0.textColor = .systemGray4
+    }
+    
     // Properties
     weak var coordinator: LogInCoordinator?
     private let viewModel: LogInViewModel
@@ -136,7 +143,13 @@ private extension LogInViewController {
     }
     
     func configureHierarchy() {
-        [logoImageView, mainLabel, subLabel, appleLogInButton].forEach(view.addSubview(_:))
+        [
+            logoImageView,
+            mainLabel,
+            subLabel,
+            appleLogInButton,
+            loginInformationLabel
+        ].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
@@ -154,13 +167,18 @@ private extension LogInViewController {
         
         subLabel.snp.makeConstraints {
             $0.top.equalTo(mainLabel.snp.bottom).offset(8)
-            $0.leading.equalTo(mainLabel)
+            $0.leading.trailing.equalTo(mainLabel)
         }
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.bottom.equalToSuperview().offset(-100)
+            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-16)
             $0.leading.trailing.equalToSuperview().inset(18)
+        }
+        
+        loginInformationLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.bottom.equalToSuperview().offset(-48)
         }
     }
 }
@@ -173,6 +191,7 @@ private extension LogInViewController {
             .highlight("직군", to: UIColor(named: "AccentColor"))
             .regular("의 이야기")
         static let subText = "나와 같은 사람들의 생각, 기록, 네트워킹"
+        static let information = "추후 더 많은 로그인 기능을 제공할 예정입니다."
     }
 }
 
