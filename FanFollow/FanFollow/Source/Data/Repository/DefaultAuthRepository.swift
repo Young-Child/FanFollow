@@ -28,7 +28,8 @@ struct DefaultAuthRepository: AuthRepository {
                 return StoredSession(session: sessionDTO)
             }
             .do(onNext: { session in
-                userDefaultsService.set(session, forKey: Constants.session)
+                guard let sessionData = try? JSONEncoder().encode(session) else { return }
+                userDefaultsService.set(sessionData, forKey: Constants.session)
             })
     }
 
@@ -43,7 +44,8 @@ struct DefaultAuthRepository: AuthRepository {
                 return StoredSession(session: sessionDTO)
             }
             .do(onNext: { session in
-                userDefaultsService.set(session, forKey: Constants.session)
+                guard let sessionData = try? JSONEncoder().encode(session) else { return }
+                userDefaultsService.set(sessionData, forKey: Constants.session)
             })
     }
 
@@ -58,8 +60,11 @@ struct DefaultAuthRepository: AuthRepository {
     }
 
     func storedSession() -> Observable<StoredSession> {
-        guard let storedSession = userDefaultsService.object(forKey: Constants.session) as? StoredSession else {
+        guard let storedSessionData = userDefaultsService.object(forKey: Constants.session) as? Data else {
             return .error(SessionError.notLoggedIn)
+        }
+        guard let storedSession = try? JSONDecoder().decode(StoredSession.self, from: storedSessionData) else {
+            return .error(SessionError.decoding)
         }
         return storedSession.isValid ? .just(storedSession) : refreshSession(with: storedSession.refreshToken)
     }

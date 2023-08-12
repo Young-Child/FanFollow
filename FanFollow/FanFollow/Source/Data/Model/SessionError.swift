@@ -7,4 +7,5 @@
 
 enum SessionError: Error {
     case notLoggedIn
+    case decoding
 }
