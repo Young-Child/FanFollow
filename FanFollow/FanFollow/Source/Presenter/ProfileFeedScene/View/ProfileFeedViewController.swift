@@ -175,15 +175,29 @@ private extension ProfileFeedViewController {
         view.backgroundColor = .systemBackground
         configureNavigationItem()
         configureHierarchy()
-        configureConstraints()
         configureTableView()
     }
 
     func configureHierarchy() {
-        [navigationBar, tableView].forEach(view.addSubview(_:))
+        
+        switch viewType {
+        case .feedManage:
+            view.addSubview(tableView)
+            configureFeedManageConstraints()
+        case .profileFeed:
+            [navigationBar, tableView].forEach(view.addSubview(_:))
+            configureProfileFeedConstraints()
+        }
+    }
+    
+    func configureFeedManageConstraints() {
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.bottom.trailing.equalToSuperview()
+        }
     }
 
-    func configureConstraints() {
+    func configureProfileFeedConstraints() {
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
