@@ -15,6 +15,8 @@ final class ProfileSettingViewController: UIViewController {
     weak var coordinator: ProfileSettingCoordinator?
     
     // View Properties
+    private let navigationBar = FFNavigationBar()
+    
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
         $0.keyboardDismissMode = .interactive
@@ -67,12 +69,6 @@ final class ProfileSettingViewController: UIViewController {
         
         configureUI()
         binding()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
@@ -165,11 +161,7 @@ private extension ProfileSettingViewController {
     }
     
     private func configureRightButtonTapEvent() -> Observable<(String?, Int, [String]?, String?)> {
-        guard let rightButton = navigationItem.rightBarButtonItem else {
-            return .empty()
-        }
-        
-        return rightButton.rx.tap
+        return navigationBar.rightBarButton.rx.tap
             .map { _ in
                 return (
                     self.nickNameInput.textField.text ?? "",
@@ -251,11 +243,16 @@ private extension ProfileSettingViewController {
     }
     
     func configureNavigationBar() {
-        let completeButton = UIBarButtonItem(title: "완료")
-        navigationItem.rightBarButtonItem = completeButton
-        navigationItem.title = "프로필 편집"
-        navigationController?.navigationBar.topItem?.title = "뒤로"
-//        navigationController?.configureBackButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22)
+        let image = Constants.Image.back?.withConfiguration(configuration)
+        
+        navigationBar.leftBarButton.setImage(image, for: .normal)
+        navigationBar.titleView.text = "프로필 편집"
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.blue, for: .normal)
+        navigationBar.rightBarButton.setTitle("완료", for: .normal)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func configureCategoryPickerView() {
@@ -265,7 +262,7 @@ private extension ProfileSettingViewController {
     }
     
     func configureHierarchy() {
-        view.addSubview(scrollView)
+        [navigationBar, scrollView].forEach(view.addSubview(_:))
         scrollView.addSubview(scrollViewContentView)
         
         [
@@ -277,8 +274,15 @@ private extension ProfileSettingViewController {
     }
     
     func makeConstraints() {
+        navigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         scrollViewContentView.snp.makeConstraints {
@@ -298,5 +302,11 @@ private extension ProfileSettingViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.lessThanOrEqualToSuperview()
         }
+    }
+}
+
+extension ProfileSettingViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

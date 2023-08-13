@@ -7,9 +7,19 @@
 import UIKit
 
 class FFNavigationBar: UIView {
-    var leftBarButton = UIButton()
-    var titleView = UILabel()
-    var rightBarButton = UIButton()
+    var leftBarButton = UIButton().then {
+        $0.titleLabel?.textColor = Constants.Color.blue
+        $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
+    }
+    
+    var titleView = UILabel().then {
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
+    }
+    
+    var rightBarButton = UIButton().then {
+        $0.titleLabel?.textColor = Constants.Color.blue
+        $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
+    }
     
     init() {
         super.init(frame: .zero)
