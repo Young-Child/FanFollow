@@ -255,6 +255,7 @@ private extension ProfileSettingViewController {
         navigationItem.rightBarButtonItem = completeButton
         navigationItem.title = "프로필 편집"
         navigationController?.navigationBar.topItem?.title = "뒤로"
+//        navigationController?.configureBackButton()
     }
     
     func configureCategoryPickerView() {

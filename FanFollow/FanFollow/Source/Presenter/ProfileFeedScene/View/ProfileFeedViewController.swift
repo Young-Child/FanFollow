@@ -13,6 +13,7 @@ import RxSwift
 
 final class ProfileFeedViewController: UIViewController {
     // View Properties
+    private let navigationBar = FFNavigationBar()
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -55,7 +56,7 @@ final class ProfileFeedViewController: UIViewController {
         binding()
     }
     override func viewWillAppear(_ animated: Bool) {
-        configureNavigationItem()
+        
         super.viewWillAppear(animated)
     }
 }
@@ -154,7 +155,7 @@ private extension ProfileFeedViewController {
                 
                 cell.delegate = self
                 cell.configure(with: item, viewType: self.viewType)
-                
+                self.navigationBar.titleView.text = item.creator.nickName
                 return cell
                 
             case .posts(let items):
@@ -172,28 +173,45 @@ private extension ProfileFeedViewController {
 private extension ProfileFeedViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
+        configureNavigationItem()
         configureHierarchy()
         configureConstraints()
         configureTableView()
     }
 
     func configureHierarchy() {
-        view.addSubview(tableView)
+        [navigationBar, tableView].forEach(view.addSubview(_:))
     }
 
     func configureConstraints() {
+        navigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
         tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 
     func configureNavigationItem() {
-        let navigationBarIsHidden = (viewType == .feedManage)
-        navigationController?.setNavigationBarHidden(navigationBarIsHidden, animated: false)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22)
+        let backImage = Constants.Image.back?.withConfiguration(configuration)
+        navigationBar.leftBarButton.setImage(backImage, for: .normal)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
     func configureTableView() {
         tableView.backgroundColor = .systemBackground
         tableView.refreshControl = refreshControl
+    }
+}
+
+extension ProfileFeedViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

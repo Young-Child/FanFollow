@@ -72,6 +72,7 @@
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
+		1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898203C2A89205C004372D3 /* NavigationBar.swift */; };
 		18AAC9BD2A877F18009FCE0E /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */; };
 		18AAC9BE2A877F1D009FCE0E /* SCDream5.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B42A877DCB009FCE0E /* SCDream5.otf */; };
 		18AAC9BF2A877F1D009FCE0E /* SCDream9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */; };
@@ -330,6 +331,7 @@
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
+		1898203C2A89205C004372D3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		18AAC9B42A877DCB009FCE0E /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream5.otf; path = ../../../../../../../Library/Fonts/SCDream5.otf; sourceTree = "<group>"; };
 		18AAC9B52A877DCB009FCE0E /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream3.otf; path = ../../../../../../../Library/Fonts/SCDream3.otf; sourceTree = "<group>"; };
 		18AAC9B62A877DCC009FCE0E /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream7.otf; path = ../../../../../../../Library/Fonts/SCDream7.otf; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */,
 				1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */,
 				1816AEB22A7803AA005F5F84 /* LinkPreview.swift */,
+				1898203C2A89205C004372D3 /* NavigationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1847,6 +1850,7 @@
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
+				1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,

@@ -68,9 +68,11 @@ final class FeedCoordinator: Coordinator {
             creatorID: creatorID,
             userID: userID
         )
-        let profileViewController = ProfileFeedViewController(viewModel: profileFeedViewModel, viewType: .profileFeed)
+        let profileViewController = ProfileFeedViewController(
+            viewModel: profileFeedViewModel,
+            viewType: .profileFeed
+        )
         profileViewController.hidesBottomBarWhenPushed = true
-        
         navigationController.pushViewController(profileViewController, animated: true)
     }
     
@@ -78,7 +80,6 @@ final class FeedCoordinator: Coordinator {
         let controller = SFSafariViewController(url: presentURL)
         controller.dismissButtonStyle = .close
         controller.hidesBottomBarWhenPushed = true
-        
         navigationController.present(controller, animated: true)
     }
 }

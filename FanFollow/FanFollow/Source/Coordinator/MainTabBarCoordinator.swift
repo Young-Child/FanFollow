@@ -39,6 +39,7 @@ final class MainTabBarCoordinator: Coordinator {
             tabBarController.tabBar.scrollEdgeAppearance = appearance
         }
         
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.setViewControllers([tabBarController], animated: true)
     }
     
@@ -86,6 +87,7 @@ private extension MainTabBarCoordinator {
         
         var coordinator: Coordinator {
             let navigationController = UINavigationController()
+            navigationController.navigationBar.isHidden = true
             navigationController.tabBarItem = tabBarItem
             
             switch self {
@@ -95,8 +97,6 @@ private extension MainTabBarCoordinator {
                 return SettingCoordinator(navigationController: navigationController)
             case .explore:
                 return ExploreCoordinator(navigationController: navigationController)
-            default:
-                return SettingCoordinator(navigationController: navigationController)
             }
         }
     }
