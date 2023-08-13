@@ -30,7 +30,9 @@ final class MainTabBarCoordinator: Coordinator {
         
         // TabBar Appearance Setting
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .systemGray6
+        appearance.backgroundColor = Constants.Color.background
+        appearance.shadowColor = nil
+        appearance.shadowImage = nil
         tabBarController.tabBar.standardAppearance = appearance
         
         if #available(iOS 15.0, *) {
