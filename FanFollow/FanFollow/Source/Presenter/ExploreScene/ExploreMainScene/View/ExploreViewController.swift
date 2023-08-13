@@ -51,12 +51,6 @@ final class ExploreViewController: UIViewController {
         configureUI()
         binding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
-    }
 }
 
 // Binding
