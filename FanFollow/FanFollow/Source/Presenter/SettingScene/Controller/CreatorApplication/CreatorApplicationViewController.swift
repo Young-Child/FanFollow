@@ -12,7 +12,7 @@ import RxSwift
 
 final class CreatorApplicationViewController: UIViewController {
     // View Properties
-    private let backBarButtonItem = UIBarButtonItem(image: Constants.Image.back)
+    private let navigationBar = FFNavigationBar()
     
     private let stepView = CreatorApplicationStepView()
     
@@ -60,12 +60,6 @@ final class CreatorApplicationViewController: UIViewController {
         bind()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -110,7 +104,7 @@ private extension CreatorApplicationViewController {
     func bindViews() {
         Observable.merge(
             nextButton.rx.tap.map { true },
-            backBarButtonItem.rx.tap.map { false }
+            navigationBar.leftBarButton.rx.tap.map { false }
         )
         .map { $0 ? self.currentStep.value.next : self.currentStep.value.previous }
         .asDriver(onErrorJustReturn: .category)
@@ -185,12 +179,18 @@ private extension CreatorApplicationViewController {
     func configureHierarchy() {
         addChild(pageController)
         pageController.didMove(toParent: self)
-        [stepView, pageController.view, nextButton].forEach(view.addSubview)
+        [navigationBar, stepView, pageController.view, nextButton].forEach(view.addSubview)
     }
     
     func configureConstraints() {
-        stepView.snp.makeConstraints {
+        navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        stepView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
         
@@ -207,7 +207,9 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNavigationItem() {
-        navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22)
+        let image = Constants.Image.back?.withConfiguration(configuration)
+        navigationBar.leftBarButton.setImage(image, for: .normal)
     }
 }
 
