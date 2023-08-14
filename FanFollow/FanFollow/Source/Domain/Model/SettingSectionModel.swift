@@ -82,7 +82,7 @@ extension SettingSectionModel {
             ]),
             .account(title: "계정 설정", items: [
                 .base(title: "로그아웃", action: .logOut),
-                .base(title: "탈퇴하기", action: .registerOut)
+                .base(title: "탈퇴하기", action: .withdrawal)
             ])
         ]
     }
