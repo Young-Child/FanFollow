@@ -21,7 +21,7 @@ final class WithdrawalViewController: UIViewController {
     }
     
     // Property
-    weak var coordinator: UploadCoordinator?
+    weak var coordinator: WithdrawalCoordinator?
     
     // Initializer
     init() {
