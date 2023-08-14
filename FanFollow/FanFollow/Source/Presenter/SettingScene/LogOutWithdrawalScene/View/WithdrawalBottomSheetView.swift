@@ -7,6 +7,13 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
+protocol WithdrawalDelegate: AnyObject {
+    func withdrawal()
+}
+
 final class WithdrawalBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
@@ -16,6 +23,7 @@ final class WithdrawalBottomSheetView: UIView {
     }
     
     private let noticeLabel = UILabel().then {
+        $0.numberOfLines = 0
         $0.text = Constants.notice
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.textColor = .black
@@ -24,27 +32,80 @@ final class WithdrawalBottomSheetView: UIView {
     private let agreeCheckButton = UIButton().then {
         $0.tintColor = UIColor(named: "AccentColor")
         $0.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
-        $0.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        $0.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
     private let agreeLabel = UILabel().then {
+        $0.numberOfLines = 0
+        $0.textColor = .lightGray
         $0.text = Constants.agree
         $0.font = UIFont.systemFont(ofSize: 13)
-        $0.textColor = .black
     }
     
     private let agreeStackView = UIStackView().then {
         $0.spacing = 8
         $0.alignment = .fill
         $0.axis = .horizontal
-        $0.distribution = .fillProportionally
+        $0.distribution = .fill
     }
     
     private let withdrawalButton = UIButton().then {
+        $0.isEnabled = false
         $0.layer.cornerRadius = 10
         $0.setTitle(Constants.withdrawal, for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = UIColor(named: "AlertColor")
+        $0.backgroundColor = .lightGray
+    }
+    
+    // Property
+    private let disposeBag = DisposeBag()
+    weak var withdrawalDelegate: WithdrawalDelegate?
+    
+    // Initializer
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureUI()
+        binding()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// Binding
+private extension WithdrawalBottomSheetView {
+    func binding() {
+        agreeCheckButton.rx.tap
+            .bind {
+                self.agreeCheckButton.isSelected = !self.agreeCheckButton.isSelected
+                if self.agreeCheckButton.isSelected {
+                    self.enableWithdrawal()
+                } else {
+                    self.disenableWithdrawal()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        withdrawalButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind {
+                self.withdrawalDelegate?.withdrawal()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func enableWithdrawal() {
+        agreeLabel.textColor = .label
+        withdrawalButton.isEnabled = true
+        withdrawalButton.backgroundColor = UIColor(named: "AlertColor")
+    }
+    
+    func disenableWithdrawal() {
+        agreeLabel.textColor = .lightGray
+        withdrawalButton.isEnabled = false
+        withdrawalButton.backgroundColor = .lightGray
     }
 }
 
@@ -69,18 +130,16 @@ private extension WithdrawalBottomSheetView {
         noticeLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalToSuperview().multipliedBy(0.4)
         }
         
-        noticeLabel.snp.makeConstraints {
-            $0.top.equalTo(noticeLabel.snp.bottom).offset(10)
+        agreeStackView.snp.makeConstraints {
+            $0.top.equalTo(noticeLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalToSuperview().multipliedBy(0.2)
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.top.equalTo(noticeLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalTo(noticeLabel)
+            $0.top.equalTo(agreeStackView.snp.bottom).offset(20)
+            $0.leading.trailing.equalTo(titleLabel)
             $0.height.equalTo(40)
         }
     }

@@ -79,9 +79,18 @@ extension WithdrawalViewController {
     }
 }
 
+extension WithdrawalViewController: WithdrawalDelegate {
+    func withdrawal() {
+        // TODO: - withdrawal
+        print("TOUCH")
+    }
+}
+
 // Configure UI
 private extension WithdrawalViewController {
     func configureUI() {
+        bottomSheetView.withdrawalDelegate = self
+        
         configureHierarchy()
         makeConstraints()
         transparentView.alpha = .zero
