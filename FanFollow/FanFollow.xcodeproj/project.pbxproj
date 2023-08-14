@@ -128,6 +128,8 @@
 		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
 		3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */; };
 		3C875C0A2A87553F00818473 /* StubAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C092A87553F00818473 /* StubAuthRepository.swift */; };
+		3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */; };
+		3C875C112A89E7C400818473 /* WithdrawalBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -377,6 +379,8 @@
 		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCaseTests.swift; sourceTree = "<group>"; };
 		3C875C092A87553F00818473 /* StubAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubAuthRepository.swift; sourceTree = "<group>"; };
+		3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalBottomSheetView.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -959,6 +963,7 @@
 		18CF43292A5D12BA002FFA1D /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
+				3C875C0B2A89E19F00818473 /* LogOutWithdrawalScene */,
 				18BDA9812A62EF8A00E00116 /* Controller */,
 				1846EE522A604C9E00437030 /* ViewModel */,
 				18CF432A2A5D14DB002FFA1D /* View */,
@@ -1161,6 +1166,31 @@
 				3C7DE61A2A86130500259E74 /* LogInViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3C875C0B2A89E19F00818473 /* LogOutWithdrawalScene */ = {
+			isa = PBXGroup;
+			children = (
+				3C875C0D2A89E30800818473 /* View */,
+				3C875C0C2A89E30000818473 /* ViewModel */,
+			);
+			path = LogOutWithdrawalScene;
+			sourceTree = "<group>";
+		};
+		3C875C0C2A89E30000818473 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3C875C0D2A89E30800818473 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */,
+				3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3CA0ED082A73875A00111457 /* ExploreSubscribeScene */ = {
@@ -1678,11 +1708,13 @@
 				3CFDF6BC2A5D513C00DE6109 /* ChatRoom.swift in Sources */,
 				18EC06972A627746006293B5 /* DefaultImageRepository.swift in Sources */,
 				183974692A52637700F0101A /* SupabaseEndPoint.swift in Sources */,
+				3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */,
 				18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				18DD39962A76440D00AD13BE /* PostCreatorHeaderView.swift in Sources */,
 				EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */,
+				3C875C112A89E7C400818473 /* WithdrawalBottomSheetView.swift in Sources */,
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
