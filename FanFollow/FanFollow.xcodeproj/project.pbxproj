@@ -140,6 +140,8 @@
 		3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */; };
 		3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */; };
 		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
+		3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */; };
+		3C875C0A2A87553F00818473 /* StubAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C092A87553F00818473 /* StubAuthRepository.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -206,6 +208,8 @@
 		EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */; };
 		EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */; };
 		EB5E76A42A73DC570019289A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */; };
+		EB6D42112A865762001B2EC3 /* SignUpUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */; };
+		EB7A70BF2A866D080016D3CB /* SignUpUserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */; };
 		EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */; };
 		EBA8EB402A5D1B6100998630 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB3F2A5D1B6100998630 /* Post.swift */; };
 		EBA8EB422A5E46EB00998630 /* ChangeLikeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */; };
@@ -399,6 +403,8 @@
 		3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE6162A84CEDB00259E74 /* AppleSigningUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCase.swift; sourceTree = "<group>"; };
 		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCaseTests.swift; sourceTree = "<group>"; };
+		3C875C092A87553F00818473 /* StubAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubAuthRepository.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -466,6 +472,8 @@
 		EB54BEC42A7B4DA60095A171 /* CreatorApplicationLinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationLinkCell.swift; sourceTree = "<group>"; };
 		EB5668CF2A56B11C007A3860 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
+		EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserUseCase.swift; sourceTree = "<group>"; };
+		EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserUseCaseTests.swift; sourceTree = "<group>"; };
 		EBA8EB3D2A5CF5DB00998630 /* FetchFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFeedUseCase.swift; sourceTree = "<group>"; };
 		EBA8EB3F2A5D1B6100998630 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLikeUseCase.swift; sourceTree = "<group>"; };
@@ -901,6 +909,7 @@
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
+				EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1383,6 +1392,8 @@
 				3CB6FE5B2A62D7F900BE1655 /* SearchCreatorUseCaseTests.swift */,
 				EB3A90742A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift */,
 				3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */,
+				EB7A70BE2A866D080016D3CB /* SignUpUserUseCaseTests.swift */,
+				3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -1396,6 +1407,7 @@
 				3CC1D4992A61114200713FAF /* StubChatRepository.swift */,
 				EBBE26B12A6F67C30071234B /* StubFollowRepository.swift */,
 				3C3356502A7F5F4500BF632B /* StubImageRepository.swift */,
+				3C875C092A87553F00818473 /* StubAuthRepository.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -1807,6 +1819,7 @@
 				EBE33E4D2A52C32F00C11188 /* FollowDTO.swift in Sources */,
 				180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */,
 				1839745F2A525B1A00F0101A /* NetworkService.swift in Sources */,
+				EB6D42112A865762001B2EC3 /* SignUpUserUseCase.swift in Sources */,
 				18D0073C2A6EC3E300D46248 /* UICollectionView + Extension.swift in Sources */,
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
 				EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */,
@@ -1890,12 +1903,15 @@
 				3CC1D49A2A61114200713FAF /* StubChatRepository.swift in Sources */,
 				EB0260422A60D90B0015F3C9 /* FetchCreatorPostsUseCaseTests.swift in Sources */,
 				EBBE26B22A6F67C30071234B /* StubFollowRepository.swift in Sources */,
+				3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */,
 				3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */,
 				EB0260442A60DAC10015F3C9 /* FetchUserInformationUseCaseTests.swift in Sources */,
+				3C875C0A2A87553F00818473 /* StubAuthRepository.swift in Sources */,
 				EBA8EB6D2A5FD2EA00998630 /* ChangeLikeUseCaseTests.swift in Sources */,
 				EB3A90752A77D8C9007F400A /* ApplyCreatorUseCaseTests.swift in Sources */,
 				EBA8EB6F2A601C8700998630 /* StubUserInformationRepository.swift in Sources */,
 				EBA8EB6B2A5FC18000998630 /* StubLikeRepository.swift in Sources */,
+				EB7A70BF2A866D080016D3CB /* SignUpUserUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

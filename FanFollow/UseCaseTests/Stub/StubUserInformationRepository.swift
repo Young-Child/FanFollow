@@ -14,6 +14,7 @@ import RxSwift
 final class StubUserInformationRepository: UserInformationRepository {
     var userInformations = [UserInformationDTO]()
     var userInformation: UserInformationDTO!
+    var isSignUp: Bool!
     var error: Error?
 
     func fetchCreatorInformations(
@@ -39,6 +40,18 @@ final class StubUserInformationRepository: UserInformationRepository {
                 observer.onError(error)
             } else {
                 observer.onNext(self.userInformation)
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    func checkSignUpUser(for userID: String) -> RxSwift.Observable<Bool> {
+        return Observable.create { observer in
+            if let error = self.error {
+                observer.onError(error)
+            } else {
+                observer.onNext(self.isSignUp)
                 observer.onCompleted()
             }
             return Disposables.create()
