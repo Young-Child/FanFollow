@@ -7,7 +7,7 @@
 import MessageUI
 
 final class BugReportCoordinator: NSObject, Coordinator {
-    weak var parentCoordinator: SettingCoordinator?
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -45,7 +45,7 @@ extension BugReportCoordinator: MFMailComposeViewControllerDelegate {
         didFinishWith result: MFMailComposeResult,
         error: Error?
     ) {
-        parentCoordinator?.close(to: self)
+        parentCoordinator?.removeChild(to: self)
         controller.dismiss(animated: true)
     }
 }

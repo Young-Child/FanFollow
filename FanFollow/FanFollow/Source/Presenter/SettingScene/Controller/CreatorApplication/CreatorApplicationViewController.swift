@@ -12,7 +12,7 @@ import RxSwift
 
 final class CreatorApplicationViewController: UIViewController {
     // View Properties
-    private let backBarButtonItem = UIBarButtonItem(image: Constants.backBarButtonItemImage)
+    private let navigationBar = FFNavigationBar()
     
     private let stepView = CreatorApplicationStepView()
     
@@ -22,8 +22,9 @@ final class CreatorApplicationViewController: UIViewController {
     )
     
     private let nextButton = UIButton(type: .roundedRect).then { button in
+        button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 4
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.label, for: .disabled)
     }
@@ -57,12 +58,6 @@ final class CreatorApplicationViewController: UIViewController {
         
         configureUI()
         bind()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -101,7 +96,7 @@ private extension CreatorApplicationViewController {
         output.updateResult
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: {
-                self.navigationController?.popViewController(animated: true)
+                self.coordinator?.close(to: self)
             })
             .disposed(by: disposeBag)
     }
@@ -109,7 +104,7 @@ private extension CreatorApplicationViewController {
     func bindViews() {
         Observable.merge(
             nextButton.rx.tap.map { true },
-            backBarButtonItem.rx.tap.map { false }
+            navigationBar.leftBarButton.rx.tap.map { false }
         )
         .map { $0 ? self.currentStep.value.next : self.currentStep.value.previous }
         .asDriver(onErrorJustReturn: .category)
@@ -154,7 +149,7 @@ private extension CreatorApplicationViewController {
 private extension CreatorApplicationViewController {
     func changePageView(_ currentStep: CreatorApplicationStep) {
         if currentStep.rawValue < .zero {
-            navigationController?.popViewController(animated: true)
+            coordinator?.close(to: self)
             return
         }
         
@@ -164,12 +159,11 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNextButtonAppear(_ isEnable: Bool) {
-        print(isEnable)
         nextButton.isEnabled = isEnable
-        let backgroundColor = isEnable ? UIColor(named: "AccentColor") : UIColor.systemGray5
+        let backgroundColor = isEnable ? Constants.Color.blue : Constants.Color.gray
         nextButton.backgroundColor = backgroundColor
         
-        let title = isEnable ? (currentStep.value == .introduce ? "확인" : "다음") : "입력을 완료해주세요."
+        let title = isEnable ? (currentStep.value == .introduce ? "완료" : "다음") : "입력을 완료해주세요."
         nextButton.setTitle(title, for: .normal)
     }
 }
@@ -185,12 +179,18 @@ private extension CreatorApplicationViewController {
     func configureHierarchy() {
         addChild(pageController)
         pageController.didMove(toParent: self)
-        [stepView, pageController.view, nextButton].forEach(view.addSubview)
+        [navigationBar, stepView, pageController.view, nextButton].forEach(view.addSubview)
     }
     
     func configureConstraints() {
-        stepView.snp.makeConstraints {
+        navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        stepView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
         
@@ -207,14 +207,16 @@ private extension CreatorApplicationViewController {
     }
     
     func configureNavigationItem() {
-        navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22)
+        let image = Constants.Image.back?.withConfiguration(configuration)
+        navigationBar.leftBarButton.setImage(image, for: .normal)
     }
 }
 
 // Constants
 private extension CreatorApplicationViewController {
-    enum Constants {
-        static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
+    enum ConstantsCreator {
+//        static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
         static let nextButtonTitleToGoNext = NSAttributedString(
             string: "다음",
             attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]

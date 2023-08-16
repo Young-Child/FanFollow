@@ -13,14 +13,14 @@ final class CreatorCell: UICollectionViewCell {
     // View Properties
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
-        $0.backgroundColor = UIColor(named: "SecondaryColor")
+        $0.backgroundColor = Constants.Color.gray
     }
     
     private let nickNameLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.textAlignment = .center
-        $0.textColor = UIColor(named: "AccentColor")
-        $0.font = .preferredFont(forTextStyle: .body)
+        $0.textColor = Constants.Color.blue
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     // Initializer

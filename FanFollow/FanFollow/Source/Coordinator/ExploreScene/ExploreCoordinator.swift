@@ -9,7 +9,7 @@ import UIKit
 
 final class ExploreCoordinator: Coordinator {
     // Coordinator Propertiese
-    weak var parentCoordinator: MainTabBarCoordinator?
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -74,8 +74,7 @@ final class ExploreCoordinator: Coordinator {
         )
         
         let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
-        
-        navigationController.setNavigationBarHidden(false, animated: false)
+        controller.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(controller, animated: true)
     }
     

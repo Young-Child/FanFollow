@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1805F1C12A8C5CC600ABE14F /* NSMutatableString + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */; };
+		1805F1CC2A8CAB4200ABE14F /* SCDream2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C32A8CAB4200ABE14F /* SCDream2.otf */; };
+		1805F1CD2A8CAB4200ABE14F /* SCDream7.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C42A8CAB4200ABE14F /* SCDream7.otf */; };
+		1805F1CE2A8CAB4200ABE14F /* SCDream8.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C52A8CAB4200ABE14F /* SCDream8.otf */; };
+		1805F1CF2A8CAB4200ABE14F /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C62A8CAB4200ABE14F /* SCDream3.otf */; };
+		1805F1D02A8CAB4200ABE14F /* SCDream5.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C72A8CAB4200ABE14F /* SCDream5.otf */; };
+		1805F1D12A8CAB4200ABE14F /* SCDream9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C82A8CAB4200ABE14F /* SCDream9.otf */; };
+		1805F1D22A8CAB4200ABE14F /* SCDream4.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C92A8CAB4200ABE14F /* SCDream4.otf */; };
+		1805F1D32A8CAB4200ABE14F /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */; };
+		1805F1D42A8CAB4200ABE14F /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */; };
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
@@ -72,6 +82,10 @@
 		1894FC5F2A57211E0032E426 /* ChatRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DB85E2A52F5660071023B /* ChatRequestDirector.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
+		1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898203C2A89205C004372D3 /* NavigationBar.swift */; };
+		18AAC9C82A877FE5009FCE0E /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */; };
+		18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C92A87C45C009FCE0E /* Constants.swift */; };
+		18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */; };
 		18B6F50D2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */; };
 		18BC32132A5C2A8E00F910B7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC32122A5C2A8E00F910B7 /* ViewModel.swift */; };
 		18BD41F62A67B4D900060616 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD41F52A67B4D900060616 /* UILabel+Extension.swift */; };
@@ -276,6 +290,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutatableString + Extension.swift"; sourceTree = "<group>"; };
+		1805F1C32A8CAB4200ABE14F /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream2.otf; sourceTree = "<group>"; };
+		1805F1C42A8CAB4200ABE14F /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream7.otf; sourceTree = "<group>"; };
+		1805F1C52A8CAB4200ABE14F /* SCDream8.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream8.otf; sourceTree = "<group>"; };
+		1805F1C62A8CAB4200ABE14F /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream3.otf; sourceTree = "<group>"; };
+		1805F1C72A8CAB4200ABE14F /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream5.otf; sourceTree = "<group>"; };
+		1805F1C82A8CAB4200ABE14F /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream9.otf; sourceTree = "<group>"; };
+		1805F1C92A8CAB4200ABE14F /* SCDream4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream4.otf; sourceTree = "<group>"; };
+		1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream1.otf; sourceTree = "<group>"; };
+		1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
@@ -332,6 +356,10 @@
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
+		1898203C2A89205C004372D3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
+		18AAC9C92A87C45C009FCE0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		18BC32122A5C2A8E00F910B7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		18BD41F52A67B4D900060616 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -561,6 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				181258932A5418AA0054C782 /* SupabaseConstants.swift */,
+				18AAC9C92A87C45C009FCE0E /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -735,6 +764,7 @@
 				18D007392A6EC32E00D46248 /* AssetImageGridCell.swift */,
 				1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */,
 				1816AEB22A7803AA005F5F84 /* LinkPreview.swift */,
+				1898203C2A89205C004372D3 /* NavigationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,12 +800,15 @@
 		187949C22A5EA36C00ADA01A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */,
 				187949C32A5EA38100ADA01A /* UITableView+Extension.swift */,
 				18EC06942A62724A006293B5 /* UIImageView + Extension.swift */,
 				18BD41F52A67B4D900060616 /* UILabel+Extension.swift */,
 				18D0073B2A6EC3E300D46248 /* UICollectionView + Extension.swift */,
 				3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */,
 				3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */,
+				18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */,
+				1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -852,11 +885,27 @@
 			path = FanFollow;
 			sourceTree = "<group>";
 		};
+		18AAC9B32A877DBF009FCE0E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */,
+				1805F1C32A8CAB4200ABE14F /* SCDream2.otf */,
+				1805F1C62A8CAB4200ABE14F /* SCDream3.otf */,
+				1805F1C92A8CAB4200ABE14F /* SCDream4.otf */,
+				1805F1C72A8CAB4200ABE14F /* SCDream5.otf */,
+				1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */,
+				1805F1C42A8CAB4200ABE14F /* SCDream7.otf */,
+				1805F1C52A8CAB4200ABE14F /* SCDream8.otf */,
+				1805F1C82A8CAB4200ABE14F /* SCDream9.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		18BC320A2A5C279C00F910B7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				3C7DE60F2A84BC8D00259E74 /* LogInScene */,
 				187949A32A5E6E8200ADA01A /* Comman */,
+				3C7DE60F2A84BC8D00259E74 /* LogInScene */,
 				3CC69A802A64E6F40081ACC8 /* ExploreScene */,
 				18CF43292A5D12BA002FFA1D /* SettingScene */,
 				EBEA9F9B2A64D61100A6B6B2 /* FeedScene */,
@@ -1066,6 +1115,7 @@
 		3C29C8F42A4EAD9C002F0037 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				18AAC9B32A877DBF009FCE0E /* Fonts */,
 				188CC40C2A4D7FDB00BAB85A /* Assets.xcassets */,
 				188CC40E2A4D7FDB00BAB85A /* LaunchScreen.storyboard */,
 				188CC4112A4D7FDB00BAB85A /* Info.plist */,
@@ -1635,9 +1685,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1805F1CC2A8CAB4200ABE14F /* SCDream2.otf in Resources */,
+				1805F1CE2A8CAB4200ABE14F /* SCDream8.otf in Resources */,
 				18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */,
+				1805F1D32A8CAB4200ABE14F /* SCDream1.otf in Resources */,
+				1805F1D02A8CAB4200ABE14F /* SCDream5.otf in Resources */,
 				3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */,
+				1805F1D12A8CAB4200ABE14F /* SCDream9.otf in Resources */,
+				1805F1D42A8CAB4200ABE14F /* SCDream6.otf in Resources */,
+				1805F1CD2A8CAB4200ABE14F /* SCDream7.otf in Resources */,
+				1805F1CF2A8CAB4200ABE14F /* SCDream3.otf in Resources */,
 				188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */,
+				1805F1D22A8CAB4200ABE14F /* SCDream4.otf in Resources */,
 				188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1718,6 +1777,7 @@
 				EBBE26BD2A6FEFDD0071234B /* FeedManageSectionModel.swift in Sources */,
 				187949CA2A5EDE3400ADA01A /* SettingSectionItem.swift in Sources */,
 				187FD9902A8216840041EA63 /* UploadViewController.swift in Sources */,
+				18AAC9C82A877FE5009FCE0E /* UIFont + Extension.swift in Sources */,
 				EBEB29EA2A7284220028270C /* ProfileFeedViewModel.swift in Sources */,
 				187949AC2A5E7C3D00ADA01A /* SettingTabItem.swift in Sources */,
 				183EDDDE2A72300300F1490E /* ProfileInputTextField.swift in Sources */,
@@ -1725,6 +1785,7 @@
 				3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */,
+				1805F1C12A8C5CC600ABE14F /* NSMutatableString + Extension.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				3CF4CE902A7B98840079E996 /* UploadLinkPreview.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
@@ -1748,6 +1809,7 @@
 				18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */,
+				18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder+Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
 				1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */,
@@ -1845,6 +1907,7 @@
 				3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */,
 				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
+				18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
 				3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */,
@@ -1868,6 +1931,7 @@
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
+				1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,

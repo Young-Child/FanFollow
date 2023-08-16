@@ -21,7 +21,7 @@ final class PlaceholderTextView: UITextView {
         }
     }
 
-    var placeholderColor: UIColor = .lightGray {
+    var placeholderColor: UIColor = Constants.Color.gray {
         didSet {
             placeholderLabel.textColor = placeholderColor
         }

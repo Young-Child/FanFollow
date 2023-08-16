@@ -14,6 +14,7 @@ import RxSwift
 
 final class FeedViewController: UIViewController {
     // View Properties
+    private let navigationBar = FFNavigationBar()
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -22,7 +23,7 @@ final class FeedViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     private let refreshControl = UIRefreshControl().then {
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
     }
     
     // Properties
@@ -46,7 +47,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
+        configureLeftBarButton()
         configureUI()
         binding()
     }
@@ -133,31 +134,14 @@ extension FeedViewController: PostCellDelegate {
 
 // Configure NavigationBar Method
 private extension FeedViewController {
-    func configureNavigationBar() {
-        configureLeftBarButton()
-        configureAppearance()
-    }
-    
     func configureLeftBarButton() {
-        let image = UIImage(named: "iconImage")?.withRenderingMode(.alwaysOriginal)
-        let scrollToTopAction = UIAction { _ in
+        let action = UIAction { _ in
             let firstIndexPath = IndexPath(row: .zero, section: .zero)
             self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
         }
-        let barButtonItem = UIBarButtonItem(
-            image: image,
-            primaryAction: scrollToTopAction
-        )
         
-        navigationItem.leftBarButtonItem = barButtonItem
-    }
-    
-    func configureAppearance() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemBackground
-        
-        navigationController?.navigationBar.standardAppearance = appearance
+        navigationBar.leftBarButton.addAction(action, for: .touchUpInside)
+        navigationBar.leftBarButton.setImage(Constants.Image.logoImageSmall, for: .normal)
     }
 }
 
@@ -173,12 +157,18 @@ private extension FeedViewController {
     }
     
     func configureHierarchy() {
-        view.addSubview(tableView)
+        [navigationBar, tableView].forEach(view.addSubview(_:))
     }
     
     func configureConstraints() {
-        tableView.snp.makeConstraints {
+        navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

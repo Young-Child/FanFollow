@@ -19,7 +19,7 @@ final class CreatorApplicationTextFieldView: UIView {
     }
 
     private let textField = UnderLineTextField().then { textField in
-        textField.textColor = UIColor(named: "AccentColor")
+        textField.textColor = Constants.Color.blue
         textField.font = .systemFont(ofSize: 14, weight: .regular)
     }
 

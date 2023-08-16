@@ -16,18 +16,18 @@ final class LinkPreview: UIView {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 18, weight: .semibold)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
         $0.numberOfLines = 2
     }
     
     private let urlLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .light)
+        $0.font = .coreDreamFont(ofSize: 12, weight: .light)
         $0.numberOfLines = 1
     }
     
     private let loadingView = UIActivityIndicatorView().then {
         $0.style = .medium
-        $0.color = UIColor(named: "AccentColor")
+        $0.color = Constants.Color.blue
         $0.startAnimating()
     }
     
@@ -61,7 +61,7 @@ final class LinkPreview: UIView {
         let path = UIBezierPath(
             roundedRect: self.imageView.bounds,
             byRoundingCorners: [.topRight, .bottomRight],
-            cornerRadii: CGSize(width: 12, height: 12)
+            cornerRadii: CGSize(width: 4, height: 4)
         )
         
         let mask = CAShapeLayer().then { $0.path = path.cgPath }
@@ -79,7 +79,7 @@ final class LinkPreview: UIView {
     }
     
     private func configureLayout() {
-        contentView.layer.cornerRadius = 12
+        contentView.layer.cornerRadius = 4
         contentView.backgroundColor = .systemGray5
         
         [imageView, titleLabel, urlLabel, loadingView].forEach(contentView.addSubview(_:))
@@ -98,7 +98,7 @@ final class LinkPreview: UIView {
         }
         
         urlLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(titleLabel)
         }
         

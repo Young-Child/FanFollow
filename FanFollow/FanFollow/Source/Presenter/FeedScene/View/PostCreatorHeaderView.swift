@@ -8,7 +8,7 @@ import UIKit
 
 final class PostCreatorHeaderView: UIView {
     let creatorImageView = UIImageView().then { imageView in
-        imageView.layer.backgroundColor = UIColor.systemGray5.cgColor
+        imageView.layer.backgroundColor = Constants.Color.gray.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 25
@@ -16,13 +16,13 @@ final class PostCreatorHeaderView: UIView {
     
     let creatorNickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.textColor = UIColor(named: "AccentColor")
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = Constants.Color.blue
+        label.font = .coreDreamFont(ofSize: 17, weight: .regular)
     }
     
     let optionsButton = UIButton().then { button in
         button.showsMenuAsPrimaryAction = true
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(Constants.Image.more, for: .normal)
     }
     
     override init(frame: CGRect) {

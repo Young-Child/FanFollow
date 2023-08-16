@@ -14,7 +14,7 @@ class PhotoAssetGridViewController: UIViewController {
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
     ).then { collectionView in
-        collectionView.layer.backgroundColor = UIColor.systemBackground.cgColor
+        collectionView.layer.backgroundColor = Constants.Color.background.cgColor
         collectionView.register(
             AssetImageGridCell.self,
             forCellWithReuseIdentifier: AssetImageGridCell.reuseIdentifier

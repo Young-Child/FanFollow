@@ -7,7 +7,8 @@
 import UIKit
 
 final class SettingCoordinator: Coordinator {
-    weak var parentCoordinator: MainTabBarCoordinator?
+    weak var parentCoordinator: Coordinator?
+    
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -43,14 +44,6 @@ final class SettingCoordinator: Coordinator {
         let uploadType: UploadCoordinator.UploadType = (post.videoURL == nil) ? .photo : .link
         coordinator.presentPostViewController(type: uploadType, post: post)
     }
-    
-    func removeChildCoordinator(_ coordinator: Coordinator) {
-        for (index, targetCoordinator) in childCoordinators.enumerated() {
-            if targetCoordinator === coordinator {
-                childCoordinators.remove(at: index)
-            }
-        }
-    }
 }
 
 private extension SettingCoordinator {
@@ -60,7 +53,9 @@ private extension SettingCoordinator {
     ) -> Coordinator {
         switch viewType {
         case .profile:
-            return ProfileSettingCoordinator(navigationController: navigationController)
+            let coordinator = ProfileSettingCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
 
         case .bugReport:
             let coordinator = BugReportCoordinator(navigationController: navigationController)

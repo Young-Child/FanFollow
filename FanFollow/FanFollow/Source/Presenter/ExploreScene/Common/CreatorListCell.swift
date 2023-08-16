@@ -15,20 +15,20 @@ final class CreatorListCell: UITableViewCell {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 25
         $0.contentMode = .scaleAspectFill
-        $0.backgroundColor = UIColor(named: "SecondaryColor")
+        $0.backgroundColor = Constants.Color.gray
     }
     
     private let nickNameLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.textAlignment = .left
-        $0.textColor = UIColor(named: "AccentColor")
+        $0.textColor = Constants.Color.blue
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
     
     private let jobLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.textAlignment = .left
-        $0.textColor = UIColor(named: "AccentColor")
+        $0.textColor = Constants.Color.blue
         $0.font = UIFont.systemFont(ofSize: 14)
     }
     
@@ -69,7 +69,7 @@ extension CreatorListCell {
     func configureCell(creator: Creator) {
         nickNameLabel.text = creator.nickName
         profileImageView.setImageProfileImage(to: creator.profileURL, for: creator.id)
-        jobLabel.text = Constants.category + " " + (creator.jobCategory?.categoryName ?? "")
+        jobLabel.text = ConstantsCreatorListCell.category + " " + (creator.jobCategory?.categoryName ?? "")
         introduceLabel.text = creator.introduce
         
         applyAttributedString()
@@ -81,8 +81,8 @@ extension CreatorListCell {
         
         attributedString.addAttribute(
             .foregroundColor,
-            value: UIColor.lightGray,
-            range: (text as NSString).range(of: Constants.category)
+            value: Constants.Color.gray,
+            range: (text as NSString).range(of: ConstantsCreatorListCell.category)
         )
         jobLabel.attributedText = attributedString
     }
@@ -117,7 +117,7 @@ private extension CreatorListCell {
 }
 
 private extension CreatorListCell {
-    enum Constants {
+    enum ConstantsCreatorListCell {
         static let category = "직군"
     }
 }

@@ -13,27 +13,27 @@ import RxSwift
 final class ExploreSearchViewController: UIViewController {
     // View Properties
     private let backButton = UIButton().then {
-        $0.tintColor = UIColor(named: "AccentColor")
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
-        let image = UIImage(systemName: Constants.backImage, withConfiguration: imageConfiguration)
+        $0.tintColor = Constants.Color.blue
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22)
+        let image = Constants.Image.back?.withConfiguration(imageConfiguration)
         $0.setImage(image, for: .normal)
     }
     
     private let searchBar = UISearchBar().then {
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemBackground.cgColor
+        $0.layer.borderColor = Constants.Color.background.cgColor
         $0.barTintColor = .systemBackground
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
-        $0.tintColor = UIColor(named: "AccentColor")
+        $0.tintColor = Constants.Color.blue
         $0.searchTextField.textColor = .label
         $0.searchTextField.clearButtonMode = .whileEditing
         $0.searchTextField.leftView = nil
         $0.searchTextField.backgroundColor = .systemGray5
-        $0.setImage(UIImage(systemName: Constants.clearImage), for: .clear, state: .normal)
+        $0.setImage(Constants.Image.xmark, for: .clear, state: .normal)
         $0.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: Constants.searchPlaceHolder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2]
+            string: ConstantsExplore.searchPlaceHolder,
+            attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.grayDark]
         )
     }
     
@@ -47,7 +47,7 @@ final class ExploreSearchViewController: UIViewController {
     private let searchLabel = UILabel().then {
         $0.textColor = .label
         $0.textAlignment = .center
-        $0.text = Constants.noSearchResult
+        $0.text = ConstantsExplore.noSearchResult
     }
     
     // Properties
@@ -73,12 +73,6 @@ final class ExploreSearchViewController: UIViewController {
         configureUI()
         binding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
 }
 
 // Binding
@@ -93,9 +87,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
     
     private func bindBackButton() {
         backButton.rx.tap
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
+            .bind { self.coordinator?.close(to: self) }
             .disposed(by: disposeBag)
     }
     
@@ -124,7 +116,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .disposed(by: disposeBag)
         
         isFullResult
-            .map { $0 == false ? Constants.noSearchResult : "" }
+            .map { $0 == false ? ConstantsExplore.noSearchResult : "" }
             .drive(self.searchLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -218,10 +210,10 @@ private extension ExploreSearchViewController {
 
 // Constants
 private extension ExploreSearchViewController {
-    enum Constants {
+    enum ConstantsExplore {
         static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
-        static let clearImage = "xmark"
-        static let backImage = "chevron.backward"
+//        static let clearImage = "xmark"
+//        static let backImage = "chevron.backward"
         static let noSearch = "크리에이터의 닉네임을 검색해보세요."
         static let noSearchResult = "검색 결과가 없습니다."
     }

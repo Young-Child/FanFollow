@@ -9,9 +9,13 @@ import UIKit
 
 import RxSwift
 
+protocol ExploreCreatorDelegate: AnyObject {
+    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem)
+}
+
 final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     private let searchButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        $0.setImage(Constants.Image.magnifyingGlass, for: .normal)
         $0.tintColor = .label
         $0.backgroundColor = .clear
     }
@@ -28,17 +32,28 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
         setExplorCoordinator()
     }
     
     private func setExplorCoordinator() {
-        viewControllers?.forEach({ viewController in
-            if let controller = viewController as? ExploreViewController {
-                controller.coordinator = self.coordinator
-            } else if let controller = viewController as? ExploreSubscribeViewController {
-                controller.coordinator = self.coordinator
+        viewControllers?.forEach { controller in
+            if let controller = controller as? ExploreViewController {
+                controller.delegate = self
             }
-        })
+        }
+    }
+}
+
+extension ExploreTabBarController: ExploreCreatorDelegate {
+    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem) {
+        switch item {
+        case .category(let job):
+            coordinator?.presentCategoryViewController(for: job)
+        case .creator(_, let creatorID, _):
+            coordinator?.presentProfileViewController(to: creatorID)
+        }
     }
 }
 

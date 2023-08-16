@@ -14,6 +14,8 @@ final class ExploreCategoryViewController: UIViewController {
     typealias ExploreCategoryDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
     
     // View Properties
+    private let navigationBar = FFNavigationBar()
+    
     private let exploreCategoryCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
@@ -49,12 +51,6 @@ final class ExploreCategoryViewController: UIViewController {
         
         configureUI()
         binding()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
@@ -203,7 +199,7 @@ extension ExploreCategoryViewController {
             let section = sectionIndex == .zero ?
             self.createPopularSection(item: commonItem) : self.createCreatorSection(item: commonItem)
             section.boundarySupplementaryItems = [header]
-            section.contentInsets = Constants.defaultEdgeInset
+            section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
             
             return section
         }
@@ -218,24 +214,39 @@ private extension ExploreCategoryViewController {
         view.backgroundColor = .systemBackground
         exploreCategoryCollectionView.collectionViewLayout = createLayout()
         
+        configureNavigationBar()
         configureHierarchy()
         makeConstraints()
     }
     
+    func configureNavigationBar() {
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22)
+        let backButton = Constants.Image.back?.withConfiguration(configuration)
+        navigationBar.leftBarButton.setImage(backButton, for: .normal)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
     func configureHierarchy() {
-        view.addSubview(exploreCategoryCollectionView)
+        [navigationBar, exploreCategoryCollectionView].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
+        navigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         exploreCategoryCollectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
 
-private extension ExploreCategoryViewController {
-    enum Constants {
-        static let defaultEdgeInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+extension ExploreCategoryViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

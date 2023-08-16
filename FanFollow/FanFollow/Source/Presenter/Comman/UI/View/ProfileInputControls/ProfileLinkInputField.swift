@@ -40,8 +40,8 @@ extension ProfileLinkInput {
     private func generateLinkAttributeString(links: String) -> NSMutableAttributedString {
         let attribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
-            .backgroundColor: UIColor.systemGray5,
-            .foregroundColor: UIColor(named: "AccentColor") ?? .systemGray5
+            .backgroundColor: Constants.Color.gray,
+            .foregroundColor: Constants.Color.blue
         ]
         
         return links.reduce(into: NSMutableAttributedString()) {

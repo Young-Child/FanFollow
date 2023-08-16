@@ -8,6 +8,8 @@
 import UIKit
 
 final class LogInCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     
     var navigationController: UINavigationController

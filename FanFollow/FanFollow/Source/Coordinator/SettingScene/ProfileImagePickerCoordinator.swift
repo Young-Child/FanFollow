@@ -7,6 +7,8 @@
 import UIKit
 
 final class ProfileImagePickerCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     
     var navigationController: UINavigationController
@@ -26,6 +28,7 @@ final class ProfileImagePickerCoordinator: Coordinator {
         )
         
         let controller = ProfileImagePickerViewController(viewModel: viewModel)
+        controller.coordinator = self
         let childNavigationController = UINavigationController(rootViewController: controller)
         childNavigationController.modalPresentationStyle = .fullScreen
         

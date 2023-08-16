@@ -68,7 +68,7 @@ extension LogOutViewController {
         output.logOutResult
             .asDriver(onErrorJustReturn: ())
             .drive { _ in
-                self.coordinator?.close(viewController: self)
+                self.coordinator?.close(to: self)
             }
             .disposed(by: disposeBag)
     }
@@ -86,7 +86,7 @@ extension LogOutViewController {
 // ButtonDelegate
 extension LogOutViewController: LogOutViewButtonDelegate {
     @objc func cancelButtonTapped() {
-        self.coordinator?.close(viewController: self)
+        self.coordinator?.close(to: self)
     }
     
     @objc func logOutButtonTapped() {

@@ -30,13 +30,16 @@ final class MainTabBarCoordinator: Coordinator {
         
         // TabBar Appearance Setting
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .systemGray6
+        appearance.backgroundColor = Constants.Color.background
+        appearance.shadowColor = nil
+        appearance.shadowImage = nil
         tabBarController.tabBar.standardAppearance = appearance
-
+        
         if #available(iOS 15.0, *) {
             tabBarController.tabBar.scrollEdgeAppearance = appearance
         }
         
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.setViewControllers([tabBarController], animated: true)
     }
     
@@ -48,50 +51,43 @@ final class MainTabBarCoordinator: Coordinator {
 private extension MainTabBarCoordinator {
     enum Router: Int, CaseIterable {
         case feed
-        case chatting
         case explore
         case setting
         
-        private var iconName: String {
+        private var icon: UIImage? {
             switch self {
-            case .feed:     return "newspaper"
-            case .chatting: return "bubble.left.and.bubble.right"
-            case .explore:  return "binoculars"
-            case .setting:  return "gearshape.2"
+            case .feed:     return Constants.Image.feed
+            case .explore:  return Constants.Image.explore
+            case .setting:  return Constants.Image.setting
             }
         }
         
-        private var selectedIconName: String {
+        private var selectedIcon: UIImage? {
             switch self {
-            case .feed:     return "newspaper.fill"
-            case .chatting: return "bubble.left.and.bubble.right.fill"
-            case .explore:  return "binoculars.fill"
-            case .setting:  return "gearshape.2.fill"
+            case .feed:     return Constants.Image.feedFill
+            case .explore:  return Constants.Image.exploreFill
+            case .setting:  return Constants.Image.settingFill
             }
         }
         
         private var name: String {
             switch self {
             case .feed:     return "피드"
-            case .chatting: return "채팅"
             case .explore:  return "탐색"
             case .setting:  return "더보기"
             }
         }
         
         private var tabBarItem: UITabBarItem {
-            return UITabBarItem(
-                title: name,
-                image: UIImage(systemName: iconName),
-                tag: rawValue
-            )
-            .then {
-                $0.selectedImage = UIImage(systemName: selectedIconName)
-            }
+            return UITabBarItem(title: name, image: icon, tag: rawValue)
+                .then {
+                    $0.selectedImage = selectedIcon
+                }
         }
         
         var coordinator: Coordinator {
             let navigationController = UINavigationController()
+            navigationController.navigationBar.isHidden = true
             navigationController.tabBarItem = tabBarItem
             
             switch self {
@@ -101,8 +97,6 @@ private extension MainTabBarCoordinator {
                 return SettingCoordinator(navigationController: navigationController)
             case .explore:
                 return ExploreCoordinator(navigationController: navigationController)
-            default:
-                return SettingCoordinator(navigationController: navigationController)
             }
         }
     }

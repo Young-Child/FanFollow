@@ -15,30 +15,38 @@ final class LogInViewController: UIViewController {
     // View Properties
     private let logoImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "mainLogo")
+        $0.image = Constants.Image.logoImageMiddle
     }
     
     private let mainLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 32, weight: .bold)
-        $0.text = Constants.mainText
-        $0.textColor = .label
+        $0.attributedText = ConstantsLogin.mainText
+        $0.font = .coreDreamFont(ofSize: 32, weight: .bold)
         $0.textAlignment = .left
-        $0.adjustsFontSizeToFitWidth = true
     }
     
     private let subLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.text = Constants.subText
+        $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
+        $0.text = ConstantsLogin.subText
         $0.textColor = .label
         $0.textAlignment = .left
         $0.adjustsFontSizeToFitWidth = true
     }
     
     private var appleLogInButton = UIButton().then {
+        $0.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        $0.marginImageWithText(margin: 16)
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 4
         $0.setImage(UIImage(named: "Apple"), for: .normal)
         $0.backgroundColor = .label
-        $0.setTitle(Constants.appleButtonText, for: .normal)
+        $0.setTitle(ConstantsLogin.appleButtonText, for: .normal)
+    }
+    
+    private var loginInformationLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.text = ConstantsLogin.information
+        $0.font = .systemFont(ofSize: 14, weight: .light)
+        $0.textColor = .systemGray4
     }
     
     // Properties
@@ -135,39 +143,54 @@ private extension LogInViewController {
     }
     
     func configureHierarchy() {
-        [logoImageView, mainLabel, subLabel, appleLogInButton].forEach(view.addSubview(_:))
+        [
+            logoImageView,
+            mainLabel,
+            subLabel,
+            appleLogInButton,
+            loginInformationLabel
+        ].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(90)
-            $0.leading.equalToSuperview().offset(25)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.leading.equalToSuperview().offset(18)
             $0.height.equalTo(80)
+            $0.width.equalTo(160)
         }
         
         mainLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(45)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(30)
+            $0.leading.equalTo(logoImageView)
         }
         
         subLabel.snp.makeConstraints {
             $0.top.equalTo(mainLabel.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(45)
+            $0.leading.trailing.equalTo(mainLabel)
         }
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.bottom.equalToSuperview().offset(-150)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-16)
+            $0.leading.trailing.equalToSuperview().inset(18)
+        }
+        
+        loginInformationLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.bottom.equalToSuperview().offset(-48)
         }
     }
 }
 
 private extension LogInViewController {
-    enum Constants {
+    enum ConstantsLogin {
         static let appleButtonText = "Apple로 계속하기"
-        static let mainText = "모든 직군의 이야기"
+        static let mainText = NSMutableAttributedString()
+            .regular("모든 ")
+            .highlight("직군", to: Constants.Color.blue)
+            .regular("의 이야기")
         static let subText = "나와 같은 사람들의 생각, 기록, 네트워킹"
+        static let information = "추후 더 많은 로그인 기능을 제공할 예정입니다."
     }
 }

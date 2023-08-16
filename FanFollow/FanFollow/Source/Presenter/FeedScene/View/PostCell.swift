@@ -26,17 +26,18 @@ final class PostCell: UITableViewCell {
     private let imageSlideView = HorizontalImageSlideView()
     
     private let pageControl = UIPageControl().then {
-        $0.pageIndicatorTintColor = UIColor.systemGray5
+        $0.pageIndicatorTintColor = Constants.Color.gray
         $0.backgroundStyle = .minimal
-        $0.currentPageIndicatorTintColor = UIColor(named: "AccentColor")
+        $0.currentPageIndicatorTintColor = Constants.Color.blue
     }
     
     private let titleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
     
     private let contentLabel = UILabel().then { label in
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 5
     }
     
@@ -52,16 +53,11 @@ final class PostCell: UITableViewCell {
     }
     
     private let likeButton = UIButton().then { button in
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22)
-        let unSelectedImage = UIImage(
-            systemName: "heart",
-            withConfiguration: imageConfiguration
-        )
-        let selectedImage = UIImage(
-            systemName: "heart.fill",
-            withConfiguration: imageConfiguration
-        )
-        button.titleLabel?.font = .systemFont(ofSize: 22)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 15)
+        let unSelectedImage = Constants.Image.heart?.withConfiguration(imageConfiguration)
+        let selectedImage = Constants.Image.heartFill?.withConfiguration(imageConfiguration)
+        
+        button.titleLabel?.font = .coreDreamFont(ofSize: 15, weight: .light)
         button.contentMode = .scaleToFill
         button.setTitleColor(.label, for: .normal)
         button.setImage(unSelectedImage, for: .normal)
@@ -70,7 +66,7 @@ final class PostCell: UITableViewCell {
     
     private let createdDateLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .coreDreamFont(ofSize: 15, weight: .light)
         label.textAlignment = .right
     }
     
@@ -290,14 +286,8 @@ private extension PostCell {
 
 // Constants
 private extension PostCell {
-    enum Constants {
+    enum ConstantsPostCell {
         static let expandedNumberOfLines = 0
         static let unexpandedNumberOfLines = 2
-        static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-        static let creatorNickNameLabelTextColor = UIColor(named: "AccentColor")
-        static let unselectedLikeButtonImage = UIImage(systemName: "hand.thumbsup")
-        static let selectedLikeButtonImage = UIImage(systemName: "hand.thumbsup.fill")
-        static let failureProfileImage = UIImage(systemName: "person")!
-        static let failurePostImage = UIImage(systemName: "photo")!
     }
 }

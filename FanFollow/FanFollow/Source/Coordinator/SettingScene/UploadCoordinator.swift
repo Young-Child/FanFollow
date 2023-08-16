@@ -8,9 +8,10 @@
 import UIKit
 
 final class UploadCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    weak var parentCoordinator: SettingCoordinator?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,9 +24,9 @@ final class UploadCoordinator: Coordinator {
         
         navigationController.present(controller, animated: false)
     }
+    
     func presentPostViewController(
         type: UploadType,
-        viewController: UIViewController? = nil,
         post: Post? = nil
     ) {
         let networkService = DefaultNetworkService.shared
@@ -36,17 +37,9 @@ final class UploadCoordinator: Coordinator {
         let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository)
         let viewModel = UploadViewModel(uploadUseCase: useCase, post: post)
         
-        let controller = type.generateInstance(with: viewModel, coordinator: self)
+        let controller = generateInstance(with: viewModel, uploadType: type)
         
-        func presentController() {
-            self.navigationController.pushViewController(controller, animated: true)
-        }
-        
-        if viewController != nil {
-            viewController?.dismiss(animated: true) { presentController() }
-        } else {
-            presentController()
-        }
+        self.navigationController.pushViewController(controller, animated: true)
     }
     
     func presentImagePickerViewController(cropImageDelegate: UploadCropImageDelegate) {
@@ -58,34 +51,32 @@ final class UploadCoordinator: Coordinator {
         
         navigationController.present(childNavigationController, animated: true)
     }
-    
-    func close(viewController: UIViewController) {
-        viewController.dismiss(animated: false)
-        parentCoordinator?.removeChildCoordinator(self)
-    }
 }
 
 extension UploadCoordinator {
     enum UploadType {
         case photo
         case link
-        
-        func generateInstance(with viewModel: UploadViewModel, coordinator: UploadCoordinator) -> UIViewController {
-            switch self {
-            case .photo:
-                let controller = UploadPhotoViewController(viewModel: viewModel)
-                controller.hidesBottomBarWhenPushed = true
-                controller.coordinator = coordinator
-                
-                return controller
-                
-            case .link:
-                let controller = UploadLinkViewController(viewModel: viewModel)
-                controller.hidesBottomBarWhenPushed = true
-                controller.coordinator = coordinator
-                
-                return controller
-            }
+    }
+    
+    func generateInstance(
+        with viewModel: UploadViewModel,
+        uploadType: UploadType
+    ) -> UIViewController {
+        switch uploadType {
+        case .photo:
+            let controller = UploadPhotoViewController(viewModel: viewModel)
+            controller.hidesBottomBarWhenPushed = true
+            controller.coordinator = self
+            
+            return controller
+            
+        case .link:
+            let controller = UploadLinkViewController(viewModel: viewModel)
+            controller.hidesBottomBarWhenPushed = true
+            controller.coordinator = self
+            
+            return controller
         }
     }
 }

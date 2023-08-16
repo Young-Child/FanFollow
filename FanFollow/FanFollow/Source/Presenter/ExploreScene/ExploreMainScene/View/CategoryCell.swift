@@ -14,9 +14,9 @@ final class CategoryCell: UICollectionViewCell {
     private let categoryLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.textAlignment = .center
-        $0.textColor = UIColor(named: "AccentColor")
-        $0.backgroundColor = UIColor(named: "CategoryCellColor")
-        $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        $0.textColor = Constants.Color.blue
+        $0.backgroundColor = Constants.Color.gray
+        $0.font = .coreDreamFont(ofSize: 16, weight: .bold)
     }
     
     // Initializer

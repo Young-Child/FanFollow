@@ -11,26 +11,28 @@ import RxCocoa
 import Kingfisher
 
 class UploadViewController: UIViewController {
+    let navigationBar = FFNavigationBar()
+    
     let titleLabel = UILabel().then {
-        $0.text = Constants.title
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.text = ConstantsUpload.title
+        $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let titleTextField = UnderLineTextField().then {
         $0.leadPadding(5)
-        $0.placeholder = Constants.titlePlaceholder
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.placeholder = ConstantsUpload.titlePlaceholder
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentsLabel = UILabel().then {
-        $0.text = Constants.content
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.text = ConstantsUpload.content
+        $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let contentsTextView = PostUploadContentTextView(
-        placeHolder: Constants.contentPlaceholder
+        placeHolder: ConstantsUpload.contentPlaceholder
     ).then {
-        $0.textView.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentView = UIView()
@@ -82,29 +84,28 @@ class UploadViewController: UIViewController {
         
         output.registerResult
             .asDriver(onErrorJustReturn: ())
-            .drive { _ in self.navigationController?.popViewController(animated: true) }
+            .drive(onNext: {
+                self.coordinator?.close(to: self)
+            })
             .disposed(by: disposeBag)
     }
     
     func bindingLeftButton() {
-        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
-        
-        leftBarButton.rx.tap
-            .bind { self.navigationController?.popViewController(animated: true) }
+        navigationBar.leftBarButton.rx.tap
+            .bind(onNext: {
+                self.coordinator?.close(to: self)
+            })
             .disposed(by: disposeBag)
     }
     
     func configureNavigationBar() {
         view.backgroundColor = .systemBackground
-
-        title = Constants.navigationTitle
-        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
         
-        let popButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"))
-        let uploadButton = UIBarButtonItem(title: Constants.register)
-        
-        navigationItem.leftBarButtonItem = popButton
-        navigationItem.rightBarButtonItem = uploadButton
+        navigationBar.leftBarButton.setImage(Constants.Image.back, for: .normal)
+        navigationBar.titleView.text = ConstantsUpload.navigationTitle
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.blue, for: .normal)
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.grayDark, for: .disabled)
+        navigationBar.rightBarButton.setTitle(ConstantsUpload.register, for: .normal)
         
         configureHierarchy()
         makeConstraints()
@@ -112,12 +113,18 @@ class UploadViewController: UIViewController {
     
     func configureHierarchy() {
         scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
+        [navigationBar, scrollView].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
+        navigationBar.snp.makeConstraints {
+            $0.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(60)
+        }
+        
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {
@@ -141,7 +148,7 @@ class UploadViewController: UIViewController {
 
 // Constants
 private extension UploadViewController {
-    enum Constants {
+    enum ConstantsUpload {
         static let title = "제목"
         static let content = "내용"
         static let titlePlaceholder = "제목을 입력해주세요."
