@@ -78,6 +78,16 @@ private extension SettingCoordinator {
         case .creator:
             return CreatorApplicationCoordinator(navigationController: navigationController)
 
+        case .logOut:
+            let coordinator = LogOutCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
+            
+        case .withdrawal:
+            let coordinator = WithdrawalCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
+            
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }
