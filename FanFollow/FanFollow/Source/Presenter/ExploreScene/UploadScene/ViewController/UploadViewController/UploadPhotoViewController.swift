@@ -50,12 +50,6 @@ final class UploadPhotoViewController: UploadViewController {
         binding()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     // Configure UI Method
     override func configureHierarchy() {
         super.configureHierarchy()
@@ -81,6 +75,7 @@ final class UploadPhotoViewController: UploadViewController {
     override func binding() {
         super.binding()
         
+        bindingViews()
         let output = bindingInput()
         bindingOutput(output)
     }
@@ -103,11 +98,7 @@ extension UploadPhotoViewController {
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else { return .empty() }
-        
-        bindingRightBarButton(with: rightBarButton)
-        
-        return rightBarButton.rx.tap
+        return navigationBar.rightBarButton.rx.tap
             .map { _ in
                 let data = self.registerImage.compactMap { $0.pngData() }
                 let upload = Upload(
@@ -120,7 +111,7 @@ extension UploadPhotoViewController {
             }
     }
     
-    func bindingRightBarButton(with barButton: UIBarButtonItem) {
+    func bindingViews() {
         let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
             .map { $0?.count != .zero && $0 != nil }
         
@@ -133,7 +124,7 @@ extension UploadPhotoViewController {
             isContentNotEmpty,
             imageCount.map { $0 != .zero }
         ) { $0 && $1 && $2 }
-            .bind(to: barButton.rx.isEnabled)
+            .bind(to: navigationBar.rightBarButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }

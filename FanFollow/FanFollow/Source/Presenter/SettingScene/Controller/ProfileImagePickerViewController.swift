@@ -10,6 +10,7 @@ import Kingfisher
 import RxSwift
 
 final class ProfileImagePickerViewController: ImagePickerViewController {
+    weak var coordinator: ProfileImagePickerCoordinator?
     private var disposeBag = DisposeBag()
     private let profileImagePickerViewModel: ProfileImagePickerViewModel
     
@@ -58,7 +59,9 @@ private extension ProfileImagePickerViewController {
         let key = "profile_\(userID)"
         ImageCache.default.changeMemoryImage(to: selectedImage, key: key)
         
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            self.coordinator?.close(to: self)
+        }
     }
 }
 

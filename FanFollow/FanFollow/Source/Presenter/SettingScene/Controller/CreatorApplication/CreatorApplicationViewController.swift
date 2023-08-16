@@ -96,7 +96,7 @@ private extension CreatorApplicationViewController {
         output.updateResult
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: {
-                self.navigationController?.popViewController(animated: true)
+                self.coordinator?.close(to: self)
             })
             .disposed(by: disposeBag)
     }
@@ -149,7 +149,7 @@ private extension CreatorApplicationViewController {
 private extension CreatorApplicationViewController {
     func changePageView(_ currentStep: CreatorApplicationStep) {
         if currentStep.rawValue < .zero {
-            navigationController?.popViewController(animated: true)
+            coordinator?.close(to: self)
             return
         }
         

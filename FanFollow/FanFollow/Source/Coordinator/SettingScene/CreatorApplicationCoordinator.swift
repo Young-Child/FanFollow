@@ -34,10 +34,4 @@ final class CreatorApplicationCoordinator: Coordinator {
 
         navigationController.pushViewController(creatorApplicationViewController, animated: true)
     }
-    
-    func close(to controller: UIViewController) {
-        parentCoordinator?.removeChild(to: self)
-        
-        
-    }
 }

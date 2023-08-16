@@ -56,12 +56,6 @@ final class UploadLinkViewController: UploadViewController {
         binding()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     override func configureHierarchy() {
         super.configureHierarchy()
         
@@ -132,11 +126,7 @@ extension UploadLinkViewController {
     }
     
     func configureRightButtonTapEvent() -> Observable<Upload> {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else { return .empty() }
-        
-        bindingRightBarButton(with: rightBarButton)
-
-        return rightBarButton.rx.tap
+        return navigationBar.rightBarButton.rx.tap
             .map { _ in
                 let upload = Upload(
                     title: self.titleTextField.text ?? "",
@@ -149,6 +139,22 @@ extension UploadLinkViewController {
     }
     
     func bindingViews() {
+        let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
+            .map { $0?.count != .zero && $0 != nil }
+        
+        let isLinkNotEmpty = linkTextView.textView.rx.text.orEmpty
+            .map { $0.isEmpty == false && $0 != Constants.linkPlaceholder }
+        
+        let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
+            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+        }
+        
+        Observable.combineLatest(isTitleNotEmpty, isLinkNotEmpty, isContentNotEmpty) {
+            $0 && $1 && $2
+        }
+        .bind(to: navigationBar.rightBarButton.rx.isEnabled)
+        .disposed(by: disposeBag)
+        
         linkTextView.textView.rx.text.orEmpty
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
@@ -163,7 +169,7 @@ extension UploadLinkViewController {
             .disposed(by: disposeBag)
     }
     
-    func bindingRightBarButton(with barButton: UIBarButtonItem) {
+    func bindingRightBarButton() {
         let isTitleNotEmpty = titleTextField.rx.observe(String.self, "text")
             .map { $0?.count != .zero && $0 != nil }
         
@@ -177,7 +183,7 @@ extension UploadLinkViewController {
         Observable.combineLatest(isTitleNotEmpty, isLinkNotEmpty, isContentNotEmpty) {
             $0 && $1 && $2
         }
-        .bind(to: barButton.rx.isEnabled)
+        .bind(to: navigationBar.rightBarButton.rx.isEnabled)
         .disposed(by: disposeBag)
     }
 }

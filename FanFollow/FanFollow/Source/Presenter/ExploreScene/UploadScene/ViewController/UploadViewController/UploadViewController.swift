@@ -11,6 +11,8 @@ import RxCocoa
 import Kingfisher
 
 class UploadViewController: UIViewController {
+    let navigationBar = FFNavigationBar()
+    
     let titleLabel = UILabel().then {
         $0.text = ConstantsUpload.title
         $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
@@ -96,15 +98,12 @@ class UploadViewController: UIViewController {
     
     func configureNavigationBar() {
         view.backgroundColor = .systemBackground
-
-        title = ConstantsUpload.navigationTitle
-        navigationController?.navigationBar.standardAppearance.backgroundColor = .white
         
-        let popButton = UIBarButtonItem(image: Constants.Image.back)
-        let uploadButton = UIBarButtonItem(title: ConstantsUpload.register)
-        
-        navigationItem.leftBarButtonItem = popButton
-        navigationItem.rightBarButtonItem = uploadButton
+        navigationBar.leftBarButton.setImage(Constants.Image.back, for: .normal)
+        navigationBar.titleView.text = ConstantsUpload.navigationTitle
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.blue, for: .normal)
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.grayDark, for: .disabled)
+        navigationBar.rightBarButton.setTitle(ConstantsUpload.register, for: .normal)
         
         configureHierarchy()
         makeConstraints()
@@ -112,12 +111,18 @@ class UploadViewController: UIViewController {
     
     func configureHierarchy() {
         scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
+        [navigationBar, scrollView].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
+        navigationBar.snp.makeConstraints {
+            $0.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(60)
+        }
+        
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {

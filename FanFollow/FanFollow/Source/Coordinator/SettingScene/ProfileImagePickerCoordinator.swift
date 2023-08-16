@@ -28,6 +28,7 @@ final class ProfileImagePickerCoordinator: Coordinator {
         )
         
         let controller = ProfileImagePickerViewController(viewModel: viewModel)
+        controller.coordinator = self
         let childNavigationController = UINavigationController(rootViewController: controller)
         childNavigationController.modalPresentationStyle = .fullScreen
         
