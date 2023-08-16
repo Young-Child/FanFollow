@@ -19,7 +19,7 @@ extension JSONDecoder {
         })
         return decoder
     }()
-
+    
     private static func dateFormatter(formatOptions: ISO8601DateFormatter.Options) -> ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter().then { formatter in
             formatter.formatOptions = formatOptions

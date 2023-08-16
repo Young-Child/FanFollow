@@ -14,7 +14,7 @@ struct StoredSession: Codable {
     let expirationDate: Date
 
     var isValid: Bool {
-      expirationDate > Date().addingTimeInterval(60)
+      return expirationDate > Date().addingTimeInterval(86400)
     }
 
     init?(session: SessionDTO?, expirationDate: Date? = nil) {

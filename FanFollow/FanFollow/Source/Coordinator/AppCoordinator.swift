@@ -18,8 +18,12 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        // TODO: - 추후 로그인 기능과 함께 사용할 수 있도록 구현
-//        presentMainView(authKey: "")
+        if let data = UserDefaults.standard.object(forKey: "session") as? Data,
+           let _ = try? JSONDecoder().decode(StoredSession.self, from: data) {
+            presentMainView()
+            return
+        }
+        
         presentLogInView()
     }
     
