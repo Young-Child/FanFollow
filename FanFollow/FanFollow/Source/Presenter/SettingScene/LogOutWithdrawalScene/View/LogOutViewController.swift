@@ -49,21 +49,28 @@ final class LogOutViewController: UIViewController {
     }
 }
 
-extension LogOutViewController {
+// ButtonDelegate
+extension LogOutViewController: LogOutViewButtonDelegate {
     @objc func cancelButtonTapped() {
         self.coordinator?.close(viewController: self)
     }
     
-    func changeTransparency() {
-        UIView.animate(withDuration: 0.1) {
-            self.transparentView.alpha = 0.7
-        }
+    func logOutButtonTapped() {
+        // TODO: - LogOut
     }
 }
 
 // Configure UI
 private extension LogOutViewController {
+    func changeTransparency() {
+        UIView.animate(withDuration: 0.1) {
+            self.transparentView.alpha = 0.7
+        }
+    }
+    
     func configureUI() {
+        alertView.logOutViewButtonDelegate = self
+        
         configureHierarchy()
         makeConstraints()
         transparentView.alpha = .zero

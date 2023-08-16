@@ -79,10 +79,10 @@ extension WithdrawalViewController {
     }
 }
 
-extension WithdrawalViewController: WithdrawalDelegate {
-    func withdrawal() {
+// ButtonDelegate
+extension WithdrawalViewController: WithdrawalSheetButtonDelegate {
+    func withdrawalButtonTapped() {
         // TODO: - withdrawal
-        print("TOUCH")
     }
 }
 

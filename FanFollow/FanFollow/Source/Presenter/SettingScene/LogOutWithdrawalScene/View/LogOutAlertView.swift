@@ -7,6 +7,13 @@
 
 import UIKit
 
+import RxSwift
+
+protocol LogOutViewButtonDelegate: AnyObject {
+    func logOutButtonTapped()
+    func cancelButtonTapped()
+}
+
 final class LogOutAlertView: UIView {
     // View Properties
     private let mainLabel = UILabel().then {
@@ -26,15 +33,35 @@ final class LogOutAlertView: UIView {
         $0.backgroundColor = .lightGray
     }
     
+    // Property
+    private let disposeBag = DisposeBag()
+    weak var logOutViewButtonDelegate: LogOutViewButtonDelegate?
+    
     // Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureUI()
+        buttinBind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Binding
+    private func buttinBind() {
+        cancelButton.rx.tap
+            .bind { _ in
+                self.logOutViewButtonDelegate?.cancelButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        logOutButton.rx.tap
+            .bind { _ in
+                self.logOutViewButtonDelegate?.logOutButtonTapped()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
