@@ -17,12 +17,12 @@ protocol CreatorApplicationLinkCellDelegate: AnyObject {
 final class CreatorApplicationLinkCell: UITableViewCell {
     private let titleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .coreDreamFont(ofSize: 18, weight: .medium)
     }
     
     private let textField = UnderLineTextField().then { textField in
         textField.textColor = Constants.Color.blue
-        textField.font = .systemFont(ofSize: 16, weight: .regular)
+        textField.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     weak var delegate: CreatorApplicationLinkCellDelegate?
@@ -47,7 +47,7 @@ final class CreatorApplicationLinkCell: UITableViewCell {
     }
     
     func configure(index: Int, link: String? = nil) {
-        titleLabel.text = "링크 \(index + 1)"
+        titleLabel.text = Constants.Text.link + " \(index + 1)"
         textField.text = link
         
         let textChangeAction = UIAction { _ in

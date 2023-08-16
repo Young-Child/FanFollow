@@ -16,29 +16,29 @@ protocol WithdrawalSheetButtonDelegate: AnyObject {
 final class WithdrawalBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
-        $0.text = Constants.title
-        $0.font = UIFont.systemFont(ofSize: 17)
-        $0.textColor = .black
+        $0.text = Constants.Text.withdrawalTitle
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
+        $0.textColor = Constants.Color.label
     }
     
     private let noticeLabel = UILabel().then {
         $0.numberOfLines = 0
-        $0.text = Constants.notice
-        $0.font = UIFont.systemFont(ofSize: 15)
-        $0.textColor = .black
+        $0.text = Constants.Text.withdrawalNotice
+        $0.font = .coreDreamFont(ofSize: 15, weight: .regular)
+        $0.textColor = Constants.Color.label
     }
     
     private let agreeCheckButton = UIButton().then {
-        $0.tintColor = UIColor(named: "AccentColor")
-        $0.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
-        $0.setImage(UIImage(systemName: "square"), for: .normal)
+        $0.tintColor = Constants.Color.blue
+        $0.setImage(Constants.Image.checkMark, for: .selected)
+        $0.setImage(Constants.Image.square, for: .normal)
     }
     
     private let agreeLabel = UILabel().then {
         $0.numberOfLines = 0
-        $0.textColor = .lightGray
-        $0.text = Constants.agree
-        $0.font = UIFont.systemFont(ofSize: 13)
+        $0.textColor = Constants.Color.gray
+        $0.text = Constants.Text.withdrawalAgree
+        $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
     }
     
     private let agreeStackView = UIStackView().then {
@@ -51,9 +51,9 @@ final class WithdrawalBottomSheetView: UIView {
     private let withdrawalButton = UIButton().then {
         $0.isEnabled = false
         $0.layer.cornerRadius = 10
-        $0.setTitle(Constants.withdrawal, for: .normal)
+        $0.setTitle(Constants.Text.withdrawal, for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .lightGray
+        $0.backgroundColor = Constants.Color.gray
     }
     
     // Property
@@ -96,13 +96,13 @@ private extension WithdrawalBottomSheetView {
     }
     
     func enableWithdrawal() {
-        agreeLabel.textColor = .label
+        agreeLabel.textColor = Constants.Color.label
         withdrawalButton.isEnabled = true
-        withdrawalButton.backgroundColor = UIColor(named: "AlertColor")
+        withdrawalButton.backgroundColor = Constants.Color.warningColor
     }
     
     func disenableWithdrawal() {
-        agreeLabel.textColor = .lightGray
+        agreeLabel.textColor = Constants.Color.gray
         withdrawalButton.isEnabled = false
         withdrawalButton.backgroundColor = .lightGray
     }
@@ -141,14 +141,5 @@ private extension WithdrawalBottomSheetView {
             $0.leading.trailing.equalTo(titleLabel)
             $0.height.equalTo(40)
         }
-    }
-}
-
-extension WithdrawalBottomSheetView {
-    enum Constants {
-        static let title = "회원탈퇴"
-        static let notice = "탈퇴 시, 회원 정보 및 모든 서비스의 이용내역이 삭제됩니다. 삭제된 데이터는 복구가 불가능합니다."
-        static let agree = "회원탈퇴에 관한 모든 내용을 숙지하였고, 회원탈퇴를 신청합니다."
-        static let withdrawal = "회원탈퇴하기"
     }
 }

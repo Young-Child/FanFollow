@@ -11,8 +11,8 @@ import Then
 
 final class SettingBaseCell: UITableViewCell {
     private let titleLabel = UILabel().then { label in
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = Constants.Color.label
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     convenience init() {

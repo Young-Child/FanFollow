@@ -15,12 +15,12 @@ final class CreatorApplicationTextFieldView: UIView {
 
     private let titleLabel = UILabel().then { label in
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .coreDreamFont(ofSize: 18, weight: .medium)
     }
 
     private let textField = UnderLineTextField().then { textField in
         textField.textColor = Constants.Color.blue
-        textField.font = .systemFont(ofSize: 14, weight: .regular)
+        textField.font = .coreDreamFont(ofSize: 14, weight: .regular)
     }
 
     var title: String? {

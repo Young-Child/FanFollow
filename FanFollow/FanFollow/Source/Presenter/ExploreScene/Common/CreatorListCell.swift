@@ -69,7 +69,7 @@ extension CreatorListCell {
     func configureCell(creator: Creator) {
         nickNameLabel.text = creator.nickName
         profileImageView.setImageProfileImage(to: creator.profileURL, for: creator.id)
-        jobLabel.text = ConstantsCreatorListCell.category + " " + (creator.jobCategory?.categoryName ?? "")
+        jobLabel.text = Constants.Text.jobCategory + " " + (creator.jobCategory?.categoryName ?? "")
         introduceLabel.text = creator.introduce
         
         applyAttributedString()
@@ -82,7 +82,7 @@ extension CreatorListCell {
         attributedString.addAttribute(
             .foregroundColor,
             value: Constants.Color.gray,
-            range: (text as NSString).range(of: ConstantsCreatorListCell.category)
+            range: (text as NSString).range(of: Constants.Text.jobCategory)
         )
         jobLabel.attributedText = attributedString
     }
@@ -113,11 +113,5 @@ private extension CreatorListCell {
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-15)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-    }
-}
-
-private extension CreatorListCell {
-    enum ConstantsCreatorListCell {
-        static let category = "직군"
     }
 }

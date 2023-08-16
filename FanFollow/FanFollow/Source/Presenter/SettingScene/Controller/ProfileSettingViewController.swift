@@ -36,18 +36,18 @@ final class ProfileSettingViewController: UIViewController {
         $0.axis = .vertical
     }
     
-    private let nickNameInput = ProfileInputField(title: "닉네임")
+    private let nickNameInput = ProfileInputField(title: Constants.Text.nickName)
     
     private let creatorInformationLabel = UILabel().then {
         $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
-        $0.text = "소개 및 상세 정보는 크리에이터만 수정할 수 있습니다."
+        $0.text = Constants.Text.creatorInformationTitle
         $0.textColor = Constants.Color.blue
     }
     
     private let pickerView = JobCategoryPickerView()
-    private let jobCategoryInput = ProfileInputField(title: "분야")
-    private let linkInput = ProfileLinkInput(title: "링크")
-    private let introduceInput = ProfileInputTextView(title: "소개")
+    private let jobCategoryInput = ProfileInputField(title: Constants.Text.jobCategory)
+    private let linkInput = ProfileLinkInput(title: Constants.Text.link)
+    private let introduceInput = ProfileInputTextView(title: Constants.Text.introduce)
     
     // Properties
     weak var coordinator: ProfileSettingCoordinator?
@@ -223,7 +223,7 @@ private extension ProfileSettingViewController {
     
     func configureCancelButton() -> UIBarButtonItem {
         let cancelAction = UIAction { _ in self.jobCategoryInput.endEditing(true) }
-        return UIBarButtonItem(title: "취소", primaryAction: cancelAction)
+        return UIBarButtonItem(title: Constants.Text.cancel, primaryAction: cancelAction)
     }
     
     func configureDoneButton(with pickerView: UIPickerView) -> UIBarButtonItem {
@@ -235,7 +235,7 @@ private extension ProfileSettingViewController {
             self.jobCategoryInput.endEditing(true)
         }
         
-        return UIBarButtonItem(title: "완료", primaryAction: doneAction)
+        return UIBarButtonItem(title: Constants.Text.complete, primaryAction: doneAction)
     }
 }
 
@@ -257,9 +257,9 @@ private extension ProfileSettingViewController {
         let image = Constants.Image.back?.withConfiguration(configuration)
         
         navigationBar.leftBarButton.setImage(image, for: .normal)
-        navigationBar.titleView.text = "프로필 편집"
+        navigationBar.titleView.text = Constants.Text.profileEdit
         navigationBar.rightBarButton.setTitleColor(Constants.Color.blue, for: .normal)
-        navigationBar.rightBarButton.setTitle("완료", for: .normal)
+        navigationBar.rightBarButton.setTitle(Constants.Text.complete, for: .normal)
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self

@@ -45,7 +45,7 @@ final class ExploreViewModel: ViewModel {
     }
 }
 
-// Convert Method & Constant
+// Convert Method
 private extension ExploreViewModel {
     func convertCreatorSectionModel(
         from observable: Observable<[(String, [Creator])]>
@@ -56,7 +56,7 @@ private extension ExploreViewModel {
             })
             .map { (job, creators) in
                 let sectionItem = creators.map { ExploreSectionItem.generateCreator(with: $0) }
-                let title = String(format: Constants.recommendCreatorTitleFormat, job)
+                let title = String(format: Constants.Text.recommendCreatorTitleFormat, job)
                 return ExploreSectionModel(title: title, items: sectionItem)
             }
         }
@@ -70,12 +70,7 @@ private extension ExploreViewModel {
                 return ExploreSectionItem.category(job: jobCategory)
             }
             
-            return [ExploreSectionModel(title: Constants.categoryTitle, items: sectionItem)]
+            return [ExploreSectionModel(title: Constants.Text.categoryTitle, items: sectionItem)]
         }
-    }
-    
-    enum Constants {
-        static let recommendCreatorTitleFormat = "추천 %@ 크리에이터"
-        static let categoryTitle = "카테고리로 보기"
     }
 }

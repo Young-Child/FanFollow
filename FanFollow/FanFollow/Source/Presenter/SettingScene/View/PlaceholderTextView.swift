@@ -9,8 +9,8 @@ import UIKit
 
 final class PlaceholderTextView: UITextView {
     private let placeholderLabel = UILabel().then { label in
-        label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = Constants.Color.gray
+        label.font = .coreDreamFont(ofSize: 14, weight: .regular)
         label.numberOfLines = 0
         label.isHidden = false
     }
@@ -27,7 +27,7 @@ final class PlaceholderTextView: UITextView {
         }
     }
 
-    var placeholderFont: UIFont = .systemFont(ofSize: 14, weight: .regular) {
+    var placeholderFont: UIFont? = .coreDreamFont(ofSize: 14, weight: .regular) {
         didSet {
             placeholderLabel.font = placeholderFont
         }

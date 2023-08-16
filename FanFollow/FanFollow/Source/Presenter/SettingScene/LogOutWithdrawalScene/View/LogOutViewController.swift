@@ -12,11 +12,11 @@ import RxSwift
 final class LogOutViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
-        $0.backgroundColor = .darkGray
+        $0.backgroundColor = Constants.Color.grayDark
     }
     
     private let alertView = LogOutAlertView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = Constants.Color.background
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
     }

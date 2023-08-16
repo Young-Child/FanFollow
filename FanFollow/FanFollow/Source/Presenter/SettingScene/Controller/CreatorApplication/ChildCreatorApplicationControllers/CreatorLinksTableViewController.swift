@@ -220,13 +220,3 @@ private extension CreatorLinksTableViewController {
         return view
     }
 }
-
-// Constants
-private extension CreatorLinksTableViewController {
-    enum ConstantsCreator {
-        static let addLinkButtonTitle = NSAttributedString(
-            string: "링크 추가하기",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-        )
-    }
-}

@@ -18,18 +18,18 @@ protocol UploadSheetButtonDelegate: AnyObject {
 final class UploadBottomSheetView: UIView {
     // View Properties
     private let titleLabel = UILabel().then {
-        $0.text = ConstantsUploadBottom.title
+        $0.text = Constants.Text.uploadTitle
         $0.font = .coreDreamFont(ofSize: 16, weight: .medium)
-        $0.textColor = .black
+        $0.textColor = Constants.Color.label
     }
     
     private let photoButton = UIButton().then {
         $0.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
-        $0.tintColor = .label
+        $0.tintColor = Constants.Color.label
         $0.layer.cornerRadius = 4
         $0.setTitle(ConstantsUploadBottom.photo, for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.backgroundColor = .systemGray6
+        $0.backgroundColor = Constants.Color.gray
         $0.setImage(Constants.Image.photo, for: .normal)
     }
     
@@ -39,7 +39,7 @@ final class UploadBottomSheetView: UIView {
         $0.layer.cornerRadius = 4
         $0.setTitle(ConstantsUploadBottom.link, for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.backgroundColor = .systemGray6
+        $0.backgroundColor = Constants.Color.gray
         $0.setImage(Constants.Image.link, for: .normal)
     }
     
@@ -126,14 +126,5 @@ private extension UploadBottomSheetView {
             $0.leading.trailing.equalTo(buttonStackView)
             $0.height.equalTo(40)
         }
-    }
-}
-
-extension UploadBottomSheetView {
-    enum ConstantsUploadBottom {
-        static let title = "게시물 업로드"
-        static let photo = "사진"
-        static let link = "링크"
-        static let cancel = "취소"
     }
 }

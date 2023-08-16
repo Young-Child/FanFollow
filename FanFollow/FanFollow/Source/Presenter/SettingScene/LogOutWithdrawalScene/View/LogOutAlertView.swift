@@ -17,19 +17,19 @@ protocol LogOutViewButtonDelegate: AnyObject {
 final class LogOutAlertView: UIView {
     // View Properties
     private let mainLabel = UILabel().then {
-        $0.text = Constants.contents
+        $0.text = Constants.Text.logOutAlertMessage
         $0.font = UIFont.systemFont(ofSize: 16)
-        $0.textColor = .black
+        $0.textColor = Constants.Color.label
     }
     
     private let logOutButton = UIButton().then {
-        $0.setTitle(Constants.logOut, for: .normal)
-        $0.backgroundColor = UIColor(named: "AccentColor")
+        $0.setTitle(Constants.Text.logOut, for: .normal)
+        $0.backgroundColor = Constants.Color.blue
         
     }
     
     private let cancelButton = UIButton().then {
-        $0.setTitle(Constants.cancel, for: .normal)
+        $0.setTitle(Constants.Text.cancel, for: .normal)
         $0.backgroundColor = .lightGray
     }
     
@@ -95,14 +95,5 @@ private extension LogOutAlertView {
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
-    }
-}
-
-// Constants
-extension LogOutAlertView {
-    enum Constants {
-        static let contents = "로그아웃하시겠습니까?"
-        static let logOut = "로그아웃"
-        static let cancel = "취소"
     }
 }

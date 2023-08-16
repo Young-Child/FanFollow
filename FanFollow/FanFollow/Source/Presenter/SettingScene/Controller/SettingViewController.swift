@@ -23,8 +23,8 @@ final class SettingViewController: UIViewController {
             forHeaderFooterViewReuseIdentifier: SettingSectionHeaderView.reuseIdentifier
         )
         
-        $0.separatorColor = .clear
-        $0.backgroundColor = .clear
+        $0.separatorColor = Constants.Color.clear
+        $0.backgroundColor = Constants.Color.clear
     }
     
     // Properties

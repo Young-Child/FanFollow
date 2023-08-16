@@ -32,7 +32,7 @@ final class ExploreSearchViewController: UIViewController {
         $0.searchTextField.backgroundColor = .systemGray5
         $0.setImage(Constants.Image.xmark, for: .clear, state: .normal)
         $0.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: ConstantsExplore.searchPlaceHolder,
+            string: Constants.Text.searchPlaceHolder,
             attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.grayDark]
         )
     }
@@ -47,7 +47,7 @@ final class ExploreSearchViewController: UIViewController {
     private let searchLabel = UILabel().then {
         $0.textColor = .label
         $0.textAlignment = .center
-        $0.text = ConstantsExplore.noSearchResult
+        $0.text = Constants.Text.noSearchResult
     }
     
     // Properties
@@ -116,7 +116,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .disposed(by: disposeBag)
         
         isFullResult
-            .map { $0 == false ? ConstantsExplore.noSearchResult : "" }
+            .map { $0 == false ? Constants.Text.noSearchResult : "" }
             .drive(self.searchLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -205,16 +205,5 @@ private extension ExploreSearchViewController {
         searchLabel.snp.makeConstraints {
             $0.centerY.centerX.equalToSuperview()
         }
-    }
-}
-
-// Constants
-private extension ExploreSearchViewController {
-    enum ConstantsExplore {
-        static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
-//        static let clearImage = "xmark"
-//        static let backImage = "chevron.backward"
-        static let noSearch = "크리에이터의 닉네임을 검색해보세요."
-        static let noSearchResult = "검색 결과가 없습니다."
     }
 }

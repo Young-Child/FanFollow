@@ -39,7 +39,7 @@ final class CategoryCell: UICollectionViewCell {
 // UI Method
 extension CategoryCell {
     func configureCell(jobCategory: JobCategory) {
-        categoryLabel.text = "#" + jobCategory.categoryName
+        categoryLabel.text = Constants.Text.hashTag + jobCategory.categoryName
     }
 }
 

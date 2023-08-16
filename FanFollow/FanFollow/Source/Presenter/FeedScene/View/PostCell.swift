@@ -133,11 +133,11 @@ extension PostCell {
     }
     
     private func addHeaderAction(to post: Post) {
-        let modifyAction = UIAction(title: "수정하기") { _ in
+        let modifyAction = UIAction(title: Constants.Text.editMessage) { _ in
             self.delegate?.postCell(self, didTapEditButton: post)
         }
         
-        let deleteAction = UIAction(title: "삭제하기", attributes: .destructive) { _ in
+        let deleteAction = UIAction(title: Constants.Text.deleteMessage, attributes: .destructive) { _ in
             self.delegate?.postCell(self, didTapDeleteButton: post)
         }
         

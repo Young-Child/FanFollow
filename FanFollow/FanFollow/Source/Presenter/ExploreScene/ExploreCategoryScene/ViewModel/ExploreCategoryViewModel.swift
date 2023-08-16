@@ -40,7 +40,7 @@ final class ExploreCategoryViewModel: ViewModel {
             }
             .map {
                 self.convertCreatorSectionModel(
-                    type: .popular(job: self.jobCategory.categoryName),
+                    type: .popular,
                     creators: $0
                 )
             }
@@ -56,7 +56,7 @@ final class ExploreCategoryViewModel: ViewModel {
             }
             .map {
                 self.convertCreatorSectionModel(
-                    type: .creator(job: self.jobCategory.categoryName),
+                    type: .creator,
                     creators: $0
                 )
             }
@@ -85,27 +85,20 @@ final class ExploreCategoryViewModel: ViewModel {
     }
 }
 
-// Convert Method & Constant
+// Convert Method & ExploreCategoryType
 private extension ExploreCategoryViewModel {
-    enum Constant {
-        case popular(job: String)
-        case creator(job: String)
-        
-        var title: String {
-            switch self {
-            case .popular(let job):
-                return "인기 \(job) 크리에이터"
-            case .creator(let job):
-                return "전체 \(job) 크리에이터"
-            }
-        }
+    enum ExploreCategoryType: String {
+        case popular = "인기"
+        case creator = "전체"
     }
     
-    func convertCreatorSectionModel(type: Constant, creators: [Creator]) -> ExploreSectionModel {
+    func convertCreatorSectionModel(type: ExploreCategoryType, creators: [Creator]) -> ExploreSectionModel {
         let items = creators.map { creator in
             return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id, profileURL: creator.profileURL)
         }
         
-        return ExploreSectionModel(title: type.title, items: items)
+        let title = type.rawValue + String(format: Constants.Text.creatorFormat, self.jobCategory.categoryName)
+        
+        return ExploreSectionModel(title: title, items: items)
     }
 }

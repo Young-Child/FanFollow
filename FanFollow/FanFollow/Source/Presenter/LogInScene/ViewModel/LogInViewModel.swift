@@ -30,7 +30,7 @@ final class LogInViewModel: ViewModel {
             .flatMap { token in
                 return self.signUseCase.logIn(with: token)
                     .map {
-                        return $0.accessToken != ""
+                        return $0.accessToken.isEmpty == false
                     }
             }
         

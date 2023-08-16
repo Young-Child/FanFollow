@@ -185,7 +185,7 @@ extension ExploreViewController {
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             let section = self.createSection(to: sectionIndex, item: commonItem)
-            section.contentInsets = Constants.defaultEdgeInset
+            section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
             section.boundarySupplementaryItems = [header]
             
             return section
@@ -216,11 +216,5 @@ private extension ExploreViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-    }
-}
-
-private extension ExploreViewController {
-    enum Constants {
-        static let defaultEdgeInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
     }
 }

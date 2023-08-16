@@ -21,14 +21,14 @@ final class ProfileThumbnailCell: UITableViewCell {
     
     private let nickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.font = .coreDreamFont(ofSize: 17, weight: .medium)
     }
     
     private let subTitleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 15)
+        label.font = .coreDreamFont(ofSize: 15, weight: .regular)
         label.textColor = Constants.Color.grayDark
-        label.text = "프로필 수정하기"
+        label.text = Constants.Text.profileEdit
     }
     
     // Initializer

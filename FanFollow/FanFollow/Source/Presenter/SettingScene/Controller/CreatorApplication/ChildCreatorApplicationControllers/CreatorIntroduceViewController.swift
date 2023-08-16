@@ -12,8 +12,8 @@ import RxSwift
 
 final class CreatorIntroduceViewController: CreatorApplicationChildController {
     private let introduceTextView = PlaceholderTextView().then { textView in
-        textView.font = .systemFont(ofSize: 14, weight: .regular)
-        textView.placeholder = Constants.introduceInputViewPlaceholder
+        textView.font = .coreDreamFont(ofSize: 14, weight: .regular)
+        textView.placeholder = Constants.Text.introduceInputViewPlaceholder
     }
     
     var writtenIntroduce: Observable<String> {
@@ -39,11 +39,5 @@ final class CreatorIntroduceViewController: CreatorApplicationChildController {
             .map { $0.isEmpty == false }
             .bind(to: nextButtonEnable)
             .disposed(by: disposeBag)
-    }
-}
-
-private extension CreatorIntroduceViewController {
-    enum Constants {
-        static let introduceInputViewPlaceholder = "소개글을 작성해주세요."
     }
 }

@@ -18,7 +18,7 @@ final class ProfileFeedViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.backgroundColor = .systemGray6
+        tableView.backgroundColor = Constants.Color.background
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
     }

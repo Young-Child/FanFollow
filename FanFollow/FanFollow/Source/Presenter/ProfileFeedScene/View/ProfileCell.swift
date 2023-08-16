@@ -45,9 +45,9 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let followButton = UIButton().then { button in
-        button.setTitle(ConstantsProfileCell.unfollowButtonText, for: .selected)
+        button.setTitle(Constants.Text.unfollowButtonTitle, for: .selected)
         button.setTitleColor(Constants.Color.grayDark, for: .selected)
-        button.setTitle(ConstantsProfileCell.followButtonText, for: .normal)
+        button.setTitle(Constants.Text.followButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.backgroundColor = Constants.Color.blue.cgColor
         button.layer.cornerRadius = 4
@@ -55,7 +55,7 @@ final class ProfileCell: UITableViewCell {
     }
 
     private let introduceLabel = UILabel().then { label in
-        label.numberOfLines = ConstantsProfileCell.unexpandedNumberOfLines
+        label.numberOfLines = 2
         label.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
@@ -96,13 +96,13 @@ extension ProfileCell {
     private func configureFollowerCountLabel(count: Int) {
         let attributedText = [
             NSAttributedString(
-                string: "팔로워 ",
+                string: Constants.Text.follower,
                 attributes: [
                     .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any
                 ]
             ),
             NSAttributedString(
-                string: "\(count)명",
+                string: "\(count)" + Constants.Text.myung,
                 attributes: [
                     .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
                     .foregroundColor: Constants.Color.blue
@@ -160,24 +160,7 @@ private extension ProfileCell {
 
     @objc
     func toggleExpended() {
-        let expandAction = { self.introduceLabel.numberOfLines = ConstantsProfileCell.expandedNumberOfLines }
+        let expandAction = { self.introduceLabel.numberOfLines = 5 }
         delegate?.profileCell(cell: self, expandLabel: expandAction)
     }
 }
-
-// Constants
-private extension ProfileCell {
-    enum ConstantsProfileCell {
-//        static let creatorImageViewBackgroundColor = UIColor(named: "SecondaryColor")?.cgColor
-//        static let followerCountLabelTextColor = UIColor(named: "AccentColor")
-//        static let followButtonTitleColor = UIColor.white
-//        static let failureProfileImage = UIImage(systemName: "person")
-        static let followButtonText = "팔로우"
-        static let unfollowButtonText = "팔로잉"
-        static let expandedNumberOfLines = 5
-        static let unexpandedNumberOfLines = 2
-        
-//        static let followingBackground = UIColor.systemGray5
-    }
-}
-

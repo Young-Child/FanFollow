@@ -25,8 +25,8 @@ final class CreatorApplicationViewController: UIViewController {
         button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .regular)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.layer.cornerRadius = 4
-        button.setTitleColor(.white, for: .normal)
-        button.setTitleColor(.label, for: .disabled)
+        button.setTitleColor(Constants.Color.background, for: .normal)
+        button.setTitleColor(Constants.Color.label, for: .disabled)
     }
     
     private let childControllers = CreatorApplicationStep.allInstance
@@ -163,7 +163,12 @@ private extension CreatorApplicationViewController {
         let backgroundColor = isEnable ? Constants.Color.blue : Constants.Color.gray
         nextButton.backgroundColor = backgroundColor
         
-        let title = isEnable ? (currentStep.value == .introduce ? "완료" : "다음") : "입력을 완료해주세요."
+        if isEnable == false {
+            nextButton.setTitle(Constants.Text.inputMessage, for: .normal)
+            return
+        }
+        
+        let title = currentStep.value == .introduce ? Constants.Text.complete : Constants.Text.next
         nextButton.setTitle(title, for: .normal)
     }
 }
@@ -210,20 +215,5 @@ private extension CreatorApplicationViewController {
         let configuration = UIImage.SymbolConfiguration(pointSize: 22)
         let image = Constants.Image.back?.withConfiguration(configuration)
         navigationBar.leftBarButton.setImage(image, for: .normal)
-    }
-}
-
-// Constants
-private extension CreatorApplicationViewController {
-    enum ConstantsCreator {
-//        static let backBarButtonItemImage = UIImage(systemName: "chevron.backward")
-        static let nextButtonTitleToGoNext = NSAttributedString(
-            string: "다음",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]
-        )
-        static let nextButtonTitleToConform = NSAttributedString(
-            string: "확인",
-            attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .foregroundColor: UIColor.white]
-        )
     }
 }

@@ -16,7 +16,7 @@ final class ProfileImagePickerViewController: ImagePickerViewController {
     
     init(viewModel: ProfileImagePickerViewModel) {
         self.profileImagePickerViewModel = viewModel
-        super.init(title: Constants.title)
+        super.init(title: Constants.Text.imageSelectTitle)
     }
     
     required init?(coder: NSCoder) {
@@ -62,11 +62,5 @@ private extension ProfileImagePickerViewController {
         self.dismiss(animated: true) {
             self.coordinator?.close(to: self)
         }
-    }
-}
-
-private extension ProfileImagePickerViewController {
-    enum Constants {
-        static let title = "프로필 이미지 선택"
     }
 }
