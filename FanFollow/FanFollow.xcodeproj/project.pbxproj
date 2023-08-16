@@ -134,6 +134,9 @@
 		3C875C192A8A262000818473 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C182A8A262000818473 /* LogOutViewController.swift */; };
 		3C875C1B2A8A294600818473 /* LogOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */; };
 		3C875C1D2A8A2DAF00818473 /* LogOutAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1C2A8A2DAF00818473 /* LogOutAlertView.swift */; };
+		3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1E2A8C844600818473 /* LogOutUseCase.swift */; };
+		3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C212A8C85CF00818473 /* LogOutViewModel.swift */; };
+		3C875C242A8CA2BD00818473 /* WithdrawalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -389,6 +392,9 @@
 		3C875C182A8A262000818473 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCoordinator.swift; sourceTree = "<group>"; };
 		3C875C1C2A8A2DAF00818473 /* LogOutAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutAlertView.swift; sourceTree = "<group>"; };
+		3C875C1E2A8C844600818473 /* LogOutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutUseCase.swift; sourceTree = "<group>"; };
+		3C875C212A8C85CF00818473 /* LogOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewModel.swift; sourceTree = "<group>"; };
+		3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalUseCase.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -875,6 +881,8 @@
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
 				EB6D42102A865762001B2EC3 /* SignUpUserUseCase.swift */,
+				3C875C1E2A8C844600818473 /* LogOutUseCase.swift */,
+				3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -1182,16 +1190,9 @@
 			isa = PBXGroup;
 			children = (
 				3C875C0D2A89E30800818473 /* View */,
-				3C875C0C2A89E30000818473 /* ViewModel */,
+				3C875C202A8C85BF00818473 /* ViewModel */,
 			);
 			path = LogOutWithdrawalScene;
-			sourceTree = "<group>";
-		};
-		3C875C0C2A89E30000818473 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3C875C0D2A89E30800818473 /* View */ = {
@@ -1203,6 +1204,14 @@
 				3C875C1C2A8A2DAF00818473 /* LogOutAlertView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3C875C202A8C85BF00818473 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C875C212A8C85CF00818473 /* LogOutViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3CA0ED082A73875A00111457 /* ExploreSubscribeScene */ = {
@@ -1687,6 +1696,7 @@
 				1829B50E2A71078300D873DF /* AppCoordinator.swift in Sources */,
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
 				EBBE26BF2A6FF04F0071234B /* CreatorInformationSectionItem.swift in Sources */,
+				3C875C242A8CA2BD00818473 /* WithdrawalUseCase.swift in Sources */,
 				187949C42A5EA38100ADA01A /* UITableView+Extension.swift in Sources */,
 				18F36E552A78D92F00D17CE3 /* LinkCacheService.swift in Sources */,
 				EB28F32E2A81E7F0001337A7 /* Provider.swift in Sources */,
@@ -1822,6 +1832,7 @@
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
+				3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
 				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
@@ -1848,6 +1859,7 @@
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */,
+				3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
