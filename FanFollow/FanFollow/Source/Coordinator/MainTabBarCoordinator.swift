@@ -72,9 +72,9 @@ private extension MainTabBarCoordinator {
         
         private var name: String {
             switch self {
-            case .feed:     return "피드"
-            case .explore:  return "탐색"
-            case .setting:  return "더보기"
+            case .feed:     return Constants.Text.feed
+            case .explore:  return Constants.Text.explore
+            case .setting:  return Constants.Text.setting
             }
         }
         

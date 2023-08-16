@@ -17,7 +17,7 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
         super.init()
         
         self.textView.text = placeHolder
-        self.textView.textColor = .systemGray4
+        self.textView.textColor = Constants.Color.gray
         
         observeInput()
     }
@@ -43,7 +43,7 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
     
     func setInitialState(to text: String) {
         self.textView.text = text
-        self.textView.textColor = .label
+        self.textView.textColor = Constants.Color.label
     }
     
     private func setTextViewPlaceholder(to text: String?) {
@@ -51,14 +51,14 @@ class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
         
         if newText == nil || newText == "" {
             textView.text = placeholder
-            textView.textColor = .systemGray4
+            textView.textColor = Constants.Color.gray
         }
     }
     
     private func setTextViewLabel(to text: String?) {
         if text == self.placeholder {
             textView.text = nil
-            textView.textColor = .label
+            textView.textColor = Constants.Color.label
         }
     }
 }

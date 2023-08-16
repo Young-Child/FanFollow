@@ -7,6 +7,4 @@
 
 enum Provider: String {
     case apple
-    case google
-    case kakao
 }

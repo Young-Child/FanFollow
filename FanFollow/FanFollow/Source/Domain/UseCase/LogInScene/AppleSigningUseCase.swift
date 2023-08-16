@@ -26,10 +26,3 @@ final class DefaultAppleSigningUseCase: AppleSigningUseCase {
             }
     }
 }
-
-// Constants
-private extension DefaultAppleSigningUseCase {
-    enum Constants {
-        static let session = "session"
-    }
-}

@@ -25,8 +25,8 @@ final class UploadImageCell: UICollectionViewCell {
     }
     
     private let pickerButton = UIButton().then {
-        $0.tintColor = .label
-        $0.backgroundColor = .systemGray5
+        $0.tintColor = Constants.Color.label
+        $0.backgroundColor = Constants.Color.gray
         $0.setImage(Constants.Image.plus, for: .normal)
     }
     
@@ -81,7 +81,7 @@ final class UploadImageCell: UICollectionViewCell {
 // Configure UI
 private extension UploadImageCell {
     func configureUI() {
-        backgroundColor = .white
+        backgroundColor = Constants.Color.background
         
         configureLayer()
         configureHierarchy()

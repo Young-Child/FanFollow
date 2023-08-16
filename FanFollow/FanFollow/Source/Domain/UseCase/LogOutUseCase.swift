@@ -21,17 +21,11 @@ final class DefaultLogOutUseCase: LogOutUseCase {
     }
     
     func logOut() -> Completable {
-        guard let sessionData = UserDefaults.standard.object(forKey: Constants.session) as? Data,
+        guard let sessionData = UserDefaults.standard.object(forKey: UserDefaults.Key.session) as? Data,
               let storedSession = try? JSONDecoder.ISODecoder.decode(StoredSession.self, from: sessionData) else {
             return Completable.error(SessionError.decoding)
         }
         
         return authRepository.signOut(with: storedSession.accessToken)
-    }
-}
-
-private extension DefaultLogOutUseCase {
-    enum Constants {
-        static let session = "session"
     }
 }

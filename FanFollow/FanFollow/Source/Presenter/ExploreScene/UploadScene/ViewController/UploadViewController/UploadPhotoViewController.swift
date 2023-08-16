@@ -116,7 +116,7 @@ extension UploadPhotoViewController {
             .map { $0?.count != .zero && $0 != nil }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != ConstantsUploadPhoto.contentPlaceholder
+            return $0.isEmpty == false && $0 != Constants.Text.contentPlaceholder
         }
         
         Observable.combineLatest(
@@ -206,17 +206,5 @@ private extension UploadPhotoViewController {
     func configureCollectionView() {
         photoCollectionView.collectionViewLayout = createLayout()
         photoCollectionView.dataSource = self
-    }
-}
-
-// Constants
-private extension UploadPhotoViewController {
-    enum ConstantsUploadPhoto {
-        static let title = "제목"
-        static let content = "내용"
-        static let titlePlaceholder = "제목을 입력해주세요."
-        static let contentPlaceholder = "내용을 입력해주세요."
-        static let navigationTitle = "게시물 작성"
-        static let register = "완료"
     }
 }

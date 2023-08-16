@@ -12,8 +12,8 @@ enum SettingTabItem: Int, TabItem {
     
     var description: String {
         switch self {
-        case .setting:      return "설정"
-        case .feedManage:   return "피드 관리"
+        case .setting:      return Constants.Text.setting
+        case .feedManage:   return Constants.Text.feedManage
         }
     }
     

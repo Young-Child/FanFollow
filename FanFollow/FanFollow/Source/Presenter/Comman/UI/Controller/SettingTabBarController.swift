@@ -17,8 +17,8 @@ protocol SettingTabBarDelegate: AnyObject {
 final class SettingTabBarController: TopTabBarController<SettingTabItem> {
     private let uploadButton = UIButton().then {
         $0.setImage(Constants.Image.plus, for: .normal)
-        $0.tintColor = .label
-        $0.backgroundColor = .clear
+        $0.tintColor = Constants.Color.label
+        $0.backgroundColor = Constants.Color.clear
     }
     
     override var selectedIndex: Int {

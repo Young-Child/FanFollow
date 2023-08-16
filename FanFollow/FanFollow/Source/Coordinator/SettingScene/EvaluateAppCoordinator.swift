@@ -17,14 +17,8 @@ final class EvaluateAppCoordinator: Coordinator {
     }
     
     func start() {
-        guard let url = URL(string: Constants.appStoreURL) else { return }
+        guard let url = URL(string: Constants.Text.appStoreURL) else { return }
         
         UIApplication.shared.open(url)
-    }
-}
-
-private extension EvaluateAppCoordinator {
-    enum Constants {
-        static let appStoreURL: String = "itms-apps://itunes.apple.com/app/6450774849"
     }
 }

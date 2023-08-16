@@ -17,7 +17,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .category:     return "분야 선택"
+        case .category:     return "직군 선택"
         case .links:        return "링크 설정"
         case .introduce:    return "소개 설정"
         default:            return ""
@@ -62,7 +62,6 @@ enum CreatorApplicationStep: Int, CaseIterable {
     }
     
     static var allInstance: [CreatorApplicationChildController] {
-        print(allCases.compactMap { $0.controller })
         return allCases.compactMap { $0.controller }
     }
 }

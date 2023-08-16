@@ -80,7 +80,7 @@ final class LinkPreview: UIView {
     
     private func configureLayout() {
         contentView.layer.cornerRadius = 4
-        contentView.backgroundColor = .systemGray5
+        contentView.backgroundColor = Constants.Color.gray
         
         [imageView, titleLabel, urlLabel, loadingView].forEach(contentView.addSubview(_:))
         addSubview(contentView)

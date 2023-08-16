@@ -18,7 +18,7 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        if let data = UserDefaults.standard.object(forKey: "session") as? Data,
+        if let data = UserDefaults.standard.object(forKey: UserDefaults.Key.session) as? Data,
            let _ = try? JSONDecoder().decode(StoredSession.self, from: data) {
             presentMainView()
             return

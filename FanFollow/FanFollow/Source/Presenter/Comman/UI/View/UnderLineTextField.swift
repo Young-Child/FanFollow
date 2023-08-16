@@ -39,7 +39,7 @@ class UnderLineTextView: UIStackView {
     init() {
         super.init(frame: .zero)
         
-        backgroundColor = .clear
+        backgroundColor = Constants.Color.clear
         axis = .vertical
         alignment = .fill
         distribution = .fill

@@ -43,8 +43,7 @@ class ImagePickerViewController: PhotoAssetGridViewController {
             self.dismiss(animated: true)
         }
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", primaryAction: dismissAction)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인")
-        navigationItem.title = title
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: Constants.Text.cancel, primaryAction: dismissAction)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Text.confirm)
     }
 }

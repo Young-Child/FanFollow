@@ -20,7 +20,7 @@ final class UploadImagePickerViewController: ImagePickerViewController {
     weak var uploadCropImageDelegate: UploadCropImageDelegate?
     
     init() {
-        super.init(title: Constants.title)
+        super.init(title: Constants.Text.imageSelectTitle)
     }
     
     required init?(coder: NSCoder) {
@@ -75,12 +75,5 @@ extension UploadImagePickerViewController: CropViewControllerDelegate {
         imageCropViewController.delegate = self
         
         present(imageCropViewController, animated: true)
-    }
-}
-
-// Constant
-private extension UploadImagePickerViewController {
-    enum Constants {
-        static let title = "게시물 이미지 선택"
     }
 }

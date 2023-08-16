@@ -13,8 +13,8 @@ enum ExploreTapItem: Int, TabItem {
     
     var description: String {
         switch self {
-        case .explore:      return "탐색"
-        case .subscribe:    return "나의 구독"
+        case .explore:      return Constants.Text.explore
+        case .subscribe:    return Constants.Text.mySubscribe
         }
     }
     

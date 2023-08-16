@@ -14,7 +14,7 @@ final class UploadBottomSheetViewController: UIViewController {
     }
     
     private let bottomSheetView = UploadBottomSheetView(frame: .zero).then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = Constants.Color.background
         $0.layer.cornerRadius = 10
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.clipsToBounds = true

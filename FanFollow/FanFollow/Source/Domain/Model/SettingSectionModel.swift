@@ -71,18 +71,17 @@ extension SettingSectionModel {
         return [
             .profile(title: "", items: [
                 .profile(nickName: user.nickName, userID: user.id, profileURL: user.profileURL, action: .profile),
-                .base(title: "크리에이터 신청", action: .creator),
-                .base(title: "알림 설정", action: .alert)
+                .base(title: Constants.Text.registerCreatorSectionTitle, action: .creator)
             ]),
-            .customerService(title: "고객 센터", items: [
-                .base(title: "버그 제보하기", action: .bugReport),
-                .base(title: "평가하기", action: .evaluation),
-                .base(title: "개인 정보 처리 방침", action: .privacy),
-                .base(title: "오픈 소스 라이센스 고지", action: .openSource)
+            .customerService(title: Constants.Text.customerServiceSectionTitle, items: [
+                .base(title: Constants.Text.bugReportMenuTitle, action: .bugReport),
+                .base(title: Constants.Text.evaluationMenuTitle, action: .evaluation),
+                .base(title: Constants.Text.privacyMenuTitle, action: .privacy),
+                .base(title: Constants.Text.openSourceMenuTitle, action: .openSource)
             ]),
-            .account(title: "계정 설정", items: [
-                .base(title: "로그아웃", action: .logOut),
-                .base(title: "탈퇴하기", action: .withdrawal)
+            .account(title: Constants.Text.accountSectionTitle, items: [
+                .base(title: Constants.Text.logOutMenuTitle, action: .logOut),
+                .base(title: Constants.Text.withdrawalMenuTitle, action: .withdrawal)
             ])
         ]
     }

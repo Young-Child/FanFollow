@@ -39,7 +39,7 @@ class ProfileLinkInput: ProfileInputTextView {
 extension ProfileLinkInput {
     private func generateLinkAttributeString(links: String) -> NSMutableAttributedString {
         let attribute: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16),
+            .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
             .backgroundColor: Constants.Color.gray,
             .foregroundColor: Constants.Color.blue
         ]

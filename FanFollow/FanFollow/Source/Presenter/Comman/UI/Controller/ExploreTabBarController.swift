@@ -16,8 +16,8 @@ protocol ExploreCreatorDelegate: AnyObject {
 final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     private let searchButton = UIButton().then {
         $0.setImage(Constants.Image.magnifyingGlass, for: .normal)
-        $0.tintColor = .label
-        $0.backgroundColor = .clear
+        $0.tintColor = Constants.Color.label
+        $0.backgroundColor = Constants.Color.clear
     }
     
     weak var coordinator: ExploreCoordinator?

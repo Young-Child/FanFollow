@@ -19,16 +19,16 @@ final class UploadLinkViewController: UploadViewController {
     }
     
     private let linkLabel = UILabel().then {
-        $0.text = Constants.link
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.text = Constants.Text.link
+        $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     private let linkPreview = UploadLinkPreview()
     
     private let linkTextView = PostUploadContentTextView(
-        placeHolder: Constants.linkPlaceholder
+        placeHolder: Constants.Text.link
     ).then {
-        $0.textView.font = .preferredFont(forTextStyle: .body)
+        $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     private let linkStackView = UIStackView().then {
@@ -118,7 +118,7 @@ extension UploadLinkViewController {
     func configureInitState(_ post: Post?) {
         if let content = post?.content {
             self.contentsTextView.textView.text = content
-            self.contentsTextView.textView.textColor = .label
+            self.contentsTextView.textView.textColor = Constants.Color.label
         }
         
         self.titleTextField.text = post?.title
@@ -143,10 +143,10 @@ extension UploadLinkViewController {
             .map { $0?.count != .zero && $0 != nil }
         
         let isLinkNotEmpty = linkTextView.textView.rx.text.orEmpty
-            .map { $0.isEmpty == false && $0 != Constants.linkPlaceholder }
+            .map { $0.isEmpty == false && $0 != Constants.Text.linkPlaceholder }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+            return $0.isEmpty == false && $0 != Constants.Text.contentPlaceholder
         }
         
         Observable.combineLatest(isTitleNotEmpty, isLinkNotEmpty, isContentNotEmpty) {
@@ -160,8 +160,8 @@ extension UploadLinkViewController {
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: {
                 var urlString = $0
-                if urlString.hasPrefix(Constants.http) == false {
-                    urlString = Constants.http + urlString
+                if urlString.hasPrefix(Constants.Text.http) == false {
+                    urlString = Constants.Text.http + urlString
                 }
                 guard let url = URL(string: urlString) else { return }
                 self.linkPreview.setLink(to: url)
@@ -174,10 +174,10 @@ extension UploadLinkViewController {
             .map { $0?.count != .zero && $0 != nil }
         
         let isLinkNotEmpty = linkTextView.textView.rx.text.orEmpty
-            .map { $0.isEmpty == false && $0 != Constants.linkPlaceholder }
+            .map { $0.isEmpty == false && $0 != Constants.Text.linkPlaceholder }
         
         let isContentNotEmpty = contentsTextView.textView.rx.text.orEmpty.map {
-            return $0.isEmpty == false && $0 != Constants.contentPlaceholder
+            return $0.isEmpty == false && $0 != Constants.Text.contentPlaceholder
         }
         
         Observable.combineLatest(isTitleNotEmpty, isLinkNotEmpty, isContentNotEmpty) {
@@ -195,21 +195,5 @@ extension UploadLinkViewController {
         configureNavigationBar()
         configureHierarchy()
         makeConstraints()
-    }
-}
-
-// Constants
-private extension UploadLinkViewController {
-    enum Constants {
-        static let title = "제목"
-        static let link = "링크"
-        static let content = "내용"
-        static let titlePlaceholder = "제목을 입력해주세요."
-        static let linkPlaceholder = "링크를 입력해주세요."
-        static let contentPlaceholder = "내용을 입력해주세요."
-        static let navigationTitle = "게시물 작성"
-        static let register = "완료"
-        
-        static let http = "https://"
     }
 }

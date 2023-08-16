@@ -143,12 +143,12 @@ private extension PhotoAssetGridViewController {
     
     func presentDeniedAlert() {
         let alertController = UIAlertController(
-            title: "사진 권한을 변경해주세요.",
-            message: "설정 > 팬팔에서 사진 접근 권한을 변경해주세요",
+            title: Constants.Text.photoAccessAlertTitle,
+            message: Constants.Text.photoAccessAlertMessage,
             preferredStyle: .alert
         )
         
-        let action = UIAlertAction(title: "확인", style: .default) { _ in
+        let action = UIAlertAction(title: Constants.Text.confirm, style: .default) { _ in
             self.dismiss(animated: true)
         }
         

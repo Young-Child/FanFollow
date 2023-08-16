@@ -29,7 +29,7 @@ struct DefaultAuthRepository: AuthRepository {
             }
             .do(onNext: { session in
                 guard let sessionData = try? JSONEncoder().encode(session) else { return }
-                userDefaultsService.set(sessionData, forKey: Constants.session)
+                userDefaultsService.set(sessionData, forKey: UserDefaults.Key.session)
             })
     }
 
@@ -45,7 +45,7 @@ struct DefaultAuthRepository: AuthRepository {
             }
             .do(onNext: { session in
                 guard let sessionData = try? JSONEncoder().encode(session) else { return }
-                userDefaultsService.set(sessionData, forKey: Constants.session)
+                userDefaultsService.set(sessionData, forKey: UserDefaults.Key.session)
             })
     }
 
@@ -55,12 +55,12 @@ struct DefaultAuthRepository: AuthRepository {
 
         return networkService.execute(request)
             .do(onCompleted: {
-                userDefaultsService.removeObject(forKey: Constants.session)
+                userDefaultsService.removeObject(forKey: UserDefaults.Key.session)
             })
     }
 
     func storedSession() -> Observable<StoredSession> {
-        guard let storedSessionData = userDefaultsService.object(forKey: Constants.session) as? Data else {
+        guard let storedSessionData = userDefaultsService.object(forKey: UserDefaults.Key.session) as? Data else {
             return .error(SessionError.notLoggedIn)
         }
         guard let storedSession = try? JSONDecoder().decode(StoredSession.self, from: storedSessionData) else {
@@ -75,13 +75,7 @@ struct DefaultAuthRepository: AuthRepository {
         
         return networkService.execute(request)
             .do(onCompleted: {
-                userDefaultsService.removeObject(forKey: Constants.session)
+                userDefaultsService.removeObject(forKey: UserDefaults.Key.session)
             })
-    }
-}
-
-private extension DefaultAuthRepository {
-    enum Constants {
-        static let session = "session"
     }
 }

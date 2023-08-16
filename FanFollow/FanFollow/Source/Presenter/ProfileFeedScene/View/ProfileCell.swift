@@ -102,7 +102,7 @@ extension ProfileCell {
                 ]
             ),
             NSAttributedString(
-                string: "\(count)" + Constants.Text.myung,
+                string: "\(count)" + Constants.Text.personUnit,
                 attributes: [
                     .font: UIFont.coreDreamFont(ofSize: 16, weight: .regular) as Any,
                     .foregroundColor: Constants.Color.blue

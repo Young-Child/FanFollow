@@ -14,23 +14,23 @@ class UploadViewController: UIViewController {
     let navigationBar = FFNavigationBar()
     
     let titleLabel = UILabel().then {
-        $0.text = ConstantsUpload.title
+        $0.text = Constants.Text.title
         $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let titleTextField = UnderLineTextField().then {
         $0.leadPadding(5)
-        $0.placeholder = ConstantsUpload.titlePlaceholder
+        $0.placeholder = Constants.Text.titlePlaceholder
         $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     let contentsLabel = UILabel().then {
-        $0.text = ConstantsUpload.content
+        $0.text = Constants.Text.content
         $0.font = .coreDreamFont(ofSize: 22, weight: .bold)
     }
     
     let contentsTextView = PostUploadContentTextView(
-        placeHolder: ConstantsUpload.contentPlaceholder
+        placeHolder: Constants.Text.contentPlaceholder
     ).then {
         $0.textView.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
@@ -102,10 +102,10 @@ class UploadViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         navigationBar.leftBarButton.setImage(Constants.Image.back, for: .normal)
-        navigationBar.titleView.text = ConstantsUpload.navigationTitle
+        navigationBar.titleView.text = Constants.Text.registerPost
         navigationBar.rightBarButton.setTitleColor(Constants.Color.blue, for: .normal)
         navigationBar.rightBarButton.setTitleColor(Constants.Color.grayDark, for: .disabled)
-        navigationBar.rightBarButton.setTitle(ConstantsUpload.register, for: .normal)
+        navigationBar.rightBarButton.setTitle(Constants.Text.complete, for: .normal)
         
         configureHierarchy()
         makeConstraints()
@@ -143,17 +143,5 @@ class UploadViewController: UIViewController {
     
     @objc func didTapKeyboardDismiss() {
         self.view.endEditing(true)
-    }
-}
-
-// Constants
-private extension UploadViewController {
-    enum ConstantsUpload {
-        static let title = "제목"
-        static let content = "내용"
-        static let titlePlaceholder = "제목을 입력해주세요."
-        static let contentPlaceholder = "내용을 입력해주세요."
-        static let navigationTitle = "게시물 작성"
-        static let register = "완료"
     }
 }

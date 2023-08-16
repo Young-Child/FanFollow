@@ -17,7 +17,7 @@ class ProfileInput: UIStackView {
     override var isUserInteractionEnabled: Bool {
         willSet {
             if newValue == false {
-                self.titleLabel.textColor = .systemGray5
+                self.titleLabel.textColor = Constants.Color.gray
             }
         }
     }
