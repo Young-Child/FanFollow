@@ -137,6 +137,7 @@
 		3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1E2A8C844600818473 /* LogOutUseCase.swift */; };
 		3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C212A8C85CF00818473 /* LogOutViewModel.swift */; };
 		3C875C242A8CA2BD00818473 /* WithdrawalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */; };
+		3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -395,6 +396,7 @@
 		3C875C1E2A8C844600818473 /* LogOutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutUseCase.swift; sourceTree = "<group>"; };
 		3C875C212A8C85CF00818473 /* LogOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewModel.swift; sourceTree = "<group>"; };
 		3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalUseCase.swift; sourceTree = "<group>"; };
+		3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewModel.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -1210,6 +1212,7 @@
 			isa = PBXGroup;
 			children = (
 				3C875C212A8C85CF00818473 /* LogOutViewModel.swift */,
+				3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1824,6 +1827,7 @@
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
+				3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */,
 				3C639B242A7A08AB003E2E44 /* UploadCoordinator.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,
 				3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */,
