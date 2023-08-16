@@ -68,6 +68,16 @@ struct DefaultAuthRepository: AuthRepository {
         }
         return storedSession.isValid ? .just(storedSession) : refreshSession(with: storedSession.refreshToken)
     }
+    
+    func deleteAuthUserID(with userID: String) -> Completable {
+        let request = AuthRequestDirector(builder: builder)
+            .requestWithdrawal(with: userID)
+        
+        return networkService.execute(request)
+            .do(onCompleted: {
+                userDefaultsService.removeObject(forKey: Constants.session)
+            })
+    }
 }
 
 private extension DefaultAuthRepository {

@@ -13,4 +13,5 @@ protocol AuthRepository: SupabaseEndPoint {
     func refreshSession(with refreshToken: String) -> Observable<StoredSession>
     func signOut(with accessToken: String) -> Completable
     func storedSession() -> Observable<StoredSession>
+    func deleteAuthUserID(with userID: String) -> Completable
 }
