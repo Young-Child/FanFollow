@@ -8,7 +8,7 @@
 import UIKit
 
 final class LogOutCoordinator: Coordinator {
-    weak var parentCoordinator: SettingCoordinator?
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
 
@@ -29,10 +29,5 @@ final class LogOutCoordinator: Coordinator {
         controller.coordinator = self
         
         navigationController.present(controller, animated: false)
-    }
-    
-    func close(viewController: UIViewController) {
-        viewController.dismiss(animated: false)
-        parentCoordinator?.removeChildCoordinator(self)
     }
 }

@@ -69,7 +69,7 @@ extension WithdrawalViewController {
         output.withdrawlResult
             .asDriver(onErrorJustReturn: ())
             .drive { _ in
-                self.coordinator?.close(viewController: self)
+                self.coordinator?.close(to: self)
             }
             .disposed(by: disposeBag)
     }
@@ -94,7 +94,7 @@ extension WithdrawalViewController {
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
         }) { _ in
-            self.coordinator?.close(viewController: self)
+            self.coordinator?.close(to: self)
         }
     }
     
