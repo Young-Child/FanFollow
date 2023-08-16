@@ -14,7 +14,7 @@ final class ExploreSearchViewController: UIViewController {
     // View Properties
     private let backButton = UIButton().then {
         $0.tintColor = Constants.Color.blue
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22)
         let image = Constants.Image.back?.withConfiguration(imageConfiguration)
         $0.setImage(image, for: .normal)
     }
@@ -87,9 +87,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
     
     private func bindBackButton() {
         backButton.rx.tap
-            .bind {
-                self.navigationController?.popViewController(animated: true)
-            }
+            .bind { self.coordinator?.close(to: self) }
             .disposed(by: disposeBag)
     }
     
