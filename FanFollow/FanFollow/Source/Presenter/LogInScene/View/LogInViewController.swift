@@ -75,8 +75,7 @@ final class LogInViewController: UIViewController {
 }
 
 // Apple LogIn
-extension LogInViewController: ASAuthorizationControllerDelegate,
-                                ASAuthorizationControllerPresentationContextProviding {
+extension LogInViewController: ASAuthorizationControllerDelegate {
     func appleIDButtonTapped() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -87,8 +86,22 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
         authorizationController.performRequests()
     }
     
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithError error: Error
+    ) {
+        guard let error = error as? ASAuthorizationError else { return }
+        
+        if error.code == .canceled { return }
+        
+        let controller = UIAlertController(
+            title: "로그인 오류",
+            message: "로그인에 실패하였습니다. 잠시후 다시 시도해주세요.",
+            preferredStyle: .alert
+        )
+        let confirmAction = UIAlertAction(title: "확인", style: .default)
+        controller.addAction(confirmAction)
+        self.present(controller, animated: true)
     }
     
     func authorizationController(
@@ -105,14 +118,23 @@ extension LogInViewController: ASAuthorizationControllerDelegate,
     }
 }
 
+// Apple Login View Method
+extension LogInViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        guard let window = self.view.window else { return UIWindow() }
+        return window
+    }
+}
+
 // Bind Method
 extension LogInViewController {
     func binding() {
         let output = bindingInput()
         
-        // TODO: - 추후 로직 추가 필요
         output.logInSuccess
-            .subscribe()
+            .asDriver(onErrorJustReturn: false)
+            .filter { $0 }
+            .drive(onNext: { _ in self.coordinator?.didSuccessLogin() })
             .disposed(by: disposeBag)
         
         buttonBinding()

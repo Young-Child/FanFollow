@@ -19,11 +19,11 @@ final class AppCoordinator: Coordinator {
     
     func start() {
         // TODO: - 추후 로그인 기능과 함께 사용할 수 있도록 구현
-        presentMainView(authKey: "")
-//        presentLogInView()
+//        presentMainView(authKey: "")
+        presentLogInView()
     }
     
-    func presentMainView(authKey: String) {
+    func presentMainView() {
         let coordinator = MainTabBarCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         
@@ -33,6 +33,7 @@ final class AppCoordinator: Coordinator {
     func presentLogInView() {
         let coordinator = LogInCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
+        coordinator.parentCoordinator = self
         
         coordinator.start()
     }

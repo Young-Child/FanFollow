@@ -31,4 +31,9 @@ final class LogInCoordinator: Coordinator {
         
         navigationController.setViewControllers([controller], animated: true)
     }
+    
+    func didSuccessLogin() {
+        guard let appCoordinator = parentCoordinator as? AppCoordinator else { return }
+        appCoordinator.presentMainView()
+    }
 }
