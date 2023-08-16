@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class LogOutViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
@@ -21,9 +23,13 @@ final class LogOutViewController: UIViewController {
     
     // Property
     weak var coordinator: LogOutCoordinator?
+    private let viewModel: LogOutViewModel
+    private let disposeBag = DisposeBag()
     
     // Initializer
-    init() {
+    init(viewModel: LogOutViewModel) {
+        self.viewModel = viewModel
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,6 +42,7 @@ final class LogOutViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        binding()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
         transparentView.addGestureRecognizer(dismissTap)
@@ -49,14 +56,41 @@ final class LogOutViewController: UIViewController {
     }
 }
 
+// Binding
+extension LogOutViewController {
+    func binding() {
+        let input = bindingInput()
+        
+        bindingOutPut(input)
+    }
+    
+    func bindingOutPut(_ output: LogOutViewModel.Output) {
+        output.logOutResult
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in
+                self.coordinator?.close(viewController: self)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> LogOutViewModel.Output {
+        let logOutButtonTapped = rx.methodInvoked(#selector(logOutButtonTapped))
+            .map { _ in }.asObservable()
+        
+        let input = LogOutViewModel.Input(logOutButtonTapped: logOutButtonTapped)
+        
+        return viewModel.transform(input: input)
+    }
+}
+
 // ButtonDelegate
 extension LogOutViewController: LogOutViewButtonDelegate {
     @objc func cancelButtonTapped() {
         self.coordinator?.close(viewController: self)
     }
     
-    func logOutButtonTapped() {
-        // TODO: - LogOut
+    @objc func logOutButtonTapped() {
+        // TODO: - Do Not Thing
     }
 }
 

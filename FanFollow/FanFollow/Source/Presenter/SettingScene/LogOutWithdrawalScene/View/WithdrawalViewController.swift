@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class WithdrawalViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
@@ -22,9 +24,13 @@ final class WithdrawalViewController: UIViewController {
     
     // Property
     weak var coordinator: WithdrawalCoordinator?
+    private let viewModel: WithdrawlViewModel
+    private let disposeBag = DisposeBag()
     
     // Initializer
-    init() {
+    init(viewModel: WithdrawlViewModel) {
+        self.viewModel = viewModel
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -37,6 +43,7 @@ final class WithdrawalViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        binding()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
         transparentView.addGestureRecognizer(dismissTap)
@@ -47,6 +54,33 @@ final class WithdrawalViewController: UIViewController {
         super.viewDidAppear(animated)
         
         showBottomSheet()
+    }
+}
+
+// Binding
+extension WithdrawalViewController {
+    func binding() {
+        let input = bindingInput()
+        
+        bindingOutPut(input)
+    }
+    
+    func bindingOutPut(_ output: WithdrawlViewModel.Output) {
+        output.withdrawlResult
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in
+                self.coordinator?.close(viewController: self)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> WithdrawlViewModel.Output {
+        let withdrawalButtonEvent = rx.methodInvoked(#selector(withdrawalButtonTapped))
+            .map { _ in }.asObservable()
+        
+        let input = WithdrawlViewModel.Input(withdrawlButtonTapped: withdrawalButtonEvent)
+        
+        return viewModel.transform(input: input)
     }
 }
 
@@ -81,8 +115,8 @@ extension WithdrawalViewController {
 
 // ButtonDelegate
 extension WithdrawalViewController: WithdrawalSheetButtonDelegate {
-    func withdrawalButtonTapped() {
-        // TODO: - withdrawal
+    @objc func withdrawalButtonTapped() {
+        // TODO: - Do Not thing
     }
 }
 

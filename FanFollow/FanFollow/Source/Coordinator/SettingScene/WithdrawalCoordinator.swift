@@ -17,7 +17,14 @@ final class WithdrawalCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = WithdrawalViewController()
+        let repository = DefaultAuthRepository(
+            networkService: DefaultNetworkService.shared,
+            userDefaultsService: UserDefaults.standard
+        )
+        let useCase = DefaultWithdrawalUseCase(authRepository: repository)
+        let viewModel = WithdrawlViewModel(withdrawlUseCase: useCase)
+        
+        let controller = WithdrawalViewController(viewModel: viewModel)
         controller.modalPresentationStyle = .overFullScreen
         controller.coordinator = self
         

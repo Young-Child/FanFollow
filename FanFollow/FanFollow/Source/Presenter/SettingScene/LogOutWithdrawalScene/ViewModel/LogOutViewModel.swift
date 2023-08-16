@@ -13,7 +13,7 @@ final class LogOutViewModel: ViewModel {
     }
     
     struct Output {
-        var logOutResult: Completable
+        var logOutResult: Observable<Void>
     }
     
     var disposeBag = DisposeBag()
@@ -28,7 +28,8 @@ final class LogOutViewModel: ViewModel {
             .flatMap { _ in
                 self.logOutUseCase.logOut()
             }
-            .asCompletable()
+            .asObservable()
+            .map { _ in }
         
         return Output(logOutResult: logOutObservable)
     }

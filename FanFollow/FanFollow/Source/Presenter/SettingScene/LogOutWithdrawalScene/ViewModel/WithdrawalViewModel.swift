@@ -13,7 +13,7 @@ final class WithdrawlViewModel: ViewModel {
     }
     
     struct Output {
-        var withdrawlResult: Completable
+        var withdrawlResult: Observable<Void>
     }
     
     var disposeBag = DisposeBag()
@@ -28,7 +28,8 @@ final class WithdrawlViewModel: ViewModel {
             .flatMap { _ in
                 self.withdrawlUseCase.withdrawal()
             }
-            .asCompletable()
+            .asObservable()
+            .map { _ in }
         
         return Output(withdrawlResult: withdrawlObservable)
     }

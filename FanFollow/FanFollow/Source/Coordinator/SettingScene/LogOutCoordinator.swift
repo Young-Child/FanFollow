@@ -17,7 +17,14 @@ final class LogOutCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = LogOutViewController()
+        let repository = DefaultAuthRepository(
+            networkService: DefaultNetworkService.shared,
+            userDefaultsService: UserDefaults.standard
+        )
+        let useCase = DefaultLogOutUseCase(authRepository: repository)
+        let viewModel = LogOutViewModel(logOutUseCase: useCase)
+        
+        let controller = LogOutViewController(viewModel: viewModel)
         controller.modalPresentationStyle = .overFullScreen
         controller.coordinator = self
         
