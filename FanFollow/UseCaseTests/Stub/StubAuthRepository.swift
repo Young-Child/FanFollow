@@ -54,6 +54,17 @@ final class StubAuthRepository: AuthRepository {
         
         return Observable.just(storedSessionData)
     }
+    
+    func deleteAuthUserID(with userID: String) -> Completable {
+        return Completable.create { observer in
+            if let error = self.error {
+                observer(.error(error))
+            } else {
+                observer(.completed)
+            }
+            return Disposables.create()
+        }
+    }
 }
 
 private extension SessionDTO {
