@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1805F1C12A8C5CC600ABE14F /* NSMutatableString + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */; };
+		1805F1CC2A8CAB4200ABE14F /* SCDream2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C32A8CAB4200ABE14F /* SCDream2.otf */; };
+		1805F1CD2A8CAB4200ABE14F /* SCDream7.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C42A8CAB4200ABE14F /* SCDream7.otf */; };
+		1805F1CE2A8CAB4200ABE14F /* SCDream8.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C52A8CAB4200ABE14F /* SCDream8.otf */; };
+		1805F1CF2A8CAB4200ABE14F /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C62A8CAB4200ABE14F /* SCDream3.otf */; };
+		1805F1D02A8CAB4200ABE14F /* SCDream5.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C72A8CAB4200ABE14F /* SCDream5.otf */; };
+		1805F1D12A8CAB4200ABE14F /* SCDream9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C82A8CAB4200ABE14F /* SCDream9.otf */; };
+		1805F1D22A8CAB4200ABE14F /* SCDream4.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1C92A8CAB4200ABE14F /* SCDream4.otf */; };
+		1805F1D32A8CAB4200ABE14F /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */; };
+		1805F1D42A8CAB4200ABE14F /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */; };
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
@@ -74,15 +83,6 @@
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
 		1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898203C2A89205C004372D3 /* NavigationBar.swift */; };
-		18AAC9BD2A877F18009FCE0E /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */; };
-		18AAC9BE2A877F1D009FCE0E /* SCDream5.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B42A877DCB009FCE0E /* SCDream5.otf */; };
-		18AAC9BF2A877F1D009FCE0E /* SCDream9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */; };
-		18AAC9C02A877F1D009FCE0E /* SCDream4.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B92A877DCC009FCE0E /* SCDream4.otf */; };
-		18AAC9C12A877F1D009FCE0E /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B52A877DCB009FCE0E /* SCDream3.otf */; };
-		18AAC9C22A877F1D009FCE0E /* SCDream2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9BA2A877DCC009FCE0E /* SCDream2.otf */; };
-		18AAC9C32A877F1D009FCE0E /* SCDream7.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B62A877DCC009FCE0E /* SCDream7.otf */; };
-		18AAC9C42A877F1D009FCE0E /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B72A877DCC009FCE0E /* SCDream6.otf */; };
-		18AAC9C52A877F1D009FCE0E /* SCDream8.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18AAC9B82A877DCC009FCE0E /* SCDream8.otf */; };
 		18AAC9C82A877FE5009FCE0E /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */; };
 		18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9C92A87C45C009FCE0E /* Constants.swift */; };
 		18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */; };
@@ -281,6 +281,15 @@
 
 /* Begin PBXFileReference section */
 		1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutatableString + Extension.swift"; sourceTree = "<group>"; };
+		1805F1C32A8CAB4200ABE14F /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream2.otf; sourceTree = "<group>"; };
+		1805F1C42A8CAB4200ABE14F /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream7.otf; sourceTree = "<group>"; };
+		1805F1C52A8CAB4200ABE14F /* SCDream8.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream8.otf; sourceTree = "<group>"; };
+		1805F1C62A8CAB4200ABE14F /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream3.otf; sourceTree = "<group>"; };
+		1805F1C72A8CAB4200ABE14F /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream5.otf; sourceTree = "<group>"; };
+		1805F1C82A8CAB4200ABE14F /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream9.otf; sourceTree = "<group>"; };
+		1805F1C92A8CAB4200ABE14F /* SCDream4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream4.otf; sourceTree = "<group>"; };
+		1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream1.otf; sourceTree = "<group>"; };
+		1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
@@ -338,15 +347,6 @@
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
 		1898203C2A89205C004372D3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		18AAC9B42A877DCB009FCE0E /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream5.otf; path = ../../../../../../../Library/Fonts/SCDream5.otf; sourceTree = "<group>"; };
-		18AAC9B52A877DCB009FCE0E /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream3.otf; path = ../../../../../../../Library/Fonts/SCDream3.otf; sourceTree = "<group>"; };
-		18AAC9B62A877DCC009FCE0E /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream7.otf; path = ../../../../../../../Library/Fonts/SCDream7.otf; sourceTree = "<group>"; };
-		18AAC9B72A877DCC009FCE0E /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream6.otf; path = ../../../../../../../Library/Fonts/SCDream6.otf; sourceTree = "<group>"; };
-		18AAC9B82A877DCC009FCE0E /* SCDream8.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream8.otf; path = ../../../../../../../Library/Fonts/SCDream8.otf; sourceTree = "<group>"; };
-		18AAC9B92A877DCC009FCE0E /* SCDream4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream4.otf; path = ../../../../../../../Library/Fonts/SCDream4.otf; sourceTree = "<group>"; };
-		18AAC9BA2A877DCC009FCE0E /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream2.otf; path = ../../../../../../../Library/Fonts/SCDream2.otf; sourceTree = "<group>"; };
-		18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream1.otf; path = ../../../../../../../Library/Fonts/SCDream1.otf; sourceTree = "<group>"; };
-		18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SCDream9.otf; path = ../../../../../../../Library/Fonts/SCDream9.otf; sourceTree = "<group>"; };
 		18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		18AAC9C92A87C45C009FCE0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -866,15 +866,15 @@
 		18AAC9B32A877DBF009FCE0E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				18AAC9BB2A877DCC009FCE0E /* SCDream1.otf */,
-				18AAC9BA2A877DCC009FCE0E /* SCDream2.otf */,
-				18AAC9B52A877DCB009FCE0E /* SCDream3.otf */,
-				18AAC9B92A877DCC009FCE0E /* SCDream4.otf */,
-				18AAC9B42A877DCB009FCE0E /* SCDream5.otf */,
-				18AAC9B72A877DCC009FCE0E /* SCDream6.otf */,
-				18AAC9B62A877DCC009FCE0E /* SCDream7.otf */,
-				18AAC9B82A877DCC009FCE0E /* SCDream8.otf */,
-				18AAC9BC2A877DCC009FCE0E /* SCDream9.otf */,
+				1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */,
+				1805F1C32A8CAB4200ABE14F /* SCDream2.otf */,
+				1805F1C62A8CAB4200ABE14F /* SCDream3.otf */,
+				1805F1C92A8CAB4200ABE14F /* SCDream4.otf */,
+				1805F1C72A8CAB4200ABE14F /* SCDream5.otf */,
+				1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */,
+				1805F1C42A8CAB4200ABE14F /* SCDream7.otf */,
+				1805F1C52A8CAB4200ABE14F /* SCDream8.otf */,
+				1805F1C82A8CAB4200ABE14F /* SCDream9.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1631,18 +1631,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18AAC9C42A877F1D009FCE0E /* SCDream6.otf in Resources */,
-				18AAC9C22A877F1D009FCE0E /* SCDream2.otf in Resources */,
-				18AAC9BD2A877F18009FCE0E /* SCDream1.otf in Resources */,
+				1805F1CC2A8CAB4200ABE14F /* SCDream2.otf in Resources */,
+				1805F1CE2A8CAB4200ABE14F /* SCDream8.otf in Resources */,
 				18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */,
+				1805F1D32A8CAB4200ABE14F /* SCDream1.otf in Resources */,
+				1805F1D02A8CAB4200ABE14F /* SCDream5.otf in Resources */,
 				3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */,
-				18AAC9C12A877F1D009FCE0E /* SCDream3.otf in Resources */,
-				18AAC9C32A877F1D009FCE0E /* SCDream7.otf in Resources */,
-				18AAC9BE2A877F1D009FCE0E /* SCDream5.otf in Resources */,
-				18AAC9BF2A877F1D009FCE0E /* SCDream9.otf in Resources */,
-				18AAC9C52A877F1D009FCE0E /* SCDream8.otf in Resources */,
+				1805F1D12A8CAB4200ABE14F /* SCDream9.otf in Resources */,
+				1805F1D42A8CAB4200ABE14F /* SCDream6.otf in Resources */,
+				1805F1CD2A8CAB4200ABE14F /* SCDream7.otf in Resources */,
+				1805F1CF2A8CAB4200ABE14F /* SCDream3.otf in Resources */,
 				188CC4102A4D7FDB00BAB85A /* LaunchScreen.storyboard in Resources */,
-				18AAC9C02A877F1D009FCE0E /* SCDream4.otf in Resources */,
+				1805F1D22A8CAB4200ABE14F /* SCDream4.otf in Resources */,
 				188CC40D2A4D7FDB00BAB85A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
