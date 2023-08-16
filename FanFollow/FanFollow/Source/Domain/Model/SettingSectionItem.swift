@@ -18,7 +18,7 @@ enum SettingSectionItem {
         case privacy
         case openSource
         case logOut
-        case registerOut
+        case withdrawal
     }
     
     case profile(nickName: String, userID: String, profileURL: String, action: PresentType)

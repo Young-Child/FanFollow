@@ -9,7 +9,7 @@ import UIKit
 
 import RxSwift
 
-protocol SheetButtonDelegate: AnyObject {
+protocol UploadSheetButtonDelegate: AnyObject {
     func photoButtonTapped()
     func linkButtonTapped()
     func cancelButtonTapped()
@@ -59,7 +59,7 @@ final class UploadBottomSheetView: UIView {
     }
     
     // Property
-    weak var buttonDelegate: SheetButtonDelegate?
+    weak var buttonDelegate: UploadSheetButtonDelegate?
     private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {

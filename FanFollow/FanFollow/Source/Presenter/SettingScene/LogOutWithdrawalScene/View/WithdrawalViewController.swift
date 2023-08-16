@@ -1,42 +1,49 @@
 //
-//  UploadBottomSheetViewController.swift
+//  WithdrawalViewController.swift
 //  FanFollow
 //
-//  Created by parkhyo on 2023/08/01.
+//  Created by parkhyo on 2023/08/14.
 //
 
 import UIKit
 
-final class UploadBottomSheetViewController: UIViewController {
+import RxSwift
+
+final class WithdrawalViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
-        $0.backgroundColor = Constants.Color.grayDark
+        $0.backgroundColor = .darkGray
     }
     
-    private let bottomSheetView = UploadBottomSheetView(frame: .zero).then {
+    private let bottomSheetView = WithdrawalBottomSheetView(frame: .zero).then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 10
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.clipsToBounds = true
     }
-        
+    
     // Property
-    weak var coordinator: UploadCoordinator?
+    weak var coordinator: WithdrawalCoordinator?
+    private let viewModel: WithdrawlViewModel
+    private let disposeBag = DisposeBag()
     
     // Initializer
-    init() {
+    init(viewModel: WithdrawlViewModel) {
+        self.viewModel = viewModel
+        
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
+        binding()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
         transparentView.addGestureRecognizer(dismissTap)
@@ -50,42 +57,49 @@ final class UploadBottomSheetViewController: UIViewController {
     }
 }
 
-// Button Delegate Method
-extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
-    func photoButtonTapped() {
-        self.coordinator?.presentPostViewController(type: .photo)
+// Binding
+extension WithdrawalViewController {
+    func binding() {
+        let input = bindingInput()
         
-        hideBottomSheet(completion: nil)
+        bindingOutPut(input)
     }
     
-    func linkButtonTapped() {
-        self.coordinator?.presentPostViewController(type: .link)
-        hideBottomSheet(completion: nil)
-    }
-    
-    @objc func cancelButtonTapped() {
-        hideBottomSheet {
-            self.coordinator?.removeChild(to: self.coordinator)
-        }
-    }
-    
-    func hideBottomSheet(completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.bottomSheetView.snp.updateConstraints {
-                $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+    func bindingOutPut(_ output: WithdrawlViewModel.Output) {
+        output.withdrawlResult
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in
+                self.coordinator?.close(viewController: self)
             }
-            
+            .disposed(by: disposeBag)
+    }
+    
+    func bindingInput() -> WithdrawlViewModel.Output {
+        let withdrawalButtonEvent = rx.methodInvoked(#selector(withdrawalButtonTapped))
+            .map { _ in }.asObservable()
+        
+        let input = WithdrawlViewModel.Input(withdrawlButtonTapped: withdrawalButtonEvent)
+        
+        return viewModel.transform(input: input)
+    }
+}
+
+extension WithdrawalViewController {
+    @objc func cancelButtonTapped() {
+        bottomSheetView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+        }
+        
+        UIView.animate(withDuration: 0.25, animations: {
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
         }) { _ in
-            self.dismiss(animated: true) {
-                completion?()
-            }
+            self.coordinator?.close(viewController: self)
         }
     }
     
     func showBottomSheet() {
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.75
+        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.7
         
         bottomSheetView.snp.remakeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
@@ -93,16 +107,23 @@ extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
         }
         
         UIView.animate(withDuration: 0.25) {
-            self.transparentView.alpha = 0.5
+            self.transparentView.alpha = 0.7
             self.view.layoutIfNeeded()
         }
     }
 }
 
+// ButtonDelegate
+extension WithdrawalViewController: WithdrawalSheetButtonDelegate {
+    @objc func withdrawalButtonTapped() {
+        // TODO: - Do Not thing
+    }
+}
+
 // Configure UI
-private extension UploadBottomSheetViewController {
+private extension WithdrawalViewController {
     func configureUI() {
-        bottomSheetView.buttonDelegate = self
+        bottomSheetView.withdrawalDelegate = self
         
         configureHierarchy()
         makeConstraints()
