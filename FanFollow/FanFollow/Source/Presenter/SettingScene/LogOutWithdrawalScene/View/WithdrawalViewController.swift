@@ -10,7 +10,7 @@ import UIKit
 final class WithdrawalViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
-        $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        $0.backgroundColor = .darkGray
     }
     
     private let bottomSheetView = WithdrawalBottomSheetView(frame: .zero).then {

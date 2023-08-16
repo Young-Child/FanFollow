@@ -10,7 +10,7 @@ import UIKit
 final class UploadBottomSheetViewController: UIViewController {
     // View Properties
     private let transparentView = UIView().then {
-        $0.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        $0.backgroundColor = .darkGray
     }
     
     private let bottomSheetView = UploadBottomSheetView(frame: .zero).then {
