@@ -194,19 +194,3 @@ private extension LogInViewController {
         static let information = "추후 더 많은 로그인 기능을 제공할 예정입니다."
     }
 }
-
-extension NSMutableAttributedString {
-    func regular(_ value: String) -> NSMutableAttributedString {
-        self.append(NSAttributedString(string: value))
-        return self
-    }
-    
-    func highlight(_ value: String, to color: UIColor?) -> NSMutableAttributedString {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: color as Any
-        ]
-        
-        self.append(NSAttributedString(string: value, attributes: attributes))
-        return self
-    }
-}

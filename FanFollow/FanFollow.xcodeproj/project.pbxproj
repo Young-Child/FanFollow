@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1805F1C12A8C5CC600ABE14F /* NSMutatableString + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */; };
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
@@ -275,6 +276,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutatableString + Extension.swift"; sourceTree = "<group>"; };
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				3CF4CE892A7B794B0079E996 /* UIButton+Extension.swift */,
 				3CF4CE8B2A7B85E70079E996 /* UITextField+Extension.swift */,
 				18AAC9CB2A87D0BE009FCE0E /* UIColor + Extension.swift */,
+				1805F1C02A8C5CC600ABE14F /* NSMutatableString + Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				3C639B262A7A3912003E2E44 /* UploadPostUseCase.swift in Sources */,
 				18EC4F472A6178C4007C1063 /* HTTPBody.swift in Sources */,
 				EB28F32A2A8110D8001337A7 /* AuthRequestDirector.swift in Sources */,
+				1805F1C12A8C5CC600ABE14F /* NSMutatableString + Extension.swift in Sources */,
 				183974742A52A32A00F0101A /* LikeRequestDirector.swift in Sources */,
 				3CF4CE902A7B98840079E996 /* UploadLinkPreview.swift in Sources */,
 				18E6703E2A53BE2C00C52942 /* DefaultChatRepository.swift in Sources */,
