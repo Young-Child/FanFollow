@@ -7,6 +7,8 @@
 import UIKit
 
 final class ProfileImagePickerCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     
     var navigationController: UINavigationController

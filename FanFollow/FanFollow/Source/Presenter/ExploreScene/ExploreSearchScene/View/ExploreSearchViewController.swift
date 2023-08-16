@@ -73,12 +73,6 @@ final class ExploreSearchViewController: UIViewController {
         configureUI()
         binding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
 }
 
 // Binding

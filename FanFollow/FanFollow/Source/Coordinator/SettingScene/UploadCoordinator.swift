@@ -8,9 +8,10 @@
 import UIKit
 
 final class UploadCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    weak var parentCoordinator: SettingCoordinator?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -61,7 +62,7 @@ final class UploadCoordinator: Coordinator {
     
     func close(viewController: UIViewController) {
         viewController.dismiss(animated: false)
-        parentCoordinator?.removeChildCoordinator(self)
+        parentCoordinator?.removeChild(to: self)
     }
 }
 

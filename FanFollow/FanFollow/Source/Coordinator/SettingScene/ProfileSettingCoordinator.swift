@@ -7,6 +7,8 @@
 import UIKit
 
 final class ProfileSettingCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     

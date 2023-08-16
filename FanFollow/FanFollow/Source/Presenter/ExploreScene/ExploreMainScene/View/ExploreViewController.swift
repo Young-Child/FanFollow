@@ -29,7 +29,7 @@ final class ExploreViewController: UIViewController {
     }
     
     // Properties
-    weak var coordinator: ExploreCoordinator?
+    weak var delegate: ExploreCreatorDelegate?
     private let viewModel: ExploreViewModel
     private let dataSource = ExploreViewController.dataSource()
     private let disposeBag = DisposeBag()
@@ -69,14 +69,9 @@ extension ExploreViewController {
         
          exploreCollectionView.rx.modelSelected(ExploreSectionItem.self)
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .bind { item in
-                switch item {
-                case .category(let job):
-                    self.coordinator?.presentCategoryViewController(for: job)
-                case .creator(_, let creatorID, _):
-                    self.coordinator?.presentProfileViewController(to: creatorID)
-                }
-            }
+            .bind(onNext: {
+                self.delegate?.exploreViewController(self, didTapPresent: $0)
+            })
             .disposed(by: disposeBag)
     }
     

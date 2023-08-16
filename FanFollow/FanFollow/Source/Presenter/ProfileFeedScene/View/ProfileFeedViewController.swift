@@ -55,10 +55,6 @@ final class ProfileFeedViewController: UIViewController {
         configureUI()
         binding()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-    }
 }
 
 // ProfileCellDelegate, PostCellDelegate
@@ -106,6 +102,7 @@ private extension ProfileFeedViewController {
     func binding() {
         let input = input()
         let output = viewModel.transform(input: input)
+        bindNavigationBar()
         bindTableView(output)
     }
 
@@ -130,6 +127,14 @@ private extension ProfileFeedViewController {
             followButtonTap: followButtonTapped.asObservable(),
             deletePost: didTapPostDeleteButton.asObservable()
         )
+    }
+    
+    func bindNavigationBar() {
+        navigationBar.leftBarButton.rx.tap
+            .bind(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
     func bindTableView(_ output: ProfileFeedViewModel.Output) {

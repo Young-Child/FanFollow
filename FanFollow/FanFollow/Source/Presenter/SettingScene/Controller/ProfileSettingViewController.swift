@@ -12,8 +12,6 @@ import RxSwift
 import SnapKit
 
 final class ProfileSettingViewController: UIViewController {
-    weak var coordinator: ProfileSettingCoordinator?
-    
     // View Properties
     private let navigationBar = FFNavigationBar()
     
@@ -51,6 +49,9 @@ final class ProfileSettingViewController: UIViewController {
     private let linkInput = ProfileLinkInput(title: "링크")
     private let introduceInput = ProfileInputTextView(title: "소개")
     
+    // Properties
+    weak var coordinator: ProfileSettingCoordinator?
+
     private var viewModel: ProfileSettingViewModel
     private var disposeBag = DisposeBag()
     
@@ -75,6 +76,7 @@ final class ProfileSettingViewController: UIViewController {
 // Binding Method
 private extension ProfileSettingViewController {
     func binding() {
+        bindingNavigationBar()
         bindingKeyboardHeight()
         let output = transformInput()
         bindingOutput(to: output)
@@ -91,6 +93,14 @@ private extension ProfileSettingViewController {
             self.scrollView.contentInset.bottom = $0
         }
         .disposed(by: disposeBag)
+    }
+    
+    func bindingNavigationBar() {
+        navigationBar.leftBarButton.rx.tap
+            .bind(onNext: {
+                self.coordinator?.close(to: self)
+            })
+            .disposed(by: disposeBag)
     }
     
     func transformInput() -> ProfileSettingViewModel.Output {

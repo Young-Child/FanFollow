@@ -7,20 +7,33 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
+    var parentCoordinator: Coordinator? { get }
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get }
     
     func start()
     
-    func close(to child: Coordinator)
+    func removeChild(to child: Coordinator?)
+    func close(to controller: UIViewController)
 }
 
 extension Coordinator {
-    func close(to child: Coordinator) {
+    func removeChild(to child: Coordinator?) {
+        guard let child = child else { return }
+        
         for (index, childCoordinator) in childCoordinators.enumerated() {
             if childCoordinator === child {
                 childCoordinators.remove(at: index)
             }
         }
+    }
+    
+    func close(to controller: UIViewController) {
+        removeChild(to: self)
+        var controllers = navigationController.viewControllers
+        controllers.removeAll(where: { $0 === controller })
+        
+        guard let lastController = controllers.last else { return }
+        navigationController.popToViewController(lastController, animated: true)
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 final class CreatorApplicationCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
+
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
 
@@ -31,5 +33,11 @@ final class CreatorApplicationCoordinator: Coordinator {
         creatorApplicationViewController.hidesBottomBarWhenPushed = true
 
         navigationController.pushViewController(creatorApplicationViewController, animated: true)
+    }
+    
+    func close(to controller: UIViewController) {
+        parentCoordinator?.removeChild(to: self)
+        
+        
     }
 }

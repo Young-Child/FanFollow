@@ -9,6 +9,10 @@ import UIKit
 
 import RxSwift
 
+protocol ExploreCreatorDelegate: AnyObject {
+    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem)
+}
+
 final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     private let searchButton = UIButton().then {
         $0.setImage(Constants.Image.magnifyingGlass, for: .normal)
@@ -34,13 +38,29 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     }
     
     private func setExplorCoordinator() {
-        viewControllers?.forEach({ viewController in
-            if let controller = viewController as? ExploreViewController {
-                controller.coordinator = self.coordinator
-            } else if let controller = viewController as? ExploreSubscribeViewController {
-                controller.coordinator = self.coordinator
+        viewControllers?.forEach { controller in
+            if let controller = controller as? ExploreViewController {
+                controller.delegate = self
             }
-        })
+        }
+//        viewControllers?.forEach({ viewController in
+//            if let controller = viewController as? ExploreViewController {
+//                controller.coordinator = self.coordinator
+//            } else if let controller = viewController as? ExploreSubscribeViewController {
+//                controller.coordinator = self.coordinator
+//            }
+//        })
+    }
+}
+
+extension ExploreTabBarController: ExploreCreatorDelegate {
+    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem) {
+        switch item {
+        case .category(let job):
+            coordinator?.presentCategoryViewController(for: job)
+        case .creator(_, let creatorID, _):
+            coordinator?.presentProfileViewController(to: creatorID)
+        }
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 
 final class FeedCoordinator: Coordinator {
-    weak var parentCoordinator: MainTabBarCoordinator?
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
 
@@ -68,10 +68,12 @@ final class FeedCoordinator: Coordinator {
             creatorID: creatorID,
             userID: userID
         )
+        
         let profileViewController = ProfileFeedViewController(
             viewModel: profileFeedViewModel,
             viewType: .profileFeed
         )
+        
         profileViewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(profileViewController, animated: true)
     }
