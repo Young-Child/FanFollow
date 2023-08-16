@@ -43,13 +43,6 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
                 controller.delegate = self
             }
         }
-//        viewControllers?.forEach({ viewController in
-//            if let controller = viewController as? ExploreViewController {
-//                controller.coordinator = self.coordinator
-//            } else if let controller = viewController as? ExploreSubscribeViewController {
-//                controller.coordinator = self.coordinator
-//            }
-//        })
     }
 }
 

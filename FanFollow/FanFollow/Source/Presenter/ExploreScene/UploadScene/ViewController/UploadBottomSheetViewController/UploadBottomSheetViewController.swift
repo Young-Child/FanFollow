@@ -53,23 +53,34 @@ final class UploadBottomSheetViewController: UIViewController {
 // Button Delegate Method
 extension UploadBottomSheetViewController: SheetButtonDelegate {
     func photoButtonTapped() {
-        coordinator?.presentPostViewController(type: .photo, viewController: self)
+        self.coordinator?.presentPostViewController(type: .photo)
+        
+        hideBottomSheet(completion: nil)
     }
     
     func linkButtonTapped() {
-        coordinator?.presentPostViewController(type: .link, viewController: self)
+        self.coordinator?.presentPostViewController(type: .link)
+        hideBottomSheet(completion: nil)
     }
     
     @objc func cancelButtonTapped() {
-        bottomSheetView.snp.updateConstraints {
-            $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+        hideBottomSheet {
+            self.coordinator?.removeChild(to: self.coordinator)
         }
-        
-        UIView.animate(withDuration: 0.25, animations: {
+    }
+    
+    func hideBottomSheet(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.bottomSheetView.snp.updateConstraints {
+                $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+            }
+            
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
         }) { _ in
-            self.coordinator?.close(viewController: self)
+            self.dismiss(animated: true) {
+                completion?()
+            }
         }
     }
     

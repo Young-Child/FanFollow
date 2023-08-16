@@ -84,15 +84,17 @@ class UploadViewController: UIViewController {
         
         output.registerResult
             .asDriver(onErrorJustReturn: ())
-            .drive { _ in self.navigationController?.popViewController(animated: true) }
+            .drive(onNext: {
+                self.coordinator?.close(to: self)
+            })
             .disposed(by: disposeBag)
     }
     
     func bindingLeftButton() {
-        guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
-        
-        leftBarButton.rx.tap
-            .bind { self.navigationController?.popViewController(animated: true) }
+        navigationBar.leftBarButton.rx.tap
+            .bind(onNext: {
+                self.coordinator?.close(to: self)
+            })
             .disposed(by: disposeBag)
     }
     

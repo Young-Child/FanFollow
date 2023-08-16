@@ -19,13 +19,9 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func removeChild(to child: Coordinator?) {
-        guard let child = child else { return }
-        
-        for (index, childCoordinator) in childCoordinators.enumerated() {
-            if childCoordinator === child {
-                childCoordinators.remove(at: index)
-            }
-        }
+        guard let child = child,
+              let parentCoordinator = parentCoordinator else { return }
+        parentCoordinator.childCoordinators.removeAll(where: { $0 === child })
     }
     
     func close(to controller: UIViewController) {
