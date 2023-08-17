@@ -152,6 +152,7 @@
 		3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C212A8C85CF00818473 /* LogOutViewModel.swift */; };
 		3C875C242A8CA2BD00818473 /* WithdrawalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */; };
 		3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */; };
+		3C875C282A8E164500818473 /* PrivacyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C272A8E164500818473 /* PrivacyCoordinator.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
 		3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */; };
@@ -426,6 +427,7 @@
 		3C875C212A8C85CF00818473 /* LogOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewModel.swift; sourceTree = "<group>"; };
 		3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalUseCase.swift; sourceTree = "<group>"; };
 		3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewModel.swift; sourceTree = "<group>"; };
+		3C875C272A8E164500818473 /* PrivacyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
 		3CAC3D7E2A52DE80000DE463 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 				EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */,
 				3C875C122A89F5D000818473 /* WithdrawalCoordinator.swift */,
 				3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */,
+				3C875C272A8E164500818473 /* PrivacyCoordinator.swift */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -1824,6 +1827,7 @@
 				183EDDE22A7272D200F1490E /* Notification + Extension.swift in Sources */,
 				3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */,
 				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
+				3C875C282A8E164500818473 /* PrivacyCoordinator.swift in Sources */,
 				3CF4CE8C2A7B85E70079E996 /* UITextField+Extension.swift in Sources */,
 				1829B5102A71079D00D873DF /* Coordinator.swift in Sources */,
 				EBD9366C2A67AA9500C03427 /* PostCell.swift in Sources */,

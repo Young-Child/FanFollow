@@ -56,7 +56,7 @@ private extension SettingCoordinator {
             let coordinator = ProfileSettingCoordinator(navigationController: navigationController)
             coordinator.parentCoordinator = self
             return coordinator
-
+            
         case .bugReport:
             let coordinator = BugReportCoordinator(navigationController: navigationController)
             coordinator.parentCoordinator = self
@@ -69,10 +69,14 @@ private extension SettingCoordinator {
         case .openSource:
             let coordinator = OpenSourceCoordinator(navigationController: navigationController)
             return coordinator
-          
+            
+        case .privacy:
+            let coordinator = PrivacyCoordinator(navigationController: navigationController)
+            return coordinator
+            
         case .creator:
             return CreatorApplicationCoordinator(navigationController: navigationController)
-
+            
         case .logOut:
             let coordinator = LogOutCoordinator(navigationController: navigationController)
             coordinator.parentCoordinator = self

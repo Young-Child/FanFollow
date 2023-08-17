@@ -102,6 +102,7 @@ enum Constants {
         static let photoAccessAlertTitle = "사진 권한을 변경해주세요."
         static let photoAccessAlertMessage = "설정 > 팬팔에서 사진 접근 권한을 변경해주세요"
         static let appStoreURL: String = "itms-apps://itunes.apple.com/app/6450774849"
+        static let privacyInformationURL: String = "https://modacorp.notion.site/3d086d62036949888b408f0a3c2ab7d9?pvs=4"
     }
     
     enum Image {
