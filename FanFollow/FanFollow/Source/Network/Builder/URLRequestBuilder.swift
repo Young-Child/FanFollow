@@ -11,7 +11,7 @@ final class URLRequestBuilder {
     var path: String = ""
     var queryItems: [String: String] = [:]
     var method: HTTPMethod = .get
-    var headers: [String: Any]?
+    var headers: [String: Any] = [:]
     var body: HTTPBody?
     
     init(baseURL: URL) {
@@ -37,8 +37,19 @@ final class URLRequestBuilder {
     }
     
     @discardableResult
-    func set(headers: [String: Any]?) -> Self {
-        self.headers = headers
+    func set(headers: [String: Any]) -> Self {
+        headers.forEach {
+            self.headers[$0.key] = $0.value
+        }
+        return self
+    }
+    
+    func setAccessKey() -> Self {
+        guard let token = UserDefaults.storedSession()?.accessToken else {
+            return self
+        }
+        
+        self.headers[SupabaseConstants.Base.authorization] = SupabaseConstants.Base.bearer + token
         return self
     }
     
@@ -85,10 +96,20 @@ final class URLRequestBuilder {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
-        headers?.forEach {
+        headers.forEach {
             urlRequest.addValue($0.value as! String, forHTTPHeaderField: $0.key)
         }
         
         return urlRequest
+    }
+}
+
+extension UserDefaults {
+    static func storedSession() -> StoredSession? {
+        guard let data = self.standard.object(forKey: Self.Key.session) as? Data else {
+            return nil
+        }
+        
+        return try? JSONDecoder().decode(StoredSession.self, from: data)
     }
 }

@@ -39,9 +39,9 @@ struct UserRequestDirector {
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
                 SupabaseConstants.Base.range: "\(startRange)-\(endRange)"
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -54,9 +54,9 @@ struct UserRequestDirector {
             ])
             .set(method: .get)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -66,11 +66,11 @@ struct UserRequestDirector {
             .set(method: .post)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.resolutionMergeDuplicates
             ])
             .set(body: userInformationDTO.convertBody())
+            .setAccessKey()
             .build()
     }
 
@@ -82,9 +82,9 @@ struct UserRequestDirector {
             ])
             .set(method: .delete)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
     
@@ -94,9 +94,9 @@ struct UserRequestDirector {
             .set(path: SupabaseConstants.Constants.randomRpcPath)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
-                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json
             ])
+            .setAccessKey()
             .set(body: [
                 SupabaseConstants.Constants.category: jobCategory.rawValue,
                 SupabaseConstants.Constants.count: count
@@ -110,9 +110,9 @@ struct UserRequestDirector {
             .set(path: SupabaseConstants.Constants.popularRpcPath)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
-                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json
             ])
+            .setAccessKey()
             .set(body: [
                 SupabaseConstants.Constants.category: jobCategory.rawValue,
                 SupabaseConstants.Constants.count: count
