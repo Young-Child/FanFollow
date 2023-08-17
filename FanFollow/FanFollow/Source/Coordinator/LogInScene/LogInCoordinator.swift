@@ -19,12 +19,19 @@ final class LogInCoordinator: Coordinator {
     }
     
     func start() {
-        let repository = DefaultAuthRepository(
+        let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
+        let authRepository = DefaultAuthRepository(
             networkService: DefaultNetworkService.shared,
             userDefaultsService: UserDefaults.standard
         )
-        let signUseCase = DefaultAppleSigningUseCase(authRepository: repository)
-        let viewModel = LogInViewModel(signUseCase: signUseCase)
+        
+        let applesignUseCase = DefaultAppleSigningUseCase(authRepository: authRepository)
+        let signUseCase = DefaultSignUpUserUseCase(
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
+        )
+        
+        let viewModel = LogInViewModel(appleSignUseCase: applesignUseCase, signUpUserUseCase: signUseCase)
         let controller = LogInViewController(viewModel: viewModel)
         
         controller.coordinator = self
