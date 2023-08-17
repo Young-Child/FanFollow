@@ -29,8 +29,8 @@ struct LikeRequestDirector {
             .set(queryItems: queryItems)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
     
@@ -40,7 +40,6 @@ struct LikeRequestDirector {
             .set(path: SupabaseConstants.Constants.path)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Constants.authKey,
                 SupabaseConstants.Base.contentType : SupabaseConstants.Base.json,
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.createPrefer
             ])
@@ -48,6 +47,7 @@ struct LikeRequestDirector {
                 SupabaseConstants.Constants.postID: postID,
                 SupabaseConstants.Constants.userID: userID
             ])
+            .setAccessKey()
             .build()
     }
     
@@ -60,9 +60,9 @@ struct LikeRequestDirector {
                 SupabaseConstants.Constants.userID: SupabaseConstants.Base.equal + userID
             ])
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
 }
@@ -70,7 +70,6 @@ struct LikeRequestDirector {
 private extension SupabaseConstants {
     enum Constants {
         static let path = Base.basePath + "LIKE"
-        static let authKey = Base.bearer + Bundle.main.apiKey
         static let createPrefer = "return=minimal"
         static let postID = "post_id"
         static let userID = "user_id"

@@ -24,9 +24,9 @@ struct FollowRequestDirector {
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
                 SupabaseConstants.Base.range: "\(startRange)-\(endRange)"
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -40,9 +40,9 @@ struct FollowRequestDirector {
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
                 SupabaseConstants.Base.range: "\(startRange)-\(endRange)"
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -61,8 +61,8 @@ struct FollowRequestDirector {
             .set(method: .get)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -72,7 +72,6 @@ struct FollowRequestDirector {
             .set(method: .post)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey,
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.returnMinimal
             ])
@@ -80,6 +79,7 @@ struct FollowRequestDirector {
                 SupabaseConstants.Constants.followingID: "\(followingID)",
                 SupabaseConstants.Constants.followerID: "\(followerID)"
             ])
+            .setAccessKey()
             .build()
     }
 
@@ -92,9 +92,9 @@ struct FollowRequestDirector {
             ])
             .set(method: .delete)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
 }

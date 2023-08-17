@@ -18,8 +18,8 @@ struct ImageRequestDirector {
             .set(path: SupabaseConstants.Constants.path + path)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
     
@@ -30,9 +30,9 @@ struct ImageRequestDirector {
             .set(headers: [
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.png,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
             .set(body: .multipart(data: image))
+            .setAccessKey()
             .build()
     }
     
@@ -42,8 +42,8 @@ struct ImageRequestDirector {
             .set(method: .delete)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
+            .setAccessKey()
             .build()
     }
     
@@ -53,9 +53,9 @@ struct ImageRequestDirector {
             .set(method: .put)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
             ])
             .set(body: .multipart(data: image))
+            .setAccessKey()
             .build()
     }
     
@@ -64,11 +64,11 @@ struct ImageRequestDirector {
             .set(path: SupabaseConstants.Constants.path + "list/" + path)
             .set(headers: [
                 "Content-Type": "application/json",
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .set(method: .post)
             .set(body: .json(values: ["prefix": keyword]))
+            .setAccessKey()
             .build()
     }
 }
