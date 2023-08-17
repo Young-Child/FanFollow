@@ -22,7 +22,7 @@ final class DefaultWithdrawalUseCase: WithdrawalUseCase {
     
     func withdrawal() -> Completable {
         guard let sessionData = UserDefaults.standard.object(forKey: UserDefaults.Key.session) as? Data,
-              let storedSession = try? JSONDecoder.ISODecoder.decode(StoredSession.self, from: sessionData)
+              let storedSession = try? JSONDecoder().decode(StoredSession.self, from: sessionData)
         else {
             return Completable.error(SessionError.decoding)
         }

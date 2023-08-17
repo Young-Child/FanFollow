@@ -27,9 +27,8 @@ final class WithdrawlViewModel: ViewModel {
         let withdrawlObservable = input.withdrawlButtonTapped
             .flatMap { _ in
                 self.withdrawlUseCase.withdrawal()
+                    .andThen(Observable<Void>.just(()))
             }
-            .asObservable()
-            .map { _ in }
         
         return Output(withdrawlResult: withdrawlObservable)
     }

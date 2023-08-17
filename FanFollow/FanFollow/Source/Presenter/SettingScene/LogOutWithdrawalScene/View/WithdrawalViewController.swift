@@ -69,16 +69,16 @@ extension WithdrawalViewController {
         output.withdrawlResult
             .asDriver(onErrorJustReturn: ())
             .drive { _ in
-                self.coordinator?.close(to: self)
+                self.coordinator?.reconnect(current: self)
             }
             .disposed(by: disposeBag)
     }
     
     func bindingInput() -> WithdrawlViewModel.Output {
-        let withdrawalButtonEvent = rx.methodInvoked(#selector(withdrawalButtonTapped))
-            .map { _ in }.asObservable()
+        let withdrawalButtonTapped = bottomSheetView.didTapWithdrawalButton
+            .asObservable()
         
-        let input = WithdrawlViewModel.Input(withdrawlButtonTapped: withdrawalButtonEvent)
+        let input = WithdrawlViewModel.Input(withdrawlButtonTapped: withdrawalButtonTapped)
         
         return viewModel.transform(input: input)
     }
@@ -113,18 +113,9 @@ extension WithdrawalViewController {
     }
 }
 
-// ButtonDelegate
-extension WithdrawalViewController: WithdrawalSheetButtonDelegate {
-    @objc func withdrawalButtonTapped() {
-        // TODO: - Do Not thing
-    }
-}
-
 // Configure UI
 private extension WithdrawalViewController {
     func configureUI() {
-        bottomSheetView.withdrawalDelegate = self
-        
         configureHierarchy()
         makeConstraints()
         transparentView.alpha = .zero

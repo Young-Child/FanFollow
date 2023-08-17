@@ -7,11 +7,8 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
-
-protocol WithdrawalSheetButtonDelegate: AnyObject {
-    func withdrawalButtonTapped()
-}
 
 final class WithdrawalBottomSheetView: UIView {
     // View Properties
@@ -57,8 +54,10 @@ final class WithdrawalBottomSheetView: UIView {
     }
     
     // Property
+    var didTapWithdrawalButton: ControlEvent<Void> {
+        return withdrawalButton.rx.controlEvent(.touchUpInside)
+    }
     private let disposeBag = DisposeBag()
-    weak var withdrawalDelegate: WithdrawalSheetButtonDelegate?
     
     // Initializer
     override init(frame: CGRect) {
@@ -84,13 +83,6 @@ private extension WithdrawalBottomSheetView {
                 } else {
                     self.disenableWithdrawal()
                 }
-            }
-            .disposed(by: disposeBag)
-        
-        withdrawalButton.rx.tap
-            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .bind {
-                self.withdrawalDelegate?.withdrawalButtonTapped()
             }
             .disposed(by: disposeBag)
     }

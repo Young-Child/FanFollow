@@ -30,4 +30,15 @@ final class WithdrawalCoordinator: Coordinator {
         
         navigationController.present(controller, animated: false)
     }
+    
+    func reconnect(current viewController: UIViewController) {
+        guard let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+            return
+        }
+        
+        viewController.dismiss(animated: false) {
+            scene.mainCoordinator?.start()
+        }
+    }
+
 }
