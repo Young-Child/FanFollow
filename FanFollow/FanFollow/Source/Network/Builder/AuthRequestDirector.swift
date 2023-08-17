@@ -52,7 +52,8 @@ struct AuthRequestDirector {
             .set(path: SupabaseConstants.Constants.logoutPath)
             .set(headers: [
                 SupabaseConstants.Constants.accept: SupabaseConstants.Base.json,
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + accessToken
             ])
             .set(method: .post)
             .build()
