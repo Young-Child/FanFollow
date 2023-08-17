@@ -27,9 +27,8 @@ final class LogOutViewModel: ViewModel {
         let logOutObservable = input.logOutButtonTapped
             .flatMap { _ in
                 self.logOutUseCase.logOut()
+                    .andThen(Observable<Void>.just(()))
             }
-            .asObservable()
-            .map { _ in }
         
         return Output(logOutResult: logOutObservable)
     }

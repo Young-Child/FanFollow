@@ -40,7 +40,7 @@ final class MainTabBarCoordinator: Coordinator {
         }
         
         navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.setViewControllers([tabBarController], animated: true)
+        navigationController.setViewControllers([tabBarController], animated: false)
     }
     
     func present(to controller: UIViewController) {

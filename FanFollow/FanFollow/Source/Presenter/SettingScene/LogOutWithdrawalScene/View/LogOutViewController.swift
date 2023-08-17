@@ -76,11 +76,9 @@ private extension LogOutViewController {
     
     func bindingOutPut(_ output: LogOutViewModel.Output) {
         output.logOutResult
-            .debug()
             .asDriver(onErrorJustReturn: ())
             .drive { _ in
-                self.coordinator?.removeChild(to: self.coordinator)
-                self.dismiss(animated: false)
+                self.coordinator?.reconnect(current: self)
             }
             .disposed(by: disposeBag)
     }

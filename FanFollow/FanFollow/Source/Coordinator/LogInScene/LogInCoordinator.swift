@@ -29,7 +29,7 @@ final class LogInCoordinator: Coordinator {
         
         controller.coordinator = self
         
-        navigationController.setViewControllers([controller], animated: true)
+        navigationController.setViewControllers([controller], animated: false)
     }
     
     func didSuccessLogin() {
