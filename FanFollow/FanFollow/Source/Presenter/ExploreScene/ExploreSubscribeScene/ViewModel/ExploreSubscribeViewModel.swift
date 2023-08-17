@@ -7,6 +7,7 @@
 
 import RxRelay
 import RxSwift
+import Foundation
 
 final class ExploreSubscribeViewModel: ViewModel {
     struct Input {
@@ -30,15 +31,16 @@ final class ExploreSubscribeViewModel: ViewModel {
     // Pagination Property
     private let pageCount = BehaviorRelay<Int>(value: .zero)
     
-    init(userID: String, fetchCreatorUseCase: FetchCreatorInformationUseCase) {
-        self.userID = userID
+    init(fetchCreatorUseCase: FetchCreatorInformationUseCase) {
         self.fetchCreatorUseCase = fetchCreatorUseCase
+        self.userID = UserDefaults.storedSession()?.userID ?? ""
     }
     
     func transform(input: Input) -> Output {
         let loadObservable = input.viewWillAppear
             .flatMapLatest {
                 return self.fetchCreatorUseCase.fetchFollowings(
+                    targetID: self.userID,
                     startRange: .zero,
                     endRange: Constants.pageUnit
                 )
@@ -47,6 +49,7 @@ final class ExploreSubscribeViewModel: ViewModel {
         let loadMoreObservable = input.viewDidScroll
             .flatMapLatest {
                 return self.fetchCreatorUseCase.fetchFollowings(
+                    targetID: self.userID,
                     startRange: self.pageCount.value + 1,
                     endRange: self.pageCount.value + Constants.pageUnit
                 )

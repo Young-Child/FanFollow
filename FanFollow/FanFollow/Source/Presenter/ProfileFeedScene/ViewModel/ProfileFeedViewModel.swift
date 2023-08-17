@@ -5,6 +5,8 @@
 //  Created by junho lee on 2023/07/27.
 //
 
+import Foundation
+
 import RxRelay
 import RxSwift
 
@@ -27,7 +29,6 @@ final class ProfileFeedViewModel: ViewModel {
     private let fetchCreatorInformationUseCase: FetchCreatorInformationUseCase
     private let changeLikeUseCase: ChangeLikeUseCase
     private let creatorID: String
-    private let userID: String
     private let pageSize = 10
 
     private let posts = BehaviorRelay<[Post]>(value: [])
@@ -40,14 +41,17 @@ final class ProfileFeedViewModel: ViewModel {
         fetchCreatorPostUseCase: FetchCreatorPostsUseCase,
         fetchCreatorInformationUseCase: FetchCreatorInformationUseCase,
         changeLikeUseCase: ChangeLikeUseCase,
-        creatorID: String,
-        userID: String
+        creatorID: String?
     ) {
         self.fetchCreatorPostUseCase = fetchCreatorPostUseCase
         self.fetchCreatorInformationUseCase = fetchCreatorInformationUseCase
         self.changeLikeUseCase = changeLikeUseCase
-        self.creatorID = creatorID
-        self.userID = userID
+        
+        if let creatorID = creatorID {
+            self.creatorID = creatorID
+        } else {
+            self.creatorID = UserDefaults.storedSession()?.userID ?? ""
+        }
     }
 
     func transform(input: Input) -> Output {
@@ -169,25 +173,25 @@ private extension ProfileFeedViewModel {
     }
 
     func fetchCreatorInformation() -> Observable<Creator> {
-        return fetchCreatorInformationUseCase.fetchCreatorInformation()
+        return fetchCreatorInformationUseCase.fetchCreatorInformation(targetID: creatorID)
             .do { creator in self.creator.accept(creator) }
     }
 
     func fetchFollowerCount() -> Observable<Int> {
-        return fetchCreatorInformationUseCase.fetchFollowerCount()
+        return fetchCreatorInformationUseCase.fetchFollowerCount(targetID: creatorID)
             .do { followerCount in self.followerCount.accept(followerCount) }
     }
 
     func checkFollow() -> Observable<Bool> {
-        return fetchCreatorInformationUseCase.checkFollow(userID: userID)
+        return fetchCreatorInformationUseCase.checkFollow(targetID: creatorID)
             .do { isFollow in self.isFollow.accept(isFollow) }
     }
 
     func toggleFollow() -> Observable<(Int, Bool)> {
-        return fetchCreatorInformationUseCase.toggleFollow(userID: userID)
+        return fetchCreatorInformationUseCase.toggleFollow(targetID: creatorID)
             .andThen(Observable.zip(
-                fetchCreatorInformationUseCase.fetchFollowerCount(),
-                fetchCreatorInformationUseCase.checkFollow(userID: userID)
+                fetchCreatorInformationUseCase.fetchFollowerCount(targetID: creatorID),
+                fetchCreatorInformationUseCase.checkFollow(targetID: creatorID)
             ))
             .do { followerCount, isFollow in
                 self.followerCount.accept(followerCount)

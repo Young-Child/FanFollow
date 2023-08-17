@@ -57,15 +57,13 @@ enum SettingTabItem: Int, TabItem {
             let likeRepository = DefaultLikeRepository(networkService)
             let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
 
-            // TODO: 로그인한 creatorID 입력
-            let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
             let profileFeedViewModel = ProfileFeedViewModel(
                 fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
                 fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
                 changeLikeUseCase: changeLikeUseCase,
-                creatorID: creatorID,
-                userID: creatorID
+                creatorID: nil
             )
+            
             let profileViewController = ProfileFeedViewController(
                 viewModel: profileFeedViewModel,
                 viewType: .feedManage

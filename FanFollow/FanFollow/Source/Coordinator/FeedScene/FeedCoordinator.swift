@@ -82,8 +82,7 @@ final class FeedCoordinator: Coordinator {
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
             fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
             changeLikeUseCase: changeLikeUseCase,
-            creatorID: creatorID,
-            userID: userID
+            creatorID: creatorID
         )
         
         let profileViewController = ProfileFeedViewController(

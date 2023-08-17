@@ -41,7 +41,7 @@ enum ExploreTapItem: Int, TabItem {
                     userDefaultsService: userDefaultsService
                 )
             )
-            let viewModel = ExploreSubscribeViewModel(userID: userID, fetchCreatorUseCase: useCase)
+            let viewModel = ExploreSubscribeViewModel(fetchCreatorUseCase: useCase)
             
             return ExploreSubscribeViewController(viewModel: viewModel)
         }

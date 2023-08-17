@@ -13,10 +13,6 @@ final class ExploreCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    // User Property
-    //TODO: - 추후 주입 어떻게 해야할지 논의 필요
-    private let userID: String
-    
     // Dependency
     private let userInformationRepository: UserInformationRepository
     private let exploreUseCase: ExploreUseCase
@@ -24,7 +20,6 @@ final class ExploreCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
         userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
         exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
@@ -76,8 +71,7 @@ final class ExploreCoordinator: Coordinator {
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
             fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
             changeLikeUseCase: changeLikeUseCase,
-            creatorID: creatorID,
-            userID: userID
+            creatorID: creatorID
         )
         
         let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
