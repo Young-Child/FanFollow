@@ -47,13 +47,12 @@ final class ProfileSettingViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let user = input.viewWillAppear
             .flatMapLatest { _ in
-                return self.fetchUserInformationUseCase.fetchCreatorInformation(for: self.userID)
+                return self.fetchUserInformationUseCase.fetchCreatorInformation()
             }
         
         let updateResult = input.didTapUpdate
             .flatMapLatest { updateInformation in
                 return self.updateUserInformationUseCase.updateUserInformation(
-                    userID: self.userID,
                     updateInformation: updateInformation
                 )
             }

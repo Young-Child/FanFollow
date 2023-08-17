@@ -29,7 +29,7 @@ final class SettingViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let userInformation = input.viewWillAppear
             .flatMapLatest {
-                return self.userInformationUseCase.fetchUserInformation(for: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2")
+                return self.userInformationUseCase.fetchUserInformation()
             }
         
         let sectionModels = userInformation.map {

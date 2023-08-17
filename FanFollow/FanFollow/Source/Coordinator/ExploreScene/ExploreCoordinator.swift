@@ -48,22 +48,29 @@ final class ExploreCoordinator: Coordinator {
     
     func presentProfileViewController(to creatorID: String) {
         let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         
         let postRepository = DefaultPostRepository(networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
         let likeRepository = DefaultLikeRepository(networkService)
         let imageRepository = DefaultImageRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         
         let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
             postRepository: postRepository,
-            imageRepository: imageRepository
+            imageRepository: imageRepository,
+            authRepository: authRepository
         )
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
-            followRepository: followRepository
+            followRepository: followRepository,
+            authRepository: authRepository
         )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
 
         let viewModel = ProfileFeedViewModel(
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,

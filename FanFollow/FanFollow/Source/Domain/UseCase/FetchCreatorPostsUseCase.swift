@@ -8,25 +8,32 @@
 import RxSwift
 
 protocol FetchCreatorPostsUseCase: AnyObject {
-    func fetchCreatorPosts(creatorID: String, startRange: Int, endRange: Int) -> Observable<[Post]>
+    func fetchCreatorPosts(startRange: Int, endRange: Int) -> Observable<[Post]>
     func deletePost(post: Post, endRange: Int) -> Observable<[Post]>
 }
 
 final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
     private let postRepository: PostRepository
     private let imageRepository: ImageRepository
+    private let authRepository: AuthRepository
 
     init(
         postRepository: PostRepository,
-        imageRepository: ImageRepository
+        imageRepository: ImageRepository,
+        authRepository: AuthRepository
     ) {
         self.postRepository = postRepository
         self.imageRepository = imageRepository
+        self.authRepository = authRepository
     }
 
-    func fetchCreatorPosts(creatorID: String, startRange: Int, endRange: Int) -> Observable<[Post]> {
-        let postDTOs = postRepository
-            .fetchMyPosts(userID: creatorID, startRange: startRange, endRange: endRange)
+    func fetchCreatorPosts(startRange: Int, endRange: Int) -> Observable<[Post]> {
+        let postDTOs = authRepository.storedSession()
+            .flatMap { storedSession in
+                let creatorID = storedSession.userID
+                return self.postRepository
+                    .fetchMyPosts(userID: creatorID, startRange: startRange, endRange: endRange)
+            }
         
         let imageLinksUpdatedPost = postDTOs.flatMap { postDTOs -> Observable<[Post]> in
             let fetchImageURLs = postDTOs.compactMap(\.postID).map {
@@ -50,7 +57,6 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
             .andThen(Observable<Void>.just(()))
             .flatMap { _ in
                 return self.fetchCreatorPosts(
-                    creatorID: post.userID,
                     startRange: .zero,
                     endRange: endRange
                 )

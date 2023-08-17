@@ -8,55 +8,81 @@
 import RxSwift
 
 protocol FetchCreatorInformationUseCase: AnyObject {
-    func fetchCreatorInformation(for creatorID: String) -> Observable<Creator>
-    func fetchFollowerCount(for creatorID: String) -> Observable<Int>
-    func fetchFollowings(for userID: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
-    func checkFollow(creatorID: String, userID: String) -> Observable<Bool>
-    func toggleFollow(creatorID: String, userID: String) -> Completable
+    func fetchCreatorInformation() -> Observable<Creator>
+    func fetchFollowerCount() -> Observable<Int>
+    func fetchFollowings(startRange: Int, endRange: Int) -> Observable<[Creator]>
+    func checkFollow(userID: String) -> Observable<Bool>
+    func toggleFollow(userID: String) -> Completable
 }
 
 final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCase {
     private let userInformationRepository: UserInformationRepository
     private let followRepository: FollowRepository
+    private let authRepository: AuthRepository
 
-    init(userInformationRepository: UserInformationRepository, followRepository: FollowRepository) {
+    init(
+        userInformationRepository: UserInformationRepository,
+        followRepository: FollowRepository,
+        authRepository: AuthRepository
+    ) {
         self.userInformationRepository = userInformationRepository
         self.followRepository = followRepository
+        self.authRepository = authRepository
     }
 
-    func fetchCreatorInformation(for creatorID: String) -> Observable<Creator> {
-        return userInformationRepository.fetchUserInformation(for: creatorID)
-            .compactMap { userInformationDTO in
-                return Creator(userInformationDTO)
+    func fetchCreatorInformation() -> Observable<Creator> {
+        authRepository.storedSession()
+            .flatMap { storedSession in
+                let creatorID = storedSession.userID
+                return self.userInformationRepository.fetchUserInformation(for: creatorID)
+                    .compactMap { userInformationDTO in
+                        return Creator(userInformationDTO)
+                    }
             }
     }
 
-    func fetchFollowerCount(for creatorID: String) -> Observable<Int> {
-        return followRepository.fetchFollowerCount(followingID: creatorID)
+    func fetchFollowerCount() -> Observable<Int> {
+        authRepository.storedSession()
+            .flatMap { storedSession in
+                let creatorID = storedSession.userID
+                return self.followRepository.fetchFollowerCount(followingID: creatorID)
+            }
     }
     
-    func fetchFollowings(for userID: String, startRange: Int, endRange: Int) -> Observable<[Creator]> {
-        return followRepository
-            .fetchFollowers(followingID: userID, startRange: startRange, endRange: endRange)
-            .map { followDTOList in
-                followDTOList.map { followDTO in
-                    return Creator(followDTO.userInformation)
-                }
+    func fetchFollowings(startRange: Int, endRange: Int) -> Observable<[Creator]> {
+        authRepository.storedSession()
+            .flatMap { storedSession in
+                let userID = storedSession.userID
+                return self.followRepository
+                    .fetchFollowers(followingID: userID, startRange: startRange, endRange: endRange)
+                    .map { followDTOList in
+                        followDTOList.map { followDTO in
+                            return Creator(followDTO.userInformation)
+                        }
+                    }
             }
     }
 
-    func checkFollow(creatorID: String, userID: String) -> Observable<Bool> {
-        return followRepository.checkFollow(followingID: creatorID, followerID: userID)
+    func checkFollow(userID: String) -> Observable<Bool> {
+        authRepository.storedSession()
+            .flatMap { storedSession in
+                let creatorID = storedSession.userID
+                return self.followRepository.checkFollow(followingID: creatorID, followerID: userID)
+            }
     }
 
-    func toggleFollow(creatorID: String, userID: String) -> Completable {
-        return checkFollow(creatorID: creatorID, userID: userID)
-            .flatMap { isFollow in
-                if isFollow {
-                    return self.followRepository.deleteFollow(followingID: creatorID, followerID: userID)
-                } else {
-                    return self.followRepository.insertFollow(followingID: creatorID, followerID: userID)
-                }
+    func toggleFollow(userID: String) -> Completable {
+        authRepository.storedSession()
+            .flatMap { storedSession in
+                let creatorID = storedSession.userID
+                return self.checkFollow(userID: userID)
+                    .flatMap { isFollow in
+                        if isFollow {
+                            return self.followRepository.deleteFollow(followingID: creatorID, followerID: userID)
+                        } else {
+                            return self.followRepository.insertFollow(followingID: creatorID, followerID: userID)
+                        }
+                    }
             }
             .asCompletable()
     }

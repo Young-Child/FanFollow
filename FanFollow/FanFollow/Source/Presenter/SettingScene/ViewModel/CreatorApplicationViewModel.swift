@@ -30,7 +30,6 @@ final class CreatorApplicationViewModel: ViewModel {
         let result = input.nextButtonTap
             .flatMapLatest {
                 return self.informationUseCase.updateUserInformation(
-                    userID: self.userID,
                     updateInformation: $0
                 )
             }

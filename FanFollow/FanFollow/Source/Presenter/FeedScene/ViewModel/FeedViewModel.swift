@@ -40,11 +40,7 @@ final class FeedViewModel: ViewModel {
         let fetchedNewPosts = Observable.merge(input.viewWillAppear, input.refresh)
             .withUnretained(self)
             .flatMapFirst { _ in
-                return self.fetchFeedUseCase.fetchFollowPosts(
-                    followerID: self.followerID,
-                    startRange: .zero,
-                    endRange: self.pageSize
-                )
+                return self.fetchFeedUseCase.fetchFollowPosts(startRange: .zero, endRange: self.pageSize)
             }
 
         let fetchedMorePosts = input.lastCellDisplayed
@@ -52,7 +48,6 @@ final class FeedViewModel: ViewModel {
                 let lastCount = self.posts.value.count
                 
                 return self.fetchFeedUseCase.fetchFollowPosts(
-                    followerID: self.followerID,
                     startRange: lastCount,
                     endRange: lastCount + self.pageSize - 1
                 )
@@ -85,7 +80,7 @@ private extension FeedViewModel {
     func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
         return changeLikeUseCase.togglePostLike(postID: postID, userID: followerID)
             .andThen(Observable.zip(
-                changeLikeUseCase.checkPostLiked(by: followerID, postID: postID),
+                changeLikeUseCase.checkPostLiked(postID: postID),
                 changeLikeUseCase.fetchPostLikeCount(postID: postID)
             ))
             .map { (isLiked, likeCount) in

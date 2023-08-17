@@ -29,10 +29,7 @@ final class ProfileImagePickerViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let updateResult = input.updateImage
             .flatMap { imageData in
-                return self.profileImageUploadUseCase.upsertProfileImage(
-                    to: self.userID,
-                    with: imageData
-                )
+                return self.profileImageUploadUseCase.upsertProfileImage(with: imageData)
             }
         
         return Output(imageUploadResult: updateResult)

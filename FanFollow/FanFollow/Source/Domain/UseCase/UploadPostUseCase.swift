@@ -10,18 +10,20 @@ import Foundation
 import RxSwift
 
 protocol UploadPostUseCase: AnyObject {
-    func upsertPost(_ upload: Upload, userID: String, existPostID: String?) -> Completable
+    func upsertPost(_ upload: Upload, existPostID: String?) -> Completable
     func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]>
 }
 
 final class DefaultUploadPostUseCase: UploadPostUseCase {
     private let postRepository: PostRepository
     private let imageRepository: ImageRepository
+    private let authRepository: AuthRepository
     private let disposeBag = DisposeBag()
     
-    init(postRepository: PostRepository, imageRepository: ImageRepository) {
+    init(postRepository: PostRepository, imageRepository: ImageRepository, authRepository: AuthRepository) {
         self.postRepository = postRepository
         self.imageRepository = imageRepository
+        self.authRepository = authRepository
     }
     
     private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<[Never]> {
@@ -41,20 +43,19 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         return results
     }
     
-    func upsertPost(_ upload: Upload, userID: String, existPostID: String? = nil) -> Completable {
+    func upsertPost(_ upload: Upload, existPostID: String? = nil) -> Completable {
         var postID = UUID().uuidString.lowercased()
         let result: Completable
         
         if let existPostID = existPostID {
             postID = existPostID
         }
-        
+
         if upload.videoURL == nil {
             result = uploadImages(postID: postID, imageDatas: upload.imageDatas)
                 .flatMap { _ in
-                    return self.postRepository.upsertPost(
+                    return self.upsertPost(
                         postID: postID,
-                        userID: userID,
                         createdDate: Date(),
                         title: upload.title,
                         content: upload.content,
@@ -64,9 +65,8 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
                 }
                 .asCompletable()
         } else {
-            result = self.postRepository.upsertPost(
+            result = self.upsertPost(
                 postID: postID,
-                userID: userID,
                 createdDate: Date(),
                 title: upload.title,
                 content: upload.content,
@@ -76,6 +76,31 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         }
         
         return result
+    }
+
+    private func upsertPost(
+        postID: String?,
+        createdDate: Date,
+        title: String,
+        content: String,
+        imageURLs: [String]?,
+        videoURL: String?
+    ) -> Completable {
+        return authRepository.storedSession()
+            .flatMap { storedSession in
+                let userID = storedSession.userID
+                return self.postRepository.upsertPost(
+                    postID: postID,
+                    userID: userID,
+                    createdDate: createdDate,
+                    title: title,
+                    content: content,
+                    imageURLs: imageURLs,
+                    videoURL: videoURL
+                )
+                .asObservable()
+            }
+            .asCompletable()
     }
     
     func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]> {

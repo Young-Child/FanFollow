@@ -8,23 +8,29 @@
 import RxSwift
 
 protocol ChangeLikeUseCase: AnyObject {
-    func checkPostLiked(by userID: String, postID: String) -> Observable<Bool>
+    func checkPostLiked(postID: String) -> Observable<Bool>
     func fetchPostLikeCount(postID: String) -> Observable<Int>
     func togglePostLike(postID: String, userID: String) -> Completable
 }
 
 final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
     private let likeRepository: LikeRepository
+    private let authRepository: AuthRepository
 
-    init(likeRepository: LikeRepository) {
+    init(likeRepository: LikeRepository, authRepository: AuthRepository) {
         self.likeRepository = likeRepository
+        self.authRepository = authRepository
     }
 
-    func checkPostLiked(by userID: String, postID: String) -> Observable<Bool> {
-        return likeRepository
-            .fetchPostLikeCount(postID: postID, userID: userID)
-            .map { count in
-                return count > 0
+    func checkPostLiked(postID: String) -> Observable<Bool> {
+        return authRepository.storedSession()
+            .flatMap { storedSession in
+                let userID = storedSession.userID
+                return self.likeRepository
+                    .fetchPostLikeCount(postID: postID, userID: userID)
+                    .map { count in
+                        return count > 0
+                    }
             }
     }
 
@@ -33,7 +39,7 @@ final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
     }
 
     func togglePostLike(postID: String, userID: String) -> Completable {
-        return checkPostLiked(by: userID, postID: postID)
+        return checkPostLiked(postID: postID)
             .flatMap { liked in
                 if liked {
                     return self.likeRepository.deletePostLike(postID: postID, userID: userID)

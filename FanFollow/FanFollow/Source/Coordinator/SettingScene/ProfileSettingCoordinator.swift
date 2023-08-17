@@ -17,12 +17,20 @@ final class ProfileSettingCoordinator: Coordinator {
     }
     
     func start() {
-        let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
+        let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
+        let userInformationRepository = DefaultUserInformationRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         let fetchUseCase = DefaultFetchUserInformationUseCase(
-            userInformationRepository: userInformationRepository
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
         )
         let updateUseCase = DefaultUpdateUserInformationUseCase(
-            userInformationRepository: userInformationRepository
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
         )
         
         let profileSettingViewModel = ProfileSettingViewModel(

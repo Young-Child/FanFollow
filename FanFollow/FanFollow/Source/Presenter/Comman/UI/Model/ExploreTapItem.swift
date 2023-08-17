@@ -20,6 +20,7 @@ enum ExploreTapItem: Int, TabItem {
     
     var viewController: UIViewController {
         let networkManager = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         // TODO: 임시 구현
         let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         
@@ -34,7 +35,11 @@ enum ExploreTapItem: Int, TabItem {
         case .subscribe:
             let useCase = DefaultFetchCreatorInformationUseCase(
                 userInformationRepository: DefaultUserInformationRepository(networkManager),
-                followRepository: DefaultFollowRepository(networkManager)
+                followRepository: DefaultFollowRepository(networkManager),
+                authRepository: DefaultAuthRepository(
+                    networkService: networkManager,
+                    userDefaultsService: userDefaultsService
+                )
             )
             let viewModel = ExploreSubscribeViewModel(userID: userID, fetchCreatorUseCase: useCase)
             

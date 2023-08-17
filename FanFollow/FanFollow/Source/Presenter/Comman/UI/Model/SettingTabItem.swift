@@ -19,32 +19,43 @@ enum SettingTabItem: Int, TabItem {
     
     var viewController: UIViewController {
         let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         
         switch self {
         case .setting:
             let useCase = DefaultFetchUserInformationUseCase(
-                userInformationRepository: DefaultUserInformationRepository(networkService)
+                userInformationRepository: DefaultUserInformationRepository(networkService),
+                authRepository: DefaultAuthRepository(
+                    networkService: networkService,
+                    userDefaultsService: userDefaultsService
+                )
             )
             let viewModel = SettingViewModel(userInformationUseCase: useCase)
             return SettingViewController(viewModel: viewModel)
         case .feedManage:
             let postRepository = DefaultPostRepository(networkService)
             let imageRepository = DefaultImageRepository(networkService)
+            let authRepository = DefaultAuthRepository(
+                networkService: networkService,
+                userDefaultsService: userDefaultsService
+            )
             
             let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
                 postRepository: postRepository,
-                imageRepository: imageRepository
+                imageRepository: imageRepository,
+                authRepository: authRepository
             )
 
             let userInformationRepository = DefaultUserInformationRepository(networkService)
             let followRepository = DefaultFollowRepository(networkService)
             let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
                 userInformationRepository: userInformationRepository,
-                followRepository: followRepository
+                followRepository: followRepository,
+                authRepository: authRepository
             )
 
             let likeRepository = DefaultLikeRepository(networkService)
-            let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+            let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
 
             // TODO: 로그인한 creatorID 입력
             let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"

@@ -21,13 +21,12 @@ final class DefaultWithdrawalUseCase: WithdrawalUseCase {
     }
     
     func withdrawal() -> Completable {
-        guard let sessionData = UserDefaults.standard.object(forKey: UserDefaults.Key.session) as? Data,
-              let storedSession = try? JSONDecoder().decode(StoredSession.self, from: sessionData)
-        else {
-            return Completable.error(SessionError.decoding)
-        }
-        
-        return authRepository.signOut(with: storedSession.accessToken)
-            .andThen(authRepository.deleteAuthUserID(with: storedSession.userID))
+        return authRepository.storedSession()
+            .flatMap { storedSession in
+                return self.authRepository.signOut(with: storedSession.accessToken)
+                    .andThen(self.authRepository.deleteAuthUserID(with: storedSession.userID))
+                    .asObservable()
+            }
+            .asCompletable()
     }
 }

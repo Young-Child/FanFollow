@@ -30,11 +30,16 @@ final class UploadCoordinator: Coordinator {
         post: Post? = nil
     ) {
         let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         
         let repository = DefaultPostRepository(networkService)
         let imageRepository = DefaultImageRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         
-        let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository)
+        let useCase = DefaultUploadPostUseCase(postRepository: repository, imageRepository: imageRepository, authRepository: authRepository)
         let viewModel = UploadViewModel(uploadUseCase: useCase, post: post)
         
         let controller = generateInstance(with: viewModel, uploadType: type)

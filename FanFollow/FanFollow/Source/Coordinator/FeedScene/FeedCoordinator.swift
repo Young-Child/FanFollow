@@ -25,11 +25,21 @@ final class FeedCoordinator: Coordinator {
 
     func presentFeedViewController(userID: String) {
         let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         let postRepository = DefaultPostRepository(networkService)
+        let imageRepository = DefaultImageRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         let likeRepository = DefaultLikeRepository(networkService)
         
-        let fetchFeedUseCase = DefaultFetchFeedUseCase(postRepository: postRepository)
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+        let fetchFeedUseCase = DefaultFetchFeedUseCase(
+            postRepository: postRepository,
+            imageRepository: imageRepository,
+            authRepository: authRepository
+        )
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
 
         let feedViewModel = FeedViewModel(
             fetchFeedUseCase: fetchFeedUseCase,
@@ -44,22 +54,29 @@ final class FeedCoordinator: Coordinator {
 
     func presentProfileViewController(creatorID: String, userID: String) {
         let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
         
         let postRepository = DefaultPostRepository(networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
         let followRepository = DefaultFollowRepository(networkService)
         let likeRepository = DefaultLikeRepository(networkService)
         let imageRepository = DefaultImageRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         
         let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
             postRepository: postRepository,
-            imageRepository: imageRepository
+            imageRepository: imageRepository,
+            authRepository: authRepository
         )
         let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
-            followRepository: followRepository
+            followRepository: followRepository,
+            authRepository: authRepository
         )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
 
         let profileFeedViewModel = ProfileFeedViewModel(
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
