@@ -68,7 +68,7 @@ private extension TabBar {
     }
     
     func setUpDetail() {
-        spacing = 16
+        spacing = Constants.Spacing.medium
         distribution = .fill
         axis = .horizontal
     }

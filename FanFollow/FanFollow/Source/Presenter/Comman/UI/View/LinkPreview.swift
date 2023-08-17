@@ -58,10 +58,11 @@ final class LinkPreview: UIView {
     }
     
     private func configureRoundingImageView(with image: UIImage) {
+        let width = Constants.Spacing.small
         let path = UIBezierPath(
             roundedRect: self.imageView.bounds,
             byRoundingCorners: [.topRight, .bottomRight],
-            cornerRadii: CGSize(width: 4, height: 4)
+            cornerRadii: CGSize(width: width, height: width)
         )
         
         let mask = CAShapeLayer().then { $0.path = path.cgPath }
@@ -92,13 +93,13 @@ final class LinkPreview: UIView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.top.equalToSuperview().offset(8)
-            $0.trailing.equalTo(imageView.snp.leading).offset(-16)
+            $0.leading.equalToSuperview().offset(Constants.Spacing.medium)
+            $0.top.equalToSuperview().offset(Constants.Spacing.small)
+            $0.trailing.equalTo(imageView.snp.leading).offset(-Constants.Spacing.medium)
         }
         
         urlLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.Spacing.small)
             $0.leading.trailing.equalTo(titleLabel)
         }
         
@@ -107,8 +108,8 @@ final class LinkPreview: UIView {
         }
         
         contentView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(8)
-            $0.trailing.equalToSuperview().offset(-8)
+            $0.leading.equalToSuperview().offset(Constants.Spacing.small)
+            $0.trailing.equalToSuperview().offset(-Constants.Spacing.small)
             $0.top.bottom.equalToSuperview()
         }
     }

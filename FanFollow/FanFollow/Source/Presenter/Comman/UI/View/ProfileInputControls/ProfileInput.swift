@@ -46,7 +46,7 @@ private extension ProfileInput {
     func configureAttributes() {
         axis = .vertical
         distribution = .fillProportionally
-        spacing = 8
+        spacing = Constants.Spacing.small
         
         titleLabel.addCharacterSpacing()
     }

@@ -81,7 +81,7 @@ class HorizontalImageSlideView: UIView {
     
     func layoutPageControl() {
         if let pageControl = pageControl {
-            let topPadding = CGFloat(8)
+            let topPadding = Constants.Spacing.small
             pageControl.sizeToFit()
             pageControl.frame = CGRect(
                 x: frame.size.width / 2 - pageControl.frame.size.width / 2,
@@ -94,7 +94,7 @@ class HorizontalImageSlideView: UIView {
     
     func layoutScrollView() {
         let pageControlSize = pageControl?.frame.size
-        let topPadding = CGFloat(8)
+        let topPadding = Constants.Spacing.small
         let bottomHeight = (pageControlSize?.height ?? .zero) + topPadding
         scrollView.frame = CGRect(
             x: .zero,

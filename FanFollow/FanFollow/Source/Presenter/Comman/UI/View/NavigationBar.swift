@@ -48,7 +48,7 @@ private extension FFNavigationBar {
     
     func makeConstraints() {
         leftBarButton.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview().inset(8)
+            $0.leading.top.bottom.equalToSuperview().inset(Constants.Spacing.small)
         }
         
         titleView.snp.makeConstraints {
@@ -56,7 +56,7 @@ private extension FFNavigationBar {
         }
         
         rightBarButton.snp.makeConstraints {
-            $0.trailing.top.bottom.equalToSuperview().inset(8)
+            $0.trailing.top.bottom.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 }

@@ -81,8 +81,8 @@ private extension ExploreTabBarController {
     
     func makeConstraints() {
         searchButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Constants.Spacing.small)
+            $0.trailing.equalToSuperview().offset(-Constants.Spacing.medium)
         }
     }
 }

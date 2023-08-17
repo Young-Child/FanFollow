@@ -48,7 +48,8 @@ class TopTabBarController<T: TabItem>: UITabBarController {
         view.addSubview(customTabBar)
         
         customTabBar.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(10)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
+                .offset(Constants.Spacing.small)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
     }
