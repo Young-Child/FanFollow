@@ -25,6 +25,7 @@ final class LogOutViewController: UIViewController {
     weak var coordinator: LogOutCoordinator?
     private let viewModel: LogOutViewModel
     private let disposeBag = DisposeBag()
+    private let dismissTap = UITapGestureRecognizer()
     
     // Initializer
     init(viewModel: LogOutViewModel) {
@@ -43,10 +44,6 @@ final class LogOutViewController: UIViewController {
 
         configureUI()
         binding()
-        
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
-        transparentView.addGestureRecognizer(dismissTap)
-        transparentView.isUserInteractionEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,41 +54,44 @@ final class LogOutViewController: UIViewController {
 }
 
 // Binding
-extension LogOutViewController {
+private extension LogOutViewController {
     func binding() {
         let input = bindingInput()
         
+        bindingView()
         bindingOutPut(input)
+    }
+    
+    func bindingView() {
+        Observable.merge([
+            dismissTap.rx.event.asObservable().map { _ in },
+            alertView.didTapCancelButton.asObservable().map { _ in }
+        ])
+        .bind { _ in
+            self.coordinator?.removeChild(to: self.coordinator)
+            self.dismiss(animated: false)
+        }
+        .disposed(by: disposeBag)
     }
     
     func bindingOutPut(_ output: LogOutViewModel.Output) {
         output.logOutResult
+            .debug()
             .asDriver(onErrorJustReturn: ())
             .drive { _ in
-                self.coordinator?.close(to: self)
+                self.coordinator?.removeChild(to: self.coordinator)
+                self.dismiss(animated: false)
             }
             .disposed(by: disposeBag)
     }
     
     func bindingInput() -> LogOutViewModel.Output {
-        let logOutButtonTapped = rx.methodInvoked(#selector(logOutButtonTapped))
+        let logOutButtonTapped = alertView.didTapLogOutButton
             .map { _ in }.asObservable()
-        
+                
         let input = LogOutViewModel.Input(logOutButtonTapped: logOutButtonTapped)
         
         return viewModel.transform(input: input)
-    }
-}
-
-// ButtonDelegate
-extension LogOutViewController: LogOutViewButtonDelegate {
-    @objc func cancelButtonTapped() {
-        self.coordinator?.removeChild(to: self.coordinator)
-        self.dismiss(animated: false)
-    }
-    
-    @objc func logOutButtonTapped() {
-        // TODO: - Do Not Thing
     }
 }
 
@@ -104,11 +104,12 @@ private extension LogOutViewController {
     }
     
     func configureUI() {
-        alertView.logOutViewButtonDelegate = self
-        
         configureHierarchy()
         makeConstraints()
         transparentView.alpha = .zero
+        
+        transparentView.addGestureRecognizer(dismissTap)
+        transparentView.isUserInteractionEnabled = true
     }
 
     func configureHierarchy() {
