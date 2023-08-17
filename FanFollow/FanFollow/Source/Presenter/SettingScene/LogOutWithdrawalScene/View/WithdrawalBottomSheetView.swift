@@ -24,7 +24,7 @@ final class WithdrawalBottomSheetView: UIView {
     private let noticeLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.text = Constants.Text.withdrawalNotice
-        $0.font = .coreDreamFont(ofSize: 15, weight: .regular)
+        $0.font = .coreDreamFont(ofSize: 16, weight: .regular)
         $0.textColor = Constants.Color.label
     }
     
@@ -38,19 +38,19 @@ final class WithdrawalBottomSheetView: UIView {
         $0.numberOfLines = 0
         $0.textColor = Constants.Color.gray
         $0.text = Constants.Text.withdrawalAgree
-        $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
+        $0.font = .coreDreamFont(ofSize: 14, weight: .regular)
     }
     
     private let agreeStackView = UIStackView().then {
         $0.spacing = 8
         $0.alignment = .fill
         $0.axis = .horizontal
-        $0.distribution = .fill
+        $0.distribution = .fillProportionally
     }
     
     private let withdrawalButton = UIButton().then {
         $0.isEnabled = false
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 4
         $0.setTitle(Constants.Text.withdrawal, for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = Constants.Color.gray
@@ -122,24 +122,23 @@ private extension WithdrawalBottomSheetView {
     
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
+            $0.top.leading.equalToSuperview().offset(Constants.Spacing.medium)
+            $0.trailing.equalToSuperview().offset(-Constants.Spacing.medium)
         }
         
         noticeLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(titleLabel)
         }
         
         agreeStackView.snp.makeConstraints {
-            $0.top.equalTo(noticeLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalTo(titleLabel)
+            $0.top.equalTo(noticeLabel.snp.bottom).offset(Constants.Spacing.medium)
+            $0.leading.trailing.equalTo(noticeLabel)
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.top.equalTo(agreeStackView.snp.bottom).offset(20)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalTo(40)
+            $0.bottom.equalToSuperview().offset(-Constants.Spacing.medium)
         }
     }
 }

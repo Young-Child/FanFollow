@@ -65,7 +65,7 @@ private extension UploadLinkPreview {
     }
     
     func configureLayer() {
-        layer.cornerRadius = 4
+        layer.cornerRadius = Constants.Spacing.xSmall
         layer.backgroundColor = Constants.Color.gray.cgColor
         clipsToBounds = true
     }

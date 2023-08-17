@@ -21,12 +21,12 @@ final class ProfileThumbnailCell: UITableViewCell {
     
     private let nickNameLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .coreDreamFont(ofSize: 17, weight: .medium)
+        label.font = .coreDreamFont(ofSize: 16, weight: .medium)
     }
     
     private let subTitleLabel = UILabel().then { label in
         label.numberOfLines = 1
-        label.font = .coreDreamFont(ofSize: 15, weight: .regular)
+        label.font = .coreDreamFont(ofSize: 14, weight: .regular)
         label.textColor = Constants.Color.grayDark
         label.text = Constants.Text.profileEdit
     }
@@ -68,20 +68,20 @@ private extension ProfileThumbnailCell {
     
     func makeConstraints() {
         profileImageView.snp.makeConstraints {
-            $0.leading.equalTo(contentView).offset(16)
-            $0.top.equalTo(contentView.snp.top).offset(16)
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            $0.leading.equalTo(contentView).offset(Constants.Spacing.medium)
+            $0.top.equalTo(contentView.snp.top).offset(Constants.Spacing.medium)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-Constants.Spacing.medium)
             $0.width.height.equalTo(50).priority(.high)
         }
         
         nickNameLabel.snp.makeConstraints {
-            $0.bottom.equalTo(contentView.snp.centerY).offset(-5)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            $0.bottom.equalTo(contentView.snp.centerY).offset(-Constants.Spacing.xSmall)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(Constants.Spacing.medium)
         }
         
         subTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(nickNameLabel)
-            $0.top.equalTo(nickNameLabel.snp.bottom).offset(5)
+            $0.top.equalTo(nickNameLabel.snp.bottom).offset(Constants.Spacing.xSmall)
         }
     }
 }

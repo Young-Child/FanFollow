@@ -177,30 +177,30 @@ private extension LogInViewController {
     func makeConstraints() {
         logoImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
-            $0.leading.equalToSuperview().offset(18)
+            $0.leading.equalToSuperview().offset(Constants.Spacing.medium)
             $0.height.equalTo(80)
             $0.width.equalTo(160)
         }
         
         mainLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(30)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.equalTo(logoImageView)
         }
         
         subLabel.snp.makeConstraints {
-            $0.top.equalTo(mainLabel.snp.bottom).offset(8)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(Constants.Spacing.small)
             $0.leading.trailing.equalTo(mainLabel)
         }
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-16)
-            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-Constants.Spacing.medium)
+            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.medium)
         }
         
         loginInformationLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18)
-            $0.bottom.equalToSuperview().offset(-48)
+            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.medium)
+            $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)
         }
     }
 }

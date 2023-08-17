@@ -17,7 +17,7 @@ final class LogOutViewController: UIViewController {
     
     private let alertView = LogOutAlertView().then {
         $0.backgroundColor = Constants.Color.background
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
     
@@ -86,7 +86,8 @@ extension LogOutViewController {
 // ButtonDelegate
 extension LogOutViewController: LogOutViewButtonDelegate {
     @objc func cancelButtonTapped() {
-        self.coordinator?.close(to: self)
+        self.coordinator?.removeChild(to: self.coordinator)
+        self.dismiss(animated: false)
     }
     
     @objc func logOutButtonTapped() {

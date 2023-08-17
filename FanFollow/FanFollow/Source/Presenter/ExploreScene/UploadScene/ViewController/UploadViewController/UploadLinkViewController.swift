@@ -69,17 +69,16 @@ final class UploadLinkViewController: UploadViewController {
         super.makeConstraints()
         
         titleStackView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(8)
-            $0.trailing.equalToSuperview().offset(-8)
+            $0.top.leading.trailing.equalToSuperview().inset(Constants.Spacing.small)
         }
         
         linkStackView.snp.makeConstraints {
-            $0.top.equalTo(titleStackView.snp.bottom).offset(16)
+            $0.top.equalTo(titleStackView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(titleStackView)
         }
         
         contentsStackView.snp.makeConstraints {
-            $0.top.equalTo(linkStackView.snp.bottom).offset(16)
+            $0.top.equalTo(linkStackView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(linkStackView)
             $0.bottom.equalToSuperview()
         }

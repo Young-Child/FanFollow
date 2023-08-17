@@ -49,9 +49,8 @@ private extension SettingBaseCell {
     
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.leading.equalToSuperview().offset(20)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.top.bottom.equalToSuperview().inset(Constants.Spacing.small)
+            $0.leading.equalToSuperview().offset(Constants.Spacing.medium)
         }
     }
 }

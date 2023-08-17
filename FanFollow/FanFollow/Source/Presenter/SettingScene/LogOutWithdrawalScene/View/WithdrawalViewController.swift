@@ -17,7 +17,7 @@ final class WithdrawalViewController: UIViewController {
     
     private let bottomSheetView = WithdrawalBottomSheetView(frame: .zero).then {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 8
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.clipsToBounds = true
     }
@@ -136,7 +136,7 @@ private extension WithdrawalViewController {
 
     func makeConstraints() {
         transparentView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(view)
+            $0.edges.equalToSuperview()
         }
         
         bottomSheetView.snp.makeConstraints {

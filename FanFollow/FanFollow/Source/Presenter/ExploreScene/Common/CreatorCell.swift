@@ -67,7 +67,7 @@ private extension CreatorCell {
         }
         
         nickNameLabel.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(16)
+            $0.top.equalTo(profileImageView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(profileImageView)
         }
     }

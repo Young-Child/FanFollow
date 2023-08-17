@@ -43,8 +43,7 @@ private extension SettingSectionHeaderView {
     
     func makeConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(8)
-            $0.bottom.equalToSuperview().offset(-8)
+            $0.leading.bottom.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 }

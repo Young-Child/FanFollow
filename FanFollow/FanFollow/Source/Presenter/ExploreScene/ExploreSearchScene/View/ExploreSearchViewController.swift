@@ -187,14 +187,14 @@ private extension ExploreSearchViewController {
     
     func makeConstraints() {
         searchBar.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Constants.Spacing.small)
             $0.leading.equalTo(backButton.snp.trailing)
-            $0.trailing.equalToSuperview().inset(8)
+            $0.trailing.equalToSuperview().inset(Constants.Spacing.small)
         }
         
         backButton.snp.makeConstraints {
             $0.centerY.equalTo(searchBar.snp.centerY)
-            $0.leading.equalToSuperview().inset(8)
+            $0.leading.equalToSuperview().inset(Constants.Spacing.small)
         }
         
         searchTableView.snp.makeConstraints {

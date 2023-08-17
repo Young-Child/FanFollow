@@ -23,7 +23,7 @@ final class CreatorApplicationStepView: UIStackView {
         
         $0.axis = .horizontal
         $0.distribution = .fillEqually
-        $0.spacing = 8
+        $0.spacing = Constants.Spacing.small
         childViews.forEach($0.addArrangedSubview)
     }
     
@@ -37,12 +37,12 @@ final class CreatorApplicationStepView: UIStackView {
         distribution = .fillProportionally
         axis = .vertical
         layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        spacing = 16
+        spacing = Constants.Spacing.medium
         isLayoutMarginsRelativeArrangement = true
         [titleLabel, stepStackView].forEach(addArrangedSubview)
         
         stepStackView.snp.makeConstraints {
-            $0.height.equalTo(20)
+            $0.height.equalTo(Constants.Spacing.medium)
         }
     }
     

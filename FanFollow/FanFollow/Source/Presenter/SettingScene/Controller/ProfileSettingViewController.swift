@@ -287,7 +287,7 @@ private extension ProfileSettingViewController {
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
+            $0.height.equalTo(Constants.Spacing.xLarge)
         }
         
         scrollView.snp.makeConstraints {
@@ -302,13 +302,13 @@ private extension ProfileSettingViewController {
         }
         
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(Constants.Spacing.medium)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(150)
         }
         
         profileInputStackView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(32)
+            $0.top.equalTo(profileImageView.snp.bottom).offset(Constants.Spacing.large)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.lessThanOrEqualToSuperview()
         }

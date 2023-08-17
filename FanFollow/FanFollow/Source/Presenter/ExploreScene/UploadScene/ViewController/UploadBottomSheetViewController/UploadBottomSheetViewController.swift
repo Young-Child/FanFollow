@@ -85,7 +85,7 @@ extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
     }
     
     func showBottomSheet() {
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.75
+        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.6
         
         bottomSheetView.snp.remakeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()

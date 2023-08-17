@@ -191,7 +191,7 @@ private extension CreatorApplicationViewController {
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
+            $0.height.equalTo(Constants.Spacing.xLarge)
         }
         
         stepView.snp.makeConstraints {
@@ -200,14 +200,14 @@ private extension CreatorApplicationViewController {
         }
         
         pageController.view.snp.makeConstraints {
-            $0.top.equalTo(stepView.snp.bottom).offset(16)
+            $0.top.equalTo(stepView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints {
             $0.top.equalTo(pageController.view.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(8)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.small)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-Constants.Spacing.medium)
         }
     }
     

@@ -89,24 +89,23 @@ private extension UploadImageCell {
     }
     
     func configureLayer() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = Constants.Spacing.xSmall
         layer.borderWidth = 1
         layer.borderColor = Constants.Color.gray.cgColor
         clipsToBounds = true
     }
     
     func configureHierarchy() {
-        contentView.addSubview(imageStackView)
-        contentView.addSubview(deleteButton)
+        [imageStackView, deleteButton].forEach(contentView.addSubview)
     }
     
     func makeConstraints() {
         imageStackView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(contentView)
+            $0.edges.equalToSuperview()
         }
         
         deleteButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(8)
+            $0.top.trailing.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 }

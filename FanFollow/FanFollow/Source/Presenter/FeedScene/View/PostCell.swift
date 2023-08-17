@@ -262,11 +262,11 @@ private extension PostCell {
     
     func configureConstraints() {
         likeButton.snp.makeConstraints {
-            $0.top.bottom.leading.equalToSuperview().inset(8)
+            $0.top.bottom.leading.equalToSuperview().inset(Constants.Spacing.small)
         }
         
         createdDateLabel.snp.makeConstraints {
-            $0.top.bottom.trailing.equalToSuperview().inset(8)
+            $0.top.bottom.trailing.equalToSuperview().inset(Constants.Spacing.small)
             $0.width.equalToSuperview().multipliedBy(0.3)
         }
         

@@ -164,7 +164,7 @@ private extension FeedViewController {
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
+            $0.height.equalTo(Constants.Spacing.xLarge)
         }
         
         tableView.snp.makeConstraints {

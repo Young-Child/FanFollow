@@ -143,7 +143,7 @@ extension ExploreViewController {
         
         let categorySection = NSCollectionLayoutSection(group: categoryGroup)
         categorySection.orthogonalScrollingBehavior = .continuous
-        categorySection.interGroupSpacing = 8
+        categorySection.interGroupSpacing = Constants.Spacing.small
         
         return categorySection
     }
@@ -191,7 +191,7 @@ extension ExploreViewController {
             return section
         }
         
-        layout.configuration.interSectionSpacing = 16
+        layout.configuration.interSectionSpacing = Constants.Spacing.medium
         
         return layout
     }

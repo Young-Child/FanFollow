@@ -73,15 +73,15 @@ private extension CreatorApplicationLinkCell {
     
     func configureConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(16)
-            $0.leading.equalToSuperview().inset(8)
+            $0.top.bottom.equalToSuperview().inset(Constants.Spacing.medium)
+            $0.leading.equalToSuperview().inset(Constants.Spacing.small)
             $0.width.equalToSuperview().multipliedBy(0.2)
         }
         
         textField.snp.makeConstraints {
             $0.top.bottom.equalTo(titleLabel)
-            $0.leading.equalTo(titleLabel.snp.trailing).inset(8)
-            $0.trailing.equalToSuperview().inset(8)
+            $0.leading.equalTo(titleLabel.snp.trailing).inset(Constants.Spacing.small)
+            $0.trailing.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 }

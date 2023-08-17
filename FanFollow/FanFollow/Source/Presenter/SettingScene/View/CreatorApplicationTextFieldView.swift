@@ -10,7 +10,7 @@ import UIKit
 final class CreatorApplicationTextFieldView: UIView {
     // View Properties
     private let stackView = UIStackView().then { stackView in
-        stackView.spacing = 8
+        stackView.spacing = Constants.Spacing.small
     }
 
     private let titleLabel = UILabel().then { label in
@@ -73,7 +73,7 @@ private extension CreatorApplicationTextFieldView {
     func configureConstraints() {
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
+            $0.edges.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 }

@@ -66,8 +66,8 @@ final class UploadPhotoViewController: UploadViewController {
         }
         
         uploadStackView.snp.makeConstraints {
-            $0.top.equalTo(photoCollectionView.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.top.equalTo(photoCollectionView.snp.bottom).offset(Constants.Spacing.medium)
+            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.small)
             $0.bottom.equalToSuperview()
         }
     }

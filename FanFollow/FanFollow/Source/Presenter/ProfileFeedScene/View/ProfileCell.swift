@@ -143,7 +143,7 @@ private extension ProfileCell {
         }
         
         contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
+            $0.edges.equalToSuperview().inset(Constants.Spacing.small)
         }
     }
 
