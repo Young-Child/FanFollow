@@ -36,7 +36,8 @@ final class ExploreCoordinator: Coordinator {
     func presentCategoryViewController(for jobCategory: JobCategory) {
         let viewModel = ExploreCategoryViewModel(exploreUseCase: exploreUseCase, jobCategory: jobCategory)
         let controller = ExploreCategoryViewController(viewModel: viewModel)
-        
+        controller.hidesBottomBarWhenPushed = true
+
         controller.coordinator = self
         navigationController.pushViewController(controller, animated: true)
     }

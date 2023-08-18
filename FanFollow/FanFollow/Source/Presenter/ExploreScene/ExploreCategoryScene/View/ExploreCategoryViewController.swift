@@ -60,6 +60,7 @@ extension ExploreCategoryViewController {
         let output = bindingInput()
         
         bindCollectionView(output)
+        bindingNavigationBar()
     }
     
     func bindCollectionView(_ output: ExploreCategoryViewModel.Output) {
@@ -78,6 +79,15 @@ extension ExploreCategoryViewController {
                     break
                 }
             }
+            .disposed(by: disposeBag)
+    }
+
+    func bindingNavigationBar() {
+        navigationBar.leftBarButton.rx.tap
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                self.coordinator?.close(to: self)
+            })
             .disposed(by: disposeBag)
     }
     
