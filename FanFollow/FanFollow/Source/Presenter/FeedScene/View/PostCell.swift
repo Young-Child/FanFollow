@@ -43,16 +43,7 @@ final class PostCell: UITableViewCell {
     }
     
     private let linkPreview = LinkPreview()
-    
-    private let contentStackView = UIStackView().then { stackView in
-        stackView.spacing = 8
-        stackView.alignment = .leading
-        stackView.layoutMargins = UIEdgeInsets(top: .zero, left: 8, bottom: .zero, right: 8)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-    }
-    
+
     private let likeButton = UIButton().then { button in
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 15)
         let unSelectedImage = Constants.Image.heart?.withConfiguration(imageConfiguration)
@@ -76,6 +67,7 @@ final class PostCell: UITableViewCell {
     private let postCellContentView = UIStackView().then { stackView in
         stackView.spacing = 8
         stackView.axis = .vertical
+        stackView.alignment = .center
         stackView.distribution = .fillProportionally
     }
     
@@ -252,13 +244,13 @@ private extension PostCell {
     }
     
     func configureHierarchy() {
-        [titleLabel, contentLabel].forEach(contentStackView.addArrangedSubview(_:))
         [likeButton, createdDateLabel].forEach(likeButtonStackView.addSubview(_:))
         
         [
             creatorHeaderView,
             imageSlideView,
-            contentStackView,
+            titleLabel,
+            contentLabel,
             linkPreview,
             likeButtonStackView
         ].forEach(postCellContentView.addArrangedSubview(_:))
@@ -278,14 +270,32 @@ private extension PostCell {
         
         postCellContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.greaterThanOrEqualTo(Constants.Spacing.small * 2)
         }
         
         imageSlideView.snp.makeConstraints {
             $0.height.equalTo(UIScreen.main.bounds.width)
+            $0.width.equalToSuperview()
         }
         
         linkPreview.snp.makeConstraints {
             $0.height.equalTo(80)
+            $0.width.equalToSuperview()
+        }
+
+        likeButtonStackView.snp.makeConstraints {
+            $0.height.equalTo(60)
+            $0.width.equalToSuperview()
+        }
+
+        creatorHeaderView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
+
+        [titleLabel, contentLabel].forEach { view in
+            view.snp.makeConstraints {
+                $0.width.equalToSuperview().inset(Constants.Spacing.small)
+            }
         }
     }
 }

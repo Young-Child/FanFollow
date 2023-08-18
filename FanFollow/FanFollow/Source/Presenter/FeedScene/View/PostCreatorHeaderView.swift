@@ -51,7 +51,7 @@ final class PostCreatorHeaderView: UIView {
         }
         
         optionsButton.snp.makeConstraints {
-            $0.top.bottom.equalTo(creatorImageView)
+            $0.top.bottom.equalToSuperview()
             $0.trailing.equalToSuperview().inset(8)
         }
     }

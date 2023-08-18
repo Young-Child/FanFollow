@@ -141,6 +141,10 @@ private extension ProfileCell {
         creatorImageView.snp.makeConstraints {
             $0.width.height.equalTo(80).priority(.required)
         }
+
+        stackView.snp.makeConstraints {
+            $0.width.greaterThanOrEqualToSuperview().multipliedBy(0.8)
+        }
         
         contentStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(Constants.Spacing.small)
