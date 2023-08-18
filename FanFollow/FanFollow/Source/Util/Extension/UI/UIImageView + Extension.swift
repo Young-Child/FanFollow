@@ -60,7 +60,6 @@ extension UIImageView {
         completion: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil
     ) {
         guard let imageURL = URL(string: urlPath) else { return }
-        
         let resource = ImageResource(downloadURL: imageURL, cacheKey: key.description)
         
         kf.setImage(with: resource, options: options, completionHandler: completion)
@@ -71,5 +70,17 @@ extension ImageCache {
     func changeMemoryImage(to image: KFCrossPlatformImage, key: String) {
         memoryStorage.remove(forKey: key)
         memoryStorage.store(value: image, forKey: key)
+    }
+    
+    func changeMemoryImage(to imageData: Data, key: String) {
+        guard let image = UIImage(data: imageData) else { return }
+        
+        memoryStorage.remove(forKey: key)
+        try? diskStorage.remove(forKey: key)
+        memoryStorage.store(value: image, forKey: key)
+    }
+    
+    func removeImageForKey(to key: String) {
+        memoryStorage.remove(forKey: key)
     }
 }

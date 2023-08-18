@@ -6,6 +6,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class MainTabBarCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     
@@ -14,6 +16,7 @@ final class MainTabBarCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        setKingFisherModifier()
     }
     
     func start() {
@@ -45,6 +48,24 @@ final class MainTabBarCoordinator: Coordinator {
     
     func present(to controller: UIViewController) {
         navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func setKingFisherModifier() {
+        guard let accessToken = UserDefaults.storedSession()?.accessToken else { return }
+        
+        let modifier = AnyModifier { request in
+            var request = request
+            
+            request.setValue(Bundle.main.apiKey, forHTTPHeaderField: "apikey")
+            request.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
+            return request
+        }
+        
+        KingfisherManager.shared.defaultOptions = [.requestModifier(modifier)]
+        
+        ImageCache.default.clearDiskCache()
+        ImageCache.default.diskStorage.config.expiration = .seconds(15)
+        ImageCache.default.memoryStorage.config.expiration = .seconds(15)
     }
 }
 

@@ -35,13 +35,11 @@ final class DefaultExploreUseCase: ExploreUseCase {
     }
     
     func fetchRandomCreatorsByAllCategory(count: Int) -> Observable<[(String, [Creator])]> {
-        // TODO: - Test를 위해서 임의로 데이터를 조작함.
-        // 추후 변경 필수
         let allJobs = JobCategory.allCases.filter { $0 != .unSetting }
         
         let categoryCreatorsObservables = Observable.from(allJobs)
             .flatMap { category in
-                return self.fetchRandomCreators(by: JobCategory.art, count: count)
+                return self.fetchRandomCreators(by: category, count: count)
                     .map { creators in
                         return (category.categoryName, creators)
                     }

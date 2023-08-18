@@ -30,6 +30,7 @@ struct ImageRequestDirector {
             .set(headers: [
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.png,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Constants.xUpsert: true.description
             ])
             .set(body: .multipart(data: image))
             .setAccessKey()
@@ -50,9 +51,11 @@ struct ImageRequestDirector {
     func updateImage(path: String, image: Data) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path + path)
-            .set(method: .put)
+            .set(method: .post)
             .set(headers: [
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.png,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Constants.xUpsert: true.description
             ])
             .set(body: .multipart(data: image))
             .setAccessKey()
@@ -76,5 +79,6 @@ struct ImageRequestDirector {
 private extension SupabaseConstants {
     enum Constants {
         static let path = "/storage/v1/object/"
+        static let xUpsert = "x-upsert"
     }
 }
