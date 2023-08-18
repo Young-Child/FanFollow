@@ -29,7 +29,7 @@ final class CreatorApplicationViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let result = input.nextButtonTap
             .flatMapLatest {
-                return self.informationUseCase.updateUserInformation(
+                return self.informationUseCase.applyCreator(
                     updateInformation: $0
                 )
             }

@@ -13,7 +13,7 @@ protocol UpdateUserInformationUseCase: AnyObject {
         updateInformation: (nickName: String?, category: Int?, links: [String]?, introduce: String?)
     ) -> Observable<Void>
     
-    func updateUserInformation(
+    func applyCreator(
         updateInformation: (jobCategory: Int, links: [String], introduce: String)
     ) -> Observable<Void>
 }
@@ -50,7 +50,7 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
             }
     }
     
-    func updateUserInformation(
+    func applyCreator(
         updateInformation: (jobCategory: Int, links: [String], introduce: String)
     ) -> Observable<Void> {
         return authRepository.storedSession()
@@ -65,7 +65,7 @@ final class DefaultUpdateUserInformationUseCase: UpdateUserInformationUseCase {
                             jobCategory: updateInformation.jobCategory,
                             links: updateInformation.links,
                             introduce: updateInformation.introduce,
-                            isCreator: information.isCreator,
+                            isCreator: true,
                             createdAt: information.createdDate
                         )
                         .andThen(Observable<Void>.just(()))
