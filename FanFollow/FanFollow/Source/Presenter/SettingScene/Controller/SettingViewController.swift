@@ -64,8 +64,8 @@ private extension SettingViewController {
     
     func bindCreatorState(_ output: SettingViewModel.Output) {
         output.isCreator
+            .debug()
             .asDriver(onErrorJustReturn: false)
-            .filter { $0 == false }
             .drive(onNext: {
                 self.settingTabBarDelegate?.settingController(
                     self,
@@ -88,7 +88,7 @@ private extension SettingViewController {
             settingTableView.rx.itemSelected,
             settingTableView.rx.modelSelected(SettingSectionItem.self)
         )
-        .asDriver(onErrorJustReturn: (IndexPath(), SettingSectionItem.base(title: "'", action: .profile)))
+        .asDriver(onErrorJustReturn: (IndexPath(), SettingSectionItem.base(title: "", action: .profile)))
         .drive(onNext: { indexPath, item in
             self.settingTableView.deselectRow(at: indexPath, animated: true)
             self.settingTabBarDelegate?.settingController(self, didTapPresent: item)

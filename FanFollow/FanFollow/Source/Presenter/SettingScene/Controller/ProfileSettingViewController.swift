@@ -130,7 +130,8 @@ private extension ProfileSettingViewController {
             .disposed(by: disposeBag)
         
         output.isCreator
-            .asDriver(onErrorJustReturn: true)
+            .debug()
+            .asDriver(onErrorJustReturn: false)
             .drive(
                 jobCategoryInput.rx.isUserInteractionEnabled,
                 linkInput.rx.isUserInteractionEnabled,
@@ -145,7 +146,7 @@ private extension ProfileSettingViewController {
             .disposed(by: disposeBag)
         
         output.jobCategory
-            .compactMap { $0?.categoryName }
+            .compactMap { $0 == .unSetting ? "" : $0?.categoryName }
             .asDriver(onErrorJustReturn: "")
             .drive(jobCategoryInput.textField.rx.text)
             .disposed(by: disposeBag)

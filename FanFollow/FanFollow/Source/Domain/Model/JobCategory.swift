@@ -36,7 +36,7 @@ enum JobCategory: Int, CaseIterable {
     
     static var allCases: [JobCategory] {
         return [
-            unSetting,
+            .unSetting,
             .art,
             .design,
             .education,

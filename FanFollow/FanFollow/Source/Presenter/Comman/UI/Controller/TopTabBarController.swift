@@ -42,6 +42,10 @@ class TopTabBarController<T: TabItem>: UITabBarController {
         customTabBar.hideItem(index: index)
     }
     
+    func showTabBarItem(to index: Int) {
+        customTabBar.showItem(index: index)
+    }
+     
     private func configureTopTabBar() {
         tabBar.isHidden = true
         

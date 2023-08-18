@@ -30,16 +30,13 @@ final class ProfileSettingViewModel: ViewModel {
     
     var disposeBag = DisposeBag()
     
-    private let userID: String
     private let fetchUserInformationUseCase: FetchUserInformationUseCase
     private let updateUserInformationUseCase: UpdateUserInformationUseCase
     
     init(
-        userID: String,
         fetchUseCase: FetchUserInformationUseCase,
         updateUseCase: UpdateUserInformationUseCase
     ) {
-        self.userID = userID
         self.fetchUserInformationUseCase = fetchUseCase
         self.updateUserInformationUseCase = updateUseCase
     }

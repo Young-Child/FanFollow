@@ -22,6 +22,6 @@ struct Creator: User {
         links = userInformationDTO.links
         introduce = userInformationDTO.introduce
         jobCategory = JobCategory(rawValue: userInformationDTO.jobCategory ?? JobCategory.unSetting.rawValue)
-        isCreator = true
+        isCreator = userInformationDTO.isCreator
     }
 }

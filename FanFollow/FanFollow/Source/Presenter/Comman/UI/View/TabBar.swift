@@ -39,6 +39,10 @@ class TabBar: UIStackView {
     func hideItem(index: Int) {
         tabButtons[index].isHidden = true
     }
+    
+    func showItem(index: Int) {
+        tabButtons[index].isHidden = false
+    }
 }
 
 // MARK: - Configure UI

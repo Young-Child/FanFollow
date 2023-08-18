@@ -67,9 +67,7 @@ extension SettingTabBarController: SettingTabBarDelegate {
         if itemCount <= 1 { return }
         
         let lastIndex = (itemCount - 1)
-        viewControllers?.remove(at: lastIndex)
-        hideTabBarItem(to: lastIndex)
-        view.setNeedsLayout()
+        isCreator ? showTabBarItem(to: lastIndex) : hideTabBarItem(to: lastIndex)
     }
     
     func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem) {
@@ -79,7 +77,6 @@ extension SettingTabBarController: SettingTabBarDelegate {
     func settingController(_ controller: ProfileFeedViewController, didTapEdit item: Post) {
         coordinator?.presentEditPostViewController(post: item)
     }
-    
 }
 
 // Binding
