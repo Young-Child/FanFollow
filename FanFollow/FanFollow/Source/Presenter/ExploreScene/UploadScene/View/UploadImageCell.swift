@@ -20,8 +20,10 @@ final class UploadImageCell: UICollectionViewCell {
     }
     
     private let deleteButton = UIButton().then {
-        $0.setImage(Constants.Image.back, for: .normal)
-        $0.tintColor = Constants.Color.blue
+        $0.tintColor = Constants.Color.background
+        $0.backgroundColor = Constants.Color.warningColor
+        
+        $0.setImage(Constants.Image.xmark, for: .normal)
     }
     
     private let pickerButton = UIButton().then {
@@ -43,6 +45,13 @@ final class UploadImageCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        deleteButton.layer.cornerRadius = deleteButton.bounds.size.width / 2
+        deleteButton.clipsToBounds = true
     }
     
     override func prepareForReuse() {
@@ -106,6 +115,7 @@ private extension UploadImageCell {
         
         deleteButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(Constants.Spacing.small)
+            $0.width.height.equalTo(contentView.snp.width).multipliedBy(0.13)
         }
     }
 }
