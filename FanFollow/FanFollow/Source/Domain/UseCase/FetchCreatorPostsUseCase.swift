@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol FetchCreatorPostsUseCase: AnyObject {
-    func fetchCreatorPosts(startRange: Int, endRange: Int) -> Observable<[Post]>
+    func fetchCreatorPosts(targetID: String, startRange: Int, endRange: Int) -> Observable<[Post]>
     func deletePost(post: Post, endRange: Int) -> Observable<[Post]>
 }
 
@@ -27,13 +27,9 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
         self.authRepository = authRepository
     }
 
-    func fetchCreatorPosts(startRange: Int, endRange: Int) -> Observable<[Post]> {
-        let postDTOs = authRepository.storedSession()
-            .flatMap { storedSession in
-                let creatorID = storedSession.userID
-                return self.postRepository
-                    .fetchMyPosts(userID: creatorID, startRange: startRange, endRange: endRange)
-            }
+    func fetchCreatorPosts(targetID: String, startRange: Int, endRange: Int) -> Observable<[Post]> {
+        let postDTOs = self.postRepository
+            .fetchMyPosts(userID: targetID, startRange: startRange, endRange: endRange)
         
         let imageLinksUpdatedPost = postDTOs.flatMap { postDTOs -> Observable<[Post]> in
             let fetchImageURLs = postDTOs.compactMap(\.postID).map {
@@ -57,6 +53,7 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
             .andThen(Observable<Void>.just(()))
             .flatMap { _ in
                 return self.fetchCreatorPosts(
+                    targetID: post.userID,
                     startRange: .zero,
                     endRange: endRange
                 )

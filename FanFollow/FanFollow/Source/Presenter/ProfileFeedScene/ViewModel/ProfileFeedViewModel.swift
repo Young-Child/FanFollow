@@ -142,7 +142,11 @@ private extension ProfileFeedViewModel {
 
     func fetchPosts(startIndex: Int) -> Observable<[Post]> {
         let endRange = startIndex + pageSize - 1
-        return fetchCreatorPostUseCase.fetchCreatorPosts(startRange: startIndex, endRange: endRange)
+        return fetchCreatorPostUseCase.fetchCreatorPosts(
+            targetID: creatorID,
+            startRange: startIndex,
+            endRange: endRange
+        )
     }
 
     func updatePosts(postID: String) -> Observable<[Post]> {
