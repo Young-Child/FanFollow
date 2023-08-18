@@ -43,7 +43,7 @@ extension Post {
     }
     
     var writerProfileImageURL: String {
-        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "profileImage.png"
+        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "/profileImage.png"
     }
     
     var imageURLs: [String] {
@@ -52,6 +52,10 @@ extension Post {
         return imageNames.map {
             return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\($0)"
         }
+    }
+    
+    static func generateImageURL(path: String) -> String {
+        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(path)"
     }
 }
 

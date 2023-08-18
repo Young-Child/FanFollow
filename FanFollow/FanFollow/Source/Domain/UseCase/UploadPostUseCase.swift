@@ -8,6 +8,7 @@
 import Foundation
 
 import RxSwift
+import Kingfisher
 
 protocol UploadPostUseCase: AnyObject {
     func upsertPost(_ upload: Upload, existPostID: String?) -> Completable
@@ -27,15 +28,15 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
     }
     
     private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<[Never]> {
-        let results = Observable.from(imageDatas).enumerated()
-            .flatMap { index, item in
+        let results = Observable.from(Array(0..<5))
+            .flatMap { index in
                 let path = "PostImages/\(postID)/\(index + 1).png"
-                return self.imageRepository.uploadImage(to: path, with: item)
-                    .asObservable()
-                    .catch { _ in
-                        return self.imageRepository.updateImage(to: path, with: item)
-                            .asObservable()
-                    }
+                
+                guard let imageData = imageDatas[safe: index] else {
+                    return self.imageRepository.deleteImage(to: path)
+                }
+                
+                return self.imageRepository.uploadImage(to: path, with: imageData)
             }
             .toArray()
             .asObservable()
