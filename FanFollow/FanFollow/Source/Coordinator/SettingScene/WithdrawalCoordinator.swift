@@ -40,5 +40,4 @@ final class WithdrawalCoordinator: Coordinator {
             scene.mainCoordinator?.start()
         }
     }
-
 }

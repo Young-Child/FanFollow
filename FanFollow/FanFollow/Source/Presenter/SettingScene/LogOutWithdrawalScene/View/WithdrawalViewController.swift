@@ -87,23 +87,25 @@ extension WithdrawalViewController {
 extension WithdrawalViewController {
     @objc func cancelButtonTapped() {
         bottomSheetView.snp.updateConstraints {
-            $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
+            $0.height.equalTo(0)
         }
         
         UIView.animate(withDuration: 0.25, animations: {
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
         }) { _ in
-            self.coordinator?.close(to: self)
+            self.dismiss(animated: true) {
+                self.coordinator?.removeChild(to: self.coordinator)
+            }
         }
     }
     
     func showBottomSheet() {
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.7
+        let heightConstraint: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.4
         
         bottomSheetView.snp.remakeConstraints {
+            $0.height.equalTo(heightConstraint)
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.top.equalToSuperview().offset(topConstant)
         }
         
         UIView.animate(withDuration: 0.25) {

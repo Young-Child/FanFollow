@@ -42,7 +42,7 @@ final class WithdrawalBottomSheetView: UIView {
         $0.spacing = 8
         $0.alignment = .fill
         $0.axis = .horizontal
-        $0.distribution = .fillProportionally
+        $0.distribution = .fill
     }
     
     private let withdrawalButton = UIButton().then {
@@ -129,8 +129,9 @@ private extension WithdrawalBottomSheetView {
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.leading.trailing.equalTo(titleLabel)
-            $0.bottom.equalToSuperview().offset(-Constants.Spacing.medium)
+            $0.top.greaterThanOrEqualTo(agreeStackView.snp.bottom).offset(Constants.Spacing.medium)
+            $0.leading.trailing.equalTo(agreeStackView)
+            $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)
         }
     }
 }
