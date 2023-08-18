@@ -25,15 +25,13 @@ final class FeedViewModel: ViewModel {
     var disposeBag = DisposeBag()
     private let fetchFeedUseCase: FetchFeedUseCase
     private let changeLikeUseCase: ChangeLikeUseCase
-    private let followerID: String
     private let pageSize = 10
 
     private let posts = BehaviorRelay<[Post]>(value: [])
 
-    init(fetchFeedUseCase: FetchFeedUseCase, changeLikeUseCase: ChangeLikeUseCase, followerID: String) {
+    init(fetchFeedUseCase: FetchFeedUseCase, changeLikeUseCase: ChangeLikeUseCase) {
         self.fetchFeedUseCase = fetchFeedUseCase
         self.changeLikeUseCase = changeLikeUseCase
-        self.followerID = followerID
     }
 
     func transform(input: Input) -> Output {
@@ -78,7 +76,7 @@ private extension FeedViewModel {
     }
 
     func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
-        return changeLikeUseCase.togglePostLike(postID: postID, userID: followerID)
+        return changeLikeUseCase.togglePostLike(postID: postID)
             .andThen(Observable.zip(
                 changeLikeUseCase.checkPostLiked(postID: postID),
                 changeLikeUseCase.fetchPostLikeCount(postID: postID)

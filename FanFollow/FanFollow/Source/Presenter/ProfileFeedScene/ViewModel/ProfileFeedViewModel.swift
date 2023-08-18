@@ -158,7 +158,7 @@ private extension ProfileFeedViewModel {
     }
 
     func toggleLike(postID: String) -> Observable<(String, Bool, Int)> {
-        return changeLikeUseCase.togglePostLike(postID: postID, userID: creatorID)
+        return changeLikeUseCase.togglePostLike(postID: postID)
             .andThen(Observable.zip(
                 changeLikeUseCase.checkPostLiked(postID: postID),
                 changeLikeUseCase.fetchPostLikeCount(postID: postID)

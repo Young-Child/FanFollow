@@ -10,7 +10,7 @@ import RxSwift
 protocol ChangeLikeUseCase: AnyObject {
     func checkPostLiked(postID: String) -> Observable<Bool>
     func fetchPostLikeCount(postID: String) -> Observable<Int>
-    func togglePostLike(postID: String, userID: String) -> Completable
+    func togglePostLike(postID: String) -> Completable
 }
 
 final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
@@ -38,16 +38,21 @@ final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
         return likeRepository.fetchPostLikeCount(postID: postID, userID: nil)
     }
 
-    func togglePostLike(postID: String, userID: String) -> Completable {
-        return checkPostLiked(postID: postID)
-            .flatMap { liked in
-                if liked {
-                    return self.likeRepository.deletePostLike(postID: postID, userID: userID)
-                        .asObservable()
-                } else {
-                    return self.likeRepository.createPostLike(postID: postID, userID: userID)
-                        .asObservable()
-                }
+    func togglePostLike(postID: String) -> Completable {
+        return authRepository.storedSession()
+            .flatMap { storedSession in
+                let userID = storedSession.userID
+                return self.checkPostLiked(postID: postID)
+                    .flatMap { liked in
+                        if liked {
+                            return self.likeRepository.deletePostLike(postID: postID, userID: userID)
+                                .asObservable()
+                        } else {
+                            return self.likeRepository.createPostLike(postID: postID, userID: userID)
+                                .asObservable()
+                        }
+                    }
+                    .asObservable()
             }
             .asCompletable()
     }

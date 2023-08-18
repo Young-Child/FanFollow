@@ -18,12 +18,6 @@ final class FeedCoordinator: Coordinator {
     }
 
     func start() {
-        // TODO: 로그인한 UserID를 followerID에 입력
-        let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
-        presentFeedViewController(userID: userID)
-    }
-
-    func presentFeedViewController(userID: String) {
         let networkService = DefaultNetworkService.shared
         let userDefaultsService = UserDefaults.standard
         let postRepository = DefaultPostRepository(networkService)
@@ -33,7 +27,7 @@ final class FeedCoordinator: Coordinator {
             userDefaultsService: userDefaultsService
         )
         let likeRepository = DefaultLikeRepository(networkService)
-        
+
         let fetchFeedUseCase = DefaultFetchFeedUseCase(
             postRepository: postRepository,
             imageRepository: imageRepository,
@@ -43,8 +37,7 @@ final class FeedCoordinator: Coordinator {
 
         let feedViewModel = FeedViewModel(
             fetchFeedUseCase: fetchFeedUseCase,
-            changeLikeUseCase: changeLikeUseCase,
-            followerID: userID
+            changeLikeUseCase: changeLikeUseCase
         )
         let feedViewController = FeedViewController(viewModel: feedViewModel)
         feedViewController.coordinator = self
