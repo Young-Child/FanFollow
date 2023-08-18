@@ -23,12 +23,17 @@ final class UnderLineTextField: UITextField {
             height: 1
         )
         layer.addSublayer(underLineLayer)
+        
+        autocorrectionType = .no
+        autocapitalizationType = .none
     }
 }
 
 class UnderLineTextView: UIStackView {
     let textView = UITextView().then {
         $0.isScrollEnabled = false
+        $0.autocorrectionType = .no
+        $0.autocapitalizationType = .none
     }
     
     let underLine = UIView().then {
@@ -44,6 +49,7 @@ class UnderLineTextView: UIStackView {
         alignment = .fill
         distribution = .fill
         spacing = .zero
+        
         
         underLine.snp.makeConstraints {
             $0.height.equalTo(1)

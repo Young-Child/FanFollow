@@ -43,6 +43,10 @@ final class PlaceholderTextView: UITextView {
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
+        
+        autocorrectionType = .no
+        autocapitalizationType = .none
+        
         configureUI()
     }
 
