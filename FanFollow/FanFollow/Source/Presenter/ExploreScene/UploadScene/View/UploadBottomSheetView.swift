@@ -115,15 +115,15 @@ private extension UploadBottomSheetView {
         }
         
         buttonStackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.Spacing.large)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalToSuperview().multipliedBy(0.35)
+            $0.height.equalTo(60)
         }
         
         cancelButton.snp.makeConstraints {
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(Constants.Spacing.large)
+            $0.top.greaterThanOrEqualTo(buttonStackView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(buttonStackView)
-            $0.height.equalTo(40)
+            $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)
         }
     }
 }

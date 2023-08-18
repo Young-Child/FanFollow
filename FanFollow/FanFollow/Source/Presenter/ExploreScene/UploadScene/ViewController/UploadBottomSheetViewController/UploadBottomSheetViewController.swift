@@ -70,11 +70,11 @@ extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
     }
     
     func hideBottomSheet(completion: (() -> Void)?) {
+        self.bottomSheetView.snp.updateConstraints {
+            $0.height.equalTo(0)
+        }
+        
         UIView.animate(withDuration: 0.2, animations: {
-            self.bottomSheetView.snp.updateConstraints {
-                $0.top.equalToSuperview().offset(self.view.safeAreaLayoutGuide.layoutFrame.height)
-            }
-            
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
         }) { _ in
@@ -85,15 +85,15 @@ extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
     }
     
     func showBottomSheet() {
-        let topConstant: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.6
+        let heightConstraint: CGFloat = view.safeAreaLayoutGuide.layoutFrame.height * 0.3
         
         bottomSheetView.snp.remakeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.top.equalToSuperview().offset(topConstant)
+            $0.height.equalTo(heightConstraint)
         }
         
         UIView.animate(withDuration: 0.25) {
-            self.transparentView.alpha = 0.5
+            self.transparentView.alpha = 0.7
             self.view.layoutIfNeeded()
         }
     }
