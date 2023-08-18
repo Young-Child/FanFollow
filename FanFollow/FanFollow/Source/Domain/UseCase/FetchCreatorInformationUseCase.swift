@@ -10,7 +10,7 @@ import RxSwift
 protocol FetchCreatorInformationUseCase: AnyObject {
     func fetchCreatorInformation(targetID: String) -> Observable<Creator>
     func fetchFollowerCount(targetID: String) -> Observable<Int>
-    func fetchFollowings(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
+    func fetchFollowingCreators(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
     func checkFollow(targetID: String) -> Observable<Bool>
     func toggleFollow(targetID: String) -> Completable
 }
@@ -41,9 +41,9 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
         return self.followRepository.fetchFollowerCount(followingID: targetID)
     }
     
-    func fetchFollowings(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]> {
+    func fetchFollowingCreators(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]> {
         return self.followRepository
-            .fetchFollowers(followingID: targetID, startRange: startRange, endRange: endRange)
+            .fetchFollowings(followerID: targetID, startRange: startRange, endRange: endRange)
             .map { followDTOList in
                 followDTOList.map { followDTO in
                     return Creator(followDTO.userInformation)

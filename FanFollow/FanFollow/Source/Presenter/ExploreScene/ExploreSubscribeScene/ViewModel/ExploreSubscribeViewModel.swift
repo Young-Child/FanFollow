@@ -39,7 +39,7 @@ final class ExploreSubscribeViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let loadObservable = input.viewWillAppear
             .flatMapLatest {
-                return self.fetchCreatorUseCase.fetchFollowings(
+                return self.fetchCreatorUseCase.fetchFollowingCreators(
                     targetID: self.userID,
                     startRange: .zero,
                     endRange: Constants.pageUnit
@@ -48,7 +48,7 @@ final class ExploreSubscribeViewModel: ViewModel {
         
         let loadMoreObservable = input.viewDidScroll
             .flatMapLatest {
-                return self.fetchCreatorUseCase.fetchFollowings(
+                return self.fetchCreatorUseCase.fetchFollowingCreators(
                     targetID: self.userID,
                     startRange: self.pageCount.value + 1,
                     endRange: self.pageCount.value + Constants.pageUnit
