@@ -56,19 +56,15 @@ final class PostCreatorHeaderView: UIView {
         }
     }
     
-    func configure(userID: String, nickName: String?, imageURL: String, couldEdit: Bool) {
+    func configure(userID: String, nickName: String?, imageURL: String) {
         self.creatorImageView.setImageProfileImage(to: imageURL, for: userID)
         self.creatorNickNameLabel.text = nickName
-        self.optionsButton.isHidden = (couldEdit == false)
     }
     
-    func configureAction(modifyAction: UIAction, deleteAction: UIAction) {
+    func configureActions(_ actions: [UIAction]) {
         let menu = UIMenu(
             options: .displayInline,
-            children: [
-                modifyAction,
-                deleteAction
-            ]
+            children: actions
         )
         
         self.optionsButton.menu = menu

@@ -77,6 +77,8 @@ extension ProfileFeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post) {
         self.didTapPostDeleteButton.accept(post)
     }
+    
+    func postCell(_ cell: PostCell, didTapDeclarationButton post: Post) { }
 }
 
 extension ProfileFeedViewController: ProfileCellDelegate {

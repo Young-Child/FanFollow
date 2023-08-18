@@ -50,8 +50,8 @@ enum Constants {
         static let profileEdit = "프로필 편집"
         static let developerEmails = ["dlrudals8899@gmail.com", "hyosing92@gmail.com", "junho_l@kakao.com"]
         static let bugReportMailTitle = "<팬팔> 문의 및 버그 제보하기"
-        static let bugReportErrorAlertTitle = "메일 앱 오류"
-        static let bugReportErrorAlertMessage = "메일 앱을 설정해주세요."
+        static let mailErrorAlertTitle = "메일 앱 오류"
+        static let mailErrorAlertMessage = "메일 앱을 설정해주세요."
         static let bugReportMailFormat = """
         서비스를 이용하시는데 불편을 드려서 죄송합니다.
         발생하신 버그에 대해서 이곳에 작성해주세요.
@@ -66,6 +66,19 @@ enum Constants {
         // Feed Scene
         static let editMessage = "수정하기"
         static let deleteMessage = "삭제하기"
+        static let declaration = "신고하기"
+        static let declarationMailFormat = """
+        서비스를 이용하시는데 불편을 드려서 죄송합니다.
+        불쾌감을 느끼신 게시물에 대해서 이곳에 작성해주세요.
+        ---------------
+
+        게시물 고유 번호: %@
+
+        ---------------
+        """
+        
+        static let declarationMailTitle = "<팬팔> 게시글 신고하기"
+        
         
         // ProfileFeed Scene
         static let follower = "팔로워 "

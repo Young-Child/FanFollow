@@ -17,6 +17,7 @@ protocol PostCellDelegate: AnyObject {
     func postCell(didTapLinkPresentButton link: URL)
     func postCell(_ cell: PostCell, didTapEditButton post: Post)
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post)
+    func postCell(_ cell: PostCell, didTapDeclarationButton post: Post)
 }
 
 final class PostCell: UITableViewCell {
@@ -116,8 +117,7 @@ extension PostCell {
         creatorHeaderView.configure(
             userID: post.userID,
             nickName: post.nickName,
-            imageURL: post.writerProfileImageURL,
-            couldEdit: couldEdit
+            imageURL: post.writerProfileImageURL
         )
         likeButton.isSelected = post.isLiked
         likeButton.setTitle(post.likeCount.description, for: .normal)
@@ -129,10 +129,10 @@ extension PostCell {
         configureLinkPreviews(with: post.videoURL)
         
         addGestures()
-        addHeaderAction(to: post)
+        addHeaderAction(to: post, couldEdit: couldEdit)
     }
     
-    private func addHeaderAction(to post: Post) {
+    private func addHeaderAction(to post: Post, couldEdit: Bool) {
         let modifyAction = UIAction(title: Constants.Text.editMessage) { _ in
             self.delegate?.postCell(self, didTapEditButton: post)
         }
@@ -141,7 +141,13 @@ extension PostCell {
             self.delegate?.postCell(self, didTapDeleteButton: post)
         }
         
-        creatorHeaderView.configureAction(modifyAction: modifyAction, deleteAction: deleteAction)
+        let declarationAction = UIAction(title: Constants.Text.declaration, attributes: .destructive) { _ in
+            self.delegate?.postCell(self, didTapDeclarationButton: post)
+        }
+        
+        let actions: [UIAction] = couldEdit ? [modifyAction, deleteAction] : [declarationAction]
+        
+        creatorHeaderView.configureActions(actions)
     }
     
     private func configureImageSlideView(with imageURLs: [String]) {

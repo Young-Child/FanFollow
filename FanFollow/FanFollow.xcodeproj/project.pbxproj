@@ -74,7 +74,7 @@
 		188CC4202A4D820F00BAB85A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC41F2A4D820F00BAB85A /* SnapKit */; };
 		188CC4232A4D824800BAB85A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 188CC4222A4D824800BAB85A /* Then */; };
 		18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */; };
-		18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* BugReportCoordinator.swift */; };
+		18906B122A7BE946000D7715 /* MailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B112A7BE946000D7715 /* MailCoordinator.swift */; };
 		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
 		18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18906B152A7BFB4D000D7715 /* Settings.bundle */; };
 		18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */; };
@@ -343,7 +343,7 @@
 		188CC40F2A4D7FDB00BAB85A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC4112A4D7FDB00BAB85A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18906B0F2A7B5360000D7715 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
-		18906B112A7BE946000D7715 /* BugReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportCoordinator.swift; sourceTree = "<group>"; };
+		18906B112A7BE946000D7715 /* MailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCoordinator.swift; sourceTree = "<group>"; };
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
@@ -671,7 +671,7 @@
 				1829B5132A714B4500D873DF /* SettingCoodinator.swift */,
 				183EDDE62A72B08F00F1490E /* ProfileSettingCoordinator.swift */,
 				18B6F50C2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift */,
-				18906B112A7BE946000D7715 /* BugReportCoordinator.swift */,
+				18906B112A7BE946000D7715 /* MailCoordinator.swift */,
 				18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */,
 				3C639B232A7A08AB003E2E44 /* UploadCoordinator.swift */,
 				EB3A90782A791F6B007F400A /* CreatorApplicationCoordinator.swift */,
@@ -1783,7 +1783,7 @@
 				3C45B0192A52A7C600307DCF /* Bundle+Extension.swift in Sources */,
 				3C875C192A8A262000818473 /* LogOutViewController.swift in Sources */,
 				181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */,
-				18906B122A7BE946000D7715 /* BugReportCoordinator.swift in Sources */,
+				18906B122A7BE946000D7715 /* MailCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */,
 				18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */,

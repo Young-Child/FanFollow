@@ -100,4 +100,12 @@ final class FeedCoordinator: Coordinator {
         controller.hidesBottomBarWhenPushed = true
         navigationController.present(controller, animated: true)
     }
+    
+    func presentDeclaration(_ postID: String?) {
+        guard let postID = postID else { return }
+        let mailCoordinator = MailCoordinator(navigationController: navigationController, mailType: .declaration(postID: postID))
+        childCoordinators.append(mailCoordinator)
+        
+        mailCoordinator.start()
+    }
 }

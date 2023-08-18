@@ -58,7 +58,7 @@ private extension SettingCoordinator {
             return coordinator
             
         case .bugReport:
-            let coordinator = BugReportCoordinator(navigationController: navigationController)
+            let coordinator = MailCoordinator(navigationController: navigationController, mailType: .bugReport)
             coordinator.parentCoordinator = self
             return coordinator
             

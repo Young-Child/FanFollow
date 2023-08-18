@@ -128,6 +128,10 @@ extension FeedViewController: PostCellDelegate {
         coordinator?.presentLinkViewController(to: link)
     }
     
+    func postCell(_ cell: PostCell, didTapDeclarationButton post: Post) {
+        coordinator?.presentDeclaration(post.postID)
+    }
+    
     func postCell(_ cell: PostCell, didTapEditButton post: Post) { }
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post) { }
 }
