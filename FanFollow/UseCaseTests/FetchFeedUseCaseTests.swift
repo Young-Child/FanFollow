@@ -13,18 +13,28 @@ import RxSwift
 final class FetchFeedUseCaseTests: XCTestCase {
     private var sut: DefaultFetchFeedUseCase!
     private var postRepository: StubPostRepository!
+    private var imageRepository: StubImageRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         postRepository = StubPostRepository()
-        sut = DefaultFetchFeedUseCase(postRepository: postRepository)
+        imageRepository = StubImageRepository()
+        authRepository = StubAuthRepository()
+        sut = DefaultFetchFeedUseCase(
+            postRepository: postRepository,
+            imageRepository: imageRepository,
+            authRepository: authRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         postRepository = nil
+        imageRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -34,12 +44,11 @@ final class FetchFeedUseCaseTests: XCTestCase {
         // given
         postRepository.posts = TestData.posts
         postRepository.error = nil
-        let followerID = TestData.followerID
         let startRange = TestData.startRange
         let endRange = TestData.endRange
 
         // when
-        let observable = sut.fetchFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
+        let observable = sut.fetchFollowPosts(startRange: startRange, endRange: endRange)
 
         // then
         observable.subscribe(onNext: { value in
@@ -55,12 +64,11 @@ final class FetchFeedUseCaseTests: XCTestCase {
         // given
         postRepository.posts = []
         postRepository.error = TestData.error
-        let followerID = TestData.followerID
         let startRange = TestData.startRange
         let endRange = TestData.endRange
 
         // when
-        let observable = sut.fetchFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
+        let observable = sut.fetchFollowPosts(startRange: startRange, endRange: endRange)
 
         // then
         observable.subscribe(onNext: { _ in
@@ -74,7 +82,6 @@ final class FetchFeedUseCaseTests: XCTestCase {
 
 extension FetchFeedUseCaseTests {
     private enum TestData {
-        static let followerID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let startRange = 0
         static let endRange = 9
         static let posts = [

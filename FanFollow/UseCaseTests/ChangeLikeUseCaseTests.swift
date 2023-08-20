@@ -13,18 +13,21 @@ import RxSwift
 final class ChangeLikeUseCaseTests: XCTestCase {
     private var sut: DefaultChangeLikeUseCase!
     private var likeRepository: StubLikeRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         likeRepository = StubLikeRepository()
-        sut = DefaultChangeLikeUseCase(likeRepository: likeRepository)
+        authRepository = StubAuthRepository()
+        sut = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         likeRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -34,11 +37,10 @@ final class ChangeLikeUseCaseTests: XCTestCase {
         // given
         likeRepository.count = TestData.count
         likeRepository.error = nil
-        let userID = TestData.userID
         let postID = TestData.postID
 
         // when
-        let observable = sut.checkPostLiked(by: userID, postID: postID)
+        let observable = sut.checkPostLiked(postID: postID)
 
         // then
         observable.subscribe(onNext: { liked in
@@ -53,11 +55,10 @@ final class ChangeLikeUseCaseTests: XCTestCase {
     func test_CheckPostLikedInErrorCondition() {
         // given
         likeRepository.error = TestData.error
-        let userID = TestData.userID
         let postID = TestData.postID
 
         // when
-        let observable = sut.checkPostLiked(by: userID, postID: postID)
+        let observable = sut.checkPostLiked(postID: postID)
 
         // then
         observable.subscribe(onNext: { _ in
@@ -111,10 +112,9 @@ final class ChangeLikeUseCaseTests: XCTestCase {
         likeRepository.count = TestData.emptyCount
         likeRepository.error = nil
         let postID = TestData.postID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.togglePostLike(postID: postID, userID: userID)
+        let observable = sut.togglePostLike(postID: postID)
 
         // then
         observable.subscribe(onCompleted: {
@@ -132,10 +132,9 @@ final class ChangeLikeUseCaseTests: XCTestCase {
         likeRepository.count = TestData.count
         likeRepository.error = nil
         let postID = TestData.postID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.togglePostLike(postID: postID, userID: userID)
+        let observable = sut.togglePostLike(postID: postID)
 
         // then
         observable.subscribe(onCompleted: {
@@ -152,10 +151,9 @@ final class ChangeLikeUseCaseTests: XCTestCase {
         //given
         likeRepository.error = TestData.error
         let postID = TestData.postID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.togglePostLike(postID: postID, userID: userID)
+        let observable = sut.togglePostLike(postID: postID)
 
         // then
         observable.subscribe(onCompleted: {
@@ -171,7 +169,6 @@ extension ChangeLikeUseCaseTests {
     private enum TestData {
         static let emptyCount = 0
         static let count = 1
-        static let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let postID = "2936bffa-196f-4c87-92a6-121f7e83f24b"
         static let error = NetworkError.unknown
     }

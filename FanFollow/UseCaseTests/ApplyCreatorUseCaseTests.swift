@@ -13,18 +13,24 @@ import RxSwift
 final class ApplyCreatorUseCaseTests: XCTestCase {
     private var sut: DefaultApplyCreatorUseCase!
     private var userInformationRepository: StubUserInformationRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
-        sut = DefaultApplyCreatorUseCase(userInformationRepository: userInformationRepository)
+        authRepository = StubAuthRepository()
+        sut = DefaultApplyCreatorUseCase(
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         userInformationRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -34,11 +40,10 @@ final class ApplyCreatorUseCaseTests: XCTestCase {
         // given
         userInformationRepository.userInformation = TestData.userInformation
         userInformationRepository.error = nil
-        let userID = TestData.userID
         let creatorInformation = TestData.creatorInformation
 
         // when
-        let observable = sut.applyCreator(userID: userID, creatorInformation: creatorInformation)
+        let observable = sut.applyCreator(creatorInformation: creatorInformation)
 
         // then
         observable.subscribe(onCompleted: {
@@ -53,11 +58,10 @@ final class ApplyCreatorUseCaseTests: XCTestCase {
     func test_ApplyCreatorInErrorCondition() {
         userInformationRepository.userInformation = TestData.userInformation
         userInformationRepository.error = TestData.error
-        let userID = TestData.userID
         let creatorInformation = TestData.creatorInformation
 
         // when
-        let observable = sut.applyCreator(userID: userID, creatorInformation: creatorInformation)
+        let observable = sut.applyCreator(creatorInformation: creatorInformation)
 
         // then
         observable.subscribe(onCompleted: {
@@ -81,7 +85,6 @@ extension ApplyCreatorUseCaseTests {
             isCreator: true,
             createdDate: Date()
         )
-        static let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let creatorInformation = (JobCategory.IT.rawValue, [String](), "")
         static let error = NetworkError.unknown
     }

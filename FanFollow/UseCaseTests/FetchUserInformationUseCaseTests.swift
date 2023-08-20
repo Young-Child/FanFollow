@@ -13,18 +13,24 @@ import RxSwift
 final class FetchUserInformationUseCaseTests: XCTestCase {
     private var sut: DefaultFetchUserInformationUseCase!
     private var userInformationRepository: StubUserInformationRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
-        sut = DefaultFetchUserInformationUseCase(userInformationRepository: userInformationRepository)
+        authRepository = StubAuthRepository()
+        sut = DefaultFetchUserInformationUseCase(
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         userInformationRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -34,15 +40,13 @@ final class FetchUserInformationUseCaseTests: XCTestCase {
         // given
         userInformationRepository.userInformation = TestData.fanInformation
         userInformationRepository.error = nil
-        let userID = TestData.fanID
 
         // when
-        let observable = sut.fetchUserInformation(for: userID)
+        let observable = sut.fetchUserInformation()
 
         // then
         observable.subscribe(onNext: { value in
             XCTAssertTrue(value is Fan)
-            XCTAssertEqual(value.id, userID)
         }, onError: { error in
             XCTFail(error.localizedDescription)
         })
@@ -54,15 +58,13 @@ final class FetchUserInformationUseCaseTests: XCTestCase {
         // given
         userInformationRepository.userInformation = TestData.creatorInformation
         userInformationRepository.error = nil
-        let creatorID = TestData.creatorID
 
         // when
-        let observable = sut.fetchUserInformation(for: creatorID)
+        let observable = sut.fetchUserInformation()
 
         // then
         observable.subscribe(onNext: { value in
             XCTAssertTrue(value is Creator)
-            XCTAssertEqual(value.id, creatorID)
         }, onError: { error in
             XCTFail(error.localizedDescription)
         })
@@ -74,10 +76,9 @@ final class FetchUserInformationUseCaseTests: XCTestCase {
         // given
         userInformationRepository.userInformation = TestData.fanInformation
         userInformationRepository.error = TestData.error
-        let userID = TestData.fanID
 
         // when
-        let observable = sut.fetchUserInformation(for: userID)
+        let observable = sut.fetchUserInformation()
 
         // then
         observable.subscribe(onNext: { _ in
@@ -111,8 +112,6 @@ extension FetchUserInformationUseCaseTests {
             isCreator: true,
             createdDate: Date()
         )
-        static let fanID = "56f17fb1-e9d0-4974-bf0b-43aad6a2526f"
-        static let creatorID = "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2"
         static let error = NetworkError.unknown
     }
 }

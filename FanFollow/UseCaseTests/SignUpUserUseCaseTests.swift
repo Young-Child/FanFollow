@@ -12,18 +12,24 @@ import RxSwift
 final class SignUpUserUseCaseTests: XCTestCase {
     private var sut: DefaultSignUpUserUseCase!
     private var userInformationRepository: StubUserInformationRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
-        sut = DefaultSignUpUserUseCase(userInformationRepository: userInformationRepository)
+        authRepository = StubAuthRepository()
+        sut = DefaultSignUpUserUseCase(
+            userInformationRepository: userInformationRepository,
+            authRepository: authRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         userInformationRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -33,10 +39,9 @@ final class SignUpUserUseCaseTests: XCTestCase {
         // givne
         userInformationRepository.isSignUp = true
         userInformationRepository.error = nil
-        let userID = TestData.userID
 
         // when
-        let observable = sut.checkSignUp(userID: userID)
+        let observable = sut.checkSignUp()
 
         observable.subscribe(onNext: { result in
             XCTAssertEqual(result, true)
@@ -50,10 +55,9 @@ final class SignUpUserUseCaseTests: XCTestCase {
     func test_CheckSignUpInErrorCondition() {
         // givne
         userInformationRepository.error = TestData.error
-        let userID = TestData.userID
 
         // when
-        let observable = sut.checkSignUp(userID: userID)
+        let observable = sut.checkSignUp()
 
         // then
         observable.subscribe(onNext: { _ in
@@ -68,11 +72,10 @@ final class SignUpUserUseCaseTests: XCTestCase {
     func test_SignUpInNormalCondition() {
         // givne
         userInformationRepository.error = nil
-        let userID = TestData.userID
         let nickName = TestData.nickName
 
         // when
-        let observable = sut.signUp(userID: userID, nickName: nickName)
+        let observable = sut.signUp(nickName: nickName)
 
         // then
         observable.subscribe(onCompleted: {
@@ -87,11 +90,10 @@ final class SignUpUserUseCaseTests: XCTestCase {
     func test_SignUpInErrorCondition() {
         // givne
         userInformationRepository.error = TestData.error
-        let userID = TestData.userID
         let nickName = TestData.nickName
 
         // when
-        let observable = sut.signUp(userID: userID, nickName: nickName)
+        let observable = sut.signUp(nickName: nickName)
 
         // then
         observable.subscribe(onCompleted: {
@@ -105,7 +107,6 @@ final class SignUpUserUseCaseTests: XCTestCase {
 
 extension SignUpUserUseCaseTests {
     private enum TestData {
-        static let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
         static let nickName = "test"
         static let error = NetworkError.unknown
     }

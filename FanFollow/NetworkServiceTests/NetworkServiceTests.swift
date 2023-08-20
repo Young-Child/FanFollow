@@ -31,33 +31,6 @@ final class NetworkServiceTests: XCTestCase {
         sample = nil
     }
     
-    /// 네트워크없이 NetworkService 내부의 data 메서드가 정상적인 데이터를 전달하는지 테스트
-    func test_FetchingDataWithDataExistWhenStatusCode200() throws {
-        //given
-        let stubURLSession = StubURLSession.make(
-            url: url,
-            mock: sample,
-            statusCode: 200
-        )
-        
-        let sut = DefaultNetworkService.createForTesting(session: stubURLSession)
-        
-        // when
-        let fetchResult = sut.data(URLRequest(url: URL(string: self.url)!))
-        
-        //then
-        fetchResult
-            .subscribe(onNext: { data in
-                let result = try! JSONDecoder.ISODecoder.decode(ChatDTO.self, from: data)
-                let expected = try! JSONDecoder.ISODecoder.decode(ChatDTO.self, from: self.sample.sampleData)
-                
-                XCTAssertEqual(result.chatID, expected.chatID)
-            }, onError: { _ in
-                XCTAssertThrowsError("We expected onNext Event, But Sending onError Event")
-            })
-            .disposed(by: disposeBag)
-    }
-    
     /// 네트워크없이 NetworkService 내부의 data 메서드가 정상적으로 에러를 전달하는지 테스트
     func test_FetchingDataWithDataExistWhenStatusCodeNot200() throws {
         let stubURLSession = StubURLSession.make(

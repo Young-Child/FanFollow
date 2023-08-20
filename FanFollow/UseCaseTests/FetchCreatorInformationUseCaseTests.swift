@@ -14,15 +14,18 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
     private var sut: DefaultFetchCreatorInformationUseCase!
     private var userInformationRepository: StubUserInformationRepository!
     private var followRepository: StubFollowRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
         followRepository = StubFollowRepository()
+        authRepository = StubAuthRepository()
         sut = DefaultFetchCreatorInformationUseCase(
             userInformationRepository: userInformationRepository,
-            followRepository: followRepository
+            followRepository: followRepository,
+            authRepository: authRepository
         )
         disposeBag = DisposeBag()
     }
@@ -31,6 +34,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         sut = nil
         userInformationRepository = nil
         followRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -43,7 +47,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         let creatorID = TestData.creatorID
 
         // when
-        let observable = sut.fetchCreatorInformation(for: creatorID)
+        let observable = sut.fetchCreatorInformation(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { value in
@@ -62,7 +66,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         let creatorID = TestData.creatorID
 
         // when
-        let observable = sut.fetchCreatorInformation(for: creatorID)
+        let observable = sut.fetchCreatorInformation(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { _ in
@@ -81,7 +85,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         let creatorID = TestData.creatorID
 
         // when
-        let observable = sut.fetchFollowerCount(for: creatorID)
+        let observable = sut.fetchFollowerCount(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { count in
@@ -100,7 +104,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         let creatorID = TestData.creatorID
 
         // when
-        let observable = sut.fetchFollowerCount(for: creatorID)
+        let observable = sut.fetchFollowerCount(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { _ in
@@ -119,7 +123,7 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         let userID = TestData.userID
 
         // when
-        let observable = sut.fetchFollowings(for: userID, startRange: 0, endRange: 3)
+        let observable = sut.fetchFollowingCreators(targetID: userID, startRange: 0, endRange: 3)
 
         // then
         observable.subscribe(onNext: { creators in
@@ -136,10 +140,9 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         followRepository.isFollow = true
         followRepository.error = nil
         let creatorID = TestData.creatorID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.checkFollow(creatorID: creatorID, userID: userID)
+        let observable = sut.checkFollow(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { value in
@@ -156,10 +159,9 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         followRepository.isFollow = true
         followRepository.error = TestData.error
         let creatorID = TestData.creatorID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.checkFollow(creatorID: creatorID, userID: userID)
+        let observable = sut.checkFollow(targetID: creatorID)
 
         // then
         observable.subscribe(onNext: { _ in
@@ -175,10 +177,9 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         // given
         followRepository.error = nil
         let creatorID = TestData.creatorID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.toggleFollow(creatorID: creatorID, userID: userID)
+        let observable = sut.toggleFollow(targetID: creatorID)
 
         // then
         observable.subscribe(onCompleted: {
@@ -194,10 +195,9 @@ final class FetchCreatorInformationUseCaseTests: XCTestCase {
         // given
         followRepository.error = TestData.error
         let creatorID = TestData.creatorID
-        let userID = TestData.userID
 
         // when
-        let observable = sut.toggleFollow(creatorID: creatorID, userID: userID)
+        let observable = sut.toggleFollow(targetID: creatorID)
 
         // then
         observable.subscribe(onCompleted: {

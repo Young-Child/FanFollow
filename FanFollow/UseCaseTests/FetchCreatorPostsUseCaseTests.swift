@@ -14,19 +14,26 @@ final class FetchCreatorPostsUseCaseTests: XCTestCase {
     private var sut: DefaultFetchCreatorPostsUseCase!
     private var postRepository: StubPostRepository!
     private var imageRepository: ImageRepository!
+    private var authRepository: StubAuthRepository!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         postRepository = StubPostRepository()
         imageRepository = StubImageRepository()
-        sut = DefaultFetchCreatorPostsUseCase(postRepository: postRepository, imageRepository: imageRepository)
+        authRepository = StubAuthRepository()
+        sut = DefaultFetchCreatorPostsUseCase(
+            postRepository: postRepository,
+            imageRepository: imageRepository,
+            authRepository: authRepository
+        )
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         sut = nil
         postRepository = nil
+        authRepository = nil
         disposeBag = nil
         try super.tearDownWithError()
     }
@@ -41,7 +48,7 @@ final class FetchCreatorPostsUseCaseTests: XCTestCase {
         let endRange = TestData.endRange
 
         // when
-        let observable = sut.fetchCreatorPosts(creatorID: creatorID, startRange: startRange, endRange: endRange)
+        let observable = sut.fetchCreatorPosts(targetID: creatorID, startRange: startRange, endRange: endRange)
 
         // then
         observable.subscribe(onNext: { value in
@@ -62,7 +69,7 @@ final class FetchCreatorPostsUseCaseTests: XCTestCase {
         let endRange = TestData.endRange
 
         // when
-        let observable = sut.fetchCreatorPosts(creatorID: creatorID, startRange: startRange, endRange: endRange)
+        let observable = sut.fetchCreatorPosts(targetID: creatorID, startRange: startRange, endRange: endRange)
 
         // then
         observable.subscribe(onNext: { value in

@@ -168,7 +168,7 @@ final class AuthRepositoryTests: XCTestCase {
         // given
         let storedSession = StoredSession(session: TestData.sessionDTO)!
         let storedSessionData = try! JSONEncoder().encode(storedSession)
-        userDefaultsService.data[TestData.session] = storedSessionData
+        userDefaultsService.data[UserDefaults.Key.session] = storedSessionData
 
         // when
         let observable = sut.storedSession()
@@ -306,7 +306,7 @@ extension AuthRepositoryTests {
         static let sessionDTO = SessionDTO(
             accessToken: accessToken,
             refreshToken: refreshToken,
-            expiresIn: 3600,
+            expiresIn: 604800,
             user: userDTO
         )
     }
