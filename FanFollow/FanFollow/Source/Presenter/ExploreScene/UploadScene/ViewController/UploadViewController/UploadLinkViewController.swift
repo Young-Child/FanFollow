@@ -159,10 +159,14 @@ extension UploadLinkViewController {
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: {
                 var urlString = $0
-                if urlString.hasPrefix(Constants.Text.http) == false {
+                
+                if urlString.hasPrefix(Constants.Text.http) == false && urlString.isEmpty == false {
                     urlString = Constants.Text.http + urlString
                 }
+                
                 guard let url = URL(string: urlString) else { return }
+                
+                self.linkTextView.textView.text = urlString
                 self.linkPreview.setLink(to: url)
             })
             .disposed(by: disposeBag)
