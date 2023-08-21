@@ -15,6 +15,7 @@ import RxSwift
 final class FeedViewController: UIViewController {
     // View Properties
     private let navigationBar = FFNavigationBar()
+
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -22,8 +23,15 @@ final class FeedViewController: UIViewController {
         tableView.backgroundColor = Constants.Color.background
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
+
     private let refreshControl = UIRefreshControl().then {
         $0.tintColor = Constants.Color.blue
+    }
+
+    private let feedResultLabel = UILabel().then {
+        $0.textColor = .label
+        $0.textAlignment = .center
+        $0.text = Constants.Text.noFeedResult
     }
     
     // Properties
@@ -91,6 +99,7 @@ private extension FeedViewController {
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
+                self.feedResultLabel.isHidden = newPosts.isEmpty == false
             }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -161,7 +170,7 @@ private extension FeedViewController {
     }
     
     func configureHierarchy() {
-        [navigationBar, tableView].forEach(view.addSubview(_:))
+        [navigationBar, tableView, feedResultLabel].forEach(view.addSubview(_:))
     }
     
     func configureConstraints() {
@@ -174,6 +183,10 @@ private extension FeedViewController {
         tableView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+
+        feedResultLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 }

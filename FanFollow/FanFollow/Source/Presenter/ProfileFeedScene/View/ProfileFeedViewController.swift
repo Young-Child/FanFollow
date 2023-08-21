@@ -14,6 +14,7 @@ import RxSwift
 final class ProfileFeedViewController: UIViewController {
     // View Properties
     private let navigationBar = FFNavigationBar()
+
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -22,7 +23,14 @@ final class ProfileFeedViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
     }
+
     private let refreshControl = UIRefreshControl()
+
+    private let feedResultLabel = UILabel().then {
+        $0.textColor = .label
+        $0.textAlignment = .center
+        $0.text = Constants.Text.noProfileFeedResult
+    }
 
     // Properties
     typealias DataSource = RxTableViewSectionedReloadDataSource<ProfileFeedSectionModel>
@@ -148,6 +156,10 @@ private extension ProfileFeedViewController {
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
+
+                if case .posts(let items) = value[1] {
+                    self.feedResultLabel.isHidden = items.isEmpty == false
+                }
             }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -186,13 +198,12 @@ private extension ProfileFeedViewController {
     }
 
     func configureHierarchy() {
-        
         switch viewType {
         case .feedManage:
-            view.addSubview(tableView)
+            [tableView, feedResultLabel].forEach(view.addSubview(_:))
             configureFeedManageConstraints()
         case .profileFeed:
-            [navigationBar, tableView].forEach(view.addSubview(_:))
+            [navigationBar, tableView, feedResultLabel].forEach(view.addSubview(_:))
             configureProfileFeedConstraints()
         }
     }
@@ -201,6 +212,9 @@ private extension ProfileFeedViewController {
         tableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.bottom.trailing.equalToSuperview()
+        }
+        feedResultLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 
@@ -213,6 +227,9 @@ private extension ProfileFeedViewController {
         tableView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+        feedResultLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 

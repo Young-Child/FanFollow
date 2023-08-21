@@ -25,6 +25,7 @@ enum Constants {
         static let creatorFormat = " %@ 크리에이터"
         static let searchPlaceHolder = "크리에이터의 닉네임을 검색해보세요."
         static let noSearchResult = "검색 결과가 없습니다."
+        static let noSubscribeResult = "구독 중인 크리에이터가 없습니다."
 
         // Setting Scene
         static let registerCreatorSectionTitle = "크리에이터 신청"
@@ -78,13 +79,14 @@ enum Constants {
         """
         
         static let declarationMailTitle = "<팬팔> 게시글 신고하기"
-        
+        static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
         
         // ProfileFeed Scene
         static let follower = "팔로워 "
         static let personUnit = "명"
         static let followButtonTitle = "팔로우"
         static let unfollowButtonTitle = "팔로잉"
+        static let noProfileFeedResult = "등록된 게시물이 없습니다."
         
         // Upload Scene
         static let uploadTitle = "게시물 업로드"

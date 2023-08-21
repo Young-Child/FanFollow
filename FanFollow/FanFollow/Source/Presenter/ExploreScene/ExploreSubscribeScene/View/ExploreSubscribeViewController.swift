@@ -16,6 +16,12 @@ final class ExploreSubscribeViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.register(CreatorListCell.self, forCellReuseIdentifier: CreatorListCell.reuseIdentifier)
     }
+
+    private let subscribeResultLabel = UILabel().then {
+        $0.textColor = .label
+        $0.textAlignment = .center
+        $0.text = Constants.Text.noSubscribeResult
+    }
     
     // Properties
     weak var coordinator: ExploreCoordinator?
@@ -78,6 +84,7 @@ extension ExploreSubscribeViewController {
     private func bindTableView(_ output: ExploreSubscribeViewModel.Output) {
         output.creatorListModel
             .asDriver(onErrorJustReturn: [])
+            .do(onNext: { self.subscribeResultLabel.isHidden = $0.isEmpty == false })
             .drive(subscribeTableView.rx.items(
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
@@ -105,12 +112,15 @@ private extension ExploreSubscribeViewController {
     }
     
     func configureHierarchy() {
-        view.addSubview(subscribeTableView)
+        [subscribeTableView, subscribeResultLabel].forEach(view.addSubview)
     }
     
     func makeConstraints() {
         subscribeTableView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        subscribeResultLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 }
