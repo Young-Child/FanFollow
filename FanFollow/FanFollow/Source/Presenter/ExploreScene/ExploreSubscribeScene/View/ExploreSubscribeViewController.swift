@@ -19,6 +19,7 @@ final class ExploreSubscribeViewController: UIViewController {
     
     // Properties
     weak var coordinator: ExploreCoordinator?
+    weak var delegate: ExploreSubscribeDelegate?
     private let viewModel: ExploreSubscribeViewModel
     private let disposeBag = DisposeBag()
     
@@ -88,7 +89,7 @@ extension ExploreSubscribeViewController {
         subscribeTableView.rx.modelSelected(Creator.self)
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind { item in
-                self.coordinator?.presentProfileViewController(to: item.id)
+                self.delegate?.exploreViewController(self, didTapPresent: item)
             }
             .disposed(by: disposeBag)
     }

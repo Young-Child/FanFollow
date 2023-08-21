@@ -13,6 +13,10 @@ protocol ExploreCreatorDelegate: AnyObject {
     func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem)
 }
 
+protocol ExploreSubscribeDelegate: AnyObject {
+    func exploreViewController(_ controller: ExploreSubscribeViewController, didTapPresent item: Creator)
+}
+
 final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
     private let searchButton = UIButton().then {
         $0.setImage(Constants.Image.magnifyingGlass, for: .normal)
@@ -34,18 +38,23 @@ final class ExploreTabBarController: TopTabBarController<ExploreTapItem> {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-        setExplorCoordinator()
+        setExploreCoordinator()
     }
     
-    private func setExplorCoordinator() {
+    private func setExploreCoordinator() {
         viewControllers?.forEach { controller in
             if let controller = controller as? ExploreViewController {
+                controller.delegate = self
+            }
+            
+            if let controller = controller as? ExploreSubscribeViewController {
                 controller.delegate = self
             }
         }
     }
 }
 
+// To Profile From ExploreScene
 extension ExploreTabBarController: ExploreCreatorDelegate {
     func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem) {
         switch item {
@@ -54,6 +63,13 @@ extension ExploreTabBarController: ExploreCreatorDelegate {
         case .creator(_, let creatorID, _):
             coordinator?.presentProfileViewController(to: creatorID)
         }
+    }
+}
+
+// To Profile From ExploreSubscribeScene
+extension ExploreTabBarController: ExploreSubscribeDelegate {
+    func exploreViewController(_ controller: ExploreSubscribeViewController, didTapPresent item: Creator) {
+        coordinator?.presentProfileViewController(to: item.id)
     }
 }
 
