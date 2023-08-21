@@ -87,6 +87,17 @@ final class UploadPhotoViewController: UploadViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: configureImages(to:))
             .disposed(by: disposeBag)
+        
+        output.registerResult
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { postID in
+                self.registerImage.enumerated().forEach { index, image in
+                    let key = Post.generateImageURL(path: postID + "/\(index + 1).png")
+                    ImageCache.default.changeMemoryImage(to: image, key: key)
+                }
+                self.coordinator?.close(to: self)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

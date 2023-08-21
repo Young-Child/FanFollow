@@ -18,7 +18,7 @@ final class UploadViewModel: ViewModel {
     struct Output {
         var post: Observable<Post?>
         var postImageDatas: Observable<[Data]>
-        var registerResult: Observable<Void>
+        var registerResult: Observable<String>
     }
     
     var disposeBag = DisposeBag()
@@ -40,12 +40,10 @@ final class UploadViewModel: ViewModel {
                 ImageCache.default.clearCache()
                 return self.uploadUseCase
                     .upsertPost(uploadData, existPostID: self.post?.postID)
-                    .andThen(Observable.just(()))
             }
         
         let postDatas = uploadUseCase.fetchPostImageDatas(
-            self.post?.postID ?? "",
-            imageCount: self.post?.imageURLs.count ?? .zero
+            self.post?.postID ?? ""
         ).map { datas in
             return datas.sorted(by: { $0.0 < $1.0 })
                 .map { $0.1 }

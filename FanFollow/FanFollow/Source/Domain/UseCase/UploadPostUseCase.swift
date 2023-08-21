@@ -11,8 +11,8 @@ import RxSwift
 import Kingfisher
 
 protocol UploadPostUseCase: AnyObject {
-    func upsertPost(_ upload: Upload, existPostID: String?) -> Completable
-    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]>
+    func upsertPost(_ upload: Upload, existPostID: String?) -> Observable<String>
+    func fetchPostImageDatas(_ postID: String) -> Observable<[(String, Data)]>
 }
 
 final class DefaultUploadPostUseCase: UploadPostUseCase {
@@ -27,14 +27,14 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         self.authRepository = authRepository
     }
     
-    func upsertPost(_ upload: Upload, existPostID: String? = nil) -> Completable {
+    func upsertPost(_ upload: Upload, existPostID: String? = nil) -> Observable<String> {
         var postID = UUID().uuidString.lowercased()
         let result: Completable
         
         if let existPostID = existPostID {
             postID = existPostID
         }
-
+        
         if upload.videoURL == nil {
             result = uploadImages(postID: postID, imageDatas: upload.imageDatas)
                 .asObservable()
@@ -61,8 +61,9 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
         }
         
         return result
+            .andThen(Observable<String>.just(postID))
     }
-
+    
     private func upsertPost(
         postID: String?,
         createdDate: Date,
@@ -88,39 +89,43 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
             .asCompletable()
     }
     
-    func fetchPostImageDatas(_ postID: String, imageCount: Int) -> Observable<[(String, Data)]> {
-        return Observable.from(0..<imageCount)
-            .flatMap { postImageID in
-                let path = "PostImages/\(postID)/\(postImageID + 1).png"
-                return self.imageRepository.readImage(to: path)
-                    .map { return (path, $0) }
+    func fetchPostImageDatas(_ postID: String) -> Observable<[(String, Data)]> {
+        fetchImagePaths(postID: postID)
+            .flatMap { paths in
+                return Observable.from(paths)
+                    .flatMap { path in
+                        let imagePath = "PostImages/\(postID)/\(path)"
+                        return self.imageRepository.readImage(to: imagePath)
+                            .map { (imagePath, $0) }
+                    }
             }
             .toArray()
             .asObservable()
     }
     
-    private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<Void> {
+    private func fetchImagePaths(postID: String) -> Observable<[String]> {
         return self.imageRepository.readImageList(to: "PostImages", keyword: postID)
             .map { $0.map { $0.name } }
-            .flatMap { paths in
-                return Observable.from(paths)
-                    .flatMap { path in
-                        let imagePath = "PostImages/\(postID)/\(path)"
-                        return self.imageRepository.deleteImage(to: imagePath)
-                            .debug()
-                    }
-            }
-            .asCompletable()
-            .andThen(Observable<Void>.just(()))
-            .concatMap { _ in
-                return Observable.from(imageDatas.enumerated())
-                    .flatMap { index, data in
-                        let path = "PostImages/\(postID)/\(index + 1).png"
-                        return self.imageRepository.uploadImage(to: path, with: data)
-                            .debug()
-                    }
-            }
-            .asCompletable()
-            .andThen(Observable<Void>.just(()))
+    }
+    
+    private func uploadImages(postID: String, imageDatas: [Data]) -> Observable<Void> {
+        return fetchImagePaths(postID: postID).flatMap { paths in
+            return Observable.from(paths)
+                .flatMap { path in
+                    let imagePath = "PostImages/\(postID)/\(path)"
+                    return self.imageRepository.deleteImage(to: imagePath)
+                }
+        }
+        .asCompletable()
+        .andThen(Observable<Void>.just(()))
+        .concatMap { _ in
+            return Observable.from(imageDatas.enumerated())
+                .flatMap { index, data in
+                    let path = "PostImages/\(postID)/\(index + 1).png"
+                    return self.imageRepository.uploadImage(to: path, with: data)
+                }
+        }
+        .asCompletable()
+        .andThen(Observable<Void>.just(()))
     }
 }

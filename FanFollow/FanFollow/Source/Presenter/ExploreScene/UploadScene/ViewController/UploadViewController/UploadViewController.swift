@@ -81,13 +81,6 @@ class UploadViewController: UIViewController {
         post.compactMap { $0?.content }
             .drive(onNext: contentsTextView.setInitialState(to:))
             .disposed(by: disposeBag)
-        
-        output.registerResult
-            .asDriver(onErrorJustReturn: ())
-            .drive(onNext: {
-                self.coordinator?.close(to: self)
-            })
-            .disposed(by: disposeBag)
     }
     
     func bindingLeftButton() {
