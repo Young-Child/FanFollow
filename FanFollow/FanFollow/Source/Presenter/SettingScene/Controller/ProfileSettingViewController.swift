@@ -130,7 +130,6 @@ private extension ProfileSettingViewController {
             .disposed(by: disposeBag)
         
         output.isCreator
-            .debug()
             .asDriver(onErrorJustReturn: false)
             .drive(
                 jobCategoryInput.rx.isUserInteractionEnabled,

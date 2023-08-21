@@ -132,7 +132,6 @@ extension LogInViewController {
         let output = bindingInput()
         
         output.logInSuccess
-            .debug()
             .asDriver(onErrorJustReturn: false)
             .filter { $0 }
             .drive(onNext: { _ in self.coordinator?.didSuccessLogin() })

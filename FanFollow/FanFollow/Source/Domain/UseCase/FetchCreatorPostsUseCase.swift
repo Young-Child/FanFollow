@@ -32,6 +32,8 @@ final class DefaultFetchCreatorPostsUseCase: FetchCreatorPostsUseCase {
             .fetchMyPosts(userID: targetID, startRange: startRange, endRange: endRange)
         
         let imageLinksUpdatedPost = postDTOs.flatMap { postDTOs -> Observable<[Post]> in
+            if postDTOs.isEmpty { return .just([]) }
+            
             let fetchImageURLs = postDTOs.compactMap(\.postID).map {
                 return self.fetchPostImageLinks(postID: $0)
             }

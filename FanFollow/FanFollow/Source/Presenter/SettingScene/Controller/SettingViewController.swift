@@ -64,7 +64,6 @@ private extension SettingViewController {
     
     func bindCreatorState(_ output: SettingViewModel.Output) {
         output.isCreator
-            .debug()
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: {
                 self.settingTabBarDelegate?.settingController(
