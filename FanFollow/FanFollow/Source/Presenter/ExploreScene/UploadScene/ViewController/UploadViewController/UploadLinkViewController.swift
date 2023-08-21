@@ -106,7 +106,7 @@ final class UploadLinkViewController: UploadViewController {
         
         output.registerResult
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { _
+            .drive(onNext: { _ in
                 self.coordinator?.close(to: self)
             })
             .disposed(by: disposeBag)

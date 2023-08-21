@@ -99,7 +99,7 @@ private extension FeedViewController {
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
-                self.feedResultLabel.isHidden = newPosts.isEmpty == false
+                self.feedResultLabel.isHidden = newPosts.first?.items.isEmpty == false
             }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
