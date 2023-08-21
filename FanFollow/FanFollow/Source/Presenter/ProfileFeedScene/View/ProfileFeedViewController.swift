@@ -159,6 +159,7 @@ private extension ProfileFeedViewController {
 
                 if case .posts(let items) = value[1] {
                     self.feedResultLabel.isHidden = items.isEmpty == false
+                    self.tableView.isScrollEnabled = items.isEmpty == false
                 }
             }
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -200,21 +201,19 @@ private extension ProfileFeedViewController {
     func configureHierarchy() {
         switch viewType {
         case .feedManage:
-            [tableView, feedResultLabel].forEach(view.addSubview(_:))
+            [tableView].forEach(view.addSubview(_:))
             configureFeedManageConstraints()
         case .profileFeed:
-            [navigationBar, tableView, feedResultLabel].forEach(view.addSubview(_:))
+            [navigationBar, tableView].forEach(view.addSubview(_:))
             configureProfileFeedConstraints()
         }
+        tableView.backgroundView = feedResultLabel
     }
     
     func configureFeedManageConstraints() {
         tableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.bottom.trailing.equalToSuperview()
-        }
-        feedResultLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
         }
     }
 
@@ -227,9 +226,6 @@ private extension ProfileFeedViewController {
         tableView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
-        }
-        feedResultLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
         }
     }
 
