@@ -25,13 +25,13 @@ final class DefaultFetchFeedUseCase: FetchFeedUseCase {
 
     func fetchFollowPosts(startRange: Int, endRange: Int) -> Observable<[Post]> {
         let postDTOs = authRepository.storedSession()
-            .flatMap { storedSession in
+            .flatMapLatest { storedSession in
                 let followerID = storedSession.userID
                 return self.postRepository
                     .fetchFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
             }
 
-        let imageLinksUpdatedPost = postDTOs.flatMap { postDTOs -> Observable<[Post]> in
+        let imageLinksUpdatedPost = postDTOs.flatMapLatest { postDTOs -> Observable<[Post]> in
             if postDTOs.isEmpty { return .just([]) }
             
             let fetchImageURLs = postDTOs.compactMap(\.postID).map {
