@@ -38,6 +38,12 @@ final class ProfileSettingViewController: UIViewController {
     
     private let nickNameInput = ProfileInputField(title: Constants.Text.nickName)
     
+    private let nickNameInformationLabel = UILabel().then {
+        $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
+        $0.text = Constants.Text.nickNameInformationTitle
+        $0.textColor = Constants.Color.grayDark
+    }
+    
     private let creatorInformationLabel = UILabel().then {
         $0.font = .coreDreamFont(ofSize: 13, weight: .regular)
         $0.text = Constants.Text.creatorInformationTitle
@@ -184,6 +190,15 @@ private extension ProfileSettingViewController {
     }
 }
 
+extension ProfileSettingViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        let numberOfChars = newText.count
+        return numberOfChars <= 10
+    }
+}
+
 private extension ProfileSettingViewController {
     func configureImageViewGesture() {
         let tapGesture = UITapGestureRecognizer(
@@ -242,6 +257,7 @@ private extension ProfileSettingViewController {
 // Configure UI
 private extension ProfileSettingViewController {
     func configureUI() {
+        nickNameInput.textField.delegate = self
         view.backgroundColor = .systemBackground
         
         configureNavigationBar()
@@ -276,7 +292,7 @@ private extension ProfileSettingViewController {
         scrollView.addSubview(scrollViewContentView)
         
         [
-            nickNameInput, creatorInformationLabel,
+            nickNameInput, nickNameInformationLabel, creatorInformationLabel,
             jobCategoryInput, linkInput, introduceInput
         ].forEach(profileInputStackView.addArrangedSubview)
         

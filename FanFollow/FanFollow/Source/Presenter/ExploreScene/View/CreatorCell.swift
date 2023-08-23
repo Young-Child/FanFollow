@@ -17,6 +17,7 @@ final class CreatorCell: UICollectionViewCell {
     }
     
     private let nickNameLabel = UILabel().then {
+        $0.adjustsFontSizeToFitWidth = true
         $0.numberOfLines = 1
         $0.textAlignment = .center
         $0.textColor = Constants.Color.blue

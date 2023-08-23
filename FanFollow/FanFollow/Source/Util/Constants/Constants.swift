@@ -46,6 +46,7 @@ enum Constants {
         static let introduceInputViewPlaceholder = "소개글을 작성해주세요."
         static let inputMessage = "입력을 완료해주세요."
         static let imageSelectTitle = "이미지 선택"
+        static let nickNameInformationTitle = "닉네임은 공백 포함 10글자까지 입력할 수 있습니다."
         static let creatorInformationTitle = "소개 및 상세 정보는 크리에이터만 수정할 수 있습니다."
         static let introduce = "소개"
         static let profileEdit = "프로필 편집"
