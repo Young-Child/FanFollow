@@ -20,7 +20,10 @@ final class AuthRepositoryTests: XCTestCase {
         try super.setUpWithError()
         networkService = StubNetworkService()
         userDefaultsService = StubUserDefaultsService()
-        sut = DefaultAuthRepository(networkService: networkService, userDefaultsService: userDefaultsService)
+        sut = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
         disposeBag = DisposeBag()
     }
 

@@ -27,3 +27,6 @@ excluded:
   - Pods
   - Carthage
   - .build
+  - NetworkServiceTests
+  - RepositoryTests
+  - UseCaseTests
