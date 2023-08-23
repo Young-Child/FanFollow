@@ -71,6 +71,7 @@ extension ExploreSubscribeViewController {
                 
                 return reachBottom ? Observable<Void>.just(()) : Observable<Void>.empty()
             }
+            .skip(1)
             .asObservable()
         
         let input = ExploreSubscribeViewModel.Input(
