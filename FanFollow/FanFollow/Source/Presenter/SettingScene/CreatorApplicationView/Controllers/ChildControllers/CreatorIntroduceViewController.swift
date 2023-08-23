@@ -17,9 +17,7 @@ final class CreatorIntroduceViewController: CreatorApplicationChildController {
     }
     
     var writtenIntroduce: Observable<String> {
-        get {
-            introduceTextView.rx.text.orEmpty.asObservable()
-        }
+        introduceTextView.rx.text.orEmpty.asObservable()
     }
     
     override func viewDidLoad() {

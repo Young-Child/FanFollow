@@ -33,7 +33,7 @@ final class WithdrawalViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,7 +41,7 @@ final class WithdrawalViewController: UIViewController {
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         binding()
         
@@ -90,10 +90,10 @@ extension WithdrawalViewController {
             $0.height.equalTo(0)
         }
         
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.25) {
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
-        }) { _ in
+        } completion: { _ in
             self.dismiss(animated: true) {
                 self.coordinator?.removeChild(to: self.coordinator)
             }
@@ -122,11 +122,11 @@ private extension WithdrawalViewController {
         makeConstraints()
         transparentView.alpha = .zero
     }
-
+    
     func configureHierarchy() {
         [transparentView, bottomSheetView].forEach(view.addSubview(_:))
     }
-
+    
     func makeConstraints() {
         transparentView.snp.makeConstraints {
             $0.edges.equalToSuperview()

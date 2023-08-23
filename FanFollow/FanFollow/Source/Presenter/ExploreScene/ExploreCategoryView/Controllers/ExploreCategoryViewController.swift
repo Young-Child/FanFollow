@@ -11,8 +11,9 @@ import RxDataSources
 import RxSwift
 
 final class ExploreCategoryViewController: UIViewController {
-    typealias ExploreCategoryDataSource = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
-    
+    typealias ExploreCategoryDataSource
+    = RxCollectionViewSectionedReloadDataSource<ExploreSectionModel>
+
     // View Properties
     private let navigationBar = FFNavigationBar()
     
@@ -97,8 +98,9 @@ extension ExploreCategoryViewController {
             .asObservable()
         
         let viewDidScrollEvent = exploreCategoryCollectionView.rx.didScroll
-            .flatMap{ _ in
-                let collectionViewContentSizeY = self.exploreCategoryCollectionView.contentSize.height
+            .flatMap { _ in
+                let collectionViewContentSizeY = self.exploreCategoryCollectionView
+                    .contentSize.height
                 let contentOffsetY = self.exploreCategoryCollectionView.contentOffset.y
                 let heightRemainBottomHeight = collectionViewContentSizeY - contentOffsetY
                 let frameHeight = self.exploreCategoryCollectionView.frame.size.height
@@ -120,8 +122,7 @@ extension ExploreCategoryViewController {
 // DataSource From RxDataSource
 extension ExploreCategoryViewController {
     static func dataSource() -> ExploreCategoryDataSource {
-        let dataSource = ExploreCategoryDataSource { dataSource, collectionView, indexPath, item in
-            
+        let dataSource = ExploreCategoryDataSource { _, collectionView, indexPath, item in
             if case let .creator(nickName, userID, profileURL) = item {
                 let cell: CreatorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
@@ -207,9 +208,13 @@ extension ExploreCategoryViewController {
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             let section = sectionIndex == .zero ?
-            self.createPopularSection(item: commonItem) : self.createCreatorSection(item: commonItem)
+            self.createPopularSection(item: commonItem) :
+            self.createCreatorSection(item: commonItem)
+            
             section.boundarySupplementaryItems = [header]
-            section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+            section.contentInsets = NSDirectionalEdgeInsets(
+                top: 8, leading: 8, bottom: 8, trailing: 8
+            )
             
             return section
         }

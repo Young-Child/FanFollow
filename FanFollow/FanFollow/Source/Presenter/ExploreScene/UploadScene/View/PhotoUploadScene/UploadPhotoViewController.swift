@@ -228,7 +228,10 @@ extension UploadPhotoViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return registerImage.count < 5 ? registerImage.count + 1 : 5
     }
 }

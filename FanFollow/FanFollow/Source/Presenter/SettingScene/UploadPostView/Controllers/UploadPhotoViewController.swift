@@ -180,7 +180,10 @@ extension UploadPhotoViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         if registerImage.count >= 5 { return registerImage.count }
         return registerImage.count + 1
     }

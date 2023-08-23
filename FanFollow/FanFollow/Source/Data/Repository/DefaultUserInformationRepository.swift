@@ -39,7 +39,9 @@ struct DefaultUserInformationRepository: UserInformationRepository {
             .requestFetchUserInformation(for: userID)
 
         return networkService.data(reuqest)
-            .compactMap { try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0).first }
+            .compactMap {
+                try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0).first
+            }
     }
 
     func checkSignUpUser(for userID: String) -> Observable<Bool> {
@@ -48,7 +50,10 @@ struct DefaultUserInformationRepository: UserInformationRepository {
 
         return networkService.data(request)
             .map {
-                guard let result = try? JSONDecoder.ISODecoder.decode([UserInformationDTO].self, from: $0) else {
+                guard let result = try? JSONDecoder.ISODecoder.decode(
+                    [UserInformationDTO].self,
+                    from: $0
+                ) else {
                     return false
                 }
                 return result.isEmpty == false

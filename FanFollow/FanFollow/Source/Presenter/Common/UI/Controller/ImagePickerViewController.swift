@@ -33,7 +33,10 @@ class ImagePickerViewController: PhotoAssetGridViewController {
         self.selectedImage = image
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didDeselectItemAt indexPath: IndexPath
+    ) {
         let cell = collectionView.cellForItem(at: indexPath) as? AssetImageGridCell
         cell?.setSelected(to: false)
     }
@@ -43,7 +46,10 @@ class ImagePickerViewController: PhotoAssetGridViewController {
             self.dismiss(animated: true)
         }
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: Constants.Text.cancel, primaryAction: dismissAction)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: Constants.Text.cancel,
+            primaryAction: dismissAction
+        )
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Text.confirm)
     }
 }

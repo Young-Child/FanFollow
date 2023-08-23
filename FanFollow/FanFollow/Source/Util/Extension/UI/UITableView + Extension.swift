@@ -7,7 +7,7 @@
 import UIKit
 
 extension UITableView {
-    func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: IndexPath) -> T {
+    func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(
             withIdentifier: T.reuseIdentifier,
             for: indexPath
@@ -19,7 +19,9 @@ extension UITableView {
     }
     
     func dequeueReusableHeaderView<T: UITableViewHeaderFooterView>() -> T {
-        guard let headerView = dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as? T else {
+        guard let headerView = dequeueReusableHeaderFooterView(
+            withIdentifier: T.reuseIdentifier
+        ) as? T else {
             return T()
         }
         

@@ -10,7 +10,9 @@ import Foundation
 extension JSONDecoder {
     static let ISODecoder = {
         let decoder = JSONDecoder()
-        let formatter = dateFormatter(formatOptions: [.withInternetDateTime, .withFractionalSeconds])
+        let formatter = dateFormatter(
+            formatOptions: [.withInternetDateTime, .withFractionalSeconds]
+        )
 
         decoder.dateDecodingStrategy = .custom({ decoder in
             let container = try decoder.singleValueContainer()
@@ -20,7 +22,9 @@ extension JSONDecoder {
         return decoder
     }()
     
-    private static func dateFormatter(formatOptions: ISO8601DateFormatter.Options) -> ISO8601DateFormatter {
+    private static func dateFormatter(
+        formatOptions: ISO8601DateFormatter.Options
+    ) -> ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter().then { formatter in
             formatter.formatOptions = formatOptions
         }

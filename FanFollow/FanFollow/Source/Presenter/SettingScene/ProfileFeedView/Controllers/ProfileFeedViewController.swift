@@ -173,7 +173,7 @@ private extension ProfileFeedViewController {
         return DataSource { dataSource, tableView, indexPath, item in
             switch dataSource[indexPath.section] {
             case .profile(let items):
-                let cell: ProfileCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: ProfileCell = tableView.dequeueReusableCell(for: indexPath)
                 let item = items[indexPath.row]
                 
                 cell.delegate = self
@@ -182,7 +182,7 @@ private extension ProfileFeedViewController {
                 return cell
                 
             case .posts(let items):
-                let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
 
                 let item = items[indexPath.row]
                 cell.configure(with: item, couldEdit: self.viewType == .feedManage, delegate: self)

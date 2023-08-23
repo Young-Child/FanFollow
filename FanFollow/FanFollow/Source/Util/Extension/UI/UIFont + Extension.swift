@@ -39,7 +39,10 @@ extension UIFont {
         }
     }
     
-    static func coreDreamFont(ofSize fontSize: CGFloat, weight fontType: CoreDreamWeight) -> UIFont? {
+    static func coreDreamFont(
+        ofSize fontSize: CGFloat,
+        weight fontType: CoreDreamWeight
+    ) -> UIFont? {
         let fontName = fontType.fontName
         return UIFont(name: fontName, size: fontSize)
     }

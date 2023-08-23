@@ -48,7 +48,9 @@ final class CreatorApplicationStepView: UIStackView {
     
     func configAppear(currentStep: CreatorApplicationStep) {
         stepStackView.arrangedSubviews.enumerated().forEach { index, view in
-            let backgroundColor = (index <= currentStep.rawValue) ? Constants.Color.blue : Constants.Color.gray
+            let backgroundColor = (index <= currentStep.rawValue) ?
+            Constants.Color.blue : Constants.Color.gray
+            
             UIView.animate(withDuration: 0.25) {
                 view.backgroundColor = backgroundColor
             }

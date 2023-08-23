@@ -129,11 +129,17 @@ extension PostCell {
             self.delegate?.postCell(self, didTapEditButton: post)
         }
         
-        let deleteAction = UIAction(title: Constants.Text.deleteMessage, attributes: .destructive) { _ in
+        let deleteAction = UIAction(
+            title: Constants.Text.deleteMessage,
+            attributes: .destructive
+        ) { _ in
             self.delegate?.postCell(self, didTapDeleteButton: post)
         }
         
-        let declarationAction = UIAction(title: Constants.Text.declaration, attributes: .destructive) { _ in
+        let declarationAction = UIAction(
+            title: Constants.Text.declaration,
+            attributes: .destructive
+        ) { _ in
             self.delegate?.postCell(self, didTapDeclarationButton: post)
         }
         
@@ -163,7 +169,7 @@ extension PostCell {
             return
         }
         
-        metaProvider.startFetchingMetadata(for: url) { meta, error in
+        metaProvider.startFetchingMetadata(for: url) { meta, _ in
             if let meta = meta {
                 DispatchQueue.main.async {
                     self.linkPreview.setData(meta: meta)
@@ -206,7 +212,10 @@ private extension PostCell {
     }
     
     func addGestureRecognizerToPresentProfileViews() {
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPresentProfile))
+        let recognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapPresentProfile)
+        )
         
         let imageView = creatorHeaderView.creatorImageView
         let nameLabel = creatorHeaderView.creatorNickNameLabel

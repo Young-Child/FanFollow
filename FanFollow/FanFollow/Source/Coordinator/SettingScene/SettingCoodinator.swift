@@ -80,7 +80,9 @@ private extension SettingCoordinator {
             return coordinator
             
         case .creator:
-            let coordinator = CreatorApplicationCoordinator(navigationController: navigationController)
+            let coordinator = CreatorApplicationCoordinator(
+                navigationController: navigationController
+            )
             coordinator.parentCoordinator = self
             return coordinator
             

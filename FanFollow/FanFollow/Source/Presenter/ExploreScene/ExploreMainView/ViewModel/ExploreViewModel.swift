@@ -31,7 +31,9 @@ final class ExploreViewModel: ViewModel {
             }
             .map { $0.sorted(by: { $0.0 < $1.0 })}
         
-        let recommandAllCreatorsSectionModel = convertCreatorSectionModel(from: recommandAllCreators)
+        let recommandAllCreatorsSectionModel = convertCreatorSectionModel(
+            from: recommandAllCreators
+        )
         
         let jobAllcase = JobCategory.allCases.filter { $0 != .unSetting }
         

@@ -89,7 +89,7 @@ extension ExploreSubscribeViewController {
             .drive(subscribeTableView.rx.items(
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
-            ) { indexPath, data, cell in
+            ) { _, data, cell in
                 cell.configureCell(creator: data)
             }
             .disposed(by: disposeBag)

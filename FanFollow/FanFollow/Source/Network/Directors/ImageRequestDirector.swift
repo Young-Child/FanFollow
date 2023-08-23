@@ -17,7 +17,7 @@ struct ImageRequestDirector {
         return builder
             .set(path: SupabaseConstants.Constants.path + path)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .setAccessKey()
             .build()
@@ -42,7 +42,7 @@ struct ImageRequestDirector {
             .set(path: SupabaseConstants.Constants.path + path)
             .set(method: .delete)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .setAccessKey()
             .build()

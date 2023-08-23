@@ -9,7 +9,9 @@ import UIKit
 
 extension UITextField {
     func leadPadding(_ leading: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: .zero, y: .zero, width: leading, height: self.frame.height))
+        let paddingView = UIView(
+            frame: CGRect(x: .zero, y: .zero, width: leading, height: self.frame.height)
+        )
         self.leftView = paddingView
         self.leftViewMode = ViewMode.always
     }

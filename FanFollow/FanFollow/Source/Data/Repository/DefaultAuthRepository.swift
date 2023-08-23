@@ -60,13 +60,21 @@ struct DefaultAuthRepository: AuthRepository {
     }
 
     func storedSession() -> Observable<StoredSession> {
-        guard let storedSessionData = userDefaultsService.object(forKey: UserDefaults.Key.session) as? Data else {
+        guard let storedSessionData = userDefaultsService.object(
+            forKey: UserDefaults.Key.session
+        ) as? Data else {
             return .error(SessionError.notLoggedIn)
         }
-        guard let storedSession = try? JSONDecoder().decode(StoredSession.self, from: storedSessionData) else {
+        
+        guard let storedSession = try? JSONDecoder().decode(
+            StoredSession.self,
+            from: storedSessionData
+        ) else {
             return .error(SessionError.decoding)
         }
-        return storedSession.isValid ? .just(storedSession) : refreshSession(with: storedSession.refreshToken)
+        
+        return storedSession.isValid ?
+            .just(storedSession) : refreshSession(with: storedSession.refreshToken)
     }
     
     func deleteAuthUserID(with userID: String) -> Completable {

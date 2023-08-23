@@ -10,7 +10,10 @@ import RxSwift
 
 protocol SettingTabBarDelegate: AnyObject {
     func settingController(_ controller: SettingViewController, removeFeedManageTab isCreator: Bool)
-    func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem)
+    func settingController(
+        _ controller: SettingViewController,
+        didTapPresent item: SettingSectionItem
+    )
     func settingController(_ controller: ProfileFeedViewController, didTapEdit item: Post)
 }
 
@@ -67,10 +70,20 @@ extension SettingTabBarController: SettingTabBarDelegate {
         if itemCount <= 1 { return }
         
         let lastIndex = (itemCount - 1)
-        isCreator ? showTabBarItem(to: lastIndex) : hideTabBarItem(to: lastIndex)
+        
+        if isCreator == true {
+            showTabBarItem(to: lastIndex)
+        }
+        
+        if isCreator == false {
+            hideTabBarItem(to: lastIndex)
+        }
     }
     
-    func settingController(_ controller: SettingViewController, didTapPresent item: SettingSectionItem) {
+    func settingController(
+        _ controller: SettingViewController,
+        didTapPresent item: SettingSectionItem
+    ) {
         coordinator?.presentSettingDetailController(to: item.presentType)
     }
     

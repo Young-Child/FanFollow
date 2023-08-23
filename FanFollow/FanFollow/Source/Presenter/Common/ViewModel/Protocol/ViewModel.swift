@@ -14,4 +14,3 @@ protocol ViewModel: AnyObject {
     
     func transform(input: Input) -> Output
 }
-

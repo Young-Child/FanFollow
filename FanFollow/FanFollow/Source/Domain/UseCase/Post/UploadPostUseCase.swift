@@ -21,7 +21,11 @@ final class DefaultUploadPostUseCase: UploadPostUseCase {
     private let authRepository: AuthRepository
     private let disposeBag = DisposeBag()
     
-    init(postRepository: PostRepository, imageRepository: ImageRepository, authRepository: AuthRepository) {
+    init(
+        postRepository: PostRepository,
+        imageRepository: ImageRepository,
+        authRepository: AuthRepository
+    ) {
         self.postRepository = postRepository
         self.imageRepository = imageRepository
         self.authRepository = authRepository

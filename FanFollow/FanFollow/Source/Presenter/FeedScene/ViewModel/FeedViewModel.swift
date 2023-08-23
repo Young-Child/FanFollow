@@ -38,11 +38,14 @@ final class FeedViewModel: ViewModel {
         let fetchedNewPosts = Observable.merge(input.viewWillAppear, input.refresh)
             .withUnretained(self)
             .flatMapFirst { _ in
-                return self.fetchFeedUseCase.fetchFollowPosts(startRange: .zero, endRange: self.pageSize)
+                return self.fetchFeedUseCase.fetchFollowPosts(
+                    startRange: .zero,
+                    endRange: self.pageSize
+                )
             }
 
         let fetchedMorePosts = input.lastCellDisplayed
-            .flatMapFirst { posts in
+            .flatMapFirst { _ in
                 let lastCount = self.posts.value.count
                 
                 return self.fetchFeedUseCase.fetchFollowPosts(

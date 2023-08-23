@@ -21,7 +21,10 @@ extension CreatorInformationSectionItem: IdentifiableType {
 }
 
 extension CreatorInformationSectionItem: Equatable {
-    static func == (lhs: CreatorInformationSectionItem, rhs: CreatorInformationSectionItem) -> Bool {
+    static func == (
+        lhs: CreatorInformationSectionItem,
+        rhs: CreatorInformationSectionItem
+    ) -> Bool {
         return lhs.identity == rhs.identity
     }
 }

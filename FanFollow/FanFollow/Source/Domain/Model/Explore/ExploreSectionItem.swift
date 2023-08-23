@@ -27,6 +27,10 @@ enum ExploreSectionItem: IdentifiableType, Equatable {
 
 extension ExploreSectionItem {
     static func generateCreator(with creator: Creator) -> Self {
-        return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id, profileURL: creator.profileURL)
+        return ExploreSectionItem.creator(
+            nickName: creator.nickName,
+            userID: creator.id,
+            profileURL: creator.profileURL
+        )
     }
 }

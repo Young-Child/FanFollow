@@ -19,7 +19,11 @@ class HorizontalImageSlideView: UIView {
             
             if let pageControl = pageControl {
                 addSubview(pageControl)
-                pageControl.addTarget(self, action: #selector(didChangedCurrentPage), for: .valueChanged)
+                pageControl.addTarget(
+                    self,
+                    action: #selector(didChangedCurrentPage),
+                    for: .valueChanged
+                )
             }
             
             setNeedsLayout()
@@ -62,7 +66,12 @@ class HorizontalImageSlideView: UIView {
         autoresizesSubviews = true
         clipsToBounds = true
         
-        scrollView.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        scrollView.frame = CGRect(
+            x: .zero,
+            y: .zero,
+            width: frame.size.width,
+            height: frame.size.height
+        )
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.bounces = true
@@ -126,7 +135,12 @@ class HorizontalImageSlideView: UIView {
         resetImages()
         
         for image in resources {
-            let frame = CGRect(x: .zero, y: .zero, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+            let frame = CGRect(
+                x: .zero,
+                y: .zero,
+                width: scrollView.frame.size.width,
+                height: scrollView.frame.size.height
+            )
             let imageView = UIImageView(frame: frame)
             imageView.clipsToBounds = true
             imageView.contentMode = .scaleAspectFill

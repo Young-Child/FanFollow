@@ -203,12 +203,18 @@ private extension ProfileFeedViewModel {
             }
     }
 
-    func profileSections(_ observable: Observable<([Post], Creator, Int, Bool)>) -> Observable<[ProfileFeedSectionModel]> {
+    func profileSections(
+        _ observable: Observable<([Post], Creator, Int, Bool)>
+    ) -> Observable<[ProfileFeedSectionModel]> {
         return observable
             .map { posts, creator, followerCount, isFollow -> [ProfileFeedSectionModel] in
                 return [
                     ProfileFeedSectionModel.profile(items: [
-                        ProfileFeedSectionItem(creator: creator, followerCount: followerCount, isFollow: isFollow)
+                        ProfileFeedSectionItem(
+                            creator: creator,
+                            followerCount: followerCount,
+                            isFollow: isFollow
+                        )
                     ]),
                     ProfileFeedSectionModel.posts(items: posts)
                 ]

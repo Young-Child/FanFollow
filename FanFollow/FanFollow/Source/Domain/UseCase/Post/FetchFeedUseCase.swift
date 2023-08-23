@@ -17,7 +17,11 @@ final class DefaultFetchFeedUseCase: FetchFeedUseCase {
     private let imageRepository: ImageRepository
     private let authRepository: AuthRepository
 
-    init(postRepository: PostRepository, imageRepository: ImageRepository, authRepository: AuthRepository) {
+    init(
+        postRepository: PostRepository,
+        imageRepository: ImageRepository,
+        authRepository: AuthRepository
+    ) {
         self.postRepository = postRepository
         self.imageRepository = imageRepository
         self.authRepository = authRepository
@@ -28,7 +32,11 @@ final class DefaultFetchFeedUseCase: FetchFeedUseCase {
             .flatMapLatest { storedSession in
                 let followerID = storedSession.userID
                 return self.postRepository
-                    .fetchFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
+                    .fetchFollowPosts(
+                        followerID: followerID,
+                        startRange: startRange,
+                        endRange: endRange
+                    )
             }
 
         let imageLinksUpdatedPost = postDTOs.flatMapLatest { postDTOs -> Observable<[Post]> in

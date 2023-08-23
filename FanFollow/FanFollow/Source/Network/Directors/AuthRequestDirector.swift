@@ -60,12 +60,14 @@ struct AuthRequestDirector {
     }
     
     func requestWithdrawal(with id: String) -> URLRequest {
+        let authKey = SupabaseConstants.Base.bearer + Bundle.main.apiKey
+
         return builder
             .set(path: SupabaseConstants.Constants.deletePath)
             .set(headers: [
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.authorization: SupabaseConstants.Base.bearer + Bundle.main.apiKey
+                SupabaseConstants.Base.authorization: authKey
             ])
             .set(body: [SupabaseConstants.Constants.userID: id])
             .set(method: .post)
@@ -86,5 +88,3 @@ private extension SupabaseConstants {
         static let userID = "user_id"
     }
 }
-
-

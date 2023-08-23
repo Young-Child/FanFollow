@@ -97,7 +97,9 @@ final class URLRequestBuilder {
         urlRequest.httpMethod = method.rawValue
         
         headers.forEach {
-            urlRequest.addValue($0.value as! String, forHTTPHeaderField: $0.key)
+            if let value = $0.value as? String {
+                urlRequest.addValue(value, forHTTPHeaderField: $0.key)
+            }
         }
         
         return urlRequest

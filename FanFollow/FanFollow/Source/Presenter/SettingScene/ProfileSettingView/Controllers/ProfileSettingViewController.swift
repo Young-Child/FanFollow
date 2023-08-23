@@ -116,7 +116,8 @@ private extension ProfileSettingViewController {
             viewWillAppear: viewWillAppear,
             nickNameChanged: nickNameInput.textField.rx.text.orEmpty.asObservable(),
             categoryChanged: pickerView.rx.itemSelected.map(\.row).asObservable(),
-            linksChanged: linkInput.textContainer.textView.rx.text.compactMap { $0 }.toArray().asObservable(),
+            linksChanged: linkInput.textContainer.textView.rx.text
+                .compactMap { $0 }.toArray().asObservable(),
             introduceChanged: introduceInput.textContainer.textView.rx.text.orEmpty.asObservable(),
             didTapUpdate: configureRightButtonTapEvent()
         )
@@ -191,7 +192,11 @@ private extension ProfileSettingViewController {
 }
 
 extension ProfileSettingViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count

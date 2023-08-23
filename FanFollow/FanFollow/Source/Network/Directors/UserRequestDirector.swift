@@ -25,12 +25,14 @@ struct UserRequestDirector {
             SupabaseConstants.Constants.isCreator: SupabaseConstants.Constants.equalTrue
         ]
         if let jobCategory {
-            queryItems[SupabaseConstants.Constants.jobCategory] = SupabaseConstants.Base.equal + "\(jobCategory)"
+            let value = SupabaseConstants.Base.equal + "\(jobCategory)"
+            queryItems[SupabaseConstants.Constants.jobCategory] = value
         }
         if let nickName {
             let percentSymbol = SupabaseConstants.Constants.percentSymbol
             let pattern = percentSymbol + nickName + percentSymbol
-            queryItems[SupabaseConstants.Constants.nickName] = SupabaseConstants.Constants.ilike + pattern
+            let value = SupabaseConstants.Constants.ilike + pattern
+            queryItems[SupabaseConstants.Constants.nickName] = value
         }
 
         return builder

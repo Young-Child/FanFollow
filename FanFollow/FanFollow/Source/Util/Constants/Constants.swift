@@ -50,7 +50,11 @@ enum Constants {
         static let creatorInformationTitle = "소개 및 상세 정보는 크리에이터만 수정할 수 있습니다."
         static let introduce = "소개"
         static let profileEdit = "프로필 편집"
-        static let developerEmails = ["dlrudals8899@gmail.com", "hyosing92@gmail.com", "junho_l@kakao.com"]
+        static let developerEmails = [
+            "dlrudals8899@gmail.com",
+            "hyosing92@gmail.com",
+            "junho_l@kakao.com"
+        ]
         static let bugReportMailTitle = "<팬팔> 문의 및 버그 제보하기"
         static let mailErrorAlertTitle = "메일 앱 오류"
         static let mailErrorAlertMessage = "메일 앱을 설정해주세요."
@@ -118,7 +122,8 @@ enum Constants {
         static let photoAccessAlertTitle = "사진 권한을 변경해주세요."
         static let photoAccessAlertMessage = "설정 > 팬팔에서 사진 접근 권한을 변경해주세요"
         static let appStoreURL: String = "itms-apps://itunes.apple.com/app/6450774849"
-        static let privacyInformationURL: String = "https://modacorp.notion.site/3d086d62036949888b408f0a3c2ab7d9?pvs=4"
+        static let privacyInformationURL: String
+        = "https://modacorp.notion.site/3d086d62036949888b408f0a3c2ab7d9?pvs=4"
     }
     
     enum Image {

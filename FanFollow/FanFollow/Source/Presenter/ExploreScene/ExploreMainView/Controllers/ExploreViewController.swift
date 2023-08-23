@@ -89,7 +89,7 @@ extension ExploreViewController {
 // DataSource From RxDataSource
 extension ExploreViewController {
     static func dataSource() -> ExploreDataSource {
-        let dataSource: ExploreDataSource = ExploreDataSource { dataSource, collectionView, indexPath, item in
+        let dataSource = ExploreDataSource { _, collectionView, indexPath, item in
             switch item {
             case .category(let job):
                 let cell: CategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -127,7 +127,8 @@ extension ExploreViewController {
         to sectionIndex: Int,
         item: NSCollectionLayoutItem
     ) -> NSCollectionLayoutSection {
-        return (sectionIndex == .zero) ? createCategorySection(item: item) : createCreatorSection(item: item)
+        return (sectionIndex == .zero) ?
+        createCategorySection(item: item) : createCreatorSection(item: item)
     }
     
     private func createCategorySection(item: NSCollectionLayoutItem) -> NSCollectionLayoutSection {
@@ -185,7 +186,9 @@ extension ExploreViewController {
         
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             let section = self.createSection(to: sectionIndex, item: commonItem)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+            section.contentInsets = NSDirectionalEdgeInsets(
+                top: 8, leading: 8, bottom: 8, trailing: 8
+            )
             section.boundarySupplementaryItems = [header]
             
             return section

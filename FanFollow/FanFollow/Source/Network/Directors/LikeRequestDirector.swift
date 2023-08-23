@@ -28,7 +28,7 @@ struct LikeRequestDirector {
             .set(path: SupabaseConstants.Constants.path)
             .set(queryItems: queryItems)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .setAccessKey()
             .build()
@@ -40,7 +40,7 @@ struct LikeRequestDirector {
             .set(path: SupabaseConstants.Constants.path)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.contentType : SupabaseConstants.Base.json,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.createPrefer
             ])
             .set(body: [

@@ -10,11 +10,17 @@ import UIKit
 import RxSwift
 
 protocol ExploreCreatorDelegate: AnyObject {
-    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem)
+    func exploreViewController(
+        _ controller: ExploreViewController,
+        didTapPresent item: ExploreSectionItem
+    )
 }
 
 protocol ExploreSubscribeDelegate: AnyObject {
-    func exploreViewController(_ controller: ExploreSubscribeViewController, didTapPresent item: Creator)
+    func exploreViewController(
+        _ controller: ExploreSubscribeViewController,
+        didTapPresent item: Creator
+    )
 }
 
 final class ExploreTabBarController: TopTabBarController<ExploreTabItem> {
@@ -56,7 +62,10 @@ final class ExploreTabBarController: TopTabBarController<ExploreTabItem> {
 
 // To Profile From ExploreScene
 extension ExploreTabBarController: ExploreCreatorDelegate {
-    func exploreViewController(_ controller: ExploreViewController, didTapPresent item: ExploreSectionItem) {
+    func exploreViewController(
+        _ controller: ExploreViewController,
+        didTapPresent item: ExploreSectionItem
+    ) {
         switch item {
         case .category(let job):
             coordinator?.presentCategoryViewController(for: job)
@@ -68,7 +77,10 @@ extension ExploreTabBarController: ExploreCreatorDelegate {
 
 // To Profile From ExploreSubscribeScene
 extension ExploreTabBarController: ExploreSubscribeDelegate {
-    func exploreViewController(_ controller: ExploreSubscribeViewController, didTapPresent item: Creator) {
+    func exploreViewController(
+        _ controller: ExploreSubscribeViewController,
+        didTapPresent item: Creator
+    ) {
         coordinator?.presentProfileViewController(to: item.id)
     }
 }

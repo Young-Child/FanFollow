@@ -167,7 +167,7 @@ extension PhotoAssetGridViewController: PHPhotoLibraryChangeObserver {
         DispatchQueue.main.sync {
             self.photos = changes.fetchResultAfterChanges
             
-            if changes.hasIncrementalChanges {
+            if changes.hasIncrementalChanges == true {
                 collectionView.performBatchUpdates {
                     if let removed = changes.removedIndexes,
                        removed.isEmpty == false {
@@ -194,7 +194,8 @@ extension PhotoAssetGridViewController: PHPhotoLibraryChangeObserver {
                     }
                 }
             }
-            else {
+            
+            if changes.hasIncrementalChanges == false {
                 collectionView.reloadData()
             }
         }

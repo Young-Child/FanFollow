@@ -45,10 +45,16 @@ final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
                 return self.checkPostLiked(postID: postID)
                     .flatMap { liked in
                         if liked {
-                            return self.likeRepository.deletePostLike(postID: postID, userID: userID)
+                            return self.likeRepository.deletePostLike(
+                                postID: postID,
+                                userID: userID
+                            )
                                 .asObservable()
                         } else {
-                            return self.likeRepository.createPostLike(postID: postID, userID: userID)
+                            return self.likeRepository.createPostLike(
+                                postID: postID,
+                                userID: userID
+                            )
                                 .asObservable()
                         }
                     }
@@ -57,4 +63,3 @@ final class DefaultChangeLikeUseCase: ChangeLikeUseCase {
             .asCompletable()
     }
 }
-

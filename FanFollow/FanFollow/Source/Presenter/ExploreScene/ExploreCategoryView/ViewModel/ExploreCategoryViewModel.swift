@@ -75,9 +75,10 @@ final class ExploreCategoryViewModel: ViewModel {
             }
             
         // Target
-        let exploreCategorySectionModel = Observable.combineLatest(popularSectionModel, creatorSectionModel) {
-            popular, creator in
-            
+        let exploreCategorySectionModel = Observable.combineLatest(
+            popularSectionModel,
+            creatorSectionModel
+        ) { popular, creator in
             return [popular, creator]
         }
         
@@ -92,12 +93,22 @@ private extension ExploreCategoryViewModel {
         case creator = "전체"
     }
     
-    func convertCreatorSectionModel(type: ExploreCategoryType, creators: [Creator]) -> ExploreSectionModel {
+    func convertCreatorSectionModel(
+        type: ExploreCategoryType,
+        creators: [Creator]
+    ) -> ExploreSectionModel {
         let items = creators.map { creator in
-            return ExploreSectionItem.creator(nickName: creator.nickName, userID: creator.id, profileURL: creator.profileURL)
+            return ExploreSectionItem.creator(
+                nickName: creator.nickName,
+                userID: creator.id,
+                profileURL: creator.profileURL
+            )
         }
         
-        let title = type.rawValue + String(format: Constants.Text.creatorFormat, self.jobCategory.categoryName)
+        let title = type.rawValue + String(
+            format: Constants.Text.creatorFormat,
+            self.jobCategory.categoryName
+        )
         
         return ExploreSectionModel(title: title, items: items)
     }

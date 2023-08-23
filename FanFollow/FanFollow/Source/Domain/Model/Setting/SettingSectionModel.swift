@@ -70,7 +70,12 @@ extension SettingSectionModel {
     static func generateDefaultModel(user: User) -> [SettingSectionModel] {
         return [
             .profile(title: "", items: [
-                .profile(nickName: user.nickName, userID: user.id, profileURL: user.profileURL, action: .profile),
+                .profile(
+                    nickName: user.nickName,
+                    userID: user.id,
+                    profileURL: user.profileURL,
+                    action: .profile
+                ),
                 .base(title: Constants.Text.registerCreatorSectionTitle, action: .creator)
             ]),
             .customerService(title: Constants.Text.customerServiceSectionTitle, items: [

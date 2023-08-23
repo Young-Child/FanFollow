@@ -18,7 +18,11 @@ final class DefaultSearchCreatorUseCase: SearchCreatorUseCase {
         self.userInformationRepository = userInformationRepository
     }
     
-    func fetchSearchCreators(text: String?, startRange: Int, endRange: Int) -> Observable<[Creator]> {
+    func fetchSearchCreators(
+        text: String?,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[Creator]> {
         guard let text = text, text != "" else {
             return Observable.just([])
         }

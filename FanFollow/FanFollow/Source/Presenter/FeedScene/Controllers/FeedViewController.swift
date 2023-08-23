@@ -109,8 +109,8 @@ private extension FeedViewController {
 // Configure Data Source
 extension FeedViewController {
     func configureDataSource() -> RxTableViewSectionedReloadDataSource<PostSectionModel> {
-        return RxTableViewSectionedReloadDataSource { dataSource, tableView, indexPath, model in
-            let cell: PostCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        return RxTableViewSectionedReloadDataSource { _, tableView, indexPath, model in
+            let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
             cell.configure(with: model, delegate: self)
             return cell
         }
@@ -188,4 +188,3 @@ private extension FeedViewController {
         }
     }
 }
-

@@ -48,11 +48,15 @@ struct FollowRequestDirector {
 
     func requestFollowCount(followingID: String? = nil, followerID: String? = nil) -> URLRequest {
         var queryItems = [SupabaseConstants.Base.select: SupabaseConstants.Constants.count]
+        
         if let followingID {
-            queryItems[SupabaseConstants.Constants.followingID] = SupabaseConstants.Base.equal + followingID
+            let value = SupabaseConstants.Base.equal + followingID
+            queryItems[SupabaseConstants.Constants.followingID] = value
         }
+        
         if let followerID {
-            queryItems[SupabaseConstants.Constants.followerID] = SupabaseConstants.Base.equal + followerID
+            let value = SupabaseConstants.Base.equal + followerID
+            queryItems[SupabaseConstants.Constants.followerID] = value
         }
 
         return builder
@@ -60,7 +64,7 @@ struct FollowRequestDirector {
             .set(queryItems: queryItems)
             .set(method: .get)
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .setAccessKey()
             .build()

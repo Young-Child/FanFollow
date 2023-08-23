@@ -31,9 +31,7 @@ final class CreatorLinksTableViewController: CreatorApplicationChildController {
     private let links = BehaviorRelay<[String?]>(value: [nil])
     
     var writtenLinks: Observable<[String]> {
-        get {
-            links.compactMap { $0.compactMap { $0 } }
-        }
+        links.compactMap { $0.compactMap { $0 } }
     }
     
     override func viewDidLoad() {
@@ -83,7 +81,7 @@ extension CreatorLinksTableViewController: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell: CreatorApplicationLinkCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: CreatorApplicationLinkCell = tableView.dequeueReusableCell(for: indexPath)
         let index = indexPath.row, text = links.value[index]
         
         cell.configure(index: index, link: text)
@@ -149,7 +147,7 @@ private extension CreatorLinksTableViewController {
         tableView.performBatchUpdates {
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            newItem.enumerated().forEach { index, item in
+            newItem.enumerated().forEach { index, _ in
                 tableView.reloadRows(at: [IndexPath(row: index, section: .zero)], with: .fade)
             }
         }
@@ -186,7 +184,7 @@ private extension CreatorLinksTableViewController {
     }
     
     func generateSwipeAction(with indexPath: IndexPath) -> UIContextualAction {
-        let deleteAction = UIContextualAction(style: .normal, title: "") { action, view, handler in
+        let deleteAction = UIContextualAction(style: .normal, title: "") { _, view, handler in
             view.backgroundColor = .clear
             self.removeItem(indexPath: indexPath)
             handler(true)

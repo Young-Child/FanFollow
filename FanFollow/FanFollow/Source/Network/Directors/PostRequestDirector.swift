@@ -54,7 +54,7 @@ struct PostRequestDirector {
             .set(path: SupabaseConstants.Constants.path)
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
-                SupabaseConstants.Base.contentType : SupabaseConstants.Base.json,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
                 SupabaseConstants.Base.prefer: SupabaseConstants.Constants.upsertPrefer
             ])
             .set(body: item.convertBody())
@@ -66,9 +66,11 @@ struct PostRequestDirector {
         return builder
             .set(method: .delete)
             .set(path: SupabaseConstants.Constants.path)
-            .set(queryItems: [SupabaseConstants.Constants.postID: SupabaseConstants.Base.equal + postID])
+            .set(queryItems: [
+                SupabaseConstants.Constants.postID: SupabaseConstants.Base.equal + postID
+            ])
             .set(headers: [
-                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .setAccessKey()
             .build()

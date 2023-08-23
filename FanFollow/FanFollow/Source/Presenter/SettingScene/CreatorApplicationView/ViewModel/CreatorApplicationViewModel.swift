@@ -35,4 +35,3 @@ final class CreatorApplicationViewModel: ViewModel {
         return Output(updateResult: result)
     }
 }
-

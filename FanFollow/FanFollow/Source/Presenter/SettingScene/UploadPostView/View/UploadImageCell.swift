@@ -83,7 +83,14 @@ final class UploadImageCell: UICollectionViewCell {
             deleteButton.isHidden = false
         }
         
-        isButton ? createButton() : configureCell(image)
+        if isButton == true {
+            createButton()
+            return
+        }
+        
+        if isButton == false {
+            configureCell(image)
+        }
     }
 }
 

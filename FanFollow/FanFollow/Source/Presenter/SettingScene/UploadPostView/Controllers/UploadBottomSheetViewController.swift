@@ -74,10 +74,10 @@ extension UploadBottomSheetViewController: UploadSheetButtonDelegate {
             $0.height.equalTo(0)
         }
         
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.25) {
             self.transparentView.alpha = .zero
             self.view.layoutIfNeeded()
-        }) { _ in
+        } completion: { _ in
             self.dismiss(animated: true) {
                 completion?()
             }

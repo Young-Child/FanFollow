@@ -61,7 +61,10 @@ extension UploadImagePickerViewController: CropViewControllerDelegate {
         }
     }
     
-    func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
+    func cropViewControllerDidCancel(
+        _ cropViewController: Mantis.CropViewController,
+        original: UIImage
+    ) {
         cropViewController.dismiss(animated: true)
     }
     

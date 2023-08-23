@@ -79,7 +79,10 @@ final class ProfileCell: UITableViewCell {
 
 // UI Method
 extension ProfileCell {
-    func configure(with profile: ProfileFeedSectionItem, viewType: ProfileFeedViewController.ViewType) {
+    func configure(
+        with profile: ProfileFeedSectionItem,
+        viewType: ProfileFeedViewController.ViewType
+    ) {
         creatorImageView.setImageProfileImage(
             to: profile.creator.profileURL,
             for: profile.creator.id

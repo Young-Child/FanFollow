@@ -14,7 +14,7 @@ protocol PlaceholderInput {
 }
 
 class PostUploadContentTextView: UnderLineTextView, PlaceholderInput {
-    var placeholder: String? = nil
+    var placeholder: String?
     private var disposeBag = DisposeBag()
     
     init(placeHolder: String? = nil) {

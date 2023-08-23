@@ -106,7 +106,7 @@ extension ExploreSearchViewController: UISearchBarDelegate {
             .drive(searchTableView.rx.items(
                 cellIdentifier: CreatorListCell.reuseIdentifier,
                 cellType: CreatorListCell.self)
-            ) { indexPath, creator, cell in
+            ) { _, creator, cell in
                 cell.configureCell(creator: creator)
             }
             .disposed(by: disposeBag)

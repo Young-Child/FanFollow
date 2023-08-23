@@ -19,9 +19,9 @@ final class DefaultAppleSigningUseCase: AppleSigningUseCase {
         self.authRepository = authRepository
     }
     
-    func logIn(with idToken: String) -> Observable<StoredSession>  {
+    func logIn(with idToken: String) -> Observable<StoredSession> {
         return authRepository.storedSession()
-            .catch { error in
+            .catch { _ in
                 return self.authRepository.signIn(with: idToken, of: .apple)
             }
     }

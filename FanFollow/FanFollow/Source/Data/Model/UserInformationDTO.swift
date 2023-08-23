@@ -31,12 +31,12 @@ struct UserInformationDTO: Decodable {
     func convertBody() -> [String: Any] {
         return [
             "user_id": userID,
-            "nick_name" : nickName,
-            "profile_path" : profilePath as Any,
-            "job_category" : jobCategory as Any,
-            "links" : links as Any,
-            "introduce" : introduce as Any,
-            "is_creator" : isCreator
+            "nick_name": nickName,
+            "profile_path": profilePath as Any,
+            "job_category": jobCategory as Any,
+            "links": links as Any,
+            "introduce": introduce as Any,
+            "is_creator": isCreator
         ]
     }
 }

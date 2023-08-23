@@ -43,7 +43,7 @@ final class LinkPreview: UIView {
         loadingView.startAnimating()
         loadingView.isHidden = false
         
-        meta.imageProvider?.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+        meta.imageProvider?.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
             guard let self = self else { return }
             
             DispatchQueue.main.async {

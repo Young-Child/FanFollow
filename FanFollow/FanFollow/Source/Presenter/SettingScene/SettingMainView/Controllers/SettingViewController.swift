@@ -87,7 +87,9 @@ private extension SettingViewController {
             settingTableView.rx.itemSelected,
             settingTableView.rx.modelSelected(SettingSectionItem.self)
         )
-        .asDriver(onErrorJustReturn: (IndexPath(), SettingSectionItem.base(title: "", action: .profile)))
+        .asDriver(
+            onErrorJustReturn: (IndexPath(), SettingSectionItem.base(title: "", action: .profile))
+        )
         .drive(onNext: { indexPath, item in
             self.settingTableView.deselectRow(at: indexPath, animated: true)
             self.settingTabBarDelegate?.settingController(self, didTapPresent: item)
@@ -133,18 +135,14 @@ extension SettingViewController: UITableViewDelegate {
 private extension SettingViewController {
     static func dataSource() -> RxTableViewSectionedReloadDataSource<SettingSectionModel> {
         return RxTableViewSectionedReloadDataSource(
-            configureCell: { dataSource, tableView, indexPath, model in
+            configureCell: { dataSource, tableView, indexPath, _ in
                 switch dataSource[indexPath] {
                 case let .profile(nickName, userID, profileURL, _):
-                    let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(
-                        forIndexPath: indexPath
-                    )
+                    let cell: ProfileThumbnailCell = tableView.dequeueReusableCell(for: indexPath)
                     cell.configureCell(nickName: nickName, userID: userID, profileURL: profileURL)
                     return cell
                 case let .base(title, _):
-                    let cell: SettingBaseCell = tableView.dequeueReusableCell(
-                        forIndexPath: indexPath
-                    )
+                    let cell: SettingBaseCell = tableView.dequeueReusableCell(for: indexPath)
                     cell.configureCell(to: title)
                     return cell
                 }

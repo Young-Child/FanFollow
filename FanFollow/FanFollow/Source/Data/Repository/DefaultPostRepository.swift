@@ -24,7 +24,11 @@ struct DefaultPostRepository: PostRepository {
             .compactMap { try? JSONDecoder.ISODecoder.decode([PostDTO].self, from: $0) }
     }
 
-    func fetchFollowPosts(followerID: String, startRange: Int, endRange: Int) -> Observable<[PostDTO]> {
+    func fetchFollowPosts(
+        followerID: String,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[PostDTO]> {
         let request = PostRequestDirector(builder: builder)
             .requestFollowPosts(followerID: followerID, startRange: startRange, endRange: endRange)
 

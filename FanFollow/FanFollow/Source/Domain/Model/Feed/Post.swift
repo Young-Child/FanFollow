@@ -43,14 +43,15 @@ extension Post {
     }
     
     var writerProfileImageURL: String {
-        return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/" + userID + "/profileImage.png"
+        let baseURL = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/ProfileImage/"
+        return baseURL + userID + "/profileImage.png"
     }
     
     var imageURLs: [String] {
         guard let postID = postID else { return [] }
-        
+        let baseURL = "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/"
         return imageNames.map {
-            return "https://qacasllvaxvrtwbkiavx.supabase.co/storage/v1/object/PostImages/\(postID)/\($0)"
+            return baseURL + "\(postID)/\($0)"
         }
     }
     

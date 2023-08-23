@@ -10,7 +10,11 @@ import RxSwift
 protocol FetchCreatorInformationUseCase: AnyObject {
     func fetchCreatorInformation(targetID: String) -> Observable<Creator>
     func fetchFollowerCount(targetID: String) -> Observable<Int>
-    func fetchFollowingCreators(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]>
+    func fetchFollowingCreators(
+        targetID: String,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[Creator]>
     func checkFollow(targetID: String) -> Observable<Bool>
     func toggleFollow(targetID: String) -> Completable
 }
@@ -41,7 +45,11 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
         return self.followRepository.fetchFollowerCount(followingID: targetID)
     }
     
-    func fetchFollowingCreators(targetID: String, startRange: Int, endRange: Int) -> Observable<[Creator]> {
+    func fetchFollowingCreators(
+        targetID: String,
+        startRange: Int,
+        endRange: Int
+    ) -> Observable<[Creator]> {
         return self.followRepository
             .fetchFollowings(followerID: targetID, startRange: startRange, endRange: endRange)
             .map { followDTOList in
@@ -55,7 +63,8 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
         authRepository.storedSession()
             .flatMap { storedSession in
                 let sessionID = storedSession.userID
-                return self.followRepository.checkFollow(followingID: targetID, followerID: sessionID)
+                return self.followRepository
+                    .checkFollow(followingID: targetID, followerID: sessionID)
             }
     }
 
@@ -66,9 +75,11 @@ final class DefaultFetchCreatorInformationUseCase: FetchCreatorInformationUseCas
                 return self.checkFollow(targetID: targetID)
                     .flatMap { isFollow in
                         if isFollow {
-                            return self.followRepository.deleteFollow(followingID: targetID, followerID: sessionID)
+                            return self.followRepository
+                                .deleteFollow(followingID: targetID, followerID: sessionID)
                         } else {
-                            return self.followRepository.insertFollow(followingID: targetID, followerID: sessionID)
+                            return self.followRepository
+                                .insertFollow(followingID: targetID, followerID: sessionID)
                         }
                     }
             }

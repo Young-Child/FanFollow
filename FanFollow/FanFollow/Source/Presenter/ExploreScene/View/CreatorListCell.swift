@@ -102,7 +102,8 @@ private extension CreatorListCell {
     
     func makeConstraints() {
         profileImageView.snp.makeConstraints {
-            $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(Constants.Spacing.medium)
+            $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
+                .offset(Constants.Spacing.medium)
             $0.height.width.equalTo(60)
             $0.centerY.equalTo(contentView.snp.centerY)
         }
@@ -110,7 +111,8 @@ private extension CreatorListCell {
         labelStackView.snp.makeConstraints {
             $0.top.equalTo(contentView.snp.top).offset(Constants.Spacing.small)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(Constants.Spacing.medium)
-            $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-Constants.Spacing.medium)
+            $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing)
+                .offset(-Constants.Spacing.medium)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-Constants.Spacing.small)
         }
     }
