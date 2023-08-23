@@ -19,7 +19,6 @@ final class ProfileSettingViewController: UIViewController {
         $0.showsVerticalScrollIndicator = false
         $0.keyboardDismissMode = .interactive
     }
-    private let scrollViewContentView = UIView()
     
     private let profileImageView = UIImageView().then {
         $0.clipsToBounds = true
@@ -30,9 +29,9 @@ final class ProfileSettingViewController: UIViewController {
     private let profileInputStackView = UIStackView().then {
         $0.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         $0.isLayoutMarginsRelativeArrangement = true
-        $0.alignment = .fill
+        $0.alignment = .center
         $0.spacing = 16
-        $0.distribution = .fillProportionally
+        $0.distribution = .fill
         $0.axis = .vertical
     }
     
@@ -264,7 +263,7 @@ private extension ProfileSettingViewController {
     func configureUI() {
         nickNameInput.textField.delegate = self
         view.backgroundColor = .systemBackground
-        
+
         configureNavigationBar()
         configureHierarchy()
         configureCategoryPickerView()
@@ -294,14 +293,12 @@ private extension ProfileSettingViewController {
     
     func configureHierarchy() {
         [navigationBar, scrollView].forEach(view.addSubview(_:))
-        scrollView.addSubview(scrollViewContentView)
-        
+        scrollView.addSubview(profileInputStackView)
+
         [
-            nickNameInput, nickNameInformationLabel, creatorInformationLabel,
+            profileImageView, nickNameInput, nickNameInformationLabel, creatorInformationLabel,
             jobCategoryInput, linkInput, introduceInput
         ].forEach(profileInputStackView.addArrangedSubview)
-        
-        [profileImageView, profileInputStackView].forEach(scrollViewContentView.addSubview(_:))
     }
     
     func makeConstraints() {
@@ -316,22 +313,20 @@ private extension ProfileSettingViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        scrollViewContentView.snp.makeConstraints {
+        profileInputStackView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
-            $0.height.equalTo(scrollView.frameLayoutGuide.snp.height).priority(.high)
         }
-        
+
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Constants.Spacing.medium)
-            $0.centerX.equalToSuperview()
             $0.width.height.equalTo(150)
         }
-        
-        profileInputStackView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(Constants.Spacing.large)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.lessThanOrEqualToSuperview()
+
+        [nickNameInput, nickNameInformationLabel, creatorInformationLabel,
+         jobCategoryInput, linkInput, introduceInput].forEach { view in
+            view.snp.makeConstraints {
+                $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.medium)
+            }
         }
     }
 }
