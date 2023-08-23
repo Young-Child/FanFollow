@@ -256,6 +256,7 @@
 		EBEB29EC2A728C570028270C /* ProfileFeedSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29EB2A728C570028270C /* ProfileFeedSectionModel.swift */; };
 		EBEB29EE2A728C760028270C /* ProfileFeedSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29ED2A728C760028270C /* ProfileFeedSectionItem.swift */; };
 		EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB29EF2A7351CD0028270C /* ProfileCell.swift */; };
+		EBFE88EC2A95A54700C6A794 /* ProfileFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE88EB2A95A54700C6A794 /* ProfileFeedCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +516,7 @@
 		EBEB29EB2A728C570028270C /* ProfileFeedSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedSectionModel.swift; sourceTree = "<group>"; };
 		EBEB29ED2A728C760028270C /* ProfileFeedSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedSectionItem.swift; sourceTree = "<group>"; };
 		EBEB29EF2A7351CD0028270C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		EBFE88EB2A95A54700C6A794 /* ProfileFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1144,6 +1146,7 @@
 			isa = PBXGroup;
 			children = (
 				3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */,
+				EBFE88EB2A95A54700C6A794 /* ProfileFeedCoordinator.swift */,
 			);
 			path = ExploreScene;
 			sourceTree = "<group>";
@@ -1913,6 +1916,7 @@
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
+				EBFE88EC2A95A54700C6A794 /* ProfileFeedCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

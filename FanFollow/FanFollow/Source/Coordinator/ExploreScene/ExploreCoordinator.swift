@@ -43,41 +43,12 @@ final class ExploreCoordinator: Coordinator {
     }
     
     func presentProfileViewController(to creatorID: String) {
-        let networkService = DefaultNetworkService.shared
-        let userDefaultsService = UserDefaults.standard
-        
-        let postRepository = DefaultPostRepository(networkService)
-        let userInformationRepository = DefaultUserInformationRepository(networkService)
-        let followRepository = DefaultFollowRepository(networkService)
-        let likeRepository = DefaultLikeRepository(networkService)
-        let imageRepository = DefaultImageRepository(networkService)
-        let authRepository = DefaultAuthRepository(
-            networkService: networkService,
-            userDefaultsService: userDefaultsService
-        )
-        
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
-            postRepository: postRepository,
-            imageRepository: imageRepository,
-            authRepository: authRepository
-        )
-        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
-            userInformationRepository: userInformationRepository,
-            followRepository: followRepository,
-            authRepository: authRepository
-        )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
-
-        let viewModel = ProfileFeedViewModel(
-            fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
-            fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
-            changeLikeUseCase: changeLikeUseCase,
+        let profileFeedCoordinator = ProfileFeedCoordinator(
+            navigationController: navigationController,
             creatorID: creatorID
         )
-        
-        let controller = ProfileFeedViewController(viewModel: viewModel, viewType: .profileFeed)
-        controller.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(controller, animated: true)
+        self.childCoordinators.append(profileFeedCoordinator)
+        profileFeedCoordinator.start()
     }
     
     func presentSearchViewController() {
