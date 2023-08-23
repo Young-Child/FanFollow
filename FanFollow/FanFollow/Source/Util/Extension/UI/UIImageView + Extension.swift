@@ -26,8 +26,11 @@ extension UIImageView {
     func setImageProfileImage(to urlPath: String, for userID: String) {
         self.kf.indicatorType = .activity
         
+        let failureImage = UIImage(named: "defaultProfile")
+        
         let options: KingfisherOptionsInfo = [
-            .cacheOriginalImage
+            .cacheOriginalImage,
+            .onFailureImage(failureImage)
         ]
         
         setImageWithCustomCacheKey(to: urlPath, key: .profile(userID: userID), options: options)
