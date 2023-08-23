@@ -8,7 +8,7 @@
 import UIKit
 
 final class ProfileFeedCoordinator: Coordinator {
-    var parentCoordinator: Coordinator?
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     let creatorID: String
@@ -42,7 +42,10 @@ final class ProfileFeedCoordinator: Coordinator {
             followRepository: followRepository,
             authRepository: authRepository
         )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(
+            likeRepository: likeRepository,
+            authRepository: authRepository
+        )
 
         let viewModel = ProfileFeedViewModel(
             fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
@@ -59,7 +62,10 @@ final class ProfileFeedCoordinator: Coordinator {
 
     func presentDeclaration(_ postID: String?) {
         guard let postID = postID else { return }
-        let mailCoordinator = MailCoordinator(navigationController: navigationController, mailType: .declaration(postID: postID))
+        let mailCoordinator = MailCoordinator(
+            navigationController: navigationController,
+            mailType: .declaration(postID: postID)
+        )
         childCoordinators.append(mailCoordinator)
 
         mailCoordinator.start()

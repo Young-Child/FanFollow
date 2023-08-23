@@ -33,7 +33,10 @@ final class FeedCoordinator: Coordinator {
             imageRepository: imageRepository,
             authRepository: authRepository
         )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
+        let changeLikeUseCase = DefaultChangeLikeUseCase(
+            likeRepository: likeRepository,
+            authRepository: authRepository
+        )
 
         let feedViewModel = FeedViewModel(
             fetchFeedUseCase: fetchFeedUseCase,
@@ -46,45 +49,15 @@ final class FeedCoordinator: Coordinator {
     }
 
     func presentProfileViewController(creatorID: String) {
-        let networkService = DefaultNetworkService.shared
-        let userDefaultsService = UserDefaults.standard
-        
-        let postRepository = DefaultPostRepository(networkService)
-        let userInformationRepository = DefaultUserInformationRepository(networkService)
-        let followRepository = DefaultFollowRepository(networkService)
-        let likeRepository = DefaultLikeRepository(networkService)
-        let imageRepository = DefaultImageRepository(networkService)
-        let authRepository = DefaultAuthRepository(
-            networkService: networkService,
-            userDefaultsService: userDefaultsService
-        )
-        
-        let fetchCreatorPostsUseCase = DefaultFetchCreatorPostsUseCase(
-            postRepository: postRepository,
-            imageRepository: imageRepository,
-            authRepository: authRepository
-        )
-        let fetchCreatorInformationUseCase = DefaultFetchCreatorInformationUseCase(
-            userInformationRepository: userInformationRepository,
-            followRepository: followRepository,
-            authRepository: authRepository
-        )
-        let changeLikeUseCase = DefaultChangeLikeUseCase(likeRepository: likeRepository, authRepository: authRepository)
-
-        let profileFeedViewModel = ProfileFeedViewModel(
-            fetchCreatorPostUseCase: fetchCreatorPostsUseCase,
-            fetchCreatorInformationUseCase: fetchCreatorInformationUseCase,
-            changeLikeUseCase: changeLikeUseCase,
+        let coordinator = ProfileFeedCoordinator(
+            navigationController: navigationController,
             creatorID: creatorID
         )
         
-        let profileViewController = ProfileFeedViewController(
-            viewModel: profileFeedViewModel,
-            viewType: .profileFeed
-        )
+        childCoordinators.append(coordinator)
+        coordinator.parentCoordinator = self
         
-        profileViewController.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(profileViewController, animated: true)
+        coordinator.start()
     }
     
     func presentLinkViewController(to presentURL: URL) {
@@ -96,7 +69,10 @@ final class FeedCoordinator: Coordinator {
     
     func presentDeclaration(_ postID: String?) {
         guard let postID = postID else { return }
-        let mailCoordinator = MailCoordinator(navigationController: navigationController, mailType: .declaration(postID: postID))
+        let mailCoordinator = MailCoordinator(
+            navigationController: navigationController,
+            mailType: .declaration(postID: postID)
+        )
         childCoordinators.append(mailCoordinator)
         
         mailCoordinator.start()

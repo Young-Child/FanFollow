@@ -14,14 +14,14 @@ import RxBlocking
 @testable import FanFollow
 
 final class ExploreUseCaseTests: XCTestCase {
-    private var exploreUseCase: ExploreUseCase!
+    private var exploreUseCase: FetchExploreUseCase!
     private var userInformationRepository: StubUserInformationRepository!
     private var error: Error!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         userInformationRepository = StubUserInformationRepository()
-        exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
+        exploreUseCase = DefaultFetchExploreUseCase(userInformationRepository: userInformationRepository)
     }
     
     override func tearDownWithError() throws {

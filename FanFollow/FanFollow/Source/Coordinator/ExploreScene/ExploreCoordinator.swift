@@ -8,22 +8,26 @@
 import UIKit
 
 final class ExploreCoordinator: Coordinator {
-    // Coordinator Propertiese
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     // Dependency
     private let userInformationRepository: UserInformationRepository
-    private let exploreUseCase: ExploreUseCase
+    private let exploreUseCase: FetchExploreUseCase
     private let searchUseCase: SearchCreatorUseCase
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         
-        userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
-        exploreUseCase = DefaultExploreUseCase(userInformationRepository: userInformationRepository)
-        searchUseCase = DefaultSearchCreatorUseCase(userInformationRepository: userInformationRepository)
+        let networkService = DefaultNetworkService.shared
+        userInformationRepository = DefaultUserInformationRepository(networkService)
+        self.exploreUseCase = DefaultFetchExploreUseCase(
+            userInformationRepository: userInformationRepository
+        )
+        self.searchUseCase = DefaultSearchCreatorUseCase(
+            userInformationRepository: userInformationRepository
+        )
     }
     
     func start() {
@@ -34,7 +38,10 @@ final class ExploreCoordinator: Coordinator {
     }
     
     func presentCategoryViewController(for jobCategory: JobCategory) {
-        let viewModel = ExploreCategoryViewModel(exploreUseCase: exploreUseCase, jobCategory: jobCategory)
+        let viewModel = ExploreCategoryViewModel(
+            exploreUseCase: exploreUseCase,
+            jobCategory: jobCategory
+        )
         let controller = ExploreCategoryViewController(viewModel: viewModel)
         controller.hidesBottomBarWhenPushed = true
 
@@ -47,6 +54,7 @@ final class ExploreCoordinator: Coordinator {
             navigationController: navigationController,
             creatorID: creatorID
         )
+        profileFeedCoordinator.parentCoordinator = self
         self.childCoordinators.append(profileFeedCoordinator)
         profileFeedCoordinator.start()
     }

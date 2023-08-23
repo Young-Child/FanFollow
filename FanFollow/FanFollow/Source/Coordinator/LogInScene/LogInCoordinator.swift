@@ -9,9 +9,7 @@ import UIKit
 
 final class LogInCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-
     var childCoordinators: [Coordinator] = []
-    
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -19,19 +17,23 @@ final class LogInCoordinator: Coordinator {
     }
     
     func start() {
-        let userInformationRepository = DefaultUserInformationRepository(DefaultNetworkService.shared)
+        let networkService = DefaultNetworkService.shared
+        let userInformationRepository = DefaultUserInformationRepository(networkService)
         let authRepository = DefaultAuthRepository(
             networkService: DefaultNetworkService.shared,
             userDefaultsService: UserDefaults.standard
         )
         
-        let applesignUseCase = DefaultAppleSigningUseCase(authRepository: authRepository)
+        let appleSignUseCase = DefaultAppleSigningUseCase(authRepository: authRepository)
         let signUseCase = DefaultSignUpUserUseCase(
             userInformationRepository: userInformationRepository,
             authRepository: authRepository
         )
         
-        let viewModel = LogInViewModel(appleSignUseCase: applesignUseCase, signUpUserUseCase: signUseCase)
+        let viewModel = LogInViewModel(
+            appleSignUseCase: appleSignUseCase,
+            signUpUserUseCase: signUseCase
+        )
         let controller = LogInViewController(viewModel: viewModel)
         
         controller.coordinator = self

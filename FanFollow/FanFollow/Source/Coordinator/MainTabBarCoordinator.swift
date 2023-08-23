@@ -10,7 +10,6 @@ import Kingfisher
 
 final class MainTabBarCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     

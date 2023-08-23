@@ -8,7 +8,6 @@ import UIKit
 
 final class SettingCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -58,24 +57,32 @@ private extension SettingCoordinator {
             return coordinator
             
         case .bugReport:
-            let coordinator = MailCoordinator(navigationController: navigationController, mailType: .bugReport)
+            let coordinator = MailCoordinator(
+                navigationController: navigationController,
+                mailType: .bugReport
+            )
             coordinator.parentCoordinator = self
             return coordinator
             
         case .evaluation:
             let coordinator = EvaluateAppCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
             return coordinator
             
         case .openSource:
             let coordinator = OpenSourceCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
             return coordinator
             
         case .privacy:
             let coordinator = PrivacyCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
             return coordinator
             
         case .creator:
-            return CreatorApplicationCoordinator(navigationController: navigationController)
+            let coordinator = CreatorApplicationCoordinator(navigationController: navigationController)
+            coordinator.parentCoordinator = self
+            return coordinator
             
         case .logOut:
             let coordinator = LogOutCoordinator(navigationController: navigationController)
