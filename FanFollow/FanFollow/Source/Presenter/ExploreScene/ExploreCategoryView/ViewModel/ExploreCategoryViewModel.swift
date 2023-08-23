@@ -19,7 +19,7 @@ final class ExploreCategoryViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
-    private let exploreUseCase: ExploreUseCase
+    private let exploreUseCase: FetchExploreUseCase
     private let jobCategory: JobCategory
     
     // Pagination Properties
@@ -27,7 +27,7 @@ final class ExploreCategoryViewModel: ViewModel {
         value: ExploreSectionModel(title: "", items: [])
     )
     
-    init(exploreUseCase: ExploreUseCase, jobCategory: JobCategory) {
+    init(exploreUseCase: FetchExploreUseCase, jobCategory: JobCategory) {
         self.exploreUseCase = exploreUseCase
         self.jobCategory = jobCategory
     }

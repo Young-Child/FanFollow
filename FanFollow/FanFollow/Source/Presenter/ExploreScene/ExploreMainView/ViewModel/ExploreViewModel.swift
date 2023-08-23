@@ -17,9 +17,9 @@ final class ExploreViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
-    private let exploreUseCase: ExploreUseCase
+    private let exploreUseCase: FetchExploreUseCase
     
-    init(exploreUseCase: ExploreUseCase) {
+    init(exploreUseCase: FetchExploreUseCase) {
         self.exploreUseCase = exploreUseCase
     }
     
