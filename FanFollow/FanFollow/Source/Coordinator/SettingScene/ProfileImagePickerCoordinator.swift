@@ -28,10 +28,7 @@ final class ProfileImagePickerCoordinator: Coordinator {
             )
         )
         
-        let viewModel = ProfileImagePickerViewModel(
-            userID: "5b260fc8-50ef-4f5b-8315-a19e3c69dfc2",
-            profileImageUploadUseCase: profileImageUploadUseCase
-        )
+        let viewModel = ProfileImagePickerViewModel(profileImageUploadUseCase: profileImageUploadUseCase)
         
         let controller = ProfileImagePickerViewController(viewModel: viewModel)
         controller.coordinator = self

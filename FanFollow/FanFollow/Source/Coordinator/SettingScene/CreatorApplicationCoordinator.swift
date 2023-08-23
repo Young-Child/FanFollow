@@ -29,11 +29,9 @@ final class CreatorApplicationCoordinator: Coordinator {
             userInformationRepository: userInformationRepository,
             authRepository: authRepository
         )
-        // TODO: 로그인한 UserID를 입력
-        let userID = "5b587434-438c-49d8-ae3c-88bb27a891d4"
+        
         let creatorApplicationViewModel = CreatorApplicationViewModel(
-            informationUseCase: userInformationUpdateRepository,
-            userID: userID
+            informationUseCase: userInformationUpdateRepository
         )
         let creatorApplicationViewController = CreatorApplicationViewController(viewModel: creatorApplicationViewModel)
         creatorApplicationViewController.coordinator = self

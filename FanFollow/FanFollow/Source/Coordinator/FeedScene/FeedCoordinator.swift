@@ -45,7 +45,7 @@ final class FeedCoordinator: Coordinator {
         navigationController.pushViewController(feedViewController, animated: true)
     }
 
-    func presentProfileViewController(creatorID: String, userID: String) {
+    func presentProfileViewController(creatorID: String) {
         let networkService = DefaultNetworkService.shared
         let userDefaultsService = UserDefaults.standard
         

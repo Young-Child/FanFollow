@@ -128,9 +128,7 @@ extension FeedViewController: PostCellDelegate {
     }
     
     func postCell(didTapProfilePresentButton creatorID: String) {
-        // TODO: userID 입력 필요
-        let userID = "56f17fb1-e9d0-4974-bf0b-43aad6a2526f"
-        coordinator?.presentProfileViewController(creatorID: creatorID, userID: userID)
+        coordinator?.presentProfileViewController(creatorID: creatorID)
     }
     
     func postCell(didTapLinkPresentButton link: URL) {

@@ -19,11 +19,9 @@ final class CreatorApplicationViewModel: ViewModel {
     
     var disposeBag = DisposeBag()
     private let informationUseCase: UpdateUserInformationUseCase
-    private let userID: String
 
-    init(informationUseCase: UpdateUserInformationUseCase, userID: String) {
+    init(informationUseCase: UpdateUserInformationUseCase) {
         self.informationUseCase = informationUseCase
-        self.userID = userID
     }
 
     func transform(input: Input) -> Output {

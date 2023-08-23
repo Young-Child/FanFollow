@@ -18,11 +18,9 @@ final class ProfileImagePickerViewModel: ViewModel {
     }
     
     var disposeBag = DisposeBag()
-    private let userID: String
     private let profileImageUploadUseCase: UpdateProfileImageUseCase
     
-    init(userID: String, profileImageUploadUseCase: UpdateProfileImageUseCase) {
-        self.userID = userID
+    init(profileImageUploadUseCase: UpdateProfileImageUseCase) {
         self.profileImageUploadUseCase = profileImageUploadUseCase
     }
     
