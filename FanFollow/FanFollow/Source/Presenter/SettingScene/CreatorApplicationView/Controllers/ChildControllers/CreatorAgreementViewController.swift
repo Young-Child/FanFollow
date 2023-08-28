@@ -7,11 +7,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class CreatorAgreementViewController: CreatorApplicationChildController {
-    private let agreeTextView = UnderLineTextView().then {
-        $0.textView.isEditable = false
-        $0.textView.text = Constants.Text.creatorAgreementInformation
-        $0.textView.font = .coreDreamFont(ofSize: 14, weight: .regular)
+    private let agreeTextView = UITextView().then {
+        $0.isEditable = false
+        $0.text = Constants.Text.creatorAgreementInformation
+        $0.font = .coreDreamFont(ofSize: 14, weight: .regular)
     }
     
     private let agreeCheckButton = UIButton().then {
@@ -38,6 +41,20 @@ final class CreatorAgreementViewController: CreatorApplicationChildController {
         super.viewDidLoad()
         
         configureUI()
+        bind()
+    }
+    
+    private func bind() {
+        agreeCheckButton.rx.tap
+            .map {
+                return !self.agreeCheckButton.isSelected
+            }
+            .do {
+                self.agreeCheckButton.isSelected = !self.agreeCheckButton.isSelected
+                self.agreeLabel.textColor = $0 ? Constants.Color.label : Constants.Color.gray
+            }
+            .bind(to: nextButtonEnable)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -55,6 +72,7 @@ private extension CreatorAgreementViewController {
     func makeConstraints() {
         agreeTextView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(Constants.Spacing.small)
+            $0.height.equalToSuperview().multipliedBy(0.8)
         }
         
         agreeStackView.snp.makeConstraints {
