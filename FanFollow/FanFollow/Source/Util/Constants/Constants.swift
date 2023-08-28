@@ -81,7 +81,7 @@ enum Constants {
         • 신고한 게시물의 내용이 부적절한 경우에만 삭제됩니다.
         ---------------
 
-        게시물 고유 번호: %@
+        %@ 고유 번호: %@
 
         ---------------
         """
@@ -115,6 +115,7 @@ enum Constants {
         static let hashTag = "#"
         static let recommand = "추천"
         static let complete = "완료"
+        static let declare = "신고"
         static let next = "다음"
         static let nickName = "닉네임"
         static let setting = "설정"

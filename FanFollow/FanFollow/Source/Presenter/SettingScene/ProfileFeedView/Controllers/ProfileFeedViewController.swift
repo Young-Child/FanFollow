@@ -14,7 +14,7 @@ import RxSwift
 final class ProfileFeedViewController: UIViewController {
     // View Properties
     private let navigationBar = FFNavigationBar()
-
+    
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -23,21 +23,21 @@ final class ProfileFeedViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
         tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.reuseIdentifier)
     }
-
+    
     private let refreshControl = UIRefreshControl()
-
+    
     private let feedResultLabel = UILabel().then {
         $0.textColor = .label
         $0.textAlignment = .center
         $0.text = Constants.Text.noProfileFeedResult
     }
-
+    
     // Properties
     typealias DataSource = RxTableViewSectionedReloadDataSource<ProfileFeedSectionModel>
     
     weak var settingDelegate: SettingTabBarDelegate?
     weak var coordinator: ProfileFeedCoordinator?
-
+    
     private let disposeBag = DisposeBag()
     private let viewModel: ProfileFeedViewModel
     private let likeButtonTapped = PublishRelay<String>()
@@ -45,22 +45,22 @@ final class ProfileFeedViewController: UIViewController {
     private let lastCellDisplayed = BehaviorRelay(value: true)
     private let didTapPostDeleteButton = PublishRelay<Post>()
     private let viewType: ViewType
-
+    
     // Initializer
     init(viewModel: ProfileFeedViewModel, viewType: ViewType) {
         self.viewModel = viewModel
         self.viewType = viewType
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         binding()
     }
@@ -88,14 +88,13 @@ extension ProfileFeedViewController: PostCellDelegate {
     }
     
     func postCell(_ cell: PostCell, didTapDeclarationButton post: Post) {
-        coordinator?.presentDeclaration(post.postID)
+        coordinator?.presentDeclaration(to: post.postID, isUser: false)
     }
 }
 
 extension ProfileFeedViewController: ProfileCellDelegate {
     func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?) {
         tableView.performBatchUpdates(expandAction)
-
     }
     
     func profileCell(didTapFollowButton cell: ProfileCell) {
@@ -118,7 +117,7 @@ private extension ProfileFeedViewController {
         bindNavigationBar()
         bindTableView(output)
     }
-
+    
     func input() -> ProfileFeedViewModel.Input {
         let lastCellDisplayed = tableView.rx.didScroll
             .withUnretained(self)
@@ -131,14 +130,15 @@ private extension ProfileFeedViewController {
                 self.lastCellDisplayed.accept(lastCellDisplayed)
                 return lastCellDisplayed ? .just(()) : .empty()
             })
-
+        
         return ProfileFeedViewModel.Input(
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
             lastCellDisplayed: lastCellDisplayed,
             likeButtonTap: likeButtonTapped.asObservable(),
             followButtonTap: followButtonTapped.asObservable(),
-            deletePost: didTapPostDeleteButton.asObservable()
+            deletePost: didTapPostDeleteButton.asObservable(),
+            didTapDeclareUser: navigationBar.rightBarButton.rx.tap.asObservable()
         )
     }
     
@@ -149,7 +149,7 @@ private extension ProfileFeedViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
     func bindTableView(_ output: ProfileFeedViewModel.Output) {
         let dataSource = generateDataSource()
         
@@ -159,13 +159,21 @@ private extension ProfileFeedViewController {
                 guard let self else { return }
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
-
+                
                 if case .posts(let items) = value[1] {
                     self.feedResultLabel.isHidden = items.isEmpty == false
                     self.tableView.isScrollEnabled = items.isEmpty == false
                 }
             }
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.declareTargetUserID
+            .asDriver(onErrorJustReturn: "")
+            .filter { $0.isEmpty == false }
+            .drive {
+                self.coordinator?.presentDeclaration(to: $0, isUser: true)
+            }
             .disposed(by: disposeBag)
     }
     
@@ -183,7 +191,7 @@ private extension ProfileFeedViewController {
                 
             case .posts(let items):
                 let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
-
+                
                 let item = items[indexPath.row]
                 cell.configure(with: item, couldEdit: self.viewType == .feedManage, delegate: self)
                 return cell
@@ -200,7 +208,7 @@ private extension ProfileFeedViewController {
         configureHierarchy()
         configureTableView()
     }
-
+    
     func configureHierarchy() {
         switch viewType {
         case .feedManage:
@@ -219,28 +227,32 @@ private extension ProfileFeedViewController {
             $0.leading.bottom.trailing.equalToSuperview()
         }
     }
-
+    
     func configureProfileFeedConstraints() {
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
+        
         tableView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-
+    
     func configureNavigationItem() {
         let configuration = UIImage.SymbolConfiguration(pointSize: 22)
         let backImage = Constants.Image.back?.withConfiguration(configuration)
+        
         navigationBar.leftBarButton.setImage(backImage, for: .normal)
+        navigationBar.rightBarButton.setTitle(Constants.Text.declare, for: .normal)
+        navigationBar.rightBarButton.setTitleColor(Constants.Color.warningColor, for: .normal)
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-
+    
     func configureTableView() {
         tableView.backgroundColor = .systemBackground
         tableView.refreshControl = refreshControl

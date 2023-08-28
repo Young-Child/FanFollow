@@ -56,7 +56,8 @@ private extension FFNavigationBar {
         }
         
         rightBarButton.snp.makeConstraints {
-            $0.trailing.top.bottom.equalToSuperview().inset(Constants.Spacing.small)
+            $0.top.equalToSuperview().offset(Constants.Spacing.small)
+            $0.trailing.bottom.equalToSuperview().offset(-Constants.Spacing.small)
         }
     }
 }
