@@ -131,6 +131,7 @@
 		3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */; };
 		3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */; };
 		3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3C639B2E2A7A6093003E2E44 /* Mantis */; };
+		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
 		3C7DE6142A84C50100259E74 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6132A84C50100259E74 /* LogInCoordinator.swift */; };
@@ -398,6 +399,7 @@
 		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
+		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
 		3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 				EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */,
 				EB54BEC02A7B42240095A171 /* CreatorLinksTableViewController.swift */,
 				EB54BEC22A7B42460095A171 /* CreatorIntroduceViewController.swift */,
+				3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */,
 			);
 			path = ChildControllers;
 			sourceTree = "<group>";
@@ -1923,6 +1926,7 @@
 			files = (
 				18C2DFE42A83226E00F09E3D /* CreatorApplicationLinkCell.swift in Sources */,
 				183974722A52A2B900F0101A /* URLRequestBuilder.swift in Sources */,
+				3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */,
 				1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */,
 				1829B50E2A71078300D873DF /* AppCoordinator.swift in Sources */,
 				187949A92A5E7BB000ADA01A /* TabItem.swift in Sources */,
