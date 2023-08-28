@@ -18,7 +18,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .agreement:     return "이용 약관 동의"
+        case .agreement:    return "이용 약관 동의"
         case .category:     return "직군 선택"
         case .links:        return "링크 설정"
         case .introduce:    return "소개 설정"
