@@ -59,7 +59,7 @@ enum Constants {
         static let mailErrorAlertTitle = "메일 앱 오류"
         static let mailErrorAlertMessage = "메일 앱을 설정해주세요."
         static let bugReportMailFormat = """
-        서비스를 이용하시는데 불편을 드려서 죄송합니다.
+        팬팔 서비스를 이용하시는데 불편을 드려서 죄송합니다.
         발생하신 버그에 대해서 이곳에 작성해주세요.
         ---------------
 
@@ -76,6 +76,9 @@ enum Constants {
         static let declarationMailFormat = """
         서비스를 이용하시는데 불편을 드려서 죄송합니다.
         불쾌감을 느끼신 게시물에 대해서 이곳에 작성해주세요.
+        
+        • 신고 후 삭제는 최대 24시간이 소요될 수 있습니다.
+        • 신고한 게시물의 내용이 부적절한 경우에만 삭제됩니다.
         ---------------
 
         게시물 고유 번호: %@
