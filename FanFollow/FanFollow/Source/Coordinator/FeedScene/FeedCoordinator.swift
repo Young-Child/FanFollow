@@ -71,7 +71,7 @@ final class FeedCoordinator: Coordinator {
         guard let postID = postID else { return }
         let mailCoordinator = MailCoordinator(
             navigationController: navigationController,
-            mailType: .declaration(postID: postID)
+            mailType: .declaration(postID: postID, isUser: false)
         )
         childCoordinators.append(mailCoordinator)
         

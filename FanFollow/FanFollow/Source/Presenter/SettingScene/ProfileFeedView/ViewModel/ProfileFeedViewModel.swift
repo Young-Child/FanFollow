@@ -18,10 +18,12 @@ final class ProfileFeedViewModel: ViewModel {
         var likeButtonTap: Observable<String>
         var followButtonTap: Observable<Void>
         var deletePost: Observable<Post>
+        var didTapDeclareUser: Observable<Void>
     }
 
     struct Output {
         var profileFeedSections: Observable<[ProfileFeedSectionModel]>
+        var declareTargetUserID: Observable<String>
     }
 
     var disposeBag = DisposeBag()
@@ -105,8 +107,14 @@ final class ProfileFeedViewModel: ViewModel {
         let profileSections = profileSections(
             Observable.merge(fetchedPosts, updatedPostsAndProfile, postsAndUpdatedProfile)
         )
+        
+        let declareTargetUserID = input.didTapDeclareUser
+            .map { _ in return self.creatorID }
 
-        return Output(profileFeedSections: profileSections)
+        return Output(
+            profileFeedSections: profileSections,
+            declareTargetUserID: declareTargetUserID
+        )
     }
 }
 

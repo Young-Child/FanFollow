@@ -60,12 +60,14 @@ final class ProfileFeedCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    func presentDeclaration(_ postID: String?) {
-        guard let postID = postID else { return }
+    func presentDeclaration(to declareID: String?, isUser: Bool = false) {
+        guard let declareID = declareID else { return }
+        
         let mailCoordinator = MailCoordinator(
             navigationController: navigationController,
-            mailType: .declaration(postID: postID)
+            mailType: .declaration(postID: declareID, isUser: isUser)
         )
+        
         childCoordinators.append(mailCoordinator)
 
         mailCoordinator.start()
