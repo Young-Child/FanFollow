@@ -15,7 +15,7 @@ final class CreatorApplicationStepView: UIStackView {
     }
     
     private let stepStackView = UIStackView().then {
-        let childViews = (0...2).map { _ in
+        let childViews = (0...3).map { _ in
             return UIView().then { view in
                 view.backgroundColor = Constants.Color.grayDark
             }

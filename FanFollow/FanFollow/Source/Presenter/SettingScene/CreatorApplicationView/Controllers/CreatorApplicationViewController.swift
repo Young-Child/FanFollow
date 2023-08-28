@@ -36,7 +36,7 @@ final class CreatorApplicationViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: CreatorApplicationViewModel
     
-    private var currentStep = BehaviorRelay<CreatorApplicationStep>(value: .category)
+    private var currentStep = BehaviorRelay<CreatorApplicationStep>(value: .agreement)
     private var selectedCategory = BehaviorRelay<JobCategory>(value: .unSetting)
     private var writtenLinks = BehaviorRelay<[String]>(value: [])
     private var writtenIntroduce = BehaviorRelay<String>(value: "")
