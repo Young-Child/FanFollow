@@ -111,6 +111,7 @@
 		18EC4F492A617A5F007C1063 /* ImageRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */; };
 		18F0131C2A53E6AC000603CC /* URL + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0131B2A53E6AC000603CC /* URL + Extension.swift */; };
 		18F36E552A78D92F00D17CE3 /* LinkCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */; };
+		18F75D362A9E26DE00BD2982 /* LinkableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F75D352A9E26DE00BD2982 /* LinkableLabel.swift */; };
 		18F8158B2A6F8A680065878F /* ProfileImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */; };
 		18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */; };
 		18F815912A6FD4300065878F /* UpdateProfileImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */; };
@@ -381,6 +382,7 @@
 		18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestDirector.swift; sourceTree = "<group>"; };
 		18F0131B2A53E6AC000603CC /* URL + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL + Extension.swift"; sourceTree = "<group>"; };
 		18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCacheService.swift; sourceTree = "<group>"; };
+		18F75D352A9E26DE00BD2982 /* LinkableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkableLabel.swift; sourceTree = "<group>"; };
 		18F8158A2A6F8A680065878F /* ProfileImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewController.swift; sourceTree = "<group>"; };
 		18F8158E2A6FD1F30065878F /* ProfileImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewModel.swift; sourceTree = "<group>"; };
 		18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileImageUseCase.swift; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 				1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */,
 				1816AEB22A7803AA005F5F84 /* LinkPreview.swift */,
 				1898203C2A89205C004372D3 /* NavigationBar.swift */,
+				18F75D352A9E26DE00BD2982 /* LinkableLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1948,6 +1951,7 @@
 				187FD98D2A81DF060041EA63 /* Array + Extension.swift in Sources */,
 				EBE33E4F2A52C42100C11188 /* FollowRepository.swift in Sources */,
 				EBBE26BD2A6FEFDD0071234B /* FeedManageSectionModel.swift in Sources */,
+				18F75D362A9E26DE00BD2982 /* LinkableLabel.swift in Sources */,
 				187949CA2A5EDE3400ADA01A /* SettingSectionItem.swift in Sources */,
 				187FD9902A8216840041EA63 /* UploadViewController.swift in Sources */,
 				18AAC9C82A877FE5009FCE0E /* UIFont + Extension.swift in Sources */,
