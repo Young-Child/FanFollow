@@ -89,7 +89,6 @@ extension UILabel {
             forGlyphRange: range,
             actualGlyphRange: &glyphRange
         )
-        print(layoutManager.boundingRect(forGlyphRange: range, in: textContainer))
         
         // textContainer 내의 지정된 glyphRange에 대한 CGRect 값을 반환합니다.
         return layoutManager.boundingRect(

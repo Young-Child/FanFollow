@@ -168,14 +168,12 @@ private extension LogInViewController {
         
         if let agreeRect = loginInformationLabel.boundingRectForCharacterRange(subText: agree),
            agreeRect.contains(point) {
-            guard let url = URL(string: Constants.Text.agreementInformationURL) else { return }
-            UIApplication.shared.open(url)
+            coordinator?.presentLink(to: Constants.Text.agreementInformationURL)
         }
         
         if let privacyRect = loginInformationLabel.boundingRectForCharacterRange(subText: privacy),
            privacyRect.contains(point) {
-            guard let url = URL(string: Constants.Text.privacyInformationURL) else { return }
-            UIApplication.shared.open(url)
+            coordinator?.presentLink(to: Constants.Text.privacyInformationURL)
         }
     }
 }
