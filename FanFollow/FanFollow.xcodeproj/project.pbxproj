@@ -208,6 +208,8 @@
 		EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */; };
 		EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */; };
 		EB47BC752A9F2B66000E016E /* ReportRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */; };
+		EB47BC772A9F2EC1000E016E /* ReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC762A9F2EC1000E016E /* ReportRepository.swift */; };
+		EB47BC792A9F2F3B000E016E /* DefaultReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder + Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date + Extension.swift */; };
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
@@ -478,6 +480,8 @@
 		EB3A907C2A79EC28007F400A /* CreatorApplicationTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationTextFieldView.swift; sourceTree = "<group>"; };
 		EB3A907E2A79EC52007F400A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequestDirector.swift; sourceTree = "<group>"; };
+		EB47BC762A9F2EC1000E016E /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
+		EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultReportRepository.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder + Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
@@ -1551,6 +1555,7 @@
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
+				EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1574,6 +1579,7 @@
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
 				18EC06982A62775B006293B5 /* ImageRepository.swift */,
 				EB28F32B2A81E783001337A7 /* AuthRepository.swift */,
+				EB47BC762A9F2EC1000E016E /* ReportRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -2021,6 +2027,7 @@
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTabItem.swift in Sources */,
 				EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */,
+				EB47BC792A9F2F3B000E016E /* DefaultReportRepository.swift in Sources */,
 				3C875C132A89F5D000818473 /* WithdrawalCoordinator.swift in Sources */,
 				1846EE542A604CA900437030 /* SettingViewModel.swift in Sources */,
 				3CFDF6D02A5EA1CD00DE6109 /* FetchExploreUseCase.swift in Sources */,
@@ -2031,6 +2038,7 @@
 				EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */,
 				1829B5122A714A9600D873DF /* MainTabBarCoordinator.swift in Sources */,
 				EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */,
+				EB47BC772A9F2EC1000E016E /* ReportRepository.swift in Sources */,
 				3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */,
 				3CFDF6CC2A5E9A0100DE6109 /* Fan.swift in Sources */,
 				EB4FA4312A6E6CD8007C392A /* Date + Extension.swift in Sources */,
