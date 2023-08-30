@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 import RxSwift
 
 @testable import FanFollow
