@@ -135,6 +135,7 @@
 		3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */; };
 		3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */; };
 		3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */; };
+		3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */; };
 		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
@@ -407,6 +408,7 @@
 		3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRequestDirector.swift; sourceTree = "<group>"; };
 		3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRepository.swift; sourceTree = "<group>"; };
 		3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockContentRepository.swift; sourceTree = "<group>"; };
+		3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentUseCase.swift; sourceTree = "<group>"; };
 		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
@@ -1145,6 +1147,7 @@
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
+				3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1993,6 +1996,7 @@
 				18906B122A7BE946000D7715 /* MailCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */,
+				3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */,
 				18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder + Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
