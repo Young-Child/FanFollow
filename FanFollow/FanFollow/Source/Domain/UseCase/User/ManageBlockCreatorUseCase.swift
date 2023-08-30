@@ -45,4 +45,12 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
             .toArray()
             .asObservable()
     }
+    
+    func blockCreator(to banID: String) -> Completable {
+        return authRepository.storedSession()
+            .flatMap {
+                return self.blockCreatorRepository.addBlockUser(to: banID, with: $0.userID)
+            }
+            .asCompletable()
+    }
 }
