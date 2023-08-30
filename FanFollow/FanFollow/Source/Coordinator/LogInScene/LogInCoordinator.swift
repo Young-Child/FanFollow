@@ -45,4 +45,9 @@ final class LogInCoordinator: Coordinator {
         guard let appCoordinator = parentCoordinator as? AppCoordinator else { return }
         appCoordinator.presentMainView()
     }
+    
+    func presentLink(to link: String) {
+        guard let url = URL(string: link) else { return }
+        UIApplication.shared.open(url)
+    }
 }

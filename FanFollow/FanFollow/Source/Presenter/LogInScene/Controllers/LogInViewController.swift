@@ -42,12 +42,7 @@ final class LogInViewController: UIViewController {
         $0.setTitle(Constants.Text.appleLoginButtonText, for: .normal)
     }
     
-    private var loginInformationLabel = UILabel().then {
-        $0.textAlignment = .center
-        $0.text = Constants.Text.onboardingInformation
-        $0.font = .systemFont(ofSize: 14, weight: .light)
-        $0.textColor = .systemGray4
-    }
+    private var loginInformationLabel = UILabel.configureAuthInformationLabel()
     
     // Properties
     weak var coordinator: LogInCoordinator?
@@ -155,6 +150,34 @@ extension LogInViewController {
     }
 }
 
+private extension LogInViewController {
+    func configureAuthInformationActions() {
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapPresentLink)
+        )
+        
+        loginInformationLabel.isUserInteractionEnabled = true
+        loginInformationLabel.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func didTapPresentLink(_ sender: UITapGestureRecognizer) {
+        let point = sender.location(in: loginInformationLabel)
+        let agree = Constants.Text.agreementName
+        let privacy = Constants.Text.privacyName
+        
+        if let agreeRect = loginInformationLabel.boundingRectForCharacterRange(subText: agree),
+           agreeRect.contains(point) {
+            coordinator?.presentLink(to: Constants.Text.agreementInformationURL)
+        }
+        
+        if let privacyRect = loginInformationLabel.boundingRectForCharacterRange(subText: privacy),
+           privacyRect.contains(point) {
+            coordinator?.presentLink(to: Constants.Text.privacyInformationURL)
+        }
+    }
+}
+
 // Configure UI
 private extension LogInViewController {
     func configureUI() {
@@ -162,6 +185,7 @@ private extension LogInViewController {
         
         configureHierarchy()
         makeConstraints()
+        configureAuthInformationActions()
     }
     
     func configureHierarchy() {
@@ -194,12 +218,13 @@ private extension LogInViewController {
         
         appleLogInButton.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-Constants.Spacing.medium)
+            $0.bottom.equalTo(loginInformationLabel.snp.top).offset(-Constants.Spacing.large)
             $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.medium)
         }
         
         loginInformationLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.medium)
+            $0.width.equalToSuperview().multipliedBy(0.7)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)
         }
     }

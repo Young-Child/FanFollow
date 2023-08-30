@@ -18,6 +18,9 @@ enum Constants {
         static let onboardingInformation = "추후 더 많은 로그인 기능을 제공할 예정입니다."
         static let loginAlertTitle = "로그인 오류"
         static let loginAlertMessage = "로그인에 실패하였습니다. 잠시후 다시 시도해주세요."
+        static let privacyFormat = "가입과 동시에 %@과 %@에 동의하게 됩니다."
+        static let privacyName = "개인정보 처리 방침"
+        static let agreementName = "서비스 이용정책"
         
         // Explore Scene
         static let categoryTitle = "카테고리로 보기"
@@ -148,6 +151,8 @@ enum Constants {
         static let appStoreURL: String = "itms-apps://itunes.apple.com/app/6450774849"
         static let privacyInformationURL: String
         = "https://modacorp.notion.site/3d086d62036949888b408f0a3c2ab7d9?pvs=4"
+        static let agreementInformationURL: String
+        = "https://modacorp.notion.site/33c9516763224bbab348540998fec88f?pvs=4"
     }
     
     enum Image {
