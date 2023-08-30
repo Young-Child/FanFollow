@@ -133,6 +133,7 @@
 		3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */; };
 		3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3C639B2E2A7A6093003E2E44 /* Mantis */; };
 		3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */; };
+		3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */; };
 		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
@@ -403,6 +404,7 @@
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRequestDirector.swift; sourceTree = "<group>"; };
+		3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRepository.swift; sourceTree = "<group>"; };
 		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
@@ -1574,6 +1576,7 @@
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
 				18EC06982A62775B006293B5 /* ImageRepository.swift */,
 				EB28F32B2A81E783001337A7 /* AuthRepository.swift */,
+				3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -2063,6 +2066,7 @@
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
 				EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */,
 				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
+				3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */,
 				EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
