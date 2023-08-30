@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol BlockContentRepository: SupabaseEndPoint {
-    func blockPost(_ postID: String, to userID: UUID) -> Completable
+    func blockPost(_ postID: UUID, to userID: UUID) -> Completable
 }

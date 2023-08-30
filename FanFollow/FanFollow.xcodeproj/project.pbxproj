@@ -134,6 +134,7 @@
 		3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3C639B2E2A7A6093003E2E44 /* Mantis */; };
 		3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */; };
 		3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */; };
+		3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */; };
 		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
@@ -405,6 +406,7 @@
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRequestDirector.swift; sourceTree = "<group>"; };
 		3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRepository.swift; sourceTree = "<group>"; };
+		3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockContentRepository.swift; sourceTree = "<group>"; };
 		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
@@ -1553,6 +1555,7 @@
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
+				3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2030,6 +2033,7 @@
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				3CC69A852A64E7360081ACC8 /* ExploreViewModel.swift in Sources */,
+				3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */,
 				187FD98B2A81DD140041EA63 /* UploadContentTextView.swift in Sources */,
 				EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */,
 				1829B5122A714A9600D873DF /* MainTabBarCoordinator.swift in Sources */,
