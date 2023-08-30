@@ -132,6 +132,10 @@
 		3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */; };
 		3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */; };
 		3C639B2F2A7A6093003E2E44 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3C639B2E2A7A6093003E2E44 /* Mantis */; };
+		3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */; };
+		3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */; };
+		3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */; };
+		3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */; };
 		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
@@ -405,6 +409,10 @@
 		3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCase.swift; sourceTree = "<group>"; };
 		3C639B292A7A4B97003E2E44 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImagePickerViewController.swift; sourceTree = "<group>"; };
+		3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRequestDirector.swift; sourceTree = "<group>"; };
+		3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRepository.swift; sourceTree = "<group>"; };
+		3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockContentRepository.swift; sourceTree = "<group>"; };
+		3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentUseCase.swift; sourceTree = "<group>"; };
 		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
@@ -1147,6 +1155,7 @@
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
+				3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1184,6 +1193,7 @@
 				EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */,
 				18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */,
 				EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */,
+				3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */,
 			);
 			path = Directors;
@@ -1558,6 +1568,7 @@
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
+				3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */,
 			);
 			path = Repository;
@@ -1582,6 +1593,7 @@
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
 				18EC06982A62775B006293B5 /* ImageRepository.swift */,
 				EB28F32B2A81E783001337A7 /* AuthRepository.swift */,
+				3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */,
 				EB47BC762A9F2EC1000E016E /* ReportRepository.swift */,
 			);
 			path = RepositoryInterface;
@@ -1996,6 +2008,7 @@
 				18906B122A7BE946000D7715 /* MailCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */,
+				3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */,
 				18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder + Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
@@ -2038,6 +2051,7 @@
 				EBE33E532A52F00400C11188 /* FollowRequestDirector.swift in Sources */,
 				183974632A525B4500F0101A /* NetworkError.swift in Sources */,
 				3CC69A852A64E7360081ACC8 /* ExploreViewModel.swift in Sources */,
+				3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */,
 				187FD98B2A81DD140041EA63 /* UploadContentTextView.swift in Sources */,
 				EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */,
 				1829B5122A714A9600D873DF /* MainTabBarCoordinator.swift in Sources */,
@@ -2062,6 +2076,7 @@
 				183EDDE72A72B08F00F1490E /* ProfileSettingCoordinator.swift in Sources */,
 				3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */,
 				1874806A2A781041000B6C2E /* PostSectionModel.swift in Sources */,
+				3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */,
 				EBC4E98E2A54F22700A1F6AE /* UserInformationRepository.swift in Sources */,
 				18F0131C2A53E6AC000603CC /* URL + Extension.swift in Sources */,
 				EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */,
@@ -2074,6 +2089,7 @@
 				3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */,
 				EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */,
 				EB3A907F2A79EC52007F400A /* PlaceholderTextView.swift in Sources */,
+				3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */,
 				EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
