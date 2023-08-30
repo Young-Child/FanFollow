@@ -27,6 +27,22 @@ struct BlockUserDirector {
             .build()
     }
     
+    func requestUpsertBlockUser(to banID: String, userID: String) -> URLRequest {
+        return builder
+            .set(path: SupabaseConstants.Constants.path)
+            .set(method: .post)
+            .set(headers: [
+                SupabaseConstants.Base.apikey: Bundle.main.apiKey,
+                SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
+                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.merge
+            ])
+            .set(body: [
+                SupabaseConstants.Constants.userID: userID,
+                SupabaseConstants.Constants.banID: banID
+            ])
+            .build()
+    }
+    
     func requestDeleteBlockUser(to bannedID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
@@ -47,5 +63,6 @@ private extension SupabaseConstants {
         static let path = Base.basePath + "BLOCK_USER"
         static let userID = "user_id"
         static let banID = "ban_id"
+        static let merge = "merge-duplicates"
     }
 }

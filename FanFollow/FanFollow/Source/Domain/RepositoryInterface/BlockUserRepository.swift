@@ -10,5 +10,8 @@ import RxSwift
 
 protocol BlockUserRepository: SupabaseEndPoint {
     func fetchBlockUsers(to userID: String) -> Observable<[BanInformationDTO]>
+    
+    func addBlockUser(to userID: String, with banID: String) -> Completable
+    
     func deleteBlockUser(to banID: String) -> Completable
 }
