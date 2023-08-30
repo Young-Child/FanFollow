@@ -22,7 +22,6 @@ final class DefaultNetworkService: NetworkService {
     }
     
     func response(_ request: URLRequest) -> Observable<(response: URLResponse, data: Data)> {
-        
         return Observable.create { [weak self] emitter in
             guard let self = self else {
                 emitter.onError(NetworkError.unknown)
