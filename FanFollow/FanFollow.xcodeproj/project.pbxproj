@@ -22,8 +22,7 @@
 		180E4CCD2A9F2F4C00CFA806 /* BlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */; };
 		180E4CCF2A9F30D800CFA806 /* BanUserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */; };
 		180E4CD12A9F310300CFA806 /* DefaultBlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */; };
-		180E4CD32A9F380000CFA806 /* FetchBlockCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD22A9F380000CFA806 /* FetchBlockCreatorUseCase.swift */; };
-		180E4CD52A9F400600CFA806 /* ResolveBlockCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD42A9F400600CFA806 /* ResolveBlockCreatorUseCase.swift */; };
+		180E4CD52A9F400600CFA806 /* ManageBlockCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
 		1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB22A7803AA005F5F84 /* LinkPreview.swift */; };
@@ -308,8 +307,7 @@
 		180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserRepository.swift; sourceTree = "<group>"; };
 		180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanUserInformation.swift; sourceTree = "<group>"; };
 		180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockUserRepository.swift; sourceTree = "<group>"; };
-		180E4CD22A9F380000CFA806 /* FetchBlockCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBlockCreatorUseCase.swift; sourceTree = "<group>"; };
-		180E4CD42A9F400600CFA806 /* ResolveBlockCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveBlockCreatorUseCase.swift; sourceTree = "<group>"; };
+		180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBlockCreatorUseCase.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
 		1816AEB22A7803AA005F5F84 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
@@ -1166,8 +1164,7 @@
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
-				180E4CD22A9F380000CFA806 /* FetchBlockCreatorUseCase.swift */,
-				180E4CD42A9F400600CFA806 /* ResolveBlockCreatorUseCase.swift */,
+				180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2036,7 +2033,6 @@
 				EBE33E552A52F3CA00C11188 /* DefaultFollowRepository.swift in Sources */,
 				3CE7628D2A6687DF00E1411E /* ExploreTabItem.swift in Sources */,
 				EB54BEC12A7B42240095A171 /* CreatorLinksTableViewController.swift in Sources */,
-				180E4CD32A9F380000CFA806 /* FetchBlockCreatorUseCase.swift in Sources */,
 				3C875C132A89F5D000818473 /* WithdrawalCoordinator.swift in Sources */,
 				1846EE542A604CA900437030 /* SettingViewModel.swift in Sources */,
 				3CFDF6D02A5EA1CD00DE6109 /* FetchExploreUseCase.swift in Sources */,
@@ -2135,7 +2131,7 @@
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
-				180E4CD52A9F400600CFA806 /* ResolveBlockCreatorUseCase.swift in Sources */,
+				180E4CD52A9F400600CFA806 /* ManageBlockCreatorUseCase.swift in Sources */,
 				EBFE88EC2A95A54700C6A794 /* ProfileFeedCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
