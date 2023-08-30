@@ -21,6 +21,7 @@
 		180E4CCB2A9F296E00CFA806 /* BlockUserDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */; };
 		180E4CCD2A9F2F4C00CFA806 /* BlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */; };
 		180E4CCF2A9F30D800CFA806 /* BanUserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */; };
+		180E4CD12A9F310300CFA806 /* DefaultBlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
 		1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB22A7803AA005F5F84 /* LinkPreview.swift */; };
@@ -304,6 +305,7 @@
 		180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserDirector.swift; sourceTree = "<group>"; };
 		180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserRepository.swift; sourceTree = "<group>"; };
 		180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanUserInformation.swift; sourceTree = "<group>"; };
+		180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockUserRepository.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
 		1816AEB22A7803AA005F5F84 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
@@ -1556,6 +1558,7 @@
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
+				180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2108,6 +2111,7 @@
 				3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */,
 				EBEB29EE2A728C760028270C /* ProfileFeedSectionItem.swift in Sources */,
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
+				180E4CD12A9F310300CFA806 /* DefaultBlockUserRepository.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */,
