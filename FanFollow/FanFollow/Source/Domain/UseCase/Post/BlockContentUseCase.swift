@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol BlockContentUseCase: AnyObject {
-    func block(postID: UUID, to userID: UUID) -> Completable
+    func block(postID: String, to userID: String) -> Completable
 }
 
 final class DefaultBlockContentUseCase: BlockContentUseCase {
@@ -20,7 +20,7 @@ final class DefaultBlockContentUseCase: BlockContentUseCase {
         self.blockContentRepository = blockContentRepository
     }
     
-    func block(postID: UUID, to userID: UUID) -> Completable {
+    func block(postID: String, to userID: String) -> Completable {
         return blockContentRepository.blockPost(postID, to: userID)
     }
 }

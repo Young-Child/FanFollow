@@ -16,7 +16,7 @@ final class DefaultBlockContentRepository: BlockContentRepository {
         self.networkService = networkService
     }
     
-    func blockPost(_ postID: UUID, to userID: UUID) -> Completable {
+    func blockPost(_ postID: String, to userID: String) -> Completable {
         let request = BlockContentRequestDirector(builder: builder)
             .requestBlock(postID: postID, userID: userID)
         

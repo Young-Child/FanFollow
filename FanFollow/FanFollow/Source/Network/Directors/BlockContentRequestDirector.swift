@@ -14,7 +14,7 @@ struct BlockContentRequestDirector {
         self.builder = builder
     }
 
-    func requestBlock(postID: UUID, userID: UUID) -> URLRequest {
+    func requestBlock(postID: String, userID: String) -> URLRequest {
         return builder
             .set(path: SupabaseConstants.Constants.path)
             .set(method: .post)
