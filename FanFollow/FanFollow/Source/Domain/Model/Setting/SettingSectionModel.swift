@@ -76,7 +76,11 @@ extension SettingSectionModel {
                     profileURL: user.profileURL,
                     action: .profile
                 ),
-                .base(title: Constants.Text.registerCreatorSectionTitle, action: .creator)
+                .base(title: Constants.Text.registerCreatorSectionTitle, action: .creator),
+                .base(
+                    title: Constants.Text.blockCreatorManagementSectionTitle,
+                    action: .blockCreatorManagement
+                )
             ]),
             .customerService(title: Constants.Text.customerServiceSectionTitle, items: [
                 .base(title: Constants.Text.bugReportMenuTitle, action: .bugReport),

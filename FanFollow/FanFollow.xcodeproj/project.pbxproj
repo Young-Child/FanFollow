@@ -208,6 +208,12 @@
 		EB28F3382A821612001337A7 /* StubUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */; };
 		EB28F33A2A822050001337A7 /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F3392A822050001337A7 /* StoredSession.swift */; };
 		EB28F33C2A8222B0001337A7 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28F33B2A8222B0001337A7 /* SessionError.swift */; };
+		EB33291F2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB33291E2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift */; };
+		EB3329212AA07B160030F3C4 /* BlockCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329202AA07B160030F3C4 /* BlockCreator.swift */; };
+		EB3329232AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */; };
+		EB3329252AA07F350030F3C4 /* BlockCreatorManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */; };
+		EB3329272AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329262AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift */; };
+		EB3329292AA08B080030F3C4 /* BlockCreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -491,6 +497,12 @@
 		EB28F3372A821612001337A7 /* StubUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUserDefaultsService.swift; sourceTree = "<group>"; };
 		EB28F3392A822050001337A7 /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
 		EB28F33B2A8222B0001337A7 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
+		EB33291E2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementViewModel.swift; sourceTree = "<group>"; };
+		EB3329202AA07B160030F3C4 /* BlockCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreator.swift; sourceTree = "<group>"; };
+		EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorSectionModel.swift; sourceTree = "<group>"; };
+		EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementViewController.swift; sourceTree = "<group>"; };
+		EB3329262AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementCoordinator.swift; sourceTree = "<group>"; };
+		EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorCell.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -643,6 +655,7 @@
 				3C875C122A89F5D000818473 /* WithdrawalCoordinator.swift */,
 				3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */,
 				3C875C272A8E164500818473 /* PrivacyCoordinator.swift */,
+				EB3329262AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift */,
 			);
 			path = SubCoordinators;
 			sourceTree = "<group>";
@@ -1158,6 +1171,8 @@
 				EBBE26BC2A6FEFDC0071234B /* FeedManageSectionModel.swift */,
 				EBBE26BE2A6FF04F0071234B /* CreatorInformationSectionItem.swift */,
 				3CF4CE952A7CE02C0079E996 /* Upload.swift */,
+				EB3329202AA07B160030F3C4 /* BlockCreator.swift */,
+				EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1325,6 +1340,7 @@
 		18CF43292A5D12BA002FFA1D /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
+				EB33291A2AA0670C0030F3C4 /* BlockCreatorManagementView */,
 				189E9AF22A95E4E20022C1AF /* SettingMainView */,
 				EBEB29E62A72836D0028270C /* ProfileFeedView */,
 				189E9AF82A95E5D70022C1AF /* UploadPostView */,
@@ -1627,6 +1643,40 @@
 				18F36E542A78D92F00D17CE3 /* LinkCacheService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		EB33291A2AA0670C0030F3C4 /* BlockCreatorManagementView */ = {
+			isa = PBXGroup;
+			children = (
+				EB33291B2AA0671D0030F3C4 /* View */,
+				EB33291C2AA067220030F3C4 /* Controllers */,
+				EB33291D2AA067290030F3C4 /* ViewModel */,
+			);
+			path = BlockCreatorManagementView;
+			sourceTree = "<group>";
+		};
+		EB33291B2AA0671D0030F3C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB33291C2AA067220030F3C4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EB33291D2AA067290030F3C4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB33291E2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EB5668CD2A56B0EA007A3860 /* RepositoryTests */ = {
@@ -2053,9 +2103,11 @@
 				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
 				3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */,
 				3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */,
+				EB3329232AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift in Sources */,
 				EB47BC7B2A9F3047000E016E /* SendReportUseCase.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
+				EB3329292AA08B080030F3C4 /* BlockCreatorCell.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
 				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
@@ -2113,6 +2165,7 @@
 				3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */,
 				EB54BEC32A7B42460095A171 /* CreatorIntroduceViewController.swift in Sources */,
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
+				EB3329212AA07B160030F3C4 /* BlockCreator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */,
@@ -2129,6 +2182,7 @@
 				3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */,
 				189E9ADE2A95E1650022C1AF /* UnderLineTextView.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
+				EB3329272AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift in Sources */,
 				3C10F7B42A53B862001E9B21 /* PostRepository.swift in Sources */,
 				18CF432C2A5D14E6002FFA1D /* SettingViewController.swift in Sources */,
 				EBD4469F2A71F631006B8052 /* FeedCoordinator.swift in Sources */,
@@ -2137,6 +2191,7 @@
 				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */,
+				EB3329252AA07F350030F3C4 /* BlockCreatorManagementViewController.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				EB7A70C12A8D2E020016D3CB /* UserDefaults + Extension.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
@@ -2144,6 +2199,7 @@
 				EBEA9F9F2A64DA3700A6B6B2 /* FeedViewModel.swift in Sources */,
 				EB3A907B2A79EC09007F400A /* CreatorApplicationStepView.swift in Sources */,
 				EBC4E9922A5513FD00A1F6AE /* UserRequestDirector.swift in Sources */,
+				EB33291F2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift in Sources */,
 				3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */,
 				1879BBDF2A69225200A64DD7 /* ProfileSettingViewModel.swift in Sources */,
 				18B6F50D2A73A3BF00F1B021 /* ProfileImagePickerCoordinator.swift in Sources */,

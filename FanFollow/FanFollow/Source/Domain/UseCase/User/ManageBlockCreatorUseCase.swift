@@ -9,29 +9,38 @@ import Foundation
 import RxSwift
 
 protocol ManageBlockCreatorUseCase: AnyObject {
+    func fetchBlockCreators() -> Observable<[Creator]>
+
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]>
+
+    func blockCreator(to banID: String) -> Completable
+
+    func resolveBlockCreator(to banID: String) -> Completable
 }
 
 final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
     private let blockCreatorRepository: BlockUserRepository
     private let userInformationRepository: UserInformationRepository
+    private let followRepository: FollowRepository
     private let authRepository: AuthRepository
-    
+
     init(
         blockCreatorUseCase: BlockUserRepository,
         userInformationRepository: UserInformationRepository,
+        followRepository: FollowRepository,
         authRepository: AuthRepository
     ) {
         self.blockCreatorRepository = blockCreatorUseCase
         self.userInformationRepository = userInformationRepository
+        self.followRepository = followRepository
         self.authRepository = authRepository
     }
-    
+
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]> {
         return self.blockCreatorRepository.deleteBlockUser(to: banID)
             .andThen(fetchBlockCreators())
     }
-    
+
     func fetchBlockCreators() -> Observable<[Creator]> {
         return authRepository.storedSession()
             .flatMap {
@@ -45,12 +54,20 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
             .toArray()
             .asObservable()
     }
-    
+
     func blockCreator(to banID: String) -> Completable {
         return authRepository.storedSession()
             .flatMap {
-                return self.blockCreatorRepository.addBlockUser(to: banID, with: $0.userID)
+                return self.followRepository.deleteFollow(
+                    followingID: banID,
+                    followerID: $0.userID
+                )
+                .andThen(self.blockCreatorRepository.addBlockUser(to: $0.userID, with: banID))
             }
             .asCompletable()
+    }
+
+    func resolveBlockCreator(to banID: String) -> Completable {
+        return self.blockCreatorRepository.deleteBlockUser(to: banID)
     }
 }

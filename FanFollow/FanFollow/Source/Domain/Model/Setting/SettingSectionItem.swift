@@ -12,6 +12,7 @@ enum SettingSectionItem {
     enum PresentType {
         case profile
         case creator
+        case blockCreatorManagement
         case alert
         case bugReport
         case evaluation
