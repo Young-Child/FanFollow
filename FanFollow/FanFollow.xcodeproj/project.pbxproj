@@ -130,6 +130,7 @@
 		3C36225D2AA05ED80088649B /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C36225C2AA05ED80088649B /* ReportType.swift */; };
 		3C3622612AA06F1A0088649B /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3622602AA06F1A0088649B /* ReportViewController.swift */; };
 		3C3622642AA074CA0088649B /* ReportReasonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3622632AA074CA0088649B /* ReportReasonTableViewCell.swift */; };
+		3C3622672AA089CE0088649B /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3622662AA089CE0088649B /* ReportViewModel.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
@@ -417,6 +418,7 @@
 		3C36225C2AA05ED80088649B /* ReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportType.swift; sourceTree = "<group>"; };
 		3C3622602AA06F1A0088649B /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		3C3622632AA074CA0088649B /* ReportReasonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonTableViewCell.swift; sourceTree = "<group>"; };
+		3C3622662AA089CE0088649B /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
@@ -1408,6 +1410,7 @@
 			children = (
 				3C3622622AA074B00088649B /* View */,
 				3C36225F2AA06F080088649B /* Controllers */,
+				3C3622652AA089B80088649B /* ViewModel */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -1426,6 +1429,14 @@
 				3C3622632AA074CA0088649B /* ReportReasonTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3C3622652AA089B80088649B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C3622662AA089CE0088649B /* ReportViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3C45B0162A52A79A00307DCF /* Util */ = {
@@ -2146,6 +2157,7 @@
 				3CFDF6CA2A5E99FA00DE6109 /* Creator.swift in Sources */,
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
+				3C3622672AA089CE0088649B /* ReportViewModel.swift in Sources */,
 				3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */,
 				EB47BC752A9F2B66000E016E /* ReportRequestDirector.swift in Sources */,
 				3C639B242A7A08AB003E2E44 /* UploadCoordinator.swift in Sources */,
