@@ -60,9 +60,7 @@ final class ProfileFeedCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    func presentUserDeclaration(_ banUserID: String?) {
-        guard let banUserID = banUserID else { return }
-        
+    func presentUserDeclaration() {
         let networkService = DefaultNetworkService.shared
         let userDefaultsService = UserDefaults.standard
         let reportRepository = DefaultReportRepository(networkService: networkService)
@@ -76,9 +74,9 @@ final class ProfileFeedCoordinator: Coordinator {
             authRepository: authRepository
         )
         
-        let viewModel = ReportViewModel(sendReportUseCase: useCase, banID: banUserID)
+        let viewModel = ReportViewModel(sendReportUseCase: useCase, banID: creatorID)
         
-        let childViewController = ReportViewController(viewModel: viewModel, reportType: .content)
+        let childViewController = ReportViewController(viewModel: viewModel, reportType: .user)
         childViewController.coordinator = self
         
         let controller = BottomSheetViewController(

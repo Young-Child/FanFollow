@@ -68,7 +68,7 @@ final class DefaultSendContentReportUseCase: SendReportUseCase {
     }
     
     private func block(banID: String, reasonIndex: Int) -> Completable {
-        let reason = ReportReason.reasons(reportType: .user)[reasonIndex].reason
+        let reason = ReportReason.reasons(reportType: .content)[reasonIndex].reason
         
         return authRepository.storedSession()
             .flatMap { storedSession in

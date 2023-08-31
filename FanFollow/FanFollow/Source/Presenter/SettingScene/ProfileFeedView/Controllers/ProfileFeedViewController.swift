@@ -138,9 +138,7 @@ private extension ProfileFeedViewController {
             lastCellDisplayed: lastCellDisplayed,
             likeButtonTap: likeButtonTapped.asObservable(),
             followButtonTap: followButtonTapped.asObservable(),
-            deletePost: didTapPostDeleteButton.asObservable(),
-            didTapDeclareUser: .empty()
-//                navigationBar.rightBarButton.rx.tap.asObservable()
+            deletePost: didTapPostDeleteButton.asObservable()
         )
     }
     
@@ -168,14 +166,6 @@ private extension ProfileFeedViewController {
                 }
             }
             .drive(tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
-        output.declareTargetUserID
-            .asDriver(onErrorJustReturn: "")
-            .filter { $0.isEmpty == false }
-            .drive {
-                self.coordinator?.presentUserDeclaration($0)
-            }
             .disposed(by: disposeBag)
     }
     
@@ -254,7 +244,7 @@ private extension ProfileFeedViewController {
             image: Constants.Image.report,
             attributes: .destructive
         ) { _ in
-            print("Did Tapped Declare")
+            self.coordinator?.presentUserDeclaration()
         }
         
         let blockAction = UIAction(
