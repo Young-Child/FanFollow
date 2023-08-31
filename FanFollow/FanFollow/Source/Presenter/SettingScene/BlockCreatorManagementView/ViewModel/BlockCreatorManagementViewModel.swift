@@ -13,8 +13,7 @@ import RxRelay
 final class BlockCreatorManagementViewModel: ViewModel {
     struct Input {
         var viewWillAppear: Observable<Void>
-        var resolveBlockButtonTap: Observable<String>
-        var blockButtonTap: Observable<String>
+        var blockToggleButtonTap: Observable<String>
     }
 
     struct Output {
@@ -38,10 +37,7 @@ final class BlockCreatorManagementViewModel: ViewModel {
             }
             .map { creators in creators.map { creator in BlockCreator(creator: creator) } }
 
-        let updatedBlockCreators = Observable.merge(
-            input.resolveBlockButtonTap,
-            input.blockButtonTap
-        )
+        let updatedBlockCreators = input.blockToggleButtonTap
             .withUnretained(self)
             .flatMapLatest { _, banID -> Observable<BlockCreator> in
                 guard let blockCreator = self.blockCreator(for: banID) else { return .empty() }
