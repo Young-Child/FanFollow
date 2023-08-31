@@ -28,8 +28,11 @@ final class ReportViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let reportResult = input.didTapReportButton
             .flatMap { reasonIndex in
-                return self.sendReportUseCase.reportOrBlock(banID: self.banID, reasonIndex: reasonIndex)
-                    .andThen(Observable.just(true))
+                return self.sendReportUseCase.reportOrBlock(
+                    banID: self.banID,
+                    reasonIndex: reasonIndex
+                )
+                .andThen(Observable.just(true))
             }
         
         return Output(result: reportResult)

@@ -38,6 +38,7 @@ final class ReportViewController: UIViewController {
     private let reportType: ReportType
     private let viewModel: ReportViewModel
     private let disposeBag = DisposeBag()
+    private let didTapReasonSelected = PublishRelay<Int>()
     weak var coordinator: Coordinator?
     
     // Initializer
@@ -57,6 +58,7 @@ final class ReportViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        binding()
     }
 }
 
@@ -67,7 +69,7 @@ extension ReportViewController {
         
         output.result
             .asDriver(onErrorJustReturn: false)
-            .drive(onNext: { result in
+            .drive(onNext: { _ in
                 guard let parentViewController = self.parent else { return }
                 
                 self.coordinator?.close(to: parentViewController)
@@ -76,10 +78,7 @@ extension ReportViewController {
     }
     
     private func bindingInput() -> ReportViewModel.Output {
-        let didTapCellEvent = reasonTableView.rx.itemSelected
-            .map { indexPath in
-                return indexPath.row
-            }
+        let didTapCellEvent = didTapReasonSelected
             .asObservable()
         
         let input = ReportViewModel.Input(didTapReportButton: didTapCellEvent)
@@ -89,7 +88,7 @@ extension ReportViewController {
 }
 
 // TableView Delegate, DataSource
-extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
+extension ReportViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ReportReason.reasons(reportType: reportType).count
     }
@@ -104,7 +103,8 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(ReportReason.reasons(reportType: reportType)[indexPath.row].reason)
+        didTapReasonSelected.accept(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 
