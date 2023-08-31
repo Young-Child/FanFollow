@@ -89,6 +89,9 @@ final class DefaultSendContentReportUseCase: SendReportUseCase {
             return report(banID: banID)
         }
         
-        return Completable.concat(report(banID: banID), block(banID: banID, reasonIndex: reasonIndex))
+        return Completable.concat(
+            report(banID: banID),
+            block(banID: banID, reasonIndex: reasonIndex)
+        )
     }
 }
