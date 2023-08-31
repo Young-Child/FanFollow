@@ -95,7 +95,13 @@ private extension SettingCoordinator {
             let coordinator = WithdrawalCoordinator(navigationController: navigationController)
             coordinator.parentCoordinator = self
             return coordinator
-            
+
+        case .blockCreatorManagement:
+            let coordinator = BlockCreatorManagementCoordinator(
+                navigationController: navigationController
+            )
+            coordinator.parentCoordinator = self
+            return coordinator
         default:
             return ProfileSettingCoordinator(navigationController: navigationController)
         }

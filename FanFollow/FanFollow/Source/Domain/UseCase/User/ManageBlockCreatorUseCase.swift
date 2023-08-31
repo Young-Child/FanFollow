@@ -10,10 +10,12 @@ import RxSwift
 
 protocol ManageBlockCreatorUseCase: AnyObject {
     func fetchBlockCreators() -> Observable<[Creator]>
-    
+
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]>
-    
+
     func blockCreator(to banID: String) -> Completable
+
+    func resolveBlockCreator(to banID: String) -> Completable
 }
 
 final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
@@ -21,7 +23,7 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
     private let userInformationRepository: UserInformationRepository
     private let followRepository: FollowRepository
     private let authRepository: AuthRepository
-    
+
     init(
         blockCreatorUseCase: BlockUserRepository,
         userInformationRepository: UserInformationRepository,
@@ -33,12 +35,12 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
         self.followRepository = followRepository
         self.authRepository = authRepository
     }
-    
+
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]> {
         return self.blockCreatorRepository.deleteBlockUser(to: banID)
             .andThen(fetchBlockCreators())
     }
-    
+
     func fetchBlockCreators() -> Observable<[Creator]> {
         return authRepository.storedSession()
             .flatMap {
@@ -52,7 +54,7 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
             .toArray()
             .asObservable()
     }
-    
+
     func blockCreator(to banID: String) -> Completable {
         return authRepository.storedSession()
             .flatMap {
@@ -63,5 +65,9 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
                 .andThen(self.blockCreatorRepository.addBlockUser(to: $0.userID, with: banID))
             }
             .asCompletable()
+    }
+
+    func resolveBlockCreator(to banID: String) -> Completable {
+        return self.blockCreatorRepository.deleteBlockUser(to: banID)
     }
 }
