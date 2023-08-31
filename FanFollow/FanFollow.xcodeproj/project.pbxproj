@@ -127,6 +127,7 @@
 		3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */; };
 		3C3356512A7F5F4500BF632B /* StubImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356502A7F5F4500BF632B /* StubImageRepository.swift */; };
 		3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */; };
+		3C36225D2AA05ED80088649B /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C36225C2AA05ED80088649B /* ReportType.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
@@ -411,6 +412,7 @@
 		3C1804332A67B1F40019DE79 /* ExploreCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryViewModel.swift; sourceTree = "<group>"; };
 		3C3356502A7F5F4500BF632B /* StubImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubImageRepository.swift; sourceTree = "<group>"; };
 		3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCaseTest.swift; sourceTree = "<group>"; };
+		3C36225C2AA05ED80088649B /* ReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportType.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 				187480692A781041000B6C2E /* PostSectionModel.swift */,
 				EBEB29EB2A728C570028270C /* ProfileFeedSectionModel.swift */,
 				EBEB29ED2A728C760028270C /* ProfileFeedSectionItem.swift */,
+				3C36225C2AA05ED80088649B /* ReportType.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1209,7 +1212,6 @@
 				18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */,
 				EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */,
 				180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */,
-        3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */,
 			);
@@ -1586,7 +1588,6 @@
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
 				180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */,
-        3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */,
 			);
@@ -2122,6 +2123,7 @@
 				3C5F65462A6E4E91004F9698 /* CreatorListCell.swift in Sources */,
 				EBE33E6D2A53DD3B00C11188 /* LikeRepository.swift in Sources */,
 				EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */,
+				3C36225D2AA05ED80088649B /* ReportType.swift in Sources */,
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
