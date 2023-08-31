@@ -47,23 +47,9 @@ final class BottomSheetViewController: UIViewController {
         showBottomSheet()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        hideBottomSheet()
-    }
-    
     @objc private func didTapDismiss() {
-        bottomContainerView.snp.updateConstraints {
-            $0.height.equalTo(0)
-        }
-        
-        UIView.animate(withDuration: 0.2) {
-            self.transparentView.alpha = .zero
-            self.view.layoutIfNeeded()
-        } completion: { _ in
-            self.dismiss(animated: true)
-        }
+        // TODO: - Coordinator로 dismiss
+        self.dismiss(animated: true)
     }
 }
 
@@ -79,17 +65,12 @@ extension BottomSheetViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
-    func hideBottomSheet() {
-        
-    }
 }
 
 private extension BottomSheetViewController {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
-//        self.view.backgroundColor = Constants.Color.grayDark.withAlphaComponent(0.7)
         self.transparentView.alpha = .zero
     }
     

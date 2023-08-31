@@ -17,24 +17,24 @@ final class WithdrawalCoordinator: Coordinator {
     }
     
     func start() {
-//        let childViewController = RegisterOutViewController()
-//        let controller = BottomSheetViewController(controller: childViewController)
-//        controller.modalPresentationStyle = .overFullScreen
-//        controller.modalTransitionStyle = .crossDissolve
-//        self.navigationController.present(controller, animated: false)
-        
-        let repository = DefaultAuthRepository(
-            networkService: DefaultNetworkService.shared,
-            userDefaultsService: UserDefaults.standard
-        )
-        let useCase = DefaultWithdrawalUseCase(authRepository: repository)
-        let viewModel = WithdrawlViewModel(withdrawlUseCase: useCase)
-
-        let controller = WithdrawalViewController(viewModel: viewModel)
+        let childViewController = RegisterOutViewController()
+        let controller = BottomSheetViewController(controller: childViewController)
         controller.modalPresentationStyle = .overFullScreen
-        controller.coordinator = self
-
-        navigationController.present(controller, animated: false)
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController.present(controller, animated: false)
+        
+//        let repository = DefaultAuthRepository(
+//            networkService: DefaultNetworkService.shared,
+//            userDefaultsService: UserDefaults.standard
+//        )
+//        let useCase = DefaultWithdrawalUseCase(authRepository: repository)
+//        let viewModel = WithdrawlViewModel(withdrawlUseCase: useCase)
+//
+//        let controller = WithdrawalViewController(viewModel: viewModel)
+//        controller.modalPresentationStyle = .overFullScreen
+//        controller.coordinator = self
+//
+//        navigationController.present(controller, animated: false)
     }
     
     func reconnect(current viewController: UIViewController) {
