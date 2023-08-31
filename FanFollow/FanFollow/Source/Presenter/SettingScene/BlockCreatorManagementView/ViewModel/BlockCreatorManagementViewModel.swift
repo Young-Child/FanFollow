@@ -61,7 +61,7 @@ final class BlockCreatorManagementViewModel: ViewModel {
             }
             .map { blockCreators in
                 return [
-                    BlockCreatorSectionModel(title: UUID().uuidString, items: blockCreators)
+                    BlockCreatorSectionModel(title: "", items: blockCreators)
                 ]
             }
 
