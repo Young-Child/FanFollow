@@ -256,7 +256,7 @@ private extension ProfileFeedViewController {
         }
         
         let blockAction = UIAction(
-            title: "차단",
+            title: "사용자 차단",
             image: UIImage(systemName: "person.crop.circle.badge.xmark"),
             attributes: .destructive
         ) { _ in
