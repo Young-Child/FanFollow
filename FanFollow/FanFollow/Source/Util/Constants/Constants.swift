@@ -96,20 +96,6 @@ enum Constants {
         static let editMessage = "수정하기"
         static let deleteMessage = "삭제하기"
         static let declaration = "신고하기"
-        static let declarationMailFormat = """
-        서비스를 이용하시는데 불편을 드려서 죄송합니다.
-        불쾌감을 느끼신 게시물에 대해서 이곳에 작성해주세요.
-        
-        • 신고 후 삭제는 최대 24시간이 소요될 수 있습니다.
-        • 신고한 게시물의 내용이 부적절한 경우에만 삭제됩니다.
-        ---------------
-
-        %@ 고유 번호: %@
-
-        ---------------
-        """
-        
-        static let declarationMailTitle = "<팬팔> 게시글 신고하기"
         static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
         
         static let reportTitle = "신고하는 이유"
