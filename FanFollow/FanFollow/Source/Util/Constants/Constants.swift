@@ -32,6 +32,7 @@ enum Constants {
 
         // Setting Scene
         static let registerCreatorSectionTitle = "크리에이터 신청"
+        static let blockCreatorManagementSectionTitle = "차단 계정 관리"
         static let customerServiceSectionTitle = "고객 센터"
         static let accountSectionTitle = "계정 설정"
         static let bugReportMenuTitle = "버그 제보하기"
