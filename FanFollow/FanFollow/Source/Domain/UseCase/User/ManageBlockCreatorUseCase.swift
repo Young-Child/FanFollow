@@ -19,15 +19,18 @@ protocol ManageBlockCreatorUseCase: AnyObject {
 final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
     private let blockCreatorRepository: BlockUserRepository
     private let userInformationRepository: UserInformationRepository
+    private let followRepository: FollowRepository
     private let authRepository: AuthRepository
     
     init(
         blockCreatorUseCase: BlockUserRepository,
         userInformationRepository: UserInformationRepository,
+        followRepository: FollowRepository,
         authRepository: AuthRepository
     ) {
         self.blockCreatorRepository = blockCreatorUseCase
         self.userInformationRepository = userInformationRepository
+        self.followRepository = followRepository
         self.authRepository = authRepository
     }
     
@@ -53,7 +56,11 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
     func blockCreator(to banID: String) -> Completable {
         return authRepository.storedSession()
             .flatMap {
-                return self.blockCreatorRepository.addBlockUser(to: banID, with: $0.userID)
+                return self.followRepository.deleteFollow(
+                    followingID: banID,
+                    followerID: $0.userID
+                )
+                .andThen(self.blockCreatorRepository.addBlockUser(to: $0.userID, with: banID))
             }
             .asCompletable()
     }

@@ -6,6 +6,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class BlockUserViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -39,7 +41,8 @@ final class BlockUserViewController: UIViewController {
         $0.layer.backgroundColor = Constants.Color.warningColor?.cgColor
         $0.layer.cornerRadius = 4
     }
-
+    
+    private var disposeBag = DisposeBag()
     private let viewModel: BlockUserViewModel
     
     init(viewModel: BlockUserViewModel) {
@@ -51,11 +54,38 @@ final class BlockUserViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        
+        binding()
+    }
+}
+
+private extension BlockUserViewController {
+    func binding() {
+        let output = bindingInput()
+        bindingOutput(with: output)
+    }
+    
+    func bindingInput() -> BlockUserViewModel.Output {
+        let input = BlockUserViewModel.Input(
+            didTapBlockUserButton: blockButton.rx.tap.asObservable()
+        )
+        
+        return viewModel.transform(input: input)
+    }
+    
+    func bindingOutput(with output: BlockUserViewModel.Output) {
+        output.didBlockUser
+            .subscribe(onCompleted: {
+                print("Success Block")
+            }, onError: { error in
+                print(error)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

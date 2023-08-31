@@ -78,6 +78,7 @@ final class ProfileFeedCoordinator: Coordinator {
         
         let blockUserRepository = DefaultBlockUserRepository(networkService: networkService)
         let informationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
         let authRepository = DefaultAuthRepository(
             networkService: networkService,
             userDefaultsService: UserDefaults.standard
@@ -86,6 +87,7 @@ final class ProfileFeedCoordinator: Coordinator {
         let manageBlockUserUseCase = DefaultManageBlockCreatorUseCase(
             blockCreatorUseCase: blockUserRepository,
             userInformationRepository: informationRepository,
+            followRepository: followRepository,
             authRepository: authRepository
         )
         
