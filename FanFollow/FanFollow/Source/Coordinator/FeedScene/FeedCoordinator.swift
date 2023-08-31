@@ -68,7 +68,9 @@ final class FeedCoordinator: Coordinator {
     }
     
     func presentDeclaration(_ banPostID: String?) {
-        guard let banPostID = banPostID else { return }
+        guard let banPostID = banPostID,
+              let topViewController = navigationController.topViewController as? FeedViewController
+        else { return }
         
         let networkService = DefaultNetworkService.shared
         let userDefaultsService = UserDefaults.standard
@@ -88,6 +90,7 @@ final class FeedCoordinator: Coordinator {
         let viewModel = ReportViewModel(sendReportUseCase: useCase, banID: banPostID)
         let childViewController = ReportViewController(viewModel: viewModel, reportType: .content)
         childViewController.coordinator = self
+        childViewController.delegate = topViewController
         let controller = BottomSheetViewController(
             controller: childViewController,
             bottomHeightRatio: 0.6

@@ -143,6 +143,13 @@ extension FeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTapDeleteButton post: Post) { }
 }
 
+extension FeedViewController: ReportViewControllerDelegate {
+    func reportViewController(_ controller: ReportViewController, didSuccessReport banID: String) {
+        print(banID)
+//        coordinator?.close(to: <#T##UIViewController#>)
+    }
+}
+
 // Configure NavigationBar Method
 private extension FeedViewController {
     func configureLeftBarButton() {

@@ -10,6 +10,10 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+protocol ReportViewControllerDelegate: AnyObject {
+    func reportViewController(_ controller: ReportViewController, didSuccessReport banID: String)
+}
+
 final class ReportViewController: UIViewController {
     // View Properties
     private let titleLabel = UILabel().then {
@@ -40,6 +44,7 @@ final class ReportViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let didTapReasonSelected = PublishRelay<Int>()
     weak var coordinator: Coordinator?
+    weak var delegate: ReportViewControllerDelegate?
     
     // Initializer
     init(viewModel: ReportViewModel, reportType: ReportType) {
@@ -68,10 +73,12 @@ extension ReportViewController {
         let output = bindingInput()
         
         output.result
-            .asDriver(onErrorJustReturn: false)
-            .drive(onNext: { _ in
-                guard let parentViewController = self.parent else { return }
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: {
+                if $0.isEmpty { return }
+                self.delegate?.reportViewController(self, didSuccessReport: $0)
                 
+                guard let parentViewController = self.parent else { return }
                 self.coordinator?.close(to: parentViewController)
             })
             .disposed(by: disposeBag)

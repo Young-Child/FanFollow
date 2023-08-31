@@ -13,7 +13,7 @@ final class ReportViewModel: ViewModel {
     }
 
     struct Output {
-        var result: Observable<Bool>
+        var result: Observable<String>
     }
 
     var disposeBag = DisposeBag()
@@ -32,7 +32,7 @@ final class ReportViewModel: ViewModel {
                     banID: self.banID,
                     reasonIndex: reasonIndex
                 )
-                .andThen(Observable.just(true))
+                .andThen(Observable.just(self.banID))
             }
         
         return Output(result: reportResult)
