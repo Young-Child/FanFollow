@@ -23,7 +23,7 @@ final class DefaultBlockContentUseCase: BlockContentUseCase {
     }
     
     func block(postID: String) -> Completable {
-        let a = authRepository.storedSession()
+        return authRepository.storedSession()
             .flatMap { storedSession in
                 let userID = storedSession.userID
                 return self.blockContentRepository.blockPost(postID, to: userID)
