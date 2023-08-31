@@ -10,6 +10,9 @@ import RxSwift
 
 protocol ManageBlockCreatorUseCase: AnyObject {
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]>
+    func fetchBlockCreators() -> Observable<[Creator]>
+    func blockCreator(to banID: String) -> Completable
+    func resolveBlockCreator(to banID: String) -> Completable
 }
 
 final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
@@ -52,5 +55,9 @@ final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {
                 return self.blockCreatorRepository.addBlockUser(to: banID, with: $0.userID)
             }
             .asCompletable()
+    }
+
+    func resolveBlockCreator(to banID: String) -> Completable {
+        return self.blockCreatorRepository.deleteBlockUser(to: banID)
     }
 }
