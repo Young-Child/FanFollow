@@ -24,13 +24,13 @@ final class CreatorApplicationCoordinator: Coordinator {
             networkService: networkService,
             userDefaultsService: userDefaultsService
         )
-        let userInformationUpdateRepository = DefaultUpdateUserInformationUseCase(
+        let informationUseCase = DefaultUpdateUserInformationUseCase(
             userInformationRepository: userInformationRepository,
             authRepository: authRepository
         )
         
         let creatorApplicationViewModel = CreatorApplicationViewModel(
-            informationUseCase: userInformationUpdateRepository
+            informationUseCase: informationUseCase
         )
         let creatorApplicationViewController = CreatorApplicationViewController(
             viewModel: creatorApplicationViewModel

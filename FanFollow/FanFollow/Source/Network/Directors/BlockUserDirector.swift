@@ -22,7 +22,7 @@ struct BlockUserDirector {
             ])
             .setAccessKey()
             .set(queryItems: [
-                SupabaseConstants.Constants.userID: userID
+                SupabaseConstants.Constants.userID: SupabaseConstants.Base.equal + userID
             ])
             .build()
     }
@@ -52,7 +52,7 @@ struct BlockUserDirector {
             ])
             .setAccessKey()
             .set(queryItems: [
-                SupabaseConstants.Constants.banID: bannedID
+                SupabaseConstants.Constants.banID: SupabaseConstants.Base.equal + bannedID
             ])
             .build()
     }

@@ -32,6 +32,7 @@ enum Constants {
 
         // Setting Scene
         static let registerCreatorSectionTitle = "크리에이터 신청"
+        static let blockCreatorManagementSectionTitle = "차단 사용자 관리"
         static let customerServiceSectionTitle = "고객 센터"
         static let accountSectionTitle = "계정 설정"
         static let bugReportMenuTitle = "버그 제보하기"
@@ -71,6 +72,10 @@ enum Constants {
 
         ---------------
         """
+        static let blockToggleButtonBlockTitle = "차단"
+        static let blockToggleButtonResolveTitle = "차단 해제"
+        static let blockedCreator = "차단된 사용자"
+        static let noblockedCreatorResult = "차단된 사용자가 없습니다."
         
         static let creatorAgreementInformation = """
         다음과 같은 내용을 포함하는 게시글을 작성하는 경우 해당 서비스를 이용할 수 없습니다.
