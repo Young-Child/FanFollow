@@ -26,5 +26,6 @@ enum SupabaseConstants {
         static let json = "application/json"
         static let png = "image/png"
         static let prefer = "Prefer"
+        static let upsertPrefer = "resolution=merge-duplicates"
     }
 }

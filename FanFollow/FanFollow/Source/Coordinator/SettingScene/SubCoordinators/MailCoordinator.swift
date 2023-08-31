@@ -9,14 +9,11 @@ import MessageUI
 final class MailCoordinator: NSObject, Coordinator {
     enum MailType {
         case bugReport
-        case declaration(postID: String, isUser: Bool)
         
         var contentsFormat: String {
             switch self {
             case .bugReport:
                 return Constants.Text.bugReportMailFormat
-            case .declaration:
-                return Constants.Text.declarationMailFormat
             }
         }
         
@@ -24,8 +21,6 @@ final class MailCoordinator: NSObject, Coordinator {
             switch self {
             case .bugReport:
                 return Constants.Text.bugReportMailTitle
-            case .declaration:
-                return Constants.Text.declarationMailTitle
             }
         }
     }
@@ -89,13 +84,6 @@ private extension MailCoordinator {
             let deviceOS = UIDevice.current.systemVersion
             
             return String(format: mailType.contentsFormat, deviceOS, appVersion)
-            
-        case .declaration(let declareID, let isUser):
-            return String(
-                format: mailType.contentsFormat,
-                isUser ? "사용자" : "게시물",
-                declareID
-            )
         }
     }
 }

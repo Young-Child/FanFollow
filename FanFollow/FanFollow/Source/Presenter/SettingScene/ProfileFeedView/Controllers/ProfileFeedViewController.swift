@@ -88,7 +88,7 @@ extension ProfileFeedViewController: PostCellDelegate {
     }
     
     func postCell(_ cell: PostCell, didTapDeclarationButton post: Post) {
-        coordinator?.presentDeclaration(to: post.postID, isUser: false)
+        coordinator?.presentPostDeclaration(post.postID)
     }
 }
 
@@ -174,7 +174,7 @@ private extension ProfileFeedViewController {
             .asDriver(onErrorJustReturn: "")
             .filter { $0.isEmpty == false }
             .drive {
-                self.coordinator?.presentDeclaration(to: $0, isUser: true)
+                self.coordinator?.presentUserDeclaration($0)
             }
             .disposed(by: disposeBag)
     }

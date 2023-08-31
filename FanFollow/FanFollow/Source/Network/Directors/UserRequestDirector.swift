@@ -59,7 +59,7 @@ struct UserRequestDirector {
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
-                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.resolutionMergeDuplicates
+                SupabaseConstants.Base.prefer: SupabaseConstants.Base.upsertPrefer
             ])
             .set(body: userInformationDTO.convertBody())
             .setAccessKey()
@@ -129,6 +129,5 @@ private extension SupabaseConstants {
         static let count = "fetchcount"
         static let start = "start_range"
         static let end = "end_range"
-        static let resolutionMergeDuplicates = "resolution=merge-duplicates"
     }
 }

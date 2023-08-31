@@ -55,7 +55,7 @@ struct PostRequestDirector {
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
-                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.upsertPrefer
+                SupabaseConstants.Base.prefer: SupabaseConstants.Base.upsertPrefer
             ])
             .set(body: item.convertBody())
             .setAccessKey()
@@ -81,7 +81,6 @@ private extension SupabaseConstants {
     enum Constants {
         static let path = Base.basePath + "POST"
         static let authKey = Base.bearer + Bundle.main.apiKey
-        static let upsertPrefer = "resolution=merge-duplicates"
         static let userID = "user_id"
         static let postID = "post_id"
         static let fetchMyPostsPath = Base.basePath + "rpc/fetch_my_posts"
