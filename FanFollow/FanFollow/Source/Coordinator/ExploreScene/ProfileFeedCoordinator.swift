@@ -63,13 +63,10 @@ final class ProfileFeedCoordinator: Coordinator {
     func presentDeclaration(to declareID: String?, isUser: Bool = false) {
         guard let declareID = declareID else { return }
         
-        let mailCoordinator = MailCoordinator(
-            navigationController: navigationController,
-            mailType: .declaration(postID: declareID, isUser: isUser)
-        )
-        
-        childCoordinators.append(mailCoordinator)
-
-        mailCoordinator.start()
+        let childViewController = ReportViewController(reportType: .content)
+        let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController.present(controller, animated: false)
     }
 }

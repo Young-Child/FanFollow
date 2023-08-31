@@ -113,7 +113,12 @@ enum Constants {
         static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
         
         static let reportTitle = "신고하는 이유"
-        static let reportNoticeMessage = "누군가 위급한 상황에 있다고 생각된다면 즉시 현지 응급 서비스 기관에 연락하세요."
+        static let reportNoticeMessage = """
+        서비스를 이용하시는데 불편을 드려서 죄송합니다.
+        • 신고 후 삭제는 최대 24시간이 소요될 수 있습니다.
+        • 신고한 게시물의 내용이 부적절한 경우에만 삭제됩니다.
+        • 위급 상황이라면 즉시 현지 응급 기관에 연락하세요.
+        """
         
         // ProfileFeed Scene
         static let follower = "팔로워 "
