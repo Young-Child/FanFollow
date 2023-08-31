@@ -213,6 +213,7 @@
 		EB3329232AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */; };
 		EB3329252AA07F350030F3C4 /* BlockCreatorManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */; };
 		EB3329272AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329262AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift */; };
+		EB3329292AA08B080030F3C4 /* BlockCreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -501,6 +502,7 @@
 		EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorSectionModel.swift; sourceTree = "<group>"; };
 		EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementViewController.swift; sourceTree = "<group>"; };
 		EB3329262AA084880030F3C4 /* BlockCreatorManagementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementCoordinator.swift; sourceTree = "<group>"; };
+		EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorCell.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -1656,6 +1658,7 @@
 		EB33291B2AA0671D0030F3C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EB3329282AA08B080030F3C4 /* BlockCreatorCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2104,6 +2107,7 @@
 				EB47BC7B2A9F3047000E016E /* SendReportUseCase.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
+				EB3329292AA08B080030F3C4 /* BlockCreatorCell.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,
 				3C7DE6172A84CEDB00259E74 /* AppleSigningUseCase.swift in Sources */,
 				3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */,
