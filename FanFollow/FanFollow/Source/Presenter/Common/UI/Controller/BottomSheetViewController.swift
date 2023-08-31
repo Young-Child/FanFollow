@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 final class BottomSheetViewController: UIViewController {
+    // View Properties
     private let transparentView = UIView().then {
         $0.backgroundColor = .darkGray.withAlphaComponent(0.7)
     }
@@ -22,8 +23,13 @@ final class BottomSheetViewController: UIViewController {
     
     private let childController: UIViewController
     
-    init(controller: UIViewController) {
+    // Property
+    private let bottomHeightRatio: Double
+    
+    // Initializer
+    init(controller: UIViewController, bottomHeightRatio: Double) {
         self.childController = controller
+        self.bottomHeightRatio = bottomHeightRatio
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,6 +37,7 @@ final class BottomSheetViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,7 +62,7 @@ final class BottomSheetViewController: UIViewController {
 
 extension BottomSheetViewController {
     func showBottomSheet() {
-        let height = view.frame.height * 0.4
+        let height = view.frame.height * bottomHeightRatio
         bottomContainerView.snp.updateConstraints {
             $0.height.equalTo(height)
         }
