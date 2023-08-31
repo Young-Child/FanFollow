@@ -68,10 +68,10 @@ final class FeedCoordinator: Coordinator {
     }
     
     func presentDeclaration(_ postID: String?) {        
-        let childViewController = ReportViewController(reportType: .content)
-        let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
-        controller.modalPresentationStyle = .overFullScreen
-        controller.modalTransitionStyle = .crossDissolve
-        self.navigationController.present(controller, animated: false)
+//        let childViewController = ReportViewController(reportType: .content)
+//        let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
+//        controller.modalPresentationStyle = .overFullScreen
+//        controller.modalTransitionStyle = .crossDissolve
+//        self.navigationController.present(controller, animated: false)
     }
 }
