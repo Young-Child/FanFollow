@@ -100,7 +100,7 @@ enum Constants {
         // Feed Scene
         static let editMessage = "수정하기"
         static let deleteMessage = "삭제하기"
-        static let declaration = "신고하기"
+        static let declaration = "신고 / 숨김"
         static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
         
         static let reportTitle = "신고하는 이유"
