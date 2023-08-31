@@ -5,8 +5,9 @@
 //  Created by junho lee on 2023/07/11.
 //
 
-import RxSwift
 import Foundation
+
+import RxSwift
 
 protocol FetchFeedUseCase: AnyObject {
     func fetchFollowPosts(startRange: Int, endRange: Int) -> Observable<[Post]>
