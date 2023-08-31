@@ -47,7 +47,7 @@ private extension ReportReasonTableViewCell {
     }
     
     func configureHierarchy() {
-        [reasonLabel].forEach { contentView.addSubview($0) }
+        [reasonLabel, chevronImageView].forEach { contentView.addSubview($0) }
     }
     
     func makeConstraints() {
