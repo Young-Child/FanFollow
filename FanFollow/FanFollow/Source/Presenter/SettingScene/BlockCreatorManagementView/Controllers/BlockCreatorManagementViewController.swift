@@ -17,18 +17,25 @@ final class BlockCreatorManagementViewController: UIViewController {
 
     private let tableView = UITableView(frame: .zero, style: .plain).then { tableView in
         tableView.backgroundColor = Constants.Color.background
+        tableView.register(
+            BlockCreatorCell.self,
+            forCellReuseIdentifier: BlockCreatorCell.reuseIdentifier
+        )
     }
 
     private let resultLabel = UILabel().then { label in
         label.textColor = .label
         label.textAlignment = .center
-        label.text = Constants.Text.noProfileFeedResult
+        label.text = Constants.Text.noblockedCreatorResult
+        label.isHidden = true
     }
 
     // Properties
     typealias DataSource = RxTableViewSectionedAnimatedDataSource<BlockCreatorSectionModel>
 
     weak var coordinator: BlockCreatorManagementCoordinator?
+
+    private let disposeBag = DisposeBag()
     private let viewModel: BlockCreatorManagementViewModel
     private let blockToggleButtonTapped = PublishRelay<String>()
 
@@ -51,10 +58,52 @@ final class BlockCreatorManagementViewController: UIViewController {
     }
 }
 
+// BlockCreatorCellDelegate
+extension BlockCreatorManagementViewController: BlockCreatorCellDelegate {
+    func blockCreatorCell(didTapBlockToggleButton banID: String) {
+        blockToggleButtonTapped.accept(banID)
+    }
+}
+
 // Binding Method
 private extension BlockCreatorManagementViewController {
     func binding() {
+        let input = input()
+        let output = viewModel.transform(input: input)
+        bindTableView(output)
+    }
 
+    func input() -> BlockCreatorManagementViewModel.Input {
+        return BlockCreatorManagementViewModel.Input(
+            viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
+            blockToggleButtonTap: blockToggleButtonTapped.asObservable()
+        )
+    }
+
+    func bindTableView(_ output: BlockCreatorManagementViewModel.Output) {
+        let dataSource = generateDataSource()
+
+        let blockCreators = output.blockCreators
+            .asDriver(onErrorJustReturn: [])
+
+        blockCreators
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        blockCreators
+            .map {
+                $0.first?.items.isEmpty == false
+            }
+            .drive(self.resultLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+
+    func generateDataSource() -> DataSource {
+        return DataSource { _, tableView, indexPath, item in
+            let cell: BlockCreatorCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.configure(with: item, delegate: self)
+            return cell
+        }
     }
 }
 
@@ -62,6 +111,7 @@ private extension BlockCreatorManagementViewController {
 private extension BlockCreatorManagementViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
+        tableView.backgroundView = resultLabel
         configureHierarchy()
         configureConstraints()
         configureNavigationItem()
@@ -87,6 +137,9 @@ private extension BlockCreatorManagementViewController {
     func configureNavigationItem() {
         let configuration = UIImage.SymbolConfiguration(pointSize: 22)
         let backImage = Constants.Image.back?.withConfiguration(configuration)
+
+        navigationBar.titleView.text = Constants.Text.blockedCreator
+        navigationBar.titleView.textColor = Constants.Color.label
 
         navigationBar.leftBarButton.setImage(backImage, for: .normal)
         navigationBar.leftBarButton.addAction(
