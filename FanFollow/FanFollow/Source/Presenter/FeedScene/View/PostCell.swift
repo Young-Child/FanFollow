@@ -138,6 +138,7 @@ extension PostCell {
         
         let declarationAction = UIAction(
             title: Constants.Text.declaration,
+            image: Constants.Image.report,
             attributes: .destructive
         ) { _ in
             self.delegate?.postCell(self, didTapDeclarationButton: post)

@@ -13,7 +13,7 @@ final class ReportReasonTableViewCell: UITableViewCell {
         $0.numberOfLines = 1
         $0.textAlignment = .left
         $0.textColor = Constants.Color.label
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        $0.font = .coreDreamFont(ofSize: 14, weight: .regular)
     }
     
     private let chevronImageView = UIImageView().then {

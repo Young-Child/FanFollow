@@ -17,7 +17,7 @@ protocol ReportViewControllerDelegate: AnyObject {
 final class ReportViewController: UIViewController {
     // View Properties
     private let titleLabel = UILabel().then {
-        $0.font = .coreDreamFont(ofSize: 18, weight: .regular)
+        $0.font = .coreDreamFont(ofSize: 18, weight: .medium)
         $0.textColor = Constants.Color.label
     }
     

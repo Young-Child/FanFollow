@@ -192,6 +192,8 @@ enum Constants {
         static let link = UIImage(systemName: "link.badge.plus")
         static let checkMark = UIImage(systemName: "checkmark.square.fill")
         static let square = UIImage(systemName: "square")
+        static let report = UIImage(systemName: "exclamationmark.triangle.fill")
+        static let block = UIImage(systemName: "person.crop.circle.badge.xmark")
         
     }
     

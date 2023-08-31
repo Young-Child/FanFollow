@@ -249,22 +249,23 @@ private extension ProfileFeedViewController {
         
         navigationBar.leftBarButton.setImage(backImage, for: .normal)
         
-        let declareAction = UIAction(
+        let declarationAction = UIAction(
             title: Constants.Text.declare,
+            image: Constants.Image.report,
             attributes: .destructive
         ) { _ in
             print("Did Tapped Declare")
         }
         
         let blockAction = UIAction(
-            title: "사용자 차단",
-            image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+            title: Constants.Text.blockUserTitle,
+            image: Constants.Image.block,
             attributes: .destructive
         ) { _ in
             self.coordinator?.presentUserBlockBottomView()
         }
         
-        let menu = UIMenu(children: [declareAction, blockAction])
+        let menu = UIMenu(children: [declarationAction, blockAction])
         
         navigationBar.rightBarButton.menu = menu
         navigationBar.rightBarButton.showsMenuAsPrimaryAction = true
