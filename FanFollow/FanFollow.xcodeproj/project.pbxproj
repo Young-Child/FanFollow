@@ -18,6 +18,11 @@
 		1805F1D32A8CAB4200ABE14F /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */; };
 		1805F1D42A8CAB4200ABE14F /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */; };
 		180CD3C62A6E6D89000733D5 /* ProfileLinkInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */; };
+		180E4CCB2A9F296E00CFA806 /* BlockUserDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */; };
+		180E4CCD2A9F2F4C00CFA806 /* BlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */; };
+		180E4CCF2A9F30D800CFA806 /* BanUserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */; };
+		180E4CD12A9F310300CFA806 /* DefaultBlockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */; };
+		180E4CD52A9F400600CFA806 /* ManageBlockCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */; };
 		181258942A5418AA0054C782 /* SupabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181258932A5418AA0054C782 /* SupabaseConstants.swift */; };
 		1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */; };
 		1816AEB32A7803AA005F5F84 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816AEB22A7803AA005F5F84 /* LinkPreview.swift */; };
@@ -306,6 +311,11 @@
 		1805F1CA2A8CAB4200ABE14F /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream1.otf; sourceTree = "<group>"; };
 		1805F1CB2A8CAB4200ABE14F /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
 		180CD3C52A6E6D89000733D5 /* ProfileLinkInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkInputField.swift; sourceTree = "<group>"; };
+		180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserDirector.swift; sourceTree = "<group>"; };
+		180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserRepository.swift; sourceTree = "<group>"; };
+		180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanUserInformation.swift; sourceTree = "<group>"; };
+		180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockUserRepository.swift; sourceTree = "<group>"; };
+		180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBlockCreatorUseCase.swift; sourceTree = "<group>"; };
 		181258932A5418AA0054C782 /* SupabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConstants.swift; sourceTree = "<group>"; };
 		1816AEB02A77BB7C005F5F84 /* HorizontalImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalImageSlideView.swift; sourceTree = "<group>"; };
 		1816AEB22A7803AA005F5F84 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
@@ -682,6 +692,7 @@
 				EBE33E4C2A52C32F00C11188 /* FollowDTO.swift */,
 				EBE33E502A52E6BB00C11188 /* UserInformationDTO.swift */,
 				EB28F3312A8203F5001337A7 /* SessionDTO.swift */,
+				180E4CCE2A9F30D800CFA806 /* BanUserInformation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1170,6 +1181,7 @@
 				1879BBDC2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift */,
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
+				180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */,
 				EB47BC7A2A9F3047000E016E /* SendReportUseCase.swift */,
 			);
 			path = User;
@@ -1193,6 +1205,8 @@
 				EBC4E9912A5513FD00A1F6AE /* UserRequestDirector.swift */,
 				18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */,
 				EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */,
+				180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */,
+        3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */,
 			);
@@ -1568,6 +1582,8 @@
 				EBC4E98F2A55133000A1F6AE /* DefaultUserInformationRepository.swift */,
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
+				180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */,
+        3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */,
 			);
@@ -1593,6 +1609,7 @@
 				EBC4E98D2A54F22700A1F6AE /* UserInformationRepository.swift */,
 				18EC06982A62775B006293B5 /* ImageRepository.swift */,
 				EB28F32B2A81E783001337A7 /* AuthRepository.swift */,
+				180E4CCC2A9F2F4C00CFA806 /* BlockUserRepository.swift */,
 				3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */,
 				EB47BC762A9F2EC1000E016E /* ReportRepository.swift */,
 			);
@@ -2104,6 +2121,7 @@
 				1879BBDD2A6921A900A64DD7 /* UpdateUserInformationUseCase.swift in Sources */,
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
+				180E4CCB2A9F296E00CFA806 /* BlockUserDirector.swift in Sources */,
 				3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */,
 				189E9ADE2A95E1650022C1AF /* UnderLineTextView.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
@@ -2130,20 +2148,24 @@
 				3C1804342A67B1F40019DE79 /* ExploreCategoryViewModel.swift in Sources */,
 				EBEB29EE2A728C760028270C /* ProfileFeedSectionItem.swift in Sources */,
 				3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */,
+				180E4CD12A9F310300CFA806 /* DefaultBlockUserRepository.swift in Sources */,
 				188CC4042A4D7FD900BAB85A /* AppDelegate.swift in Sources */,
 				188CC4062A4D7FD900BAB85A /* SceneDelegate.swift in Sources */,
 				EB28F3362A8213B0001337A7 /* UserDefaultsService.swift in Sources */,
 				3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */,
 				187949B12A5E7DBB00ADA01A /* TopTabBarController.swift in Sources */,
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
+				180E4CCD2A9F2F4C00CFA806 /* BlockUserRepository.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
+				180E4CCF2A9F30D800CFA806 /* BanUserInformation.swift in Sources */,
 				1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */,
 				3CC69A822A64E70E0081ACC8 /* ExploreViewController.swift in Sources */,
 				3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */,
 				3CFDF6CE2A5E9A1500DE6109 /* JobCategory.swift in Sources */,
 				18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */,
 				18906B102A7B5360000D7715 /* ProfileSettingViewController.swift in Sources */,
+				180E4CD52A9F400600CFA806 /* ManageBlockCreatorUseCase.swift in Sources */,
 				EBFE88EC2A95A54700C6A794 /* ProfileFeedCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
