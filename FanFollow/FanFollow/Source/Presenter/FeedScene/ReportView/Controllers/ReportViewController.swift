@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class ReportViewController: UIViewController {
     // View Properties
     private let titleLabel = UILabel().then {
@@ -33,9 +36,13 @@ final class ReportViewController: UIViewController {
     
     // Properties
     private let reportType: ReportType
+    private let viewModel: ReportViewModel
+    private let disposeBag = DisposeBag()
+    weak var coordinator: Coordinator?
     
     // Initializer
-    init(reportType: ReportType) {
+    init(viewModel: ReportViewModel, reportType: ReportType) {
+        self.viewModel = viewModel
         self.reportType = reportType
         
         super.init(nibName: nil, bundle: nil)
@@ -50,6 +57,34 @@ final class ReportViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+    }
+}
+
+// Binding
+extension ReportViewController {
+    func binding() {
+        let output = bindingInput()
+        
+        output.result
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { result in
+                guard let parentViewController = self.parent else { return }
+                
+                self.coordinator?.close(to: parentViewController)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindingInput() -> ReportViewModel.Output {
+        let didTapCellEvent = reasonTableView.rx.itemSelected
+            .map { indexPath in
+                return indexPath.row
+            }
+            .asObservable()
+        
+        let input = ReportViewModel.Input(didTapReportButton: didTapCellEvent)
+        
+        return viewModel.transform(input: input)
     }
 }
 
