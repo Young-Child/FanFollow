@@ -22,6 +22,7 @@ final class WithdrawalCoordinator: Coordinator {
             controller: childViewController,
             bottomHeightRatio: 0.4
         )
+
         controller.modalPresentationStyle = .overFullScreen
         controller.modalTransitionStyle = .crossDissolve
         self.navigationController.present(controller, animated: false)

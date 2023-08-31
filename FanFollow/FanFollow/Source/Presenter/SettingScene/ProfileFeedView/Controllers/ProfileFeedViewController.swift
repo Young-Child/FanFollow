@@ -66,7 +66,7 @@ final class ProfileFeedViewController: UIViewController {
     }
 }
 
-// ProfileCellDelegate, PostCellDelegate
+// PostCellDelegate Method
 extension ProfileFeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
         likeButtonTapped.accept(postID)
@@ -92,6 +92,7 @@ extension ProfileFeedViewController: PostCellDelegate {
     }
 }
 
+// Profile Cell Delegate Method
 extension ProfileFeedViewController: ProfileCellDelegate {
     func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?) {
         tableView.performBatchUpdates(expandAction)
@@ -138,7 +139,8 @@ private extension ProfileFeedViewController {
             likeButtonTap: likeButtonTapped.asObservable(),
             followButtonTap: followButtonTapped.asObservable(),
             deletePost: didTapPostDeleteButton.asObservable(),
-            didTapDeclareUser: navigationBar.rightBarButton.rx.tap.asObservable()
+            didTapDeclareUser: .empty()
+//                navigationBar.rightBarButton.rx.tap.asObservable()
         )
     }
     
@@ -246,8 +248,27 @@ private extension ProfileFeedViewController {
         let backImage = Constants.Image.back?.withConfiguration(configuration)
         
         navigationBar.leftBarButton.setImage(backImage, for: .normal)
-        navigationBar.rightBarButton.setTitle(Constants.Text.declare, for: .normal)
-        navigationBar.rightBarButton.setTitleColor(Constants.Color.warningColor, for: .normal)
+        
+        let declareAction = UIAction(
+            title: Constants.Text.declare,
+            attributes: .destructive
+        ) { _ in
+            print("Did Tapped Declare")
+        }
+        
+        let blockAction = UIAction(
+            title: "사용자 차단",
+            image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+            attributes: .destructive
+        ) { _ in
+            self.coordinator?.presentUserBlockBottomView()
+        }
+        
+        let menu = UIMenu(children: [declareAction, blockAction])
+        
+        navigationBar.rightBarButton.menu = menu
+        navigationBar.rightBarButton.showsMenuAsPrimaryAction = true
+        navigationBar.rightBarButton.setImage(Constants.Image.more, for: .normal)
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self

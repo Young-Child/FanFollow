@@ -110,6 +110,13 @@ enum Constants {
         • 신고한 게시물의 내용이 부적절한 경우에만 삭제됩니다.
         • 위급 상황이라면 즉시 현지 응급 기관에 연락하세요.
         """
+        static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
+        static let blockUserTitle = "사용자 차단"
+        static let blockUserInformations: [String] = [
+            "사용자의 게시물이 노출되지 않습니다.",
+            "사용자가 노출되지 않습니다.",
+            "설정에서 차단을 해제할 수 있습니다."
+        ]
         
         // ProfileFeed Scene
         static let follower = "팔로워 "
@@ -138,6 +145,7 @@ enum Constants {
         static let recommand = "추천"
         static let complete = "완료"
         static let declare = "신고"
+        static let block = "차단"
         static let next = "다음"
         static let nickName = "닉네임"
         static let setting = "설정"

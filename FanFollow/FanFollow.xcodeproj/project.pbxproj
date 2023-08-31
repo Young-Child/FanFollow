@@ -84,6 +84,8 @@
 		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
 		18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18906B152A7BFB4D000D7715 /* Settings.bundle */; };
 		18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */; };
+		1893497D2AA0747900E3A5A4 /* BlockUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */; };
+		1893497F2AA08CDF00E3A5A4 /* BlockUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893497E2AA08CDF00E3A5A4 /* BlockUserViewModel.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
 		1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898203C2A89205C004372D3 /* NavigationBar.swift */; };
@@ -380,6 +382,8 @@
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
+		1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserViewController.swift; sourceTree = "<group>"; };
+		1893497E2AA08CDF00E3A5A4 /* BlockUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserViewModel.swift; sourceTree = "<group>"; };
 		1898203C2A89205C004372D3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		189E9ADD2A95E1650022C1AF /* UnderLineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextView.swift; sourceTree = "<group>"; };
 		18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
@@ -1521,6 +1525,7 @@
 		3C7DE60F2A84BC8D00259E74 /* LogInScene */ = {
 			isa = PBXGroup;
 			children = (
+				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 				3C7DE6182A8612EE00259E74 /* Controllers */,
 				3C7DE6192A8612F500259E74 /* ViewModel */,
 			);
@@ -1775,9 +1780,8 @@
 		EBEA9F9B2A64D61100A6B6B2 /* FeedScene */ = {
 			isa = PBXGroup;
 			children = (
-				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
-				189E9AF72A95E5960022C1AF /* View */,
 				EBEA9F9C2A64D62E00A6B6B2 /* Controllers */,
+				189E9AF72A95E5960022C1AF /* View */,
 				EBEA9F9D2A64D63000A6B6B2 /* ViewModel */,
 				3C36225E2AA06EF00088649B /* ReportView */,
 			);
@@ -1814,6 +1818,7 @@
 			isa = PBXGroup;
 			children = (
 				EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */,
+				1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1822,6 +1827,7 @@
 			isa = PBXGroup;
 			children = (
 				EBEB29E92A7284220028270C /* ProfileFeedViewModel.swift */,
+				1893497E2AA08CDF00E3A5A4 /* BlockUserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2106,6 +2112,7 @@
 				3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */,
 				18BD41F62A67B4D900060616 /* UILabel + Extension.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
+				1893497D2AA0747900E3A5A4 /* BlockUserViewController.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				18DD39962A76440D00AD13BE /* PostCreatorHeaderView.swift in Sources */,
 				EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */,
@@ -2260,6 +2267,7 @@
 				3C5F65422A6CFAC5004F9698 /* ExploreSearchViewController.swift in Sources */,
 				180E4CCD2A9F2F4C00CFA806 /* BlockUserRepository.swift in Sources */,
 				3CB6FE5A2A625B6000BE1655 /* SearchCreatorUseCase.swift in Sources */,
+				1893497F2AA08CDF00E3A5A4 /* BlockUserViewModel.swift in Sources */,
 				EB3A90772A788571007F400A /* CreatorApplicationViewController.swift in Sources */,
 				180E4CCF2A9F30D800CFA806 /* BanUserInformation.swift in Sources */,
 				1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */,
