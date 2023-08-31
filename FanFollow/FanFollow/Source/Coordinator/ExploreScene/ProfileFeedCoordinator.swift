@@ -60,8 +60,8 @@ final class ProfileFeedCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    func presentDeclaration(to declareID: String?, isUser: Bool = false) {
-        guard let declareID = declareID else { return }
+    func presentDeclaration(_ banID: String?, isContent: Bool = true) {
+        guard let banID = banID else { return }
         
         let childViewController = ReportViewController(reportType: .content)
         let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
