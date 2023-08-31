@@ -145,7 +145,7 @@
 		3C6DB7EF2A9F272900C450C4 /* BlockContentRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */; };
 		3C6DB7F12A9F2B9E00C450C4 /* BlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */; };
 		3C6DB7F32A9F2C3000C450C4 /* DefaultBlockContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */; };
-		3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */; };
+		3C6DB7F52A9F2EA100C450C4 /* SendReportUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DB7F42A9F2EA100C450C4 /* SendReportUseCase.swift */; };
 		3C73AD532A9C77F900EEE10D /* CreatorAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */; };
 		3C75BB3E2A722AA70085A802 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */; };
 		3C7DE6112A84BCEE00259E74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE6102A84BCEE00259E74 /* LogInViewController.swift */; };
@@ -224,7 +224,6 @@
 		EB47BC752A9F2B66000E016E /* ReportRequestDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */; };
 		EB47BC772A9F2EC1000E016E /* ReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC762A9F2EC1000E016E /* ReportRepository.swift */; };
 		EB47BC792A9F2F3B000E016E /* DefaultReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */; };
-		EB47BC7B2A9F3047000E016E /* SendReportUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BC7A2A9F3047000E016E /* SendReportUseCase.swift */; };
 		EB4FA42F2A6E6C52007C392A /* JSONDecoder + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA42E2A6E6C52007C392A /* JSONDecoder + Extension.swift */; };
 		EB4FA4312A6E6CD8007C392A /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4FA4302A6E6CD8007C392A /* Date + Extension.swift */; };
 		EB54BEBF2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */; };
@@ -432,7 +431,7 @@
 		3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRequestDirector.swift; sourceTree = "<group>"; };
 		3C6DB7F02A9F2B9E00C450C4 /* BlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentRepository.swift; sourceTree = "<group>"; };
 		3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBlockContentRepository.swift; sourceTree = "<group>"; };
-		3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockContentUseCase.swift; sourceTree = "<group>"; };
+		3C6DB7F42A9F2EA100C450C4 /* SendReportUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReportUseCase.swift; sourceTree = "<group>"; };
 		3C73AD522A9C77F900EEE10D /* CreatorAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorAgreementViewController.swift; sourceTree = "<group>"; };
 		3C75BB3D2A722AA70085A802 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		3C7DE60A2A84B0A400259E74 /* FanFollow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanFollow.entitlements; sourceTree = "<group>"; };
@@ -511,7 +510,6 @@
 		EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequestDirector.swift; sourceTree = "<group>"; };
 		EB47BC762A9F2EC1000E016E /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
 		EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultReportRepository.swift; sourceTree = "<group>"; };
-		EB47BC7A2A9F3047000E016E /* SendReportUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReportUseCase.swift; sourceTree = "<group>"; };
 		EB4FA42E2A6E6C52007C392A /* JSONDecoder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder + Extension.swift"; sourceTree = "<group>"; };
 		EB4FA4302A6E6CD8007C392A /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		EB54BEBE2A7B40020095A171 /* CreatorJobCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorJobCategoryPickerViewController.swift; sourceTree = "<group>"; };
@@ -1178,7 +1176,6 @@
 				EBA8EB412A5E46EB00998630 /* ChangeLikeUseCase.swift */,
 				EBA8EB432A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift */,
 				3C639B252A7A3912003E2E44 /* UploadPostUseCase.swift */,
-				3C6DB7F42A9F2EA100C450C4 /* BlockContentUseCase.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1194,7 +1191,7 @@
 				18F815902A6FD4300065878F /* UpdateProfileImageUseCase.swift */,
 				EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */,
 				180E4CD42A9F400600CFA806 /* ManageBlockCreatorUseCase.swift */,
-				EB47BC7A2A9F3047000E016E /* SendReportUseCase.swift */,
+				3C6DB7F42A9F2EA100C450C4 /* SendReportUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2070,7 +2067,7 @@
 				18906B122A7BE946000D7715 /* MailCoordinator.swift in Sources */,
 				EBEB29F02A7351CD0028270C /* ProfileCell.swift in Sources */,
 				3C639B2A2A7A4B97003E2E44 /* ImagePickerViewController.swift in Sources */,
-				3C6DB7F52A9F2EA100C450C4 /* BlockContentUseCase.swift in Sources */,
+				3C6DB7F52A9F2EA100C450C4 /* SendReportUseCase.swift in Sources */,
 				18AAC9CA2A87C45C009FCE0E /* Constants.swift in Sources */,
 				EB4FA42F2A6E6C52007C392A /* JSONDecoder + Extension.swift in Sources */,
 				183EDDDC2A722F7300F1490E /* ProfileInput.swift in Sources */,
@@ -2095,7 +2092,6 @@
 				18EC06992A62775B006293B5 /* ImageRepository.swift in Sources */,
 				3C5F65442A6CFACF004F9698 /* ExploreSearchViewModel.swift in Sources */,
 				3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */,
-				EB47BC7B2A9F3047000E016E /* SendReportUseCase.swift in Sources */,
 				3CAC3D812A52F669000DE463 /* PostDTO.swift in Sources */,
 				EBA8EB3E2A5CF5DB00998630 /* FetchFeedUseCase.swift in Sources */,
 				18F8158F2A6FD1F30065878F /* ProfileImagePickerViewModel.swift in Sources */,

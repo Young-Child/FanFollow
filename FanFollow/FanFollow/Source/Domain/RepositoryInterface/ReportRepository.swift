@@ -10,5 +10,10 @@ import Foundation
 import RxSwift
 
 protocol ReportRepository: SupabaseEndPoint {
-    func sendReport(reporterID: String, banPostID: String, isContent: Bool, reason: String) -> Completable
+    func sendReport(
+        reporterID: String,
+        banID: String,
+        isContent: Bool,
+        reason: String
+    ) -> Completable
 }

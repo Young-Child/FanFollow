@@ -16,11 +16,16 @@ struct DefaultReportRepository: ReportRepository {
         self.networkService = networkService
     }
 
-    func sendReport(reporterID: String, banPostID: String, isContent: Bool, reason: String) -> Completable {
+    func sendReport(
+        reporterID: String,
+        banID: String,
+        isContent: Bool,
+        reason: String
+    ) -> Completable {
         let request = ReportRequestDirector(builder: builder)
             .requestUpsertReport(
                 reporterID: reporterID,
-                banID: banPostID,
+                banID: banID,
                 isContent: isContent,
                 reason: reason
             )
