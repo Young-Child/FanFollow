@@ -211,6 +211,7 @@
 		EB33291F2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB33291E2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift */; };
 		EB3329212AA07B160030F3C4 /* BlockCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329202AA07B160030F3C4 /* BlockCreator.swift */; };
 		EB3329232AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */; };
+		EB3329252AA07F350030F3C4 /* BlockCreatorManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */; };
 		EB3A906F2A7779C5007F400A /* CreatorApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */; };
 		EB3A90712A77D314007F400A /* CreatorApplicationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */; };
 		EB3A90732A77D895007F400A /* ApplyCreatorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */; };
@@ -497,6 +498,7 @@
 		EB33291E2AA067920030F3C4 /* BlockCreatorManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementViewModel.swift; sourceTree = "<group>"; };
 		EB3329202AA07B160030F3C4 /* BlockCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreator.swift; sourceTree = "<group>"; };
 		EB3329222AA07B3D0030F3C4 /* BlockCreatorSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorSectionModel.swift; sourceTree = "<group>"; };
+		EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCreatorManagementViewController.swift; sourceTree = "<group>"; };
 		EB3A906E2A7779C5007F400A /* CreatorApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationViewModel.swift; sourceTree = "<group>"; };
 		EB3A90702A77D314007F400A /* CreatorApplicationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorApplicationStep.swift; sourceTree = "<group>"; };
 		EB3A90722A77D895007F400A /* ApplyCreatorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCreatorUseCase.swift; sourceTree = "<group>"; };
@@ -1658,6 +1660,7 @@
 		EB33291C2AA067220030F3C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EB3329242AA07F350030F3C4 /* BlockCreatorManagementViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2180,6 +2183,7 @@
 				EB28F32C2A81E783001337A7 /* AuthRepository.swift in Sources */,
 				187949C62A5EA4B500ADA01A /* ProfileThumbnailCell.swift in Sources */,
 				18AAC9CC2A87D0BF009FCE0E /* UIColor + Extension.swift in Sources */,
+				EB3329252AA07F350030F3C4 /* BlockCreatorManagementViewController.swift in Sources */,
 				1839746D2A52A28100F0101A /* HTTPMethod.swift in Sources */,
 				EB7A70C12A8D2E020016D3CB /* UserDefaults + Extension.swift in Sources */,
 				3C1804322A67B1E20019DE79 /* ExploreCategoryViewController.swift in Sources */,
