@@ -60,11 +60,63 @@ final class ProfileFeedCoordinator: Coordinator {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    func presentDeclaration(_ banID: String?, isContent: Bool = true) {
-        guard let banID = banID else { return }
+    func presentUserDeclaration(_ banUserID: String?) {
+        guard let banUserID = banUserID else { return }
         
-        let childViewController = ReportViewController(reportType: .content)
-        let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
+        let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
+        let reportRepository = DefaultReportRepository(networkService: networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
+        
+        let useCase = DefaultSendUserReportUseCase(
+            reportRepository: reportRepository,
+            authRepository: authRepository
+        )
+        
+        let viewModel = ReportViewModel(sendReportUseCase: useCase, banID: banUserID)
+        
+        let childViewController = ReportViewController(viewModel: viewModel, reportType: .content)
+        childViewController.coordinator = self
+        
+        let controller = BottomSheetViewController(
+            controller: childViewController,
+            bottomHeightRatio: 0.6
+        )
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController.present(controller, animated: false)
+    }
+    
+    func presentPostDeclaration(_ banPostID: String?) {
+        guard let banPostID = banPostID else { return }
+        
+        let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
+        let reportRepository = DefaultReportRepository(networkService: networkService)
+        let blockRepository = DefaultBlockContentRepository(networkService: networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
+        
+        let useCase = DefaultSendContentReportUseCase(
+            reportRepository: reportRepository,
+            blockContentRepository: blockRepository,
+            authRepository: authRepository
+        )
+        
+        let viewModel = ReportViewModel(sendReportUseCase: useCase, banID: banPostID)
+        
+        let childViewController = ReportViewController(viewModel: viewModel, reportType: .content)
+        childViewController.coordinator = self
+        
+        let controller = BottomSheetViewController(
+            controller: childViewController,
+            bottomHeightRatio: 0.6
+        )
         controller.modalPresentationStyle = .overFullScreen
         controller.modalTransitionStyle = .crossDissolve
         self.navigationController.present(controller, animated: false)
