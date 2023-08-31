@@ -8,8 +8,7 @@
 import RxSwift
 
 protocol SendReportUseCase {
-    func sendPostReport(banPostID: String, reason: String) -> Completable
-    func sendUserReport(banUserID: String, reason: String) -> Completable
+    func sendReport(banPostID: String, isContent: Bool, reason: String) -> Completable
 }
 
 final class DefaultSendReportUseCase: SendReportUseCase {
@@ -21,27 +20,14 @@ final class DefaultSendReportUseCase: SendReportUseCase {
         self.authRepository = authRepository
     }
 
-    func sendPostReport(banPostID: String, reason: String) -> Completable {
+    func sendReport(banPostID: String, isContent: Bool, reason: String) -> Completable {
         return authRepository.storedSession()
             .flatMap { storedSession in
                 let userID = storedSession.userID
-                return self.reportRepository.sendPostReport(
+                return self.reportRepository.sendReport(
                     reporterID: userID,
                     banPostID: banPostID,
-                    reason: reason
-                )
-                .asObservable()
-            }
-            .asCompletable()
-    }
-
-    func sendUserReport(banUserID: String, reason: String) -> Completable {
-        return authRepository.storedSession()
-            .flatMap { storedSession in
-                let userID = storedSession.userID
-                return self.reportRepository.sendUserReport(
-                    reporterID: userID,
-                    banUserID: banUserID,
+                    isContent: isContent,
                     reason: reason
                 )
                 .asObservable()
