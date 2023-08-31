@@ -72,4 +72,13 @@ final class ProfileFeedCoordinator: Coordinator {
 
         mailCoordinator.start()
     }
+    
+    func presentUserBlockBottomView(to id: String) {
+        let controller = UIViewController()
+        let bottomController = BottomSheetViewController(controller: controller)
+        bottomController.modalTransitionStyle = .crossDissolve
+        bottomController.modalPresentationStyle = .overFullScreen
+        
+        navigationController.present(bottomController, animated: true)
+    }
 }

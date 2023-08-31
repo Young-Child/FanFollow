@@ -138,7 +138,8 @@ private extension ProfileFeedViewController {
             likeButtonTap: likeButtonTapped.asObservable(),
             followButtonTap: followButtonTapped.asObservable(),
             deletePost: didTapPostDeleteButton.asObservable(),
-            didTapDeclareUser: navigationBar.rightBarButton.rx.tap.asObservable()
+            didTapDeclareUser: .empty()
+//                navigationBar.rightBarButton.rx.tap.asObservable()
         )
     }
     
@@ -246,8 +247,27 @@ private extension ProfileFeedViewController {
         let backImage = Constants.Image.back?.withConfiguration(configuration)
         
         navigationBar.leftBarButton.setImage(backImage, for: .normal)
-        navigationBar.rightBarButton.setTitle(Constants.Text.declare, for: .normal)
-        navigationBar.rightBarButton.setTitleColor(Constants.Color.warningColor, for: .normal)
+        
+        let declareAction = UIAction(
+            title: Constants.Text.declare,
+            attributes: .destructive
+        ) { _ in
+            print("Did Tapped Declare")
+        }
+        
+        let blockAction = UIAction(
+            title: "차단",
+            image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+            attributes: .destructive
+        ) { _ in
+            print("Did Tapped Block User")
+        }
+        
+        let menu = UIMenu(children: [declareAction, blockAction])
+        
+        navigationBar.rightBarButton.menu = menu
+        navigationBar.rightBarButton.showsMenuAsPrimaryAction = true
+        navigationBar.rightBarButton.setImage(Constants.Image.more, for: .normal)
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
