@@ -23,7 +23,7 @@ final class DefaultBlockUserRepository: BlockUserRepository {
             .decode(type: [BanInformationDTO].self, decoder: JSONDecoder())
     }
     
-    func addBlockUser(to userID: String, with banID: String) -> RxSwift.Completable {
+    func addBlockUser(to userID: String, with banID: String) -> Completable {
         let request = BlockUserDirector(builder: builder)
             .requestUpsertBlockUser(to: banID, userID: userID)
         return networkService.execute(request)
