@@ -112,6 +112,9 @@ enum Constants {
         static let declarationMailTitle = "<팬팔> 게시글 신고하기"
         static let noFeedResult = "탐색으로 이동해서 크리에이터를 구독해보세요!"
         
+        static let reportTitle = "신고하는 이유"
+        static let reportNoticeMessage = "누군가 위급한 상황에 있다고 생각된다면 즉시 현지 응급 서비스 기관에 연락하세요."
+        
         // ProfileFeed Scene
         static let follower = "팔로워 "
         static let personUnit = "명"
