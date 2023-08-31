@@ -84,6 +84,7 @@
 		18906B142A7BF982000D7715 /* EvaluateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */; };
 		18906B162A7BFB4D000D7715 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18906B152A7BFB4D000D7715 /* Settings.bundle */; };
 		18906B1A2A7C00C5000D7715 /* OpenSourceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */; };
+		1893497D2AA0747900E3A5A4 /* BlockUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */; };
 		1894FC602A57213D0032E426 /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		1894FC702A5727450032E426 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866AFC62A570A61000FFFD7 /* Mock.swift */; };
 		1898203D2A89205C004372D3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898203C2A89205C004372D3 /* NavigationBar.swift */; };
@@ -371,6 +372,7 @@
 		18906B132A7BF982000D7715 /* EvaluateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateAppCoordinator.swift; sourceTree = "<group>"; };
 		18906B152A7BFB4D000D7715 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		18906B192A7C00C5000D7715 /* OpenSourceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceCoordinator.swift; sourceTree = "<group>"; };
+		1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserViewController.swift; sourceTree = "<group>"; };
 		1898203C2A89205C004372D3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		189E9ADD2A95E1650022C1AF /* UnderLineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextView.swift; sourceTree = "<group>"; };
 		18AAC9C72A877FE5009FCE0E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
@@ -1209,7 +1211,6 @@
 				18EC4F482A617A5F007C1063 /* ImageRequestDirector.swift */,
 				EB28F3292A8110D8001337A7 /* AuthRequestDirector.swift */,
 				180E4CCA2A9F296E00CFA806 /* BlockUserDirector.swift */,
-        3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				3C6DB7EE2A9F272900C450C4 /* BlockContentRequestDirector.swift */,
 				EB47BC742A9F2B66000E016E /* ReportRequestDirector.swift */,
 			);
@@ -1466,6 +1467,7 @@
 		3C7DE60F2A84BC8D00259E74 /* LogInScene */ = {
 			isa = PBXGroup;
 			children = (
+				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 				3C7DE6182A8612EE00259E74 /* Controllers */,
 				3C7DE6192A8612F500259E74 /* ViewModel */,
 			);
@@ -1586,7 +1588,6 @@
 				18EC06962A627746006293B5 /* DefaultImageRepository.swift */,
 				EB28F32F2A81FCA7001337A7 /* DefaultAuthRepository.swift */,
 				180E4CD02A9F310300CFA806 /* DefaultBlockUserRepository.swift */,
-        3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				3C6DB7F22A9F2C3000C450C4 /* DefaultBlockContentRepository.swift */,
 				EB47BC782A9F2F3B000E016E /* DefaultReportRepository.swift */,
 			);
@@ -1687,9 +1688,8 @@
 		EBEA9F9B2A64D61100A6B6B2 /* FeedScene */ = {
 			isa = PBXGroup;
 			children = (
-				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
-				189E9AF72A95E5960022C1AF /* View */,
 				EBEA9F9C2A64D62E00A6B6B2 /* Controllers */,
+				189E9AF72A95E5960022C1AF /* View */,
 				EBEA9F9D2A64D63000A6B6B2 /* ViewModel */,
 			);
 			path = FeedScene;
@@ -1725,6 +1725,7 @@
 			isa = PBXGroup;
 			children = (
 				EB5E76A32A73DC570019289A /* ProfileFeedViewController.swift */,
+				1893497C2AA0747900E3A5A4 /* BlockUserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2017,6 +2018,7 @@
 				3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */,
 				18BD41F62A67B4D900060616 /* UILabel + Extension.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
+				1893497D2AA0747900E3A5A4 /* BlockUserViewController.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				18DD39962A76440D00AD13BE /* PostCreatorHeaderView.swift in Sources */,
 				EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */,

@@ -66,7 +66,7 @@ final class ProfileFeedViewController: UIViewController {
     }
 }
 
-// ProfileCellDelegate, PostCellDelegate
+// PostCellDelegate Method
 extension ProfileFeedViewController: PostCellDelegate {
     func postCell(_ cell: PostCell, didTappedLikeButton postID: String) {
         likeButtonTapped.accept(postID)
@@ -92,6 +92,7 @@ extension ProfileFeedViewController: PostCellDelegate {
     }
 }
 
+// Profile Cell Delegate Method
 extension ProfileFeedViewController: ProfileCellDelegate {
     func profileCell(cell: ProfileCell, expandLabel expandAction: (() -> Void)?) {
         tableView.performBatchUpdates(expandAction)
@@ -260,7 +261,7 @@ private extension ProfileFeedViewController {
             image: UIImage(systemName: "person.crop.circle.badge.xmark"),
             attributes: .destructive
         ) { _ in
-            print("Did Tapped Block User")
+            self.coordinator?.presentUserBlockBottomView()
         }
         
         let menu = UIMenu(children: [declareAction, blockAction])
