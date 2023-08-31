@@ -178,6 +178,7 @@ enum Constants {
         static let plusCircle = UIImage(systemName: "plus.circle")
         static let minusCircle = UIImage(systemName: "minus.circle")
         static let magnifyingGlass = UIImage(systemName: "magnifyingglass")
+        static let next = UIImage(systemName: "chevron.right")
         static let back = UIImage(systemName: "chevron.backward")
         static let xmark = UIImage(systemName: "xmark")
         static let xmarkCircle = UIImage(systemName: "xmark.circle")
@@ -188,6 +189,7 @@ enum Constants {
         static let link = UIImage(systemName: "link.badge.plus")
         static let checkMark = UIImage(systemName: "checkmark.square.fill")
         static let square = UIImage(systemName: "square")
+        
     }
     
     enum Color {
