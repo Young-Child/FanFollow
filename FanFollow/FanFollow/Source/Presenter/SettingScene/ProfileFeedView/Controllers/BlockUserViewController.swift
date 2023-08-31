@@ -8,6 +8,13 @@ import UIKit
 
 import RxSwift
 
+protocol BlockUserViewControllerDelegate: AnyObject {
+    func blockUserViewController(
+        _ controller: BlockUserViewController,
+        didSuccessBlock isSuccess: Bool
+    )
+}
+
 final class BlockUserViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -45,6 +52,7 @@ final class BlockUserViewController: UIViewController {
     private var disposeBag = DisposeBag()
     private let viewModel: BlockUserViewModel
     weak var coordinator: Coordinator?
+    weak var delegate: BlockUserViewControllerDelegate?
     
     init(viewModel: BlockUserViewModel) {
         self.viewModel = viewModel
@@ -81,11 +89,14 @@ private extension BlockUserViewController {
     
     func bindingOutput(with output: BlockUserViewModel.Output) {
         output.didBlockUser
-            .asDriver(onErrorJustReturn: ())
+            .asDriver(onErrorJustReturn: false)
             .drive(onNext: {
+                if $0 == false { return }
+                
                 guard let parentViewController = self.parent else { return }
                 
                 self.coordinator?.close(to: parentViewController)
+                self.delegate?.blockUserViewController(self, didSuccessBlock: true)
             })
             .disposed(by: disposeBag)
     }

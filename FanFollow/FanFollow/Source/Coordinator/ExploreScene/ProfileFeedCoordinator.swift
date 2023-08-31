@@ -121,6 +121,12 @@ final class ProfileFeedCoordinator: Coordinator {
     }
     
     func presentUserBlockBottomView() {
+        guard let topViewController = navigationController.topViewController
+                as? ProfileFeedViewController
+        else {
+            return
+        }
+        
         let networkService = DefaultNetworkService.shared
         
         let blockUserRepository = DefaultBlockUserRepository(networkService: networkService)
@@ -144,6 +150,8 @@ final class ProfileFeedCoordinator: Coordinator {
         )
         let controller = BlockUserViewController(viewModel: viewModel)
         controller.coordinator = self
+        controller.delegate = topViewController
+        
         let bottomController = BottomSheetViewController(
             controller: controller,
             bottomHeightRatio: 0.3
