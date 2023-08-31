@@ -10,17 +10,25 @@ import Foundation
 import RxSwift
 
 protocol BlockContentUseCase: AnyObject {
-    func block(postID: String, to userID: String) -> Completable
+    func block(postID: String) -> Completable
 }
 
 final class DefaultBlockContentUseCase: BlockContentUseCase {
     private let blockContentRepository: BlockContentRepository
+    private let authRepository: AuthRepository
     
-    init(blockContentRepository: BlockContentRepository) {
+    init(blockContentRepository: BlockContentRepository, authRepository: AuthRepository) {
         self.blockContentRepository = blockContentRepository
+        self.authRepository = authRepository
     }
     
-    func block(postID: String, to userID: String) -> Completable {
-        return blockContentRepository.blockPost(postID, to: userID)
+    func block(postID: String) -> Completable {
+        let a = authRepository.storedSession()
+            .flatMap { storedSession in
+                let userID = storedSession.userID
+                return self.blockContentRepository.blockPost(postID, to: userID)
+                    .asObservable()
+            }
+            .asCompletable()
     }
 }
