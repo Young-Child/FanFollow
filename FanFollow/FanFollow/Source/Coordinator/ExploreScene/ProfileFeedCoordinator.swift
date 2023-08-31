@@ -74,7 +74,7 @@ final class ProfileFeedCoordinator: Coordinator {
     }
     
     func presentUserBlockBottomView() {
-        let controller = UIViewController()
+        let controller = BlockUserViewController()
         let bottomController = BottomSheetViewController(controller: controller)
         bottomController.modalTransitionStyle = .crossDissolve
         bottomController.modalPresentationStyle = .overFullScreen
