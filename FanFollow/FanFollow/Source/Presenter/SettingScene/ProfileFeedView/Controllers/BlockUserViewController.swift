@@ -44,6 +44,7 @@ final class BlockUserViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
     private let viewModel: BlockUserViewModel
+    weak var coordinator: Coordinator?
     
     init(viewModel: BlockUserViewModel) {
         self.viewModel = viewModel
@@ -80,10 +81,11 @@ private extension BlockUserViewController {
     
     func bindingOutput(with output: BlockUserViewModel.Output) {
         output.didBlockUser
-            .subscribe(onCompleted: {
-                print("Success Block")
-            }, onError: { error in
-                print(error)
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                guard let parentViewController = self.parent else { return }
+                
+                self.coordinator?.close(to: parentViewController)
             })
             .disposed(by: disposeBag)
     }

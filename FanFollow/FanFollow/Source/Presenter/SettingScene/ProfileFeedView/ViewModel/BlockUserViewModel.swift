@@ -12,7 +12,7 @@ class BlockUserViewModel: ViewModel {
     }
     
     struct Output {
-        var didBlockUser: Completable
+        var didBlockUser: Observable<Void>
     }
     
     private let userID: String
@@ -29,8 +29,8 @@ class BlockUserViewModel: ViewModel {
         let didBlockUser = input.didTapBlockUserButton
             .flatMap { _ in
                 return self.manageBlockUserUseCase.blockCreator(to: self.userID)
+                    .andThen(Observable.just(()))
             }
-            .asCompletable()
         
         return Output(didBlockUser: didBlockUser)
     }

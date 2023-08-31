@@ -96,6 +96,7 @@ final class ProfileFeedCoordinator: Coordinator {
             manageBlockUserUseCase: manageBlockUserUseCase
         )
         let controller = BlockUserViewController(viewModel: viewModel)
+        controller.coordinator = self
         let bottomController = BottomSheetViewController(
             controller: controller,
             bottomHeightRatio: 0.3
