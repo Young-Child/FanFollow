@@ -7,6 +7,7 @@
 
 import XCTest
 import RxSwift
+
 @testable import FanFollow
 
 final class FollowRepositoryTests: XCTestCase {

@@ -5,9 +5,10 @@
 //  Created by parkhyo on 2023/07/28.
 //
 
+import Foundation
+
 import RxRelay
 import RxSwift
-import Foundation
 
 final class ExploreSubscribeViewModel: ViewModel {
     struct Input {

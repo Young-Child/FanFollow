@@ -8,7 +8,7 @@
 import Foundation
 
 struct PostRequestDirector {
-    let builder: URLRequestBuilder
+    private let builder: URLRequestBuilder
 
     init(builder: URLRequestBuilder) {
         self.builder = builder
