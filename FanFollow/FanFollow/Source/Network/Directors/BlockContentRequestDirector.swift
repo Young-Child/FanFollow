@@ -20,7 +20,7 @@ struct BlockContentRequestDirector {
             .set(method: .post)
             .set(headers: [
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
-                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.returnMinimal,
+                SupabaseConstants.Base.prefer: SupabaseConstants.Base.upsertPrefer,
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey
             ])
             .set(body: [
@@ -36,7 +36,6 @@ private extension SupabaseConstants {
     enum Constants {
         // BASE ELEMENT
         static let path = Base.basePath + "BLOCK_CONTENT"
-        static let returnMinimal = "return=minimal"
         
         // QUERY KEY
         static let postID = "post_id"

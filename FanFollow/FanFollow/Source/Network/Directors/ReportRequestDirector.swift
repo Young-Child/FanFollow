@@ -26,7 +26,7 @@ struct ReportRequestDirector {
             .set(headers: [
                 SupabaseConstants.Base.apikey: Bundle.main.apiKey,
                 SupabaseConstants.Base.contentType: SupabaseConstants.Base.json,
-                SupabaseConstants.Base.prefer: SupabaseConstants.Constants.resolutionMergeDuplicates
+                SupabaseConstants.Base.prefer: SupabaseConstants.Base.upsertPrefer
             ])
             .set(body: [
                 SupabaseConstants.Constants.reporterID: reporterID,
@@ -42,7 +42,6 @@ struct ReportRequestDirector {
 private extension SupabaseConstants {
     enum Constants {
         static let path = Base.basePath + "REPORT"
-        static let resolutionMergeDuplicates = "resolution=merge-duplicates"
         static let reporterID = "reporter_id"
         static let banID = "ban_id"
         static let isContent = "is_content"
