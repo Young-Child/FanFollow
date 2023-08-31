@@ -21,6 +21,7 @@ final class BlockCreatorManagementCoordinator: Coordinator {
         let userDefaultsService = UserDefaults.standard
         let blockUserRepository = DefaultBlockUserRepository(networkService: networkService)
         let userInformationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
         let authRepository = DefaultAuthRepository(
             networkService: networkService,
             userDefaultsService: userDefaultsService
@@ -28,6 +29,7 @@ final class BlockCreatorManagementCoordinator: Coordinator {
         let manageBlockCreatorUseCase = DefaultManageBlockCreatorUseCase(
             blockCreatorUseCase: blockUserRepository,
             userInformationRepository: userInformationRepository,
+            followRepository: followRepository,
             authRepository: authRepository
         )
 
