@@ -128,6 +128,7 @@
 		3C3356512A7F5F4500BF632B /* StubImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356502A7F5F4500BF632B /* StubImageRepository.swift */; };
 		3C3356532A7F609E00BF632B /* UploadPostUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */; };
 		3C36225D2AA05ED80088649B /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C36225C2AA05ED80088649B /* ReportType.swift */; };
+		3C3622612AA06F1A0088649B /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3622602AA06F1A0088649B /* ReportViewController.swift */; };
 		3C45B0192A52A7C600307DCF /* Bundle + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */; };
 		3C45B01B2A52A7E000307DCF /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */; };
 		3C4FA9A92A57C323003A1683 /* PostRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */; };
@@ -413,6 +414,7 @@
 		3C3356502A7F5F4500BF632B /* StubImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubImageRepository.swift; sourceTree = "<group>"; };
 		3C3356522A7F609E00BF632B /* UploadPostUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostUseCaseTest.swift; sourceTree = "<group>"; };
 		3C36225C2AA05ED80088649B /* ReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportType.swift; sourceTree = "<group>"; };
+		3C3622602AA06F1A0088649B /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		3C45B0182A52A7C600307DCF /* Bundle + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Extension.swift"; sourceTree = "<group>"; };
 		3C45B01A2A52A7E000307DCF /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		3C4FA9A82A57C323003A1683 /* PostRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryTests.swift; sourceTree = "<group>"; };
@@ -1399,6 +1401,22 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		3C36225E2AA06EF00088649B /* ReportView */ = {
+			isa = PBXGroup;
+			children = (
+				3C36225F2AA06F080088649B /* Controllers */,
+			);
+			path = ReportView;
+			sourceTree = "<group>";
+		};
+		3C36225F2AA06F080088649B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C3622602AA06F1A0088649B /* ReportViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		3C45B0162A52A79A00307DCF /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -1688,6 +1706,7 @@
 		EBEA9F9B2A64D61100A6B6B2 /* FeedScene */ = {
 			isa = PBXGroup;
 			children = (
+				3C36225E2AA06EF00088649B /* ReportView */,
 				EB28F32D2A81E7F0001337A7 /* Provider.swift */,
 				189E9AF72A95E5960022C1AF /* View */,
 				EBEA9F9C2A64D62E00A6B6B2 /* Controllers */,
@@ -2128,6 +2147,7 @@
 				18D007382A6EC26B00D46248 /* PhotoAssetGridViewController.swift in Sources */,
 				18EC06952A62724A006293B5 /* UIImageView + Extension.swift in Sources */,
 				180E4CCB2A9F296E00CFA806 /* BlockUserDirector.swift in Sources */,
+				3C3622612AA06F1A0088649B /* ReportViewController.swift in Sources */,
 				3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */,
 				189E9ADE2A95E1650022C1AF /* UnderLineTextView.swift in Sources */,
 				EBD9366A2A66663000C03427 /* FeedViewController.swift in Sources */,
