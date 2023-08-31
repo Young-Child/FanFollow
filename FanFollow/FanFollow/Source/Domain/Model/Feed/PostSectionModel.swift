@@ -6,7 +6,7 @@
 
 import RxDataSources
 
-struct PostSectionModel: SectionModelType {
+struct PostSectionModel: AnimatableSectionModelType {
     typealias Identity = String
     
     var title: String

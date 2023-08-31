@@ -17,7 +17,7 @@ final class FeedViewController: UIViewController {
     private let navigationBar = FFNavigationBar()
 
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
-        tableView.showsVerticalScrollIndicator = false
+//        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = Constants.Color.background
@@ -40,6 +40,7 @@ final class FeedViewController: UIViewController {
     private let viewModel: FeedViewModel
     private let likeButtonTap = PublishRelay<String>()
     private let lastCellDisplayed = BehaviorRelay(value: false)
+    private let deleteBanID = PublishRelay<String>()
     
     // Initializer
     init(viewModel: FeedViewModel) {
@@ -86,7 +87,8 @@ private extension FeedViewController {
             viewWillAppear: rx.methodInvoked(#selector(viewWillAppear)).map { _ in }.asObservable(),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
             lastCellDisplayed: lastCellDisplayed,
-            likeButtonTap: likeButtonTap.asObservable()
+            likeButtonTap: likeButtonTap.asObservable(),
+            didBlockContentSuccess: deleteBanID.asObservable()
         )
     }
     
@@ -108,8 +110,8 @@ private extension FeedViewController {
 
 // Configure Data Source
 extension FeedViewController {
-    func configureDataSource() -> RxTableViewSectionedReloadDataSource<PostSectionModel> {
-        return RxTableViewSectionedReloadDataSource { _, tableView, indexPath, model in
+    func configureDataSource() -> RxTableViewSectionedAnimatedDataSource<PostSectionModel> {
+        return RxTableViewSectionedAnimatedDataSource { _, tableView, indexPath, model in
             let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
             cell.configure(with: model, delegate: self)
             return cell
@@ -145,8 +147,7 @@ extension FeedViewController: PostCellDelegate {
 
 extension FeedViewController: ReportViewControllerDelegate {
     func reportViewController(_ controller: ReportViewController, didSuccessReport banID: String) {
-        print(banID)
-//        coordinator?.close(to: <#T##UIViewController#>)
+        self.deleteBanID.accept(banID)
     }
 }
 

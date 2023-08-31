@@ -16,6 +16,7 @@ final class FeedViewModel: ViewModel {
         var refresh: Observable<Void>
         var lastCellDisplayed: Observable<Void>
         var likeButtonTap: Observable<String>
+        var didBlockContentSuccess: Observable<String>
     }
 
     struct Output {
@@ -61,10 +62,18 @@ final class FeedViewModel: ViewModel {
         let updatedPosts = input.likeButtonTap
             .withUnretained(self)
             .flatMapFirst { _, postID in self.updatePosts(postID: postID) }
+        
+        let deletedPosts = input.didBlockContentSuccess
+            .withUnretained(self)
+            .map { _, banPostID in
+                var posts = self.posts.value
+                posts.removeAll(where: { $0.postID == banPostID })
+                return posts
+            }
 
-        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts)
+        let posts = Observable.merge(fetchedNewPosts, fetchedMorePosts, updatedPosts, deletedPosts)
             .do { self.posts.accept($0) }
-            .map { [PostSectionModel(title: UUID().uuidString, items: $0)] }
+            .map { [PostSectionModel(title: "", items: $0)] }
 
         return Output(posts: posts)
     }

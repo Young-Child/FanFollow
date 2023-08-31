@@ -65,8 +65,7 @@ extension Post: IdentifiableType {
 
     var identity: String {
         guard let postID = postID else { return "" }
-        
-        return postID + UUID().uuidString
+        return postID
     }
 }
 
