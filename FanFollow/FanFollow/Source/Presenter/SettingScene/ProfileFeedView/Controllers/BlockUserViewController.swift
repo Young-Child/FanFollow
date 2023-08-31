@@ -39,9 +39,19 @@ final class BlockUserViewController: UIViewController {
         $0.layer.backgroundColor = Constants.Color.warningColor?.cgColor
         $0.layer.cornerRadius = 4
     }
+
+    private let viewModel: BlockUserViewModel
     
-    private var informations: [String] = Constants.Text.blockUserInformations
+    init(viewModel: BlockUserViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

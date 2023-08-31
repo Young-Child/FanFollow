@@ -9,7 +9,11 @@ import Foundation
 import RxSwift
 
 protocol ManageBlockCreatorUseCase: AnyObject {
+    func fetchBlockCreators() -> Observable<[Creator]>
+    
     func resolveBlockCreatorAndRefresh(to banID: String) -> Observable<[Creator]>
+    
+    func blockCreator(to banID: String) -> Completable
 }
 
 final class DefaultManageBlockCreatorUseCase: ManageBlockCreatorUseCase {

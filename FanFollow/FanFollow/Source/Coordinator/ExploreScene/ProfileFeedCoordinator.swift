@@ -74,7 +74,26 @@ final class ProfileFeedCoordinator: Coordinator {
     }
     
     func presentUserBlockBottomView() {
-        let controller = BlockUserViewController()
+        let networkService = DefaultNetworkService.shared
+        
+        let blockUserRepository = DefaultBlockUserRepository(networkService: networkService)
+        let informationRepository = DefaultUserInformationRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: UserDefaults.standard
+        )
+        
+        let manageBlockUserUseCase = DefaultManageBlockCreatorUseCase(
+            blockCreatorUseCase: blockUserRepository,
+            userInformationRepository: informationRepository,
+            authRepository: authRepository
+        )
+        
+        let viewModel = BlockUserViewModel(
+            userID: self.creatorID,
+            manageBlockUserUseCase: manageBlockUserUseCase
+        )
+        let controller = BlockUserViewController(viewModel: viewModel)
         let bottomController = BottomSheetViewController(
             controller: controller,
             bottomHeightRatio: 0.3
