@@ -72,4 +72,38 @@ final class ProfileFeedCoordinator: Coordinator {
 
         mailCoordinator.start()
     }
+    
+    func presentUserBlockBottomView() {
+        let networkService = DefaultNetworkService.shared
+        
+        let blockUserRepository = DefaultBlockUserRepository(networkService: networkService)
+        let informationRepository = DefaultUserInformationRepository(networkService)
+        let followRepository = DefaultFollowRepository(networkService)
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: UserDefaults.standard
+        )
+        
+        let manageBlockUserUseCase = DefaultManageBlockCreatorUseCase(
+            blockCreatorUseCase: blockUserRepository,
+            userInformationRepository: informationRepository,
+            followRepository: followRepository,
+            authRepository: authRepository
+        )
+        
+        let viewModel = BlockUserViewModel(
+            userID: self.creatorID,
+            manageBlockUserUseCase: manageBlockUserUseCase
+        )
+        let controller = BlockUserViewController(viewModel: viewModel)
+        controller.coordinator = self
+        let bottomController = BottomSheetViewController(
+            controller: controller,
+            bottomHeightRatio: 0.3
+        )
+        bottomController.modalTransitionStyle = .crossDissolve
+        bottomController.modalPresentationStyle = .overFullScreen
+        
+        navigationController.present(bottomController, animated: true)
+    }
 }

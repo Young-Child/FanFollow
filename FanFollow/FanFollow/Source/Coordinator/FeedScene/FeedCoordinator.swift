@@ -67,14 +67,11 @@ final class FeedCoordinator: Coordinator {
         navigationController.present(controller, animated: true)
     }
     
-    func presentDeclaration(_ postID: String?) {
-        guard let postID = postID else { return }
-        let mailCoordinator = MailCoordinator(
-            navigationController: navigationController,
-            mailType: .declaration(postID: postID, isUser: false)
-        )
-        childCoordinators.append(mailCoordinator)
-        
-        mailCoordinator.start()
+    func presentDeclaration(_ postID: String?) {        
+//        let childViewController = ReportViewController(reportType: .content)
+//        let controller = BottomSheetViewController(controller: childViewController, bottomHeightRatio: 0.6)
+//        controller.modalPresentationStyle = .overFullScreen
+//        controller.modalTransitionStyle = .crossDissolve
+//        self.navigationController.present(controller, animated: false)
     }
 }
