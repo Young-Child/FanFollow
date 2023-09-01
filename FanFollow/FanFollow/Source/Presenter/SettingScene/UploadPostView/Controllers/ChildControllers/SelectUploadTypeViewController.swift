@@ -1,5 +1,5 @@
 //
-//  UploadBottomSheetView.swift
+//  SelectUploadTypeViewController.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/08/01.
@@ -9,13 +9,7 @@ import UIKit
 
 import RxSwift
 
-protocol UploadSheetButtonDelegate: AnyObject {
-    func photoButtonTapped()
-    func linkButtonTapped()
-    func cancelButtonTapped()
-}
-
-final class UploadBottomSheetView: UIView {
+final class SelectUploadTypeViewController: UIViewController {
     // View Properties
     private let titleLabel = UILabel().then {
         $0.text = Constants.Text.uploadTitle
@@ -59,44 +53,44 @@ final class UploadBottomSheetView: UIView {
     }
     
     // Property
-    weak var buttonDelegate: UploadSheetButtonDelegate?
+    weak var coordinator: UploadCoordinator?
     private let disposeBag = DisposeBag()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         configureUI()
         buttonBind()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // Binding
     private func buttonBind() {
         photoButton.rx.tap
             .bind { _ in
-                self.buttonDelegate?.photoButtonTapped()
+                self.closeBottomSheet()
+                self.coordinator?.presentPostViewController(type: .photo)
             }
             .disposed(by: disposeBag)
         
         linkButton.rx.tap
             .bind { _ in
-                self.buttonDelegate?.linkButtonTapped()
+                self.closeBottomSheet()
+                self.coordinator?.presentPostViewController(type: .link)
             }
             .disposed(by: disposeBag)
         
         cancelButton.rx.tap
-            .bind { _ in
-                self.buttonDelegate?.cancelButtonTapped()
-            }
+            .bind { self.closeBottomSheet() }
             .disposed(by: disposeBag)
+    }
+    
+    private func closeBottomSheet() {
+        guard let parent = self.parent else { return }
+        self.coordinator?.close(to: parent)
     }
 }
 
 // Configure UI
-private extension UploadBottomSheetView {
+private extension SelectUploadTypeViewController {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
@@ -106,7 +100,7 @@ private extension UploadBottomSheetView {
     
     func configureHierarchy() {
         [photoButton, linkButton].forEach(buttonStackView.addArrangedSubview(_:))
-        [titleLabel, buttonStackView, cancelButton].forEach(addSubview(_:))
+        [titleLabel, buttonStackView, cancelButton].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
@@ -117,13 +111,12 @@ private extension UploadBottomSheetView {
         buttonStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(titleLabel)
-            $0.height.equalTo(60)
+            $0.height.equalToSuperview().multipliedBy(0.3)
         }
         
         cancelButton.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(buttonStackView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(buttonStackView)
-            $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

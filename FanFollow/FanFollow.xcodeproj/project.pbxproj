@@ -178,8 +178,7 @@
 		3CC69A882A6504E90081ACC8 /* ExploreSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A872A6504E90081ACC8 /* ExploreSectionModel.swift */; };
 		3CC69A8A2A65116C0081ACC8 /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A892A65116C0081ACC8 /* CreatorCell.swift */; };
 		3CC69A8C2A651FB70081ACC8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */; };
-		3CCEC37D2A789311001753DF /* UploadBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */; };
-		3CCEC37F2A789ABC001753DF /* UploadBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */; };
+		3CCEC37F2A789ABC001753DF /* SelectUploadTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC37E2A789ABC001753DF /* SelectUploadTypeViewController.swift */; };
 		3CCEC3812A78DF48001753DF /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */; };
 		3CCEC3842A78DF5D001753DF /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */; };
 		3CCEC3862A78F831001753DF /* UploadImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCEC3852A78F831001753DF /* UploadImageCell.swift */; };
@@ -472,8 +471,7 @@
 		3CC69A872A6504E90081ACC8 /* ExploreSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSectionModel.swift; sourceTree = "<group>"; };
 		3CC69A892A65116C0081ACC8 /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		3CC69A8B2A651FB70081ACC8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
-		3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBottomSheetViewController.swift; sourceTree = "<group>"; };
-		3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBottomSheetView.swift; sourceTree = "<group>"; };
+		3CCEC37E2A789ABC001753DF /* SelectUploadTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUploadTypeViewController.swift; sourceTree = "<group>"; };
 		3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
 		3CCEC3832A78DF5D001753DF /* UploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
 		3CCEC3852A78F831001753DF /* UploadImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageCell.swift; sourceTree = "<group>"; };
@@ -1092,7 +1090,6 @@
 		189E9AF92A95E5E20022C1AF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3CCEC37E2A789ABC001753DF /* UploadBottomSheetView.swift */,
 				187FD98A2A81DD140041EA63 /* UploadContentTextView.swift */,
 				3CCEC3852A78F831001753DF /* UploadImageCell.swift */,
 				3CF4CE8F2A7B98840079E996 /* UploadLinkPreview.swift */,
@@ -1107,7 +1104,6 @@
 				3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */,
 				3CCEC3802A78DF48001753DF /* UploadPhotoViewController.swift */,
 				187FD98F2A8216840041EA63 /* UploadViewController.swift */,
-				3CCEC37C2A789311001753DF /* UploadBottomSheetViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1123,6 +1119,7 @@
 		189E9AFC2A95E6240022C1AF /* ChildControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3CCEC37E2A789ABC001753DF /* SelectUploadTypeViewController.swift */,
 				3C639B2B2A7A4D90003E2E44 /* UploadImagePickerViewController.swift */,
 			);
 			path = ChildControllers;
@@ -2070,7 +2067,6 @@
 				3CC69A8A2A65116C0081ACC8 /* CreatorCell.swift in Sources */,
 				1829B5142A714B4500D873DF /* SettingCoodinator.swift in Sources */,
 				183974612A525B3300F0101A /* DefaultNetworkService.swift in Sources */,
-				3CCEC37D2A789311001753DF /* UploadBottomSheetViewController.swift in Sources */,
 				EB28F3302A81FCA7001337A7 /* DefaultAuthRepository.swift in Sources */,
 				18513FDD2A5FB55500580A1A /* SettingSectionHeaderView.swift in Sources */,
 				3C875C1B2A8A294600818473 /* LogOutCoordinator.swift in Sources */,
@@ -2119,7 +2115,7 @@
 				1816AEB12A77BB7C005F5F84 /* HorizontalImageSlideView.swift in Sources */,
 				3C875C1D2A8A2DAF00818473 /* LogOutAlertView.swift in Sources */,
 				18D0073A2A6EC32E00D46248 /* AssetImageGridCell.swift in Sources */,
-				3CCEC37F2A789ABC001753DF /* UploadBottomSheetView.swift in Sources */,
+				3CCEC37F2A789ABC001753DF /* SelectUploadTypeViewController.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,
 				3CEF1B952AA175C800BCDF36 /* RegisterOutViewModel.swift in Sources */,

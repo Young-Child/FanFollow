@@ -17,11 +17,18 @@ final class UploadCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = UploadBottomSheetViewController()
-        controller.modalPresentationStyle = .overFullScreen
-        controller.coordinator = self
+        let childController = SelectUploadTypeViewController()
+        let bottomController = BottomSheetViewController(
+            controller: childController,
+            bottomHeightRatio: 0.3
+        )
         
-        navigationController.present(controller, animated: false)
+        childController.coordinator = self
+        
+        bottomController.modalPresentationStyle = .overFullScreen
+        bottomController.modalTransitionStyle = .crossDissolve
+        
+        navigationController.present(bottomController, animated: false)
     }
     
     func presentPostViewController(
