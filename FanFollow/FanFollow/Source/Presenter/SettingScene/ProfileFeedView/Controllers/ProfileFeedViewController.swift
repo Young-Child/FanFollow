@@ -160,7 +160,9 @@ private extension ProfileFeedViewController {
                 self.refreshControl.endRefreshing()
                 self.lastCellDisplayed.accept(false)
                 
-                if case .posts(let items) = value[1] {
+                guard let postSection = value[safe: 1] else { return }
+                
+                if case .posts(let items) = postSection {
                     self.feedResultLabel.isHidden = items.isEmpty == false
                     self.tableView.isScrollEnabled = items.isEmpty == false
                 }
