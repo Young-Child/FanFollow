@@ -17,7 +17,7 @@ final class FeedViewController: UIViewController {
     private let navigationBar = FFNavigationBar()
 
     private var tableView = UITableView(frame: .zero, style: .plain).then { tableView in
-//        tableView.showsVerticalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = Constants.Color.background

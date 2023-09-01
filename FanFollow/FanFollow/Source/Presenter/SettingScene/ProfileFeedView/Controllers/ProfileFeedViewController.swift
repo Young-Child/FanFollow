@@ -193,7 +193,10 @@ private extension ProfileFeedViewController {
 }
 
 extension ProfileFeedViewController: BlockUserViewControllerDelegate {
-    func blockUserViewController(_ controller: BlockUserViewController, didSuccessBlock isSuccess: Bool) {
+    func blockUserViewController(
+        _ controller: BlockUserViewController,
+        didSuccessBlock isSuccess: Bool
+    ) {
         if isSuccess {
             coordinator?.close(to: self)
         }
