@@ -156,8 +156,8 @@ final class ProfileFeedCoordinator: Coordinator {
             controller: controller,
             bottomHeightRatio: 0.3
         )
-        bottomController.modalTransitionStyle = .crossDissolve
         bottomController.modalPresentationStyle = .overFullScreen
+        bottomController.modalTransitionStyle = .crossDissolve
         
         navigationController.present(bottomController, animated: false)
     }

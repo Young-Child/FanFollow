@@ -48,14 +48,13 @@ final class BottomSheetViewController: UIViewController {
         transparentView.isUserInteractionEnabled = true
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         showBottomSheet()
     }
     
     @objc private func didTapDismiss() {
-        // TODO: - Coordinator로 dismiss
         self.dismiss(animated: true)
     }
 }
