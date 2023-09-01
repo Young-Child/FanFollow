@@ -17,7 +17,16 @@ final class WithdrawalCoordinator: Coordinator {
     }
     
     func start() {
-        let childViewController = RegisterOutViewController()
+        let networkService = DefaultNetworkService.shared
+        let userDefaultsService = UserDefaults.standard
+        let authRepository = DefaultAuthRepository(
+            networkService: networkService,
+            userDefaultsService: userDefaultsService
+        )
+        let useCase = DefaultWithdrawalUseCase(authRepository: authRepository)
+        let viewModel = RegisterOutViewModel(withdrawlUseCase: useCase)
+        
+        let childViewController = RegisterOutViewController(viewModel: viewModel)
         let controller = BottomSheetViewController(
             controller: childViewController,
             bottomHeightRatio: 0.4

@@ -1,5 +1,5 @@
 //
-//  WithdrawalBottomSheetView.swift
+//  RegisterOutViewController.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/08/14.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class WithdrawalBottomSheetView: UIView {
+final class RegisterOutViewController: UIViewController {
     // View Properties
     private let titleLabel = UILabel().then {
         $0.text = Constants.Text.withdrawalTitle
@@ -45,7 +45,7 @@ final class WithdrawalBottomSheetView: UIView {
         $0.distribution = .fill
     }
     
-    private let withdrawalButton = UIButton().then {
+    private let registerOutButton = UIButton().then {
         $0.isEnabled = false
         $0.layer.cornerRadius = 4
         $0.setTitle(Constants.Text.withdrawal, for: .normal)
@@ -54,54 +54,58 @@ final class WithdrawalBottomSheetView: UIView {
     }
     
     // Property
-    var didTapWithdrawalButton: ControlEvent<Void> {
-        return withdrawalButton.rx.controlEvent(.touchUpInside)
-    }
+    weak var coordinator: WithdrawalCoordinator?
+    private let viewModel: RegisterOutViewModel
     private let disposeBag = DisposeBag()
     
     // Initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: RegisterOutViewModel) {
+        self.viewModel = viewModel
         
-        configureUI()
-        binding()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureUI()
+        binding()
+    }
 }
 
 // Binding
-private extension WithdrawalBottomSheetView {
+extension RegisterOutViewController {
     func binding() {
-        agreeCheckButton.rx.tap
-            .bind {
-                self.agreeCheckButton.isSelected = !self.agreeCheckButton.isSelected
-                if self.agreeCheckButton.isSelected {
-                    self.enableWithdrawal()
-                } else {
-                    self.disenableWithdrawal()
-                }
+        let input = bindingInput()
+        
+        bindingOutPut(input)
+    }
+    
+    func bindingOutPut(_ output: RegisterOutViewModel.Output) {
+        output.withdrawlResult
+            .asDriver(onErrorJustReturn: ())
+            .drive { _ in
+                self.coordinator?.reconnect(current: self)
             }
             .disposed(by: disposeBag)
     }
     
-    func enableWithdrawal() {
-        agreeLabel.textColor = Constants.Color.label
-        withdrawalButton.isEnabled = true
-        withdrawalButton.backgroundColor = Constants.Color.warningColor
-    }
-    
-    func disenableWithdrawal() {
-        agreeLabel.textColor = Constants.Color.gray
-        withdrawalButton.isEnabled = false
-        withdrawalButton.backgroundColor = .lightGray
+    func bindingInput() -> RegisterOutViewModel.Output {
+        let registerOutButtonTapped = registerOutButton.rx.tap
+            .asObservable()
+        
+        let input = RegisterOutViewModel.Input(withdrawlButtonTapped: registerOutButtonTapped)
+        
+        return viewModel.transform(input: input)
     }
 }
 
 // Configure UI
-private extension WithdrawalBottomSheetView {
+private extension RegisterOutViewController {
     func configureUI() {
         configureHierarchy()
         makeConstraints()
@@ -109,7 +113,7 @@ private extension WithdrawalBottomSheetView {
     
     func configureHierarchy() {
         [agreeCheckButton, agreeLabel].forEach(agreeStackView.addArrangedSubview(_:))
-        [titleLabel, noticeLabel, agreeStackView, withdrawalButton].forEach(addSubview(_:))
+        [titleLabel, noticeLabel, agreeStackView, registerOutButton].forEach(view.addSubview(_:))
     }
     
     func makeConstraints() {
@@ -128,7 +132,7 @@ private extension WithdrawalBottomSheetView {
             $0.leading.trailing.equalTo(noticeLabel)
         }
         
-        withdrawalButton.snp.makeConstraints {
+        registerOutButton.snp.makeConstraints {
             $0.top.greaterThanOrEqualTo(agreeStackView.snp.bottom).offset(Constants.Spacing.medium)
             $0.leading.trailing.equalTo(agreeStackView)
             $0.bottom.equalToSuperview().offset(-Constants.Spacing.large)

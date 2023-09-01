@@ -156,8 +156,7 @@
 		3C7DE61B2A86130500259E74 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7DE61A2A86130500259E74 /* LogInViewModel.swift */; };
 		3C875C082A8754A600818473 /* AppleSigningUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */; };
 		3C875C0A2A87553F00818473 /* StubAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C092A87553F00818473 /* StubAuthRepository.swift */; };
-		3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */; };
-		3C875C112A89E7C400818473 /* WithdrawalBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */; };
+		3C875C112A89E7C400818473 /* RegisterOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C102A89E7C400818473 /* RegisterOutViewController.swift */; };
 		3C875C132A89F5D000818473 /* WithdrawalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C122A89F5D000818473 /* WithdrawalCoordinator.swift */; };
 		3C875C192A8A262000818473 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C182A8A262000818473 /* LogOutViewController.swift */; };
 		3C875C1B2A8A294600818473 /* LogOutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */; };
@@ -165,7 +164,6 @@
 		3C875C1F2A8C844600818473 /* LogOutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C1E2A8C844600818473 /* LogOutUseCase.swift */; };
 		3C875C222A8C85CF00818473 /* LogOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C212A8C85CF00818473 /* LogOutViewModel.swift */; };
 		3C875C242A8CA2BD00818473 /* WithdrawalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */; };
-		3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */; };
 		3C875C282A8E164500818473 /* PrivacyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875C272A8E164500818473 /* PrivacyCoordinator.swift */; };
 		3CA0ED0A2A73878900111457 /* ExploreSubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */; };
 		3CA0ED0C2A7387A700111457 /* ExploreSubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */; };
@@ -189,6 +187,7 @@
 		3CE7628B2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */; };
 		3CE7628D2A6687DF00E1411E /* ExploreTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628C2A6687DF00E1411E /* ExploreTabItem.swift */; };
 		3CE7628F2A66892D00E1411E /* ExploreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */; };
+		3CEF1B952AA175C800BCDF36 /* RegisterOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF1B942AA175C800BCDF36 /* RegisterOutViewModel.swift */; };
 		3CF4CE8A2A7B794B0079E996 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE892A7B794B0079E996 /* UIButton + Extension.swift */; };
 		3CF4CE8C2A7B85E70079E996 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8B2A7B85E70079E996 /* UITextField + Extension.swift */; };
 		3CF4CE8E2A7B876C0079E996 /* UploadLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */; };
@@ -451,8 +450,7 @@
 		3C7DE61A2A86130500259E74 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		3C875C072A8754A600818473 /* AppleSigningUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSigningUseCaseTests.swift; sourceTree = "<group>"; };
 		3C875C092A87553F00818473 /* StubAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubAuthRepository.swift; sourceTree = "<group>"; };
-		3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
-		3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalBottomSheetView.swift; sourceTree = "<group>"; };
+		3C875C102A89E7C400818473 /* RegisterOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOutViewController.swift; sourceTree = "<group>"; };
 		3C875C122A89F5D000818473 /* WithdrawalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCoordinator.swift; sourceTree = "<group>"; };
 		3C875C182A8A262000818473 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		3C875C1A2A8A294600818473 /* LogOutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCoordinator.swift; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 		3C875C1E2A8C844600818473 /* LogOutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutUseCase.swift; sourceTree = "<group>"; };
 		3C875C212A8C85CF00818473 /* LogOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewModel.swift; sourceTree = "<group>"; };
 		3C875C232A8CA2BD00818473 /* WithdrawalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalUseCase.swift; sourceTree = "<group>"; };
-		3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewModel.swift; sourceTree = "<group>"; };
 		3C875C272A8E164500818473 /* PrivacyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyCoordinator.swift; sourceTree = "<group>"; };
 		3CA0ED092A73878900111457 /* ExploreSubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewController.swift; sourceTree = "<group>"; };
 		3CA0ED0B2A7387A700111457 /* ExploreSubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSubscribeViewModel.swift; sourceTree = "<group>"; };
@@ -484,6 +481,7 @@
 		3CE7628A2A667A4E00E1411E /* ExploreCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		3CE7628C2A6687DF00E1411E /* ExploreTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabItem.swift; sourceTree = "<group>"; };
 		3CE7628E2A66892D00E1411E /* ExploreTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabBarController.swift; sourceTree = "<group>"; };
+		3CEF1B942AA175C800BCDF36 /* RegisterOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOutViewModel.swift; sourceTree = "<group>"; };
 		3CF4CE892A7B794B0079E996 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		3CF4CE8B2A7B85E70079E996 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		3CF4CE8D2A7B876C0079E996 /* UploadLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadLinkViewController.swift; sourceTree = "<group>"; };
@@ -946,22 +944,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		189E9AE62A95E3970022C1AF /* WithdrawalView */ = {
+		189E9AE62A95E3970022C1AF /* RegisterOutView */ = {
 			isa = PBXGroup;
 			children = (
-				189E9AE72A95E3C40022C1AF /* View */,
 				3C875C0D2A89E30800818473 /* Controllers */,
 				3C875C202A8C85BF00818473 /* ViewModel */,
 			);
-			path = WithdrawalView;
-			sourceTree = "<group>";
-		};
-		189E9AE72A95E3C40022C1AF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3C875C102A89E7C400818473 /* WithdrawalBottomSheetView.swift */,
-			);
-			path = View;
+			path = RegisterOutView;
 			sourceTree = "<group>";
 		};
 		189E9AE82A95E3E10022C1AF /* CreatorApplicationView */ = {
@@ -1356,7 +1345,7 @@
 				189E9AEC2A95E4590022C1AF /* ProfileSettingView */,
 				189E9AE82A95E3E10022C1AF /* CreatorApplicationView */,
 				189E9AE22A95E3490022C1AF /* LogOutView */,
-				189E9AE62A95E3970022C1AF /* WithdrawalView */,
+				189E9AE62A95E3970022C1AF /* RegisterOutView */,
 			);
 			path = SettingScene;
 			sourceTree = "<group>";
@@ -1570,7 +1559,7 @@
 		3C875C0D2A89E30800818473 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3C875C0E2A89E32800818473 /* WithdrawalViewController.swift */,
+				3C875C102A89E7C400818473 /* RegisterOutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1578,7 +1567,7 @@
 		3C875C202A8C85BF00818473 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3C875C252A8CA54A00818473 /* WithdrawalViewModel.swift */,
+				3CEF1B942AA175C800BCDF36 /* RegisterOutViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2109,14 +2098,13 @@
 				EBA8EB442A5ECAEB00998630 /* FetchCreatorPostsUseCase.swift in Sources */,
 				18EC06972A627746006293B5 /* DefaultImageRepository.swift in Sources */,
 				183974692A52637700F0101A /* SupabaseEndPoint.swift in Sources */,
-				3C875C0F2A89E32800818473 /* WithdrawalViewController.swift in Sources */,
 				18BD41F62A67B4D900060616 /* UILabel + Extension.swift in Sources */,
 				3CAC3D832A52F6B7000DE463 /* PostRequestDirector.swift in Sources */,
 				1893497D2AA0747900E3A5A4 /* BlockUserViewController.swift in Sources */,
 				18513FD82A5FB01E00580A1A /* SettingBaseCell.swift in Sources */,
 				18DD39962A76440D00AD13BE /* PostCreatorHeaderView.swift in Sources */,
 				EB3A907D2A79EC28007F400A /* CreatorApplicationTextFieldView.swift in Sources */,
-				3C875C112A89E7C400818473 /* WithdrawalBottomSheetView.swift in Sources */,
+				3C875C112A89E7C400818473 /* RegisterOutViewController.swift in Sources */,
 				18BD41F82A67BA3100060616 /* JobCategoryPickerView.swift in Sources */,
 				3C45B0192A52A7C600307DCF /* Bundle + Extension.swift in Sources */,
 				3C875C192A8A262000818473 /* LogOutViewController.swift in Sources */,
@@ -2134,6 +2122,7 @@
 				3CCEC37F2A789ABC001753DF /* UploadBottomSheetView.swift in Sources */,
 				18C1E5432A55BC4600A41AC5 /* URLSessionType.swift in Sources */,
 				18BDA9852A62F25A00E00116 /* UnderLineTextField.swift in Sources */,
+				3CEF1B952AA175C800BCDF36 /* RegisterOutViewModel.swift in Sources */,
 				183EDDE22A7272D200F1490E /* Notification + Extension.swift in Sources */,
 				3C639B2C2A7A4D90003E2E44 /* UploadImagePickerViewController.swift in Sources */,
 				187949C12A5EA30300ADA01A /* Reusable.swift in Sources */,
@@ -2214,7 +2203,6 @@
 				EB3A90792A791F6B007F400A /* CreatorApplicationCoordinator.swift in Sources */,
 				18C1E5452A55BC5D00A41AC5 /* URLSessionDataTaskType.swift in Sources */,
 				3C3622672AA089CE0088649B /* ReportViewModel.swift in Sources */,
-				3C875C262A8CA54A00818473 /* WithdrawalViewModel.swift in Sources */,
 				EB47BC752A9F2B66000E016E /* ReportRequestDirector.swift in Sources */,
 				3C639B242A7A08AB003E2E44 /* UploadCoordinator.swift in Sources */,
 				3CAC3D7F2A52DE80000DE463 /* DefaultPostRepository.swift in Sources */,

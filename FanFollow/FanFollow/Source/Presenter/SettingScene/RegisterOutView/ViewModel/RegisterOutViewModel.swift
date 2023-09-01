@@ -1,5 +1,5 @@
 //
-//  WithdrawlViewModel.swift
+//  RegisterOutViewModel.swift
 //  FanFollow
 //
 //  Created by parkhyo on 2023/08/16.
@@ -7,7 +7,7 @@
 
 import RxSwift
 
-final class WithdrawlViewModel: ViewModel {
+final class RegisterOutViewModel: ViewModel {
     struct Input {
         var withdrawlButtonTapped: Observable<Void>
     }
