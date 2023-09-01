@@ -44,6 +44,7 @@ enum JobCategory: Int, CaseIterable {
             .IT,
             .media,
             .medical,
+            .marketing,
             .plan
         ]
     }
