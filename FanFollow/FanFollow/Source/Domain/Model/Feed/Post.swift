@@ -71,6 +71,6 @@ extension Post: IdentifiableType {
 
 extension Post: Equatable {
     static func == (lhs: Post, rhs: Post) -> Bool {
-        return lhs.identity == rhs.identity
+        return lhs.identity == rhs.identity && lhs.likeCount == rhs.likeCount
     }
 }
