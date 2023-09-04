@@ -12,6 +12,13 @@ import RxRelay
 import RxSwift
 
 final class CreatorLinksTableViewController: CreatorApplicationChildController {
+    private let descriptionLabel = UILabel().then { label in
+        label.numberOfLines = 0
+        label.font = .coreDreamFont(ofSize: 14, weight: .regular)
+        label.textColor = Constants.Color.grayDark
+        label.text = Constants.Text.linksInputDescription
+    }
+
     private let tableView = UITableView().then { tableView in
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -174,12 +181,18 @@ private extension CreatorLinksTableViewController {
     }
     
     func configureHierarchy() {
-        view.addSubview(tableView)
+        [descriptionLabel, tableView].forEach(view.addSubview)
     }
     
     func makeConstraints() {
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(Constants.Spacing.small)
+        }
+
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(descriptionLabel.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
