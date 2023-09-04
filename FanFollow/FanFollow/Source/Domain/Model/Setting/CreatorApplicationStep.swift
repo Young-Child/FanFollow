@@ -20,7 +20,7 @@ enum CreatorApplicationStep: Int, CaseIterable {
         switch self {
         case .agreement:    return "안내 사항"
         case .category:     return "직군 선택"
-        case .links:        return "링크 설정"
+        case .links:        return "프로필 링크 설정"
         case .introduce:    return "소개 설정"
         default:            return ""
         }
