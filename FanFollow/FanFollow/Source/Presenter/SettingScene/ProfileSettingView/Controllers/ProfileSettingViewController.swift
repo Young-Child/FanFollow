@@ -151,7 +151,7 @@ private extension ProfileSettingViewController {
             .disposed(by: disposeBag)
         
         output.jobCategory
-            .compactMap { $0 == .unSetting ? "" : $0?.categoryName }
+            .compactMap { $0?.categoryName }
             .asDriver(onErrorJustReturn: "")
             .drive(jobCategoryInput.textField.rx.text)
             .disposed(by: disposeBag)

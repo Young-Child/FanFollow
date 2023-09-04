@@ -35,7 +35,7 @@ final class ExploreViewModel: ViewModel {
             from: recommandAllCreators
         )
         
-        let jobAllcase = JobCategory.allCases.filter { $0 != .unSetting }
+        let jobAllcase = JobCategory.allCases
         
         let jobCategoryObservable = convertCategorySectionModel(from: Observable.just(jobAllcase))
         

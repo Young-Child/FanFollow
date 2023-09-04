@@ -17,7 +17,6 @@ enum JobCategory: Int, CaseIterable {
     case medical
     case marketing
     case plan
-    case unSetting
     
     var categoryName: String {
         switch self {
@@ -30,22 +29,6 @@ enum JobCategory: Int, CaseIterable {
         case .medical:      return "의료"
         case .marketing:    return "마케팅"
         case .plan:         return "기획"
-        case .unSetting:    return "미정"
         }
-    }
-    
-    static var allCases: [JobCategory] {
-        return [
-            .unSetting,
-            .art,
-            .design,
-            .education,
-            .financial,
-            .IT,
-            .media,
-            .medical,
-            .marketing,
-            .plan
-        ]
     }
 }

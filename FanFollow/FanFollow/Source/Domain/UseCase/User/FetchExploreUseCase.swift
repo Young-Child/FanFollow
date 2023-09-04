@@ -39,7 +39,7 @@ final class DefaultFetchExploreUseCase: FetchExploreUseCase {
     }
     
     func fetchRandomCreatorsByAllCategory(count: Int) -> Observable<[(String, [Creator])]> {
-        let allJobs = JobCategory.allCases.filter { $0 != .unSetting }
+        let allJobs = JobCategory.allCases
         
         let categoryCreatorsObservables = Observable.from(allJobs)
             .flatMap { category in
