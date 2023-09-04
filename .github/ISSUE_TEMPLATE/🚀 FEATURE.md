@@ -1,9 +1,10 @@
 ---
-name: 🚀 FEATURE
+name: "\U0001F680 FEATURE"
 about: 새로운 기능을 개발시 사용해주세요.
 title: ''
-labels: 'feature'
+labels: feature
 assignees: ''
+
 ---
 
 ### Description
