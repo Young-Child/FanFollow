@@ -44,6 +44,17 @@ final class ProfileCell: UITableViewCell {
         label.numberOfLines = 1
     }
 
+    private let introduceLabel = UILabel().then { label in
+        label.numberOfLines = 2
+        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
+    }
+
+    private let linkStackView = UIStackView().then { stackView in
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 8
+    }
+
     private let followButton = UIButton().then { button in
         button.setTitle(Constants.Text.unfollowButtonTitle, for: .selected)
         button.setTitleColor(Constants.Color.grayDark, for: .selected)
@@ -52,11 +63,6 @@ final class ProfileCell: UITableViewCell {
         button.layer.backgroundColor = Constants.Color.blue.cgColor
         button.layer.cornerRadius = 4
         button.titleLabel?.font = .coreDreamFont(ofSize: 16, weight: .medium)
-    }
-
-    private let introduceLabel = UILabel().then { label in
-        label.numberOfLines = 2
-        label.font = .coreDreamFont(ofSize: 16, weight: .regular)
     }
     
     private let contentStackView = UIStackView().then { stackView in
@@ -94,6 +100,10 @@ extension ProfileCell {
         configureFollowerCountLabel(count: profile.followerCount)
         configureFollowButton(isFollow: profile.isFollow)
         configureFollowButtonAction()
+        
+        if let links = profile.creator.links {
+            configureLinkStackView(links)
+        }
     }
     
     private func configureFollowerCountLabel(count: Int) {
@@ -122,6 +132,21 @@ extension ProfileCell {
         let backgroundColor = isFollow ? Constants.Color.gray : Constants.Color.blue
         followButton.layer.backgroundColor = backgroundColor.cgColor
     }
+
+    private func configureLinkStackView(_ links: [String]) {
+        if linkStackView.arrangedSubviews.isEmpty == false {
+            return
+        }
+        
+        links.forEach { link in
+            let label = UILabel().then { label in
+                label.numberOfLines = 0
+                label.font = .coreDreamFont(ofSize: 14, weight: .light)
+                label.text = link
+            }
+            linkStackView.addArrangedSubview(label)
+        }
+    }
 }
 
 // Configure UI
@@ -136,7 +161,9 @@ private extension ProfileCell {
     func configureHierarchy() {
         [creatorNickNameLabel, followerCountLabel].forEach(creatorStackView.addArrangedSubview)
         [creatorImageView, creatorStackView].forEach(stackView.addArrangedSubview)
-        [stackView, followButton, introduceLabel].forEach(contentStackView.addArrangedSubview)
+        [stackView, introduceLabel, linkStackView, followButton].forEach {
+            contentStackView.addArrangedSubview($0)
+        }
         contentView.addSubview(contentStackView)
     }
 

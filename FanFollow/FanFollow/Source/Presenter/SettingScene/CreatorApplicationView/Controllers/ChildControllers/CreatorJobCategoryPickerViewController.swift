@@ -25,13 +25,6 @@ final class CreatorJobCategoryPickerViewController: CreatorApplicationChildContr
             $0.top.leading.trailing.equalToSuperview()
         }
         
-        bind()
-    }
-    
-    func bind() {
-        jobCategoryPickerView.rx.itemSelected
-            .map { $0.row != .zero }
-            .bind(to: nextButtonEnable)
-            .disposed(by: disposeBag)
+        nextButtonEnable.accept(true)
     }
 }
