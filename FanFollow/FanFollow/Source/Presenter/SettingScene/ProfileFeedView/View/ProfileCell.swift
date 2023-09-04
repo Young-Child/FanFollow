@@ -138,8 +138,8 @@ extension ProfileCell {
                 label.numberOfLines = 0
                 label.font = .coreDreamFont(ofSize: 14, weight: .light)
                 label.text = link
-                linkStackView.addArrangedSubview(label)
             }
+            linkStackView.addArrangedSubview(label)
         }
     }
 }
