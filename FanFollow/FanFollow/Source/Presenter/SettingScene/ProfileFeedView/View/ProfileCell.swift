@@ -100,6 +100,7 @@ extension ProfileCell {
         configureFollowerCountLabel(count: profile.followerCount)
         configureFollowButton(isFollow: profile.isFollow)
         configureFollowButtonAction()
+        
         if let links = profile.creator.links {
             configureLinkStackView(links)
         }
@@ -133,6 +134,10 @@ extension ProfileCell {
     }
 
     private func configureLinkStackView(_ links: [String]) {
+        if linkStackView.arrangedSubviews.isEmpty == false {
+            return
+        }
+        
         links.forEach { link in
             let label = UILabel().then { label in
                 label.numberOfLines = 0
