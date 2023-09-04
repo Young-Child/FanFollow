@@ -48,6 +48,7 @@ enum Constants {
         static let logOutAlertMessage = "로그아웃하시겠습니까?"
         static let logOut = "로그아웃"
         static let introduceInputViewPlaceholder = "소개글을 작성해주세요."
+        static let linksInputDescription = "자신과 연락할 수 있는 이메일이나 자신의 다른 프로필을 추가해보세요."
         static let inputMessage = "입력을 완료해주세요."
         static let imageSelectTitle = "이미지 선택"
         static let nickNameInformationTitle = "닉네임은 공백 포함 10글자까지 입력할 수 있습니다."
